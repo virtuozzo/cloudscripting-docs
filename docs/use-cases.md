@@ -1,1 +1,5 @@
-# Use-Cases Overview
+# Use-Cases
+
+## Vertical Scaling
+
+## Horizontal Scaling
