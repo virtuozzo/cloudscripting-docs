@@ -1,12 +1,35 @@
 site_name: Cloud Scripting
-site_url: /
-#use_directory_urls: true
+#site_url: /
+use_directory_urls: true
 #use_absolute_urls: true
 include_search: true
 
 theme: readthedocs
 
+markdown_extensions: [admonition, toc, tables]
+                      #attention
+                      #caution
+                      #danger
+                      #error
+                      #hint
+                      #important
+                      #note
+                      #tip
+                      #warning
+
 pages:
-- [index.md, Home]
-- [use-cases.md, Use Cases]
-- [cloud-events.md, Cloud Events]
+- ['index.md', 'Home']
+
+#Creating Templates
+- ['creating-templates/template-basics.md', 'Creating Templates', 'Template Basics']
+- ['creating-templates/app-workflow.md', 'Creating Templates', 'Application Workflow']
+- ['creating-templates/extention-workflow.md', 'Creating Templates', 'Extention Workflow']
+
+#Reference
+- ['reference/cloud-actions.md', 'Reference', 'Cloud Actions']
+- ['reference/cloud-events.md', 'Reference', 'Cloud Events']
+
+#Use Cases
+- ['use-cases/vertical-scaling.md', 'Use Cases', 'Vertical Scaling']
+- ['use-cases/horizontal-scaling.md', 'Use Cases', 'Horizontal Scaling']
+
