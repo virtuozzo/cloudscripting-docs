@@ -1,7 +1,7 @@
 site_name: Cloud Scripting
-#site_url: /
-use_directory_urls: true
-#use_absolute_urls: true
+site_url: /
+#use_directory_urls: true
+use_absolute_urls: true
 include_search: true
 
 theme: readthedocs
@@ -20,16 +20,24 @@ markdown_extensions: [admonition, toc, tables]
 pages:
 - ['index.md', 'Home']
 
-#Creating Templates
+# Creating Templates
 - ['creating-templates/template-basics.md', 'Creating Templates', 'Template Basics']
 - ['creating-templates/app-workflow.md', 'Creating Templates', 'Application Workflow']
 - ['creating-templates/extention-workflow.md', 'Creating Templates', 'Extention Workflow']
+- ['creating-templates/multi-language-scripting.md', 'Creating Templates', 'Multi-Language Scripting']
 
-#Reference
-- ['reference/cloud-actions.md', 'Reference', 'Cloud Actions']
-- ['reference/cloud-events.md', 'Reference', 'Cloud Events']
+# Reference
+- ['reference/actions.md', 'Reference', 'Actions']
+- ['reference/events.md', 'Reference', 'Events']
+- ['reference/placeholders.md', 'Reference', 'Placeholders']
+- ['reference/procedures.md', 'Reference', 'Procedures']
 
-#Use Cases
+# Use Cases
 - ['use-cases/vertical-scaling.md', 'Use Cases', 'Vertical Scaling']
 - ['use-cases/horizontal-scaling.md', 'Use Cases', 'Horizontal Scaling']
+- ['use-cases/docker-orchestration.md', 'Use Cases', 'Docker Orhestration']
+
+# Examples
+- ['examples/wordpress-cluster.md', 'Examples', 'Wordpress Cluster']
+
 

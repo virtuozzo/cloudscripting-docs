@@ -17,6 +17,8 @@
     "type": "string",         
     "success": "object/string",
     "startPage": "string",
+    
+    "procedures" : "array",
                             
     "onInstall" : "object/array",
     "onUninstall" : "object/array"

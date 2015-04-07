@@ -16,8 +16,10 @@
     "homepage": "string",        
     "success": "object/string",
     "startPage": "string",
-                            
-    "onInstall" : "object/array"                                                                                                       
+                                      
+    "procedures" : "array",
+                                          
+    "onInstall" : "object/array"                                                                                                                                                                                                                                                                                                                                                                                                                                                                
   }
 }
 ```
