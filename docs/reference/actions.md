@@ -39,6 +39,7 @@
 ### ReplaceInFile
 ### DeletePath
 ### RenamePath
+### AddContext
 
 ## Topology Nodes Management
 
