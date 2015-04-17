@@ -19,6 +19,8 @@ Subscription to the particular application’s lifecycle events (e.g. topology c
 ### AfterAddNode
 ### BeforeCloneNodes
 ### AfterCloneNodes
+### BeforeLinkNode
+### AfterLinkNode
 ### BeforeAttachExtIp
 ### AfterAttachExtIp
 ### BeforeDetachExtIp

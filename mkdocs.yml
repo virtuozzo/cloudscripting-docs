@@ -5,6 +5,7 @@ use_absolute_urls: true
 include_search: true
 
 theme: readthedocs
+#theme: highlight.js
 
 markdown_extensions: [admonition, toc, tables]
                       #attention
