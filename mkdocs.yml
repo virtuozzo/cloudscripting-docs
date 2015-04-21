@@ -1,10 +1,15 @@
 site_name: Cloud Scripting
 site_url: /
+copyright: Copyright &copy; 2015, Jelastic, Inc.
+
 #use_directory_urls: true
 use_absolute_urls: true
-include_search: true
+include_search: false
+theme_center_lead: false
 
-theme: readthedocs
+#theme: sl
+theme_dir: './theme/readthedocs'
+#theme: slate
 #theme: highlight.js
 
 markdown_extensions: [admonition, toc, tables]
@@ -28,7 +33,9 @@ pages:
 - ['creating-templates/multi-language-scripting.md', 'Creating Templates', 'Multi-Language Scripting']
 
 # Reference
-- ['reference/actions.md', 'Reference', 'Actions']
+- ['reference/actions/index.md', 'Reference', 'Actions']
+#- ['reference/actions/execute-shell-commands.md', 'Reference', '&nbsp;&nbsp;&nbsp;&nbsp;&blacksquare;&nbsp; ExecuteShellCommands']
+- ['reference/actions/execute-shell-commands.md', '**HIDDEN**']
 - ['reference/events.md', 'Reference', 'Events']
 - ['reference/placeholders.md', 'Reference', 'Placeholders']
 - ['reference/procedures.md', 'Reference', 'Procedures']
