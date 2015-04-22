@@ -5,21 +5,21 @@
 {
   "jpsType": "install",
   "jpsVersion": "0.3",
-  "application": {    
+  "application": {
     "name": "string",
-    "env" : "object",
-        
-    "description": "object/string", 
-    "categories" : "array",
+    "env": "object",
+    
+    "description": "object/string",
+    "categories": "array",
     "version": "string",
     "logo": "string",
-    "homepage": "string",        
+    "homepage": "string",
     "success": "object/string",
     "startPage": "string",
-                                      
-    "procedures" : "array",
-                                          
-    "onInstall" : "object/array"                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+    
+    "procedures": "array",
+    
+    "onInstall": "object/array"
   }
 }
 ```

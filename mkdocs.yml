@@ -4,10 +4,10 @@ copyright: Copyright &copy; 2015, Jelastic, Inc.
 
 #use_directory_urls: true
 use_absolute_urls: true
-include_search: false
+include_search: true
 theme_center_lead: false
 
-#theme: sl
+#theme: readthedocs
 theme_dir: './theme/readthedocs'
 #theme: slate
 #theme: highlight.js
@@ -24,7 +24,9 @@ markdown_extensions: [admonition, toc, tables]
                       #warning
 
 pages:
-- ['index.md', 'Home']
+- ['index.md', 'Overview']
+
+- ['quick-start.md', 'Quick Start']
 
 # Creating Templates
 - ['creating-templates/template-basics.md', 'Creating Templates', 'Template Basics']
@@ -33,9 +35,8 @@ pages:
 - ['creating-templates/multi-language-scripting.md', 'Creating Templates', 'Multi-Language Scripting']
 
 # Reference
-- ['reference/actions/index.md', 'Reference', 'Actions']
+- ['reference/actions.md', 'Reference', 'Actions']
 #- ['reference/actions/execute-shell-commands.md', 'Reference', '&nbsp;&nbsp;&nbsp;&nbsp;&blacksquare;&nbsp; ExecuteShellCommands']
-- ['reference/actions/execute-shell-commands.md', '**HIDDEN**']
 - ['reference/events.md', 'Reference', 'Events']
 - ['reference/placeholders.md', 'Reference', 'Placeholders']
 - ['reference/procedures.md', 'Reference', 'Procedures']

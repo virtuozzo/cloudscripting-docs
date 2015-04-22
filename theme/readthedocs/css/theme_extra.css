@@ -3,11 +3,23 @@
  */
 body {
     font-size: 90%;
+    color: #2C3E50;
+}
+
+h1, h2, h3, h4, h5, h6, legend {
+    font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1, h2 {
+    color: #2C3E50;
+    font-weight: 600;
 }
 
 h3, h4, h5, h6 {
-    color: #2980b9;
-    font-weight: 300
+    /*color: #2980b9;*/
+    color: #2C3E50;
+    /*font-weight: 300*/
+    font-weight: 600;
 }
 
 /*
@@ -22,7 +34,8 @@ h3, h4, h5, h6 {
     display: block;
     position: relative;
     font-size: 90%;
-    color: #838383;
+    /*color: #838383;*/
+    color: #fff;
 }
 
 .wy-menu-vertical .toctree-l2 a {
@@ -56,7 +69,13 @@ h3, h4, h5, h6 {
  * https://github.com/mkdocs/mkdocs/issues/233
  */
 code {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #c7254e;
     white-space: pre;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+    border: none;
 }
 
 /*
@@ -92,4 +111,22 @@ code.cs, code.c {
   display: block;
   padding: 0.5em;
   color: #333;
+}
+
+@media screen and (min-width: 1400px) {
+    .wy-nav-content-wrap {
+        background: none;
+    }
+}
+
+
+pre code {
+    font-size: 90%;
+    /*background-color: #ecf0f1;*/
+    background-color: #ecf0f1;
+    /*border: 1px solid #ccc;*/
+}
+
+pre code.example {
+    /*background-color: red;*/
 }
