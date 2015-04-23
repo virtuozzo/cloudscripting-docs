@@ -1,0 +1,47 @@
+#Container Node Types
+
+- Compute nodes: 
+    - Java    
+        - `tomcat6` - Tomcat 6	
+        - `tomcat7` - Tomcat 7
+        - `tomcat8` - Tomcat 8	
+        - `tomee` - TomEE 	 
+        - `jetty6` - Jetty 6
+        - `jetty8` - Jetty 8        	
+        - `jetty9` - Jetty 9
+        - `jboss7` - Jbossas 7                	
+    - PHP           
+        - `glassfish3` - GlassFish 3	 
+        - `glassfish4` - GlassFish 4	 
+        - `apache2` - Apache 2	 
+        - `nginxphp` - Nginx PHP
+    - Python
+        - `apache2-python` - Apache 2 + Python
+    - Ruby
+        - `apache2-ruby` - Apache 2 + Ruby 
+        - `nginx-ruby` - Nginx Ruby                               
+    - Node.js        
+        - `nodejs` - Node.js 0.1x
+- SQL Databases:     	 
+    - `mysql5` - MySQL 	 
+    - `mariadb` - MariaDB 5	 
+    - `mariadb10` - MariaDB 10	 
+    - `postgres8` - PostgreSQL 8	                            
+    - `postgres9` - PostgreSQL 9
+- NoSQL Databases:    	 
+    - `mongodb` - MongoDB	 
+    - `couchdb` - CouchDB
+    - `redis` - Redis
+    - `cassandra2` - Cassandra 2
+- Balancers:    	 
+    - `nginx` - Nginx balancer
+    - `haproxy` - HAProxy balancer
+- Build nodes:    	 
+    - `maven3` - Мaven 	 
+- Cache nodes:
+    - `memcached` - Мemcached
+- Virtual Private Server nodes.
+    - `centos6` - CentOS 6 
+- Docker&reg; nodes
+    - `docker`
+       

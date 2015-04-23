@@ -128,5 +128,9 @@ pre code {
 }
 
 pre code.example {
-    /*background-color: red;*/
+    background-color: white;
+}
+
+.wy-menu-vertical .toctree-l1 a {
+    color: white;
 }

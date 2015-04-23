@@ -1,24 +1,38 @@
 # Actions
 
+Actions are the building blocks that can perform arbitrary automation tasks in your environments.
+For example:
 
-- replace
-- select a containers
+- increase/decrease CPU or RAM amount  
+- adjust configs according to specific environment parameters
+- restart a service
+- restart a container
+- apply a database patch according to specific environment parameters  
+...     
+
+Default workflow for any action:
+
+- replace [Placeholders](placeholders/)
+- get target containers list *[optional]* (see the [Selecting Containers For Your Actions](#selecting-containers-for-your-actions) section) 
 - check rights
 - execute the action itself
 
 Actions can be executed when an [Event](events/) with a matching filter is triggered. 
 Multiple Actions can be combined together into a [Procedure](procedures/). 
+Each Procedure could be executed with different input parameters using [Call](#call) action. 
 
 ## Selecting Containers For Your Actions
 
-Some actions requires to specify a containers.   
-Большинсво операций должно производиться над определенными нодами топологии.   
-Есть три способа выбора нод, над которыми производится действие:
+Some actions require a list of containers in which the action will be executed.
+There are three ways to select the containers.
+
+- [Particular Container](#particular-container)
+- [All Containers By Type](#all-containers-by-type)
+- [All Containers By Role](#all-containers-by-role) 
 
 ### Particular Container
-
-`nodeId` 
-The value could be static:
+Use `nodeId` parameter to select a particular container.      
+If you know the ID of a container on which you want to perform an action, you can set it statically:  
 
 ```
 {
@@ -33,7 +47,7 @@ The value could be static:
 }
 ```
 
-If you don't know the node ID or the node does not created yet, you can set the value dynamically using special placeholders:  
+If you don't know the container's ID or the container does not created yet, you can set the value dynamically using special placeholders:  
 
 ```
 {
@@ -48,12 +62,16 @@ If you don't know the node ID or the node does not created yet, you can set the 
 }
 ```
 
-More info about node placeholders in 
+See the [Placeholders](placeholders/) documentation for more information.
 
 ### All Containers By Type
- `nodeType`
+Use `nodeType` parameter to select all container nodes by software type.
+
+      	
+
 list of available node types. Sync exec one by one.  
-available noteTypes
+available noteTypes  
+See [All Containers By Role](#all-containers-by-role) if you don't know your containers software type or it's not static.  
 
 ### All Containers By Role
  
@@ -63,6 +81,7 @@ available nodeMission
 
 !!! note
     > If you set all three parameters, a container selection would work in the following order: _nodeId -> nodeType -> nodeMission_  - fix
+    
 
 ## Container Operations
 Actions that performs some operations inside of a container.     
@@ -76,7 +95,7 @@ All of them could be separated in three groups:
  
 !!! note 
     > To perform any Container Operation except [ExecuteShellCommands](#executeshellcommands) Cloud Scripting executor will use a default system user with restricted permissions.    
-    
+---    
 ### ExecuteShellCommands
 Execute a several SSH commands.
 
@@ -219,5 +238,8 @@ Using **sudo** to reload **Nginx** balancer:
 ## Performing User-Defined Operations
 
 ### Call
+Call arbitrary [Procedure](procedures/)
+
 ### ExecuteScript
+paste examples link
 ### InstallAddon
