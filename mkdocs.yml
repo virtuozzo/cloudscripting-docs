@@ -33,6 +33,7 @@ pages:
 - ['creating-templates/template-basics.md', 'Creating Templates', 'Template Basics']
 - ['creating-templates/app-workflow.md', 'Creating Templates', 'Application Workflow']
 - ['creating-templates/extention-workflow.md', 'Creating Templates', 'Extention Workflow']
+- ['creating-templates/selecting-containers.md', 'Creating Templates', 'Selecting Containers For Your Actions']
 - ['creating-templates/multi-language-scripting.md', 'Creating Templates', 'Multi-Language Scripting']
 - ['creating-templates/user-input-parameters.md', 'Creating Templates', 'Getting User Input']
 
@@ -45,7 +46,7 @@ pages:
 - ['reference/events.md', 'Reference', 'Events']
 - ['reference/procedures.md', 'Reference', 'Procedures']
 - ['reference/placeholders.md', 'Reference', 'Placeholders']
-- ['reference/container-node-types.md', 'Reference', 'Container Node Types']
+- ['reference/container-types.md', 'Reference', 'Container Types']
 
 # Use Cases
 - ['use-cases/vertical-scaling.md', 'Use Cases', 'Vertical Scaling']
