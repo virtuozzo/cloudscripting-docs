@@ -168,20 +168,201 @@ Using **sudo** to reload **Nginx** balancer:
   ]
 }
 ```
+
+- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed. 
+
 ### Unpack
+```
+{
+  "unpack": [
+    {
+      "nodeId": "number",
+      "nodeType": "string",
+      "nodeMission": "string",
+      
+      "sourcePath" : "URL",
+      "destPath" : "string"
+    }
+  ]
+}
+```
+
+- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+ One of those three parameters is required.
+- `sourcePath`
+- `destPath` 
+
 ### CreateFile
+```
+{
+  "createFile": [
+    {
+      "nodeId": "number",
+      "nodeType": "string",
+      "nodeMission": "string",
+            
+      "path" : "string"
+    }
+  ]
+}
+```
+
+- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+ One of those three parameters is required.
+- `path` 
+
 ### CreateDirectory
+```
+{
+  "createFile": [
+    {
+      "nodeId": "number",
+      "nodeType": "string",
+      "nodeMission": "string",
+            
+      "path" : "string"
+    }
+  ]
+}
+```
+
+- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+ One of those three parameters is required.
+- `path` 
+
 ### WriteFile
+```
+{
+  "writeFile": [
+    {
+      "nodeId": "number",
+      "nodeType": "string",
+      "nodeMission": "string",
+            
+      "path" : "string",
+      "body" : "string"
+    }
+  ]
+}
+```
+
+- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+ One of those three parameters is required.
+- `path`
+- `body`
+
 ### AppendFile
+```
+{
+  "appendFile": [
+    {
+      "nodeId": "number",
+      "nodeType": "string",
+      "nodeMission": "string",
+            
+      "path" : "string",
+      "body" : "string"
+    }
+  ]
+}
+```
+
+- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+ One of those three parameters is required.
+- `path`
+- `body`
+
 ### ReplaceInFile
+```
+{
+  "replaceInFile": [
+    {
+      "nodeId": "number",
+      "nodeType": "string",
+      "nodeMission": "string",
+            
+      "path" : "string",
+      "replacements" : [{
+        "pattern" : "string",
+        "replacement" : "string"
+      }]
+    }
+  ]
+}
+```
+
+- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+One of those three parameters is required. 
+- `path`
+- `replacements`
+    - `pattern`
+    - `replacement`
+
 <!-- DeletePath -->
 <!-- RenamePath --> 
 
 ## Topology Nodes Management
 
 ### AddNodes
-### SetCloudletsCount
+```
+{
+  "addNodes": [
+    {
+      "nodeType": "string",
+      "extip": "boolean",      
+      "fixedCloudlets": "number",
+      "flexibleCloudlets": "number",
+      "displayName": "string",
+      
+      "dockerName": "string",
+      "dockerTag": "string",
+      "dockerLinks": [
+        {
+          "sourceNodeId": "string",
+          "targetNodeId": "string",
+          "alias": "string"
+        }
+      ],
+      "dockerEnvVars": "object",
+      "metadata": {
+        "layer": "string"
+      }
+    }
+  ]
+}
+```
+
+- `nodeType` - container node software type. See [Container Types](/reference/container-types/). 
+- `extip` *[optional]* - Attach public IP address to the container. **Default**: false
+- `fixedCloudlets` *[optional]*. **Default**: 0 
+- `flexibleCloudlets` *[optional]*. **Default**: 1
+- `displayName` *[optional]*
+- `dockerName` *[optional]* - required only if `nodeType` equals `docker`. 
+- `dockerTag` *[optional]* 
+- `dockerLinks` *[optional]*
+    - `sourceNodeId`
+    - `targetNodeId`
+    - `alias`  
+- `dockerEnvVars` *[optional]*
+- `metadata` *[optional]*   
+
+<!-- SetCloudletsCount -->
 ### SetNodeDisplayName
+```
+{
+  "setNodeDisplayName": [
+    {
+      "nodeId": "string or number",
+            
+      "displayName" : "string"
+    }
+  ]
+}
+```
+
+- `nodeId` - container node ID
+- `displayName`
+
 ### RestartNodes
 ### AddContext
 

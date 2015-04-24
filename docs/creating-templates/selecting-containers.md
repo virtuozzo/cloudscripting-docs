@@ -56,6 +56,16 @@ See [All Containers By Role](#all-containers-by-role) if you don't know your con
 list of available node missions. Sync exec one by one,
 available nodeMission
 
+- `bl`
+- `cp`
+- `sqldb`
+- `nosqldb`
+- `cache`
+- `build`
+- `vds`
+- `docker`
+
+
 !!! note
     > If you set all three parameters, a container selection would work in the following order: _nodeId -> nodeType -> nodeMission_  - fix
     
