@@ -90,6 +90,23 @@ sudo /etc/init.d/httpd help;
 ```                                                        
      
 **Examples**  
+
+Execute bash script from URL for all Tomcat 6 nodes:
+
+```example
+{
+  "executeShellCommands": [
+    {
+      "nodeType": "tomcat6",
+      "commands": [
+        "curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2"
+      ]
+    }
+  ]
+}
+
+```
+                             
 Download and unzip a WordPress plugin on all compute nodes: 
 ```example
 {

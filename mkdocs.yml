@@ -48,13 +48,11 @@ pages:
 - ['reference/placeholders.md', 'Reference', 'Placeholders']
 - ['reference/container-types.md', 'Reference', 'Container Types']
 
-# Use Cases
-- ['use-cases/vertical-scaling.md', 'Use Cases', 'Vertical Scaling']
-- ['use-cases/horizontal-scaling.md', 'Use Cases', 'Horizontal Scaling']
-- ['use-cases/docker-orchestration.md', 'Use Cases', 'Docker Orhestration']
-
 # Examples
+- ['examples/vertical-scaling.md', 'Examples', 'Vertical Scaling']
+- ['examples/horizontal-scaling.md', 'Examples', 'Horizontal Scaling']
 - ['examples/wordpress-cluster.md', 'Examples', 'Wordpress Cluster']
+- ['examples/using-docker.md', 'Examples', 'Using Docker&reg;']
 
 
 

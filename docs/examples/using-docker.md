@@ -1,4 +1,4 @@
-# Docker Orchestration
+# Using Docker&reg;
 
 ```
 {
