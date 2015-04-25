@@ -294,9 +294,9 @@ Using **sudo** to reload **Nginx** balancer:
 - `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
 One of those three parameters is required. 
 - `path`
-- `replacements`
-    - `pattern`
-    - `replacement`
+- `replacements` - the list of replacements in the configuration files on the node
+    - `pattern` - regular expressions to find the string (e.g. `app\\.host\\.url\\s*=\\s*.*`)
+    - `replacement` - string to replace. You can use as replacement any string value including any combination of [Placeholders](placeholders/).
 
 <!-- DeletePath -->
 <!-- RenamePath --> 
@@ -455,10 +455,10 @@ One of those three parameters is required.
 
 - `nodeId`, `nodeType`, `nodeMission` *[optiona;]* - parameters that determines containers on which the action should be executed.
 **Default**: `nodeMission` equals `sqldb`.
-- `databaseName`
-- `user`
-- `password`
-- `dump`
+- `databaseName` - name of the database to create
+- `user` - user name in the database on behalf of which the application will be used
+- `password` - password in the database on behalf of which the application will be used
+- `dump` - link to the application database dump
 
 ### ApplySqlPatch
 ```
@@ -479,10 +479,10 @@ One of those three parameters is required.
 
 - `nodeId`, `nodeType`, `nodeMission` *[optiona;]* - parameters that determines containers on which the action should be executed.
 **Default**: `nodeMission` equals `sqldb`.
-- `databaseName`
-- `user`
-- `password`
-- `patch`
+- `databaseName` - name of the database to apply patch
+- `user` - user name in the database on behalf of which the application will be used
+- `password` - password in the database on behalf of which the application will be used
+- `patch` - SQL query or link to such query. it is used only for SQL databases, supports [Placeholders](placeholders/).
 
 !!! note
     > Works only for `mysql5`, `mariadb`, `mariadb10` container node types.
@@ -526,8 +526,8 @@ Or:
     - `java`
     - `php`
 
-- `script`
-- `params` *[optional]*
+- `script` - script body or a link to such scirpt body
+- `params` *[optional]* - script parameters
 
 **Examples**
 ```example
