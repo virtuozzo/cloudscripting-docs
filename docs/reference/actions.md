@@ -158,7 +158,7 @@ Using **sudo** to reload **Nginx** balancer:
 {
   "upload": [
     {
-      "nodeId": "number",
+      "nodeId": "number or string",
       "nodeType": "string",
       "nodeMission": "string",
       
@@ -176,7 +176,7 @@ Using **sudo** to reload **Nginx** balancer:
 {
   "unpack": [
     {
-      "nodeId": "number",
+      "nodeId": "number or string",
       "nodeType": "string",
       "nodeMission": "string",
       
@@ -197,7 +197,7 @@ Using **sudo** to reload **Nginx** balancer:
 {
   "createFile": [
     {
-      "nodeId": "number",
+      "nodeId": "number or string",
       "nodeType": "string",
       "nodeMission": "string",
             
@@ -216,7 +216,7 @@ Using **sudo** to reload **Nginx** balancer:
 {
   "createFile": [
     {
-      "nodeId": "number",
+      "nodeId": "number or string",
       "nodeType": "string",
       "nodeMission": "string",
             
@@ -235,7 +235,7 @@ Using **sudo** to reload **Nginx** balancer:
 {
   "writeFile": [
     {
-      "nodeId": "number",
+      "nodeId": "number or string",
       "nodeType": "string",
       "nodeMission": "string",
             
@@ -256,7 +256,7 @@ Using **sudo** to reload **Nginx** balancer:
 {
   "appendFile": [
     {
-      "nodeId": "number",
+      "nodeId": "number or string",
       "nodeType": "string",
       "nodeMission": "string",
             
@@ -277,7 +277,7 @@ Using **sudo** to reload **Nginx** balancer:
 {
   "replaceInFile": [
     {
-      "nodeId": "number",
+      "nodeId": "number or string",
       "nodeType": "string",
       "nodeMission": "string",
             
@@ -364,19 +364,197 @@ One of those three parameters is required.
 - `displayName`
 
 ### RestartNodes
+```
+{
+  "restartNodes": [
+    {
+      "nodeId": "number or string",
+      "nodeType": "string",
+      "nodeMission": "string"
+    }
+  ]
+}
+```
+
+- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+ One of those three parameters is required.
+ 
 ### AddContext
+```
+{
+  "addContext": [
+    {
+      "name": "string",
+      "fileName": "string",
+      "type": "string"
+    }
+  ]
+}
+```
+
+- `name`
+- `fileName`
+- `type` - context type. Possible values:
+    - `ARCHIVE`
+    - `GIT`
+    - `SVN`
 
 ## Database Operations
 
 ### PrepareSqlDatabase
+```
+{
+  "prepareSqlDatabase": [
+    {
+      "nodeId": "number or string",
+      "nodeType": "string",
+      "nodeMission": "string",
+      "loginCredentials": {
+        "user": "string",
+        "password": "string"
+      },
+      "newDatabaseName": "string",
+      "newDatabaseUser": {
+        "name": "string",
+        "password": "string"
+      }
+    }
+  ]
+}
+```
+
+- `nodeId`, `nodeType`, `nodeMission` *[optiona;]* - parameters that determines containers on which the action should be executed.
+**Default**: `nodeMission` equals `sqldb`.
+- `loginCredentials`
+    - `user`
+    - `password`
+- `newDatabaseName`
+- `newDatabaseUser`
+    - `name`
+    - `password`
+
+!!! note
+    > Works only for `mysql5`, `mariadb`, `mariadb10` container node types.
+
 ### RestoreSqlDump
+```
+{
+  "restoreSqlDump": [
+    {
+      "nodeId": "number or string",
+      "nodeType": "string",
+      "nodeMission": "string",
+      "databaseName": "string",
+      "user": "string",
+      "password": "string",
+      "dump": "URL"
+    }
+  ]
+}
+```
+
+- `nodeId`, `nodeType`, `nodeMission` *[optiona;]* - parameters that determines containers on which the action should be executed.
+**Default**: `nodeMission` equals `sqldb`.
+- `databaseName`
+- `user`
+- `password`
+- `dump`
+
 ### ApplySqlPatch
+```
+{
+  "applySqlPatch": [
+    {
+      "nodeId": "number or string",
+      "nodeType": "string",
+      "nodeMission": "string",
+      "databaseName": "string",
+      "user": "string",
+      "password": "string",
+      "patch": "string or URL"
+    }
+  ]
+}
+```
+
+- `nodeId`, `nodeType`, `nodeMission` *[optiona;]* - parameters that determines containers on which the action should be executed.
+**Default**: `nodeMission` equals `sqldb`.
+- `databaseName`
+- `user`
+- `password`
+- `patch`
+
+!!! note
+    > Works only for `mysql5`, `mariadb`, `mariadb10` container node types.
 
 ## Performing User-Defined Operations
 
 ### Call
 Call arbitrary [Procedure](procedures/)
 
+```
+{
+  "call" : "string or array of strings"
+}
+```
+
+Or:
+
+```
+{
+  "call" : [{
+    "procedure" : "string",
+    "params" : "object"
+  }]
+}
+```
+
 ### ExecuteScript
-paste examples link
+```
+{
+  "executeScript": [
+    {
+      "type" : "string",
+      "script" : "string or URL",
+      "params" : "object"
+    }
+  ]
+}
+```
+- `type` - script type. Possible values:
+    - `js`
+    - `java`
+    - `php`
+
+- `script`
+- `params` *[optional]*
+
+**Examples**
+```example
+{
+  "executeScript": [
+    {
+      "type" : "js",
+      "script" : "return '${this.greeting}';",
+      "params" : {
+        "greeting" : "Hello World!"
+      }
+    }
+  ]
+}
+```
+
 ### InstallAddon
+```
+{
+  "installAddon": [
+    {
+        "id" : "string"
+    }
+  ]
+}
+```
+
+- `id` - an extention ID from marketplace or from `addons` section in manifest
+
+<!-- add example -->

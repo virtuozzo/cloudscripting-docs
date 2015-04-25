@@ -18,7 +18,8 @@
     "startPage": "string",
     
     "procedures": "array",
-    
+    "addons" : "array",
+
     "onInstall": "object/array"
   }
 }
