@@ -4,11 +4,57 @@ Any action, available to be performed by means of API (including custom users’
 Subscription to the particular application’s lifecycle events (e.g. topology changes) can be done via add-ons. It’s also possible to bind the add-on’s execution to the onUninstall event and in such a way implement the included to it custom logic of this addon removal from an environment.
 
 ## Application Level Events
+```
+{
+  "jpsType": "update",
+  "application": {    
+    "onInstall": {},
+    "onUnstall": {}
+  }
+}
+```
 
 ### Install
 ### Uninstall
 
 ## Environment Level Events
+```
+{
+  "jpsType": "update",
+  "application": {
+     "env" : {
+        "onBeforeRestartNode" : {},
+        "onAfterRestartNode" : {},
+        "onBeforeDelete" : {},
+        "onAfterDelete" : {},
+        "onBeforeAddNode" : {},
+        "onAfterAddNode" : {},
+        "onBeforeCloneNodes" : {},
+        "onAfterCloneNodes" : {},
+        "onBeforeLinkNode" : {},
+        "onAfterLinkNode" : {},
+        "onBeforeAttachExtIp" : {},
+        "onAfterAttachExtIp" : {},
+        "onBeforeDetachExtIp" : {},
+        "onAfterDetachExtIp" : {},
+        "onBeforeUpdateVcsProject" : {},
+        "onAfterUpdateVcsProject" : {},
+        "onBeforeSetCloudletCount" : {},
+        "onAfterSetCloudletCount" : {},
+        "onBeforeStart" : {},
+        "onAfterStart" : {},
+        "onBeforeStop" : {},
+        "onAfterStop" : {},
+        "onBeforeDeploy" : {},
+        "onAfterDeploy" : {},
+        "onBeforeResetNodePassword" : {},
+        "onAfterResetNodePassword " : {},
+        "onBeforeRemoveNode" : {},
+        "onAfterRemoveNode" : {}
+     }
+  }
+}
+```
 
 ### BeforeRestartNode
 ### AfterRestartNode

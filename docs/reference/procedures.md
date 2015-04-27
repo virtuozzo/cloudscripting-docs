@@ -7,3 +7,91 @@ In order to access any required data or parameters of allocated resources inside
 
 ## Examples
 
+### Code Reuse
+
+Output `Hello World!` two times in `greeting.txt`:  
+```
+{
+  "jpsType": "update",
+  "application": {
+    "name": "Procedures Example",
+    "onInstall": [{
+      "createFile": {
+        "nodeMission": "cp",
+        "path": "${SYSTEM_WEBROOT}/greeting.txt"
+      }
+    }, {
+      "call": [
+        "greeting",
+        "greeting"
+      ]
+    }],
+    "procedures": [{
+      "id": "greeting",
+      "onCall": [{
+        "appendFile": [{
+          "nodeMission": "cp",
+          "path": "${SYSTEM_WEBROOT}/greeting.txt",
+          "body": "Hello World!"
+        }]
+      }]
+    }]
+  }
+}
+```
+
+### Call procedure with parameters 
+
+Write `Hello World!` and output first and second compute node IP address 
+```
+{
+  "jpsType": "update",
+  "application": {
+    "name": "Procedures Example",
+    "onInstall": [{
+      "createFile": {
+        "nodeMission": "cp",
+        "path": "${SYSTEM_WEBROOT}/greeting.txt"
+      }
+    }, {
+      "call": [
+        "greeting",
+        "greeting"
+        {
+          "procedure": "log",
+          "params": {
+            "message": "${nodes.cp[0].address}"
+          }
+        },
+        {
+          "procedure": "log",
+          "params": {
+            "message": "${nodes.cp[1].address}"
+          }
+        }
+      ]
+    }],
+    "procedures": [{
+      "id": "greeting",
+      "onCall": [{
+        "appendFile": [{
+          "nodeMission": "cp",
+          "path": "${SYSTEM_WEBROOT}/greeting.txt",
+          "body": "Hello World!"
+        }]
+      }]
+    }, {
+      "id": "log",
+      "onCall": [{
+        "appendFile": [{
+          "nodeMission": "cp",
+          "path": "${SYSTEM_WEBROOT}/greeting.txt",
+          "body": "${this.message}"
+        }]
+      }]
+    }]
+  }
+}
+```
+
+

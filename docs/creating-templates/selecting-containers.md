@@ -67,5 +67,5 @@ available nodeMission
 
 
 !!! note
-    > If you set all three parameters, a container selection would work in the following order: _nodeId -> nodeType -> nodeMission_  - fix
+    > If you set all three parameters, a container selection would work in the following order: _nodeId -> nodeType -> nodeMission_
     

@@ -6,12 +6,67 @@ A script can be subscribed to the onAfterReturn event on its outlet for, for exa
 
     
 ## Intercontainer Scripts
+Using `executeShellCommands` action.
+
+```example
+{
+  "executeShellCommands": [
+    {
+      "nodeMission": "cp",
+      "commands": [
+        "curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2"
+      ]
+    }
+  ]
+}
+```
 
 ## Top level scripts
-
-### Explore API
-Learn more about using [Jelastic Cloud API](http://docs.jelastic.com/api/)
+Using `executeScript` action.
 
 ### Java
-### Javascript
+```example
+{
+  "executeScript": [
+    {
+        "type" : "java",        
+        "params" : {
+            "greeting" : "Hello World!"
+        },
+        "script" : "return hivext.local.GetParam(\"greeting\");",
+    }
+  ]
+}
+```
+### JavaScript
+```example
+{
+  "executeScript": [
+    {
+        "type" : "js",        
+        "params" : {
+            "greeting" : "Hello World!"
+        },
+        "script" : "return getParam('greeting');",
+    }
+  ]
+}
+```
+
 ### PHP
+```example
+{
+  "executeScript": [
+    {
+        "type" : "php",        
+        "params" : {
+            "greeting" : "Hello World!"
+        },
+        "script" : "return $hivext->local->getParam(\"greeting\")",
+    }
+  ]
+}
+```
+
+## What's next?
+Learn more about using [Jelastic Cloud API](http://docs.jelastic.com/api/)
