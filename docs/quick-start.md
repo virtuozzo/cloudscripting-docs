@@ -55,7 +55,7 @@ Deploy HelloWorld example in an existing environment:
 }
 ```
 
-## Runing Examples
+## Running Examples
 
 Log in to your Jelastic account and follow the instruction below.
 
