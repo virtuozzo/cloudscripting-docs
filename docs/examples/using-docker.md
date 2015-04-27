@@ -1,36 +1,26 @@
 # Using Docker&reg;
 
-```
+Create and link WordPress Web and WordPress DB containers: 
+```example
 {
-  "jpsVersion": "0.3",
   "jpsType": "install",
   "application": {
-    "name": "Wordpress",
-    "version": "latest",
-    "logo": "https://download.jelastic.com/public.php?service=files&t=3da2215839f82aa50d3d961271cd1cb9&download",
-    "type": "php",
+    "name": "Wordpress",            
     "homepage": "http://wordpress.org/",
-    "description": {
-      "text": "WordPress is web software you can use to create a beautiful website or blog. We like to say that WordPress is both free and priceless at the same time."
-    },
+    "description": "WordPress is web software you can use to create a beautiful website or blog. We like to say that WordPress is both free and priceless at the same time.",
     "env": {
       "topology": {
-        "ha": false,
-        "ssl": false,
         "nodes": [
           {
-            "nodeType": "docker",
-            "extip": false,
-            "count": 1,
-            "fixedCloudlets": 1,
-            "flexibleCloudlets": 16,
-            "fakeId": -1,
+            "nodeType": "docker",            
+            "cloudlets" : 16,
+            "fakeId": "web",
             "dockerName": "jelastic/wordpress-web",
             "dockerTag": "latest",
             "dockerLinks": [
               {
-                "sourceNodeId": -1,
-                "targetNodeId": "-2",
+                "sourceNodeId": "web",
+                "targetNodeId": "db",
                 "alias": "DB"
               }
             ],
@@ -43,12 +33,9 @@
             }
           },
           {
-            "nodeType": "docker",
-            "extip": false,
-            "count": 1,
-            "fixedCloudlets": 1,
-            "flexibleCloudlets": 16,
-            "fakeId": -2,
+            "nodeType": "docker",                                    
+            "cloudlets": 16,
+            "fakeId": "db",
             "dockerName": "jelastic/wordpress-db",
             "dockerTag": "latest",
             "dockerEnvVars": {
@@ -56,7 +43,7 @@
             },
             "displayName": "jelastic/wordpress-db:latest",
             "metadata": {
-              "layer": "storage"
+              "layer": "sqldb"
             }
           }
         ]

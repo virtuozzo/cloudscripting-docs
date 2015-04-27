@@ -510,6 +510,7 @@ Or:
 ```
 
 ### ExecuteScript
+
 ```
 {
   "executeScript": [
@@ -529,6 +530,9 @@ Or:
 - `script` - script body or a link to such scirpt body
 - `params` *[optional]* - script parameters
 
+!!! note
+    > Learn more about using [Jelastic Cloud API](http://docs.jelastic.com/api/)
+       
 **Examples**
 ```example
 {
