@@ -1,7 +1,9 @@
 # Troubleshooting
 
-## Logging
-Work in progress...
+Follow the link to view execution log: <http://app.cloudscripting.com/viewlog>
+
+<!--## Logging-->
+<!--Work in progress...-->
 <!--
 add example 
 2 procedures:
@@ -10,6 +12,6 @@ add example
 -->
 
 
-## Checking event subscribers list
-Work in progress...
+<!--## Checking event subscribers list-->
+<!--Work in progress...-->
 <!-- think how to do that -->
