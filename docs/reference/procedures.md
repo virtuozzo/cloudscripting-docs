@@ -18,7 +18,7 @@ Output `Hello World!` two times in `greeting.txt`:
     "onInstall": [{
       "createFile": {
         "nodeMission": "cp",
-        "path": "${SYSTEM_WEBROOT}/greeting.txt"
+        "path": "${SERVER_WEBROOT}/greeting.txt"
       }
     }, {
       "call": [
@@ -31,7 +31,7 @@ Output `Hello World!` two times in `greeting.txt`:
       "onCall": [{
         "appendFile": [{
           "nodeMission": "cp",
-          "path": "${SYSTEM_WEBROOT}/greeting.txt",
+          "path": "${SERVER_WEBROOT}/greeting.txt",
           "body": "Hello World!"
         }]
       }]
@@ -51,7 +51,7 @@ Write `Hello World!` and output first and second compute node IP address
     "onInstall": [{
       "createFile": {
         "nodeMission": "cp",
-        "path": "${SYSTEM_WEBROOT}/greeting.txt"
+        "path": "${SERVER_WEBROOT}/greeting.txt"
       }
     }, {
       "call": [
@@ -76,7 +76,7 @@ Write `Hello World!` and output first and second compute node IP address
       "onCall": [{
         "appendFile": [{
           "nodeMission": "cp",
-          "path": "${SYSTEM_WEBROOT}/greeting.txt",
+          "path": "${SERVER_WEBROOT}/greeting.txt",
           "body": "Hello World!"
         }]
       }]
@@ -85,7 +85,7 @@ Write `Hello World!` and output first and second compute node IP address
       "onCall": [{
         "appendFile": [{
           "nodeMission": "cp",
-          "path": "${SYSTEM_WEBROOT}/greeting.txt",
+          "path": "${SERVER_WEBROOT}/greeting.txt",
           "body": "${this.message}"
         }]
       }]
