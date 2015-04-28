@@ -1,5 +1,5 @@
 # Quick Start 
-This guide will walk you through the Cloud Scripting basics and will help you to build and run some simple automation processes like creating new environments and deploying applications.
+This guide will walk you through the Cloud Scripting basics and will help you to build and run such simple automation processes like creating new environments and deploying applications.
 
 The required operations should be declared within the appropriate Cloud Scripting manifest, written in [JSON](http://ru.wikipedia.org/wiki/JSON) format.
 You can name this file with manifest as you need. The only requirement is that it should have the **.json** extension.
