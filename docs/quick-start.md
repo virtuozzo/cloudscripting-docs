@@ -1,14 +1,14 @@
 # Quick Start 
-This guide will walk you through Cloud Scripting basics and help you build and run a simple automation: create new environment and deploy application.
+This guide will walk you through the Cloud Scripting basics and will help you to build and run some simple automation processes like creating new environments and deploying applications.
 
-To create an appropriate Cloud Scripting manifest [JSON](http://ru.wikipedia.org/wiki/JSON) format should be used.
-You can name the file with manifest as you need. The only requirement is that it should be saved in **.json** extension.
-A manifest file can be composed in any text editor, using a modern code editor with support for JSON syntax highlighting is recommended
-(e.g. [JSON Editor Online](htp://jsoneditoronline.org/)).
+The required operations should be declared within the appropriate Cloud Scripting manifest, written in [JSON](http://ru.wikipedia.org/wiki/JSON) format.
+You can name this file with manifest as you need. The only requirement is that it should have the **.json** extension.
+A manifest file can be composed via any text editor; using a modern code editor with the support of JSON syntax highlighting is recommended
+(e.g. [JSON Editor Online](http://jsoneditoronline.org/)).
 
-The following are a two simple examples of how to create new environment and deploy a simple HelloWorld application. 
+Below you can see two simple examples of how to: 
 
-Create new environment and deploy HelloWorld example:  
+> - Create a new environment and deploy simple HelloWorld application to it:  
 
 ```
 {
@@ -37,7 +37,7 @@ Create new environment and deploy HelloWorld example:
 }
 ```
 
-Deploy HelloWorld example in an existing environment: 
+> - Deploy simple HelloWorld application into the already existing environment: 
 
 ```
 {
@@ -57,19 +57,22 @@ Deploy HelloWorld example in an existing environment:
 
 ## Running Examples
 
-Log in to your Jelastic account and follow the instruction below.
+In order to test the manifest examples presented above, you need to register at [http://app.cloudscripting.com/](http://app.cloudscripting.com/) first. 
+Then, log in to your Jelastic account and perform the following operations:
 
 1. Copy an appropriate example and save it as a file with **.json** extension.
-2. Expand the New environment list at the top left of your dashboard and choose the Import option it contains.
+2. Expand the **New environment** drop-down list at the top left of your dashboard and select the ***Import*** option it contains.
 ![Import](https://download.jelastic.com/index.php/apps/files_sharing/publicpreview?file=%2F%2Fimport.png&x=1904&a=true&t=0a79155f0039614d04c71840117b9d86&scalingup=0)
-3. In the opened **Confirm installation** of application window, depending on `jpsType` select environment or type the preferable name (or leave the default one) for the environment you would like to create for your application deployment and click Install.
+3. Depending on the `jpsType` stated at the beginning of the manifest, in the opened **Confirm installation** window you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click **Install**.
 4. The process of installation will be started. Wait a minute for Preparing, Deploying and Configuring to be finished.
-5. After these operations are completed, you will see a success message that could contain information from manifest's `success` section.
+5. Once these operations are finished, you will see a message about the successful installation completion. It can also contain the text from the `success` manifest section (if it's declared).
 
 ## Best Practices
 
-- use JSON formatter and validator (such as [JSON Editor Online](htp://jsoneditoronline.org/))
-- use [GitHub](https://github.com/) to keep your manifest, scripts and files together
+While preparing your own manifest file, we recommend to:
+
+- use JSON formatter and validator (such as [JSON Editor Online](http://jsoneditoronline.org/))
+- use [GitHub](https://github.com/) to store your manifest, scripts and files together
    
 
 ## What's next?
@@ -82,7 +85,7 @@ Log in to your Jelastic account and follow the instruction below.
 - [WordPress Cluster](/examples/wordpress-cluster/)
 
 ### Learn Template Basics
-Learn template basics and the differences between Application and Extension. See [Template Basics](creating-templates/template-basics/) section.  
+See the [Template Basics](creating-templates/template-basics/) section to learn the required basis of any JSON manifest and find out the differences between *Application* and *Extension*. 
 
 ### Write Cloud Scripts  
 Cloud Scripting comes with a several generic actions out of the box. See [Actions](/reference/actions/) section.
