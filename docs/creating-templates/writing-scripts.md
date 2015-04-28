@@ -62,7 +62,7 @@ Using `executeScript` action.
         "params" : {
             "greeting" : "Hello World!"
         },
-        "script" : "return $hivext->local->getParam(\"greeting\")",
+        "script" : "<?php return $hivext->local->getParam(\"greeting\"); ?>",
     }
   ]
 }

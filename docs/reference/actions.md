@@ -13,7 +13,7 @@ For example:
 Default workflow for any action:
 
 - replace [Placeholders](placeholders/)
-- get target containers list *[optional]* (see the [Selecting Containers For Your Actions](#selecting-containers-for-your-actions) section) 
+- get target containers list *[optional]* (see the [Selecting Containers For Your Actions](creating-templates//selecting-containers-for-your-actions/) section) 
 - check rights
 - execute the action itself
 
@@ -515,19 +515,19 @@ Or:
 {
   "executeScript": [
     {
-      "type" : "string",
       "script" : "string or URL",
+      "type" : "string",      
       "params" : "object"
     }
   ]
 }
 ```
-- `type` - script type. Possible values:
+- `script` - script body or a link to such scirpt body
+- `type` *[optional]* - script type. Possible values:
     - `js`
     - `java`
     - `php`
-
-- `script` - script body or a link to such scirpt body
+**Default**: js
 - `params` *[optional]* - script parameters
 
 !!! note
