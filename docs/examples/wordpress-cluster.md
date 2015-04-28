@@ -522,32 +522,32 @@ while(iterator.hasNext()) {
 }
 
 for (var i = 0, n = callArgs.length; i < n; i+=1) {
-  isEventNode = (i % 2 === 0);
-      aActions.push({
-	procedure : PROCEDURE_PROCESS_NODE,
-	params : {
-	  nodeid : callArgs[i].id,
-	  path : sPath,
-	  pattern : isEventNode ? "{DB_HOST1}" : "{DB_HOST2}",
-	  replacement : "{TMP}"
-	}
-      },{
-	procedure : PROCEDURE_PROCESS_NODE,
-	params : {
-	  nodeid : callArgs[i].id,
-	  path : sPath,
-	  pattern : isEventNode ? "{DB_HOST2}" : "{DB_HOST1}",
-	  replacement : "${nodes.sqldb[0].address}"
-	}
-      },{
-	procedure : PROCEDURE_PROCESS_NODE,
-	params : {
-	  nodeid : callArgs[i].id,
-	  path : sPath,
-	  pattern : "{TMP}",
-	  replacement : "${nodes.sqldb[1].address}"
-	}
-      });
+    isEventNode = (i % 2 === 0);
+    aActions.push({
+        procedure : PROCEDURE_PROCESS_NODE,
+        params : {
+            nodeid : callArgs[i].id,
+            path : sPath,
+            pattern : isEventNode ? "{DB_HOST1}" : "{DB_HOST2}",
+            replacement : "{TMP}"
+        }
+    },{
+        procedure : PROCEDURE_PROCESS_NODE,
+        params : {
+            nodeid : callArgs[i].id,
+            path : sPath,
+            pattern : isEventNode ? "{DB_HOST2}" : "{DB_HOST1}",
+            replacement : "${nodes.sqldb[0].address}"
+        }
+    },{
+        procedure : PROCEDURE_PROCESS_NODE,
+        params : {
+            nodeid : callArgs[i].id,
+            path : sPath,
+            pattern : "{TMP}",
+            replacement : "${nodes.sqldb[1].address}"
+        }
+    });
 }
 
 return {
