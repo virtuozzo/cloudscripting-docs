@@ -8,7 +8,7 @@ A manifest file can be composed via any text editor; using a modern code editor 
 
 Below you can see two simple examples of how to: 
 
-> - Create a new environment and deploy simple HelloWorld application to it:  
+- Create a new environment and deploy simple HelloWorld application to it:  
 
 ```
 {
@@ -37,7 +37,7 @@ Below you can see two simple examples of how to:
 }
 ```
 
-> - Deploy simple HelloWorld application into the already existing environment: 
+- Deploy simple HelloWorld application into the already existing environment: 
 
 ```
 {
@@ -61,10 +61,15 @@ In order to test the manifest examples presented above, you need to register at 
 Then, log in to your Jelastic account and perform the following operations:
 
 1. Copy an appropriate example and save it as a file with **.json** extension.
+
 2. Expand the **New environment** drop-down list at the top left of your dashboard and select the ***Import*** option it contains.
+
 ![Import](https://download.jelastic.com/index.php/apps/files_sharing/publicpreview?file=%2F%2Fimport.png&x=1904&a=true&t=0a79155f0039614d04c71840117b9d86&scalingup=0)
+
 3. Depending on the `jpsType` stated at the beginning of the manifest, in the opened **Confirm installation** window you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click **Install**.
+
 4. The process of installation will be started. Wait a minute for Preparing, Deploying and Configuring to be finished.
+
 5. Once these operations are finished, you will see a message about the successful installation completion. It can also contain the text from the `success` manifest section (if it's declared).
 
 ## Best Practices
