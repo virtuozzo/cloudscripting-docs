@@ -56,7 +56,7 @@ Write `Hello World!` and output first and second compute node IP address
     }, {
       "call": [
         "greeting",
-        "greeting"
+        "greeting",
         {
           "procedure": "log",
           "params": {
