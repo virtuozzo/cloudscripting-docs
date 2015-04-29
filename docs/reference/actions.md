@@ -74,7 +74,7 @@ One of these parameters is required. See [Selecting containers for your actions]
     For example,` wget` and `curl` utils will write their output to _stderr_ by default.   
     To avoid this:
           
-    - you can use special flags for _curl_ : `curl -fsS http://example.com/ -o example.txt`
+    - you can use special flags for _curl_ : `curl -fsSL http://example.com/ -o example.txt`
     - or just redirect standard error stream (_stdout_) to standard output stream (_stderr_) if it fits your needs: `curl http://example.com/ -o example.txt 2>&1` 
 
 While accessing containers via **executeShellCommands**, a user receives all required permissions and additionally can manage the main services with sudo commands of the following kind (and others):
@@ -99,7 +99,7 @@ Execute bash script from URL for all Tomcat 6 nodes:
     {
       "nodeType": "tomcat6",
       "commands": [
-        "curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2"
+        "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
       ]
     }
   ]
@@ -115,7 +115,7 @@ Download and unzip a WordPress plugin on all compute nodes:
       "nodeMission": "cp",
       "commands": [
         "cd /var/www/webroot/ROOT/wp-content/plugins/",
-        "curl -fsS \"http://example.com/plugin.zip\" -o plugin.zip",
+        "curl -fsSL \"http://example.com/plugin.zip\" -o plugin.zip",
         "unzip plugin.zip"
       ]
     }
