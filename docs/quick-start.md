@@ -8,7 +8,7 @@ A manifest file can be composed via any text editor; using a modern code editor 
 
 Below you can see two simple examples of how to: 
 
-- Create a new environment and deploy simple HelloWorld application to it:  
+- Create a new environment and deploy a simple HelloWorld application to it:  
 
 ```
 {
@@ -37,7 +37,7 @@ Below you can see two simple examples of how to:
 }
 ```
 
-- Deploy simple HelloWorld application into the already existing environment: 
+- Deploy a simple HelloWorld application into the already existing environment: 
 
 ```
 {
@@ -93,26 +93,26 @@ While preparing your own manifest file, we recommend to:
 See the [Template Basics](creating-templates/template-basics/) section to learn the required basis of any JSON manifest and find out the differences between *Application* and *Extension*. 
 
 ### Write Cloud Scripts  
-Cloud Scripting comes with a several generic actions out of the box. See [Actions](/reference/actions/) section.
+Cloud Scripting comes with several generic actions out of the box - see the [Actions](/reference/actions/) section to find out the list of them.
 
-Custom Actions could be scripted using Java, Javascript or PHP if you need to manage the whole your environment and any intercontainer language if you need to script something inside of a container.
+In addition, you have the possibility to prepare and use your own actions within manifest. Such Custom Actions can be scripted either using Java, Javascript or PHP if you need to manage your whole environment or using any intercontainer language, if you need to script something inside of a container.
 See [Writing Scripts](creating-templates/writing-scripts/).
 
 ### Build Actions Chain and reuse your code    
-Reuse your code and actions chain using [Procedures](/reference/procedures/)
+Reuse your code and the chain of actions using [Procedures](/reference/procedures/)
 
 ### Automate workflows
 Automate workflows using [Events](/reference/events/)
 
 ### Define user input parameters 
-Customize your app input parameters. See [Getting User Input](creating-templates/user-input-parameters/) 
+Customize your app's input parameters that should be specified by a user before the installation. See [Getting User Input](creating-templates/user-input-parameters/) 
 
 ### Use Placeholders 
 Learn how to use [Placeholders](/reference/placeholders/) for:
 
-- options / parameters which are user defined or change often
-- events filtering
+- options / parameters which are user-defined or are changed often
+- filtering events 
 - selecting containers for your actions
 
-### Explore Troubleshooting guide
-Follow [Troubleshooting](troubleshooting/) guide if something goes wrong.
+### Explore Troubleshooting
+Follow the [Troubleshooting](troubleshooting/) guide if you experience any issues.
