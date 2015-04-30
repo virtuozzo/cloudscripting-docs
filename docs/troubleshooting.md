@@ -63,9 +63,9 @@ Output from the script:
 }
 ```
 
-script.js body:
+`script.js` body:
 
-```
+```                                                
 var message = 'Hello';
 
 return { 
