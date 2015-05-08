@@ -39,7 +39,7 @@ If you don't know the container's ID or the container does not created yet, you 
 }
 ```
 
-See the [Placeholders](placeholders/) documentation for more information.
+See the [Placeholders](/reference/placeholders/) documentation for more information.
 
 ## All Containers By Type
 Use `nodeType` parameter to select all container nodes by software type.
