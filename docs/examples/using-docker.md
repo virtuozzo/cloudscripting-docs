@@ -50,7 +50,7 @@ Create and link WordPress Web and WordPress DB containers:
       }
     },
     "onInstall" : {
-      "restartNodes" : [{
+      "restartNodes" : {
           "nodeType" : "docker"
       }
     }
