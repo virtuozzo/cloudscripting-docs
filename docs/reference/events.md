@@ -11,7 +11,7 @@ It’s also possible to bind the extension’s execution to the onUninstall even
   "jpsType": "update",
   "application": {    
     "onInstall": {},
-    "onUnstall": {}
+    "onUninstall": {}
   }
 }
 ```
