@@ -75,7 +75,7 @@ One of these parameters is required. See [Selecting containers for your actions]
     To avoid this:
           
     - you can use special flags for _curl_ : `curl -fsSL http://example.com/ -o example.txt`
-    - or just redirect standard error stream (_stdout_) to standard output stream (_stderr_) if it fits your needs: `curl http://example.com/ -o example.txt 2>&1` 
+    - or just redirect standard error stream (_stderr_) to standard output stream (_stdout_) if it fits your needs: `curl http://example.com/ -o example.txt 2>&1` 
 
 While accessing containers via **executeShellCommands**, a user receives all required permissions and additionally can manage the main services with sudo commands of the following kind (and others):
 
