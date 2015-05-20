@@ -80,6 +80,11 @@ Using `executeScript` action.
   ]
 }
 ```
+
+<!--
+**Example #1 Generate random password**
+-->
+
 ### JavaScript
 ```example
 {
