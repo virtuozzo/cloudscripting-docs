@@ -52,3 +52,8 @@ ${settings.user_email}
 - `${event.params.key}` - `key` - name of event parameter
 - `${event.response.key}` - key` - name of event response parameter 
 
+## UI placeholders
+- `${user.uid}`
+- `${user.email}`
+- `${env.domain}`
+- `${env.appid}`
