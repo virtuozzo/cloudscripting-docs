@@ -57,3 +57,23 @@ ${settings.user_email}
 - `${user.email}`
 - `${env.domain}`
 - `${env.appid}`
+
+Example: 
+
+```example
+{
+  "jpsType": "update",
+  "application": {
+    "settings": {
+      "fields": [
+        {
+          "type": "string",
+          "name": "email",
+          "caption": "Email",
+          "default": "${user.email}"
+        }
+      ]
+    }
+  }
+}
+```
