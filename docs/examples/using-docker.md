@@ -1,6 +1,7 @@
 # Using Docker&reg;
 
 Create and link WordPress Web and WordPress DB containers: 
+
 ```example
 {
   "jpsType": "install",
@@ -14,43 +15,29 @@ Create and link WordPress Web and WordPress DB containers:
           {
             "nodeType": "docker",            
             "cloudlets" : 16,
-            "fakeId": "web",
-            "dockerName": "jelastic/wordpress-web",
-            "dockerTag": "latest",
-            "dockerLinks": [
-              {
-                "sourceNodeId": "web",
-                "targetNodeId": "db",
-                "alias": "DB"
-              }
-            ],
-            "dockerEnvVars": {
-              "MYVAR_EXAMPLE1": "example1"
-            },
-            "displayName": "jelastic/wordpress-web:latest",
-            "metadata": {
-              "layer": "cp"
+            "displayName": "App Server",
+            
+            "docker" : {
+              "nodeMission" : "cp",
+              "image" : "jelastic/wordpress-web:latest",
+              "links" : "db:DB"
             }
           },
           {
-            "nodeType": "docker",                                    
-            "cloudlets": 16,
-            "fakeId": "db",
-            "dockerName": "jelastic/wordpress-db",
-            "dockerTag": "latest",
-            "dockerEnvVars": {
-              "MYVAR_EXAMPLE2": "example2"
-            },
-            "displayName": "jelastic/wordpress-db:latest",
-            "metadata": {
-              "layer": "sqldb"
+            "nodeType": "docker",            
+            "cloudlets" : 16,
+            "displayName": "Database",
+            
+            "docker" : {
+              "nodeMission" : "db",
+              "image" : "jelastic/wordpress-db:latest"
             }
           }
         ]
       }
     },
     "onInstall" : {
-      "restartNodes" : {
+      "restartContainers" : {
           "nodeType" : "docker"
       }
     }

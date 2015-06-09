@@ -11,6 +11,7 @@
         "showIf": "object",
 
         "type": "string",
+        "inputType" : "string",
         "name": "string",
         "default": "string or localization object",
         "caption": "string or localization object",
@@ -42,7 +43,7 @@
         * `dockertags`
         
         **Default**: `string`             
-       
+    - `inputType` *[optional]* - The type attribute for input fields - e.g. radio, text, password, file (defaults to 'text'). [More info](https://www.w3.org/wiki/HTML/Elements/input#Point)        
     - `name` - input field name that could be used to get a parameter value through `${settings.your_input_name}` placeholder inside of your scripts or a manifest. 
     - `default` *[optional]* - the default input field value      
 

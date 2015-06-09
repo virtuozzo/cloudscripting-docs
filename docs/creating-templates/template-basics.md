@@ -32,8 +32,15 @@ These basic strings should be extended with the settings required by the applica
   "jpsVersion": "0.3",
   "application": {
     "name": "string",
-    "env": "object",
-    
+    "env": {
+        "nodes" : "array",        
+        "engine" : "string",
+        "region" : "string",
+        "displayName" : "string",
+        "ssl" : "boolean",
+        "ha" : "boolean"                        
+    },
+        
     "description": "object/string",
     "categories": "array",
     "version": "string",
@@ -52,6 +59,12 @@ These basic strings should be extended with the settings required by the applica
 
 - `name`
 - `env`
+    - `nodes`       
+    - `engine` *[optional]*. **Default**: `java6` 
+    - `region` *[optional]*
+    - `displayName` *[optional]* 
+    - `ssl` *[optional]*. **Default**: false
+    - `ha` *[optional]*. **Default**: false    
 - `description` - A text string that describes the template. This section must always follow the template format version section.
 - `version`
 - `logo`
