@@ -36,7 +36,8 @@ All of them could be separated in three groups:
     > To perform any Container Operation except [ExecuteShellCommands](#executeshellcommands) Cloud Scripting executor will use a default system user with restricted permissions.    
    
 ### ExecuteShellCommands
-Execute a several SSH commands.
+Execute a several SSH commands.  
+Available Nodes: all
 
 **Definition**
 
@@ -141,6 +142,7 @@ Using **sudo** to reload **Nginx** balancer:
 ```
         
 ### Deploy
+Available Nodes: compute (except *Docker&reg;*)
 ```
 {
   "deploy": [
@@ -154,6 +156,7 @@ Using **sudo** to reload **Nginx** balancer:
 ```
 
 ### Upload
+Available Nodes: all except *Docker&reg;* and *Elastic VPS* 
 ```
 {
   "upload": [
@@ -172,6 +175,7 @@ Using **sudo** to reload **Nginx** balancer:
 - `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed. 
 
 ### Unpack
+Available Nodes: all except *Docker&reg;* and *Elastic VPS* 
 ```
 {
   "unpack": [
@@ -193,6 +197,7 @@ Using **sudo** to reload **Nginx** balancer:
 - `destPath` 
 
 ### CreateFile
+Available Nodes: all except *Docker&reg;* and *Elastic VPS* 
 ```
 {
   "createFile": [
@@ -212,6 +217,7 @@ Using **sudo** to reload **Nginx** balancer:
 - `path` 
 
 ### CreateDirectory
+Available Nodes: all except *Docker&reg;* and *Elastic VPS* 
 ```
 {
   "createFile": [
@@ -231,6 +237,7 @@ Using **sudo** to reload **Nginx** balancer:
 - `path` 
 
 ### WriteFile
+Available Nodes: all except *Docker&reg;* and *Elastic VPS* 
 ```
 {
   "writeFile": [
@@ -252,6 +259,7 @@ Using **sudo** to reload **Nginx** balancer:
 - `body`
 
 ### AppendFile
+Available Nodes: all except *Docker&reg;* and *Elastic VPS* 
 ```
 {
   "appendFile": [
@@ -273,6 +281,7 @@ Using **sudo** to reload **Nginx** balancer:
 - `body`
 
 ### ReplaceInFile
+Available Nodes: all except *Docker&reg;* and *Elastic VPS* 
 ```
 {
   "replaceInFile": [
@@ -348,6 +357,7 @@ One of those three parameters is required.
 
 <!-- SetCloudletsCount -->
 ### SetNodeDisplayName
+Available Nodes: all
 ```
 {
   "setNodeDisplayName": [
@@ -365,6 +375,7 @@ One of those three parameters is required.
  One of those three parameters is required.
 
 ### RestartNodes
+Available Nodes: all (except *Elastic VPS*)
 ```
 {
   "restartNodes": [
@@ -381,6 +392,7 @@ One of those three parameters is required.
  One of those three parameters is required.
 
 ### RestartContainers
+Available Nodes: all
 ```
 {
   "restartContainers": [
@@ -397,6 +409,7 @@ One of those three parameters is required.
  One of those three parameters is required.
  
 ### AddContext
+Available Nodes: compute (except *Docker&reg;*)
 ```
 {
   "addContext": [
@@ -419,6 +432,7 @@ One of those three parameters is required.
 ## Database Operations
 
 ### PrepareSqlDatabase
+Available Nodes: SQL Databases (except *Docker&reg;*)
 ```
 {
   "prepareSqlDatabase": [
@@ -454,6 +468,7 @@ One of those three parameters is required.
     > Works only for `mysql5`, `mariadb`, `mariadb10` container node types.
 
 ### RestoreSqlDump
+Available Nodes: SQL Databases (except *Docker&reg;*)
 ```
 {
   "restoreSqlDump": [
@@ -478,6 +493,7 @@ One of those three parameters is required.
 - `dump` - link to the application database dump
 
 ### ApplySqlPatch
+Available Nodes: SQL Databases (except *Docker&reg;*)
 ```
 {
   "applySqlPatch": [
