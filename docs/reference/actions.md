@@ -13,7 +13,7 @@ For example:
 Default workflow for any action:
 
 - replace [Placeholders](placeholders/)
-- get target containers list *[optional]* (see the [Selecting Containers For Your Actions](creating-templates//selecting-containers-for-your-actions/) section) 
+- get target containers list *[optional]* (see the [Selecting Containers For Your Actions](/creating-templates/selecting-containers/) section) 
 - check rights
 - execute the action itself
 
@@ -22,7 +22,7 @@ Multiple Actions can be combined together into a [Procedure](procedures/).
 Each Procedure could be executed with different input parameters using [Call](#call) action. 
 
 ## Container Operations
-Actions that performs some operations inside of a container. See [Selecting Containers For Your Actions](creating-templates/selecting-containers/).
+Actions that performs some operations inside of a container. See [Selecting Containers For Your Actions](/creating-templates/selecting-containers/).
 
 Any container operation could be done using [ExecuteShellCommands](#executeshellcommands) action. 
 Nevertheless, there are also a several actions provided for convenience.
@@ -352,21 +352,38 @@ One of those three parameters is required.
 {
   "setNodeDisplayName": [
     {
-      "nodeId": "string or number",
-            
+      "nodeId": "string or number",     
+      "nodeType": "string", 
+      "nodeMission": "string",            
       "displayName" : "string"
     }
   ]
 }
 ```
 
-- `nodeId` - container node ID
-- `displayName`
+- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+ One of those three parameters is required.
 
 ### RestartNodes
 ```
 {
   "restartNodes": [
+    {
+      "nodeId": "number or string",
+      "nodeType": "string",
+      "nodeMission": "string"
+    }
+  ]
+}
+```
+
+- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+ One of those three parameters is required.
+
+### RestartContainers
+```
+{
+  "restartContainers": [
     {
       "nodeId": "number or string",
       "nodeType": "string",

@@ -3,6 +3,10 @@ Cloud Scripting supports a list of placeholders that can be used in any section 
 The executor will try to resolve all placeholders on the package installation stage.
 If it's not possible placeholder will be unresolved and displayed in the text as is (e.g. ${placeholder})
 
+!!! note
+    To output all available placeholders you can use special placeholder: `${placeholders}`        
+    See [Troubleshooting](/troubleshooting/) for more info.                                                                                         
+
 ## Environment placeholders
 
 - `{env.}`
@@ -10,9 +14,24 @@ If it's not possible placeholder will be unresolved and displayed in the text as
     - `${env.domain}` - application domain
     - `${env.protocol}` - protocol
     - `${env.url}` - link to application (env)
+    ...
 - `${nodes.}`
-    - `{nodes.cp[i].address}` - IP address of compute node, where `i` - equals an index of node      
-...
+    - `{nodes.(group)[(i)].(key)}`
+    - `{nodes.(group).first.(key)}`
+    - `{nodes.(group).last.(key)}`   
+    Where:
+    - `(group)` - nodes group ([nodeMission](/creating-templates/selecting-containers/#all-containers-by-role) or [nodeType](/creating-templates/selecting-containers/#all-containers-by-type))
+    - `(i)` - an index of node, starting from 0
+    - `(key)` - parameter name
+    ...                          
+
+For example:
+
+```example
+    `{nodes.cp[1].address}` - IP address of a second compute node
+    `{nodes.bl.first.address}` - First IP address of balancer node
+    `{nodes.db.last.address}` - Last IP address of compute node
+```
 
 ## File path placeholders
 
@@ -49,8 +68,8 @@ ${settings.user_email}
 - `${this.param}` - `param` - name of a procedure parameter.
  
 ## Event placeholders
-- `${event.params.key}` - `key` - name of event parameter
-- `${event.response.key}` - key` - name of event response parameter 
+- `${event.params.(key)}` - `key` - name of event parameter
+- `${event.response.(key)}` - key` - name of event response parameter 
 
 ## UI placeholders
 - `${user.uid}`

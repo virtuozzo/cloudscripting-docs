@@ -35,7 +35,7 @@
 - `prepopulate` *[optional]* - link to get default field values 
 - `fields`
     - `showIf` - show/hide field by condition
-    - `type` *[optional]* - input field type. Possible values:
+    - `type` *[optional]* - input field type (defaults to `string`). Possible values:
         * `string`
         * `text`                                                                           
         * `list`
@@ -43,9 +43,7 @@
         * `checkboxlist`
         * `radiolist` 
         * `radio-fieldset` - an alias for `radiolist`  
-        * `dockertags`
-        
-        **Default**: `string`             
+        * `dockertags`        
     - `inputType` *[optional]* - The type attribute for input fields - e.g. radio, text, password, file (defaults to 'text'). [More info](https://www.w3.org/wiki/HTML/Elements/input#Point)        
     - `name` - input field name that could be used to get a parameter value through `${settings.your_input_name}` placeholder inside of your scripts or a manifest. 
     - `default` *[optional]* - the default input field value

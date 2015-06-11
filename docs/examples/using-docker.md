@@ -35,10 +35,10 @@ Create and link WordPress Web and WordPress DB containers:
           }
         ]
       }
-    },
+    },                     
     "onInstall" : {
       "restartContainers" : {
-          "nodeType" : "docker"
+          "nodeMission" : "cp"
       }
     }
   }
