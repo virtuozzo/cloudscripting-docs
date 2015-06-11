@@ -33,7 +33,7 @@ All of them could be separated in three groups:
 - File operations ([CreateFile](#createfile), [CreateDirectory](#createdirectory), [WriteFile](#writefile), [AppendFile](#appendfile), [ReplaceInFile](#replaceinfile))   
  
 !!! note 
-    > To perform any Container Operation except [ExecuteShellCommands](#executeshellcommands) Cloud Scripting executor will use a default system user with restricted permissions.    
+    To perform any Container Operation except [ExecuteShellCommands](#executeshellcommands) Cloud Scripting executor will use a default system user with restricted permissions.    
    
 ### ExecuteShellCommands
 Execute a several SSH commands.  
@@ -465,7 +465,7 @@ Available Nodes: SQL Databases (except *Docker&reg;*)
     - `password`
 
 !!! note
-    > Works only for `mysql5`, `mariadb`, `mariadb10` container node types.
+    Works only for `mysql5`, `mariadb`, `mariadb10` container node types.
 
 ### RestoreSqlDump
 Available Nodes: SQL Databases (except *Docker&reg;*)
@@ -518,7 +518,7 @@ Available Nodes: SQL Databases (except *Docker&reg;*)
 - `patch` - SQL query or link to such query. it is used only for SQL databases, supports [Placeholders](placeholders/).
 
 !!! note
-    > Works only for `mysql5`, `mariadb`, `mariadb10` container node types.
+    Works only for `mysql5`, `mariadb`, `mariadb10` container node types.
 
 ## Performing User-Defined Operations
 
@@ -564,7 +564,7 @@ Or:
 - `params` *[optional]* - script parameters
 
 !!! note
-    > Learn more about using [Jelastic Cloud API](http://docs.jelastic.com/api/)
+    Learn more about using [Jelastic Cloud API](http://docs.jelastic.com/api/)
        
 **Examples**
 ```example
