@@ -25,6 +25,8 @@ It’s also possible to bind the extension’s execution to the onUninstall even
   "jpsType": "update",
   "application": {
      "env" : {
+        "onBeforeChangeTopology": {},
+        "onAfterChangeTopology": {},
         "onBeforeRestartNode" : {},
         "onAfterRestartNode" : {},
         "onBeforeDelete" : {},
@@ -43,10 +45,14 @@ It’s also possible to bind the extension’s execution to the onUninstall even
         "onAfterUpdateVcsProject" : {},
         "onBeforeSetCloudletCount" : {},
         "onAfterSetCloudletCount" : {},
+        "onAfterChangeEngine" : {},
+        "onBeforeChangeEngine" : {},
         "onBeforeStart" : {},
         "onAfterStart" : {},
         "onBeforeStop" : {},
         "onAfterStop" : {},
+        "onBeforeClone" : {},
+        "onAfterClone" : {},
         "onBeforeDeploy" : {},
         "onAfterDeploy" : {},
         "onBeforeResetNodePassword" : {},
@@ -56,8 +62,9 @@ It’s also possible to bind the extension’s execution to the onUninstall even
      }
   }
 }
-```
-
+```                              
+### BeforeChangeTopology
+### AfterChangeTopology
 ### BeforeRestartNode
 ### AfterRestartNode
 ### BeforeDelete
@@ -76,10 +83,14 @@ It’s also possible to bind the extension’s execution to the onUninstall even
 ### AfterUpdateVcsProject
 ### BeforeSetCloudletCount
 ### AfterSetCloudletCount
+### onAfterChangeEngine
+### onBeforeChangeEngine
 ### BeforeStart
 ### AfterStart
 ### BeforeStop
 ### AfterStop
+### BeforeClone
+### AfterClone
 ### BeforeDeploy
 ### AfterDeploy
 ### BeforeResetNodePassword
