@@ -83,8 +83,8 @@ It’s also possible to bind the extension’s execution to the onUninstall even
 ### AfterUpdateVcsProject
 ### BeforeSetCloudletCount
 ### AfterSetCloudletCount
-### onAfterChangeEngine
-### onBeforeChangeEngine
+### AfterChangeEngine
+### BeforeChangeEngine
 ### BeforeStart
 ### AfterStart
 ### BeforeStop
