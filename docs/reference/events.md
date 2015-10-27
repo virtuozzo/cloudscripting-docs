@@ -58,7 +58,27 @@ It’s also possible to bind the extension’s execution to the onUninstall even
         "onBeforeResetNodePassword" : {},
         "onAfterResetNodePassword " : {},
         "onBeforeRemoveNode" : {},
-        "onAfterRemoveNode" : {}
+        "onAfterRemoveNode" : {},
+        "onBeforeRestartContainer" : {},
+        "onAfterRestartContainer" : {},        
+        "onBeforeMigrate" : {},        
+        "onAfterMigrate" : {},
+        "onBeforeRedeployContainer" : {},        
+        "onAfterRedeployContainer" : {},  
+        "onBeforeLinkDockerNodes" : {},        
+        "onAfterLinkDockerNodes" : {},
+        "onBeforeUnlinkDockerNodes" : {},        
+        "onAfterUnlinkDockerNodes" : {},
+        "onBeforeSetDockerEnvVars" : {},        
+        "onAfterSetDockerEnvVars" : {},
+        "onBeforeSetDockerEntryPoint" : {},        
+        "onAfterSetDockerEntryPoint" : {},
+        "onBeforeSetDockerRunCmd" : {},        
+        "onAfterSetDockerRunCmd" : {},
+        "onBeforeAddDockerVolume" : {},        
+        "onAfterAddDockerVolume" : {},
+        "onBeforeRemoveDockerVolume" : {},        
+        "onAfterRemoveDockerVolume" : {}                                                                                                                                                                                                        
      }
   }
 }
@@ -97,5 +117,24 @@ It’s also possible to bind the extension’s execution to the onUninstall even
 ### AfterResetNodePassword 
 ### BeforeRemoveNode
 ### AfterRemoveNode
-
+### BeforeRestartContainer
+### AfterRestartContainer
+### BeforeMigrate
+### AfterMigrate
+### BeforeRedeployContainer
+### AfterRedeployContainer
+### BeforeLinkDockerNodes
+### AfterLinkDockerNodes
+### BeforeUnlinkDockerNodes
+### AfterUnlinkDockerNodes
+### BeforeSetDockerEnvVars
+### AfterSetDockerEnvVars
+### BeforeSetDockerEntryPoint
+### AfterSetDockerEntryPoint
+### BeforeSetDockerRunCmd
+### AfterSetDockerRunCmd
+### BeforeAddDockerVolume
+### AfterAddDockerVolume
+### BeforeRemoveDockerVolume
+### AfterRemoveDockerVolume
 
