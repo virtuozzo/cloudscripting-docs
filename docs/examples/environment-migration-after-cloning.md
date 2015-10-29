@@ -19,7 +19,7 @@
 			"onAfterClone": [{
 					"executeScript": {
 						"type": "javascript",
-						"script": "https://download.jelastic.com/public.php?service=files&t=7e49da37a7c6345cb3a1450b45b6771e&download"
+						"script": "https://download.jelastic.com/public.php?service=files&t=a6a659b4fcb85f4289559747b5568e4e&download"
 					}
 				}
 			]
@@ -29,7 +29,8 @@
 					"deployApp",
 					"uploadFiles",
 					"createDb",
-					"replaceInFiles"
+					"replaceInFiles",
+					"bindDomain"
 			]
 		},
 		"procedures": [{
@@ -107,6 +108,15 @@
 						]
 					}
 				]
+			}, {
+				"id": "bindDomain",
+				"onCall": [{
+						"executeScript": {
+							"type": "javascript",
+							"script": "https://download.jelastic.com/public.php?service=files&t=6f5ccac2b011cbc1d6239464ea0a4c97&download"
+						}
+					}
+				]
 			}
 		],
 		"success": {
@@ -118,18 +128,13 @@
 
 ```
 
-
-JS script for executing actions with the newly cloned environment
-```example
 /**
+ * JS script for executing actions with the newly cloned environment.
  * The script is subscribed on the onAfterClone event and will be executed after old environment cloning.
  */
 
-import com.hivext.api.environment.Environment;
-import com.hivext.api.environment.File;
-import com.hivext.api.Response;
-
-var CLONED_ENV_APPID = "${event.response.env.appid}", // placeholder for the cloned environment AppID
+var APPID = hivext.local.getParam("TARGET_APPID"),
+    CLONED_ENV_APPID = "${event.response.env.appid}", // placeholder for the cloned environment AppID
 
     APP_CONFIG_FILE_PATH = "/opt/tomcat/webapps/alfresco/WEB-INF/classes/alfresco-global.properties", // path to Alfresco config, where the database connection string should be replaced
     APP_INDEX_FILE_PATH = "/opt/tomcat/webapps/alfresco/index.jsp", // path to the Alfresco index.jsp file for the new environment URL substitution
@@ -151,40 +156,19 @@ function configureAppSettings(oClonedEnvInfo) {
         oResp,
         sDbAddress;
 
-    // convert environment info into JSON format
-    oClonedEnvInfo = toNative(oClonedEnvInfo);
-
-    oFileService = hivext.local.exp.WrapRequest(new File(CLONED_ENV_APPID, session));
-
-    // fetch internal IP address of a new database node 
-    oClonedEnvInfo.nodes.every(function (oNode) {
+    // fetch internal IP address of a new database node
+    oClonedEnvInfo.nodes.some(function (oNode) {
 
         if (oNode.nodeType == NODE_TYPE_DB) {
             sDbAddress =  oNode.address;
-
-            return false;
         }
     });
 
     // adjust old database connection string with parameters of the cloned one
-    oResp = oFileService.replaceInBody({
-        path : APP_CONFIG_FILE_PATH,
-        nodeType : NODE_TYPE_CP,
-        pattern : "db.url=jdbc:mysql://.*",
-        replacement : "db.url=jdbc:mysql://" + sDbAddress + "/alfresco?useUnicode=yes\\&characterEncoding=UTF-8"
-    });
-
-    if (!oResp.isOK()) {
-        return oResp;
-    }
+    oResp = jelastic.env.file.ReplaceInBody(CLONED_ENV_APPID, session, APP_CONFIG_FILE_PATH, "db.url=jdbc:mysql://.*", "db.url=jdbc:mysql://" + sDbAddress + "/alfresco?useUnicode=yes\\&characterEncoding=UTF-8", "", NODE_TYPE_CP);
 
     // replace environment URL with the cloned one
-    return oFileService.replaceInBody({
-        path    : APP_INDEX_FILE_PATH,
-        nodeType: NODE_TYPE_CP,
-        pattern : SOURCE_ENV_URL,
-        replacement: oClonedEnvInfo.url
-    });
+return jelastic.env.file.ReplaceInBody(CLONED_ENV_APPID, session, APP_INDEX_FILE_PATH, SOURCE_ENV_URL, oClonedEnvInfo.url, "", NODE_TYPE_CP);
 }
 
 /**
@@ -193,20 +177,14 @@ function configureAppSettings(oClonedEnvInfo) {
  * @param {object} oClonedEnvInfo - meta information about the cloned environment
  * @returns {Response}
  */
-function migrateEnv(oEnvService, oClonedEnvInfo) {
+function migrateEnv(oClonedEnvInfo) {
     var sHardwareNodeGroup;
-
-    // convert environment info into JSON format
-    oClonedEnvInfo = toNative(oClonedEnvInfo);
 
     // get current environment hardware node group from environment meta information
     sHardwareNodeGroup = oClonedEnvInfo.env.hardwareNodeGroup;
 
     // migrate environment API to another hardware node group
-    return oEnvService.migrate({
-        hardwareNodeGroup   : (sHardwareNodeGroup == HN_GROUP_PROFIT_BRICKS) ? HN_GROUP_DEFAULT : HN_GROUP_PROFIT_BRICKS,
-        isOnline            : true
-    });
+    return jelastic.env.control.Migrate(CLONED_ENV_APPID, session, sHardwareNodeGroup, true);
 }
 
 /**
@@ -218,39 +196,39 @@ function processEnvironment() {
         oEnvService,
         oResp;
 
-    oEnvService = hivext.local.exp.WrapRequest(new Environment(CLONED_ENV_APPID, session));
-
     // Get meta information of the new environment.
     // Meta information includes all the data about environment, comprised nodes and their properties
-    oClonedEnvInfo = oEnvService.getEnvInfo();
+     oClonedEnvInfo = jelastic.env.control.GetEnvInfo(CLONED_ENV_APPID, session);
 
-    if (!oClonedEnvInfo.isOK()) {
+    if (oClonedEnvInfo.result !== 0) {
         return oClonedEnvInfo;
     }
 
     // apply new configurations according to the cloned environment properties
     oResp = configureAppSettings(oClonedEnvInfo);
 
-    if (!oResp.isOK()) {
+    if (oResp.result !== 0) {
         return oResp;
     }
 
     // migrate cloned environment to a new hardware node group, located in another region
-    oResp = migrateEnv(oEnvService, oClonedEnvInfo);
+/*    oResp = migrateEnv(oClonedEnvInfo);
 
-    if (!oResp.isOK()) {
+    if (oResp.result !== 0) {
         return oResp;
     }
-
+*/
     // Get meta information of the new environment after migrating into new region.
-    oClonedEnvInfo = oEnvService.getEnvInfo();
+    oClonedEnvInfo = jelastic.env.control.GetEnvInfo(CLONED_ENV_APPID, session);
 
-    if (!oClonedEnvInfo.isOK()) {
+    if (oClonedEnvInfo.result !== 0) {
         return oClonedEnvInfo;
     }
 
     // apply new configurations according to the migrated environment properties
-    return configureAppSettings(oClonedEnvInfo);
+    oResp =  configureAppSettings(oClonedEnvInfo);
+
+    return jelastic.env.binder.SwapExtDomains(APPID, session, CLONED_ENV_APPID);
 }
 
 return processEnvironment();
