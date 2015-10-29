@@ -132,7 +132,6 @@
  * JS script for executing actions with the newly cloned environment.
  * The script is subscribed on the onAfterClone event and will be executed after old environment cloning.
  */
-
 var APPID = hivext.local.getParam("TARGET_APPID"),
     CLONED_ENV_APPID = "${event.response.env.appid}", // placeholder for the cloned environment AppID
 
@@ -143,8 +142,7 @@ var APPID = hivext.local.getParam("TARGET_APPID"),
     NODE_TYPE_CP = "tomcat7", // keyword of the compute node's software stack.
     NODE_TYPE_DB = "mysql5", // keyword of the DB node's software stack
 
-    HN_GROUP_PROFIT_BRICKS = "pbricks-de", // identifier of the hardware node group a new environment should be migrated to
-    HN_GROUP_DEFAULT = "default_hn_group"; // second hardware node group's identifier
+    HN_GROUP_PROFIT_BRICKS = "pbricks-de"; // second hardware node group's identifier
 
 /**
  * Adjust application settings according to a new database connection string
@@ -178,13 +176,8 @@ return jelastic.env.file.ReplaceInBody(CLONED_ENV_APPID, session, APP_INDEX_FILE
  * @returns {Response}
  */
 function migrateEnv(oClonedEnvInfo) {
-    var sHardwareNodeGroup;
-
-    // get current environment hardware node group from environment meta information
-    sHardwareNodeGroup = oClonedEnvInfo.env.hardwareNodeGroup;
-
     // migrate environment API to another hardware node group
-    return jelastic.env.control.Migrate(CLONED_ENV_APPID, session, sHardwareNodeGroup, true);
+    return jelastic.env.control.Migrate(CLONED_ENV_APPID, session, HN_GROUP_PROFIT_BRICKS, true);
 }
 
 /**
