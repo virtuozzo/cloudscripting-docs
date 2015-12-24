@@ -19,7 +19,7 @@
 			"onAfterClone": [{
 					"executeScript": {
 						"type": "javascript",
-						"script": "https://download.jelastic.com/public.php?service=files&t=a6a659b4fcb85f4289559747b5568e4e&download"
+						"script": "https://download.jelastic.com/public.php?service=files&t=7e49da37a7c6345cb3a1450b45b6771e&download"
 					}
 				}
 			]
@@ -29,8 +29,7 @@
 					"deployApp",
 					"uploadFiles",
 					"createDb",
-					"replaceInFiles",
-					"bindDomain"
+					"replaceInFiles"
 			]
 		},
 		"procedures": [{
@@ -108,15 +107,6 @@
 						]
 					}
 				]
-			}, {
-				"id": "bindDomain",
-				"onCall": [{
-						"executeScript": {
-							"type": "javascript",
-							"script": "https://download.jelastic.com/public.php?service=files&t=6f5ccac2b011cbc1d6239464ea0a4c97&download"
-						}
-					}
-				]
 			}
 		],
 		"success": {
@@ -128,12 +118,18 @@
 
 ```
 
+
+JS script for executing actions with the newly cloned environment
+```example
 /**
- * JS script for executing actions with the newly cloned environment.
  * The script is subscribed on the onAfterClone event and will be executed after old environment cloning.
  */
-var APPID = hivext.local.getParam("TARGET_APPID"),
-    CLONED_ENV_APPID = "${event.response.env.appid}", // placeholder for the cloned environment AppID
+
+import com.hivext.api.environment.Environment;
+import com.hivext.api.environment.File;
+import com.hivext.api.Response;
+
+var CLONED_ENV_APPID = "${event.response.env.appid}", // placeholder for the cloned environment AppID
 
     APP_CONFIG_FILE_PATH = "/opt/tomcat/webapps/alfresco/WEB-INF/classes/alfresco-global.properties", // path to Alfresco config, where the database connection string should be replaced
     APP_INDEX_FILE_PATH = "/opt/tomcat/webapps/alfresco/index.jsp", // path to the Alfresco index.jsp file for the new environment URL substitution
@@ -142,7 +138,8 @@ var APPID = hivext.local.getParam("TARGET_APPID"),
     NODE_TYPE_CP = "tomcat7", // keyword of the compute node's software stack.
     NODE_TYPE_DB = "mysql5", // keyword of the DB node's software stack
 
-    HN_GROUP_PROFIT_BRICKS = "pbricks-de"; // second hardware node group's identifier
+    HN_GROUP_PROFIT_BRICKS = "pbricks-de", // identifier of the hardware node group a new environment should be migrated to
+    HN_GROUP_DEFAULT = "default_hn_group"; // second hardware node group's identifier
 
 /**
  * Adjust application settings according to a new database connection string
@@ -154,19 +151,40 @@ function configureAppSettings(oClonedEnvInfo) {
         oResp,
         sDbAddress;
 
-    // fetch internal IP address of a new database node
-    oClonedEnvInfo.nodes.some(function (oNode) {
+    // convert environment info into JSON format
+    oClonedEnvInfo = toNative(oClonedEnvInfo);
+
+    oFileService = hivext.local.exp.WrapRequest(new File(CLONED_ENV_APPID, session));
+
+    // fetch internal IP address of a new database node 
+    oClonedEnvInfo.nodes.every(function (oNode) {
 
         if (oNode.nodeType == NODE_TYPE_DB) {
             sDbAddress =  oNode.address;
+
+            return false;
         }
     });
 
     // adjust old database connection string with parameters of the cloned one
-    oResp = jelastic.env.file.ReplaceInBody(CLONED_ENV_APPID, session, APP_CONFIG_FILE_PATH, "db.url=jdbc:mysql://.*", "db.url=jdbc:mysql://" + sDbAddress + "/alfresco?useUnicode=yes\\&characterEncoding=UTF-8", "", NODE_TYPE_CP);
+    oResp = oFileService.replaceInBody({
+        path : APP_CONFIG_FILE_PATH,
+        nodeType : NODE_TYPE_CP,
+        pattern : "db.url=jdbc:mysql://.*",
+        replacement : "db.url=jdbc:mysql://" + sDbAddress + "/alfresco?useUnicode=yes\\&characterEncoding=UTF-8"
+    });
+
+    if (!oResp.isOK()) {
+        return oResp;
+    }
 
     // replace environment URL with the cloned one
-return jelastic.env.file.ReplaceInBody(CLONED_ENV_APPID, session, APP_INDEX_FILE_PATH, SOURCE_ENV_URL, oClonedEnvInfo.url, "", NODE_TYPE_CP);
+    return oFileService.replaceInBody({
+        path    : APP_INDEX_FILE_PATH,
+        nodeType: NODE_TYPE_CP,
+        pattern : SOURCE_ENV_URL,
+        replacement: oClonedEnvInfo.url
+    });
 }
 
 /**
@@ -175,9 +193,20 @@ return jelastic.env.file.ReplaceInBody(CLONED_ENV_APPID, session, APP_INDEX_FILE
  * @param {object} oClonedEnvInfo - meta information about the cloned environment
  * @returns {Response}
  */
-function migrateEnv(oClonedEnvInfo) {
+function migrateEnv(oEnvService, oClonedEnvInfo) {
+    var sHardwareNodeGroup;
+
+    // convert environment info into JSON format
+    oClonedEnvInfo = toNative(oClonedEnvInfo);
+
+    // get current environment hardware node group from environment meta information
+    sHardwareNodeGroup = oClonedEnvInfo.env.hardwareNodeGroup;
+
     // migrate environment API to another hardware node group
-    return jelastic.env.control.Migrate(CLONED_ENV_APPID, session, HN_GROUP_PROFIT_BRICKS, true);
+    return oEnvService.migrate({
+        hardwareNodeGroup   : (sHardwareNodeGroup == HN_GROUP_PROFIT_BRICKS) ? HN_GROUP_DEFAULT : HN_GROUP_PROFIT_BRICKS,
+        isOnline            : true
+    });
 }
 
 /**
@@ -189,39 +218,39 @@ function processEnvironment() {
         oEnvService,
         oResp;
 
+    oEnvService = hivext.local.exp.WrapRequest(new Environment(CLONED_ENV_APPID, session));
+
     // Get meta information of the new environment.
     // Meta information includes all the data about environment, comprised nodes and their properties
-     oClonedEnvInfo = jelastic.env.control.GetEnvInfo(CLONED_ENV_APPID, session);
+    oClonedEnvInfo = oEnvService.getEnvInfo();
 
-    if (oClonedEnvInfo.result !== 0) {
+    if (!oClonedEnvInfo.isOK()) {
         return oClonedEnvInfo;
     }
 
     // apply new configurations according to the cloned environment properties
     oResp = configureAppSettings(oClonedEnvInfo);
 
-    if (oResp.result !== 0) {
+    if (!oResp.isOK()) {
         return oResp;
     }
 
     // migrate cloned environment to a new hardware node group, located in another region
-/*    oResp = migrateEnv(oClonedEnvInfo);
+    oResp = migrateEnv(oEnvService, oClonedEnvInfo);
 
-    if (oResp.result !== 0) {
+    if (!oResp.isOK()) {
         return oResp;
     }
-*/
-    // Get meta information of the new environment after migrating into new region.
-    oClonedEnvInfo = jelastic.env.control.GetEnvInfo(CLONED_ENV_APPID, session);
 
-    if (oClonedEnvInfo.result !== 0) {
+    // Get meta information of the new environment after migrating into new region.
+    oClonedEnvInfo = oEnvService.getEnvInfo();
+
+    if (!oClonedEnvInfo.isOK()) {
         return oClonedEnvInfo;
     }
 
     // apply new configurations according to the migrated environment properties
-    oResp =  configureAppSettings(oClonedEnvInfo);
-
-    return jelastic.env.binder.SwapExtDomains(APPID, session, CLONED_ENV_APPID);
+    return configureAppSettings(oClonedEnvInfo);
 }
 
 return processEnvironment();
