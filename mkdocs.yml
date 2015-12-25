@@ -1,5 +1,5 @@
 site_name: Cloud Scripting
-site_url: /
+site_url: http://
 copyright: Copyright &copy; 2015, Jelastic, Inc.
 
 #use_directory_urls: true
@@ -24,33 +24,39 @@ markdown_extensions: [admonition, toc, tables]
                       #warning
 
 pages:
-- ['index.md', 'Overview']
+- Overview: index.md
 
 # Quick Start
-- ['quick-start.md', 'Quick Start']
+- Quick Start: quick-start.md
 
 # Creating Templates
-- ['creating-templates/template-basics.md', 'Creating Templates', 'Template Basics']
-- ['creating-templates/writing-scripts.md', 'Creating Templates', 'Writing Scripts']
-- ['creating-templates/selecting-containers.md', 'Creating Templates', 'Selecting Containers For Your Actions']
-- ['creating-templates/user-input-parameters.md', 'Creating Templates', 'Getting User Input']
+- Creating Templates:
+   - Template Basics: creating-templates/template-basics.md
+   - Writing Scripts: creating-templates/writing-scripts.md
+   - Selecting Containers For Your Actions: creating-templates/selecting-containers.md
+   - Getting User Input: creating-templates/user-input-parameters.md
 
 # Troubleshooting
-- ['troubleshooting.md', 'Troubleshooting']
+- Troubleshooting: troubleshooting.md
 
 # Reference
-- ['reference/actions.md', 'Reference', 'Actions']
-#- ['reference/actions/execute-shell-commands.md', 'Reference', '&nbsp;&nbsp;&nbsp;&nbsp;&blacksquare;&nbsp; ExecuteShellCommands']
-- ['reference/events.md', 'Reference', 'Events']
-- ['reference/procedures.md', 'Reference', 'Procedures']
-- ['reference/placeholders.md', 'Reference', 'Placeholders']
-- ['reference/container-types.md', 'Reference', 'Container Types']
+- Reference:
+   - Actions: reference/actions.md
+   - Events: reference/events.md
+   - Procedures: reference/procedures.md
+   - Placeholders: reference/placeholders.md
+   - Container Types: reference/container-types.md
 
 # Examples
-- ['examples/vertical-scaling.md', 'Examples', 'Vertical Scaling']
-- ['examples/horizontal-scaling.md', 'Examples', 'Horizontal Scaling']
-- ['examples/using-docker.md', 'Examples', 'Using Docker&reg;']
-- ['examples/wordpress-cluster.md', 'Examples', 'Wordpress Cluster']
+- Examples:
+   - Vertical Scaling: examples/vertical-scaling.md
+   - Horizontal Scaling: examples/horizontal-scaling.md
+   - Using Docker&reg;: examples/using-docker.md
+   - Wordpress Cluster: examples/wordpress-cluster.md
 
-
+#current_version: master
+versions:
+   releases:
+      - master
+      - 0.5
 
