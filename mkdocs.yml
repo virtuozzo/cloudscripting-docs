@@ -53,6 +53,8 @@ pages:
    - Horizontal Scaling: examples/horizontal-scaling.md
    - Using Docker&reg;: examples/using-docker.md
    - Wordpress Cluster: examples/wordpress-cluster.md
+   - Migration&Cloning Environment: examples/environment-migration-after-cloning.md
+   - Two Envs in defferent regions: examples/two-envs-in-diff-regions.md
 
 #current_version: master
 versions:
