@@ -90,7 +90,9 @@
 
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
-      {% include "versions.html" %}
+      v: {{ config.extra.current_version }}
+      <span class="fa fa-caret-down"></span>
+      <!--{% include "versions.html" %}-->
         {% if repo_name == 'GitHub' %}
             <a href="{{ repo_url }}" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
         {% elif repo_name == 'Bitbucket' %}
