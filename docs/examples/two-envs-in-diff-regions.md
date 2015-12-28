@@ -17,30 +17,31 @@
 			}
 		},
 		"onInstall": {
-			"call": "secondEnvInstallation"
-		},
-		"procedures": [{
-				"id": "secondEnvInstallation",
-				"onCall": [{
-						"executeScript": {
-							"type": "javascript",
-							"script": "http://owncloud.demo.jelastic.com/public.php?service=files&t=ff20c945d8076e43c499a620e29c3692&download"
-						}
-					}
-				]
+			"executeScript": {
+				"type": "javascript",
+				"script": "https://download.jelastic.com/public.php?service=files&t=169362776e246cbf756eb7aad325f676&download"
 			}
-		]
+		}
 	}
 }
 ```
 
 ```example
-import com.hivext.api.environment.Environment;
-
-var APPID = hivext.local.getParam("TARGET_APPID"),
-    SESSION = hivext.local.getParam("session"),
-    oEnvService,
-    oRespCreateEnv;
+var sAppid = hivext.local.getParam("TARGET_APPID"),
+    sSession = hivext.local.getParam("session"),
+    sRegion = "windows1",
+    sEnvGeneratedName = generateEnvName(),
+    oNodes = [{
+        "nodeType": "nginxphp",
+        "flexibleCloudlets": 10,
+        "engine": "php5.4"
+    }],
+    oEnv = {
+        "region": sRegion,
+        "engine": "php5.4",
+        "shortdomain": sEnvGeneratedName
+    },
+    sActionkey = "createenv;" + sEnvGeneratedName;
 
 function generateEnvName(sPrefix) {
     sPrefix = sPrefix || "env-";
@@ -48,26 +49,5 @@ function generateEnvName(sPrefix) {
     return sPrefix + parseInt(Math.random() * 100000, 10);
 }
 
-oEnvService = hivext.local.exp.wrapRequest(new Environment(APPID, SESSION));
-
-oEnvInfoResponse = oEnvService.getEnvInfo();
-if (!oEnvInfoResponse.isOK()) {
-    return oEnvInfoResponse;
-}
-
-oRespCreateEnv = oEnvService.createEnvironment({
-    nodes: [{
-        "nodeType": "nginxphp",
-        "flexibleCloudlets": 10,
-        "engine": "php5.4"
-    }],
-    env: {
-        "region": "windows1",
-        "engine": "php5.4",
-        "shortdomain": generateEnvName()
-    },
-    actionkey : "createenv;env;expert;1;region;jelastic.com"
-});
-
-return oRespCreateEnv;
+return jelastic.env.control.CreateEnvironment(sAppid, sSession, sActionkey, oEnv, oNodes);
 ```
