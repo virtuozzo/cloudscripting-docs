@@ -1,9 +1,15 @@
-<div class="rst-versions rst-badge" data-toggle="rst-versions" role="note" aria-label="versions">
-    <span class="curent-sersion">v: {{ config.extra.current_version }}</span>
-    <span class="fa fa-caret-down"></span>
-    <!--<span class="rst-current-version" data-toggle="rst-current-version">
+{# Add rst-badge after rst-versions for small badge style. #}
+<div class="rst-versions" role="note" style="cursor: pointer">
 
-    </span>-->
+
+<div class="rst-versions rst-badge" data-toggle="rst-versions" role="note" aria-label="versions">
+
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      v: {{ config.extra.current_version }}
+      <span class="fa fa-caret-down"></span>
+
+    </span>
+
     <div class="rst-other-versions">
         <dl>
             <dt>Versions</dt>
@@ -16,4 +22,10 @@
             {% endfor %}
         </dl>
     </div>
+
+
+</div>
+    <span><a href="{{ previous_page.url }}" style="color: #fcfcfc;">&laquo; Previous</a></span>
+    <span style="margin-left: 15px"><a href="{{ next_page.url }}" style="color: #fcfcfc">Next &raquo;</a></span>
+
 </div>
