@@ -3,7 +3,7 @@
 - Log in to your Jelastic account and open the following link in a new browser tab: <http://appstore.cloudscripting.com/console/>  
 - In the opened browser tab you will see the Cloud Scripting execution log
 
-![Console](http://77047754c838ee6badea32b5afab1882.app.cart.jelastic.com/xssu/cross/download/RDYYHFRvUwRZAQ8fYlJqFBNHARcBTURBChNqHyt5clNCF0RRDwYAQmNTTEBI)
+![Console](https://download.jelastic.com/public.php?service=files&t=a662aacb111575cf3d37b1d94fe59af9&download)
 
 !!! note
     Maximum log size is 1 MB. The log will be truncated or overwritten if this limit exceeded.
