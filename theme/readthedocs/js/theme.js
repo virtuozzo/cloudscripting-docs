@@ -11,6 +11,10 @@ $( document ).ready(function() {
     });
     $(document).on('click', "[data-toggle='rst-current-version']", function() {
       $("[data-toggle='rst-versions']").toggleClass("shift-up");
+    if ($(".fa-caret-down").length > 0)
+        $(".fa-caret-down").attr('class', 'fa fa-caret-up');
+    else
+        $(".fa-caret-up").attr('class', 'fa fa-caret-down');
     });
     // Make tables responsive
     $("table.docutils:not(.field-list)").wrap("<div class='wy-table-responsive'></div>");
