@@ -516,7 +516,7 @@ while(iterator.hasNext()) {
     var softNode = iterator.next();
     var softNodeProperties = softNode.getProperties();
       
-    if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeMission())) {
+    if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeGroup())) {
         callArgs.push(softNode);
     }
 }
@@ -685,7 +685,7 @@ while(iterator.hasNext()) {
     var softNode = iterator.next();
     var softNodeProperties = softNode.getProperties();
       
-    if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeMission())) {
+    if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeGroup())) {
         aComputeNodes.push(softNode);
     }
 }
@@ -756,7 +756,7 @@ while(iterator.hasNext()) {
     var softNode = iterator.next();
     var softNodeProperties = softNode.getProperties();
       
-    if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeMission())) {
+    if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeGroup())) {
         computeNodes.push(softNode);
     }
 }
@@ -811,7 +811,7 @@ while(iterator.hasNext()) {
     var softNode = iterator.next();
     var softNodeProperties = softNode.getProperties();
       
-    if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeMission())) {
+    if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeGroup())) {
         computeNodes.push(softNode);
     }
 }
