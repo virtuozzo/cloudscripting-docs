@@ -1,27 +1,28 @@
-<div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-<<<<<<< HEAD
-    <li><a href="{{ homepage_url }}">Docs v:{{ config.extra.current_version }}</a> &raquo;</li>
-=======
-    <li><a href="{{ homepage_url }}">Docs v{{ config.extra.current_version }}</a> &raquo;</li>
->>>>>>> cb1164bdefc47a0f9f3313af8b5d2c2fbae0cfd2
-    {% for doc in current_page.ancestors %}
-      {% if doc.link %}
-        <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> &raquo;</li>
-      {% else %}
-        <li>{{ doc.title }} &raquo;</li>
-      {% endif %}
-    {% endfor %}
-    {% if current_page %}<li>{{ current_page.title }}</li>{% endif %}
-      <li class="wy-breadcrumbs-aside">
-        {% if repo_url %}
-          {% if repo_name == 'GitHub' %}
-            <a href="{{ repo_url }}" class="icon icon-github"> Edit on GitHub</a>
-          {% elif repo_name == 'Bitbucket' %}
-           <a href="{{ repo_url }}" class="icon icon-bitbucket"> Edit on BitBucket</a>
-          {% endif %}
-        {% endif %}
-      </li>
-  </ul>
-  <hr/>
-</div>
+  1 <div role="navigation" aria-label="breadcrumbs navigation">
+  2   <ul class="wy-breadcrumbs">
+  3 <<<<<<< HEAD
+  4     <li><a href="{{ homepage_url }}">Docs v:{{ config.extra.current_version }}</a> &raquo;</li>
+  5 =======
+  6     <li><a href="{{ homepage_url }}">Docs v{{ config.extra.current_version }}</a> &raquo;</li>
+  7 >>>>>>> cb1164bdefc47a0f9f3313af8b5d2c2fbae0cfd2
+  8     {% for doc in current_page.ancestors %}
+  9       {% if doc.link %}
+ 10         <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> &raquo;</li>
+ 11       {% else %}
+ 12         <li>{{ doc.title }} &raquo;</li>
+ 13       {% endif %}
+ 14     {% endfor %}
+ 15     {% if current_page %}<li>{{ current_page.title }}</li>{% endif %}
+ 16       <li class="wy-breadcrumbs-aside">
+ 17         {% if repo_url %}
+ 18           {% if repo_name == 'GitHub' %}
+ 19             <a href="{{ repo_url }}" class="icon icon-github"> Edit on GitHub</a>
+ 20           {% elif repo_name == 'Bitbucket' %}
+ 21            <a href="{{ repo_url }}" class="icon icon-bitbucket"> Edit on BitBucket</a>
+ 22           {% endif %}
+ 23         {% endif %}
+ 24       </li>
+ 25   </ul>
+ 26   <hr/>
+ 27 </div>
+
