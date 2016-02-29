@@ -70,13 +70,6 @@ One of these parameters is required. See [Selecting containers for your actions]
     - **user** - default system user with restricted permissions.
 - `sayYes` - optional parameter that enables or disables using of **yes** utility. Defaults to: **true**.    
 
-!!! note 
-    The **ExecuteShellCommands** method will fail if any of your commands write something in standard error stream  (**stderr**).
-    For example,` wget` and `curl` utils will write their output to _stderr_ by default.   
-    To avoid this:
-          
-    - you can use special flags for _curl_ : `curl -fsSL http://example.com/ -o example.txt`
-    - or just redirect standard error stream (_stderr_) to standard output stream (_stdout_) if it fits your needs: `curl http://example.com/ -o example.txt 2>&1` 
 
 While accessing containers via **executeShellCommands**, a user receives all required permissions and additionally can manage the main services with sudo commands of the following kind (and others):
 
