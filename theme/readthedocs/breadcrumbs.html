@@ -1,6 +1,10 @@
 <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
+<<<<<<< HEAD
     <li><a href="{{ homepage_url }}">Docs v:{{ config.extra.current_version }}</a> &raquo;</li>
+=======
+    <li><a href="{{ homepage_url }}">Docs v{{ config.extra.current_version }}</a> &raquo;</li>
+>>>>>>> cb1164bdefc47a0f9f3313af8b5d2c2fbae0cfd2
     {% for doc in current_page.ancestors %}
       {% if doc.link %}
         <li><a href="{{ doc.link|e }}">{{ doc.title }}</a> &raquo;</li>
