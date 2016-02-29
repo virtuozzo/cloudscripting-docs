@@ -53,7 +53,7 @@ See [All Containers By Role](#all-containers-by-group) if you don't know your co
 ## All Containers By Group
  
 `nodeGroup`
-list of available node groups. Sync exec one by one,
+list of available predefined node groups. Sync exec one by one,
 available nodeGroup
 
 - `bl`
@@ -63,8 +63,8 @@ available nodeGroup
 - `cache`
 - `build`
 - `vds`
-- `docker`
 
+In Docker® case nodeGroup is not defined, it can be any.
 
 !!! note
     > If you set all three parameters, a container selection would work in the following order: _nodeId -> nodeGroup -> nodeType_
