@@ -46,8 +46,8 @@ Available Nodes: all
   "executeShellCommands": [
     {
       "nodeId": "int or string",
+      "nodeGroup" : "string",
       "nodeType" : "string",
-      "nodeMission" : "string",
             
       "commands": [
         "cmd1",
@@ -60,7 +60,7 @@ Available Nodes: all
 }
 ```
 
-- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed. 
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed. 
 One of these parameters is required. See [Selecting containers for your actions](#selecting-containers-for-your-actions).
 - `commands` - a set of commands that gets executed. 
     Its value is wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**. 
@@ -113,7 +113,7 @@ Download and unzip a WordPress plugin on all compute nodes:
 {
   "executeShellCommands": [
     {
-      "nodeMission": "cp",
+      "nodeGroup": "cp",
       "commands": [
         "cd /var/www/webroot/ROOT/wp-content/plugins/",
         "curl -fsSL \"http://example.com/plugin.zip\" -o plugin.zip",
@@ -162,8 +162,8 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
   "upload": [
     {
       "nodeId": "number or string",
+      "nodeGroup": "string",
       "nodeType": "string",
-      "nodeMission": "string",
       
       "sourcePath" : "URL",
       "destPath" : "string"
@@ -172,7 +172,7 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
 }
 ```
 
-- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed. 
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed. 
 
 ### Unpack
 Available Nodes: all except *Docker&reg;* and *Elastic VPS* 
@@ -181,8 +181,8 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
   "unpack": [
     {
       "nodeId": "number or string",
+      "nodeGroup": "string",
       "nodeType": "string",
-      "nodeMission": "string",
       
       "sourcePath" : "URL",
       "destPath" : "string"
@@ -191,7 +191,7 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
 }
 ```
 
-- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.
 - `sourcePath`
 - `destPath` 
@@ -203,8 +203,8 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
   "createFile": [
     {
       "nodeId": "number or string",
+      "nodeGroup": "string",
       "nodeType": "string",
-      "nodeMission": "string",
             
       "path" : "string"
     }
@@ -212,7 +212,7 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
 }
 ```
 
-- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.
 - `path` 
 
@@ -223,8 +223,8 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
   "createFile": [
     {
       "nodeId": "number or string",
+      "nodeGroup": "string",
       "nodeType": "string",
-      "nodeMission": "string",
             
       "path" : "string"
     }
@@ -232,7 +232,7 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
 }
 ```
 
-- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+- `nodeId`, `nodGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.
 - `path` 
 
@@ -243,8 +243,8 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
   "writeFile": [
     {
       "nodeId": "number or string",
+      "nodeGroup": "string",
       "nodeType": "string",
-      "nodeMission": "string",
             
       "path" : "string",
       "body" : "string"
@@ -253,7 +253,7 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
 }
 ```
 
-- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.
 - `path`
 - `body`
@@ -265,8 +265,8 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
   "appendFile": [
     {
       "nodeId": "number or string",
+      "nodeGroup": "string",
       "nodeType": "string",
-      "nodeMission": "string",
             
       "path" : "string",
       "body" : "string"
@@ -275,7 +275,7 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
 }
 ```
 
-- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.
 - `path`
 - `body`
@@ -287,8 +287,8 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
   "replaceInFile": [
     {
       "nodeId": "number or string",
+      "nodeGroup": "string",
       "nodeType": "string",
-      "nodeMission": "string",
             
       "path" : "string",
       "replacements" : [{
@@ -300,7 +300,7 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
 }
 ```
 
-- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
 One of those three parameters is required. 
 - `path`
 - `replacements` - the list of replacements in the configuration files on the node
@@ -363,15 +363,15 @@ Available Nodes: all
   "setNodeDisplayName": [
     {
       "nodeId": "string or number",     
-      "nodeType": "string", 
-      "nodeMission": "string",            
+      "nodeGroup": "string", 
+      "nodeType": "string",            
       "displayName" : "string"
     }
   ]
 }
 ```
 
-- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.
 
 ### RestartNodes
@@ -381,14 +381,14 @@ Available Nodes: all (except *Elastic VPS*)
   "restartNodes": [
     {
       "nodeId": "number or string",
-      "nodeType": "string",
-      "nodeMission": "string"
+      "nodeGroup": "string",
+      "nodeType": "string"
     }
   ]
 }
 ```
 
-- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.
 
 ### RestartContainers
@@ -398,14 +398,14 @@ Available Nodes: all
   "restartContainers": [
     {
       "nodeId": "number or string",
-      "nodeType": "string",
-      "nodeMission": "string"
+      "nodeGroup": "string",
+      "nodeType": "string"
     }
   ]
 }
 ```
 
-- `nodeId`, `nodeType`, `nodeMission` - parameters that determines containers on which the action should be executed.
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.
  
 ### AddContext
@@ -438,8 +438,8 @@ Available Nodes: SQL Databases (except *Docker&reg;*)
   "prepareSqlDatabase": [
     {
       "nodeId": "number or string",
+      "nodeGroup": "string",
       "nodeType": "string",
-      "nodeMission": "string",
       "loginCredentials": {
         "user": "string",
         "password": "string"
@@ -454,8 +454,8 @@ Available Nodes: SQL Databases (except *Docker&reg;*)
 }
 ```
 
-- `nodeId`, `nodeType`, `nodeMission` *[optiona;]* - parameters that determines containers on which the action should be executed.
-**Default**: `nodeMission` equals `sqldb`.
+- `nodeId`, `nodeGroup`, `nodeType` *[optiona;]* - parameters that determines containers on which the action should be executed.
+**Default**: `nodeGroup` equals `sqldb`.
 - `loginCredentials`
     - `user`
     - `password`
@@ -474,8 +474,8 @@ Available Nodes: SQL Databases (except *Docker&reg;*)
   "restoreSqlDump": [
     {
       "nodeId": "number or string",
+      "nodeGroup": "string",
       "nodeType": "string",
-      "nodeMission": "string",
       "databaseName": "string",
       "user": "string",
       "password": "string",
@@ -485,8 +485,8 @@ Available Nodes: SQL Databases (except *Docker&reg;*)
 }
 ```
 
-- `nodeId`, `nodeType`, `nodeMission` *[optiona;]* - parameters that determines containers on which the action should be executed.
-**Default**: `nodeMission` equals `sqldb`.
+- `nodeId`, `nodeGroup`, `nodeType` *[optiona;]* - parameters that determines containers on which the action should be executed.
+**Default**: `nodeGroup` equals `sqldb`.
 - `databaseName` - name of the database to create
 - `user` - user name in the database on behalf of which the application will be used
 - `password` - password in the database on behalf of which the application will be used
@@ -499,8 +499,8 @@ Available Nodes: SQL Databases (except *Docker&reg;*)
   "applySqlPatch": [
     {
       "nodeId": "number or string",
+      "nodeGroup": "string",
       "nodeType": "string",
-      "nodeMission": "string",
       "databaseName": "string",
       "user": "string",
       "password": "string",
@@ -510,8 +510,8 @@ Available Nodes: SQL Databases (except *Docker&reg;*)
 }
 ```
 
-- `nodeId`, `nodeType`, `nodeMission` *[optiona;]* - parameters that determines containers on which the action should be executed.
-**Default**: `nodeMission` equals `sqldb`.
+- `nodeId`, `nodeGroup`, `nodeType` *[optiona;]* - parameters that determines containers on which the action should be executed.
+**Default**: `nodeGroup` equals `sqldb`.
 - `databaseName` - name of the database to apply patch
 - `user` - user name in the database on behalf of which the application will be used
 - `password` - password in the database on behalf of which the application will be used

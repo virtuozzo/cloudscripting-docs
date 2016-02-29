@@ -69,11 +69,11 @@
         "upload": [{
           "destPath": "${SERVER_WEBROOT}/ROOT/db-config.php",
           "sourcePath": "https://download.jelastic.com/public.php?service=files&t=d90fd50c63fe018273db1ee9923caeb4&download",
-          "nodeMission": "cp"
+          "nodeGroup": "cp"
         }, {
           "destPath": "${SERVER_WEBROOT}/ROOT/wp-content/db.php",
           "sourcePath": "https://download.jelastic.com/public.php?service=files&t=c6a3c4018c8465bfb75c99f7ac4c2192&download",
-          "nodeMission": "cp"
+          "nodeGroup": "cp"
         }]
       }, {
         "executeScript": {
@@ -83,7 +83,7 @@
         }
       }, {
         "replaceInFile": [{
-          "nodeMission": "cp",
+          "nodeGroup": "cp",
           "path": "${SERVER_WEBROOT}/ROOT/db-config.php",
           "replacements": [{
             "pattern": "{DB_USER}",
@@ -100,11 +100,11 @@
         "upload": [{
           "destPath": "/var/lib/jelastic/keys/DbCreation.sh",
           "sourcePath": "https://download.jelastic.com/public.php?service=files&t=78ae5e3ad1aefe25b13685fee7520e22&download",
-          "nodeMission": "sqldb"
+          "nodeGroup": "sqldb"
         }]
       }, {
         "executeShellCommands": [{
-          "nodeMission": "sqldb",
+          "nodeGroup": "sqldb",
           "commands": [
             "/bin/bash /var/lib/jelastic/keys/DbCreation.sh '${nodes.sqldb.password}' 'https://download.jelastic.com/public.php?service=files&t=7271e1a44982fe78025d4a98be84111e&download' '${env.url}' '${env.protocol}' '${env.domain}' '${user.email}'  '${user.appPassword}' 2>&1",
             "rm -rf /var/lib/jelastic/keys/DbCreation.sh"
@@ -112,21 +112,21 @@
         }]
       }, {
         "replaceInFile": [{
-          "nodeMission": "cp",
+          "nodeGroup": "cp",
           "path": "${SERVER_WEBROOT}/ROOT/wp-config.php",
           "replacements": [{
             "pattern": "<?php",
             "replacement": "<?php\nif (!session_id())\n  session_start();"
           }]
         }, {
-          "nodeMission": "cp",
+          "nodeGroup": "cp",
           "path": "/etc/nginx/nginx.conf",
           "replacements": [{
             "pattern": "index  index.html index.htm index.php;",
             "replacement": "index  index.html index.htm index.php; \n \n if (!-e $request_filename ) {\nrewrite ^(.*)$ /index.php?q=$1;\n}"
           }]
         }, {
-          "nodeMission": "cp",
+          "nodeGroup": "cp",
           "path": "/etc/nginx/nginx.conf",
           "replacements": [{
             "pattern": "worker_processes  1;",
@@ -142,7 +142,7 @@
             "replacement": "location ~*  \\.(jpg|jpeg|png|gif|ico|css|js)$ {\\  nexpires 365d;\n  }\nlocation ~*  \\.(pdf)$ {\n  expires 30d;\n  }\n\nlocation ~ \\.php$ {"
           }]
         }, {
-          "nodeMission": "cp",
+          "nodeGroup": "cp",
           "path": "/etc/php.ini",
           "replacements": [{
             "pattern": "session.save_handler = files",
@@ -161,7 +161,7 @@
             "replacement": "session.gc_divisor = 100"
           }]
         }, {
-          "nodeMission": "cp",
+          "nodeGroup": "cp",
           "path": "/etc/php-fpm.conf",
           "replacements": [{
             "pattern": "; Jelastic autoconfiguration mark",
@@ -182,7 +182,7 @@
         }]
       }, {
         "executeShellCommands": [{
-          "nodeMission": "cp",
+          "nodeGroup": "cp",
           "commands": [
             "rm -rf ${SERVER_WEBROOT}/ROOT/sessions",
             "mkdir ${SERVER_WEBROOT}/ROOT/sessions"
@@ -190,7 +190,7 @@
         }]
       }, {
         "restartNodes": [{
-          "nodeMission": "cp"
+          "nodeGroup": "cp"
         }]
       }]
     }, {
@@ -206,14 +206,14 @@
       "id": "configureBalancers",
       "onCall": [{
         "replaceInFile": [{
-          "nodeMission": "bl",
+          "nodeGroup": "bl",
           "path": "/etc/nginx/conf.d/cache.conf",
           "replacements": [{
             "pattern": "#proxy",
             "replacement": "proxy"
           }]
         }, {
-          "nodeMission": "bl",
+          "nodeGroup": "bl",
           "path": "/etc/nginx/nginx.conf",
           "replacements": [{
             "pattern": "worker_processes  1",
@@ -222,7 +222,7 @@
         }]
       }, {
         "executeShellCommands": [{
-          "nodeMission": "cp",
+          "nodeGroup": "cp",
           "commands": [
             "sudo /etc/init.d/nginx reload 2>&1"
           ]
@@ -259,7 +259,7 @@
       "id": "configureReplication",
       "onCall": [{
         "replaceInFile": [{
-          "nodeMission": "sqldb",
+          "nodeGroup": "sqldb",
           "path": "${MYSQL_CONF}/my.cnf",
           "replacements": [{
             "pattern": "#log-bin=mysql-bin",
@@ -277,7 +277,7 @@
         }]
       }, {
         "restartNodes": [{
-          "nodeMission": "sqldb"
+          "nodeGroup": "sqldb"
         }]
       }, {
         "executeShellCommands": [{
@@ -295,7 +295,7 @@
         }]
       }, {
         "restartNodes": [{
-          "nodeMission": "sqldb"
+          "nodeGroup": "sqldb"
         }]
       }]
     }, {
@@ -418,14 +418,14 @@
             "sudo /etc/init.d/nginx reload"
           ]
         }, {
-          "nodeMission": "cp",
+          "nodeGroup": "cp",
           "commands": [
             "${SERVER_WEBROOT}/lsyncd/usr/bin/lsyncd ${SERVER_WEBROOT}/lsyncd/etc/lsyncd.conf &>> ${SERVER_WEBROOT}/lsyncd/var/log/lsyncd_start.log"
           ]
         }]
       }, {
         "appendFile": [{
-          "nodeMission": "cp",
+          "nodeGroup": "cp",
           "path": "/var/spool/cron/nginx",
           "body": "*/5 * * * * /bin/bash ${SERVER_WEBROOT}/lsyncd/init.sh"
         }]
@@ -516,7 +516,7 @@ while(iterator.hasNext()) {
     var softNode = iterator.next();
     var softNodeProperties = softNode.getProperties();
       
-    if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeMission())) {
+    if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeGroup())) {
         callArgs.push(softNode);
     }
 }
@@ -685,7 +685,7 @@ while(iterator.hasNext()) {
     var softNode = iterator.next();
     var softNodeProperties = softNode.getProperties();
       
-    if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeMission())) {
+    if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeGroup())) {
         aComputeNodes.push(softNode);
     }
 }
@@ -756,7 +756,7 @@ while(iterator.hasNext()) {
     var softNode = iterator.next();
     var softNodeProperties = softNode.getProperties();
       
-    if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeMission())) {
+    if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeGroup())) {
         computeNodes.push(softNode);
     }
 }
@@ -811,7 +811,7 @@ while(iterator.hasNext()) {
     var softNode = iterator.next();
     var softNodeProperties = softNode.getProperties();
       
-    if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeMission())) {
+    if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeGroup())) {
         computeNodes.push(softNode);
     }
 }
