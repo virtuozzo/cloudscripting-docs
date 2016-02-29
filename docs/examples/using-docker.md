@@ -18,7 +18,7 @@ Create and link WordPress Web and WordPress DB containers:
             "displayName": "App Server",
             
             "docker" : {
-              "nodeMission" : "cp",
+              "nodeGroup" : "cp",
               "image" : "jelastic/wordpress-web:latest",
               "links" : "db:DB"
             }
@@ -29,7 +29,7 @@ Create and link WordPress Web and WordPress DB containers:
             "displayName": "Database",
             
             "docker" : {
-              "nodeMission" : "db",
+              "nodeGroup" : "db",
               "image" : "jelastic/wordpress-db:latest"
             }
           }
@@ -38,7 +38,7 @@ Create and link WordPress Web and WordPress DB containers:
     },                     
     "onInstall" : {
       "restartContainers" : {
-          "nodeMission" : "cp"
+          "nodeGroup" : "cp"
       }
     }
   }
