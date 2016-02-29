@@ -4,8 +4,8 @@ Some actions require a list of containers in which the action will be executed.
 There are three ways to select the containers.
 
 - [Particular Container](#particular-container)
-- [All Containers By Type](#all-containers-by-type)
 - [All Containers By Role](#all-containers-by-role) 
+- [All Containers By Type](#all-containers-by-type)
 
 ## Particular Container
 Use `nodeId` parameter to select a particular container.      
