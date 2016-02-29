@@ -48,13 +48,13 @@ See [Container Types](/reference/container-types/).
 
 list of available node types. Sync exec one by one.  
 available noteTypes  
-See [All Containers By Role](#all-containers-by-role) if you don't know your containers software type or it's not static.  
+See [All Containers By Role](#all-containers-by-group) if you don't know your containers software type or it's not static.  
 
-## All Containers By Role
+## All Containers By Group
  
 `nodeMission`
-list of available node missions. Sync exec one by one,
-available nodeMission
+list of available node groups. Sync exec one by one,
+available nodeGroup
 
 - `bl`
 - `cp`
@@ -67,5 +67,5 @@ available nodeMission
 
 
 !!! note
-    > If you set all three parameters, a container selection would work in the following order: _nodeId -> nodeType -> nodeMission_
+    > If you set all three parameters, a container selection would work in the following order: _nodeId -> nodeGroup -> nodeType_
     
