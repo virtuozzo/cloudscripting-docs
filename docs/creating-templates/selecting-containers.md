@@ -52,7 +52,7 @@ See [All Containers By Role](#all-containers-by-group) if you don't know your co
 
 ## All Containers By Group
  
-`nodeMission`
+`nodeGroup`
 list of available node groups. Sync exec one by one,
 available nodeGroup
 
