@@ -12,7 +12,7 @@ In order to execute a shell script inside the container, action [ExecuteShellCom
 {
   "executeShellCommands": [
     {
-      "nodeMission": "cp",
+      "nodeGroup": "cp",
       "commands": [
         "curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2"
       ]

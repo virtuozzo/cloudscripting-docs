@@ -20,7 +20,7 @@ If it's not possible placeholder will be unresolved and displayed in the text as
     - `{nodes.(group).first.(key)}`
     - `{nodes.(group).last.(key)}`   
     Where:
-    - `(group)` - nodes group ([nodeMission](/creating-templates/selecting-containers/#all-containers-by-role) or [nodeType](/creating-templates/selecting-containers/#all-containers-by-type))
+    - `(group)` - nodes group ([nodeGroup](/creating-templates/selecting-containers/#all-containers-by-group) or [nodeType](/creating-templates/selecting-containers/#all-containers-by-type))
     - `(i)` - an index of node, starting from 0
     - `(key)` - parameter name
     ...                          
