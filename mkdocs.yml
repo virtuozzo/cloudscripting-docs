@@ -7,8 +7,8 @@ use_absolute_urls: true
 include_search: true
 theme_center_lead: false
 
-#theme: readthedocs
-theme_dir: './theme/readthedocs'
+theme: readthedocs
+#theme_dir: './theme/readthedocs'
 #theme: slate
 #theme: highlight.js
 
