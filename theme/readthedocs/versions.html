@@ -25,7 +25,7 @@
 
 
 </div>
-    <span><a href="{{ previous_page.url }}" style="color: #fcfcfc;">&laquo; Previous</a></span>
+    {% if previous_page %}<span><a href="{{ previous_page.url }}" style="color: #fcfcfc;">&laquo; Previous</a></span>{% endif %}
     <span style="margin-left: 15px"><a href="{{ next_page.url }}" style="color: #fcfcfc">Next &raquo;</a></span>
 
 </div>
