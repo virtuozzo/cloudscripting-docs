@@ -29,6 +29,9 @@ pages:
 # Quick Start
 - Quick Start: quick-start.md
 
+# Jelastic & CloudScripting correspondence
+- Jelastic & CS correspondence: jelastic-cs-correspondence.md
+
 # Creating Templates
 - Creating Templates:
    - Template Basics: creating-templates/template-basics.md
