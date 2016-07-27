@@ -134,3 +134,55 @@ pre code.example {
 .wy-menu-vertical .toctree-l1 a {
     color: #f6f8f7;
 }
+
+/*
+ * Jelastic correspondence
+*/
+
+table, th, td, tr {
+    border: 2px solid grey;
+}
+
+#jel {
+   background-color: #E8E8E8
+}
+
+#table-head {
+   font-size: 17px;
+   background-color: #c4c4c4;
+}
+
+th, td {
+   text-align: center;
+   font-size: 13px;
+}
+
+/*
+ * Additions specific to the search functionality provided by MkDocs
+ */
+
+#mkdocs-search-results article h3
+{
+    margin-top: 23px;
+    border-top: 1px solid #E1E4E5;
+    padding-top: 24px;
+}
+
+#mkdocs-search-results article:first-child h3 {
+    border-top: none;
+}
+
+#mkdocs-search-query{
+    width: 100%;
+    border-radius: 50px;
+    padding: 6px 12px;
+    border-color: #D1D4D5;
+}
+
+.wy-menu-vertical li ul {
+    display: inherit;
+}
+
+.wy-menu-vertical li ul.subnav ul.subnav{
+    padding-left: 1em;
+}
