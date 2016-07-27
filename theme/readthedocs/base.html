@@ -75,7 +75,9 @@
           {% include "breadcrumbs.html" %}
           <div role="main">
             <div class="section">
-              {{ content }}
+	    {% block content %}
+                {{ content }}
+              {% endblock %}
             </div>
           </div>
 	  {%- block footer %}
