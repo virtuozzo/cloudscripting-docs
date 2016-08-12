@@ -367,6 +367,44 @@ Available Nodes: all
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.
 
+### SetNodeCount
+Available Nodes: all (except *Docker&reg;* and *Elastic VPS*)
+```
+{
+  "setNodeCount":[
+   {
+     "nodeId": "string or number",
+     "nodeGroup": "string",
+     "nodeType": "string",
+     "count" : "number"
+    }
+  ]
+}
+```
+
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
+ One of those three parameters is required.
+ - `count` - total nodes count after action will be finished
+
+###SetExtIpEnabled
+Available Nodes: all
+```
+{
+  "setExtIpEnabled": [
+    {
+      "nodeId": "string or number",
+      "nodeGroup": "string",
+      "nodeType": "string",
+      "enabled" : true or false
+    }
+  ]
+}
+```
+
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
+ One of those three parameters is required.
+- `enabled` - defines to attach aot deattach external IP address
+
 ### RestartNodes
 Available Nodes: all (except *Elastic VPS*)
 ```
@@ -588,3 +626,21 @@ Or:
 - `id` - an extention ID from marketplace or from `addons` section in manifest
 
 <!-- add example -->
+
+### ForEach
+
+```
+{
+  "forEach(nodes)": {
+    "execCmd" : {
+      "nodeId": "number or string",
+      "nodeGroup": "string",
+      "nodeType": "string",
+      "commands": [
+        "echo hello > /tmp/example.txt"
+      ]
+    }
+  }
+}
+```
+
