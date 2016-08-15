@@ -666,7 +666,7 @@ Or:
 
 Iteration can be executed by `env`, `nodes`, `contexts` and `extdomains` objects.
 
-Iterateble object map:
+Iterable object map:
 
 ```
 {
