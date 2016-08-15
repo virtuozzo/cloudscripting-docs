@@ -629,18 +629,57 @@ Or:
 
 ### ForEach
 
+####Iteration by all nodes in environment:
+
 ```
 {
-  "forEach(nodes)": {
+  "forEach(env.nodes)": [{
+    "executeShellCommands": {
+	  "nodeId": "${@i.id}",
+		"commands": [
+	      "echo ${@i.address} > /tmp/example.txt"
+		]
+	}
+  }]
+}
+```
+
+- `@i` - default iterator name
+
+####Iteration by compute nodes:
+```
+{
+  "forEach(iteratorName:nodes.cp)": {
     "execCmd" : {
-      "nodeId": "number or string",
-      "nodeGroup": "string",
-      "nodeType": "string",
+      "nodeId": "${@iteratorName.id}",
+      "nodeGroup": "${@iteratorName.nodeGroup}",
+      "nodeType": "${@iteratorName.nodeType}",
       "commands": [
-        "echo hello > /tmp/example.txt"
+        "echo ${@iteratorName.address} > /tmp/example.txt"
       ]
     }
   }
 }
 ```
 
+- `@iteratorName` - custom iterator name (optional)
+
+Iteration can be executed by `env`, `nodes`, `contexts` and `extdomains` objects.
+
+Iterateble object map:
+
+```
+{
+  "env": {
+    "nodes": [
+      "..."
+    ],
+    "contexts": [
+      "..."
+    ],
+    "extdomains":[
+      "..."
+    ]
+  }
+}
+```
