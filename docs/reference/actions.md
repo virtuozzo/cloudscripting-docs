@@ -629,6 +629,29 @@ Or:
 
 ### ForEach
 
+Iterable object map:
+
+```
+{
+  "env": {
+    "nodes": [
+      {...}
+    ],
+    "contexts": [
+      {
+        "context": "string",
+        "archivename": "string",
+        "type": "string"
+      },
+      {...}
+    ],
+    "extdomains":[
+      "..."
+    ]
+  }
+}
+```
+
 ####Iteration by all nodes in environment:
 
 ```
@@ -646,7 +669,7 @@ Or:
 
 - `@i` - default iterator name
 
-####Iteration by compute nodes:
+####Iteration by compute nodes with custom iterator name:
 ```
 {
   "forEach(iteratorName:nodes.cp)": {
@@ -664,22 +687,36 @@ Or:
 
 - `@iteratorName` - custom iterator name (optional)
 
-Iteration can be executed by `env`, `nodes`, `contexts` and `extdomains` objects.
 
-Iterable object map:
+####Iteration can be executed by `env.nodes`, `nodes`, `env.contexts` and `env.extdomains` objects:
 
 ```
 {
-  "env": {
-    "nodes": [
-      "..."
-    ],
-    "contexts": [
-      "..."
-    ],
-    "extdomains":[
-      "..."
-    ]
-  }
+  "forEach(env.extdomains)": [
+    {
+      "writeFile": {
+        "nodeGroup": "cp",
+        "path": "/var/lib/jelastic/keys/${@i}.txt",
+        "body": "hello"
+      }
+    }
+  ]
 }
 ```
+
+```
+{
+  "forEach(env.contexts)": [
+    {
+      "writeFile": {
+        "nodeGroup": "cp",
+        "path": "/var/lib/jelastic/keys/${@i.context}.txt",
+        "body": "1"
+      }
+    }
+  ]
+}
+```
+
+- `env.contexts` - deployed in environment contexts
+- `env.extdomains` - binded external domains 
