@@ -672,20 +672,20 @@ Iterable object map:
 ####Iteration by compute nodes with custom iterator name:
 ```
 {
-  "forEach(iteratorName:nodes.cp)": {
+  "forEach(cp:nodes.cp)": {
     "execCmd" : {
-      "nodeId": "${@iteratorName.id}",
-      "nodeGroup": "${@iteratorName.nodeGroup}",
-      "nodeType": "${@iteratorName.nodeType}",
+      "nodeId": "${@cp.id}",
+      "nodeGroup": "${@cp.nodeGroup}",
+      "nodeType": "${@cp.nodeType}",
       "commands": [
-        "echo ${@iteratorName.address} > /tmp/example.txt"
+        "echo ${@cp.address} > /tmp/example.txt"
       ]
     }
   }
 }
 ```
 
-- `@iteratorName` - custom iterator name (optional)
+- `@cp` - custom iterator name (optional)
 
 
 ####Iteration can be executed by `env.nodes`, `nodes`, `env.contexts` and `env.extdomains` objects:

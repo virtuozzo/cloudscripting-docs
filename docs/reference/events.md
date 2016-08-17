@@ -27,6 +27,10 @@ It’s also possible to bind the extension’s execution to the onUninstall even
      "env" : {
         "onBeforeChangeTopology": {},
         "onAfterChangeTopology": {},
+        "onBeforeScaleOut": {},
+        "onAfterScaleOut": {},
+        "onBeforeScaleIn": {},
+        "onAfterScaleIn": {},
         "onBeforeRestartNode" : {},
         "onAfterRestartNode" : {},
         "onBeforeDelete" : {},
@@ -75,6 +79,8 @@ It’s also possible to bind the extension’s execution to the onUninstall even
         "onAfterSetDockerEntryPoint" : {},
         "onBeforeSetDockerRunCmd" : {},        
         "onAfterSetDockerRunCmd" : {},
+        "onBeforeStartDockerService": {},
+        "onAfterStartDockerService": {},
         "onBeforeAddDockerVolume" : {},        
         "onAfterAddDockerVolume" : {},
         "onBeforeRemoveDockerVolume" : {},        
@@ -85,6 +91,10 @@ It’s also possible to bind the extension’s execution to the onUninstall even
 ```                              
 ### BeforeChangeTopology
 ### AfterChangeTopology
+### onBeforeScaleOut
+### onAfterScaleOut
+### onBeforeScaleIn
+### onAfterScaleIn
 ### BeforeRestartNode
 ### AfterRestartNode
 ### BeforeDelete
@@ -133,6 +143,8 @@ It’s also possible to bind the extension’s execution to the onUninstall even
 ### AfterSetDockerEntryPoint
 ### BeforeSetDockerRunCmd
 ### AfterSetDockerRunCmd
+### BeforeStartDockerService
+### AfterStartDockerService
 ### BeforeAddDockerVolume
 ### AfterAddDockerVolume
 ### BeforeRemoveDockerVolume
