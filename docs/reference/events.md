@@ -1191,7 +1191,7 @@ Only for Docker&reg;
 Events can be filtered by nodeGroup, nodeType, nodeId.
 So defined actions will be executed only when events will be called on filter rules.
 
-###By nodeGroup:
+###By nodeGroup
 ```
 {
   "onBeforeScaleOut[nodeGroup:cp]": {
@@ -1203,7 +1203,7 @@ So defined actions will be executed only when events will be called on filter ru
   }
 }
 ```
-###By nodeType:
+###By nodeType
 ```
 {
   "onBeforeScaleIn[nodeType:tomcat7]": {
@@ -1215,7 +1215,7 @@ So defined actions will be executed only when events will be called on filter ru
   }
 }
 ```
-###By nodeId:
+###By nodeId
 ```
 {
   "onBeforeRestartNode[nodeId:number]": {
