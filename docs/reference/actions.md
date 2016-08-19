@@ -687,6 +687,26 @@ Iterable object map:
 
 - `@cp` - custom iterator name (optional)
 
+Custom iterator name can be used for nesting cycles one into another:
+```
+{
+  "forEach(item:env.nodes)": [
+    {
+      "forEach(env.nodes)": [
+        {
+          "execCmd": {
+            "nodeId": "${@i.id}",
+            "commands": "[[ \"${@i.id}\" -eq \"${@item.id}\" ]] && touch /tmp/${@}.txt || touch /tmp/${@}${@}.txt"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+- `@` iterator number
+
+In this case every environment node will have only one conjunction by nodeId.
 
 ####Iteration can be executed by `env.nodes`, `nodes`, `env.contexts` and `env.extdomains` objects:
 
