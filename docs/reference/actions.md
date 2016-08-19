@@ -634,23 +634,24 @@ Iterable object map:
 ```
 {
   "env": {
-    "nodes": [
-      {...}
-    ],
-    "contexts": [
-      {
-        "context": "string",
-        "archivename": "string",
-        "type": "string"
-      },
-      {...}
-    ],
-    "extdomains":[
-      "..."
-    ]
-  }
+    "nodes": [],
+    "contexts": [],
+    "extdomains": []
+  },
+  "nodes": {},
+  "settings": {},
+  "license": {},
+  "event": {
+    "params": {},
+    "response": {}
+  },
+  "this": {}
 }
 ```
+- `settings` - fields values predefined at [user setting form](http://docs.cloudscripting.local/creating-templates/user-input-parameters/) (Optional).
+- `license` - parameters from prepopulate action (Optional).
+- `event` - object of parameters from [events](http://docs.cloudscripting.local/reference/events/). This params separate on before and after parameters (Optional).
+- `this` - parameters object is sent with procedures name(Optional).
 
 ####Iteration by all nodes in environment:
 
