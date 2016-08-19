@@ -1,9 +1,9 @@
 # Events
 
-Any action, available to be performed by means of API (including custom users’ scripts running), should be binded to some event, i.e. executed as a result of this event occurrence.
-Each event belongs to a particular entity. For example, the entry point for performing any actions with application is the application’s event onInstall.
-Subscription to the particular application’s lifecycle events (e.g. topology changes) can be done via [Environment Level Events](#environment-level-events).
-It’s also possible to bind the extension’s execution to the onUninstall event and in such a way implement the included to it custom logic of this extension removal from an environment.
+Any action, available to be performed by means of API (including custom users’ scripts running), should be bound to some event, i.e. executed as a result of this event occurrence.
+Each event belongs to a particular entity. For example, the entry point for performing any actions with application is the application’s event *onInstall*.
+Subscription to a particular application’s lifecycle events (e.g. topology changes) can be done via [Environment Level Events](#environment-level-events).
+It’s also possible to bind extension’s execution to the *onUninstall* event and, in such a way, implement the included to it custom logic of this extension removal from an environment.
 
 ## Application Level Events
 ```
@@ -90,7 +90,7 @@ It’s also possible to bind the extension’s execution to the onUninstall even
 }
 ```                              
 
-## Events params and responses placeholders
+## Events parameters and response placeholders
 ### BeforeChangeTopology
 ```
 {
@@ -1188,8 +1188,8 @@ Only for Docker&reg;
 ```
 ## Events filtering
 
-Events can be filtered by nodeGroup, nodeType, nodeId.
-So defined actions will be executed only when events will be called on filter rules.
+Events can be filtered by *nodeGroup*, *nodeType*, *nodeId*.
+So defined actions will be executed only when called events match specified filter rules.
 
 ###By nodeGroup:
 ```
@@ -1227,4 +1227,5 @@ So defined actions will be executed only when events will be called on filter ru
   }
 }
 ```
-- `number` - nodeId value
+where
+- `number` - *nodeId* value
