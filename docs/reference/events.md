@@ -1188,7 +1188,7 @@ Only for Docker&reg;
 ```
 ## Events filtering
 
-Events can be filtered by nodeGroup, nodeType, nodeId.
+Events can be filtered by nodeGroup, nodeType, nodeId. Events filtering is optional. By default every event is listened by all environment.
 So defined actions will be executed only when events will be called on filter rules.
 
 ###By nodeGroup
