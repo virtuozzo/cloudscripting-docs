@@ -8,7 +8,7 @@ There are three ways to select the containers.
 - [All Containers By Type](#all-containers-by-type)
 
 ## Particular Container
-Use `nodeId` parameter to select a particular container.      
+Use `nodeId` parameter to select a particular container.
 If you know the ID of a container on which you want to perform an action, you can set it statically:  
 
 ```
@@ -46,8 +46,8 @@ Use `nodeType` parameter to select all container nodes by software type.
 
 See [Container Types](/reference/container-types/).      	
 
-list of available node types. Sync exec one by one.  
-available noteTypes  
+list of available node types. Sync exec one by one.
+available noteTypes
 See [All Containers By Role](#all-containers-by-group) if you don't know your containers software type or it's not static.  
 
 ## All Containers By Group
@@ -69,3 +69,4 @@ In Docker® case nodeGroup is not defined, it can be any.
 !!! note
     > If you set all three parameters, a container selection would work in the following order: _nodeId -> nodeGroup -> nodeType_
     
+More details about nodeGroup [here](/reference/container-types/#containers-by-group)
