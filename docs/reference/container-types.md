@@ -91,43 +91,44 @@ Below you can find are provided available [`nodeTypes`](/reference/container-typ
 
 **Java Stack**
 
-|**nodeType** |`tomcat6`|`tomcat7`|`tomcat8`|`tomee`|`glassfish3`|`glassfish4`|`jetty6`|`jetty8`|`jetty9`|
-|------------|---------|---------|---------|-------|------------|------------|--------|--------|--------|
-|Version| 6,7,8   | 6,7,8   | 7,8     |  7,8  |6,7         |  7,8       |6,7,8   |6,7,8   |8|
+|nodeType|`tomcat6`|`tomcat7`|`tomcat8`|`tomee`|`glassfish3`|`glassfish4`|`jetty6`|`jetty8`|`jetty9`|
+|------------|------|---------|---------|-------|------------|------------|--------|--------|--------|
+|Engine|java6<br>java7<br>java8|java6<br>java7<br>java8|java7<br>java8|java7<br>java8|java6<br>java7|java7<br>java8|java6<br>java7<br>java8|java6<br>java7<br>java8|java8|
 
-|**nodeType**|`jboss7`|`smartfox-server`|`powerdns`|`railo4`|`wildfly`|`wildfly9`|`wildfly10`|
-|------------|--------|---------------- |----------|--------|---------|----------|-----------|
-|Version     |7      |6,7,8            | 6        |7,8     |    7,8  |7,8       | 8     |
+|nodeType|`jboss7`|`smartfox-server`|`powerdns`|`railo4`|`wildfly`|`wildfly9`|`wildfly10`|
+|--------|--------|---------------- |----------|--------|---------|----------|-----------|
+|Engine  |java7|java6<br>java7<br>java8|java6|java7<br>java8|java7<br>java8|java7<br>java8|java8|
 
 **PHP Stack**
 
-|**nodeType**|`apache2`            |`nginxphp`           |
-|------------|---------------------|---------------------|
-|Version|5.3, 5.4, 5.5, 5.6, 7|5.3, 5.4, 5.5, 5.6, 7|
+|nodeType|`apache2`                                   |`nginxphp`                                  |
+|--------|--------------------------------------------|--------------------------------------------|
+|Engine  |php5.3<br>php5.4<br>php5.5<br>php5.6<br>php7|php5.3<br>php5.4<br>php5.5<br>php5.6<br>php7|
 
 **Ruby Stack**
 
-|**nodeType**|`apache2-ruby`         |`nginx-ruby`           |
-|------------|-----------------------|-----------------------|
-|Version|1.9, 2.0, 2.1, 2.2, 2.3|1.9, 2.0, 2.1, 2.2, 2.3|
+|nodeType|`apache2-ruby`                                     |`nginx-ruby`                                       |
+|--------|---------------------------------------------------|---------------------------------------------------|
+|Engine  |ruby1.9<br>ruby2.0<br>ruby2.1<br>ruby2.2<br>ruby2.3|ruby1.9<br>ruby2.0<br>ruby2.1<br>ruby2.2<br>ruby2.3|
 
 **Python Stack**
 
-|**nodeType**|`apache2-python`  |
-|------------|------------------|
-|Version|2.7, 3.3, 3.4, 3.5|
+|nodeType|`apache2-python`                                |
+|--------|------------------------------------------------|
+|Engine  |python2.7<br>python3.3<br>python3.4<br>python3.5|
 
 **Nodejs Stack**
 
-|**nodeType**|`nodejs`            |
-|------------|--------------------|
-|Version|0.10, 0.12, 4.3, 5.6|
+|nodeType|`nodejs`            |
+|--------|--------------------|
+|Engine  |nodejs0.10<br>nodejs0.12<br>nodejs4.3<br>nodejs5.6|
 
 More details about Jelastic Stack Versions [here](/software-stacks-versions).
 
 #Containers by Group
 
-`nodeGroup` separates `nodeType` on groups.
+`nodeGroup` separates `nodeType` on groups. It  determines a `nodeType` layer.    
+`nodeGroup` can be set instead of 'nodeType' in [Actions](/reference/actions/).
 
 **Docker®** container nodeGroup is not defined. It can be any. For example:
 ```
@@ -140,38 +141,25 @@ More details about Jelastic Stack Versions [here](/software-stacks-versions).
             "image": "dockerImage:latest"
           },
           "cloudlets": 8,
-          "nodeGroup": "customNode"
+          "nodeGroup": "customGroup"
         }
       ]
     }
   }
 }
 ```
-- `customNode` - custom NodeGroup. In [actions](/reference/actions/) it can be called via field `"nodeGroup":"customNode"`
+- `customGroup` - custom NodeGroup. In [actions](/reference/actions/) it can be called via field `"nodeGroup":"customGroup"`
+!!! note
+    > If chosen nodeGroup doesn't predefined at Jelastic platform it will define in `extra` layer:
+    ![extra](https://download.jelastic.com/public.php?service=files&t=2bda4051062f413278b693d2898cdcbd&download)    
+    In this case custom `nodeGroup` can be replaced in field "nodeGroup" in [Actions](/reference/actions/)
 
 Jelastic platform has next predefined `nodeGroup`:
 
-|**bl**|`nginx`|`varnish`|`haproxy`|
-|------|-------|---------|-------|
-
-|**cp**|`tomcat6`|`tomcat7`|`tomcat8`|`tomee`|`glassfish3`|`glassfish4`|`jetty6`|`jetty8`|`jetty9`|
-|------|---------|---------|-------|---------|---------|-------|---------|---------|-------|
-||**`jboss7`**|**`smartfox-server`**|**`powerdns`**|**`railo4`**|**`glassfish3`**|**`wildfly9`**|**`wildfly10`**|**`apache2`**|**`nginxphp`**|
-||**`apache2-python`**|**`apache2-ruby`**|**`nginx-ruby`**|**`nodejs`**|
-
-
-
-|**sql**|`mysql5`|`mariadb`|`mariadb10`|`postgres8`|`postgres9`|
-|-------|--------|---------|-----------|-----------|-----------|
-
-|**nosql**|`mongodb`|`couchdb`|`redis`|`redis3`|`cassandra2`|
-|---------|---------|---------|-------|--------|------------|
-
-|**VPS**|`centos6`|`centos7`|
-|-------|---------|---------|
-
-|**cache**|`memcached`|
-|---------|-----------|
-
-|**build**|`maven3`|
-|---------|--------|
+- **bl (balancers)** - `nginx`, `varnish`, `haproxy`
+- **cp (compute nodes)** - `tomcat6`, `tomcat7`, `tomcat8`, `tomee`, `glassfish3`, `glassfish4`, `jetty6`, `jetty8`, `jetty9`, `jboss7`, `smartfox-server`, `powerdns`, `railo4`, `wildfly`, `wildfly9`, `wildfly10`, `apache2`, `nginxphp`, `apache2-python`, `apache2-ruby`, `nginx-ruby`, `nodejs`
+- **sql** - `mysql5`, `mariadb`, `mariadb10`, `postgres8`, `postgres9`
+- **nosql** - `mongodb`, `couchdb`, `redis`, `redis3`, `cassandra2` 
+- **vps** - `centos6`, `centos7`
+- **cache** - `memcached`
+- **build** - `maven3`
