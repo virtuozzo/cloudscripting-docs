@@ -1188,10 +1188,10 @@ Only for Docker&reg;
 ```
 ## Events filtering
 
-Events can be filtered by *nodeGroup*, *nodeType*, *nodeId*.
+Events can be filtered by *nodeGroup*, *nodeType*, *nodeId*. Events filtering is optional. By default every event is listened by all environment.
 So defined actions will be executed only when called events match specified filter rules.
 
-###By nodeGroup:
+###By nodeGroup
 ```
 {
   "onBeforeScaleOut[nodeGroup:cp]": {
@@ -1203,7 +1203,7 @@ So defined actions will be executed only when called events match specified filt
   }
 }
 ```
-###By nodeType:
+###By nodeType
 ```
 {
   "onBeforeScaleIn[nodeType:tomcat7]": {
@@ -1215,7 +1215,7 @@ So defined actions will be executed only when called events match specified filt
   }
 }
 ```
-###By nodeId:
+###By nodeId
 ```
 {
   "onBeforeRestartNode[nodeId:number]": {
@@ -1227,5 +1227,5 @@ So defined actions will be executed only when called events match specified filt
   }
 }
 ```
-where
+where     
 - `number` - *nodeId* value
