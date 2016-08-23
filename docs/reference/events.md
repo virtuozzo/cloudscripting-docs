@@ -843,7 +843,7 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
 }
 ```
 ### BeforeRedeployContainer
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -863,7 +863,7 @@ Only for Docker&reg;
 }
 ```
 ### AfterRedeployContainer
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -894,7 +894,7 @@ Only for Docker&reg;
 }
 ```
 ### BeforeLinkDockerNodes
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -913,7 +913,7 @@ Only for Docker&reg;
 }
 ```
 ### AfterLinkDockerNodes
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -935,7 +935,7 @@ Only for Docker&reg;
 }
 ```
 ### BeforeUnlinkDockerNodes
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -953,7 +953,7 @@ Only for Docker&reg;
 }
 ```
 ### AfterUnlinkDockerNodes
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -974,7 +974,7 @@ Only for Docker&reg;
 }
 ```
 ### BeforeSetDockerEnvVars
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -989,7 +989,7 @@ Only for Docker&reg;
 }
 ```
 ### AfterSetDockerEnvVars
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -1010,7 +1010,7 @@ Only for Docker&reg;
 }
 ```
 ### BeforeSetDockerEntryPoint
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -1026,7 +1026,7 @@ Only for Docker&reg;
 }
 ```
 ### AfterSetDockerEntryPoint
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -1045,7 +1045,7 @@ Only for Docker&reg;
 }
 ```
 ### BeforeSetDockerRunCmd
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -1061,7 +1061,7 @@ Only for Docker&reg;
 }
 ```
 ### AfterSetDockerRunCmd
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -1080,7 +1080,7 @@ Only for Docker&reg;
 }
 ```
 ### BeforeStartDockerService
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -1095,7 +1095,7 @@ Only for Docker&reg;
 }
 ```
 ### AfterStartDockerService
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -1113,7 +1113,7 @@ Only for Docker&reg;
 }
 ```
 ### BeforeAddDockerVolume
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -1129,7 +1129,7 @@ Only for Docker&reg;
 }
 ```
 ### AfterAddDockerVolume
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -1148,7 +1148,7 @@ Only for Docker&reg;
 }
 ```
 ### BeforeRemoveDockerVolume
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
@@ -1164,7 +1164,7 @@ Only for Docker&reg;
 }
 ```
 ### AfterRemoveDockerVolume
-Only for Docker&reg;
+Only for Docker-based containers
 ```
 {
   "event": {
