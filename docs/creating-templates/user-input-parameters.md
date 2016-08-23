@@ -267,3 +267,231 @@ Show docker tags in `list` element.
 - `dockerImage` - docker image name. Name is required. 
 - `registry`, `username`, `password` are optional.
 - `env` - required object. It can be empty.
+###compositefield
+`Compositefield` is a container that has specific functionality and structural components that make it the block for application-oriented custom user interfaces.
+![compositefield](/img/compositefield.jpg)
+```
+{
+  "fields": [
+    {
+      "pack": "",
+      "align": "",
+      "defaultMargins": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 10
+      },
+      "defaultPadding": "0",
+      "defaultFlex": "",
+      "caption": "Compositefield",
+      "type": "compositefield",
+      "name": "compositefield",
+      "items": [
+        {
+          "name": "checkbox",
+          "value": true,
+          "type": "checkbox"
+        },
+        {
+          "width": "50px",
+          "name": "first",
+          "type": "string"
+        },
+        {
+          "width": "100px",
+          "name": "latest",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}
+```
+- `pack` - controls how items packed together. Default - *start*. Available options are: *center*, *end*. Optional.
+- `align` - controls how items are aligned. Default - top. Available options are: *middle*, *stretch*, *stretchmax*. Optional.
+- `defaultMargins` - default margins for each item. Default is 0. Optional.
+- `defaultPadding` - sets paddings for all items. Default is 0. Optional.
+- `defaultFlex` - each item will be flexed horizontally according to each item's. Optional.
+- `items` - elements object
+###slider
+Slider element as a form field.
+![slider](/img/slider.jpg)
+```
+{
+  "fields": [
+    {
+      "min": "0",
+      "max": "10",
+      "increment": 1,
+      "useTips": true,
+      "caption": "Slider",
+      "type": "slider",
+      "name": "slider"
+    }
+  ]
+}
+```
+- `min` - min slader value
+- `max` - max slider value
+- `useTips` - display tips for the value. Default to true.
+- `caption` - field Label caption. Optional. 
+- `name` - field name. Optional.
+#envlist
+Account environments list in drop-down element.
+![envlist](/img/envlist.jpg)
+```
+{
+  "fields": [
+    {
+      "caption": "Envlist",
+      "editable": true,
+      "valueField": "1",
+      "type": "envlist",
+      "name": "envlist"
+    }
+  ]
+}
+```
+- `caption` - field Label caption. Optional.
+- `name` - field name. Optional.
+- `editable` - boolean. Enable editing `envlist` field. Default *false*. Optional.
+- `valueField` - Optional.
+###popupselector
+(`popup-selector` an alias)   
+Opening popup window via POST request to any external service. 
+Functionality provides an opportunity to pass additional parameters.
+![popupselector](/img/popupselector.jpg)
+```
+{
+  "fields": [
+    {
+      "caption": "Popupselector",
+      "type": "popupselector",
+      "name": "popupselector",
+      "buttonText": "Open",
+      "url": "http://{external url}",
+      "popupWidth": "300px",
+      "popupHeight": "300px",
+      "popupCallbackEvent": "handler",
+      "params": {
+        "first": 1,
+        "second": 2
+      }
+    }
+  ]
+}
+```
+- `caption` - field Label caption. Optional.
+- `name` - field name. Optional.
+- `buttonText` - button label text. Optional
+- `url` - external source url. Optional. Default - Jelastic platform url.
+- `popupWidth` - width size in pixels. Optional
+- `popupHeight` - height zise. Optional
+- `popupCallbackEvent` - event handler
+- `params` - parameters for send in POST request to `url` source.
+#displayfield
+(`spacer` an alias)   
+A display-only text field which is not validated and not submitted.
+![displayfield](/img/displayfield.jpg)
+```
+{
+  "fields": [
+    {
+      "caption": "Displayfield",
+      "type": "displayfield",
+      "name": "displayfield",
+      "markup": "display"
+    }
+  ]
+}
+```
+- `caption` - field Label caption. Optional.
+- `name` - field name. Optional.
+- `markup` - a value to initialize this field with (defaults to undefined).
+#spinner
+Enhance a text input for entering numeric values, with up/down buttons and arrow key handling.
+![spinner](/img/spinner.jpg)
+```
+{
+  "fields": [
+    {
+      "type": "spinner",
+      "name": "spinner",
+      "caption": "Spinner",
+      "min": 1,
+      "max": 10,
+      "increment": 2,
+      "decimanPrecision": ""
+    }
+  ]
+}
+```
+- `name` - field name. Optional.
+- `caption` - field Label caption. Optional.
+- `min` - minimal spinner value
+- `max` - max spinner value
+- `increment` - increment value
+- `decimanPrecision` - precision value
+###numberpicker
+(`number-picker` an alias)
+Textfield with number validation in a range.
+![numberpicker](/img/numberpicker.jpg)
+```
+{
+  "fields": [
+    {
+      "type": "numberpicker",
+      "name": "numberpicker",
+      "caption": "Numberpicker",
+      "min": 3,
+      "max": 10,
+      "editable": true
+    }
+  ]
+}
+```
+- `name` - field name. Optional.
+- `caption` - field Label caption. Optional.
+- `min` - minimal spinner value
+- `max` - max spinner value
+- `editable` - boolean. Enable editing `numberpicker` field. Default *false*. Optional.
+###hostpicker
+(host-pickeran alias)
+Drop-down menu with environments hosts.
+![hostpicker](/img/hostpicker.jpg)
+```
+{
+  "fields": [
+    {
+      "type": "hostpicker",
+      "name": "hostpicker",
+      "caption": "Hostpicker",
+      "editable": true,
+      "valueField": "host"
+    }
+  ]
+}
+```
+- `name` - field name. Optional.
+- `caption` - field Label caption. Optional.
+- `editable` - boolean. Enable editing `envlist` field. Default *false*. Optional.
+- `valueField` - Optional.
+###toggle
+Toggle element is a switch between two values
+![toggle](/img/toggle.jpg)
+```
+{
+  "fields": [
+    {
+      "type": "toggle",
+      "name": "toggle",
+      "caption": "Toggle",
+      "value": true
+    }
+  ]
+}
+```
+- `name` - field name. Optional.
+- `caption` - field Label caption. Optional.
+- `value` - enabling/disabling toggle value. Default is *false*
