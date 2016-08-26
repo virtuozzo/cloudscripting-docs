@@ -1,6 +1,6 @@
 site_name: Cloud Scripting
 site_url: http://
-copyright: Copyright &copy; 2015, Jelastic, Inc.
+copyright: Copyright &copy; Jelastic, Inc.
 
 #use_directory_urls: true
 use_absolute_urls: true
