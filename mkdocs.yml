@@ -58,6 +58,7 @@ pages:
    - Wordpress Cluster: examples/wordpress-cluster.md
    - Migration&Cloning Environment: examples/environment-migration-after-cloning.md
    - Two Envs in defferent regions: examples/two-envs-in-diff-regions.md
+   - Add-on install inside manifest: examples/addon-inside-manifest.md
 
 #current_version: master
 versions:
