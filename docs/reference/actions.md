@@ -589,8 +589,7 @@ Or:
 - `script` - script body or a link to such scirpt body
 - `type` *[optional]* - script type. Possible values:
     - `js`
-    - `java`
-    - `php`
+    - `java`   
 **Default**: js
 - `params` *[optional]* - script parameters
 
