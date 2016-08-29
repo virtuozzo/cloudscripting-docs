@@ -152,14 +152,14 @@ For example:
 ```
 - `customGroup` - custom NodeGroup. In [actions](/reference/actions/) it can be called via field `"nodeGroup":"customGroup"`
 !!! note
-    > If specified `nodeGroup` is not predefined at Jelastic platform, the container will be placed to *Extra* layer:
+    > If specified `nodeGroup` is not predefined at Jelastic platform, the container will be placed to *Extra* layer:    
     ![extra](https://download.jelastic.com/public.php?service=files&t=2bda4051062f413278b693d2898cdcbd&download)    
     Subsequently, this nodeGroup value can be used within the same-named field of [Actions](/reference/actions/) to address to a particular extra layer.
 
 Jelastic platform supports the next predefined `nodeGroup` values:
 
-- **bl (for balancer nodes)** - `nginx`, `varnish`, `haproxy`
-- **cp (for compute nodes)** - `tomcat6`, `tomcat7`, `tomcat8`, `tomee`, `glassfish3`, `glassfish4`, `jetty6`, `jetty8`, `jetty9`, `jboss7`, `smartfox-server`, `powerdns`, `railo4`, `wildfly`, `wildfly9`, `wildfly10`, `apache2`, `nginxphp`, `apache2-python`, `apache2-ruby`, `nginx-ruby`, `nodejs`
+- **bl** (for balancer nodes) - `nginx`, `varnish`, `haproxy`
+- **cp** (for compute nodes) - `tomcat6`, `tomcat7`, `tomcat8`, `tomee`, `glassfish3`, `glassfish4`, `jetty6`, `jetty8`, `jetty9`, `jboss7`, `smartfox-server`, `powerdns`, `railo4`, `wildfly`, `wildfly9`, `wildfly10`, `apache2`, `nginxphp`, `apache2-python`, `apache2-ruby`, `nginx-ruby`, `nodejs`
 - **sql** - `mysql5`, `mariadb`, `mariadb10`, `postgres8`, `postgres9`
 - **nosql** - `mongodb`, `couchdb`, `redis`, `redis3`, `cassandra2` 
 - **vps** - `centos6`, `centos7`
