@@ -45,48 +45,46 @@ If it's not possible placeholder will be unresolved and displayed in the text as
     - `(i)` - an index of node, starting from 0
     - `(key)` - parameter name
     ...  
-                          
-**`key` available values**:        
-
-- `address` - internal(external) IP address     
-- `adminUrl` - full url address with protocol
-- `canBeExported` - boolean value. Jelastic [Export](https://docs.jelastic.com/environment-export-import) feature
-- `diskIopsLimit` - iops limitation quota
-- `diskLimit` - hw disk space quota
-- `fixedCloudlets` - set fixed cloudlets
-- `flexibleCloudlets` - set flexible cloudlets
-- `id` - id node
-- `intIP` - internal IP address
-- `isClusterSupport`
-- `isExternalIpRequired`
-- `isResetPassword`
-- `isWebAccess`
-- `ismaster`
-- `maxchanks`
-- `name`
-- `nodeGroup`
-- `nodeType`
-- `nodemission`
-- `osType`
-- `password`
-- `port`
-- `type`
-- `url`
-- `version`
-- `engines`:
-    - `id`
-    - `keyword`
-    - `name`
-    - `type`
-    - `vcsSupport`
-    - `version`
-- `activeEngine`:
-    - `id`
-    - `keyword`
-    - `name`
-    - `type`
-    - `vcsSupport`
-    - `version`
+    **`key` available values**:    
+        - `address` - internal(external) IP address     
+        - `adminUrl` - full url address with protocol   
+        - `canBeExported` - boolean value. Jelastic [Export](https://docs.jelastic.com/environment-export-import) feature   
+        - `diskIopsLimit` - iops limitation quota   
+        - `diskLimit` - hw disk space quota   
+        - `fixedCloudlets` - set fixed cloudlets   
+        - `flexibleCloudlets` - set flexible cloudlets   
+        - `id` - id node   
+        - `intIP` - internal IP address   
+        - `isClusterSupport`    
+        - `isExternalIpRequired`   
+        - `isResetPassword`    
+        - `isWebAccess`   
+        - `ismaster`   
+        - `maxchanks`   
+        - `name`   
+        - `nodeGroup`   
+        - `nodeType`   
+        - `nodemission`   
+        - `osType`   
+        - `password`   
+        - `port`   
+        - `type`  
+        - `url`   
+        - `version`   
+        - `engines`:  
+            - `id`  
+            - `keyword`  
+            - `name`  
+            - `type`  
+            - `vcsSupport`  
+            - `version`  
+        - `activeEngine`:  
+            - `id`  
+            - `keyword`  
+            - `name`  
+            - `type`  
+            - `vcsSupport`  
+            - `version`  
 
 For example:
 
