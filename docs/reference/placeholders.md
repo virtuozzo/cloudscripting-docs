@@ -146,7 +146,7 @@ User defined fields list [here](/creating-templates/user-input-parameters/).
  
 ## Procedure placeholders
 - `${this.param}` - `param` - name of a procedure parameter.
-Example:
+Examples:
 ```
 {
   "executeScript": [
@@ -160,6 +160,32 @@ Example:
   ]
 }
 ```
+Passing custom params in procedure:
+```
+{
+	"jpsType": "update",
+	"application": {
+		"name": "example",
+		"env": {},
+		"onInstall": {
+            "call": {"procedure": "customProcedure",
+            "params": {
+            	"first": 1,
+                "second": 2
+            }}
+		},
+        "procedures": [
+            {
+            	"id": "customProcedure",
+                "onCall": {
+                	"log": "${this.first}"
+                }
+            }
+        ]
+	}
+}
+```
+As a result, in console will be printed `1` - custom parameter from `${this.first}` placeholder.
  
 ## Event placeholders
 - `${event.params.(key)}` - `key` - name of event parameter
