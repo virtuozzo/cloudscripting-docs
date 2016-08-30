@@ -81,10 +81,10 @@ Below you can find the list of available [`nodeType`](/reference/container-types
     - `maven3` - Мaven
 - **Cache node:**
     - `memcached` - Мemcached
-- **Virtual Private Server nodes.**
+- **Virtual Private Server nodes:**
     - `centos6` - CentOS 6
     - `centos7` - CentOS 7
-- **Docker-based; nodes**
+- **Docker-based nodes:**
     - `docker`
     
 ## Engine versions
