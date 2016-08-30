@@ -696,7 +696,7 @@ Custom iterator name can be used for nesting cycles one into another:
         {
           "execCmd": {
             "nodeId": "${@i.id}",
-            "commands": "[[ \"${@i.id}\" -eq \"${@item.id}\" ]] && touch /tmp/${@}.txt || touch /tmp/${@}${@}.txt"
+            "commands": "[[ '${@i.id}' -eq '${@item.id}' ]] && touch /tmp/${@}.txt || touch /tmp/${@}${@}.txt"
           }
         }
       ]
