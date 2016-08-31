@@ -165,3 +165,27 @@ Jelastic platform supports the next predefined `nodeGroup` values:
 - **vps** - `centos6`, `centos7`
 - **cache** - `memcached`
 - **build** - `maven3`
+
+##Jelastic native nodeTypes
+- `apache2-ruby`
+- `apache2`
+- `couchdb`
+- `glassfish3`
+- `jetty6`
+- `mariadb`
+- `mariadb10`
+- `maven3`
+- `memcached`
+- `mongodb`
+- `mysql5`
+- `nginx-ruby`
+- `nginx`
+- `nginxphp`
+- `nodejs`
+- `postgres8`
+- `postgres9`
+- `postgresql`
+- `tomcat6`
+- `tomcat7`
+- `tomee`
+

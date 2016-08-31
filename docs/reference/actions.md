@@ -135,7 +135,7 @@ Using **sudo** to reload **Nginx** balancer:
 ```
         
 ### Deploy
-Available Nodes: compute (except *Docker&reg;*)
+Available Nodes: compute (except *Docker-based*)
 ```
 {
   "deploy": [
@@ -149,7 +149,7 @@ Available Nodes: compute (except *Docker&reg;*)
 ```
 
 ### Upload
-Available Nodes: all except *Docker&reg;* and *Elastic VPS* 
+Available Nodes: all except *Docker-based* and *Elastic VPS* 
 ```
 {
   "upload": [
@@ -168,7 +168,7 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed. 
 
 ### Unpack
-Available Nodes: all except *Docker&reg;* and *Elastic VPS* 
+Available Nodes: all except *Docker-based* and *Elastic VPS* 
 ```
 {
   "unpack": [
@@ -190,7 +190,7 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
 - `destPath` 
 
 ### CreateFile
-Available Nodes: all except *Docker&reg;* and *Elastic VPS* 
+Available Nodes: all except *Docker-based* and *Elastic VPS* 
 ```
 {
   "createFile": [
@@ -210,7 +210,7 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
 - `path` 
 
 ### CreateDirectory
-Available Nodes: all except *Docker&reg;* and *Elastic VPS* 
+Available Nodes: all except *Docker-based* and *Elastic VPS* 
 ```
 {
   "createFile": [
@@ -230,7 +230,7 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
 - `path` 
 
 ### WriteFile
-Available Nodes: all except *Docker&reg;* and *Elastic VPS* 
+Available Nodes: all except *Docker-based* and *Elastic VPS* 
 ```
 {
   "writeFile": [
@@ -252,7 +252,7 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
 - `body`
 
 ### AppendFile
-Available Nodes: all except *Docker&reg;* and *Elastic VPS* 
+Available Nodes: all except *Docker-based* and *Elastic VPS* 
 ```
 {
   "appendFile": [
@@ -274,7 +274,7 @@ Available Nodes: all except *Docker&reg;* and *Elastic VPS*
 - `body`
 
 ### ReplaceInFile
-Available Nodes: all except *Docker&reg;* and *Elastic VPS* 
+Available Nodes: all except *Docker-based* and *Elastic VPS* 
 ```
 {
   "replaceInFile": [
@@ -368,7 +368,7 @@ Available Nodes: all
  One of those three parameters is required.
 
 ### SetNodeCount
-Available Nodes: all (except *Docker&reg;* and *Elastic VPS*)
+Available Nodes: all (except *Docker-based* and *Elastic VPS*)
 ```
 {
   "setNodeCount":[
@@ -440,7 +440,7 @@ Available Nodes: all
  One of those three parameters is required.
  
 ### AddContext
-Available Nodes: compute (except *Docker&reg;*)
+Available Nodes: compute (except *Docker-based*)
 ```
 {
   "addContext": [
@@ -463,7 +463,7 @@ Available Nodes: compute (except *Docker&reg;*)
 ## Database Operations
 
 ### PrepareSqlDatabase
-Available Nodes: SQL Databases (except *Docker&reg;*)
+Available Nodes: SQL Databases (except *Docker-based*)
 ```
 {
   "prepareSqlDatabase": [
@@ -485,7 +485,7 @@ Available Nodes: SQL Databases (except *Docker&reg;*)
 }
 ```
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optiona;]* - parameters that determines containers on which the action should be executed.
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determines containers on which the action should be executed.
 **Default**: `nodeGroup` equals `sqldb`.
 - `loginCredentials`
     - `user`
@@ -499,7 +499,7 @@ Available Nodes: SQL Databases (except *Docker&reg;*)
     Works only for `mysql5`, `mariadb`, `mariadb10` container node types.
 
 ### RestoreSqlDump
-Available Nodes: SQL Databases (except *Docker&reg;*)
+Available Nodes: SQL Databases (except *Docker-based*)
 ```
 {
   "restoreSqlDump": [
@@ -516,7 +516,7 @@ Available Nodes: SQL Databases (except *Docker&reg;*)
 }
 ```
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optiona;]* - parameters that determines containers on which the action should be executed.
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determines containers on which the action should be executed.
 **Default**: `nodeGroup` equals `sqldb`.
 - `databaseName` - name of the database to create
 - `user` - user name in the database on behalf of which the application will be used
@@ -524,7 +524,7 @@ Available Nodes: SQL Databases (except *Docker&reg;*)
 - `dump` - link to the application database dump
 
 ### ApplySqlPatch
-Available Nodes: SQL Databases (except *Docker&reg;*)
+Available Nodes: SQL Databases (except *Docker-based*)
 ```
 {
   "applySqlPatch": [
@@ -541,7 +541,7 @@ Available Nodes: SQL Databases (except *Docker&reg;*)
 }
 ```
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optiona;]* - parameters that determines containers on which the action should be executed.
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determines containers on which the action should be executed.
 **Default**: `nodeGroup` equals `sqldb`.
 - `databaseName` - name of the database to apply patch
 - `user` - user name in the database on behalf of which the application will be used

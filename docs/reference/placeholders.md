@@ -15,18 +15,18 @@ If it's not possible placeholder will be unresolved and displayed in the text as
     - `${env.protocol}` - protocol. String
     - `${env.url}` - link to application (env). String
     - `${env.displayName}` - application display name. String
-    - `${env.envName}` - short domain name (without hoster url). String
+    - `${env.envName}` - short domain name (without hoster URL). String
     - `${env.shortdomain}` - short domain name. Alias to `envName`. String
-    - `${env.hardwareNodeGroup}` - HW node group. String
-    - `${env.ssl}` - env ssl status. Boolean
-    - `${env.sslstate}` env ssl state. Boolean
-    - `${env.status}` env status. Available statuses are: 1 - running, 2 - down, 3 - launching, 4 - sleep, 6 - creating, 7 - cloning, 8 - exists. Number
+    - `${env.hardwareNodeGroup}` - hardware node node group. String
+    - `${env.ssl}` - env SSL status. Boolean
+    - `${env.sslstate}` env SSL state. Boolean
+    - `${env.status}` environment status. Available statuses are: 1 - running, 2 - down, 3 - launching, 4 - sleep, 6 - creating, 7 - cloning, 8 - exists. Number
     - `${env.uid}` - user uid. Number
-    - `${env.ishaenabled}` - HA status. Boolean
+    - `${env.ishaenabled}` - High availability status. Boolean
     - `${env.ha}` - alias to `${env.ishaenabled}`. Boolean
     - `${env.isTransferring}` - transfering status. Boolean
-    - `${env.creatorUid}` - env creator id. Number
-    - `${env.engine.id}` - engine id. Number
+    - `${env.creatorUid}` - env creator ID. Number
+    - `${env.engine.id}` - engine ID. Number
     - `${env.engine.keyword}` - engine keyword. String
     - `${env.engine.name}` - engine name. String
     - `${env.engine.type}` - engine type. String
@@ -36,6 +36,7 @@ If it's not possible placeholder will be unresolved and displayed in the text as
     - `${env.contexts.context}` - context name
     - `${env.contexts.archivename}` - context display name
     
+## Node placeholders    
 - `${nodes.}`
     - `{nodes.(group)[(i)].(key)}`
     - `{nodes.(group).first.(key)}`
@@ -43,84 +44,108 @@ If it's not possible placeholder will be unresolved and displayed in the text as
     Where:
     - `(group)` - nodes group ([nodeGroup](/creating-templates/selecting-containers/#all-containers-by-group) or [nodeType](/creating-templates/selecting-containers/#all-containers-by-type))
     - `(i)` - an index of node, starting from 0
-    - `(key)` - parameter name
+    - `(key)` - parameter name   
     ...  
     **`key` available values**:    
         - `address` - internal(external) IP address     
-        - `adminUrl` - full url address with protocol   
+        - `adminUrl` - full URL address with protocol   
         - `canBeExported` - boolean value. Jelastic [Export](https://docs.jelastic.com/environment-export-import) feature   
-        - `diskIopsLimit` - iops limitation quota   
-        - `diskLimit` - hw disk space quota   
+        - `diskIopsLimit` - IOPS limitation quota   
+        - `diskLimit` - hardware node disk space quota   
         - `fixedCloudlets` - set fixed cloudlets   
         - `flexibleCloudlets` - set flexible cloudlets   
-        - `id` - id node   
+        - `id` - ID node   
         - `intIP` - internal IP address   
         - `isClusterSupport`    
-        - `isExternalIpRequired`   
-        - `isResetPassword`    
+        - `isExternalIpRequired` - status requiring external IP address   
+        - `isResetPassword` - enable to reset service password    
         - `isWebAccess`   
-        - `ismaster`   
+        - `ismaster` - master node's status in the [`nodeGroup`](/reference/container-types/#containers-by-group)(layer)   
         - `maxchanks`   
-        - `name`   
-        - `nodeGroup`   
-        - `nodeType`   
-        - `nodemission`   
-        - `osType`   
-        - `password`   
-        - `port`   
-        - `type`  
-        - `url`   
-        - `version`   
-        - `engines`:  
-            - `id`  
-            - `keyword`  
-            - `name`  
-            - `type`  
-            - `vcsSupport`  
-            - `version`  
-        - `activeEngine`:  
-            - `id`  
-            - `keyword`  
-            - `name`  
-            - `type`  
-            - `vcsSupport`  
-            - `version`  
-
-For example:
-
-```example
-    `{nodes.cp[1].address}` - IP address of a second compute node
-    `{nodes.bl.first.address}` - First IP address of balancer node
-    `{nodes.db.last.address}` - Last IP address of compute node
-```
-
+        - `name` - stack name   
+        - `nodeGroup` - nodes layer (lb, cp, sqldb, nosqldb, cache, extra(for docker-based))   
+        - `nodeType` -  stacks [nodeType](/reference/container-types/#nodetype-values) list  
+        - `nodemission` - deprecated value. Same as `nodeGroup`   
+        - `osType` - OS type (LINUX)   
+        - `password` - container password   
+        - `port` - service port   
+        - `type` - container's compatibility (native)   
+        - `url` - full URL address with protocol   
+        - `version` - stack version   
+        - `engines`(for compute nodes):  
+            - `id` - engine ID at platform  
+            - `keyword` - engine keyword (java7, php7.0)  
+            - `name` - full engine name (Java 8, PHP 7)  
+            - `type` - engine type  (java, php,ruby, python, nodejs)  
+            - `vcsSupport` - supporting VCS in container  
+            - `version` - engine version  
+        - `activeEngine`(current engine in container):  
+            - `id` - engine ID at platform   
+            - `keyword` - engine keyword (java7, php7.0)  
+            - `name` - full engine name (Java 8, PHP 7)  
+            - `type` - engine type  (java, php,ruby, python, nodejs)  
+            - `vcsSupport` - supporting VCS in container  
+            - `version` - engine version   
+    
+In case when few nodes are available in one `nodeGroup` you can execute actions in one of them.
+For example:    
+- `{nodes.cp[1].address}` - IP address of a second compute node  
+- `{nodes.bl.first.address}` - First IP address of balancer node in `nodeGroup` array  
+- `{nodes.db.last.address}` - Last IP address of compute node     
+  
+  
 ## File path placeholders
 
-- `${HOME}` (/opt/tomcat/temp)
-- `${JAVA_HOME}` (/usr/java/latest)
-- `${SERVER_BACKUP}` (/var/lib/jelastic/backup)
-- `${SERVER_CONF}` (/opt/tomcat/conf)
-- `${SERVER_CONF_D}` - Available for nginx, apache nodes (/etc/httpd/conf.d)
-- `${SERVER_DATA}` (/var/lib/pgsql/data)
-- `${SERVER_LIBS}` (/opt/tomcat/lib)
-- `${JAVA_LIB}` (opt/tomcat/lib)
-- `${SERVER_MODULES}` /opt/tomcat/lib
-- `${SERVER_SCRIPTS}` (/var/lib/jelastic/bin)
-- `${SERVER_WEBROOT}` (/opt/tomcat/webapps)
-- `${WEBAPPS}` (/opt/tomcat/webapps)
-- `${SYSTEM_CRON}` (/var/spool/cron)
-- `${SYSTEM_ETC}` (/etc)
-- `${SYSTEM_KEYS}` (/var/lib/jelastic/keys)
+- `${HOME}` - for `couchdb`, `glassfish3`, `jetty6`, `nginx-ruby`, `nginx`, `nginxphp`, `tomcat6`,`tomcat7`, `tomee`
+- `${WEBAPPS}` - for `apache2-ruby`, `apache2`, `jetty6`,`nginx-ruby`, `nginxphp`,`nodejs`,`tomcat6`, `tomcat7`,`tomee`
+- `${JAVA_HOME}` - for `glassfish3`, `jetty6`, `maven3`,`tomcat6`,`tomcat7`,`tomee`
+- `${JAVA_LIB}` - for `tomcat6`,`tomcat7`
+- `${SYSTEM_CRON}` - for all native `nodeType`   
+- `${SYSTEM_ETC}`- for all `nodeType`
+- `${SYSTEM_KEYS}` - for all native `nodeType`   
+- `${SERVER_CONF}` - for `apache2`, `glassfish3`, `jetty6`,`maven3`,`tomcat6`, `tomcat7`, `tomee`
+- `${SERVER_CONF_D}` - for `apache2`, `memcached`,`nginx`, `nginxphp`
+- `${SERVER_MODULES}` - for `apache2`, `glassfish3`, `jetty6`,`nginxphp`,`tomcat6`,`tomcat7`,`tomee`
+- `${SERVER_SCRIPTS}` - for `couchdb`, `mariadb`, `mariadb10`, `mongodb`, `mysql5`,`postgres8`, `postgres9`
+- `${SERVER_WEBROOT}` - for `apache2-ruby`, `apache2`, `jetty6`,`nginx-ruby`,`nginxphp`, `nodejs`,`tomcat6`,`tomcat7`, `tomee`
+- `${SERVER_BACKUP}` - for `couchdb`, `mariadb`, `mariadb10`, `mongodb`, `mysql5`, `postgres8`, `postgres9`
+- `${SERVER_LIBS}` - for `apache2`, `glassfish3`, `jetty6`, `nginxphp`,`tomcat6`,`tomcat7`, `tomee`
+- `${SERVER_DATA}` - for `postgres8`, `postgres9`     
+This values can be different depending to chosen [nodeType](/reference/container-types/#nodetype-values).
+
+Also you can use this placeholders with defined `nodeType`. Examples:   
+- `${glassfish3.HOME}` - /opt/glassfish3/temp  
+- `${jetty6.JAVA_HOME}` - /usr/java/latest  
+- `${mariadb10.SERVER_BACKUP}` - /var/lib/jelastic/backup  
+- `${maven3.SYSTEM_KEYS}` - /var/lib/jelastic/keys  
+- `${memcached.SERVER_CONF}` - /etc/sysconfig  
+- `${mongodb.SYSTEM_CRON}` - /var/spool/cron  
+- `${mysql5.SERVER_SCRIPTS}` - /var/lib/jelastic/bin  
+- `${mysql5.SYSTEM_ETC}` - /etc  
+- `${nginx-ruby.SERVER_WEBROOT}` - /var/www/webroot  
+- `${nginx.SERVER_CONF_D}` - /etc/nginx/conf.d      
+Full list native `nodeType` [here](/reference/container-types/#native-jelastic-nodetypes).
+
+**Single placeholders list**:   
+- `${nginxphp.NGINX_CONF}` - /etc/nginx/nginx.conf  
+- `${postgresql.POSTGRES_CONF}` - /var/lib/pgsql/data  
+- `${mysql5.MYSQL_CONF}` - /etc  
+- `${mariadb.MARIADB_CONF}` - /etc  
+- `${nginxphp.PHP_CONF}` - /etc/php.ini  
+- `${nginxphp.PHPFPM_CONF}` - /etc/php-fpm.conf  
+- `${nginxphp.PHP_MODULES}` - /usr/lib64/php/modules  
+- `${nginxphp.WEBROOT}` - /var/www/webroot  
 
 ## Account information                                                                                                                                       
-- `${user.uid}`
-- `${user.email}`
-- `${user.appPassword}`
-- `${user.name}`
+- `${user.uid}` - user ID at Jelastic platform
+- `${user.email}` - user email address
+- `${user.appPassword}` - random value. Can be used to set application passwords
+- `${user.name}` - email address value. Same as `${user.email}`
 
 ## Input parameters
-- `${settings.jelastic_email}` - user email. Always is Predefined.
-- `${settings.key}` - `key` - name of application setting. This placeholder will be resolved if you use user defined parameters in your manifest.
+- `${settings.jelastic_email}` - user email. Always is predefined.
+- `${settings.key}` - `key` - name of application setting. This placeholder will be defined if you use user input parameters in your manifest.
+After preparing custom user form placeholders will be defined by fields name. 
 
 For Example:
 ```example
@@ -131,7 +156,7 @@ For Example:
       "fields": [
         {
           "type": "string",
-          "name": "key",
+          "name": "customName",
           "caption": "String field"
         }
       ]
@@ -139,6 +164,7 @@ For Example:
   }
 }
 ```
+Placeholder's name is `${settings.customName}`.   
 User defined fields list [here](/creating-templates/user-input-parameters/).
 
  
@@ -186,15 +212,15 @@ Passing custom params in procedure:
 As a result, in console will be printed `1` - custom parameter from `${this.first}` placeholder.
  
 ## Event placeholders
-- `${event.params.(key)}` - `key` - name of event parameter
-- `${event.response.(key)}` - key` - name of event response parameter 
+- `${event.params.(key)}` - `key` - event name parameter
+- `${event.response.(key)}` - key` - event name response parameter 
 Detailed placeholders list [here](/reference/events/)
 
 ## UI placeholders
-- `${user.uid}`
-- `${user.email}`
-- `${env.domain}`
-- `${env.appid}`
+- `${user.uid}` - user ID at Jelastic platform
+- `${user.email}` - user email address
+- `${env.domain}` - full domain name without protocol
+- `${env.appid}` - unique enviroment appid at Jelastic platform
 
 Example: 
 
