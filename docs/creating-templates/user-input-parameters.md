@@ -337,7 +337,7 @@ Slider element as a form field.
 - `useTips` - display tips for the value. Default to true.
 - `caption` - field Label caption. Optional. 
 - `name` - field name. Optional.
-#envlist
+###envlist
 Account environments list in drop-down element.
 ![envlist](/img/envlist.jpg)
 ```
@@ -390,7 +390,7 @@ Functionality provides an opportunity to pass additional parameters.
 - `popupHeight` - height zise. Optional
 - `popupCallbackEvent` - event handler
 - `params` - parameters for send in POST request to `url` source.
-#displayfield
+###displayfield
 (`spacer` an alias)   
 A display-only text field which is not validated and not submitted.
 ![displayfield](/img/displayfield.jpg)
@@ -409,7 +409,7 @@ A display-only text field which is not validated and not submitted.
 - `caption` - field Label caption. Optional.
 - `name` - field name. Optional.
 - `markup` - a value to initialize this field with (defaults to undefined).
-#spinner
+###spinner
 Enhance a text input for entering numeric values, with up/down buttons and arrow key handling.
 ![spinner](/img/spinner.jpg)
 ```
