@@ -590,7 +590,7 @@ Or:
 - `type` *[optional]* - script type. Possible values:
     - `js`
     - `java`   
-    - `php`. Removed from CS version 0.9 and Jelastic version 4.8
+    - `php`. Removed from CS version 0.9 and Jelastic version 5.0   
 **Default**: js
 - `params` *[optional]* - script parameters
 
