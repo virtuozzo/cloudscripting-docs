@@ -75,7 +75,7 @@ Using `executeScript` action.
         "params" : {
             "greeting" : "Hello World!"
         },
-        "script" : "return hivext.local.GetParam(\"greeting\");",
+        "script" : "return hivext.local.GetParam(\"greeting\");"
     }
   ]
 }
@@ -94,7 +94,7 @@ Using `executeScript` action.
         "params" : {
             "greeting" : "Hello World!"
         },
-        "script" : "return getParam('greeting');",
+        "script" : "return getParam('greeting');"
     }
   ]
 }
@@ -109,7 +109,7 @@ Using `executeScript` action.
         "params" : {
             "greeting" : "Hello World!"
         },
-        "script" : "<?php return $hivext->local->getParam(\"greeting\"); ?>",
+        "script" : "<?php return $hivext->local->getParam(\"greeting\"); ?>"
     }
   ]
 }
