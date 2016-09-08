@@ -1,4 +1,4 @@
-# Container Node Types
+# CT by Groups and Types
 
 Container nodeType defines software stack (among the supported ones) to be deployed within a node. Node type value is used in "nodeType" field for [Actions](/reference/actions/).
 
@@ -32,7 +32,48 @@ Install `nodeType` tomcat7 with `java7` engine:
 ```
 Below you can find the list of available [`nodeType`](/reference/container-types/#nodetype-values) and [`engine`](/reference/container-types/#engine-versions) values.
 
-## nodeType Values
+##CT by Groups (nodeGroup)
+
+The nodeGroup parameter is used to define how to separate nodeType on groups, i.e. determines environment layer the container(s) should be placed to.
+The nodeGroup value can be used within 'nodeType' field for [Actions](/reference/actions/) too.
+
+For **Docker-based** containers, `nodeGroup` can be started to any value - either [predefined](/reference/container-types/#containers-by-group) or your custom one.    
+For example:
+```
+{
+  "env": {
+    "topology": {
+      "nodes": [
+        {
+          "docker": {
+            "image": "dockerImage:latest"
+          },
+          "cloudlets": 8,
+          "nodeGroup": "customGroup"
+        }
+      ]
+    }
+  }
+}
+```
+- `customGroup` - custom NodeGroup. In [actions](/reference/actions/) it can be called via field `"nodeGroup":"customGroup"`
+!!! note
+    > If specified `nodeGroup` is not predefined at Jelastic platform, the container will be placed to *Extra* layer:    
+    ![extra](https://download.jelastic.com/public.php?service=files&t=2bda4051062f413278b693d2898cdcbd&download)    
+    Subsequently, this nodeGroup value can be used within the same-named field of [Actions](/reference/actions/) to address to a particular extra layer.
+
+Jelastic platform supports the next predefined `nodeGroup` values:
+
+- **bl** (for balancer nodes) - `nginx`, `varnish`, `haproxy`
+- **cp** (for compute nodes) - `tomcat6`, `tomcat7`, `tomcat8`, `tomee`, `glassfish3`, `glassfish4`, `jetty6`, `jetty8`, `jetty9`, `jboss7`, `smartfox-server`, `powerdns`, `railo4`, `wildfly`, `wildfly9`, `wildfly10`, `apache2`, `nginxphp`, `apache2-python`, `apache2-ruby`, `nginx-ruby`, `nodejs`
+- **sql** - `mysql5`, `mariadb`, `mariadb10`, `postgres8`, `postgres9`
+- **nosql** - `mongodb`, `couchdb`, `redis`, `redis3`, `cassandra2` 
+- **vps** - `centos6`, `centos7`
+- **cache** - `memcached`
+- **build** - `maven3`
+- **storage** - `storage`
+
+## CT by Types (nodeType)
 - **Compute nodes:**
     - Java
         - `tomcat6` - Tomcat 6
@@ -84,10 +125,36 @@ Below you can find the list of available [`nodeType`](/reference/container-types
 - **Virtual Private Server nodes:**
     - `centos6` - CentOS 6
     - `centos7` - CentOS 7
+- **Storage:**
+    - `storage` - Shared storage
 - **Docker-based nodes:**
     - `docker`
-    
-## Engine versions
+
+##Jelastic Native CT Types
+- `apache2-ruby`
+- `apache2`
+- `couchdb`
+- `glassfish3`
+- `jetty6`
+- `mariadb`
+- `mariadb10`
+- `maven3`
+- `memcached`
+- `mongodb`
+- `mysql5`
+- `nginx-ruby`
+- `nginx`
+- `nginxphp`
+- `nodejs`
+- `postgres8`
+- `postgres9`
+- `postgresql`
+- `tomcat6`
+- `tomcat7`
+- `tomee`
+- `storage`
+
+## Engine versions (engine)
 
 **Java Stacks**
 
@@ -125,67 +192,3 @@ Below you can find the list of available [`nodeType`](/reference/container-types
 
 !!! note
     > List of supported [Jelastic Stack Versions](https://docs.jelastic.com/software-stacks-versions) can be vary for different platform versions.
-
-##Containers by Group
-
-The nodeGroup parameter is used to define how to separate nodeType on groups, i.e. determines environment layer the container(s) should be placed to.
-The nodeGroup value can be used within 'nodeType' field for [Actions](/reference/actions/) too.
-
-For **Docker-based** containers, `nodeGroup` can be started to any value - either [predefined](/reference/container-types/#containers-by-group) or your custom one.    
-For example:
-```
-{
-  "env": {
-    "topology": {
-      "nodes": [
-        {
-          "docker": {
-            "image": "dockerImage:latest"
-          },
-          "cloudlets": 8,
-          "nodeGroup": "customGroup"
-        }
-      ]
-    }
-  }
-}
-```
-- `customGroup` - custom NodeGroup. In [actions](/reference/actions/) it can be called via field `"nodeGroup":"customGroup"`
-!!! note
-    > If specified `nodeGroup` is not predefined at Jelastic platform, the container will be placed to *Extra* layer:    
-    ![extra](https://download.jelastic.com/public.php?service=files&t=2bda4051062f413278b693d2898cdcbd&download)    
-    Subsequently, this nodeGroup value can be used within the same-named field of [Actions](/reference/actions/) to address to a particular extra layer.
-
-Jelastic platform supports the next predefined `nodeGroup` values:
-
-- **bl** (for balancer nodes) - `nginx`, `varnish`, `haproxy`
-- **cp** (for compute nodes) - `tomcat6`, `tomcat7`, `tomcat8`, `tomee`, `glassfish3`, `glassfish4`, `jetty6`, `jetty8`, `jetty9`, `jboss7`, `smartfox-server`, `powerdns`, `railo4`, `wildfly`, `wildfly9`, `wildfly10`, `apache2`, `nginxphp`, `apache2-python`, `apache2-ruby`, `nginx-ruby`, `nodejs`
-- **sql** - `mysql5`, `mariadb`, `mariadb10`, `postgres8`, `postgres9`
-- **nosql** - `mongodb`, `couchdb`, `redis`, `redis3`, `cassandra2` 
-- **vps** - `centos6`, `centos7`
-- **cache** - `memcached`
-- **build** - `maven3`
-
-##Jelastic native nodeTypes
-- `apache2-ruby`
-- `apache2`
-- `couchdb`
-- `glassfish3`
-- `jetty6`
-- `mariadb`
-- `mariadb10`
-- `maven3`
-- `memcached`
-- `mongodb`
-- `mysql5`
-- `nginx-ruby`
-- `nginx`
-- `nginxphp`
-- `nodejs`
-- `postgres8`
-- `postgres9`
-- `postgresql`
-- `tomcat6`
-- `tomcat7`
-- `tomee`
-
