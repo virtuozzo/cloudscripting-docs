@@ -1,4 +1,4 @@
-# CT by Groups and Types
+# Container by Groups and Types
 
 Container nodeType defines software stack (among the supported ones) to be deployed within a node. Node type value is used in "nodeType" field for [Actions](/reference/actions/).
 
@@ -32,7 +32,7 @@ Install `nodeType` tomcat7 with `java7` engine:
 ```
 Below you can find the list of available [`nodeType`](/reference/container-types/#nodetype-values) and [`engine`](/reference/container-types/#engine-versions) values.
 
-##CT by Groups (nodeGroup)
+##Container by Groups (nodeGroup)
 
 The nodeGroup parameter is used to define how to separate nodeType on groups, i.e. determines environment layer the container(s) should be placed to.
 The nodeGroup value can be used within 'nodeType' field for [Actions](/reference/actions/) too.
@@ -73,7 +73,7 @@ Jelastic platform supports the next predefined `nodeGroup` values:
 - **build** - `maven3`
 - **storage** - `storage`
 
-## CT by Types (nodeType)
+## Container by Types (nodeType)
 - **Compute nodes:**
     - Java
         - `tomcat6` - Tomcat 6
@@ -130,7 +130,7 @@ Jelastic platform supports the next predefined `nodeGroup` values:
 - **Docker-based nodes:**
     - `docker`
 
-##Jelastic Native CT Types
+##Jelastic Native Container Types
 - `apache2-ruby`
 - `apache2`
 - `couchdb`
