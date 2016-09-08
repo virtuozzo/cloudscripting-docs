@@ -1,4 +1,4 @@
-# Container by Groups and Types
+# Containers by Groups and Types
 
 Container nodeType defines software stack (among the supported ones) to be deployed within a node. Node type value is used in "nodeType" field for [Actions](/reference/actions/).
 
