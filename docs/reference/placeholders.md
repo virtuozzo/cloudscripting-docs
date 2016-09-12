@@ -241,3 +241,28 @@ Example:
   }
 }
 ```
+
+##Global variables
+Globals variables can be defined before install manifest. It will be as placeholder values. Optional value, only object.  
+For example:
+```
+{
+	"jpsType": "update",
+	"application": {
+		"name": "Global variables",
+		"env": {},
+		"globals": {
+			"value1": 1,
+			"value2": 2
+		}
+	}
+}
+```
+
+The result is created new placeholders:
+```
+{
+  "globals.value1": 1,
+  "globals.value2": 2
+}
+```
