@@ -171,3 +171,25 @@ In case using not full source node volumes list `volumes` can be added.
   }
 }
 ```
+
+#Docker environmnet variables
+
+The `env` instruction sets the environment variable <key> to the value <value>. Optional object
+```
+{
+  "env"   : {...},
+  "nodes" : [
+    {
+      "nodeGroup" : "cp",
+      "docker"    : {
+        "image"        : "wordpress:latest",
+        "env": {
+            "WORDPRESS_VERSION": "4.6.1",
+            "PHP_INI_DIR": "/usr/local/etc/php"
+        }
+      }
+    }
+  ]
+}
+```
+
