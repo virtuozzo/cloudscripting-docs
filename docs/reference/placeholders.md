@@ -294,7 +294,7 @@ Function parameter canbe passed from existing placeholders. For example:
 - `${fn.md5([fn.random])}` - md5 encoding random password   
 - `${fn.base64([user.email])}` - base64 encoding user email address  
 
-In conveniance, function placeholders can be defined in [global variables](#/reference/placeholders/#global-variables).
+At once easy to define function placeholders in [global variables](#/reference/placeholders/#global-variables).
 For example:
 ```
 {
