@@ -49,7 +49,7 @@ pages:
    - Procedures: reference/procedures.md
    - Placeholders: reference/placeholders.md
    - Containers by Groups and Types: reference/container-types.md
-   - Docker actions: reference/docker-actions.md
+   - Docker Actions: reference/docker-actions.md
 
 # Examples
 - Examples:
