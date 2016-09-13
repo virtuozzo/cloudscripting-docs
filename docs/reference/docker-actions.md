@@ -193,3 +193,48 @@ The `env` instruction sets the environment variable <key> to the value <value>. 
 }
 ```
 
+##Docker links
+Connect to any number of docker container without the need to expose container's internal ports to the outside world.
+```
+[
+  {
+    "docker": {
+      "image": "wordpress:latest",
+      "links": [
+        "db:DB",
+        "memcached:MEMCACHED"
+      ]
+    },
+    "cloudlets": 8,
+    "nodeGroup": "cp",
+    "displayName": "AppServer"
+  },
+  {
+    "docker": {
+      "image": "mysql5:latest"
+    },
+    "cloudlets": 8,
+    "nodeGroup": "db",
+    "displayName": "Database"
+  },
+  {
+    "docker": {
+      "image": "memcached:latest"
+    },
+    "cloudlets": 4,
+    "nodeGroup": "memcached",
+    "displayName": "Memcached"
+  }
+]
+```
+where   
+- `links` - an object where discribes nodes to link between `cp` node by their `nodeGroup`. Links is an links array between nodes;    
+- `db` - mysql5 node's' nodeGroup;   
+- `memecached` - memecached node's  `nodeGroup`.   
+
+So all environment variables from `db` and `memcached` nodes available in `cp` container.  
+ 
+Environment variables in linked nodes have names as it has predefined in `links` array. 
+For example,  
+- variable *MYSQL_ROOT_PASSWORD* from `sql` node will be predefined *DB_MYSQL_ROOT_PASSWORD* in `cp` node.   
+- variable *IP_ADDRESS* from `memcached` node is *MEMCACHED_IP_ADDRESS* in `cp` node.
