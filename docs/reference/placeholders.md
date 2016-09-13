@@ -243,7 +243,7 @@ Example:
 ```
 
 ##Custom global placeholders
-User defined placeholders can be predefined via **globals declaration**. It will define before install manifest. Optional value, only object.  
+User defined placeholders can be predefined via **globals declarations**. It will define before install manifest. Optional value, only object.  
 For example:
 ```
 {
