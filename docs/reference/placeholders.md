@@ -272,7 +272,7 @@ Injected functions inside Cloud Scripting. There are a list of available functio
 Length can be passed as `${fn.password(max value)}`.   
 - `${fn.base64}` - base64 encoding passed value.
 ```
-${fn.base64(hello)}
+${fn.base64(value)}
 ```
 - `${fn.md5}` - md5 encoding.
 ```
