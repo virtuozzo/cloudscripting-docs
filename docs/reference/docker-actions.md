@@ -12,18 +12,21 @@ There are three fields provided to set docker `volumes`:
 All fields set in docker object:
 ```
 {
-  "env"   : {...},
-  "nodes" : [
-    {
-      "nodeGroup" : "sqldb",
-      "docker"    : {
-        "image"        : "centos:7",
-        "volumes"      : [...],
-        "volumeMounts" : {...},
-        "volumesFrom"  : [...]
-      }
+  "env": {
+    "topology": {
+      "nodes": [
+        {
+          "nodeGroup": "sqldb",
+          "docker": {
+            "image": "centos:7",
+            "volumes": [...],
+            "volumeMounts": {...},
+            "volumesFrom": [...]
+          }
+        }
+      ]
     }
-  ]
+  }
 }
 ```
 where 
@@ -177,19 +180,22 @@ In case using not full source node volumes list `volumes` can be added.
 The `env` instruction sets the environment variable <key> to the value <value>. Optional object
 ```
 {
-  "env"   : {...},
-  "nodes" : [
-    {
-      "nodeGroup" : "cp",
-      "docker"    : {
-        "image"        : "wordpress:latest",
-        "env": {
-            "WORDPRESS_VERSION": "4.6.1",
-            "PHP_INI_DIR": "/usr/local/etc/php"
+  "env": {
+    "topology": {
+      "nodes": [
+        {
+          "nodeGroup": "cp",
+          "docker": {
+            "image": "wordpress:latest",
+            "env": {
+              "WORDPRESS_VERSION": "4.6.1",
+              "PHP_INI_DIR": "/usr/local/etc/php"
+            }
+          }
         }
-      }
+      ]
     }
-  ]
+  }
 }
 ```
 
