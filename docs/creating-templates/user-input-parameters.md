@@ -72,6 +72,48 @@
     - `regex` *[optional]* - A constructor for the JavaScript RegExp object to be tested against the field value during validation (defaults to null). If the test fails, the field will be marked invalid using regexText.
     - `regexText` *[optional]* - The error text to display if regex is used and the test fails during validation (defaults to '')                               
 
+##Custom buttons
+Custom buttons can be implemented in add-ons. They will execute procedures which are predefined in manifest.  
+
+![traffic-manager](/img/traffic-manager.jpg)  
+
+
+!!! note
+> JPS should include required field `targetNodes`. In opposite case add-on will be hidden.  
+
+Button creating template:
+```
+{
+  "jpsType": "update",
+  "application": {
+    "name": "Custom buttons",
+    "env": {},
+    "targetNodes": {
+      "nodeGroup": "bl"
+    },
+    "procedures": ["..."],
+    "buttons": [
+      {
+        "confirmText": "Custom confirm text",
+        "loadingText": "Load text while waiting",
+        "procedure": "{String}",
+        "caption": "Configure",
+        "successText": "Configuration saved successfully!",
+        "submitButtonText": ""
+      }
+    ]
+  }
+}
+```
+- `buttons` - buttons array 
+- `confirmText` - user custom confirm text. Default value *"Are you sure?"*. Optional   
+It will display firstly after button click action:  
+![confirm](/img/confirm.jpg)   
+  
+- `loadingText` - user custom text while loading and applying actions. Default is *"Applying..."*. Optional    
+![loadingText](/img/loadingText.jpg)   
+  
+- `procedure` - procedure name which will be executed. Procerude's body describes in [*procedure* section](/reference/procedures/). Type is String. Required.  
  
 ##Supported fields:
 ###string     
