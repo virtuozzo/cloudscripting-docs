@@ -267,22 +267,22 @@ The result is created new placeholders:
 }
 ```
 ##Function placeholders
-Injected functions inside Cloud Scripting. There are list of available functions:   
-- `${fn.password}` - random value consists of big and small letters. Default length is 10. `${fn.password()}` is an alias.
-Length canbe passed as `${fn.password(6)}`.   
+Injected functions inside Cloud Scripting. There are a list of available functions:   
+- `${fn.password}` - random value consists in upper and lower cases. Default length is 10. `${fn.password()}` is an alias.
+Length can be passed as `${fn.password(max value)}`.   
 - `${fn.base64}` - base64 encoding passed value.
 ```
 ${fn.base64(hello)}
 ```
 - `${fn.md5}` - md5 encoding.
 ```
-${fn.md5(hello)}
+${fn.md5(value)}
 ```
-- `${fn.uuid}` - generating new Universally Unique Identifier.
-- `${fn.random}` - random value. Default length - 7. `${fn.random()}` is an alias.
+- `${fn.uuid}` - generates new Universally Unique Identifier.
+- `${fn.random}` - random value. Default length - 7 digits. `${fn.random()}` is an alias.
  One or two values can be passed optionally:
-    - `${fn.random(6)}` - random value from 0 to 6.
-    - `${fn.random(6,60)}` - random value from 6 to 60 values
+    - `${fn.random(max)}` - random value to max.
+    - `${fn.random(min,max)}` - random value between min and max values
 
 Functions without required parameters have two input forms:
 
