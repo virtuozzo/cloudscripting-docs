@@ -316,14 +316,15 @@ ${nodes.cp.length},
 ${nodes.bl.extips.length}
 ```
 
-**Element by id in array**
-Every element has an index in array. For example:
-`{nodes.cp[(i)].(key)}`, where
-- `i` - array index
-- `key` - node parameter. Detailed about node parameters [here](#/reference/placeholders/#node-placeholders)
+**Element by id in array**    
+Every element has an index in array. For example:   
+`{nodes.cp[(i)].(key)}`   
+where   
+- `i` - array index   
+- `key` - node parameter. Details about node parameters [here](#/reference/placeholders/#node-placeholders)   
 
-**First or last array elements**
-`{nodes.cp.first.(key)}` -  array element with index 0
-`{nodes.sqldb.last.(key)}` - array element with last array index 
-where
-- `key` - node parameter.
+**First or last array elements**   
+`{nodes.cp.first.(key)}` -  array element with index 0   
+`{nodes.sqldb.last.(key)}` - array element with last array index   
+where   
+- `key` - node parameter.   
