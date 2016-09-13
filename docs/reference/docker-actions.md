@@ -236,5 +236,5 @@ So all environment variables from `db` and `memcached` nodes available in `cp` c
  
 Environment variables in linked nodes have names as it has predefined in `links` array. 
 For example,  
-- variable *MYSQL_ROOT_PASSWORD* from `sql` node will be predefined *DB_MYSQL_ROOT_PASSWORD* in `cp` node.   
+- variable *MYSQL_ROOT_PASSWORD* from `sql` node is *DB_MYSQL_ROOT_PASSWORD* in `cp` node.   
 - variable *IP_ADDRESS* from `memcached` node is *MEMCACHED_IP_ADDRESS* in `cp` node.
