@@ -303,10 +303,10 @@ For example:
   }
 }
 ```
-Now placeholder `${global.password}` also as `${fn.password}` available at any pmanifest part.
+Now placeholder `${global.password}` also as `${fn.password}` available in manifest.
 
 ##Placeholder length
-Any placeholder array length can be defined at manifest. For example:
+Any placeholder array length can be defined in manifest. For example:
 ```
 ${nodes.cp.length},
 ${node.bl.extips.length}
