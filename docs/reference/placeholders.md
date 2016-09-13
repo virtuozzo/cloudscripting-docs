@@ -242,8 +242,8 @@ Example:
 }
 ```
 
-##Global variables
-Globals variables can be defined before install manifest. It will be as placeholder values. Optional value, only object.  
+##User defined
+User defined placeholders can be predefined via **globals variables**. It will define before install manifest. Optional value, only object.  
 For example:
 ```
 {
@@ -303,11 +303,27 @@ For example:
   }
 }
 ```
-Now placeholder `${global.password}` also as `${fn.password}` available in manifest.
+Now placeholder `${global.pass}` also as `${fn.password}` available in manifest.
 
-##Placeholder length
+##Array placeholders
+
+Any array has a list of specific placeholders: first and last array elements, array length, elements by index in array.
+
+**Array length**
 Any placeholder array length can be defined in manifest. For example:
 ```
 ${nodes.cp.length},
 ${nodes.bl.extips.length}
 ```
+
+**Element by id in array**
+Every element has an index in array. For example:
+`{nodes.cp[(i)].(key)}`, where
+- `i` - array index
+- `key` - node parameter. Detailed about node parameters [here](#/reference/placeholders/#node-placeholders)
+
+**First or last array elements**
+`{nodes.cp.first.(key)}` -  array element with index 0
+`{nodes.sqldb.last.(key)}` - array element with last array index 
+where
+- `key` - node parameter.
