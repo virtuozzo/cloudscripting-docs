@@ -309,5 +309,5 @@ Now placeholder `${global.password}` also as `${fn.password}` available in manif
 Any placeholder array length can be defined in manifest. For example:
 ```
 ${nodes.cp.length},
-${node.bl.extips.length}
+${nodes.bl.extips.length}
 ```
