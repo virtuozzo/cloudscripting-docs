@@ -267,9 +267,9 @@ The result is created new placeholders:
 }
 ```
 ##Function placeholders
-Injected functions inside Cloud Scripting. There are list of available functions:
-- `${fn.password}` - random value consists of big and small letters. Default length is -10. `${fn.password()}` is an alias.
-Length canbe passed as `${fn.password(6)}`.
+Injected functions inside Cloud Scripting. There are list of available functions:   
+- `${fn.password}` - random value consists of big and small letters. Default length is 10. `${fn.password()}` is an alias.
+Length canbe passed as `${fn.password(6)}`.   
 - `${fn.base64}` - base64 encoding passed value.
 ```
 ${fn.base64(hello)}
@@ -285,14 +285,14 @@ ${fn.md5(hello)}
     - `${fn.random(6,60)}` - random value from 6 to 60 values
 
 Functions without required parameters have two input forms:
-```
-`${fn.password}` or `${fn.password()}`
-`${fn.random}` or `${fn.random()}`
-```
 
-Function parameter canbe passed from existing placeholders. For example:
-- `${fn.md5([fn.random])}` - md5 encoding random password
-- `${fn.base64([user.email])}` - base64 encoding user email address
+`${fn.password}` or `${fn.password()}`   
+`${fn.random}` or `${fn.random()}`
+
+
+Function parameter canbe passed from existing placeholders. For example:   
+- `${fn.md5([fn.random])}` - md5 encoding random password   
+- `${fn.base64([user.email])}` - base64 encoding user email address  
 
 In conveniance, function placeholders can be defined in [global variables](#/reference/placeholders/#global-variables).
 For example:
