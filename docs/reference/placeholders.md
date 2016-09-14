@@ -243,7 +243,7 @@ Example:
 ```
 
 ##Custom global placeholders
-User defined placeholders can be predefined via **globals declarations**. It will define before install manifest. Optional value, only object.  
+User defined placeholders can be predefined via **globals declaration**. It will define before install manifest.  
 For example:
 ```
 {
@@ -268,21 +268,22 @@ The result is created new placeholders:
 ```
 ##Function placeholders
 Injected functions inside Cloud Scripting. There are a list of available functions:   
-- `${fn.password}` - random value consists in upper and lower cases. Default length is 10. `${fn.password()}` is an alias.
+
+- `${fn.password}` - random value consists in upper and lower cases. Default length is 10.
 Length can be passed as `${fn.password(max value)}`.   
-- `${fn.base64}` - base64 encoding passed value.
+- `${fn.base64}` - base64 encoding passed value.  
 ```
 ${fn.base64(value)}
 ```
-- `${fn.md5}` - md5 encoding.
+- `${fn.md5}` - md5 encoding.  
 ```
 ${fn.md5(value)}
 ```
-- `${fn.uuid}` - generates new Universally Unique Identifier.
-- `${fn.random}` - random value. Default length - 7 digits. `${fn.random()}` is an alias.
+- `${fn.uuid}` - generates new Universally Unique Identifier.     
+- `${fn.random}` - random value. Default length - 7 digits.  
  One or two values can be passed optionally:
-    - `${fn.random(max)}` - random value to max.
-    - `${fn.random(min,max)}` - random value between min and max values
+    - `${fn.random(max)}` - random value to max value inclusively.
+    - `${fn.random(min,max)}` - random value between min and max values inclusively 
 
 Functions without required parameters have two input forms:
 
@@ -303,7 +304,7 @@ For example:
   }
 }
 ```
-Now placeholder `${global.pass}` also as `${fn.password}` available in manifest.
+Now You can use `${global.pass}` within the entire manifest.
 
 ##Array placeholders
 
