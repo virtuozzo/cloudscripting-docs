@@ -77,9 +77,11 @@ Custom buttons can be implemented in add-ons. They will execute procedures which
 
 ![traffic-manager](/img/traffic-manager.jpg)  
 
+Add-ons tab button here:
+![addon tab](/img/add-on_tab.jpg)
 
 !!! note
-> JPS should include required field `targetNodes`. In opposite case add-on will be hidden.  
+> JPS should include required field `targetNodes`. In opposite case add-on will be hidden in add-ons tab after installation.  
 
 Button creating template:
 ```
@@ -99,7 +101,7 @@ Button creating template:
         "procedure": "{String}",
         "caption": "Configure",
         "successText": "Configuration saved successfully!",
-        "submitButtonText": ""
+        "href": "http://google.com"
       }
     ]
   }
@@ -108,13 +110,113 @@ Button creating template:
 - `buttons` - buttons array 
 - `confirmText` - user custom confirm text. Default value *"Are you sure?"*. Optional   
 It will display firstly after button click action:  
-![confirm](/img/confirm.jpg)   
-  
+![confirm](/img/confirm.jpg)      
 - `loadingText` - user custom text while loading and applying actions. Default is *"Applying..."*. Optional    
-![loadingText](/img/loadingText.jpg)   
-  
-- `procedure` - procedure name which will be executed. Procerude's body describes in [*procedure* section](/reference/procedures/). Type is String. Required.  
- 
+![loadingText](/img/loadingText.jpg)      
+- `procedure` - procedure name which will be executed. Procerude's body describes in [*procedure* section](/reference/procedures/). Type is String. Required.   
+- `caption` - button title.  
+![caption](/img/caption.jpg)   
+- `successText` - success message when action was performed successfull  
+![successText](/img/successText.jpg)     
+- `href` - external link, will open in new browser tab. It will execute if `settings` field is absent.  
+In this case `procedure` wont be executed. Optional.
+- `settings` - custom form id. Default - *main*. More details [here](/creating-templates/user-input-parameters/#custom-settings)    
+
+Fields bellow can be enabled in case when field `settings` presents:
+```
+{
+  "jpsType": "update",
+  "application": {
+    "name": "Custom buttons",
+    "env": {},
+    "targetNodes": {
+      "nodeGroup": "bl"
+    },
+    "procedures": [
+      "..."
+    ],
+    "buttons": [
+      {
+        "confirmText": "Custom confirm text",
+        "loadingText": "Load text while waiting",
+        "procedure": "{String}",
+        "caption": "Configure",
+        "successText": "Configuration saved successfully!",
+        "settings": "config",
+        "title": "Title",
+        "submitButtonText": "Button Text",
+        "logsPath": "/var/log/add-on-action.log",
+        "logsNodeGroup": "cp"
+      }
+    ]
+  }
+}
+```
+- `title` - custom dialog title. If `title` is absent `caption` will be applied.    
+Also same value is a dialog title when option `settings` is available.
+- `submitButtonText` - button text in opened dialog. Default *Apply*   
+![submitButtonText](/img/submitButtonText.jpg)
+- `logsPath` - visible button for showing logs in defined path  
+![logsPath](/img/logsPath.jpg)
+- `logsNodeGroup` - [nodeGroup](/reference/container-types/#containers-by-groups-nodegroup) layer where logging path will be opened   
+
+##Custom menus  
+Menu is a custom action list where every action can execute different procedures by name.   
+![menu](/img/menu.jpg)   
+There is one default menu - Uninstall. It will call procedures from [application lavel](/reference/events/#application-level-events) if they are.  
+There are same properties list as in [Custom buttons](/creating-templates/user-input-parameters/#custom-buttons).  
+
+##Custom settings
+Settings section can include few custom forms. Default settings form id - *main*.   
+For example:  
+```
+{
+  "jpsType": "update",
+  "application": {
+    "name": "Custom buttons",
+    "env": {},
+    "targetNodes": {
+      "nodeGroup": "bl"
+    },
+    "procedures": [
+      "..."
+    ],
+    "settings": {
+      "main": {
+        "fields": [
+          {
+            "type": "text",
+            "caption": "Main form"
+          }
+        ]
+      },
+      "config": {
+        "fields": [
+          {
+            "type": "text",
+            "caption": "Custom form from button action"
+          }
+        ]
+      }
+    },
+    "buttons": [
+      {
+        "settings": "config",
+        "procedure": "customProc",
+        "caption": "Configure",
+        "submitButtonText": "Button Text",
+        "logsPath": "/var/lib/jelastic/keys/111"
+      }
+    ]
+  }
+}
+```
+While installation *main* `settings` form will show.   
+![settingMain](/img/settingsMain.jpg)   
+After click button *Configure* from add-ons tab settings form *config* will show.   
+![settingCustom](/img/settingsCustom.jpg)   
+
+
 ##Supported fields:
 ###string     
 Basic text field.
