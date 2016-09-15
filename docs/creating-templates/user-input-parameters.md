@@ -63,14 +63,17 @@
     - `caption` *[optional]*
     - `placeholder` *[optional]*
     - `required` *[optional]*
+    - `regex` *[optional]* - A constructor for the JavaScript RegExp object to be tested against the field value during validation (defaults to null). If the test fails, the field will be marked invalid using regexText.
+    - `regexText` *[optional]* - The error text to display if regex is used and the test fails during validation (defaults to '')   
     - `vtype` *[optional]* - A validation type name. Possible values:
         - `alpha` - The keystroke filter mask to be applied on alpha input. Defaults to: /[a-z_]/i
         - `alphanum` - The keystroke filter mask to be applied on alphanumeric input. Defaults to: /[a-z0-9_]/i
         - `email` - The keystroke filter mask to be applied on email input. See the email method for information about more complex email validation. Defaults to: /[a-z0-9_.-+\'@]/i
         - `url` - The keystroke filter mask to be applied on URL input.                      
-    - `vtypeText` *[optional]* - A custom error message to display in place of the default message provided for the `vtype` currently set for this field (defaults to ''). Note: only applies if `vtype` is set, else ignored.
-    - `regex` *[optional]* - A constructor for the JavaScript RegExp object to be tested against the field value during validation (defaults to null). If the test fails, the field will be marked invalid using regexText.
-    - `regexText` *[optional]* - The error text to display if regex is used and the test fails during validation (defaults to '')                               
+    - `vtypeText` *[optional]* - A custom error message to display in place of the default message provided for the `vtype` currently set for this field (defaults to '').   
+    
+!!! note
+    > Only applies if `vtype` is set, else ignored.
 
 ##Custom buttons
 Custom buttons can be implemented in add-ons. They will execute procedures which are predefined in manifest.  
@@ -81,7 +84,7 @@ Add-ons tab button here:
 ![addon tab](/img/add-on_tab.jpg)
 
 !!! note
-> JPS should include required field `targetNodes`. In opposite case add-on will be hidden in add-ons tab after installation.  
+    > JPS should include required field `targetNodes`. In opposite case add-on will be hidden in add-ons tab after installation.  
 
 Button creating template:
 ```
