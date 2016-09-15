@@ -91,34 +91,22 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
 ```                              
 
 ## Events parameters and response placeholders
-### BeforeChangeTopology
+### onBeforeChangeTopology
 ```
 {
   "event":{
     "params": {
-        "session": "string",
-        "actionkey": "string",
-        "hx_lang": "string",
-        "charset": "string",
-        "appid": "string",
-        "env": "string",
-        "ruk": "string"
+        "env": "string"
       }
   }
 }
 ```
-### AfterChangeTopology
+### onAfterChangeTopology
 ```
 {
   "event": {
     "params": {
-      "session": "string",
-      "actionkey": "string",
-      "hx_lang": "string",
-      "charset": "string",
-      "appid": "string",
-      "env": "string",
-      "ruk": "string"
+      "env": "string"
     },
     "response": {
       "response": {
@@ -193,34 +181,22 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeRestartNode
+### onBeforeRestartNode
 ```
 {
   "event":{
     "params": {
-        "session": "string",
-        "actionkey": "string",
-        "hx_lang": "string",
-        "charset": "string",
-        "appid": "string",
-        "nodeType": "string",
-        "ruk": "string"
+        "nodeType": "string"
       }
   }
 }
 ```
-### AfterRestartNode
+### onAfterRestartNode
 ```
 {
   "event":{
     "params": {
-        "session": "string",
-        "actionkey": "string",
-        "hx_lang": "string",
-        "charset": "string",
-        "appid": "string",
-        "nodeType": "string",
-        "ruk": "string"
+        "nodeType": "string"
       },
     "response": {
           "result": "number",
@@ -235,32 +211,22 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeDelete
+### onBeforeDelete
 ```
 {
   "event": {
     "params": {
-      "session": "string",
-      "hx_lang": "string",
-      "appid": "string",
-      "charset": "string",
-      "password": "string",
-      "ruk": "string"
+      "password": "string"
     }
   }
 }
 ```
-### AfterDelete
+### onAfterDelete
 ```
 {
   "event": {
     "params": {
-      "session": "string",
-      "hx_lang": "string",
-      "appid": "string",
-      "charset": "string",
-      "password": "string",
-      "ruk": "string"
+      "password": "string"
     },
     "response": {
       "result": "number"
@@ -268,20 +234,16 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeAddNode
+### onBeforeAddNode
 ```
 {
   "event": {
     "params": {
       "extip": "boolean",
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
       "fixedCloudlets": "number",
       "startService": "number",
       "ismaster": "boolean",
       "flexibleCloudlets": "number",
-      "appid": "string",
       "nodeGroup": "string",
       "nodeType": "string",
       "metadata": "string"
@@ -289,20 +251,16 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### AfterAddNode
+### onAfterAddNode
 ```
 {
   "event": {
     "params": {
       "extip": "boolean",
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
       "fixedCloudlets": "number",
       "startService": "number",
       "ismaster": "boolean",
       "flexibleCloudlets": "number",
-      "appid": "string",
       "nodeGroup": "string",
       "nodeType": "string",
       "metadata": "string"
@@ -314,31 +272,23 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeCloneNodes
+### onBeforeCloneNodes
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
       "count": "number",
-      "session": "string",
-      "actionkey": "string",
-      "appid": "number",
       "nodeGroup": "string"
     }
   }
 }
 ```
-### AfterCloneNodes
+### onAfterCloneNodes
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
       "count": "number",
-      "session": "string",
-      "actionkey": "string",
-      "appid": "number",
       "nodeGroup": "string"
     },
     "response": {
@@ -351,31 +301,23 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeLinkNode
+### onBeforeLinkNode
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
-      "actionkey": "string",
       "parentNodes": "number",
-      "session": "string",
-      "appid": "string",
       "childNodes": "string"
     }
   }
 }
 ```
-### AfterLinkNode
+### onAfterLinkNode
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
-      "actionkey": "string",
       "parentNodes": "number",
-      "session": "string",
-      "appid": "string",
       "childNodes": "string"
     },
     "response": {
@@ -389,29 +331,21 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeAttachExtIp
+### onBeforeAttachExtIp
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
-      "appid": "string",
       "nodeid": "number"
     }
   }
 }
 ```
-### AfterAttachExtIp
+### onAfterAttachExtIp
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
-      "appid": "string",
       "nodeid": "number"
     },
     "response": {
@@ -421,30 +355,22 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeDetachExtIp
+### onBeforeDetachExtIp
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
-      "appid": "string",
       "ip": "string",
       "nodeid": "number"
     }
   }
 }
 ```
-### AfterDetachExtIp
+### onAfterDetachExtIp
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
-      "appid": "string",
       "ip": "string",
       "nodeid": "number"
     },
@@ -454,34 +380,22 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeUpdateVcsProject
+### onBeforeUpdateVcsProject
 ```
 {
   "event": {
     "params": {
-      "project": "string",
-      "actionkey": "string",
-      "session": "string",
-      "hx_lang": "string",
-      "appid": "string",
-      "charset": "string",
-      "ruk": "string"
+      "project": "string"
     }
   }
 }
 ```
-### AfterUpdateVcsProject
+### onAfterUpdateVcsProject
 ```
 {
   "event": {
     "params": {
-      "project": "string",
-      "actionkey": "string",
-      "session": "string",
-      "hx_lang": "string",
-      "appid": "string",
-      "charset": "string",
-      "ruk": "string"
+      "project": "string"
     },
     "response": {
       "result": "number"
@@ -489,33 +403,25 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeSetCloudletCount
+### onBeforeSetCloudletCount
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
       "fixedCloudlets": "number",
       "flexibleCloudlets": "number",
-      "appid": "string",
       "nodeGroup": "string"
     }
   }
 }
 ```
-### AfterSetCloudletCount
+### onAfterSetCloudletCount
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
       "fixedCloudlets": "number",
       "flexibleCloudlets": "number",
-      "appid": "string",
       "nodeGroup": "string"
     },
     "response": {
@@ -524,30 +430,22 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeChangeEngine
+### onBeforeChangeEngine
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
-      "settings": "string",
-      "appid": "string"
+      "settings": "string"
     }
   }
 }
 ```
-### AfterChangeEngine
+### onAfterChangeEngine
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
-      "settings": "string",
-      "appid": "string"
+      "settings": "string"
     },
     "response": {
       "result": "number"
@@ -555,96 +453,60 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeStart
+### onBeforeStart
 ```
 {
   "event": {
-    "params": {
-      "session": "string",
-      "hx_lang": "string",
-      "appid": "string",
-      "charset": "string",
-      "ruk": "string"
-    }
+    "params": {}
   }
 }
 ```
-### AfterStart
+### onAfterStart
 ```
 {
   "event": {
-    "params": {
-      "session": "string",
-      "hx_lang": "string",
-      "appid": "string",
-      "charset": "string",
-      "ruk": "string"
-    },
+    "params": {},
     "response": {
       "result": "number"
     }
   }
 }
 ```
-### BeforeStop
+### onBeforeStop
 ```
 {
   "event": {
-    "params": {
-      "session": "string",
-      "hx_lang": "string",
-      "appid": "string",
-      "charset": "string",
-      "ruk": "string"
-    }
+    "params": {}
   }
 }
 ```
-### AfterStop
+### onAfterStop
 ```
 {
   "event": {
-    "params": {
-      "session": "string",
-      "hx_lang": "string",
-      "appid": "string",
-      "charset": "string",
-      "ruk": "string"
-    },
+    "params": {},
     "response": {
       "result": "number"
     }
   }
 }
 ```
-### BeforeClone
+### nBeforeClone
 ```
 {
   "event": {
     "params": {
-      "actionkey": "string",
-      "session": "string",
-      "hx_lang": "string",
-      "domain": "string",
-      "appid": "string",
-      "charset": "string",
-      "ruk": "string"
+      "domain": "string"
     }
   }
 }
 ```
-### AfterClone
+### onAfterClone
 ```
 {
   "event": {
     "params": {
-      "actionkey": "string",
-      "session": "string",
-      "hx_lang": "string",
-      "domain": "string",
-      "appid": "string",
-      "charset": "string",
-      "ruk": "string"
+      "domain": "string"
     },
     "response": {
       "result": "number",
@@ -656,40 +518,28 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeDeploy
+### onBeforeDeploy
 ```
 {
   "event": {
     "params": {
       "atomicDeploy": "boolean",
-      "actionkey": "string",
-      "session": "string",
-      "hx_lang": "string",
       "path": "string",
       "context": "string",
-      "appid": "string",
-      "charset": "string",
-      "archivename": "string",
-      "ruk": "string"
+      "archivename": "string"
     }
   }
 }
 ```
-### AfterDeploy
+### onAfterDeploy
 ```
 {
   "event": {
     "params": {
       "atomicDeploy": "boolean",
-      "actionkey": "string",
-      "session": "string",
-      "hx_lang": "string",
       "path": "string",
       "context": "string",
-      "appid": "string",
-      "charset": "string",
-      "archivename": "string",
-      "ruk": "string"
+      "archivename": "string"
     },
     "response": {
       "result": "number",
@@ -704,32 +554,22 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeResetNodePassword
+### onBeforeResetNodePassword
 ```
 {
   "event": {
     "params": {
-      "session": "string",
-      "hx_lang": "string",
-      "charset": "string",
-      "appid": "string",
-      "nodeType": "string",
-      "ruk": "string"
+      "nodeType": "string"
     }
   }
 }
 ```
-### AfterResetNodePassword 
+### onAfterResetNodePassword 
 ```
 {
   "event": {
     "params": {
-      "session": "string",
-      "hx_lang": "string",
-      "charset": "string",
-      "appid": "string",
-      "nodeType": "string",
-      "ruk": "string"
+      "nodeType": "string"
     },
     "response": {
       "result": "number"
@@ -737,29 +577,21 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeRemoveNode
+### onBeforeRemoveNode
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
-      "session": "string",
-      "actionkey": "string",
-      "appid": "string",
       "nodeid": "number"
     }
   }
 }
 ```
-### AfterRemoveNode
+### onAfterRemoveNode
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
-      "session": "string",
-      "actionkey": "string",
-      "appid": "string",
       "nodeid": "number"
     },
     "response": {
@@ -768,36 +600,24 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeRestartContainer
+### onBeforeRestartContainer
 ```
 {
   "event": {
     "params": {
-      "actionkey": "string",
-      "session": "string",
-      "hx_lang": "string",
-      "appid": "string",
-      "charset": "string",
       "nodeGroup": "string",
-      "nodeType": "string",
-      "ruk": "string"
+      "nodeType": "string"
     }
   }
 }
 ```
-### AfterRestartContainer
+### onAfterRestartContainer
 ```
 {
   "event": {
     "params": {
-      "actionkey": "string",
-      "session": "string",
-      "hx_lang": "string",
-      "appid": "string",
-      "charset": "string",
       "nodeGroup": "string",
-      "nodeType": "string",
-      "ruk": "string"
+      "nodeType": "string"
     },
     "response": {
       "result": "number"
@@ -805,36 +625,24 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeMigrate
+### onBeforeMigrate
 ```
 {
   "event": {
     "params": {
       "isOnline": "boolean",
-      "actionkey": "string",
-      "session": "string",
-      "hx_lang": "string",
-      "hardwareNodeGroup": "string",
-      "appid": "string",
-      "charset": "string",
-      "ruk": "string"
+      "hardwareNodeGroup": "string"
     }
   }
 }
 ```
-### AfterMigrate
+### onAfterMigrate
 ```
 {
   "event": {
     "params": {
       "isOnline": "boolean",
-      "actionkey": "string",
-      "session": "string",
-      "hx_lang": "string",
-      "hardwareNodeGroup": "string",
-      "appid": "string",
-      "charset": "string",
-      "ruk": "string"
+      "hardwareNodeGroup": "string"
     },
     "response": {
       "result": "number"
@@ -842,7 +650,7 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### BeforeRedeployContainer
+### onBeforeRedeployContainer
 Only for Docker-based containers
 ```
 {
@@ -850,19 +658,13 @@ Only for Docker-based containers
     "params": {
       "sequential": "boolean",
       "nodeId": "number",
-      "actionkey": "string",
-      "session": "string",
       "tag": "string",
-      "hx_lang": "string",
-      "appid": "string",
-      "charset": "string",
-      "ruk": "string",
       "useExistingVolumes": "string"
     }
   }
 }
 ```
-### AfterRedeployContainer
+### onAfterRedeployContainer
 Only for Docker-based containers
 ```
 {
@@ -870,13 +672,7 @@ Only for Docker-based containers
     "params": {
       "sequential": "boolean",
       "nodeId": "number",
-      "actionkey": "string",
-      "session": "string",
       "tag": "string",
-      "hx_lang": "string",
-      "appid": "string",
-      "charset": "string",
-      "ruk": "string",
       "useExistingVolumes": "string"
     },
     "response": {
@@ -893,38 +689,30 @@ Only for Docker-based containers
   }
 }
 ```
-### BeforeLinkDockerNodes
+### onBeforeLinkDockerNodes
 Only for Docker-based containers
 ```
 {
   "event": {
     "params": {
       "groupAlias": "string",
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
       "alias": "string",
       "sourceNodeId": "number",
-      "appid": "string",
       "targetNodeId": "number",
       "isAutoRestart": "boolean"
     }
   }
 }
 ```
-### AfterLinkDockerNodes
+### onAfterLinkDockerNodes
 Only for Docker-based containers
 ```
 {
   "event": {
     "params": {
       "groupAlias": "string",
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
       "alias": "string",
       "sourceNodeId": "number",
-      "appid": "string",
       "targetNodeId": "number",
       "isAutoRestart": "boolean"
     },
@@ -934,36 +722,28 @@ Only for Docker-based containers
   }
 }
 ```
-### BeforeUnlinkDockerNodes
+### onBeforeUnlinkDockerNodes
 Only for Docker-based containers
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
       "alias": "string",
       "sourceNodeId": "number",
-      "appid": "string",
       "targetNodeId": "number",
       "isAutoRestart": "boolean"
     }
   }
 }
 ```
-### AfterUnlinkDockerNodes
+### onAfterUnlinkDockerNodes
 Only for Docker-based containers
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
       "alias": "string",
       "sourceNodeId": "number",
-      "appid": "string",
       "targetNodeId": "number",
       "isAutoRestart": "boolean"
     },
@@ -973,33 +753,26 @@ Only for Docker-based containers
   }
 }
 ```
-### BeforeSetDockerEnvVars
+### onBeforeSetDockerEnvVars
 Only for Docker-based containers
 ```
 {
   "event": {
     "params": {
       "nodeId": "number",
-      "actionkey": "string",
-      "session": "string",
-      "data": "string",
-      "appid": "string"
+      "data": "string"
     }
   }
 }
 ```
-### AfterSetDockerEnvVars
+### onAfterSetDockerEnvVars
 Only for Docker-based containers
 ```
 {
   "event": {
     "params": {
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
       "alias": "string",
       "sourceNodeId": "number",
-      "appid": "string",
       "targetNodeId": "number",
       "isAutoRestart": "boolean"
     },
@@ -1009,34 +782,26 @@ Only for Docker-based containers
   }
 }
 ```
-### BeforeSetDockerEntryPoint
+### onBeforeSetDockerEntryPoint
 Only for Docker-based containers
 ```
 {
   "event": {
     "params": {
       "nodeId": "number",
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
-      "data": "string",
-      "appid": "string"
+      "data": "string"
     }
   }
 }
 ```
-### AfterSetDockerEntryPoint
+### onAfterSetDockerEntryPoint
 Only for Docker-based containers
 ```
 {
   "event": {
     "params": {
       "nodeId": "number",
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
-      "data": "string",
-      "appid": "string"
+      "data": "string"
     },
     "response": {
       "result": "number"
@@ -1044,34 +809,26 @@ Only for Docker-based containers
   }
 }
 ```
-### BeforeSetDockerRunCmd
+### onBeforeSetDockerRunCmd
 Only for Docker-based containers
 ```
 {
   "event": {
     "params": {
       "nodeId": "number",
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
-      "data": "",
-      "appid": "string"
+      "data": ""
     }
   }
 }
 ```
-### AfterSetDockerRunCmd
+### onAfterSetDockerRunCmd
 Only for Docker-based containers
 ```
 {
   "event": {
     "params": {
       "nodeId": "number",
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
-      "data": "",
-      "appid": "string"
+      "data": ""
     },
     "response": {
       "result": "number"
@@ -1079,32 +836,24 @@ Only for Docker-based containers
   }
 }
 ```
-### BeforeStartDockerService
+### onBeforeStartDockerService
 Only for Docker-based containers
 ```
 {
   "event": {
     "params": {
-      "nodeId": "number",
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
-      "appid": "string"
+      "nodeId": "number"
     }
   }
 }
 ```
-### AfterStartDockerService
+### onAfterStartDockerService
 Only for Docker-based containers
 ```
 {
   "event": {
     "params": {
-      "nodeId": "number",
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
-      "appid": "string"
+      "nodeId": "number"
     },
     "response": {
       "result": "number"
@@ -1112,34 +861,26 @@ Only for Docker-based containers
   }
 }
 ```
-### BeforeAddDockerVolume
+### onBeforeAddDockerVolume
 Only for Docker-based containers
 ```
 {
   "event": {
     "params": {
       "nodeId": "number",
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
-      "path": "string",
-      "appid": "string"
+      "path": "string"
     }
   }
 }
 ```
-### AfterAddDockerVolume
+### onAfterAddDockerVolume
 Only for Docker-based containers
 ```
 {
   "event": {
     "params": {
       "nodeId": "number",
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
-      "path": "string",
-      "appid": "string"
+      "path": "string"
     },
     "response": {
       "result": "number"
@@ -1147,23 +888,19 @@ Only for Docker-based containers
   }
 }
 ```
-### BeforeRemoveDockerVolume
+### onBeforeRemoveDockerVolume
 Only for Docker-based containers
 ```
 {
   "event": {
     "params": {
       "nodeId": "number",
-      "_rnd": "number",
-      "actionkey": "string",
-      "session": "string",
-      "path": "string",
-      "appid": "string"
+      "path": "string"
     }
   }
 }
 ```
-### AfterRemoveDockerVolume
+### onAfterRemoveDockerVolume
 Only for Docker-based containers
 ```
 {
@@ -1172,11 +909,7 @@ Only for Docker-based containers
       "event": {
         "params": {
           "nodeId": "number",
-          "_rnd": "number",
-          "actionkey": "string",
-          "session": "string",
-          "path": "string",
-          "appid": "string"
+          "path": "string"
         }
       }
     },
