@@ -6,7 +6,7 @@ Docker actions include such actions as docker `volumes` `links` and `environment
 
 There are three fields provided to set docker `volumes`:  
 - `volumes` - volumes list  
-- `volumeMount` - mount configs  
+- `volumeMounts` - mount configs  
 - `volumesFrom` - node list where volumes will be imported  
 
 All fields set in docker object:
