@@ -75,10 +75,64 @@
 !!! note
     > Only applies if `vtype` is set, else ignored.
 
+##Target Nodes
+`Target Nodes` is a optional section where environments can be defined or disable for JPS installation. `TargetNodes` are available only for `JpsType` *update*.   
+Filtering for `targetNodes` is by `nodeType`, `nodeGroup`, `dockerOs`, `dockerName` or `dockerTag`.   
+```
+{
+	"jpsType": "update",
+	"application": {
+		"name": "targetNodes",
+		"env": {},
+		"targetNodes": {
+			"nodeType": ["..."],
+			"nodeGroup": ["..."],
+			"dockerOs": ["..."],
+			"dockerName": ["..."],
+			"dockerTag": ["..."]
+		},
+		"onInstall": {
+			"createFile": {
+				"nodeGroup": "cp",
+				"path": "/tmp/newFile"
+			}
+		}
+	}
+}
+```
+There are two input type available:
+```
+"nodeType": ["..."]  //set all nodeTypes in array
+and
+"nodeType": "..., ..."    //set all nodeTypes via commas
+```
+For example, there are three environments with different topologies:
+![targetNodes](/img/targetNodes.jpg)  
+`targetNodes` can filtered JPS installation with example below:
+```
+{
+	"jpsType": "update",
+	"application": {
+		"name": "targetNodes",
+		"env": {},
+		"targetNodes": {
+			"nodeType": "nginx, mysql5"
+		},
+		"onInstall": {
+			"createFile": {
+				"nodeGroup": "cp",
+				"path": "/tmp/newFile"
+			}
+		}
+	}
+}
+```
+In this case the filter result will be the next:
+![targetNodesFilter](/img/targetNodesFilter.jpg)  
 ##Custom buttons
 Custom buttons can be implemented in add-ons. They will execute procedures which are predefined in manifest.  
 
-![traffic-manager](/img/traffic-manager.jpg)  
+![traffic-manager](/img/traffic-manager.jpg)    
 
 Add-ons tab button here:
 ![addon tab](/img/add-on_tab.jpg)
