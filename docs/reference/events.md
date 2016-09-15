@@ -491,7 +491,7 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
   }
 }
 ```
-### nBeforeClone
+### onBeforeClone
 ```
 {
   "event": {
