@@ -16,8 +16,8 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
 }
 ```
 
-### Install
-### Uninstall
+### onInstall
+### onUninstall
 
 ## Environment Level Events
 ```
