@@ -29,7 +29,7 @@ All fields set in docker object:
   }
 }
 ```
-where 
+where    
 - field `volumes` is an string array:
 ```
 [
@@ -43,47 +43,7 @@ where
   }
 ]
 ```
-##volumesFrom
-`volumesFrom` is an list object.    
-There are two ways to select the volume source container:
-```
-[
-  {
-    "sourceNodeId": "49",
-    "readOnly": true
-  },{
-    "sourceNodeGroup": "storage",
-    "readOnly": true
-  }
-]
-```
 
-In case to import not full source node volumes list You can set like bellow:
-```
-[
-  {
-    "sourceNodeGroup": "storage",
-    "volumes": [
-      "/master",
-      "/local"
-    ]
-  }
-]
-```
-
-Simple set examples above:
-```
-[
-  49,
-  "storage",
-  "storage:ro"
-]
-```
-where:   
-- *49* - like { sourceNodeId : 49, readOnly : false }  
-- *"storage"* - like { sourceNodeGroup : "storage", readOnly : false }  
-- *"storage:ro"* - like { sourceNodeGroup : "storage", readOnly : true }
-  
 ##volumeMounts
 `volumeMounts` is an object. It can be set like example below:
 ```
@@ -174,6 +134,50 @@ In case using not full source node volumes list `volumes` can be added.
   }
 }
 ```
+
+<!--
+##volumesFrom
+
+`volumesFrom` is an list object.    
+There are two ways to select the volume source container:
+```
+[
+  {
+    "sourceNodeId": "49",
+    "readOnly": true
+  },{
+    "sourceNodeGroup": "storage",
+    "readOnly": true
+  }
+]
+```
+
+In case to import not full source node volumes list You can set like below:
+```
+[
+  {
+    "sourceNodeGroup": "storage",
+    "volumes": [
+      "/master",
+      "/local"
+    ]
+  }
+]
+```
+
+Simple set examples above:
+```
+[
+  49,
+  "storage",
+  "storage:ro"
+]
+```
+where:   
+- *49* - like { sourceNodeId : 49, readOnly : false }  
+- *"storage"* - like { sourceNodeGroup : "storage", readOnly : false }  
+- *"storage:ro"* - like { sourceNodeGroup : "storage", readOnly : true }
+-->
 
 #Docker environment variables
 
