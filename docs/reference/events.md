@@ -90,6 +90,8 @@ It’s also possible to bind extension’s execution to the *onUninstall* event 
 }
 ```                              
 
+Events `onInstall`, `onUninstall`, `onBeforeDelete`, `onAfterDelete` can be executed once. Other events can be used more then one time.     
+
 ## Events parameters and response placeholders
 ### onBeforeChangeTopology
 ```
