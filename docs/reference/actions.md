@@ -627,6 +627,77 @@ Or:
 
 <!-- add example -->
 
+### If
+Condition statements.<br>In contidion statements available all [Placeholders](http://docs.cloudscripting.com/reference/placeholders/) and their objective mappings in javascript.<br>For example:
+```
+if ('${env.protocol}' == 'http')
+```
+or 
+```
+if (env.protocol == 'http')
+```
+
+<b>If</b> like a <b>ForEach</b>  can be any nesting.
+
+- If condition is incorrect the actions inside <b>if</b> statement won't be executed, [Cloud Scripting Console](http://docs.cloudscripting.com/troubleshooting/) will display message <I><b>invalid condition</b></I> with root cause. Application installation will execute next action.
+- If contidion is valid but has not executed console logging the message <I><b>condition is not met</I></b>. 
+
+Examples:
+```
+{
+  "jpsType": "update",
+  "application": {
+    "name": "IF Condition statements Test",
+    "globals": {
+      "p1": 1,
+      "p2": 2
+    },
+    "onInstall": [
+      {
+        "if (env.status == 1)": {                 //check environment status
+          "log": "## Environment is running"
+        }
+      },
+      {
+        "if(!${env.ssl})": {                      //check environment Jelastic SSL
+          "log": "## SSL Disabled"
+        }
+      },
+      {
+        "if (/^env-/.test(env.domain))": {       //environment domain validation
+          "log": "## Env domain begins with env-: ${env.domain}"
+        }
+      },
+      {
+        "if (globals.p1 < globals.p2)": {       //comparison global variables
+          "if (user.uid > 1)": {
+            "log": "## p1 < p2 and ${user.email} is not a platform owner"
+          }
+        }
+      },
+      {
+        "if (nodes.cp && nodes.cp[0].osType == 'LINUX')": [   //Compute node is presented and container osType is "LINUX" 
+          {
+            "log": "## Environment has compute node based on Linux"
+          },
+          {
+            "if (nodes.bl && nodes.bl[0].nodeType == 'nginx' && nodes.cp.length > 1)": {      //balancer and compute nodes is available
+              "log": "## Environment has Nginx balancer and more than one compute node"
+            }
+          }
+        ]
+      },
+      {
+        "if ('${nodes.cp[0].osType}' == 'LINUX')": {     //container osType is "LINUX" 
+          "log": "## Environment has compute node based on Linux"
+        }
+      }
+    ]
+  }
+}
+```
+
+
 ### ForEach
 
 Iterable object map:
