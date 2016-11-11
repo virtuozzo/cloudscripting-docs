@@ -188,7 +188,7 @@ Scaling nodes example:
 In `execCmd` action compute nodes addresses are rewrited in balancer node and reload nginx service.
 Events are `onAfterScaleIn` and `onAfterScaleOut` will executed after add or remove compute node.
 
-###Iteration by all nodes in environment:
+###Iteration by all nodes in environment
 
 ```
 {
@@ -203,7 +203,7 @@ Events are `onAfterScaleIn` and `onAfterScaleOut` will executed after add or rem
 }
 ```
 
-###Iteration by compute nodes with custom iterator name:
+###Iteration by compute nodes with custom iterator name
 ```
 {
   "forEach(cp:nodes.cp)": {
