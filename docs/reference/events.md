@@ -1,9 +1,9 @@
 # Events
 
 Any action, available to be performed by means of API (including custom users’ scripts running), should be bound to some event, i.e. executed as a result of this event occurrence.
-Each event belongs to a particular entity. For example, the entry point for performing any actions with application is the application’s event *onInstall*.
-Subscription to a particular application’s lifecycle events (e.g. topology changes) can be done via [Environment Level Events](#environment-level-events).
-It’s also possible to bind extension’s execution to the *onUninstall* event and, in such a way, implement the included to it custom logic of this extension removal from an environment.
+Each event belongs to a particular entity. For example, the entry point for performing any action with application is the application’s event *onInstall*.
+Subscription to a particular application lifecycle event (e.g. topology changing) can be done via [Environment Level Events](#environment-level-events).
+It’s also possible to bind extension execution to the *onUninstall* event and, in such a way, implement the included to it custom logic of this extension removal from an environment.
 
 ## Application Level Events
 ```
@@ -927,8 +927,8 @@ Only for Docker-based containers
 ```
 ## Events filtering
 
-Events can be filtered by *nodeGroup*, *nodeType*, *nodeId*. Events filtering is optional. By default every event is listened by all environment.
-So defined actions will be executed only when called events match specified filter rules.
+Events can be filtered by *nodeGroup*, *nodeType* and *nodeId* parameters. Events filtering is optional. By default every event is listened by all environment.
+As a result, the defined actions will be executed only when called events match specified filter rules.
 
 ###By nodeGroup
 ```
