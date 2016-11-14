@@ -137,7 +137,7 @@ Balancer node with external IP address!
 		"env": {},
 		"onInstall": {
 			"if (nodes.bl[0].nodeType == 'nginx')": [{
-				"executeScript": {
+				"execScript": {
 					"type": "js",
 					"script": "return { result: 0, error: \"Environment balancer node is NGINX stack\"};"
 				}
@@ -249,7 +249,7 @@ Events are `onAfterScaleIn` and `onAfterScaleOut` will executed after add or rem
 ```
 {
   "forEach(env.nodes)": [{
-    "executeShellCommands": {
+    "execCmd": {
 	  "nodeId": "${@i.id}",
 		"commands": [
 	      "echo ${@i.address} > /tmp/example.txt"
