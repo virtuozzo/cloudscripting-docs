@@ -38,7 +38,7 @@ pages:
    - Writing Scripts: creating-templates/writing-scripts.md
    - Selecting Containers For Your Actions: creating-templates/selecting-containers.md
    - Getting User Input: creating-templates/user-input-parameters.md
-   - Control Flows: creating-templates/control-flows.md
+   - Conditions and Iterations: creating-templates/control-flows.md
 
 # Troubleshooting
 - Troubleshooting: troubleshooting.md
