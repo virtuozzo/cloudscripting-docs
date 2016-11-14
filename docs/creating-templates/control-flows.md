@@ -91,6 +91,62 @@ Check for compute nodes OS type and balancer node:
 }
 ```
 
+<b>Nested conditions:<br></b>
+Two nested conditions for checking two compute nodes in environment and extrnal IP addres in balancer node.
+```
+{
+	"jpsType": "update",
+	"application": {
+		"name": "Nesting example",
+		"env": {},
+		"onInstall": {
+			"if (${nodes.cp[1].id})": [{
+				"execCmd": {
+					"nodeId": "${nodes.cp[1].id}",
+					"commands": [
+						"echo \"Environment consists of two compute nodes\" >> /tmp/result.txt "
+					]
+				}
+			}, {
+				"if (/^[0-9]{2,3}.[0-9]{2,3}.[0-9]{2,3}.[0-9]{2,3}/.test(\"${nodes.bl[0].extips}\"))": {
+					"execCmd": {
+						"nodeId": "${nodes.cp[0].id}",
+						"commands": [
+							"echo \"Balancer node with external IP address!\" >> /tmp/result.txt "
+						]
+					}
+				}
+			}]
+		}
+	}
+}
+```
+
+<b>Result</b> result.txt: <br>
+```
+Environment consists of two compute nodes
+Balancer node with external IP address!
+```
+
+<b>Check balancer stack type:</b>
+```
+{
+	"jpsType": "update",
+	"application": {
+		"name": "Nginx stack",
+		"env": {},
+		"onInstall": {
+			"if (nodes.bl[0].nodeType == 'nginx')": [{
+				"executeScript": {
+					"type": "js",
+					"script": "return { result: 0, error: \"Environment balancer node is NGINX stack\"};"
+				}
+			}]
+		}
+	}
+}
+```
+
 ##Iterations
 <b>ForEach.</b>
 Iterable object map:
