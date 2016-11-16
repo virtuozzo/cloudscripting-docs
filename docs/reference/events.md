@@ -1,9 +1,10 @@
 # Events
 
 Any action, available to be performed by means of API (including custom users’ scripts running), should be bound to some event, i.e. executed as a result of this event occurrence.
-Each event belongs to a particular entity. For example, the entry point for performing any action with application is the application’s event *onInstall*.
+Each event refers to a particular entity. For example, the entry point for executing any action with application is the onInstall event.
+<br>
 Subscription to a particular application lifecycle event (e.g. topology changing) can be done via [Environment Level Events](#environment-level-events).
-It’s also possible to bind extension execution to the *onUninstall* event and, in such a way, implement the included to it custom logic of this extension removal from an environment.
+It’s also possible to bind extension execution to the onUninstall event - in such a way, you can implement custom logic of this extension removal from an environment.
 
 ## Application Level Events
 ```
@@ -90,13 +91,13 @@ It’s also possible to bind extension execution to the *onUninstall* event and,
 }
 ```                              
 ##Event execution rules
-- events `Install`, `Uninstall`, `BeforeDelete` (delete environment), `AfterDelete` can be executed once. Other events can be used more then one time.   
-- events `ScaleIn`, `ScaleOut`, `ServiceScaleOut` will be executed only once while any nodes count will be added/removed. At the same time action events `addNode`, `removeNode` will be executed as many times as nodes will be added/removed.   
-- event `cloneNodes` will be executed so many as nodeGroups should be scaled   
-- events `UnlinkDockerNodes`, `LinkDockerNodes`, `SetDockerEnvVars`, `SetDockerEntryPoint`, `SetDockerRunCmd`, `AddDockerVolume`, `RemoveDockerVolume` can be executed once while action `changeTopology`
-- events `StartDockerService` can be executed only once while `changeTopology`, `createEnvironment`, `scaling` actions.
+- Such events as Install & Uninstall application, as well as BeforeDelete and AfterDelete ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.
+- The ScaleIn, ScaleOut and ServiceScaleOut events are called once upon any node count change. Herewith, count of the addNode or removeNode actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.
+- For application server, load balancer and VPS node layers, the cloneNodes procedure is executed each time the node group is scaled out
+- UnlinkDockerNodes, LinkDockerNodes, SetDockerEnvVars, SetDockerEntryPoint, SetDockerRunCmd, AddDockerVolume  and RemoveDockerVolume events can be executed only once per a single changeTopology action
+- The StartDockerService event can be called only once while performing the changeTopology and createEnvironment scaling actions.
 
-## Events parameters and response placeholders
+## Event parameters and response placeholders
 ### onBeforeChangeTopology
 ```
 {
@@ -657,7 +658,7 @@ It’s also possible to bind extension execution to the *onUninstall* event and,
 }
 ```
 ### onBeforeRedeployContainer
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -671,7 +672,7 @@ Only for Docker-based containers
 }
 ```
 ### onAfterRedeployContainer
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -696,7 +697,7 @@ Only for Docker-based containers
 }
 ```
 ### onBeforeLinkDockerNodes
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -711,7 +712,7 @@ Only for Docker-based containers
 }
 ```
 ### onAfterLinkDockerNodes
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -729,7 +730,7 @@ Only for Docker-based containers
 }
 ```
 ### onBeforeUnlinkDockerNodes
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -743,7 +744,7 @@ Only for Docker-based containers
 }
 ```
 ### onAfterUnlinkDockerNodes
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -760,7 +761,7 @@ Only for Docker-based containers
 }
 ```
 ### onBeforeSetDockerEnvVars
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -772,7 +773,7 @@ Only for Docker-based containers
 }
 ```
 ### onAfterSetDockerEnvVars
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -789,7 +790,7 @@ Only for Docker-based containers
 }
 ```
 ### onBeforeSetDockerEntryPoint
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -801,7 +802,7 @@ Only for Docker-based containers
 }
 ```
 ### onAfterSetDockerEntryPoint
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -816,7 +817,7 @@ Only for Docker-based containers
 }
 ```
 ### onBeforeSetDockerRunCmd
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -828,7 +829,7 @@ Only for Docker-based containers
 }
 ```
 ### onAfterSetDockerRunCmd
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -843,7 +844,7 @@ Only for Docker-based containers
 }
 ```
 ### onBeforeStartDockerService
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -854,7 +855,7 @@ Only for Docker-based containers
 }
 ```
 ### onAfterStartDockerService
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -868,7 +869,7 @@ Only for Docker-based containers
 }
 ```
 ### onBeforeAddDockerVolume
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -880,7 +881,7 @@ Only for Docker-based containers
 }
 ```
 ### onAfterAddDockerVolume
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -895,7 +896,7 @@ Only for Docker-based containers
 }
 ```
 ### onBeforeRemoveDockerVolume
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -907,7 +908,7 @@ Only for Docker-based containers
 }
 ```
 ### onAfterRemoveDockerVolume
-Only for Docker-based containers
+For Docker containers only
 ```
 {
   "event": {
@@ -927,8 +928,9 @@ Only for Docker-based containers
 ```
 ## Events filtering
 
-Events can be filtered by *nodeGroup*, *nodeType* and *nodeId* parameters. Events filtering is optional. By default every event is listened by all environment.
-As a result, the defined actions will be executed only when called events match specified filter rules.
+Optionally, events can be filtered by nodeGroup, nodeType and nodeId parameters. As a result, the defined actions will be executed only when the called event matches specified filter rules. 
+<br><br>
+Otherwise (i.e. if no filtering rules are specified), every Event is listened by all environment entities.
 
 ###By nodeGroup
 ```
@@ -967,4 +969,4 @@ As a result, the defined actions will be executed only when called events match 
 }
 ```
 where     
-- `number` - *nodeId* value
+- `number` - *nodeId* value for the corresponding instance
