@@ -928,7 +928,7 @@ For Docker containers only
 ```
 ## Events filtering
 
-Optionally, events can be filtered by nodeGroup, nodeType and nodeId parameters. As a result, the defined actions will be executed only when the called event matches specified filter rules. 
+Optionally, events can be filtered by *nodeGroup*, *nodeType* and *nodeId* parameters. As a result, the defined actions will be executed only when the called event matches specified filter rules. 
 <br><br>
 Otherwise (i.e. if no filtering rules are specified), every Event is listened by all environment entities.
 
