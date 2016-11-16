@@ -3,6 +3,7 @@
 Any action, available to be performed by means of API (including custom users’ scripts running), should be bound to some event, i.e. executed as a result of this event occurrence.
 Each event refers to a particular entity. For example, the entry point for executing any action with application is the *onInstall* event.
 <br>
+<br>
 Subscription to a particular application lifecycle event (e.g. topology change) can be done via [Environment Level Events](#environment-level-events).
 It’s also possible to bind extension execution to the *onUninstall* event - in such a way, you can implement custom logic of this extension removal from an environment.
 
