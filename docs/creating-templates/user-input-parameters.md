@@ -32,10 +32,11 @@
 }
 ```
 
-- `prepopulate` *[optional]* - link to get default field values 
+where
+- `prepopulate` *[optional]* - link to the script, that will fetch the default fields values
 - `fields`
-    - `showIf` - show/hide field by condition. Only for `radio-fieldset` field
-    - `type` *[optional]* - input field type (defaults to `string`). Possible values:
+    - `showIf` - show/hide field by condition (is applicable only to the radio-fieldset field)
+    - `type` *[optional]* - input field type. The default value is “string”. Possible values:
         * `string`
         * `text`                                                                           
         * `list`
@@ -57,23 +58,23 @@
         * `hostpicker`
         * `toggle`
         * `spacer`
-    - `inputType` *[optional]* - The type attribute for input fields - e.g. radio, text, password, file (defaults to 'text'). [More info](https://www.w3.org/wiki/HTML/Elements/input#Point)        
-    - `name` - input field name that could be used to get a parameter value through `${settings.your_input_name}` placeholder inside of your scripts or a manifest. 
-    - `default` *[optional]* - the default input field value
-    - `caption` *[optional]*
-    - `placeholder` *[optional]*
-    - `required` *[optional]*
-    - `regex` *[optional]* - A constructor for the JavaScript RegExp object to be tested against the field value during validation (defaults to null). If the test fails, the field will be marked invalid using regexText.
-    - `regexText` *[optional]* - The error text to display if regex is used and the test fails during validation (defaults to '')   
+    - `inputType` *[optional]* - type attribute of the input field (e.g. radio, text, password, file, etc.).The default value is "text". More info [here](https://www.w3.org/wiki/HTML/Elements/input#Point)        
+    - `name` - input field name that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests. 
+    - `default` *[optional]* - default value for the input field
+    - `caption` *[optional]* - field label
+    - `placeholder` *[optional]* -  text that describes the expected value of an input field
+    - `required` *[optional]* possible values are "true" & "false". If left empty, the default value is "true".
+    - `regex` *[optional]* - constructor for testing the JavaScript RegExp object, that refers to the stated the field value, during validation. If test fails, the field will be marked invalid using regexText. The default value is "null"
+    - `regexText` *[optional]* - displays error message in case of the regex test failure during validation. The default value is ' ' (blank space)   
     - `vtype` *[optional]* - A validation type name. Possible values:
-        - `alpha` - The keystroke filter mask to be applied on alpha input. Defaults to: /[a-z_]/i
-        - `alphanum` - The keystroke filter mask to be applied on alphanumeric input. Defaults to: /[a-z0-9_]/i
-        - `email` - The keystroke filter mask to be applied on email input. See the email method for information about more complex email validation. Defaults to: /[a-z0-9_.-+\'@]/i
-        - `url` - The keystroke filter mask to be applied on URL input.                      
-    - `vtypeText` *[optional]* - A custom error message to display in place of the default message provided for the `vtype` currently set for this field (defaults to '').   
+        - `alpha` - The keystroke filter mask applied to alpha input. The default value is: /[a-z_]/i
+        - `alphanum` - The keystroke filter mask applied to alphanumeric input. The default value is: /[a-z0-9_]/i
+        - `email` - The keystroke filter mask applied to email input. See the email method for information about more complex email validation. The default value iso: /[a-z0-9_.-+\'@]/i. See the [appropriate method](http://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.VTypes-method-email) for more information about complex email validation
+        - `url` - The keystroke filter mask applied to URL input.                      
+    - `vtypeText` *[optional]* - custom error message to be displayed instead of the default one, provided by vtype for this field. The default value is ' ' (blank space).   
     
 !!! note
-    > Only applies if `vtype` is set, else ignored.
+    > `vtypeText` is applied only in case the vtype value is set; otherwise, it is ignored.
 
 ##Target Nodes
 `Target Nodes` is a optional section where environments can be defined or disable for JPS installation. `TargetNodes` are available only for `JpsType` *update*.   
@@ -128,19 +129,21 @@ For example, there are three environments with different topologies:
 }
 ```
 In this case the filter result will be the next:
-![targetNodesFilter](/img/targetNodesFilter.jpg)  
+![targetNodesFilter](/img/targetNodesFilter.jpg)
+  
 ##Custom buttons
-Custom buttons can be implemented in add-ons. They will execute procedures which are predefined in manifest.  
-
+The custom buttons functionality is intended for planks within Add-ons section. It can be accessed upon clicking the same-named button next to the required node:  
 ![traffic-manager](/img/traffic-manager.jpg)    
+Such buttons execute operations that are predefined within JPS manifest.
 
 Add-ons tab button here:
 ![addon tab](/img/add-on_tab.jpg)
 
 !!! note
-    > JPS should include required field `targetNodes`. In opposite case add-on will be hidden in add-ons tab after installation.  
+    > JPS manifest should the [`targetNodes`](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the add-ons section after installation. Otherwise, it will be hidden.  
 
-Button creating template:
+<b>Template</b>
+Sample to set buttons within add-on plank:
 ```
 {
   "jpsType": "update",
@@ -164,22 +167,22 @@ Button creating template:
   }
 }
 ```
-- `buttons` - buttons array 
-- `confirmText` - user custom confirm text. Default value *"Are you sure?"*. Optional   
-It will display firstly after button click action:  
+Here:
+- `buttons` - button parameters array 
+- `confirmText` *[optional]* - custom confirmation text for users. The default value is *"Are you sure?"*.   
+It will be displayed after clicking on the appropriate button for an add-on. According to the code above, the text will be:
 ![confirm](/img/confirm.jpg)      
-- `loadingText` - user custom text while loading and applying actions. Default is *"Applying..."*. Optional    
+- `loadingText` *[optional]* - UI text to be displayed during loading and applying changes. The default value i *"Applying..."*.    
 ![loadingText](/img/loadingText.jpg)      
-- `procedure` - procedure name which will be executed. Procerude's body describes in [*procedure* section](/reference/procedures/). Type is String. Required.   
-- `caption` - button title.  
+- `procedure` *[required] [string]* - name of the procedure that will be executed. Procedure body structure is described in the [*procedure* section](/reference/procedures/).   
+- `caption` - title of a button.  
 ![caption](/img/caption.jpg)   
-- `successText` - success message when action was performed successfull  
+- `successText` -  message, that appears once action is successfully performed  
 ![successText](/img/successText.jpg)     
-- `href` - external link, will open in new browser tab. It will execute if `settings` field is absent.  
-In this case `procedure` wont be executed. Optional.
-- `settings` - custom form id. Default - *main*. More details [here](/creating-templates/user-input-parameters/#custom-settings)    
+- `href` *[optional]* - external link that is opened in new browser tab; is considered only if the settings field is absent. In this case procedure will not be executed  
+- `settings` - custom form ID. The default is "main". For more details see [custom settings section](/creating-templates/user-input-parameters/#custom-settings)    
 
-Fields bellow can be enabled in case when field `settings` presents:
+The next parameters can be enabled only when the `settings` field is present:
 ```
 {
   "jpsType": "update",
@@ -209,23 +212,22 @@ Fields bellow can be enabled in case when field `settings` presents:
   }
 }
 ```
-- `title` - custom dialog title. If `title` is absent `caption` will be applied.    
-Also same value is a dialog title when option `settings` is available.
-- `submitButtonText` - button text in opened dialog. Default *Apply*   
+where  
+- `title` - custom dialog title. If absent, than `caption` will be applied.    
+- `submitButtonText` - text for submission button in the opened dialog. The default value is *Apply*   
 ![submitButtonText](/img/submitButtonText.jpg)
-- `logsPath` - visible button for showing logs in defined path  
+- `logsPath` - button for showing logs in the defined path  
 ![logsPath](/img/logsPath.jpg)
-- `logsNodeGroup` - [nodeGroup](/reference/container-types/#containers-by-groups-nodegroup) layer where logging path will be opened   
+- `logsNodeGroup` - [nodeGroup](/reference/container-types/#containers-by-groups-nodegroup) layer the logging path is opened for    
 
-##Custom menus  
-Menu is a custom action list where every action can execute different procedures by name.   
+##Custom Menus  
+Menu is an expandable list within the add-ons section comprising custom actions, that execute corresponding operations
 ![menu](/img/menu.jpg)   
-There is one default menu - Uninstall. It will call procedures from [application lavel](/reference/events/#application-level-events) if they are.  
-There are same properties list as in [Custom buttons](/creating-templates/user-input-parameters/#custom-buttons).  
+Menu list contains the Uninstall option by default. Listed actions execute the operations from [application lavel](/reference/events/#application-level-events) if there are any. Custom menus use the same properties as [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).  
 
-##Custom settings
-Settings section can include few custom forms. Default settings form id - *main*.   
-For example:  
+##Custom Settings
+The settings section can include a few custom forms. The default settings form ID is - *main*.   
+For instance:  
 ```
 {
   "jpsType": "update",
@@ -268,15 +270,15 @@ For example:
   }
 }
 ```
-While installation *main* `settings` form will show.   
+Here, the main settings form appears during installation process.   
 ![settingMain](/img/settingsMain.jpg)   
-After click button *Configure* from add-ons tab settings form *config* will show.   
+The config settings form appears after clicking the <b>Configure</b> button within the add-ons section.   
 ![settingCustom](/img/settingsCustom.jpg)   
 
 
-##Supported fields:
+##Supported Fields:
 ###string     
-Basic text field.
+The basic text field.
 ![string](/img/string.jpg)
 ```
 {
@@ -290,10 +292,11 @@ Basic text field.
   ]
 }
 ```
-- `caption` - field Label. Optional
-- `hideLabel` - boolean, hide field Label. Optional. Default *false*.
+where  
+- `caption` *[optional]* - field label.
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *false*.
 ###text   
-Multiline text field.
+The multiline text field.
 ![text](/img/text.jpg)
 ```
 {
@@ -306,10 +309,11 @@ Multiline text field.
   ]
 }
 ```
-- `caption` - field Label. Optional
-- `hideLabel` - boolean, hide field Label. Optional. Default *false*.
+where 
+- `caption` *[optional]* - field label .
+- `hideLabel`*[optional] [boolean]* - hide field Label. Optional. Default *false*.
 ###list   
-Dron-down list and single-line non editable textbox.
+The drop-down list and a single-line non editable textbox.
 ![list](/img/list.jpg)
 ```
 {
@@ -326,11 +330,12 @@ Dron-down list and single-line non editable textbox.
   ]
 }
 ```
-- `caption` - field Label. Optional
-- `values` - values object ("key":"value").
-- `hideLabel` - boolean, hide field Label. Optional. Default *false*.
+where    
+- `caption` *[optional]* - field Label.
+- `values` - object's values ("key":"value").
+- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *false*.
 ###checkbox   
-Single checkbox field.
+The single checkbox field.
 ![text](/img/checkbox.jpg)
 ```
 {
@@ -344,11 +349,12 @@ Single checkbox field.
   ]
 }
 ```
-- `caption` - field Label. Optional
-- `value` - boolean, denides enabling/disabling checkbox.
-- `hideLabel` - boolean, hide field Label. Optional. Default *false*.
+where
+- `caption` *[optional]* - field label.
+- `value` - enables or disables checkbox.
+- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *false*.
 ###checkboxlist   
-Groupping `checkbox`.
+The `checkbox` groupping.
 ![text](/img/checkboxlist.jpg)
 ```
 {
@@ -365,11 +371,12 @@ Groupping `checkbox`.
   ]
 }
 ```
-- `caption` - field Label. Optional
+where   
+- `caption` *[optional]* - field Label. Optional
 - `values` - checkboxes ("key":"value")
-- `hideLabel` - boolean, hide field Label (optional). Default *false*.
+- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *false*.
 ###radiolist   
-Groupping `radio` elements.
+The `radio` elements groupping.
 ![text](/img/radiolist.jpg)
 ```
 {
@@ -386,9 +393,10 @@ Groupping `radio` elements.
   ]
 }
 ```
-- `caption` - field Label. Optional
+where  
+- `caption` *[optional]* - field Label. Optional
 - `values` - checkboxes ("key":"value")
-- `hideLabel` - boolean, hide field Label (optional). Default *false*.
+- `hideLabel` - shows/hides field label. The default value is *false*.
 ###radio-fieldset   
 Groupping `radio` elements with available function `showIf`.    
 `hideLabel` is true always.
@@ -427,11 +435,11 @@ Groupping `radio` elements with available function `showIf`.
 }
 ```
 - `name` - required field  at `radio-fieldset` element. Non required at other elements. 
-- `default` - enabled field when form has opened. Optional.
+- `default` *[optional]* - enabled field when form has opened. Optional.
 - `values` - checkboxes ("key":"value")
 - `showIf` - conditions object for showing predefined elements by clicking to `radio-fieldset` elemets. Predefined elemets can be different.
 - `hideLabel` - boolean, hide field Label (optional). Default *false*.
-- `caption` - field Label. Optional
+- `caption` *[optional]* - field Label. Optional
 ###dockertag   
 Show docker tags in `list` element.
 ![text](/img/dockertag.jpg)

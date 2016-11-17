@@ -1,69 +1,67 @@
 # Placeholders
-Cloud Scripting supports a list of placeholders that can be used in any section of manifest file (if the section isn't strictly limited with its content).
-The executor will try to resolve all placeholders on the package installation stage.
+Cloud Scripting supports a list of placeholders that can be used in any section of the manifest file (if the section isn't strictly limited with its content).
+The executor makes attempt to resolve all placeholders on the package installation stage.
 If it's not possible placeholder will be unresolved and displayed in the text as is (e.g. ${placeholder})
 
 !!! note
-    To output all available placeholders you can use special placeholder: `${placeholders}`        
+    To output all available placeholders you can use the special placeholder: `${placeholders}`        
     See [Troubleshooting](/troubleshooting/) for more info.                                                                                         
 
-## Environment placeholders
+## Environment Placeholders
 
 - `{env.}`
-    - `${env.appid}` - application appid. String
-    - `${env.domain}` - application domain. String
-    - `${env.protocol}` - protocol. String
-    - `${env.url}` - link to application (env). String
-    - `${env.displayName}` - application display name. String
-    - `${env.envName}` - short domain name (without hoster URL). String
-    - `${env.shortdomain}` - short domain name. Alias to `envName`. String
-    - `${env.hardwareNodeGroup}` - hardware node node group. String
-    - `${env.ssl}` - env SSL status. Boolean
-    - `${env.sslstate}` env SSL state. Boolean
-    - `${env.status}` environment status. Available statuses are: 1 - running, 2 - down, 3 - launching, 4 - sleep, 6 - creating, 7 - cloning, 8 - exists. Number
-    - `${env.uid}` - user uid. Number
-    - `${env.ishaenabled}` - High availability status. Boolean
-    - `${env.ha}` - alias to `${env.ishaenabled}`. Boolean
-    - `${env.isTransferring}` - transfering status. Boolean
-    - `${env.creatorUid}` - env creator ID. Number
-    - `${env.engine.id}` - engine ID. Number
-    - `${env.engine.keyword}` - engine keyword. String
-    - `${env.engine.name}` - engine name. String
-    - `${env.engine.type}` - engine type. String
-    - `${env.engine.vcsSupport}` - vcs support status. Boolean
-    - `${env.engine.version}` - engine version. String
-    - `${env.contexts.type}` - env context type. String
-    - `${env.contexts.context}` - context name
-    - `${env.contexts.archivename}` - context display name
+    - `${env.appid} [string]` - application appid. 
+    - `${env.domain} [string]` - application domain. 
+    - `${env.protocol} [string]` - protocol. 
+    - `${env.url} [string]` - link to application (env). 
+    - `${env.displayName} [string]` - application display name. 
+    - `${env.envName} [string]` - short domain name (without hoster URL).
+    - `${env.shortdomain} [string]` - short domain name. Alias to `envName`.
+    - `${env.hardwareNodeGroup} [string]` - hardware node node group.
+    - `${env.ssl} [boolean]` - env SSL status.
+    - `${env.sslstate} [boolean]` env SSL state.
+    - `${env.status} [number]` environment status. Available statuses are: 1 - running, 2 - down, 3 - launching, 4 - sleep, 6 - creating, 7 - cloning, 8 - exists. 
+    - `${env.uid} [number]` - user uid. 
+    - `${env.ishaenabled} [boolean]` - High availability status. 
+    - `${env.ha} [boolean]` - alias to `${env.ishaenabled}`. 
+    - `${env.isTransferring} [boolean]` - transfering status. 
+    - `${env.creatorUid} [number]` - env creator ID. 
+    - `${env.engine.id} [number]` - engine ID. 
+    - `${env.engine.keyword} [string]` - engine keyword. 
+    - `${env.engine.name} [string]` - engine name. 
+    - `${env.engine.type} [string]` - engine type. 
+    - `${env.engine.vcsSupport} [boolean]` - vcs support status. 
+    - `${env.engine.version} [string]` - engine version. 
+    - `${env.contexts.type} [string]` - env context type. 
+    - `${env.contexts.context} [string]` - context name
+    - `${env.contexts.archivename} [string]` - context display name
     
 ## Node placeholders    
 - `${nodes.}`
     - `{nodes.(group)[(i)].(key)}`
     - `{nodes.(group).first.(key)}`
     - `{nodes.(group).last.(key)}`   
-    Where:
+    where:
     - `(group)` - nodes group ([nodeGroup](/creating-templates/selecting-containers/#all-containers-by-group) or [nodeType](/creating-templates/selecting-containers/#all-containers-by-type))
-    - `(i)` - an index of node, starting from 0
-    - `(key)` - parameter name   
-    ...  
-    **`key` available values**:    
-        - `address` - internal(external) IP address     
+    - `(i)` - index of node, starting from 0
+    - `(key)` - parameter name according to the following list:   
+        - `address` - internal or external IP address     
         - `adminUrl` - full URL address with protocol   
-        - `canBeExported` - boolean value. Jelastic [Export](https://docs.jelastic.com/environment-export-import) feature   
+        - `canBeExported [boolean]` - Jelastic [Export](https://docs.jelastic.com/environment-export-import)   
         - `diskIopsLimit` - IOPS limitation quota   
         - `diskLimit` - hardware node disk space quota   
-        - `fixedCloudlets` - set fixed cloudlets   
-        - `flexibleCloudlets` - set flexible cloudlets   
-        - `id` - ID node   
+        - `fixedCloudlets` - fixed cloudlets number   
+        - `flexibleCloudlets` - flexible cloudlets number    
+        - `id` - node ID   
         - `intIP` - internal IP address   
         - `isClusterSupport`    
-        - `isExternalIpRequired` - status requiring external IP address   
+        - `isExternalIpRequired` - status, that node require external IP address   
         - `isResetPassword` - enable to reset service password    
         - `isWebAccess`   
         - `ismaster` - master node's status in the [`nodeGroup`](/reference/container-types/#containers-by-group)(layer)   
         - `maxchanks`   
         - `name` - stack name   
-        - `nodeGroup` - nodes layer (lb, cp, sqldb, nosqldb, cache, extra(for docker-based))   
+        - `nodeGroup` - nodes layer, i.e. lb, cp, sqldb, nosqldb, cache, storage extra(for Docker container)   
         - `nodeType` -  stacks [nodeType](/reference/container-types/#nodetype-values) list  
         - `nodemission` - deprecated value. Same as `nodeGroup`   
         - `osType` - OS type (LINUX)   
@@ -73,29 +71,29 @@ If it's not possible placeholder will be unresolved and displayed in the text as
         - `url` - full URL address with protocol   
         - `version` - stack version   
         - `engines`(for compute nodes):  
-            - `id` - engine ID at platform  
-            - `keyword` - engine keyword (java7, php7.0)  
-            - `name` - full engine name (Java 8, PHP 7)  
-            - `type` - engine type  (java, php,ruby, python, nodejs)  
+            - `id` - engine ID at the platform  
+            - `keyword` - engine keyword ( e.g. java7, php7.0)  
+            - `name` - full engine name (e.g. Java 8, PHP 7)  
+            - `type` - engine type  (e.g. java, php,ruby, python, nodejs)  
             - `vcsSupport` - supporting VCS in container  
             - `version` - engine version  
         - `activeEngine`(current engine in container):  
-            - `id` - engine ID at platform   
-            - `keyword` - engine keyword (java7, php7.0)  
-            - `name` - full engine name (Java 8, PHP 7)  
-            - `type` - engine type  (java, php,ruby, python, nodejs)  
+            - `id` - engine ID at the platform   
+            - `keyword` - engine keyword ( e.g. java7, php7.0)  
+            - `name` - full engine name (e.g. Java 8, PHP 7)  
+            - `type` - engine type  (e.g. java, php,ruby, python, nodejs)  
             - `vcsSupport` - supporting VCS in container  
             - `version` - engine version   
     
-In case when few nodes are available in one `nodeGroup` you can execute actions in one of them.
+In case a few nodes are available within `nodeGroup`, you can execute actions in one of them.
 For example:    
-- `{nodes.cp[1].address}` - IP address of a second compute node  
-- `{nodes.bl.first.address}` - First IP address of balancer node in `nodeGroup` array  
-- `{nodes.db.last.address}` - Last IP address of compute node     
+- `{nodes.cp[1].address}` - IP address of the a second compute node  
+- `{nodes.bl.first.address}` - first IP address of a balancer node in the `nodeGroup` array  
+- `{nodes.db.last.address}` - last IP address of a compute node     
   
   
-## File path placeholders
-
+## File Path Placeholders
+These values can be different depending on the chosen [nodeType](/reference/container-types/#nodetype-values):
 - `${HOME}` - for `couchdb`, `glassfish3`, `jetty6`, `nginx-ruby`, `nginx`, `nginxphp`, `tomcat6`,`tomcat7`, `tomee`
 - `${WEBAPPS}` - for `apache2-ruby`, `apache2`, `jetty6`,`nginx-ruby`, `nginxphp`,`nodejs`,`tomcat6`, `tomcat7`,`tomee`
 - `${JAVA_HOME}` - for `glassfish3`, `jetty6`, `maven3`,`tomcat6`,`tomcat7`,`tomee`
@@ -111,9 +109,8 @@ For example:
 - `${SERVER_BACKUP}` - for `couchdb`, `mariadb`, `mariadb10`, `mongodb`, `mysql5`, `postgres8`, `postgres9`
 - `${SERVER_LIBS}` - for `apache2`, `glassfish3`, `jetty6`, `nginxphp`,`tomcat6`,`tomcat7`, `tomee`
 - `${SERVER_DATA}` - for `postgres8`, `postgres9`     
-This values can be different depending to chosen [nodeType](/reference/container-types/#nodetype-values).
 
-Also you can use this placeholders with defined `nodeType`. Examples:   
+You can use the following placeholders, as well, with a defined `nodeType`. For example:   
 - `${glassfish3.HOME}` - /opt/glassfish3/temp  
 - `${jetty6.JAVA_HOME}` - /usr/java/latest  
 - `${mariadb10.SERVER_BACKUP}` - /var/lib/jelastic/backup  
@@ -124,9 +121,9 @@ Also you can use this placeholders with defined `nodeType`. Examples:
 - `${mysql5.SYSTEM_ETC}` - /etc  
 - `${nginx-ruby.SERVER_WEBROOT}` - /var/www/webroot  
 - `${nginx.SERVER_CONF_D}` - /etc/nginx/conf.d      
-Full list native `nodeType` [here](/reference/container-types/#native-jelastic-nodetypes).
+Explore [the full list](/reference/container-types/#native-jelastic-nodetypes) of the native `nodeType`.
 
-**Single placeholders list**:   
+The single placeholders list:   
 - `${nginxphp.NGINX_CONF}` - /etc/nginx/nginx.conf  
 - `${postgresql.POSTGRES_CONF}` - /var/lib/pgsql/data  
 - `${mysql5.MYSQL_CONF}` - /etc  
@@ -136,18 +133,18 @@ Full list native `nodeType` [here](/reference/container-types/#native-jelastic-n
 - `${nginxphp.PHP_MODULES}` - /usr/lib64/php/modules  
 - `${nginxphp.WEBROOT}` - /var/www/webroot  
 
-## Account information                                                                                                                                       
-- `${user.uid}` - user ID at Jelastic platform
+## Account Information                                                                                                                                       
+- `${user.uid}` - user ID at the Jelastic platform
 - `${user.email}` - user email address
-- `${user.appPassword}` - random value. Can be used to set application passwords
+- `${user.appPassword}` - random value that can be used to set application passwords
 - `${user.name}` - email address value. Same as `${user.email}`
 
-## Input parameters
-- `${settings.jelastic_email}` - user email. Always is predefined.
-- `${settings.key}` - `key` - name of application setting. This placeholder will be defined if you use user input parameters in your manifest.
-After preparing custom user form placeholders will be defined by fields name. 
+## Input Parameters
+- `${settings.jelastic_email}` - user email that is always predefined.
+- `${settings.key}` - where key is a name of application setting. The placeholder is defined in case user input parameters are specified within a manifest.   
+After preparing custom user form, the placeholder is defined by the field’s name. 
 
-For Example:
+For instance:
 ```example
 {
   "jpsType": "update",
@@ -165,12 +162,12 @@ For Example:
 }
 ```
 Placeholder's name is `${settings.customName}`.   
-User defined fields list [here](/creating-templates/user-input-parameters/).
+Explore [the list of the fields](/creating-templates/user-input-parameters/) defined by a user.
 
  
-## Procedure placeholders
-- `${this.param}` - `param` - name of a procedure parameter.
-Examples:
+## Procedure Placeholders
+- `${this.param}` - where *param* is a name of the procedure parameter.
+For example:
 ```
 {
   "executeScript": [
@@ -184,7 +181,7 @@ Examples:
   ]
 }
 ```
-Passing custom params in procedure:
+Passing custom params to the procedure is performed in the following way:
 ```
 {
 	"jpsType": "update",
@@ -209,20 +206,19 @@ Passing custom params in procedure:
 	}
 }
 ```
-As a result, in console will be printed `1` - custom parameter from `${this.first}` placeholder.
+As a result, a console will display the first (1) custom parameter from `${this.first}` placeholder.
  
-## Event placeholders
-- `${event.params.(key)}` - `key` - event name parameter
-- `${event.response.(key)}` - key` - event name response parameter 
-Detailed placeholders list [here](/reference/events/)
+## Event Placeholders
+- `${event.params.(key)}` - where key is an event name parameter
+- `${event.response.(key)}` -where key is an event name response parameter. [See the full event placeholders list](/reference/events/).
 
-## UI placeholders
-- `${user.uid}` - user ID at Jelastic platform
+## UI Placeholders
+- `${user.uid}` - user ID at the Jelastic platform
 - `${user.email}` - user email address
 - `${env.domain}` - full domain name without protocol
-- `${env.appid}` - unique enviroment appid at Jelastic platform
+- `${env.appid}` - unique environment appid at the Jelastic platform
 
-Example: 
+For instance: 
 
 ```example
 {
@@ -242,8 +238,8 @@ Example:
 }
 ```
 
-##Custom global placeholders
-User defined placeholders can be predefined via **globals declaration**. It will define before install manifest.  
+##Custom Global Placeholders
+User defined placeholders can be predefined via <b>globals declaration</b>. The corresponding declaration is performed in advance of the manifest installation.  
 For example:
 ```
 {
@@ -259,17 +255,17 @@ For example:
 }
 ```
 
-The result is created new placeholders:
+As a result, the new placeholders are created:
 ```
 {
   "globals.value1": 1,
   "globals.value2": 2
 }
 ```
-##Function placeholders
-Injected functions inside Cloud Scripting. There are a list of available functions:   
+##Function Placeholders
+The integrated functions inside Cloud Scripting are listed below:   
 
-- `${fn.password}` - random value consists in upper and lower cases. Default length is 10.
+- `${fn.password}` - random value consists within the upper and lower cases. The default length value is *10*.
 Length can be passed as `${fn.password(max value)}`.   
 - `${fn.base64}` - base64 encoding passed value.  
 ```
@@ -280,10 +276,10 @@ ${fn.base64(value)}
 ${fn.md5(value)}
 ```
 - `${fn.uuid}` - generates new Universally Unique Identifier.     
-- `${fn.random}` - random value. Default length - 7 digits.  
- One or two values can be passed optionally:
-    - `${fn.random(max)}` - random value to max value inclusively.
-    - `${fn.random(min,max)}` - random value between min and max values inclusively 
+- `${fn.random}` - random value within the default length comprising 7 digits.  
+One or two values can be passed optionally:
+    - `${fn.random(max)}` - random value to maximum value inclusively.
+    - `${fn.random(min,max)}` - random value between minimum and maximum values inclusively 
 
 Functions without required parameters have two input forms:
 
@@ -295,7 +291,7 @@ Function parameter canbe passed from existing placeholders. For example:
 - `${fn.md5([fn.random])}` - md5 encoding random password   
 - `${fn.base64([user.email])}` - base64 encoding user email address  
 
-At once easy to define function placeholders in [global variables](#/reference/placeholders/#global-variables).
+You can easily define function placeholders within the [cutom global placeholders](#/reference/placeholders/#global-variables).  
 For example:
 ```
 {
@@ -306,26 +302,26 @@ For example:
 ```
 Now You can use `${global.pass}` within the entire manifest.
 
-##Array placeholders
+##Array Length
 
-Any array has a list of specific placeholders: first and last array elements, array length, elements by index in array.
+Any array has a list of specific placeholders, they are the array length, elements by index in the array and the first and the last array elements.   
 
 **Array length**
-Any placeholder array length can be defined in manifest. For example:
+Any array length placeholder can be defined within a manifest. For example:
 ```
 ${nodes.cp.length},
 ${nodes.bl.extips.length}
 ```
 
 **Element by id in array**    
-Every element has an index in array. For example:   
+Every element has an index in the array. For example:   
 `{nodes.cp[(i)].(key)}`   
 where   
 - `i` - array index   
-- `key` - node parameter. Details about node parameters [here](#/reference/placeholders/#node-placeholders)   
+- `key` - node parameter. See the details about [node parameters](#/reference/placeholders/#node-placeholders)   
 
 **First or last array elements**   
-`{nodes.cp.first.(key)}` -  array element with index 0   
+`{nodes.cp.first.(key)}` -  array element with the index *0*   
 `{nodes.sqldb.last.(key)}` - array element with last array index   
 where   
 - `key` - node parameter.   
