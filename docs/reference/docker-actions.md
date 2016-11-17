@@ -1,15 +1,15 @@
-#Volumes
+#Docker Actions
 
-Docker actions include such actions as docker `volumes` `links` and `environment variables`.
-
+Specific Cloud Scripting actions for Docker containers include operations of volumes, links and environment variables management.
+<br>
 ##Volumes
 
-There are three fields provided to set docker `volumes`:  
-- `volumes` - volumes list  
-- `volumeMounts` - mount configs  
-- `volumesFrom` - node list where volumes will be imported  
+There are three available parameters to set Docker `volumes`:  
+- `volumes` - list   of the volume paths   
+- `volumeMounts` - mount configurations  
+- `volumesFrom` - list of nodes the volumes are importedfrom    
 
-All fields set in docker object:
+All of the fields are set within the Docker object:
 ```
 {
   "env": {
@@ -29,8 +29,8 @@ All fields set in docker object:
   }
 }
 ```
-where    
-- field `volumes` is an string array:
+where:    
+- field `volumes` is a string array:
 ```
 [
   {
@@ -44,8 +44,8 @@ where
 ]
 ```
 
-##volumeMounts
-`volumeMounts` is an object. It can be set like example below:
+###volumeMounts
+`volumeMounts`parameter is an object. It can be set like within the example below:
 ```
 {
   "volumeMounts": {
@@ -59,14 +59,15 @@ where
   }
 }
 ```
-where  
-- */example-path* - volume path  
-- `sourcePath` - optional parameter. Default value - volume path. (*/example-path* in this example)   
-- `sourceNodeId` - any available user node. Optinal in case of using `sourceNodeGroup`    
-- `sourceHost` - only for external mounts. Optional.   
-- `readOnly` - default value *false*   
-- `sourceNodeGroup` - any avaliable `nodeGroup` in environment. Volumes will be defined by master node. Optional in case of using `sourceNodeId`.   
-In case using not full source node volumes list `volumes` can be added.
+Here:  
+- */example-path* - path to place the volume at a target node  
+- `sourcePath [optional]` - the default value repeats volume path (*/example-path* in our sample)   
+- `sourceNodeId` -  node identifier the volume should be mounted from (optional in case of the `sourceNodeGroup` parameter using)  
+- `sourceHost [optional]` - parameter for <u>external mounts</u> usage  
+- `readOnly` - defines write data permissions at source node; the default value is `false`   
+- `sourceNodeGroup` - any available nodeGroup within source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.    
+
+In case not all source node volumes are required to be mounted, the particular ones can be specified:
 ```
 [
   {
@@ -79,9 +80,11 @@ In case using not full source node volumes list `volumes` can be added.
 ]
 ```
 
-###volumeMounts examples   
+####volumeMounts examples   
  
-**Master node mount:**
+**Master Node Mount:**
+
+Samples to mount a particular volume by exact node identifier & path (*/master*), and to mount all volumes from the layer master node by nodeGroup (*/master-1*)
 ```
 {
   "volumeMounts": {
@@ -97,7 +100,12 @@ In case using not full source node volumes list `volumes` can be added.
 }
 ```
 
+Here, *sourcePath* and *readOnly* parameters are optional.
+
 **Mount Data Container**
+<br>
+Samples to mount all volumes from a particular node by exact node identifier & path (*/node*) and to mount master node volumes by nodeGroup type (*/data*)
+
 ```
 {
   "volumeMounts": {
@@ -111,7 +119,9 @@ In case using not full source node volumes list `volumes` can be added.
 }
 ```
 
-**External Server mounts**
+**External Server Mounts**
+<br>
+Sample to mount a volume (*/external*) from external server by indicating its host (`sourceHost`), path (`sourcePath`) and access permissions (`readOnly`).
 ```
 {
   "volumeMounts": {
@@ -123,7 +133,9 @@ In case using not full source node volumes list `volumes` can be added.
   }
 }
 ```
-**Short set for External Server**
+**Short Set for External Server**
+<br>
+Sample to mount a number of volumes from external server by specifying the required parameters (i.e. volume path, `sourceHost`, `sourcePath`, access permissions ) for each of them within a one string.   
 ```
 {
   "volumeMounts": {
@@ -134,6 +146,8 @@ In case using not full source node volumes list `volumes` can be added.
   }
 }
 ```
+
+Here, “ro” stands for *readOnly* permissions.
 
 <!--
 ##volumesFrom
@@ -179,9 +193,10 @@ where:
 - *"storage:ro"* - like { sourceNodeGroup : "storage", readOnly : true }
 -->
 
-#Docker environment variables
+##Docker Environment Variables
 
-The `env` instruction sets the environment variable <key> to the value <value>. Optional object
+[Docker environment variable](https://docs.jelastic.com/docker-variables) is an optional topology object. The env instruction allows to set the required environment variables to specified values. 
+
 ```
 {
   "env": {
@@ -203,8 +218,11 @@ The `env` instruction sets the environment variable <key> to the value <value>. 
 }
 ```
 
-##Docker links
-Connect to any number of docker container without the need to expose container's internal ports to the outside world.
+##Docker Links
+
+[Docker links](https://docs.jelastic.com/docker-links) option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
+<br>
+The example below illustrates the way to link sql and memcached nodes to cp container.
 ```
 [
   {
@@ -237,14 +255,14 @@ Connect to any number of docker container without the need to expose container's
   }
 ]
 ```
-where   
-- `links` - an object where discribes nodes to link between `cp` node by their `nodeGroup`. Links is an links array between nodes;    
-- `db` - mysql5 node's' nodeGroup;   
-- `memecached` - memecached node's  `nodeGroup`.   
+where:   
+- `links` - an object that defines nodes to be linked to `cp` node by their `nodeGroup` and these links names;    
+- `db` - MYSQL server `nodeGroup` (environment layer);  
+- `memcached` - Memcached server `nodeGroup` (environment layer)   
 
-So all environment variables from `db` and `memcached` nodes available in `cp` container.  
+As a result, all environment variables within `db` and `memcached` nodes will be also available at `cp` container.  
  
-Environment variables in linked nodes have names as it has predefined in `links` array. 
-For example,  
+Here, environment variables of linked nodes will have the names, predefined within `links` array.   
+For example:  
 - variable *MYSQL_ROOT_PASSWORD* from `sql` node is *DB_MYSQL_ROOT_PASSWORD* in `cp` node.   
 - variable *IP_ADDRESS* from `memcached` node is *MEMCACHED_IP_ADDRESS* in `cp` node.
