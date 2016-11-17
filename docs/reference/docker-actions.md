@@ -5,7 +5,7 @@ Specific Cloud Scripting actions for Docker containers include operations of *vo
 ##Volumes
 
 There are three available parameters to set Docker `volumes`:  
-- `volumes` - list   of the volume paths   
+- `volumes` - list of volume paths   
 - `volumeMounts` - mount configurations  
 - `volumesFrom` - list of nodes the volumes are imported from    
 
@@ -29,8 +29,8 @@ All of the fields are set within the Docker object:
   }
 }
 ```
-where:    
-- field `volumes` is a string array:
+###Volumes  
+This field represents a string array:  
 ```
 [
   {
@@ -44,8 +44,8 @@ where:
 ]
 ```
 
-###volumeMounts
-`volumeMounts`parameter is an object. It can be set like within the example below:
+###VolumeMounts   
+This parameter is an object. It can be set like within the example below:    
 ```
 {
   "volumeMounts": {
@@ -80,10 +80,9 @@ In case not all source node volumes are required to be mounted, the particular o
 ]
 ```
 
-####volumeMounts examples   
+####VolumeMounts examples   
  
-**Master Node Mount:**
-
+**Master Node Mount:**   
 Samples to mount a particular volume by exact node identifier & path (*/master*), and to mount all volumes from the layer master node by *nodeGroup* (*/master-1*)
 ```
 {
@@ -102,7 +101,7 @@ Samples to mount a particular volume by exact node identifier & path (*/master*)
 
 Here, *sourcePath* and *readOnly* parameters are optional.
 
-**Mount Data Container**
+**Mount Data Container:**
 <br>
 Samples to mount all volumes from a particular node by exact node identifier & path (*/node*) and to mount master node volumes by *nodeGroup* type (*/data*)
 
@@ -119,7 +118,7 @@ Samples to mount all volumes from a particular node by exact node identifier & p
 }
 ```
 
-**External Server Mounts**
+**External Server Mounts:**
 <br>
 Sample to mount a volume (*/external*) from external server by indicating its host (`sourceHost`), path (`sourcePath`) and access permissions (`readOnly`).
 ```
@@ -133,7 +132,7 @@ Sample to mount a volume (*/external*) from external server by indicating its ho
   }
 }
 ```
-**Short Set for External Server**
+**Short Set for External Server:**
 <br>
 Sample to mount a number of volumes from external server by specifying the required parameters (i.e. volume path, `sourceHost`, `sourcePath`, access permissions) for each of them within a one string.   
 ```
@@ -256,13 +255,13 @@ The example below illustrates the way to link *sql* and *memcached* nodes to cp 
 ]
 ```
 where:   
-- `links` - an object that defines nodes to be linked to `cp` node by their `nodeGroup` and these links names.    
+- `links` - an object that defines nodes to be linked to *cp* node by their *nodeGroup* and these links names.    
 - `db` - MYSQL server `nodeGroup` (environment layer)  
 - `memcached` - Memcached server `nodeGroup` (environment layer)   
 
-As a result, all the environment variables within `db` and `memcached` nodes will be also available at `cp` container.  
+As a result, all the environment variables within *db* and *memcached* nodes will be also available at *cp* container.  
  
 Here, environment variables of linked nodes will have the names, predefined within `links` array.   
 For example:  
-- variable *MYSQL_ROOT_PASSWORD* from `sql` node is *DB_MYSQL_ROOT_PASSWORD* in `cp` node   
-- variable *IP_ADDRESS* from `memcached` node is *MEMCACHED_IP_ADDRESS* in `cp` node
+- variable *MYSQL_ROOT_PASSWORD* from *sql* node is *DB_MYSQL_ROOT_PASSWORD* in *cp* node   
+- variable *IP_ADDRESS* from *memcached* node is *MEMCACHED_IP_ADDRESS* in *cp* node
