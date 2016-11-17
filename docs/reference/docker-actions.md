@@ -1,13 +1,13 @@
 #Docker Actions
 
-Specific Cloud Scripting actions for Docker containers include operations of volumes, links and environment variables management.
+Specific Cloud Scripting actions for Docker containers include operations of *volumes*, *links* and *environment variables* management.
 <br>
 ##Volumes
 
 There are three available parameters to set Docker `volumes`:  
 - `volumes` - list   of the volume paths   
 - `volumeMounts` - mount configurations  
-- `volumesFrom` - list of nodes the volumes are importedfrom    
+- `volumesFrom` - list of nodes the volumes are imported from    
 
 All of the fields are set within the Docker object:
 ```
@@ -60,12 +60,12 @@ where:
 }
 ```
 Here:  
-- */example-path* - path to place the volume at a target node  
+- `/example-path` - path to place the volume at a target node  
 - `sourcePath [optional]` - the default value repeats volume path (*/example-path* in our sample)   
 - `sourceNodeId` -  node identifier the volume should be mounted from (optional in case of the `sourceNodeGroup` parameter using)  
-- `sourceHost [optional]` - parameter for <u>external mounts</u> usage  
+- `sourceHost [optional]` - parameter for <u>[external mounts](https://docs.jelastic.com/configure-external-nfs-server)</u> usage  
 - `readOnly` - defines write data permissions at source node; the default value is `false`   
-- `sourceNodeGroup` - any available nodeGroup within source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.    
+- `sourceNodeGroup` - any available *nodeGroup* within source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.    
 
 In case not all source node volumes are required to be mounted, the particular ones can be specified:
 ```
@@ -84,7 +84,7 @@ In case not all source node volumes are required to be mounted, the particular o
  
 **Master Node Mount:**
 
-Samples to mount a particular volume by exact node identifier & path (*/master*), and to mount all volumes from the layer master node by nodeGroup (*/master-1*)
+Samples to mount a particular volume by exact node identifier & path (*/master*), and to mount all volumes from the layer master node by *nodeGroup* (*/master-1*)
 ```
 {
   "volumeMounts": {
@@ -104,7 +104,7 @@ Here, *sourcePath* and *readOnly* parameters are optional.
 
 **Mount Data Container**
 <br>
-Samples to mount all volumes from a particular node by exact node identifier & path (*/node*) and to mount master node volumes by nodeGroup type (*/data*)
+Samples to mount all volumes from a particular node by exact node identifier & path (*/node*) and to mount master node volumes by *nodeGroup* type (*/data*)
 
 ```
 {
@@ -135,7 +135,7 @@ Sample to mount a volume (*/external*) from external server by indicating its ho
 ```
 **Short Set for External Server**
 <br>
-Sample to mount a number of volumes from external server by specifying the required parameters (i.e. volume path, `sourceHost`, `sourcePath`, access permissions ) for each of them within a one string.   
+Sample to mount a number of volumes from external server by specifying the required parameters (i.e. volume path, `sourceHost`, `sourcePath`, access permissions) for each of them within a one string.   
 ```
 {
   "volumeMounts": {
@@ -147,7 +147,7 @@ Sample to mount a number of volumes from external server by specifying the requi
 }
 ```
 
-Here, “ro” stands for *readOnly* permissions.
+Here, *ro* stands for *readOnly* permissions.
 
 <!--
 ##volumesFrom
@@ -195,7 +195,7 @@ where:
 
 ##Docker Environment Variables
 
-[Docker environment variable](https://docs.jelastic.com/docker-variables) is an optional topology object. The env instruction allows to set the required environment variables to specified values. 
+[Docker environment variable](https://docs.jelastic.com/docker-variables) is an optional topology object. The *env* instruction allows to set the required environment variables to specified values. 
 
 ```
 {
@@ -222,7 +222,7 @@ where:
 
 [Docker links](https://docs.jelastic.com/docker-links) option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
 <br>
-The example below illustrates the way to link sql and memcached nodes to cp container.
+The example below illustrates the way to link *sql* and *memcached* nodes to cp container.
 ```
 [
   {
@@ -256,13 +256,13 @@ The example below illustrates the way to link sql and memcached nodes to cp cont
 ]
 ```
 where:   
-- `links` - an object that defines nodes to be linked to `cp` node by their `nodeGroup` and these links names;    
-- `db` - MYSQL server `nodeGroup` (environment layer);  
+- `links` - an object that defines nodes to be linked to `cp` node by their `nodeGroup` and these links names.    
+- `db` - MYSQL server `nodeGroup` (environment layer)  
 - `memcached` - Memcached server `nodeGroup` (environment layer)   
 
-As a result, all environment variables within `db` and `memcached` nodes will be also available at `cp` container.  
+As a result, all the environment variables within `db` and `memcached` nodes will be also available at `cp` container.  
  
 Here, environment variables of linked nodes will have the names, predefined within `links` array.   
 For example:  
-- variable *MYSQL_ROOT_PASSWORD* from `sql` node is *DB_MYSQL_ROOT_PASSWORD* in `cp` node.   
-- variable *IP_ADDRESS* from `memcached` node is *MEMCACHED_IP_ADDRESS* in `cp` node.
+- variable *MYSQL_ROOT_PASSWORD* from `sql` node is *DB_MYSQL_ROOT_PASSWORD* in `cp` node   
+- variable *IP_ADDRESS* from `memcached` node is *MEMCACHED_IP_ADDRESS* in `cp` node
