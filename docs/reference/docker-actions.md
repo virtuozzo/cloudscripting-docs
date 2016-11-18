@@ -80,7 +80,7 @@ In case not all source node volumes are required to be mounted, the particular o
 ]
 ```
 
-####VolumeMounts examples   
+####*VolumeMounts* examples   
  
 **Master Node Mount:**   
 Samples to mount a particular volume by exact node identifier & path (*/master*), and to mount all volumes from the layer master node by *nodeGroup* (*/master-1*)
@@ -146,7 +146,7 @@ Sample to mount a number of volumes from external server by specifying the requi
 }
 ```
 
-Here, *ro* stands for *readOnly* permissions.
+Here, "*ro*" stands for *readOnly* permissions.
 
 <!--
 ##volumesFrom
@@ -221,7 +221,7 @@ where:
 
 [Docker links](https://docs.jelastic.com/docker-links) option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
 <br>
-The example below illustrates the way to link *sql* and *memcached* nodes to cp container.
+The example below illustrates the way to link *sql* and *memcached* nodes to *cp* container.
 ```
 [
   {
