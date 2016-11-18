@@ -56,7 +56,7 @@ Available for all nodes types.
   ]
 }
 ```
-where: 
+where:  
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for which the action should be executed.     
 One of these parameters is required. See [Selecting containers for your actions](#selecting-containers-for-your-actions).    
 - `commands` - a set of commands that are executed. Its value is wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**.     
