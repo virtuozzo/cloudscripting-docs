@@ -56,7 +56,7 @@ Available for all nodes types.
   ]
 }
 ```
-where 
+where: 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for which the action should be executed.     
 One of these parameters is required. See [Selecting containers for your actions](#selecting-containers-for-your-actions).    
 - `commands` - a set of commands that are executed. Its value is wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**.     
@@ -160,7 +160,7 @@ Available for all node types: ( except for *Docker* containers and *Elastic VPS*
   ]
 }
 ```
-where  
+where:  
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. 
 
 ### Unpack
@@ -179,7 +179,7 @@ Available for all node types (except for *Docker* and *Elastic VPS*)
   ]
 }
 ```
-where   
+where:   
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.    
 - `sourcePath`    
@@ -200,7 +200,7 @@ Available for all node types (except for *Docker* and *Elastic VPS*)
   ]
 }
 ```
-where   
+where:   
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.    
 - `path` 
@@ -220,7 +220,7 @@ Available for all node types (except for *Docker* containers and *Elastic VPS*)
   ]
 }
 ```
-where  
+where:  
 - `nodeId`, `nodGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.    
 - `path` 
@@ -241,7 +241,7 @@ Available for all node types (except for *Docker* containers and *Elastic VPS*)
   ]
 }
 ```
-where  
+where:  
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers  for the action to be executed.
  One of these three parameters is required.    
 - `path`    
@@ -263,7 +263,7 @@ Available for all node types (except for *Docker* containers and *Elastic VPS*)
   ]
 }
 ```
-where   
+where:   
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.    
 - `path`    
@@ -288,7 +288,7 @@ Available for node types (except for *Docker* containers and *Elastic VPS*)
   ]
 }
 ```
-where   
+where:   
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers for the action to be executed.
 One of these three parameters is required.     
 - `path`    
@@ -359,7 +359,7 @@ Available for all node types
   ]
 }
 ```
-where   
+where:   
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.
 
@@ -377,7 +377,7 @@ Available for all node types (except for *Docker* containers and *Elastic VPS*)
   ]
 }
 ```
-where  
+where:  
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed.
  One of these three parameters is required.    
  - `count` - nodes total count after action will be finished
@@ -396,7 +396,7 @@ Available for node types
   ]
 }
 ```
-where  
+where:  
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.    
 - `enabled` - parameter that allows to attach or deatach external IP address
@@ -414,7 +414,7 @@ Available for all node types (except for *Elastic VPS*)
   ]
 }
 ```
-where   
+where:   
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.
 
@@ -431,7 +431,7 @@ Available for all node types
   ]
 }
 ```
-where   
+where:   
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
  One of those three parameters is required.
  
@@ -448,7 +448,7 @@ Available for compute node types (except for *Docker* containers)
   ]
 }
 ```
-where  
+where:  
 - `name`    
 - `fileName`    
 - `type` - context type within the following possible values:    
@@ -480,7 +480,7 @@ Available node types: SQL Databases (except for *Docker* containers)
   ]
 }
 ```
-where   
+where:   
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determines containers on for the action to be executed.
 **Default**: `nodeGroup` equals to `sqldb`.    
 - `loginCredentials`    
@@ -536,7 +536,7 @@ Available Nodes: SQL Databases (except for *Docker* containers)
   ]
 }
 ```
-where  
+where:  
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determines containers for the action to be executed.
 By **default**: `nodeGroup` equals to `sqldb`.    
 - `databaseName` - name of the database for patch to be applied    
@@ -582,7 +582,7 @@ Or:
   ]
 }
 ```
-where   
+where:   
 - `script` - script body or a link to such a script body    
 - `type` *[optional]* - script type with the following possible values:    
     - `js`    
@@ -618,7 +618,7 @@ By **default** is: *js*
   ]
 }
 ```
-where  
+where:  
 - `id` - an extension ID from the marketplace or from the `addons` section in the manifest
 
 <!-- add example -->

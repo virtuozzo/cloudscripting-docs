@@ -169,7 +169,7 @@ The main iterable object is *ForEach*. Its map:
   "this": {}
 }
 ```
-where    
+where:    
 - `settings [optional]` - fields values predefined within a [user setting form](http://docs.cloudscripting.com/creating-templates/user-input-parameters/)   
 - `license [optional]` - link to fetch parameters specified within [prepopulate](http://docs.cloudscripting.com/creating-templates/user-input-parameters/) custom script. It enables to customize default field values and can be further initialized through [placeholders](http://docs.cloudscripting.com/reference/placeholders/) `$(license.{any_name}` within a manifest.   
 - `event [optional]` - object entity with [event](http://docs.cloudscripting.com/reference/events/) parameters.  Can be of two types that allows initiation of a particular [action](http://docs.cloudscripting.com/reference/actions/) before and after event execution   
@@ -190,7 +190,7 @@ Iteration can be executed by `env.nodes`, `nodes`, `env.contexts` and `env.extdo
   ]
 }
 ```
-where    
+where:    
 - `@i` - default iterator name
 
 ```
@@ -206,7 +206,7 @@ where
   ]
 }
 ```
-where  
+where:  
 - `env.contexts` -  list of contexts (applications) deployed to environment    
 - `env.extdomains` - bound external domains 
 
@@ -275,7 +275,7 @@ As a result of *execCmd*, compute nodes internal IP addresses are rewritten with
   }
 }
 ```
-where   
+where:   
 - `@cp [optional]` - custom iterator name
 
 Custom iterator name can be used for nesting cycles one into another:
@@ -295,7 +295,7 @@ Custom iterator name can be used for nesting cycles one into another:
   ]
 }
 ```
-where   
+where:   
 - `@` iterator number
 
 In this case every environment node will have only one conjunction by node ID.
