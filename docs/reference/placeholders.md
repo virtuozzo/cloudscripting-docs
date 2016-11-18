@@ -93,22 +93,22 @@ For example:
   
   
 ## File Path Placeholders
-These values can be different depending on the chosen [nodeType](/reference/container-types/#nodetype-values):
-- `${HOME}` - for `couchdb`, `glassfish3`, `jetty6`, `nginx-ruby`, `nginx`, `nginxphp`, `tomcat6`,`tomcat7`, `tomee`
-- `${WEBAPPS}` - for `apache2-ruby`, `apache2`, `jetty6`,`nginx-ruby`, `nginxphp`,`nodejs`,`tomcat6`, `tomcat7`,`tomee`
-- `${JAVA_HOME}` - for `glassfish3`, `jetty6`, `maven3`,`tomcat6`,`tomcat7`,`tomee`
-- `${JAVA_LIB}` - for `tomcat6`,`tomcat7`
+These values can be different depending on the chosen [nodeType](/reference/container-types/#nodetype-values):    
+- `${HOME}` - for `couchdb`, `glassfish3`, `jetty6`, `nginx-ruby`, `nginx`, `nginxphp`, `tomcat6`,`tomcat7`, `tomee`    
+- `${WEBAPPS}` - for `apache2-ruby`, `apache2`, `jetty6`,`nginx-ruby`, `nginxphp`,`nodejs`,`tomcat6`, `tomcat7`,`tomee`    
+- `${JAVA_HOME}` - for `glassfish3`, `jetty6`, `maven3`,`tomcat6`,`tomcat7`,`tomee`    
+- `${JAVA_LIB}` - for `tomcat6`,`tomcat7`    
 - `${SYSTEM_CRON}` - for all native `nodeType`   
-- `${SYSTEM_ETC}`- for all `nodeType`
+- `${SYSTEM_ETC}`- for all `nodeType`    
 - `${SYSTEM_KEYS}` - for all native `nodeType`   
-- `${SERVER_CONF}` - for `apache2`, `glassfish3`, `jetty6`,`maven3`,`tomcat6`, `tomcat7`, `tomee`
-- `${SERVER_CONF_D}` - for `apache2`, `memcached`,`nginx`, `nginxphp`
-- `${SERVER_MODULES}` - for `apache2`, `glassfish3`, `jetty6`,`nginxphp`,`tomcat6`,`tomcat7`,`tomee`
-- `${SERVER_SCRIPTS}` - for `couchdb`, `mariadb`, `mariadb10`, `mongodb`, `mysql5`,`postgres8`, `postgres9`
-- `${SERVER_WEBROOT}` - for `apache2-ruby`, `apache2`, `jetty6`,`nginx-ruby`,`nginxphp`, `nodejs`,`tomcat6`,`tomcat7`, `tomee`
-- `${SERVER_BACKUP}` - for `couchdb`, `mariadb`, `mariadb10`, `mongodb`, `mysql5`, `postgres8`, `postgres9`
-- `${SERVER_LIBS}` - for `apache2`, `glassfish3`, `jetty6`, `nginxphp`,`tomcat6`,`tomcat7`, `tomee`
-- `${SERVER_DATA}` - for `postgres8`, `postgres9`     
+- `${SERVER_CONF}` - for `apache2`, `glassfish3`, `jetty6`,`maven3`,`tomcat6`, `tomcat7`, `tomee`    
+- `${SERVER_CONF_D}` - for `apache2`, `memcached`,`nginx`, `nginxphp`    
+- `${SERVER_MODULES}` - for `apache2`, `glassfish3`, `jetty6`,`nginxphp`,`tomcat6`,`tomcat7`,`tomee`    
+- `${SERVER_SCRIPTS}` - for `couchdb`, `mariadb`, `mariadb10`, `mongodb`, `mysql5`,`postgres8`, `postgres9`    
+- `${SERVER_WEBROOT}` - for `apache2-ruby`, `apache2`, `jetty6`,`nginx-ruby`,`nginxphp`, `nodejs`,`tomcat6`,`tomcat7`, `tomee`    
+- `${SERVER_BACKUP}` - for `couchdb`, `mariadb`, `mariadb10`, `mongodb`, `mysql5`, `postgres8`, `postgres9`    
+- `${SERVER_LIBS}` - for `apache2`, `glassfish3`, `jetty6`, `nginxphp`,`tomcat6`,`tomcat7`, `tomee`    
+- `${SERVER_DATA}` - for `postgres8`, `postgres9`         
 
 You can use the following placeholders, as well, with a defined `nodeType`. For example:   
 - `${glassfish3.HOME}` - /opt/glassfish3/temp  
@@ -134,15 +134,15 @@ The single placeholders list:
 - `${nginxphp.WEBROOT}` - /var/www/webroot  
 
 ## Account Information                                                                                                                                       
-- `${user.uid}` - user ID at the Jelastic platform
-- `${user.email}` - user email address
-- `${user.appPassword}` - random value that can be used to set application passwords
-- `${user.name}` - email address value. Same as `${user.email}`
+- `${user.uid}` - user ID at the Jelastic platform    
+- `${user.email}` - user email address    
+- `${user.appPassword}` - random value that can be used to set application passwords    
+- `${user.name}` - email address value. Same as `${user.email}`    
 
 ## Input Parameters
-- `${settings.jelastic_email}` - user email that is always predefined.
+- `${settings.jelastic_email}` - user email that is always predefined.    
 - `${settings.key}` - where key is a name of application setting. The placeholder is defined in case user input parameters are specified within a manifest.   
-After preparing custom user form, the placeholder is defined by the field’s name. 
+After preparing custom user form, the placeholder is defined by the field’s name.     
 
 For instance:
 ```example
