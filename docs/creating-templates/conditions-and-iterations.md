@@ -210,7 +210,7 @@ where
 - `env.contexts` -  list of contexts (applications) deployed to environment    
 - `env.extdomains` - bound external domains 
 
-See the [full placeholders list](/reference/placeholders/)
+See the [full list of available placeholders](/reference/placeholders/)
 
 Scaling nodes example:
 ```
