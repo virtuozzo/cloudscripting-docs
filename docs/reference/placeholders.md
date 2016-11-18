@@ -10,31 +10,31 @@ If it's not possible placeholder will be unresolved and displayed in the text as
 ## Environment Placeholders
 
 - `{env.}`
-    - `${env.appid} [string]` - application appid. 
-    - `${env.domain} [string]` - application domain. 
-    - `${env.protocol} [string]` - protocol. 
-    - `${env.url} [string]` - link to application (env). 
-    - `${env.displayName} [string]` - application display name. 
-    - `${env.envName} [string]` - short domain name (without hoster URL).
-    - `${env.shortdomain} [string]` - short domain name. Alias to `envName`.
-    - `${env.hardwareNodeGroup} [string]` - hardware node node group.
-    - `${env.ssl} [boolean]` - env SSL status.
-    - `${env.sslstate} [boolean]` env SSL state.
-    - `${env.status} [number]` environment status. Available statuses are: 1 - running, 2 - down, 3 - launching, 4 - sleep, 6 - creating, 7 - cloning, 8 - exists. 
-    - `${env.uid} [number]` - user uid. 
-    - `${env.ishaenabled} [boolean]` - High availability status. 
-    - `${env.ha} [boolean]` - alias to `${env.ishaenabled}`. 
-    - `${env.isTransferring} [boolean]` - transfering status. 
-    - `${env.creatorUid} [number]` - env creator ID. 
-    - `${env.engine.id} [number]` - engine ID. 
-    - `${env.engine.keyword} [string]` - engine keyword. 
-    - `${env.engine.name} [string]` - engine name. 
-    - `${env.engine.type} [string]` - engine type. 
-    - `${env.engine.vcsSupport} [boolean]` - vcs support status. 
-    - `${env.engine.version} [string]` - engine version. 
-    - `${env.contexts.type} [string]` - env context type. 
-    - `${env.contexts.context} [string]` - context name
-    - `${env.contexts.archivename} [string]` - context display name
+    - `${env.appid}` *[string]* - application appid. 
+    - `${env.domain}` *[string]* - application domain. 
+    - `${env.protocol}` *[string]* - protocol. 
+    - `${env.url}` *[string]* - link to application (env). 
+    - `${env.displayName}` *[string]* - application display name. 
+    - `${env.envName}` *[string]* - short domain name (without hoster URL).
+    - `${env.shortdomain}` *[string]* - short domain name. Alias to `envName`.
+    - `${env.hardwareNodeGroup}` *[string]* - hardware node node group.
+    - `${env.ssl}` *[boolean]* - env SSL status.
+    - `${env.sslstate}` *[boolean]* env SSL state.
+    - `${env.status}` *[number]* environment status. Available statuses are: 1 - running, 2 - down, 3 - launching, 4 - sleep, 6 - creating, 7 - cloning, 8 - exists. 
+    - `${env.uid}` *[number]* - user uid. 
+    - `${env.ishaenabled}` *[boolean]* - High availability status. 
+    - `${env.ha}` *[boolean]* - alias to `${env.ishaenabled}`. 
+    - `${env.isTransferring}` *[boolean]* - transfering status. 
+    - `${env.creatorUid}` *[number]* - env creator ID. 
+    - `${env.engine.id}` *[number]* - engine ID. 
+    - `${env.engine.keyword}` *[string]* - engine keyword. 
+    - `${env.engine.name}` *[string]* - engine name. 
+    - `${env.engine.type}` *[string]* - engine type. 
+    - `${env.engine.vcsSupport}` *[boolean]* - vcs support status. 
+    - `${env.engine.version}` *[string]* - engine version. 
+    - `${env.contexts.type}` *[string]* - env context type. 
+    - `${env.contexts.context}` *[string]* - context name
+    - `${env.contexts.archivename}` *[string]* - context display name
     
 ## Node placeholders    
 - `${nodes.}`
