@@ -1,7 +1,7 @@
 #Control Flows: Conditions and Iterations
 
 ##Conditions
-The main condition statement is “if”. Within this parameter, all available [Placeholders](http://docs.cloudscripting.com/reference/placeholders/) and their objective JavaScript  mappings can be used. For example:
+The main condition statement is *“if”*. Within this parameter, all available [Placeholders](http://docs.cloudscripting.com/reference/placeholders/) and their objective JavaScript  mappings can be used. For example:
 ```
 if ('${env.protocol}' == 'http')
 ```
@@ -10,10 +10,10 @@ or
 if (env.protocol == 'http')
 ```
 
-Both If and ForEach can be of any nesting.level
+Both *If* and *ForEach* can be of any nesting level.
 
-- In case a condition is specified incorrectly, the actions inside if statement won't be executed. Herewith, [Cloud Scripting Console](http://docs.cloudscripting.com/troubleshooting/) will return the ‘invalid condition’ message with the root cause explanation. The application installer will proceed to the next action.
-- If condition is valid but hasn’t being executed, the <b>'condition is not met'</b> message will be logged.
+- In case a condition is specified incorrectly, the actions inside *if* statement won't be executed. Herewith, [Cloud Scripting Console](http://docs.cloudscripting.com/troubleshooting/) will return the *‘invalid condition’* message with the root cause explanation. The application installer will proceed to the next action.
+- If condition is valid but hasn’t being executed, the <b>*'condition is not met'*</b> message will be logged.
 
 <b>Examples:</b>     
 Comparing global variables:
@@ -50,7 +50,7 @@ Checking environment status:
 }
 ```
      
-Checking Jelastic SSL enabled: 
+Checking Jelastic SSL status: 
 ```
 {
   "onInstall": {
@@ -91,7 +91,8 @@ Checking compute node OS type and balancer presence:
 }
 ```
 
-<b>Nested conditions:<br></b>
+Nested conditions:   
+  
 Nesting of two *If* condition statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and logging the correspondent messages.
 ```
 {
@@ -128,7 +129,7 @@ Environment consists of two compute nodes
 Balancer node with external IP address!
 ```
 
-<b>Checking balancer stack type:</b>
+Checking balancer stack type:
 ```
 {
 	"jpsType": "update",
@@ -149,7 +150,7 @@ Balancer node with external IP address!
 
 ##Iterations
 <b>ForEach.</b>
-The main iterable object is ForEach. Its map:
+The main iterable object is *ForEach*. Its map:
 
 ```
 {
@@ -172,7 +173,7 @@ where
 - `settings [optional]` - fields values predefined within a [user setting form](http://docs.cloudscripting.com/creating-templates/user-input-parameters/)   
 - `license [optional]` - link to fetch parameters specified within [prepopulate](http://docs.cloudscripting.com/creating-templates/user-input-parameters/) custom script. It enables to customize default field values and can be further initialized through [placeholders](http://docs.cloudscripting.com/reference/placeholders/) `$(license.{any_name}` within a manifest.   
 - `event [optional]` - object entity with [event](http://docs.cloudscripting.com/reference/events/) parameters.  Can be of two types that allows initiation of a particular [action](http://docs.cloudscripting.com/reference/actions/) before and after event execution   
-- `this [optional]` - parameters object to be transmitted within the procedure body. See [more details](http://docs.cloudscripting.com/reference/placeholders/#procedure-placeholders) on this parameter.   
+- `this [optional]` - parameters object to be transmitted within the procedure body. [See the full list of available placeholders](http://docs.cloudscripting.com/reference/placeholders/#procedure-placeholders) on this parameter.   
 
 Iteration can be executed by `env.nodes`, `nodes`, `env.contexts` and `env.extdomains` objects:
 
@@ -242,7 +243,7 @@ Scaling nodes example:
 	}
 }
 ```
-As a result of execCmd, compute nodes internal IP addresses are rewritten within balancer configs and *NGINX* balancer node is reloaded. `onAfterScaleIn` and `onAfterScaleOut` events are executed immediately after adding or removing a compute node.
+As a result of *execCmd*, compute nodes internal IP addresses are rewritten within balancer configs and *NGINX* balancer node is reloaded. `onAfterScaleIn` and `onAfterScaleOut` events are executed immediately after adding or removing a compute node.
 
 ###Iteration by all nodes in environment
 
@@ -274,7 +275,7 @@ As a result of execCmd, compute nodes internal IP addresses are rewritten within
   }
 }
 ```
-where 
+where   
 - `@cp [optional]` - custom iterator name
 
 Custom iterator name can be used for nesting cycles one into another:
@@ -294,7 +295,7 @@ Custom iterator name can be used for nesting cycles one into another:
   ]
 }
 ```
-where
+where   
 - `@` iterator number
 
 In this case every environment node will have only one conjunction by node ID.
