@@ -714,4 +714,4 @@ The toggle element is a switch between two values
 where  
 - `name` *[optional]* - name of the field  
 - `caption` *[optional]* - field label    
-- `value` *[boolean]* - enables/disables toggle value. The default value is *false*  
+- `value` *[boolean]* - enables/disables toggle value. The default value is *false*   
