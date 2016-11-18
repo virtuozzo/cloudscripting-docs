@@ -11,10 +11,10 @@ For example:
 ...     
 
 The default workflow for any action is the following:   
-- replacing [Placeholders](placeholders/)
-- getting target containers list *[optional]* (see the [Selecting Containers For Your Actions](/creating-templates/selecting-containers/) section) 
-- checking rights
-- executing the action itself
+- replacing [Placeholders](placeholders/)    
+- getting target containers list *[optional]* (see the [Selecting Containers For Your Actions](/creating-templates/selecting-containers/) section)     
+- checking rights    
+- executing the action itself    
 
 Actions are executed when the called [event](events/) matches specified filter rules. 
 Multiple actions can be combined together into a [Procedure](procedures/). 
@@ -23,11 +23,11 @@ It is possible to execute each procedure could be executed with different input 
 ## Container Operations
 There are actions that perform some operations inside of a container. See [selecting containers for your actions](/creating-templates/selecting-containers/) page.
 
-Any container can be performed using [ExecuteShellCommands](#executeshellcommands) action. 
+Any container can be performed using [ExecuteShellCommands](#executeshellcommands) action.     
 Moreover, there are also several actions provided for convenience, that can be dividede into three groups:   
-- SSH commands ([ExecuteShellCommands](#executeshellcommands))
-- Predefined modules ([Deploy](#deploy), [Upload](#upload), [Unpack](#unpack))
-- File operations ([CreateFile](#createfile), [CreateDirectory](#createdirectory), [WriteFile](#writefile), [AppendFile](#appendfile), [ReplaceInFile](#replaceinfile))   
+- SSH commands ([ExecuteShellCommands](#executeshellcommands))    
+- Predefined modules ([Deploy](#deploy), [Upload](#upload), [Unpack](#unpack))    
+- File operations ([CreateFile](#createfile), [CreateDirectory](#createdirectory), [WriteFile](#writefile), [AppendFile](#appendfile), [ReplaceInFile](#replaceinfile))       
  
 !!! note 
     To process any Container Operation except [ExecuteShellCommands](#executeshellcommands) Cloud Scripting executor will use a default system user with restricted permissions.    
@@ -57,14 +57,14 @@ Available for all nodes types.
 }
 ```
 where 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for which the action should be executed. 
-One of these parameters is required. See [Selecting containers for your actions](#selecting-containers-for-your-actions).
-- `commands` - a set of commands that are executed. Its value is wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**. 
-    Where:
-    - **cmd** equals to a Base64 encoded string: **yes | (cmd1;cmd2)**. 
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for which the action should be executed.     
+One of these parameters is required. See [Selecting containers for your actions](#selecting-containers-for-your-actions).    
+- `commands` - a set of commands that are executed. Its value is wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**.     
+    Where:    
+    - **cmd** equals to a Base64 encoded string: **yes | (cmd1;cmd2)**.     
         It means that if your commands require interactive input, by default the Cloud Scripting executor will always try to give a positive answer using **yes** utility.        
-    - **user** - default system user with restricted permissions.
-- `sayYes` - optional parameter that enables or disables the usage of **yes** utility. The default value is: **true**.    
+    - **user** - default system user with restricted permissions.    
+- `sayYes` - optional parameter that enables or disables the usage of **yes** utility. The default value is: **true**.        
 
 
 While accessing containers via **executeShellCommands**, a user receives all the required permissions and additionally can manage the main services with sudo commands of the following kinds (and others):
@@ -181,9 +181,9 @@ Available for all node types (except for *Docker* and *Elastic VPS*)
 ```
 where   
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
- One of those three parameters is required.
-- `sourcePath`
-- `destPath` 
+ One of those three parameters is required.    
+- `sourcePath`    
+- `destPath`     
 
 ### CreateFile
 Available for all node types (except for *Docker* and *Elastic VPS*) 
@@ -202,7 +202,7 @@ Available for all node types (except for *Docker* and *Elastic VPS*)
 ```
 where   
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
- One of those three parameters is required.
+ One of those three parameters is required.    
 - `path` 
 
 ### CreateDirectory
@@ -222,7 +222,7 @@ Available for all node types (except for *Docker* containers and *Elastic VPS*)
 ```
 where  
 - `nodeId`, `nodGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
- One of those three parameters is required.
+ One of those three parameters is required.    
 - `path` 
 
 ### WriteFile
@@ -243,9 +243,9 @@ Available for all node types (except for *Docker* containers and *Elastic VPS*)
 ```
 where  
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers  for the action to be executed.
- One of these three parameters is required.
-- `path`
-- `body`
+ One of these three parameters is required.    
+- `path`    
+- `body`    
 
 ### AppendFile
 Available for all node types (except for *Docker* containers and *Elastic VPS*) 
@@ -265,9 +265,9 @@ Available for all node types (except for *Docker* containers and *Elastic VPS*)
 ```
 where   
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
- One of those three parameters is required.
-- `path`
-- `body`
+ One of those three parameters is required.    
+- `path`    
+- `body`    
 
 ### ReplaceInFile
 Available for node types (except for *Docker* containers and *Elastic VPS*) 
@@ -290,11 +290,11 @@ Available for node types (except for *Docker* containers and *Elastic VPS*)
 ```
 where   
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers for the action to be executed.
-One of these three parameters is required. 
-- `path`
-- `replacements` - the list of replacements within the node's' configuration files
-    - `pattern` - regular expressions to find the string (e.g. `app\\.host\\.url\\s*=\\s*.*`)
-    - `replacement` - string to replace. You can use as replacement any string value including any combination of [Placeholders](placeholders/).
+One of these three parameters is required.     
+- `path`    
+- `replacements` - the list of replacements within the node's' configuration files    
+    - `pattern` - regular expressions to find the string (e.g. `app\\.host\\.url\\s*=\\s*.*`)    
+    - `replacement` - string to replace. You can use as replacement any string value including any combination of [Placeholders](placeholders/).    
 
 <!-- DeletePath -->
 <!-- RenamePath --> 
@@ -379,7 +379,7 @@ Available for all node types (except for *Docker* containers and *Elastic VPS*)
 ```
 where  
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed.
- One of these three parameters is required.
+ One of these three parameters is required.    
  - `count` - nodes total count after action will be finished
 
 ###SetExtIpEnabled
@@ -398,7 +398,7 @@ Available for node types
 ```
 where  
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determines containers on which the action should be executed.
- One of those three parameters is required.
+ One of those three parameters is required.    
 - `enabled` - parameter that allows to attach or deatach external IP address
 
 ### RestartNodes
@@ -449,12 +449,12 @@ Available for compute node types (except for *Docker* containers)
 }
 ```
 where  
-- `name`
-- `fileName`
-- `type` - context type within the following possible values:
-    - `ARCHIVE`
-    - `GIT`
-    - `SVN`
+- `name`    
+- `fileName`    
+- `type` - context type within the following possible values:    
+    - `ARCHIVE`    
+    - `GIT`    
+    - `SVN`    
 
 ## Database Operations
 
@@ -482,14 +482,14 @@ Available node types: SQL Databases (except for *Docker* containers)
 ```
 where   
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determines containers on for the action to be executed.
-**Default**: `nodeGroup` equals to `sqldb`.
-- `loginCredentials`
-    - `user`
-    - `password`
-- `newDatabaseName`
-- `newDatabaseUser`
-    - `name`
-    - `password`
+**Default**: `nodeGroup` equals to `sqldb`.    
+- `loginCredentials`    
+    - `user`    
+    - `password`    
+- `newDatabaseName`    
+- `newDatabaseUser`    
+    - `name`    
+    - `password`    
 
 !!! note
     The function is executed only with `mysql5`, `mariadb`, `mariadb10` container node types.
@@ -513,11 +513,11 @@ Available node types: SQL Databases  (except for *Docker* container)
 ```
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determines containers for the action to be executed.
-By **default**: `nodeGroup` equals to `sqldb`.
-- `databaseName` - name of the database to be created
-- `user` - user name in the database on behalf of which the application will be used
-- `password` - password in the database on behalf of which the application will be used
-- `dump` - link to the application database dump
+By **default**: `nodeGroup` equals to `sqldb`.    
+- `databaseName` - name of the database to be created    
+- `user` - user name in the database on behalf of which the application will be used    
+- `password` - password in the database on behalf of which the application will be used    
+- `dump` - link to the application database dump    
 
 ### ApplySqlPatch
 Available Nodes: SQL Databases (except for *Docker* containers)
@@ -538,11 +538,11 @@ Available Nodes: SQL Databases (except for *Docker* containers)
 ```
 where  
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determines containers for the action to be executed.
-By **default**: `nodeGroup` equals to `sqldb`.
-- `databaseName` - name of the database for patch to be applied
-- `user` - user name in the database, on behalf of which the application will be used
-- `password` - password in the database on behalf of which the application will be used
-- `patch` - SQL query or link to such a query. It is used only for SQL databases. The [Placeholders](placeholders/) support is available.
+By **default**: `nodeGroup` equals to `sqldb`.    
+- `databaseName` - name of the database for patch to be applied    
+- `user` - user name in the database, on behalf of which the application will be used    
+- `password` - password in the database on behalf of which the application will be used    
+- `patch` - SQL query or link to such a query. It is used only for SQL databases. The [Placeholders](placeholders/) support is available.    
 
 !!! note
     The function is executed only with `mysql5`, `mariadb`, `mariadb10` container node types.
@@ -583,12 +583,12 @@ Or:
 }
 ```
 where   
-- `script` - script body or a link to such a script body
-- `type` *[optional]* - script type with the following possible values:
-    - `js`
+- `script` - script body or a link to such a script body    
+- `type` *[optional]* - script type with the following possible values:    
+    - `js`    
     - `java`      
-By **default** is: *js*
-- `params` *[optional]* - script parameters
+By **default** is: *js*    
+- `params` *[optional]* - script parameters    
 
 !!! note
     Learn more about using [Jelastic Cloud API](http://docs.jelastic.com/api/)
