@@ -1,4 +1,4 @@
-#Control flows
+#Control Flows: Conditions and Iterations
 
 ##Conditions
 The main condition statement is “if”. Within this parameter, all available [Placeholders](http://docs.cloudscripting.com/reference/placeholders/) and their objective JavaScript  mappings can be used. For example:
@@ -92,7 +92,7 @@ Checking compute node OS type and balancer presence:
 ```
 
 <b>Nested conditions:<br></b>
-Nesting of two If condition statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and logging the correspondent messages.
+Nesting of two *If* condition statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and logging the correspondent messages.
 ```
 {
 	"jpsType": "update",
@@ -122,7 +122,7 @@ Nesting of two If condition statements - the first one is checking an environmen
 }
 ```
 
-The operation result can be located within a result.txt file automatically created in the master node (i.e. the first cp node) <b>tmp</b> directory:
+The operation result can be located within a *result.txt* file automatically created in the master node (i.e. the first *cp* node) *<b>tmp</b>* directory:
 ```
 Environment consists of two compute nodes
 Balancer node with external IP address!
@@ -168,11 +168,11 @@ The main iterable object is ForEach. Its map:
   "this": {}
 }
 ```
-where 
-- `settings [optional]` - fields values predefined within a [user setting form](http://docs.cloudscripting.com/creating-templates/user-input-parameters/)
-- `license [optional]` - link to fetch parameters specified within [prepopulate](http://docs.cloudscripting.com/creating-templates/user-input-parameters/) custom script. It enables to customize default field values and can be further initialized through [placeholders](http://docs.cloudscripting.com/reference/placeholders/) `$(license.{any_name}` within a manifest.
-- `event [optional]` - object entity with [event](http://docs.cloudscripting.com/reference/events/) parameters.  Can be of two types that allows initiation of a particular [action](http://docs.cloudscripting.com/reference/actions/) before and after event execution
-- `this [optional]` - parameters object to be transmitted within the procedure body. See [more details](http://docs.cloudscripting.com/reference/placeholders/#procedure-placeholders) on this parameter.
+where    
+- `settings [optional]` - fields values predefined within a [user setting form](http://docs.cloudscripting.com/creating-templates/user-input-parameters/)   
+- `license [optional]` - link to fetch parameters specified within [prepopulate](http://docs.cloudscripting.com/creating-templates/user-input-parameters/) custom script. It enables to customize default field values and can be further initialized through [placeholders](http://docs.cloudscripting.com/reference/placeholders/) `$(license.{any_name}` within a manifest.   
+- `event [optional]` - object entity with [event](http://docs.cloudscripting.com/reference/events/) parameters.  Can be of two types that allows initiation of a particular [action](http://docs.cloudscripting.com/reference/actions/) before and after event execution   
+- `this [optional]` - parameters object to be transmitted within the procedure body. See [more details](http://docs.cloudscripting.com/reference/placeholders/#procedure-placeholders) on this parameter.   
 
 Iteration can be executed by `env.nodes`, `nodes`, `env.contexts` and `env.extdomains` objects:
 
@@ -206,7 +206,7 @@ where
 }
 ```
 where  
-- `env.contexts` -  list of contexts (applications) deployed to environment 
+- `env.contexts` -  list of contexts (applications) deployed to environment    
 - `env.extdomains` - bound external domains 
 
 See the [full placeholders list](/reference/placeholders/)
