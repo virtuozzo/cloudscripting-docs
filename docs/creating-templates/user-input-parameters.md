@@ -31,7 +31,7 @@
 }
 ```
 
-where   
+where:   
 - `prepopulate` <b>[optional]</b> - link to the script, that will fetch the default fields values  
 - `fields`   
     - `showIf` - show/hide field by condition (is applicable only to the radio-fieldset field)   
@@ -212,7 +212,7 @@ The next parameters can be enabled only when the `settings` field is present:
   }
 }
 ```
-where    
+where:    
 - `title` - custom dialog title. If absent, than `caption` will be applied.    
 - `submitButtonText` - text for submission button in the opened dialog. The default value is *Apply*   
 ![submitButtonText](/img/submitButtonText.jpg)  
@@ -291,7 +291,7 @@ The basic text field.
   ]
 }
 ```
-where  
+where:  
 - `caption` *[optional]* - field label.  
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *false*.  
 ###text   
@@ -308,7 +308,7 @@ The multiline text field.
   ]
 }
 ```
-where   
+where:   
 - `caption` *[optional]* - field label .  
 - `hideLabel`*[optional] [boolean]* - hide field Label. Optional. Default *false*.  
 ###list   
@@ -329,7 +329,7 @@ The drop-down list and a single-line non editable textbox.
   ]
 }
 ```
-where      
+where:      
 - `caption` *[optional]* - field Label.  
 - `values` - object's values ("key":"value").  
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *false*.  
@@ -348,7 +348,7 @@ The single checkbox field.
   ]
 }
 ```
-where  
+where:  
 - `caption` *[optional]* - field label.    
 - `value` - enables or disables checkbox.  
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *false*.  
@@ -370,7 +370,7 @@ The `checkbox` groupping.
   ]
 }
 ```
-where     
+where:     
 - `caption` *[optional]* - field Label.    
 - `values` - checkboxes ("key":"value")  
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *false*.  
@@ -392,7 +392,7 @@ The `radio` elements groupping.
   ]
 }
 ```
-where  
+where:  
 - `caption` *[optional]* - field label.   
 - `values` - checkboxes ("key":"value")  
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *false*.  
@@ -434,7 +434,7 @@ The groupping of the `radio` elements with the `showIf` function.
   ]
 }
 ```
-where   
+where:   
 - `name` *[required]* - name of the `radio-fieldset` element(for other elements it’s not required)    
 - `default` *[optional]* - selected field upon opening the form  
 - `values` - checkboxes ("key":"value")  
@@ -472,7 +472,7 @@ Displaying Docker tags within the `list` element.
   "env": {}
 }
 ```
-where   
+where:   
 - `name` *[required]* - 'tag' value.  
 - `values` *[required]* - Docker tag values (`name`: "tag_name" is required). By default Docker image is pulled from the Docker Hub registry.  
 - `dockerImage` - Docker image details   
@@ -520,7 +520,7 @@ The `compositefield` is a container with specific functionality and structural c
   ]
 }
 ```
-where   
+where:   
 - `pack` *[optional]* - manages the way items are packed together. The default value is *start*. Possible values: *start*, *center* and *end*.  
 - `align` *[optional]* - manages the way items are aligned. The default value is *top*. Possible values: *top*, *middle*, *stretch*, *stretchmax*.  
 - `defaultMargins` *[optional]* - default margins for items. The default value is *0*.  
@@ -545,7 +545,7 @@ The slider element as a form field.
   ]
 }
 ```
-where   
+where:   
 - `min` - minimum slider value  
 - `max` - maximum slider value  
 - `useTips` - displaying tips for the value. The default value is *true*.  
@@ -567,7 +567,7 @@ The account environments list within a drop-down element.
   ]
 }
 ```
-where  
+where:  
 - `caption` *[optional]* - field label    
 - `name` *[optional]* - name of the field  
 - `editable` *[optional][boolean]* - enables/disables the `envlist` field editing. The default value is *false*.    
@@ -597,7 +597,7 @@ Functionality provides the possibility to pass additional parameters.
   ]
 }
 ```
-where  
+where:  
 - `caption` *[optional]* - field label.  
 - `name` *[optional]* - name of the field.  
 - `buttonText` *[optional]* - button label  
@@ -622,7 +622,7 @@ The text field intended only for display, which is not validated and not submitt
   ]
 }
 ```
-where  
+where:  
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field   
 - `markup` - value to initialize the field's display. The default value is "*undefined*".  
@@ -644,7 +644,7 @@ Enhanced input field for entering numeric values, with up/down buttons and arrow
   ]
 }
 ```
-where  
+where:  
 - `name` *[optional]* - name of the field  
 - `caption` *[optional]* - field label  
 - `min` - minimum spinner value  
@@ -669,7 +669,7 @@ The text field with a number validation within range.
   ]
 }
 ```
-where  
+where:  
 - `name` *[optional]* - name of the field  
 - `caption` *[optional]* - field label    
 - `min` - minimum spinner value  
@@ -692,7 +692,7 @@ The drop-down menu with the environments hosts.
   ]
 }
 ```
-where  
+where:  
 - `name` *[optional]* - name of the field   
 - `caption` *[optional]* - field label   
 - `editable` *[optional][boolean]* - enables/disables editing the `envlist` field. The default value is *false*  
@@ -712,7 +712,7 @@ The toggle element is a switch between two values
   ]
 }
 ```
-where  
+where:  
 - `name` *[optional]* - name of the field  
 - `caption` *[optional]* - field label    
 - `value` *[boolean]* - enables/disables toggle value. The default value is *false*   
