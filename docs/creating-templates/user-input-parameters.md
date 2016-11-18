@@ -474,9 +474,9 @@ Displaying Docker tags within the `list` element.
 where   
 - `name` *[required]* - 'tag' value.  
 - `values` *[required]* - Docker tag values (`name`: "tag_name" is required). By default Docker image is pulled from the Docker Hub registry.  
-- `dockerImage` - Docker image details
-   - `name`: <b>repository</b> is required
-   - `registry`, `username`, `password` are optional
+- `dockerImage` - Docker image details   
+   - `name`: <b>repository</b> is required   
+   - `registry`, `username`, `password` are optional   
 - `env` - required object (can be empty).  
 ###compositefield
 The `compositefield` is a container with specific functionality and structural components that constitute it as the block for application-oriented custom user interfaces.  
@@ -623,7 +623,7 @@ The text field intended only for display, which is not validated and not submitt
 ```
 where  
 - `caption` *[optional]* - field label
-- `name` *[optional]* - name of the field
+- `name` *[optional]* - name of the field   
 - `markup` - value to initialize the field's display. The default value is "*undefined*".  
 ###spinner
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
@@ -692,10 +692,10 @@ The drop-down menu with the environments hosts.
 }
 ```
 where  
-- `name` *[optional]* - name of the field
-- `caption` *[optional]* - field label
+- `name` *[optional]* - name of the field   
+- `caption` *[optional]* - field label   
 - `editable` *[optional][boolean]* - enables/disables editing the `envlist` field. The default value is *false*  
-- `valueField` *[optional]*
+- `valueField` *[optional]*   
 ###toggle
 The toggle element is a switch between two values
 ![toggle](/img/toggle.jpg)
