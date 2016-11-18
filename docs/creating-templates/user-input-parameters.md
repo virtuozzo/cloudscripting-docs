@@ -76,8 +76,8 @@ where:
     > `vtypeText` is applied only in case the vtype value is set; otherwise, it is ignored.  
 
 ##Target Nodes
-`Target Nodes` is a optional section where environments can be defined or disable for JPS installation. `TargetNodes` are available only for `JpsType` *update*.   
-Filtering for `targetNodes` is by `nodeType`, `nodeGroup`, `dockerOs`, `dockerName` or `dockerTag`.   
+`Target Nodes` is an optional method method which allows to define environments, that are suitable for JPS installation. Herewith, this option is available only for `JpsType` *update* procedure.   
+Filtering for `targetNodes` can be performed by `nodeType`, `nodeGroup`, `dockerOs`, `dockerName` or `dockerTag`.   
 ```
 {
 	"jpsType": "update",
@@ -100,16 +100,17 @@ Filtering for `targetNodes` is by `nodeType`, `nodeGroup`, `dockerOs`, `dockerNa
 	}
 }
 ```
-There are two input type available:  
+There are possible ways to define a nodeType:  
 ```
-"nodeType": ["..."]  //set all nodeTypes in array
+"nodeType": ["..."] - to set the required nodeTypes in array
 and
-"nodeType": "..., ..."    //set all nodeTypes via commas
+"nodeType": "..., ..." - to set the required nodeTypes being separated with commas
 ```
 
-For example, there are three environments with different topologies:  
+<b>Examples</b>
+Let’s suppose you have three environments with different topology:  
 ![targetNodes](/img/targetNodes.jpg)  
-`targetNodes` can filtered JPS installation with example below:
+Within these environments, the `targetNodes` filtering for JPS installation can be performed with the next example:
 ```
 {
 	"jpsType": "update",
@@ -128,7 +129,7 @@ For example, there are three environments with different topologies:
 	}
 }
 ```
-In this case the filter result will be the next:
+In this case, the filtering result will be the following:  
 ![targetNodesFilter](/img/targetNodesFilter.jpg)
   
 ##Custom buttons
