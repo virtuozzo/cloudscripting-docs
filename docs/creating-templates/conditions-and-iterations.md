@@ -12,7 +12,7 @@ if (env.protocol == 'http')
 
 Both *If* and *ForEach* can be of any nesting level.
 
-- In case a condition is specified incorrectly, the actions inside *if* statement won't be executed. Herewith, [Cloud Scripting Console](http://docs.cloudscripting.com/troubleshooting/) will return the *‘invalid condition’* message with the root cause explanation. The application installer will proceed to the next action.
+- In case a condition is specified incorrectly, the actions inside *if* statement won't be executed. Herewith, [Cloud Scripting Console](http://docs.cloudscripting.com/troubleshooting/) will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.
 - If condition is valid but hasn’t being executed, the <b>*'condition is not met'*</b> message will be logged.
 
 <b>Examples:</b>     
@@ -173,7 +173,7 @@ where
 - `settings [optional]` - fields values predefined within a [user setting form](http://docs.cloudscripting.com/creating-templates/user-input-parameters/)   
 - `license [optional]` - link to fetch parameters specified within [prepopulate](http://docs.cloudscripting.com/creating-templates/user-input-parameters/) custom script. It enables to customize default field values and can be further initialized through [placeholders](http://docs.cloudscripting.com/reference/placeholders/) `$(license.{any_name}` within a manifest.   
 - `event [optional]` - object entity with [event](http://docs.cloudscripting.com/reference/events/) parameters.  Can be of two types that allows initiation of a particular [action](http://docs.cloudscripting.com/reference/actions/) before and after event execution   
-- `this [optional]` - parameters object to be transmitted within the procedure body. [See the full list of available placeholders](http://docs.cloudscripting.com/reference/placeholders/#procedure-placeholders) on this parameter.   
+- `this [optional]` - parameters object to be transmitted within the procedure body. See the [full list of available placeholders](http://docs.cloudscripting.com/reference/placeholders/#procedure-placeholders) on this parameter.   
 
 Iteration can be executed by `env.nodes`, `nodes`, `env.contexts` and `env.extdomains` objects:
 
