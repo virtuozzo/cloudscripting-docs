@@ -108,9 +108,9 @@ There are two possible ways to define a nodeType:
 "nodeType": "..., ..." - to set the required nodeTypes being separated with commas
 ```
 
-<b>Example</b>
+<b>Example</b> 
 
-Let’s suppose you have three environments with different topology:  
+Let’s suppose you have three environments with different topology:     
 
 ![targetNodes](/img/targetNodes.jpg)  
 
@@ -133,9 +133,9 @@ Within these environments, the `targetNodes` filtering for JPS installation can 
 	}
 }
 ```
-In this case, the filtering result will be the following:  
+In this case, the filtering result will be the following:   
 
-![targetNodesFilter](/img/targetNodesFilter.jpg)
+![TargetNodesFilter](/img/TargetNodesFilter.jpg)
   
 ##Custom buttons
 The custom buttons functionality is intended for planks within Add-ons section. It can be accessed upon clicking the same-named button next to the required node:  
