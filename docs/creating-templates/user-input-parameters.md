@@ -77,6 +77,7 @@ where:
 
 ##Target Nodes
 `Target Nodes` is an optional method which allows to define environments, that are suitable for JPS installation. Herewith, this option is available only for *JpsType*: *update* procedure.   
+
 Filtering for `targetNodes` can be performed by `nodeType`, `nodeGroup`, `dockerOs`, `dockerName` or `dockerTag`.   
 ```
 {
@@ -108,8 +109,11 @@ There are two possible ways to define a nodeType:
 ```
 
 <b>Example</b>
+
 Let’s suppose you have three environments with different topology:  
+
 ![targetNodes](/img/targetNodes.jpg)  
+
 Within these environments, the `targetNodes` filtering for JPS installation can be performed with the next example:
 ```
 {
@@ -130,6 +134,7 @@ Within these environments, the `targetNodes` filtering for JPS installation can 
 }
 ```
 In this case, the filtering result will be the following:  
+
 ![targetNodesFilter](/img/targetNodesFilter.jpg)
   
 ##Custom buttons
