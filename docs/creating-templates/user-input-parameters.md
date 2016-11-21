@@ -138,7 +138,7 @@ In this case, the filtering result will be the following:
 ![TargetNodesFilter](/img/TargetNodesFilter.jpg)
   
 ##Custom Buttons
-The custom buttons functionality is intended for planks within <b> Add-ons </b> section. It can be accessed upon clicking the same-named button next to the required node:   
+The custom buttons functionality is intended for planks within <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:   
 
 ![Addontab](/img/Addontab.jpg)    
 
@@ -246,10 +246,11 @@ Menu is an expandable list within the add-ons section comprising custom actions,
 
 ![menu](/img/menu.jpg)     
 
-Menu list contains the <b> Uninstall </b> option by default. Listed actions execute the operations from [application level](/reference/events/#application-level-events) if there are any. Custom menus use the same properties as [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).    
+Menu list contains the <b>Uninstall</b> option by default. Listed actions execute the operations from [application level](/reference/events/#application-level-events) if there are any. Custom menus use the same properties as [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).    
 
 ##Custom Settings
-The settings section can include a few custom forms. The default settings form ID is - *main*.   
+The settings section can include a few custom forms. The default settings form ID is *"main"*.    
+
 For instance:  
 ```
 {
@@ -294,8 +295,11 @@ For instance:
 }
 ```
 Here, the *main settings* form appears during installation process.   
+
 ![settingMain](/img/settingsMain.jpg)   
-The config settings form appears after clicking the <b>Configure</b> button within the add-ons section.   
+
+The *config settings* form appears after clicking the <b>Configure</b> button within the add-ons section.   
+
 ![settingCustom](/img/settingsCustom.jpg)     
 
 ##Supported Fields:
