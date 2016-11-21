@@ -76,7 +76,7 @@ where:
     > `vtypeText` is applied only in case the *vtype* value is set; otherwise, it is ignored.  
 
 ##Target Nodes
-`Target Nodes` is an optional method method which allows to define environments, that are suitable for JPS installation. Herewith, this option is available only for `JpsType` *update* procedure.   
+`Target Nodes` is an optional method which allows to define environments, that are suitable for JPS installation. Herewith, this option is available only for *JpsType*: *update* procedure.   
 Filtering for `targetNodes` can be performed by `nodeType`, `nodeGroup`, `dockerOs`, `dockerName` or `dockerTag`.   
 ```
 {
@@ -100,14 +100,14 @@ Filtering for `targetNodes` can be performed by `nodeType`, `nodeGroup`, `docker
 	}
 }
 ```
-There are possible ways to define a nodeType:  
+There are two possible ways to define a nodeType:  
 ```
 "nodeType": ["..."] - to set the required nodeTypes in array
-and
+
 "nodeType": "..., ..." - to set the required nodeTypes being separated with commas
 ```
 
-<b>Examples</b>
+<b>Example</b>
 Let’s suppose you have three environments with different topology:  
 ![targetNodes](/img/targetNodes.jpg)  
 Within these environments, the `targetNodes` filtering for JPS installation can be performed with the next example:
