@@ -32,10 +32,10 @@
 ```
 
 where:   
-- `prepopulate` <b>[optional]</b> - link to the script, that will fetch the default fields values  
+- `prepopulate` *[optional]* - link to the script, that will fetch the default fields values  
 - `fields`   
-    - `showIf` - show/hide field by condition (is applicable only to the radio-fieldset field)   
-    - `type` <b>[optional]</b> - input field type. The default value is “string”. Possible values:   
+    - `showIf` - show/hide field by condition (is applicable only to the *radio-fieldset* field)   
+    - `type` *[optional]* - input field type. The default value is *“string”*. Possible values:   
         * `string`     
         * `text`                                                                              
         * `list`  
@@ -57,12 +57,12 @@ where:
         * `hostpicker`  
         * `toggle`  
         * `spacer`  
-    - `inputType` *[optional]* - type attribute of the input field (e.g. radio, text, password, file, etc.).The default value is "text". More info [here](https://www.w3.org/wiki/HTML/Elements/input#Point)        
-    - `name` - input field name that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests.   
+    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.).The default value is *"text"*. More info [here](https://www.w3.org/wiki/HTML/Elements/input#Point)        
+    - `name` - input field name, that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests   
     - `default` *[optional]* - default value for the input field  
     - `caption` *[optional]* - field label  
-    - `placeholder` *[optional]* -  text that describes the expected value of an input field  
-    - `required` *[optional]* possible values are "true" & "false". If left empty, the default value is "true".  
+    - `placeholder` *[optional]* -  text, that describes the expected value of the input field  
+    - `required` *[optional]* - possible values are *"true"* & *"false"*. If left empty, the default value is *"true"*.  
     - `regex` *[optional]* - constructor for testing the JavaScript RegExp object, that refers to the stated the field value, during validation. If test fails, the field will be marked invalid using regexText. The default value is "null"  
     - `regexText` *[optional]* - displays error message in case of the regex test failure during validation. The default value is ' ' (blank space)     
     - `vtype` *[optional]* - A validation type name. Possible values:  
