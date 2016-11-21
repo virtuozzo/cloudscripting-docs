@@ -477,7 +477,7 @@ By default `nodeGroup` equals to `sqldb`.
     - `password`    
 
 !!! note
-    The function is executed only with `mysql5`, `mariadb`, and `mariadb10` node types.
+    The function is executed only with `mysql5`, `mariadb` and `mariadb10` node types.
 
 ### RestoreSqlDump
 Available nodes: *SQL* Databases (except for *Docker* container)
@@ -604,6 +604,6 @@ The default value is *'js'*.
 }
 ```
 where:  
-- `id` - an extension ID from the *marketplace* or from the `addons` section in the manifest
+- `id` - an extension ID from the *marketplace* or from the *add-ons* section in the manifest
 
 <!-- add example -->
