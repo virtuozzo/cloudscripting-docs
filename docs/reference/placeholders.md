@@ -1,11 +1,10 @@
 # Placeholders
 Cloud Scripting supports a list of placeholders that can be used in any section of the manifest file (if the section isn't strictly limited with its content). 
-The executor makes attempt to resolve all placeholders on the package installation stage.
+The executor makes an attempt to resolve all placeholders on the package installation stage.
 If it's not possible, placeholder will be unresolved and displayed in the text as is (e.g. ${placeholder}).
 
 !!! note
-    To output all available placeholders you can use the special placeholder: `${placeholders}`.       
-    See [Troubleshooting](/troubleshooting/) for more info.                                                                                         
+    To output all available placeholders you can use the special placeholder: `${placeholders}`. See [Troubleshooting](/troubleshooting/) for more info.                                                                                         
 
 ## Environment Placeholders
 
