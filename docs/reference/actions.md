@@ -11,7 +11,7 @@ Such as:
 - applying a database patch according to specific environment's parameters  
      
 The default workflow for any action is the following:   
-- replacing [Placeholders](placeholders/)    
+- replacing [placeholders](placeholders/)    
 - getting target containers list *[optional]* (see the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) section)     
 - checking permissions    
 - executing the action itself    
@@ -261,7 +261,7 @@ where:
 - `body`    
 
 ### ReplaceInFile
-Available for nodes (except for *Docker* containers and *Elastic VPS*) 
+Available for all nodes (except for *Docker* containers and *Elastic VPS*) 
 ```
 {
   "replaceInFile": [
@@ -282,7 +282,7 @@ Available for nodes (except for *Docker* containers and *Elastic VPS*)
 where:   
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.     
 - `path`    
-- `replacements` - the list of replacements within the node's' configuration files    
+- `replacements` - the list of replacements within the node's configuration files    
     - `pattern` - regular expressions to find the string (e.g. `app\\.host\\.url\\s*=\\s*.*`)    
     - `replacement` - string to replace. You can use as replacement any string value, including any combination of [placeholders](placeholders/).    
 
