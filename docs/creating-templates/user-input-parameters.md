@@ -57,7 +57,7 @@ where:
         * `hostpicker`  
         * `toggle`  
         * `spacer`  
-    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.).The default value is *"text"*. More info [here](https://www.w3.org/wiki/HTML/Elements/input#Point)        
+    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.).The default value is *"text"*. More info [here](https://www.w3.org/wiki/HTML/Elements/input#Point).        
     - `name` - input field name, that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests   
     - `default` *[optional]* - default value for the input field  
     - `caption` *[optional]* - field label  
@@ -760,4 +760,4 @@ The toggle element is a switch between two values.
 where:  
 - `name` *[optional]* - name of the field  
 - `caption` *[optional]* - field label    
-- `value` *[boolean]* - enables/disables toggle value. The default value is *'false'*   
+- `value` *[boolean]* - enables/disables toggle value. The default value is *'false'*.   
