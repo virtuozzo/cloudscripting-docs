@@ -137,18 +137,20 @@ In this case, the filtering result will be the following:
 
 ![TargetNodesFilter](/img/TargetNodesFilter.jpg)
   
-##Custom buttons
-The custom buttons functionality is intended for planks within Add-ons section. It can be accessed upon clicking the same-named button next to the required node:  
-![traffic-manager](/img/traffic-manager.jpg)    
-Such buttons execute operations that are predefined within JPS manifest.
+##Custom Buttons
+The custom buttons functionality is intended for planks within <b> Add-ons </b> section. It can be accessed upon clicking the same-named button next to the required node:   
 
-Add-ons tab button here:
-![addon tab](/img/add-on_tab.jpg)
+![Addontab](/img/Addontab.jpg)    
+
+Such buttons execute operations that are predefined within JPS manifest.   
+
+![TrafficManager](/img/TrafficManager.jpg)
 
 !!! note
-    > JPS manifest should the [`targetNodes`](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the add-ons section after installation. Otherwise, it will be hidden.  
+    > JPS manifest should include the [`targetNodes`](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation. Otherwise, it will be hidden.  
 
 <b>Template</b>   
+
 Sample to set buttons within add-on plank:
 ```
 {
@@ -176,17 +178,26 @@ Sample to set buttons within add-on plank:
 Here:  
 - `buttons` - button parameters array   
 - `confirmText` *[optional]* - custom confirmation text for users. The default value is *"Are you sure?"*.   
+
 It will be displayed after clicking on the appropriate button for an add-on. According to the code above, the text will be:  
-![confirm](/img/confirm.jpg)      
+
+![Confirm](/img/Confirm.jpg)      
+
 - `loadingText` *[optional]* - UI text to be displayed during loading and applying changes. The default value i *"Applying..."*.    
-![loadingText](/img/loadingText.jpg)      
+
+![LoadingText](/img/LoadingText.jpg)      
+
 - `procedure` *[required] [string]* - name of the procedure that will be executed. Procedure body structure is described in the [*procedure* section](/reference/procedures/).   
-- `caption` - title of a button.  
-![caption](/img/caption.jpg)   
+- `caption` - title of the button  
+
+![Caption](/img/Caption.jpg)   
+
 - `successText` -  message, that appears once action is successfully performed  
-![successText](/img/successText.jpg)     
-- `href` *[optional]* - external link that is opened in new browser tab; is considered only if the settings field is absent. In this case procedure will not be executed  
-- `settings` - custom form ID. The default is "main". For more details see [custom settings section](/creating-templates/user-input-parameters/#custom-settings)      
+
+![SuccessText](/img/SuccessText.jpg)     
+
+- `href` *[optional]* - external link that is opened in a new browser tab; is considered only if the *settings* field is absent. In this case *procedure* will not be executed  
+- `settings` - custom form ID. The default is *"main"*. For more details see [custom settings section](/creating-templates/user-input-parameters/#custom-settings)      
 
 The next parameters can be enabled only when the `settings` field is present:
 ```
@@ -220,16 +231,22 @@ The next parameters can be enabled only when the `settings` field is present:
 ```
 where:    
 - `title` - custom dialog title. If absent, than `caption` will be applied.    
-- `submitButtonText` - text for submission button in the opened dialog. The default value is *Apply*   
-![submitButtonText](/img/submitButtonText.jpg)  
+- `submitButtonText` - text for submission button in the opened dialog. The default value is *Apply*.   
+
+![SubmitButtonText](/img/SubmitButtonText.jpg)  
+
 - `logsPath` - button for showing logs in the defined path  
-![logsPath](/img/logsPath.jpg)  
+
+![LogsPath](/img/LogsPath.jpg)  
+
 - `logsNodeGroup` - [nodeGroup](/reference/container-types/#containers-by-groups-nodegroup) layer the logging path is opened for      
 
 ##Custom Menus    
-Menu is an expandable list within the add-ons section comprising custom actions, that execute corresponding operations  
+Menu is an expandable list within the add-ons section comprising custom actions, that execute corresponding operations.  
+
 ![menu](/img/menu.jpg)     
-Menu list contains the Uninstall option by default. Listed actions execute the operations from [application lavel](/reference/events/#application-level-events) if there are any. Custom menus use the same properties as [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).    
+
+Menu list contains the <b> Uninstall </b> option by default. Listed actions execute the operations from [application level](/reference/events/#application-level-events) if there are any. Custom menus use the same properties as [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).    
 
 ##Custom Settings
 The settings section can include a few custom forms. The default settings form ID is - *main*.   
