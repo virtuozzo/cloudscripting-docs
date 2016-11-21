@@ -302,9 +302,10 @@ The *config settings* form appears after clicking the <b>Configure</b> button wi
 
 ![settingCustom](/img/settingsCustom.jpg)     
 
-##Supported Fields:
+##Supported Fields
 ###string     
 The basic text field.  
+
 ![string](/img/string.jpg)  
 ```
 {
@@ -319,10 +320,11 @@ The basic text field.
 }
 ```
 where:  
-- `caption` *[optional]* - field label.  
-- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *false*.  
+- `caption` *[optional]* - field label  
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 ###text   
 The multiline text field.
+
 ![text](/img/text.jpg)  
 ```
 {
@@ -336,10 +338,11 @@ The multiline text field.
 }
 ```
 where:   
-- `caption` *[optional]* - field label .  
-- `hideLabel`*[optional] [boolean]* - hide field Label. Optional. Default *false*.  
+- `caption` *[optional]* - field label  
+- `hideLabel`*[optional] [boolean]* - hide field Label. The default value is *'false'*.  
 ###list   
-The drop-down list and a single-line non editable textbox.  
+The drop-down list and a single-line non-editable textbox.  
+
 ![list](/img/list.jpg)  
 ```
 {
@@ -357,11 +360,12 @@ The drop-down list and a single-line non editable textbox.
 }
 ```
 where:      
-- `caption` *[optional]* - field Label.  
-- `values` - object's values ("key":"value").  
-- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *false*.  
+- `caption` *[optional]* - field label 
+- `values` - objects' values (*"key"*:*"value"*)
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 ###checkbox   
 The single checkbox field.
+
 ![text](/img/checkbox.jpg)  
 ```
 {
@@ -376,11 +380,12 @@ The single checkbox field.
 }
 ```
 where:  
-- `caption` *[optional]* - field label.    
-- `value` - enables or disables checkbox.  
-- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *false*.  
+- `caption` *[optional]* - field label   
+- `value` - enables or disables checkbox
+- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.  
 ###checkboxlist   
-The `checkbox` groupping.  
+The *checkbox* grouping.  
+
 ![text](/img/checkboxlist.jpg)  
 ```
 {
@@ -398,11 +403,12 @@ The `checkbox` groupping.
 }
 ```
 where:     
-- `caption` *[optional]* - field Label.    
-- `values` - checkboxes ("key":"value")  
-- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *false*.  
+- `caption` *[optional]* - field label  
+- `values` - checkboxes (*"key"*:*"value"*)  
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 ###radiolist   
-The `radio` elements groupping.  
+The *radio* elements grouping.  
+
 ![text](/img/radiolist.jpg)  
 ```
 {
@@ -420,11 +426,11 @@ The `radio` elements groupping.
 }
 ```
 where:  
-- `caption` *[optional]* - field label.   
-- `values` - checkboxes ("key":"value")  
-- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *false*.  
+- `caption` *[optional]* - field label   
+- `values` - checkboxes (*"key"*:*"value"*)  
+- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.  
 ###radio-fieldset    
-The groupping of the `radio` elements with the `showIf` function.     
+The groupping of the *radio* elements with the `showIf` function.     
 !!! note
     The *hideLabel* boolean value is always *true* for this field   
 ![text](/img/radio-fieldset.jpg)   
@@ -462,14 +468,15 @@ The groupping of the `radio` elements with the `showIf` function.
 }
 ```
 where:   
-- `name` *[required]* - name of the `radio-fieldset` element(for other elements it’s not required)    
+- `name` *[required]* - name of the `radio-fieldset` element (for other elements it’s not required)    
 - `default` *[optional]* - selected field upon opening the form  
-- `values` - checkboxes ("key":"value")  
+- `values` - checkboxes (*"key"*:*"value"*)  
 - `showIf` - conditional object that shows predefined elements by clicking on the `radio-fieldset` elements. Predefined elements can be vary.  
-- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value i *false*.  
-- `caption` *[optional]* - field label.  
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
+- `caption` *[optional]* - field label
 ###dockertag   
 Displaying Docker tags within the `list` element.  
+
 ![text](/img/dockertag.jpg)  
 ```
 {
@@ -500,14 +507,15 @@ Displaying Docker tags within the `list` element.
 }
 ```
 where:   
-- `name` *[required]* - 'tag' value.  
-- `values` *[required]* - Docker tag values (`name`: "tag_name" is required). By default Docker image is pulled from the Docker Hub registry.  
+- `name` *[required]* - should have the *'tag'* value  
+- `values` *[required]* - Docker tag values (*name*: *"tag_name"* is required). By default Docker image is pulled from the Docker Hub registry.  
 - `dockerImage` - Docker image details   
-   - `name`: <b>repository</b> is required   
+   - `name`: *repository* is required   
    - `registry`, `username`, `password` are optional   
-- `env` - required object (can be empty).  
+- `env` - required object (can be empty)  
 ###compositefield
 The `compositefield` is a container with specific functionality and structural components that constitute it as the block for application-oriented custom user interfaces.  
+
 ![compositefield](/img/compositefield.jpg)  
 ```
 {
@@ -548,14 +556,15 @@ The `compositefield` is a container with specific functionality and structural c
 }
 ```
 where:   
-- `pack` *[optional]* - manages the way items are packed together. The default value is *start*. Possible values: *start*, *center* and *end*.  
-- `align` *[optional]* - manages the way items are aligned. The default value is *top*. Possible values: *top*, *middle*, *stretch*, *stretchmax*.  
-- `defaultMargins` *[optional]* - default margins for items. The default value is *0*.  
-- `defaultPadding` *[optional]* - default paddings for items. The default value is *0*.  
+- `pack` *[optional]* - manages the way items are packed together. The default value is *'start'*. Possible values: *'start'*, *'center'* and *'end'*.  
+- `align` *[optional]* - manages the way items are aligned. The default value is *'top'*. Possible values: *'top'*, *'middle'*, *'stretch'*, *'stretchmax'*.  
+- `defaultMargins` *[optional]* - default margins for items. The default value is *'0'*.  
+- `defaultPadding` *[optional]* - default paddings for items. The default value is *'0'*.  
 - `defaultFlex` *[optional]* - horizontal flex for items.   
 - `items` - elements  
 ###slider
 The slider element as a form field.
+
 ![slider](/img/slider.jpg)
 ```
 {
@@ -575,11 +584,12 @@ The slider element as a form field.
 where:   
 - `min` - minimum slider value  
 - `max` - maximum slider value  
-- `useTips` - displaying tips for the value. The default value is *true*.  
+- `useTips` - displaying tips for the value. The default value is *'true'*.  
 - `caption` *[optional]* - field label  
 - `name` *[optional]* - name of the field    
 ###envlist
 The account environments list within a drop-down element.  
+
 ![envlist](/img/envlist.jpg)  
 ```
 {
@@ -597,12 +607,13 @@ The account environments list within a drop-down element.
 where:  
 - `caption` *[optional]* - field label    
 - `name` *[optional]* - name of the field  
-- `editable` *[optional][boolean]* - enables/disables the `envlist` field editing. The default value is *false*.    
+- `editable` *[optional][boolean]* - enables/disables the `envlist` field editing. The default value is *'false'*.    
 - `valueField` *[optional]*  
 ###popupselector
 (`popup-selector` is an alias)     
-Opens popup window via the POST request to any external service.   
-Functionality provides the possibility to pass additional parameters.  
+
+Opens popup window via the POST request to any external service. Functionality provides the possibility to pass additional parameters.  
+
 ![popupselector](/img/popupselector.jpg)  
 ```
 {
@@ -625,17 +636,19 @@ Functionality provides the possibility to pass additional parameters.
 }
 ```
 where:  
-- `caption` *[optional]* - field label.  
-- `name` *[optional]* - name of the field.  
+- `caption` *[optional]* - field label 
+- `name` *[optional]* - name of the field
 - `buttonText` *[optional]* - button label  
-- `url` *[optional]* - external source URL. The default link si to the Jelastic platform.  
+- `url` *[optional]* - external source URL. The default link is to the Jelastic platform.  
 - `popupWidth` *[optional]* - width in pixels  
 - `popupHeight` *[optional]* - height in pixels  
 - `popupCallbackEvent` - event handler  
-- `params` - parameters for sending in POST request to `url` source.  
+- `params` - parameters for sending in POST request to `URL` source.  
 ###displayfield
 (`spacer` is an alias)    
+
 The text field intended only for display, which is not validated and not submitted.  
+
 ![displayfield](/img/displayfield.jpg)  
 ```
 {
@@ -652,9 +665,10 @@ The text field intended only for display, which is not validated and not submitt
 where:  
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field   
-- `markup` - value to initialize the field's display. The default value is "*undefined*".  
+- `markup` - value to initialize the field's display. The default value is "*'undefined'*".  
 ###spinner
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
+
 ![spinner](/img/spinner.jpg)  
 ```
 {
@@ -680,7 +694,9 @@ where:
 - `decimanPrecision` - precision value  
 ###numberpicker
 (`number-picker` is an alias)  
+
 The text field with a number validation within range.   
+
 ![numberpicker](/img/numberpicker.jpg)  
 ```
 {
@@ -701,9 +717,10 @@ where:
 - `caption` *[optional]* - field label    
 - `min` - minimum spinner value  
 - `max` - maximum spinner value  
-- `editable` *[optional][boolean]* - enables/disables editing the `numberpicker` field. The default value is *false*.  
+- `editable` *[optional] [boolean]* - enables/disables editing the `numberpicker` field. The default value is *'false'*.  
 ###hostpicker
 (host-pickeran is alias)  
+
 The drop-down menu with the environments hosts.  
 ![hostpicker](/img/hostpicker.jpg)  
 ```
@@ -722,10 +739,11 @@ The drop-down menu with the environments hosts.
 where:  
 - `name` *[optional]* - name of the field   
 - `caption` *[optional]* - field label   
-- `editable` *[optional][boolean]* - enables/disables editing the `envlist` field. The default value is *false*  
+- `editable` *[optional] [boolean]* - enables/disables editing the `envlist` field. The default value is *'false'*.  
 - `valueField` *[optional]*   
 ###toggle
-The toggle element is a switch between two values
+The toggle element is a switch between two values.
+
 ![toggle](/img/toggle.jpg)
 ```
 {
@@ -742,4 +760,4 @@ The toggle element is a switch between two values
 where:  
 - `name` *[optional]* - name of the field  
 - `caption` *[optional]* - field label    
-- `value` *[boolean]* - enables/disables toggle value. The default value is *false*   
+- `value` *[boolean]* - enables/disables toggle value. The default value is *'false'*   
