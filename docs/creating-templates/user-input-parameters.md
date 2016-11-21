@@ -63,17 +63,17 @@ where:
     - `caption` *[optional]* - field label  
     - `placeholder` *[optional]* -  text, that describes the expected value of the input field  
     - `required` *[optional]* - possible values are *"true"* & *"false"*. If left empty, the default value is *"true"*.  
-    - `regex` *[optional]* - constructor for testing the JavaScript RegExp object, that refers to the stated the field value, during validation. If test fails, the field will be marked invalid using regexText. The default value is "null"  
-    - `regexText` *[optional]* - displays error message in case of the regex test failure during validation. The default value is ' ' (blank space)     
-    - `vtype` *[optional]* - A validation type name. Possible values:  
-        - `alpha` - The keystroke filter mask applied to alpha input. The default value is: /[a-z_]/i  
-        - `alphanum` - The keystroke filter mask applied to alphanumeric input. The default value is: /[a-z0-9_]/i  
-        - `email` - The keystroke filter mask applied to email input. See the email method for information about more complex email validation. The default value iso: /[a-z0-9_.-+\'@]/i. See the [appropriate method](http://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.VTypes-method-email) for more information about complex email validation  
-        - `url` - The keystroke filter mask applied to URL input.                        
-    - `vtypeText` *[optional]* - custom error message to be displayed instead of the default one, provided by vtype for this field. The default value is ' ' (blank space).     
+    - `regex` *[optional]* - constructor for testing the JavaScript RegExp object, that refers to the stated the field value, during validation. If test fails, the field will be marked invalid using *regexText*. The default value is *"null"*. 
+    - `regexText` *[optional]* - displays error message in case of the *regex* test failure during validation. The default value is *' '* (blank space).     
+    - `vtype` *[optional]* - validation type name. Possible values:  
+        - `alpha` - keystroke filter mask applied to alpha input. The default value is *"/[a-z_]/i"*.  
+        - `alphanum` - keystroke filter mask applied to alphanumeric input. The default value is *"/[a-z0-9_]/i"*.  
+        - `email` - keystroke filter mask applied to email input. The default value is *"/[a-z0-9_.-+\'@]/i"*. See the [appropriate method](http://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.VTypes-method-email) for more information about complex email validation.  
+        - `URL` - keystroke filter mask applied to URL input                        
+    - `vtypeText` *[optional]* - custom error message to be displayed instead of the default one, provided by *vtype* for this field. The default value is *' '* (blank space).     
     
 !!! note
-    > `vtypeText` is applied only in case the vtype value is set; otherwise, it is ignored.  
+    > `vtypeText` is applied only in case the *vtype* value is set; otherwise, it is ignored.  
 
 ##Target Nodes
 `Target Nodes` is an optional method method which allows to define environments, that are suitable for JPS installation. Herewith, this option is available only for `JpsType` *update* procedure.   
