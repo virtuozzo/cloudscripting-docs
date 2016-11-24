@@ -1,7 +1,6 @@
 # Actions
 
 Actions are the building blocks that perform arbitrary automation functions in your environment.
-
 Such as:
 
 - increasing/decreasing CPU or RAM amount  
@@ -21,9 +20,9 @@ Multiple actions can be combined together into a [procedure](procedures/).
 It is possible to execute each procedure with different input parameters using a [call](#call) action. 
 
 ## Container Operations
-There are actions that perform some operations inside of a container. See [Selecting Containers for your Actions](/creating-templates/selecting-containers/) page.
+There are actions that perform some operations inside of a container. See the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) page.
 
-Any container can be performed using [ExecuteShellCommands](#executeshellcommands) action.Moreover, there are also several actions provided for convenience, that can be divided into three groups:   
+Any container operation can be performed using [ExecuteShellCommands](#executeshellcommands) action.Moreover, there are also several actions provided for convenience, that can be divided into three groups:   
 - SSH commands ([ExecuteShellCommands](#executeshellcommands))    
 - Predefined modules ([Deploy](#deploy), [Upload](#upload), [Unpack](#unpack))    
 - File operations ([CreateFile](#createfile), [CreateDirectory](#createdirectory), [WriteFile](#writefile), [AppendFile](#appendfile), [ReplaceInFile](#replaceinfile))       
