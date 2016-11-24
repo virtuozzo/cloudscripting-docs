@@ -323,6 +323,7 @@ Each element has an index in the array.
 For example: 
 
 `{nodes.cp[(i)].(key)}`   
+
 where:   
 - `i` - array index   
 - `key` - node parameter. See the details about [node parameters](#/reference/placeholders/#node-placeholders).   
