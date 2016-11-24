@@ -722,7 +722,7 @@ where:
 - `max` - maximum spinner value  
 - `editable` *[optional] [boolean]* - enables/disables editing the `numberpicker` field. The default value is *'false'*.  
 ###hostpicker
-(`host-pickeran` is alias)  
+(`host-picker` is an alias)  
 
 The drop-down menu with the environments hosts.  
 
