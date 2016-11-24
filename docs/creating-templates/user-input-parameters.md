@@ -63,7 +63,7 @@ where:
     - `caption` *[optional]* - field label  
     - `placeholder` *[optional]* -  text, that describes the expected value of the input field  
     - `required` *[optional]* - possible values are *"true"* & *"false"*. If left empty, the default value is *"true"*.  
-    - `regex` *[optional]* - constructor for testing the JavaScript RegExp object, that refers to the stated the field value, during validation. If test fails, the field will be marked invalid using *regexText*. The default value is *"null"*.                                                       
+    - `regex` *[optional]* - constructor for testing the JavaScript RegExp object, that refers to the stated the field value, during validation. If test fails, the field will be marked invalid using *regexText*. The default value is *"null"*.                                                        
     - `regexText` *[optional]* - displays error message in case of the *regex* test failure during validation. The default value is *' '* (blank space).     
     - `vtype` *[optional]* - validation type name. Possible values:      
         - `alpha` - keystroke filter mask applied to alpha input. The default value is *"/[a-z_]/i"*.  
@@ -107,8 +107,8 @@ There are two possible ways to define a nodeType:
 
 "nodeType": "..., ..." - to set the required nodeTypes being separated with commas
 ```
-
 <b>Example</b> 
+
 Let’s suppose you have three environments with different topology:     
 
 ![targetNodes](/img/targetNodes.jpg)  
@@ -149,6 +149,7 @@ Such buttons execute operations that are predefined within JPS manifest.
     > JPS manifest should include the [`targetNodes`](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation. Otherwise, it will be hidden.  
 
 <b>Template</b>   
+
 Sample to set buttons within add-on plank:
 ```
 {
@@ -360,9 +361,9 @@ The drop-down list and a single-line non-editable textbox.
 }
 ```
 where:      
-- `caption` *[optional]* - field label                                
-- `values` - objects' values (*"key"*:*"value"*)                          
-- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.        
+- `caption` *[optional]* - field label                                  
+- `values` - objects' values (*"key"*:*"value"*)                            
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.          
 ###checkbox   
 The single checkbox field.
 
@@ -382,7 +383,7 @@ The single checkbox field.
 where:  
 - `caption` *[optional]* - field label           
 - `value` - enables or disables checkbox                         
-- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.                    
+- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.                      
 ###checkboxlist   
 The *checkbox* grouping.  
 
@@ -470,7 +471,7 @@ The groupping of the *radio* elements with the `showIf` function.
 }
 ```
 where:   
-- `name` *[required]* - name of the `radio-fieldset` element (for other elements it’s not required)    
+- `name` *[required]* - name of the `radio-fieldset` element (for other elements it’s not required)                       
 - `default` *[optional]* - selected field upon opening the form  
 - `values` - checkboxes (*"key"*:*"value"*)  
 - `showIf` - conditional object that shows predefined elements by clicking on the `radio-fieldset` elements. Predefined elements can be vary.  
@@ -638,14 +639,14 @@ Opens popup window via the POST request to any external service. Functionality p
 }
 ```
 where:  
-- `caption` *[optional]* - field label               
-- `name` *[optional]* - name of the field              
-- `buttonText` *[optional]* - button label        
-- `url` *[optional]* - external source URL. The default link is to the Jelastic platform.  
-- `popupWidth` *[optional]* - width in pixels  
-- `popupHeight` *[optional]* - height in pixels  
-- `popupCallbackEvent` - event handler  
-- `params` - parameters for sending in POST request to `URL` source.  
+- `caption` *[optional]* - field label                      
+- `name` *[optional]* - name of the field                  
+- `buttonText` *[optional]* - button label              
+- `url` *[optional]* - external source URL. The default link is to the Jelastic platform.         
+- `popupWidth` *[optional]* - width in pixels          
+- `popupHeight` *[optional]* - height in pixels   
+- `popupCallbackEvent` - event handler   
+- `params` - parameters for sending in POST request to `URL` source.     
 ###displayfield
 (`spacer` is an alias)    
 
