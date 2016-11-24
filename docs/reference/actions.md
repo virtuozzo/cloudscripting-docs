@@ -493,7 +493,7 @@ Available nodes: *SQL* Databases (except for *Docker* container)
   ]
 }
 ```
-
+where:
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed.
 By default `nodeGroup` equals to `sqldb`.    
 - `databaseName` - name of the database to be created    
