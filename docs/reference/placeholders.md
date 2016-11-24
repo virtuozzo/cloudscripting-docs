@@ -60,7 +60,7 @@ If it's not possible, placeholder will be unresolved and displayed in the text a
         - `ismaster` - master node's status in the [`nodeGroup`](/reference/container-types/#containers-by-group)(i.e. layer)   
         - `maxchanks`   
         - `name` - stack name   
-        - `nodeGroup` - nodes layer, i.e. *lb*, *cp*, *sqldb*, *nosqldb*, *cache*, *storage*, *extra* (for Docker containers)   
+        - `nodeGroup` - nodes layer, i.e. *lb*, *cp*, *sqldb*, *nosqldb*, *cache*, *storage*, *extra* (for *Docker* containers)   
         - `nodeType` -  stacks [nodeType](/reference/container-types/#nodetype-values) list  
         - `nodemission` - deprecated value (same as `nodeGroup`)  
         - `osType` - OS type (LINUX)   
@@ -97,7 +97,7 @@ The values below can vary depending on the chosen [nodeType](/reference/containe
 - `${WEBAPPS}` - for *apache2-ruby*, *apache2*, *jetty6*, *nginx-ruby*, *nginxphp*, *nodejs*, *tomcat6*, *tomcat7*, *tomee*    
 - `${JAVA_HOME}` - for *glassfish3*, *jetty6*, *maven3*, *tomcat6*, *tomcat7*, *tomee*   
 - `${JAVA_LIB}` - for *tomcat6*, *tomcat7*    
-- `${SYSTEM_CRON}` - for all native *nodeType*
+- `${SYSTEM_CRON}` - for all native *nodeType*               
 - `${SYSTEM_ETC}`- for all *nodeType*    
 - `${SYSTEM_KEYS}` - for all native *nodeType*   
 - `${SERVER_CONF}` - for *apache2*, *glassfish3*, *jetty6*, *maven3*, *tomcat6*, *tomcat7*, *tomee*    
@@ -123,14 +123,14 @@ You can use the following placeholders, as well, with the definite `nodeType`. F
 Explore the full list of the [Jelastic native *nodeType*](/reference/container-types/#native-jelastic-nodetypes).
 
 The list of single placeholders:   
-- `${nginxphp.NGINX_CONF}` - */etc/nginx/nginx.conf*  
-- `${postgresql.POSTGRES_CONF}` - */var/lib/pgsql/data*  
-- `${mysql5.MYSQL_CONF}` - */etc*  
-- `${mariadb.MARIADB_CONF}` - */etc* 
-- `${nginxphp.PHP_CONF}` - */etc/php.ini*  
-- `${nginxphp.PHPFPM_CONF}` - */etc/php-fpm.conf*  
-- `${nginxphp.PHP_MODULES}` - */usr/lib64/php/modules*  
-- `${nginxphp.WEBROOT}` - */var/www/webroot*  
+- `${nginxphp.NGINX_CONF}` - */etc/nginx/nginx.conf*   
+- `${postgresql.POSTGRES_CONF}` - */var/lib/pgsql/data*   
+- `${mysql5.MYSQL_CONF}` - */etc*   
+- `${mariadb.MARIADB_CONF}` - */etc*             
+- `${nginxphp.PHP_CONF}` - */etc/php.ini*   
+- `${nginxphp.PHPFPM_CONF}` - */etc/php-fpm.conf*   
+- `${nginxphp.PHP_MODULES}` - */usr/lib64/php/modules*   
+- `${nginxphp.WEBROOT}` - */var/www/webroot*   
 
 ## Account Information                                                                                                                                       
 - `${user.uid}` - user ID at the Jelastic platform    
@@ -140,7 +140,7 @@ The list of single placeholders:
 
 ## Input Parameters
 - `${settings.jelastic_email}` - user email that is always predefined    
-- `${settings.key}` - (where key is a name of application setting) - placeholder is defined in case user input parameters are specified within manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.     
+- `${settings.key}` - (where *key* is a name of application setting) - placeholder is defined in case user input parameters are specified within manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.     
 
 For example:
 ```example
@@ -320,7 +320,8 @@ ${nodes.bl.extips.length}
 
 Each element has an index in the array. 
 
-For example:   
+For example: 
+
 `{nodes.cp[(i)].(key)}`   
 where:   
 - `i` - array index   
@@ -330,5 +331,6 @@ where:
 
 `{nodes.cp.first.(key)}` -  array element with the *'0'* index  
 `{nodes.sqldb.last.(key)}` - array element with the last ID in the array   
+
 where:  
 - `key` - node parameter.   
