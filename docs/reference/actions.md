@@ -1,11 +1,11 @@
 # Actions
 
-Actions are the building blocks that perform arbitrary automation functions in your environment. Such as:
-- increasing/decreasing CPU or RAM amount  
-- adjusting configs according to specific environment's parameters
-- restarting a service
-- restarting a container
-- applying a database patch according to specific environment's parameters  
+Actions are the building blocks that perform arbitrary automation functions in your environment. Such as:                
+- increasing/decreasing CPU or RAM amount     
+- adjusting configs according to specific environment's parameters     
+- restarting a service           
+- restarting a container                  
+- applying a database patch according to specific environment's parameters                  
      
 The default workflow for any action is the following:   
 - replacing [placeholders](placeholders/)    
