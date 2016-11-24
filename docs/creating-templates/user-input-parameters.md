@@ -360,9 +360,9 @@ The drop-down list and a single-line non-editable textbox.
 }
 ```
 where:      
-- `caption` *[optional]* - field label 
-- `values` - objects' values (*"key"*:*"value"*)
-- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
+- `caption` *[optional]* - field label                                
+- `values` - objects' values (*"key"*:*"value"*)                          
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.        
 ###checkbox   
 The single checkbox field.
 
@@ -380,9 +380,9 @@ The single checkbox field.
 }
 ```
 where:  
-- `caption` *[optional]* - field label   
-- `value` - enables or disables checkbox
-- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.  
+- `caption` *[optional]* - field label           
+- `value` - enables or disables checkbox                         
+- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.                    
 ###checkboxlist   
 The *checkbox* grouping.  
 
@@ -431,8 +431,10 @@ where:
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.  
 ###radio-fieldset    
 The groupping of the *radio* elements with the `showIf` function.     
+
 !!! note
     The *hideLabel* boolean value is always *true* for this field   
+
 ![text](/img/radio-fieldset.jpg)   
 ```
 {
@@ -636,9 +638,9 @@ Opens popup window via the POST request to any external service. Functionality p
 }
 ```
 where:  
-- `caption` *[optional]* - field label 
-- `name` *[optional]* - name of the field
-- `buttonText` *[optional]* - button label  
+- `caption` *[optional]* - field label               
+- `name` *[optional]* - name of the field              
+- `buttonText` *[optional]* - button label        
 - `url` *[optional]* - external source URL. The default link is to the Jelastic platform.  
 - `popupWidth` *[optional]* - width in pixels  
 - `popupHeight` *[optional]* - height in pixels  
@@ -663,9 +665,9 @@ The text field intended only for display, which is not validated and not submitt
 }
 ```
 where:  
-- `caption` *[optional]* - field label
-- `name` *[optional]* - name of the field   
-- `markup` - value to initialize the field's display. The default value is "*'undefined'*".  
+- `caption` *[optional]* - field label                   
+- `name` *[optional]* - name of the field                
+- `markup` - value to initialize the field's display. The default value is "*'undefined'*".                 
 ###spinner
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
 
@@ -719,9 +721,10 @@ where:
 - `max` - maximum spinner value  
 - `editable` *[optional] [boolean]* - enables/disables editing the `numberpicker` field. The default value is *'false'*.  
 ###hostpicker
-(host-pickeran is alias)  
+(`host-pickeran` is alias)  
 
 The drop-down menu with the environments hosts.  
+
 ![hostpicker](/img/hostpicker.jpg)  
 ```
 {
