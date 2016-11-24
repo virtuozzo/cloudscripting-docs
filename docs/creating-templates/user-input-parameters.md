@@ -109,7 +109,6 @@ There are two possible ways to define a nodeType:
 ```
 
 <b>Example</b> 
-
 Let’s suppose you have three environments with different topology:     
 
 ![targetNodes](/img/targetNodes.jpg)  
@@ -150,7 +149,6 @@ Such buttons execute operations that are predefined within JPS manifest.
     > JPS manifest should include the [`targetNodes`](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation. Otherwise, it will be hidden.  
 
 <b>Template</b>   
-
 Sample to set buttons within add-on plank:
 ```
 {
@@ -175,7 +173,8 @@ Sample to set buttons within add-on plank:
   }
 }
 ```
-Here:  
+Here: 
+
 - `buttons` - button parameters array   
 - `confirmText` *[optional]* - custom confirmation text for users. The default value is *"Are you sure?"*.   
 
@@ -183,7 +182,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 ![Confirm](/img/Confirm.jpg)      
 
-- `loadingText` *[optional]* - UI text to be displayed during loading and applying changes. The default value i *"Applying..."*.    
+- `loadingText` *[optional]* - UI text to be displayed during loading and applying changes. The default value is *"Applying..."*.    
 
 ![LoadingText](/img/LoadingText.jpg)      
 
@@ -196,8 +195,8 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 ![SuccessText](/img/SuccessText.jpg)     
 
-- `href` *[optional]* - external link that is opened in a new browser tab; is considered only if the *settings* field is absent. In this case *procedure* will not be executed  
-- `settings` - custom form ID. The default is *"main"*. For more details see [custom settings section](/creating-templates/user-input-parameters/#custom-settings)      
+- `href` *[optional]* - external link that is opened in a new browser tab; is considered only if the *settings* field is absent. In this case *procedure* will not be executed.      
+- `settings` - custom form ID. The default is *"main"*. For more details see [custom settings section](/creating-templates/user-input-parameters/#custom-settings).           
 
 The next parameters can be enabled only when the `settings` field is present:
 ```
@@ -229,9 +228,10 @@ The next parameters can be enabled only when the `settings` field is present:
   }
 }
 ```
-where:    
+where:
+
 - `title` - custom dialog title. If absent, than `caption` will be applied.    
-- `submitButtonText` - text for submission button in the opened dialog. The default value is *Apply*.   
+- `submitButtonText` - text for submission button in the opened dialog. The default value is *"Apply"*.   
 
 ![SubmitButtonText](/img/SubmitButtonText.jpg)  
 
