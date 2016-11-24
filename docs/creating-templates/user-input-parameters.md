@@ -63,9 +63,9 @@ where:
     - `caption` *[optional]* - field label  
     - `placeholder` *[optional]* -  text, that describes the expected value of the input field  
     - `required` *[optional]* - possible values are *"true"* & *"false"*. If left empty, the default value is *"true"*.  
-    - `regex` *[optional]* - constructor for testing the JavaScript RegExp object, that refers to the stated the field value, during validation. If test fails, the field will be marked invalid using *regexText*. The default value is *"null"*. 
+    - `regex` *[optional]* - constructor for testing the JavaScript RegExp object, that refers to the stated the field value, during validation. If test fails, the field will be marked invalid using *regexText*. The default value is *"null"*.                                                       
     - `regexText` *[optional]* - displays error message in case of the *regex* test failure during validation. The default value is *' '* (blank space).     
-    - `vtype` *[optional]* - validation type name. Possible values:  
+    - `vtype` *[optional]* - validation type name. Possible values:      
         - `alpha` - keystroke filter mask applied to alpha input. The default value is *"/[a-z_]/i"*.  
         - `alphanum` - keystroke filter mask applied to alphanumeric input. The default value is *"/[a-z0-9_]/i"*.  
         - `email` - keystroke filter mask applied to email input. The default value is *"/[a-z0-9_.-+\'@]/i"*. See the [appropriate method](http://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.VTypes-method-email) for more information about complex email validation.  
