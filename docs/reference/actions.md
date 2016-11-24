@@ -1,8 +1,6 @@
 # Actions
 
-Actions are the building blocks that perform arbitrary automation functions in your environment.
-Such as:
-
+Actions are the building blocks that perform arbitrary automation functions in your environment. Such as:
 - increasing/decreasing CPU or RAM amount  
 - adjusting configs according to specific environment's parameters
 - restarting a service
@@ -22,7 +20,7 @@ It is possible to execute each procedure with different input parameters using a
 ## Container Operations
 There are actions that perform some operations inside of a container. See the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) page.
 
-Any container operation can be performed using [ExecuteShellCommands](#executeshellcommands) action.Moreover, there are also several actions provided for convenience, that can be divided into three groups:   
+Any container operation can be performed using [ExecuteShellCommands](#executeshellcommands) action. Moreover, there are also several actions provided for convenience, that can be divided into three groups:   
 - SSH commands ([ExecuteShellCommands](#executeshellcommands))    
 - Predefined modules ([Deploy](#deploy), [Upload](#upload), [Unpack](#unpack))    
 - File operations ([CreateFile](#createfile), [CreateDirectory](#createdirectory), [WriteFile](#writefile), [AppendFile](#appendfile), [ReplaceInFile](#replaceinfile))       
@@ -31,7 +29,7 @@ Any container operation can be performed using [ExecuteShellCommands](#executesh
     To process any container operation except [ExecuteShellCommands](#executeshellcommands), Cloud Scripting executor will use a default system user with restricted permissions.    
    
 ### ExecuteShellCommands
-Execute several SSH commands. Available for all *nodeTypes*.
+Execute several SSH commands. Available for all nodes.
 
 **Definition**
 
@@ -57,12 +55,12 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required. See the [Selecting Containers for your Actions](#selecting-containers-for-your-actions) section.    
 - `commands` - a set of commands that are executed. Its value is wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**.     
     Where:    
-    - **cmd** equals to a Base64 encoded string: **yes | (cmd1;cmd2)**. In case your commands require interactive input, by default the Cloud Scripting executor will always try to give a positive answer using **yes** utility.        
+    - **cmd** - equals to a Base64 encoded string: **yes | (cmd1;cmd2)**. In case your commands require interactive input, by default the Cloud Scripting executor will always try to give a positive answer using **yes** utility.        
     - **user** - default system user with restricted permissions.    
-- `sayYes` - optional parameter, that enables or disables the usage of **yes** utility. The default value is **'true'**.        
+- `sayYes` - optional parameter, that enables or disables the usage of **yes** utility. The default value is *'true'*.        
 
 
-While accessing containers via **executeShellCommands**, a user receives all the required permissions and additionally can manage the main services with <b>sudo</b> commands of the following kinds (and others):
+While accessing containers via *executeShellCommands*, a user receives all the required permissions and additionally can manage the main services with <b>sudo</b> commands of the following kinds (and others):
 
 ```no-highlight
 sudo /etc/init.d/jetty start  
@@ -195,7 +193,7 @@ Available for all nodes (except for *Docker* containers and *Elastic VPS*)
 }
 ```
 where:   
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.            
 - `path` 
 
 ### CreateDirectory
@@ -214,7 +212,7 @@ Available for all nodes (except for *Docker* containers and *Elastic VPS*)
 }
 ```
 where:  
-- `nodeId`, `nodGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.
+- `nodeId`, `nodGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.           
 - `path` 
 
 ### WriteFile
@@ -234,7 +232,7 @@ Available for all nodes (except for *Docker* containers and *Elastic VPS*)
 }
 ```
 where:  
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.                                 
 - `path`    
 - `body`    
 
@@ -255,7 +253,7 @@ Available for all nodes (except for *Docker* containers and *Elastic VPS*)
 }
 ```
 where:   
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.                             
 - `path`    
 - `body`    
 
@@ -279,7 +277,7 @@ Available for all nodes (except for *Docker* containers and *Elastic VPS*)
 }
 ```
 where:   
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.     
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.                   
 - `path`    
 - `replacements` - the list of replacements within the node's configuration files    
     - `pattern` - regular expressions to find the string (e.g. `app\\.host\\.url\\s*=\\s*.*`)    
