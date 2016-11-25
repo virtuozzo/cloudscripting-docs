@@ -297,11 +297,11 @@ For instance:
 ```
 Here, the *main settings* form appears during installation process.   
 
-![settingMain](/img/settingsMain.jpg)   
+![settingMain](/img/SettingsMain.jpg)   
 
 The *config settings* form appears after clicking the <b>Configure</b> button within the add-ons section.   
 
-![settingCustom](/img/settingsCustom.jpg)     
+![settingCustom](/img/SettingsCustom.jpg)     
 
 ##Supported Fields
 ###string     
