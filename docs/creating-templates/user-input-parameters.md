@@ -243,7 +243,7 @@ where:
 - `logsNodeGroup` - [nodeGroup](/reference/container-types/#containers-by-groups-nodegroup) layer the logging path is opened for      
 
 ##Custom Menus    
-Menu is an expandable list within the add-ons section comprising custom actions, that execute corresponding operations.  
+Menu is an expandable list within the <b>Add-ons</b> section comprising custom actions, that execute corresponding operations.  
 
 ![menu](/img/menu.jpg)     
 
