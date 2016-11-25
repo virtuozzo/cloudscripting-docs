@@ -52,7 +52,7 @@ Execute several SSH commands. Available for all nodes.
 }
 ```
 where:  
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required. See the [Selecting Containers for your Actions](#selecting-containers-for-your-actions) section.    
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required. See the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) section.    
 - `commands` - a set of commands that are executed. Its value is wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**.     
     Where:    
     - **cmd** - equals to a Base64 encoded string: **yes | (cmd1;cmd2)**. In case your commands require interactive input, by default the Cloud Scripting executor will always try to give a positive answer using **yes** utility.        
