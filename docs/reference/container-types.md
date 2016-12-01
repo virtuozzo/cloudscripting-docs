@@ -1,10 +1,10 @@
 # Containers by Groups and Types
 
-Container nodeType defines software stack (among the supported ones) to be deployed within a node. Node type value is used in "nodeType" field for [Actions](/reference/actions/).
+Container *nodeType* parameter defines software stacks (among the supported ones) to be implemented within environment. Node type value is specified within *nodeType* field while performing an appropriate [action](/reference/actions/).                   
 
-**Examples:**
+**For example:**   
 
-Using `nodeType` field in [action](/reference/actions/#writefile) `writeFile`:
+Using *nodeType* field while performing the *writeFile* [action](/reference/actions/#writefile):                         
 ```
 {
   "writeFile": {
@@ -14,7 +14,13 @@ Using `nodeType` field in [action](/reference/actions/#writefile) `writeFile`:
   }
 } 
 ```
-Install `nodeType` tomcat7 with `java7` engine:
+where:              
+- `writeFile` - action to write data to a file                 
+- `nodeType` - value to define a particular node, where the file is located                   
+- `path` - parameter specifying path to a file                
+- `body` - data that is being written to a file                          
+
+Creating environment with topology specifics, set by *engine* and *nodeType* values:                                      
 ```
 {
   "env": {
@@ -30,14 +36,19 @@ Install `nodeType` tomcat7 with `java7` engine:
   }
 }
 ```
-Below you can find the list of available [`nodeType`](/reference/container-types/#nodetype-values) and [`engine`](/reference/container-types/#engine-versions) values.
+where:                 
+- `engine` - value that specifies engine version (*java7* in our example)                  
+- `nodeType` - value that specifies compute node type (*tomcat7* in our example)                        
 
-##Containers by Groups (nodeGroup)
+Below you can find data on supported software stacks in confines of [*nodeGroup*](/reference/container-types/#containers-by-groups-nodegroup), [*nodeType*](/reference/container-types/#containers-by-types-nodetype) and [*engine*](/reference/container-types/#engine-versions-engine) values.        
 
-The nodeGroup parameter is used to define how to separate nodeType on groups, i.e. determines environment layer the container(s) should be placed to.
-The nodeGroup value can be used within 'nodeType' field for [Actions](/reference/actions/) too.
+##Containers by Groups (*nodeGroup*)
 
-For **Docker-based** containers, `nodeGroup` can be started to any value - either [predefined](/reference/container-types/#containers-by-group) or your custom one.    
+The *nodeGroup* parameter is applied to set a paradigm for *nodeType* division into groups, i.e. it determines environment layer for container(s) to be placed to.       
+The *nodeGroup* value can be used within *nodeType* field while executing the appropriate [actions](/reference/actions/).     
+
+For *Docker* containers, *nodeGroup* can be stated to any value - either predefined (listed above) or your custom one.       
+
 For example:
 ```
 {
@@ -56,22 +67,25 @@ For example:
   }
 }
 ```
-- `customGroup` - custom NodeGroup. In [actions](/reference/actions/) it can be called via field `"nodeGroup":"customGroup"`
+where:                   
+- `customGroup` - name of your custom *nodeGroup* value, that is called via `"nodeGroup":"customGroup"` field, while performing an appropriate [action](/reference/actions/)                       
+
 !!! note
-    > If specified `nodeGroup` is not predefined at Jelastic platform, the container will be placed to *Extra* layer:    
+    > Upon stating non-predefined (i.e. custom) *nodeGroup* value for *Docker* containers, the corresponding container will be placed to the *Extra* layer:    
     ![extra](https://download.jelastic.com/public.php?service=files&t=2bda4051062f413278b693d2898cdcbd&download)    
-    Subsequently, this nodeGroup value can be used within the same-named field of [Actions](/reference/actions/) to address to a particular extra layer.
+    Subsequently, this *nodeGroup* value can be used within the same-named [actions](/reference/actions/) field to point to a particular *Extra* layer.        
 
-Jelastic platform supports the next predefined `nodeGroup` values:
+<b>Predefined *nodeGroup* values</b>                 
 
-- **bl** (for balancer nodes) - `nginx`, `varnish`, `haproxy`
-- **cp** (for compute nodes) - `tomcat6`, `tomcat7`, `tomcat8`, `tomee`, `glassfish3`, `glassfish4`, `jetty6`, `jetty8`, `jetty9`, `jboss7`, `smartfox-server`, `powerdns`, `railo4`, `wildfly`, `wildfly9`, `wildfly10`, `apache2`, `nginxphp`, `apache2-python`, `apache2-ruby`, `nginx-ruby`, `nodejs`
-- **sql** - `mysql5`, `mariadb`, `mariadb10`, `postgres8`, `postgres9`
-- **nosql** - `mongodb`, `couchdb`, `redis`, `redis3`, `cassandra2` 
-- **vps** - `centos6`, `centos7`
-- **cache** - `memcached`
-- **build** - `maven3`
-- **storage** - `storage`
+Jelastic platform supports the following predefined *nodeGroup* values:                         
+- **lb** (for load balancers) - *nginx, varnish, haproxy*                     
+- **cp** (for compute nodes) - *tomcat6, tomcat7, tomcat8, tomee, glassfish3, glassfish4, jetty6, jetty8, jetty9, jboss7, smartfox-server, powerdns, railo4, wildfly, wildfly9, wildfly10, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs*                     
+- **sql** (for *sql* databases) - *mysql5, mariadb, mariadb10, postgres8, postgres9*                          
+- **nosql** (for *nosql* databases) - *mongodb, couchdb, redis, redis3, cassandra2*                   
+- **vps** (for virtual private servers) - *centos6, centos7*                        
+- **cache** (for cache server) - *memcached*                       
+- **build** (for build node) - *maven3*                     
+- **storage** (for storage container) - *storage*                        
 
 ## Containers by Types (nodeType)
 - **Compute nodes:**
