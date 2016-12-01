@@ -185,9 +185,9 @@ Jelastic native software stacks include the following containers:
 
 ## Engine versions (*engine*)
 
-**Java Stacks**
+The following section deals with supported engine versions and their availability within corresponding *nodeType* (i.e. compute nodes).
 
-The following section deals with supported engine versions and their availability within corresponding *nodeType* (i.e. compute nodes).    
+**Java Stacks**
 
 |nodeType|`tomcat6`|`tomcat7`|`tomcat8`|`tomee`|`glassfish3`|`glassfish4`|`jetty6`|`jetty8`|`jetty9`|
 |------------|------|---------|---------|-------|------------|------------|--------|--------|--------|
