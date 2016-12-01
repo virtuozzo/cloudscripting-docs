@@ -147,6 +147,8 @@ Jelastic Platform supports the following software stacks:
     - `docker`                       
 
 ##Jelastic Native Container Types
+
+Jelastic native software stacks include the following containers:
 - `apache2-ruby`
 - `apache2`
 - `couchdb`
