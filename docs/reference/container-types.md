@@ -124,53 +124,64 @@ Jelastic Platform supports the following software stacks:
     - `mariadb10` - *MariaDB 10*                    
     - `postgres8` - *PostgreSQL 8*                  
     - `postgres9` - *PostgreSQL 9*                    
-- **NoSQL Databases:**
+- **NoSQL Databases:**   
     - `mongodb` - *MongoDB*           
     - `couchdb` - *CouchDB*             
     - `redis` - *Redis 2.8*                 
     - `redis3` - *Redis 3.2*                
     - `cassandra2` - *Cassandra 2*             
-- **Balancers:**
+- **Balancers:**   
     - `nginx` - *Nginx* balancer                        
     - `haproxy` - *HAProxy* balancer                     
     - `varnish` - *Varnish 4*                    
-- **Build node:**
+- **Build node:**   
     - `maven3` - *Мaven*                  
 - **Cache node:**                    
     - `memcached` - *Мemcached*                     
 - **Virtual Private Server nodes:**                         
     - `centos6` - *CentOS 6*                  
     - `centos7` - *CentOS 7*               
-- **Storage:**                
+- **Storage:**                 
     - `storage` - *Shared storage*                 
 - **Docker containers:**                               
     - `docker`                       
 
 ##Jelastic Native Container Types
 
-Jelastic native software stacks include the following containers:
-- `apache2-ruby`
-- `apache2`
-- `couchdb`
-- `glassfish3`
-- `jetty6`
-- `mariadb`
-- `mariadb10`
-- `maven3`
-- `memcached`
-- `mongodb`
-- `mysql5`
-- `nginx-ruby`
-- `nginx`
-- `nginxphp`
-- `nodejs`
-- `postgres8`
-- `postgres9`
-- `postgresql`
-- `tomcat6`
-- `tomcat7`
-- `tomee`
-- `storage`
+Jelastic native software stacks include the following containers:                  
+- **Compute nodes:**                            
+    - *Java*               
+        - `tomcat6` - *Tomcat 6*                             
+        - `tomcat7` - *Tomcat 7*                            
+        - `tomcat8` - *Tomcat 8*                                  
+        - `tomee` - *TomEE*                          
+        - `glassfish3` - *GlassFish 3*                   
+        - `jetty6` - *Jetty 6*                
+    - *PHP*                
+        - `apache2` - *Apache 2*                  
+        - `nginxphp` - *Nginx PHP*   
+    - *Ruby*              
+        - `apache2-ruby` - *Apache 2 + Ruby*                      
+        - `nginx-ruby` - *Nginx Ruby*                      
+    - *Node.js*                    
+        - `nodejs` - *Node.js*    
+- **SQL Databases:**                     
+    - `mysql5` - *MySQL*                       
+    - `mariadb` - *MariaDB 5*                    
+    - `mariadb10` - *MariaDB 10*                    
+    - `postgres8` - *PostgreSQL 8*                  
+    - `postgres9` - *PostgreSQL 9*                    
+- **NoSQL Databases:**   
+    - `mongodb` - *MongoDB*           
+    - `couchdb` - *CouchDB*              
+- **Balancers:**      
+    - `nginx` - *Nginx* balancer               
+- **Build node:**     
+    - `maven3` - *Мaven*                    
+- **Cache node:**                      
+    - `memcached` - *Мemcached*              
+- **Storage:**                   
+    - `storage` - *Shared storage*         
 
 ## Engine versions (engine)
 
