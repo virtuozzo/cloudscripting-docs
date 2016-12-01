@@ -68,7 +68,7 @@ For example:
 }
 ```
 where:                   
-- `customGroup` - name of your custom *nodeGroup* value, that is called via `"nodeGroup":"customGroup"` field, while performing an appropriate [action](/reference/actions/)                       
+- `customGroup` - name of your custom *nodeGroup* value, that is called via `nodeGroup:customGroup` field, while performing an appropriate [action](/reference/actions/)                       
 
 !!! note
     > Upon stating non-predefined (i.e. custom) *nodeGroup* value for *Docker* containers, the corresponding container will be placed to the *Extra* layer:    
@@ -87,62 +87,64 @@ Jelastic platform supports the following predefined *nodeGroup* values:
 - **build** (for build node) - *maven3*                     
 - **storage** (for storage container) - *storage*                        
 
-## Containers by Types (nodeType)
-- **Compute nodes:**
-    - Java
-        - `tomcat6` - Tomcat 6
-        - `tomcat7` - Tomcat 7
-        - `tomcat8` - Tomcat 8
-        - `tomee` - TomEE
-        - `glassfish3` - GlassFish 3
-        - `glassfish4` - GlassFish 4
-        - `jetty6` - Jetty 6
-        - `jetty8` - Jetty 8
-        - `jetty9` - Jetty 9
-        - `jboss7` - Jbossas 7
-        - `smartfox-server` - SmartFoxServer 2X
-        - `powerdns` - Powerdns 3
-        - `railo4` - Railo4 9
-        - `wildfly` - Wildfly 8
-        - `wildfly9` - Wildfly 9
-        - `wildfly10` - Wildfly 10
-    - PHP
-        - `apache2` - Apache 2
-        - `nginxphp` - Nginx PHP
-    - Python
-        - `apache2-python` - Apache 2 + Python
-    - Ruby
-        - `apache2-ruby` - Apache 2 + Ruby
-        - `nginx-ruby` - Nginx Ruby
-    - Node.js
-        - `nodejs` - Node.js
-- **SQL Databases:**
-    - `mysql5` - MySQL
-    - `mariadb` - MariaDB 5
-    - `mariadb10` - MariaDB 10
-    - `postgres8` - PostgreSQL 8
-    - `postgres9` - PostgreSQL 9
+## Containers by Types (*nodeType*)
+
+Jelastic Platform supports the following software stacks:         
+- **Compute nodes:**                  
+    - *Java*                
+        - `tomcat6` - *Tomcat 6*                
+        - `tomcat7` - *Tomcat 7*               
+        - `tomcat8` - *Tomcat 8*                       
+        - `tomee` - *TomEE*              
+        - `glassfish3` - *GlassFish 3*             
+        - `glassfish4` - *GlassFish 4*                      
+        - `jetty6` - *Jetty 6*                                      
+        - `jetty8` - *Jetty 8*                  
+        - `jetty9` - *Jetty 9*        
+        - `jboss7` - *Jbossas 7*                
+        - `smartfox-server` - *SmartFoxServer 2X*                     
+        - `powerdns` - *Powerdns 3*             
+        - `railo4` - *Railo4 9*          
+        - `wildfly` - *Wildfly 8*         
+        - `wildfly9` - *Wildfly 9*                       
+        - `wildfly10` - *Wildfly 10*                     
+    - *PHP*              
+        - `apache2` - *Apache 2*                
+        - `nginxphp` - *Nginx PHP*          
+    - *Python*                     
+        - `apache2-python` - *Apache 2 + Python*                       
+    - *Ruby*            
+        - `apache2-ruby` - *Apache 2 + Ruby*                    
+        - `nginx-ruby` - *Nginx Ruby*                    
+    - *Node.js*                  
+        - `nodejs` - *Node.js*                             
+- **SQL Databases:**                     
+    - `mysql5` - *MySQL*                       
+    - `mariadb` - *MariaDB 5*                    
+    - `mariadb10` - *MariaDB 10*                    
+    - `postgres8` - *PostgreSQL 8*                  
+    - `postgres9` - *PostgreSQL 9*                    
 - **NoSQL Databases:**
-    - `mongodb` - MongoDB
-    - `couchdb` - CouchDB
-    - `redis` - Redis 2.8
-    - `redis3` - Redis 3.2
-    - `cassandra2` - Cassandra 2
+    - `mongodb` - *MongoDB*           
+    - `couchdb` - *CouchDB*             
+    - `redis` - *Redis 2.8*                 
+    - `redis3` - *Redis 3.2*                
+    - `cassandra2` - *Cassandra 2*             
 - **Balancers:**
-    - `nginx` - Nginx balancer
-    - `haproxy` - HAProxy balancer
-    - `varnish` - Varnish 4
+    - `nginx` - *Nginx* balancer                        
+    - `haproxy` - *HAProxy* balancer                     
+    - `varnish` - *Varnish 4*                    
 - **Build node:**
-    - `maven3` - Мaven
-- **Cache node:**
-    - `memcached` - Мemcached
-- **Virtual Private Server nodes:**
-    - `centos6` - CentOS 6
-    - `centos7` - CentOS 7
-- **Storage:**
-    - `storage` - Shared storage
-- **Docker-based nodes:**
-    - `docker`
+    - `maven3` - *Мaven*                  
+- **Cache node:**                    
+    - `memcached` - *Мemcached*                     
+- ** Virtual Private Server nodes:**                         
+    - `centos6` - *CentOS 6*                  
+    - `centos7` - *CentOS 7*               
+- **Storage:**                
+    - `storage` - *Shared storage*                 
+- **Docker containers:**                               
+    - `docker`                       
 
 ##Jelastic Native Container Types
 - `apache2-ruby`
