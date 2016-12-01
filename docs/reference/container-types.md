@@ -183,41 +183,43 @@ Jelastic native software stacks include the following containers:
 - **Storage:**                   
     - `storage` - *Shared storage*         
 
-## Engine versions (engine)
+## Engine versions (*engine*)
 
 **Java Stacks**
 
+The following section deals with supported engine versions and their availability within corresponding *nodeType* (i.e. compute nodes).    
+
 |nodeType|`tomcat6`|`tomcat7`|`tomcat8`|`tomee`|`glassfish3`|`glassfish4`|`jetty6`|`jetty8`|`jetty9`|
 |------------|------|---------|---------|-------|------------|------------|--------|--------|--------|
-|engine|java6<br>java7<br>java8|java6<br>java7<br>java8|java7<br>java8|java7<br>java8|java6<br>java7|java7<br>java8|java6<br>java7<br>java8|java6<br>java7<br>java8|java8|
+|engine|*java6*<br>*java7*<br>*java8*|*java6*<br>*java7*<br>*java8*|*java7*<br>*java8*|*java7*<br>*java8*|*java6*<br>*java7*|*java7*<br>*java8*|*java6*<br>*java7*<br>*java8*|*java6*<br>*java7*<br>*java8*|*java8*|
 
 |nodeType|`jboss7`|`smartfox-server`|`powerdns`|`railo4`|`wildfly`|`wildfly9`|`wildfly10`|
 |--------|--------|---------------- |----------|--------|---------|----------|-----------|
-|engine  |java7|java6<br>java7<br>java8|java6|java7<br>java8|java7<br>java8|java7<br>java8|java8|
+|engine  |*java7*|*java6*<br>*java7*<br>*java8*|*java6*|*java7*<br>*java8*|*java7*<br>*java8*|*java7*<br>*java8*|*java8*|
 
 **PHP Stacks**
 
 |nodeType|`apache2`                                   |`nginxphp`                                  |
 |--------|--------------------------------------------|--------------------------------------------|
-|engine  |php5.3<br>php5.4<br>php5.5<br>php5.6<br>php7|php5.3<br>php5.4<br>php5.5<br>php5.6<br>php7|
+|engine  |*php5.3*<br>*php5.4*<br>*php5.5*<br>*php5.6*<br>*php7*|*php5.3*<br>*php5.4*<br>*php5.5*<br>*php5.6*<br>*php7*|
 
 **Ruby Stacks**
 
 |nodeType|`apache2-ruby`                                     |`nginx-ruby`                                       |
 |--------|---------------------------------------------------|---------------------------------------------------|
-|engine  |ruby1.9<br>ruby2.0<br>ruby2.1<br>ruby2.2<br>ruby2.3|ruby1.9<br>ruby2.0<br>ruby2.1<br>ruby2.2<br>ruby2.3|
+|engine  |*ruby1.9*<br>*ruby2.0*<br>*ruby2.1*<br>*ruby2.2*<br>*ruby2.3*|*ruby1.9*<br>*ruby2.0*<br>*ruby2.1*<br>*ruby2.2*<br>*ruby2.3*|
 
-**Python Stack**
+**Python Stacks**
 
 |nodeType|`apache2-python`                                |
 |--------|------------------------------------------------|
-|engine  |python2.7<br>python3.3<br>python3.4<br>python3.5|
+|engine  |*python2.7*<br>*python3.3*<br>*python3.4*<br>*python3.5*|
 
-**Nodejs Stack**
+**Nodejs Stacks**
 
 |nodeType|`nodejs`            |
 |--------|--------------------|
-|engine  |nodejs0.10<br>nodejs0.12<br>nodejs4.3<br>nodejs5.6|
+|engine  |*nodejs0.10*<br>*nodejs0.12*<br>*nodejs4.3*<br>*nodejs5.6*|
 
 !!! note
-    > List of supported [Jelastic Stack Versions](https://docs.jelastic.com/software-stacks-versions) can be vary for different platform versions.
+    > The list of supported [Software Stacks](https://docs.jelastic.com/software-stacks-versions) can vary depending on your Jelastic platform version - it can be checked at your dashboard.  
