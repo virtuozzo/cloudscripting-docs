@@ -47,7 +47,7 @@ Below you can find data on supported software stacks in confines of [*nodeGroup*
 The *nodeGroup* parameter is applied to set a paradigm for *nodeType* division into groups, i.e. it determines environment layer for container(s) to be placed to.       
 The *nodeGroup* value can be used within *nodeType* field while executing the appropriate [actions](/reference/actions/).     
 
-For *Docker* containers, *nodeGroup* can be stated to any value - either predefined (listed above) or your custom one.       
+For *Docker* containers, *nodeGroup* can be stated to any value - either predefined (listed below) or your custom one.       
 
 For example:
 ```
@@ -73,6 +73,7 @@ where:
 !!! note
     > Upon stating non-predefined (i.e. custom) *nodeGroup* value for *Docker* containers, the corresponding container will be placed to the *Extra* layer:    
     ![extra](https://download.jelastic.com/public.php?service=files&t=2bda4051062f413278b693d2898cdcbd&download)    
+   
     Subsequently, this *nodeGroup* value can be used within the same-named [actions](/reference/actions/) field to point to a particular *Extra* layer.        
 
 <b>Predefined *nodeGroup* values</b>                 
