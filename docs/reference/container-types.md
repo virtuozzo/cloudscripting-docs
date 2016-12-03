@@ -16,7 +16,7 @@ Using *nodeType* field while performing the *writeFile* [action](/reference/acti
 ```
 where:              
 - `writeFile` - action to write data to a file                 
-- `nodeType` - value to define a particular node, where the file is located                   
+- `nodeType` - value to define a particular node, where file is located                   
 - `path` - parameter specifying path to a file                
 - `body` - data that is being written to a file                          
 
