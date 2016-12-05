@@ -40,15 +40,15 @@ In order to execute a shell script inside the container, action [ExecuteShellCom
 
 ```bash
 #!/bin/bash
-USER = "root"
-PASSWORD = "$1"
+USER="root"
+PASSWORD="$1"
 
-DUMP_URL = "$2"
-DUMP_PATH = "/var/lib/mysql/dump.sql"
+DUMP_URL="$2"
+DUMP_PATH="/var/lib/mysql/dump.sql"
 
-NEW_USER_NAME = "test"
-NEW_USER_PASS = "$3"
-NEW_DB_NAME = "test"
+NEW_USER_NAME="test"
+NEW_USER_PASS="$3"
+NEW_DB_NAME="test"
 
 
 curl -fs ${DUMP_URL} -o ${DUMP_PATH} 2>&1
