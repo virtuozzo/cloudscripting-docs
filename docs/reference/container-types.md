@@ -16,7 +16,7 @@ Using *nodeType* field while performing the *writeFile* [action](/reference/acti
 ```
 where:              
 - `writeFile` - action to write data to a file                 
-- `nodeType` - value to define a particular node, where the file is located                   
+- `nodeType` - value to define a particular node, where file is located                   
 - `path` - parameter specifying path to a file                
 - `body` - data that is being written to a file                          
 
@@ -119,32 +119,32 @@ Jelastic Platform supports the following software stacks:
     - *Node.js*                  
         - `nodejs` - *Node.js*                             
 - **SQL Databases:**                     
-    - `mysql5` - *MySQL*                       
-    - `mariadb` - *MariaDB 5*                    
-    - `mariadb10` - *MariaDB 10*                    
-    - `postgres8` - *PostgreSQL 8*                  
-    - `postgres9` - *PostgreSQL 9*                    
+     - `mysql5` - *MySQL*                       
+     - `mariadb` - *MariaDB 5*                    
+     - `mariadb10` - *MariaDB 10*                    
+     - `postgres8` - *PostgreSQL 8*                  
+     - `postgres9` - *PostgreSQL 9*                    
 - **NoSQL Databases:**   
-    - `mongodb` - *MongoDB*           
-    - `couchdb` - *CouchDB*             
-    - `redis` - *Redis 2.8*                 
-    - `redis3` - *Redis 3.2*                
-    - `cassandra2` - *Cassandra 2*             
+     - `mongodb` - *MongoDB*           
+     - `couchdb` - *CouchDB*             
+     - `redis` - *Redis 2.8*                 
+     - `redis3` - *Redis 3.2*                
+     - `cassandra2` - *Cassandra 2*             
 - **Balancers:**   
-    - `nginx` - *Nginx* balancer                        
-    - `haproxy` - *HAProxy* balancer                     
-    - `varnish` - *Varnish 4*                    
+     - `nginx` - *Nginx* balancer                        
+     - `haproxy` - *HAProxy* balancer                     
+     - `varnish` - *Varnish 4*                    
 - **Build node:**   
-    - `maven3` - *Мaven*                  
+     - `maven3` - *Мaven*                  
 - **Cache node:**                    
-    - `memcached` - *Мemcached*                     
+     - `memcached` - *Мemcached*                     
 - **Virtual Private Server nodes:**                         
-    - `centos6` - *CentOS 6*                  
-    - `centos7` - *CentOS 7*               
+     - `centos6` - *CentOS 6*                  
+     - `centos7` - *CentOS 7*               
 - **Storage:**                 
-    - `storage` - *Shared storage*                 
+     - `storage` - *Shared storage*                 
 - **Docker containers:**                               
-    - `docker`                       
+     - `docker`                       
 
 ##Jelastic Native Container Types
 
@@ -166,22 +166,22 @@ Jelastic native software stacks include the following containers:
     - *Node.js*                    
         - `nodejs` - *Node.js*    
 - **SQL Databases:**                     
-    - `mysql5` - *MySQL*                       
-    - `mariadb` - *MariaDB 5*                    
-    - `mariadb10` - *MariaDB 10*                    
-    - `postgres8` - *PostgreSQL 8*                  
-    - `postgres9` - *PostgreSQL 9*                    
+     - `mysql5` - *MySQL*                       
+     - `mariadb` - *MariaDB 5*                    
+     - `mariadb10` - *MariaDB 10*                    
+     - `postgres8` - *PostgreSQL 8*                  
+     - `postgres9` - *PostgreSQL 9*                    
 - **NoSQL Databases:**   
-    - `mongodb` - *MongoDB*           
-    - `couchdb` - *CouchDB*              
+     - `mongodb` - *MongoDB*           
+     - `couchdb` - *CouchDB*              
 - **Balancers:**      
-    - `nginx` - *Nginx* balancer               
+     - `nginx` - *Nginx* balancer               
 - **Build node:**     
-    - `maven3` - *Мaven*                    
+     - `maven3` - *Мaven*                    
 - **Cache node:**                      
-    - `memcached` - *Мemcached*              
+     - `memcached` - *Мemcached*              
 - **Storage:**                   
-    - `storage` - *Shared storage*         
+     - `storage` - *Shared storage*         
 
 ## Engine versions (*engine*)
 
