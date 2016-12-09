@@ -187,7 +187,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 ![LoadingText](/img/LoadingText.jpg)      
 
-- `procedure` *[required] [string]* - name of the procedure that will be executed. Procedure body structure is described in the [*procedure* section](/reference/procedures/).   
+- `procedure` *[required] [string]* - name of the procedure that will be executed. Procedure body structure is described in the [*procedure*](/reference/procedures/) section.        
 - `caption` - title of the button  
 
 ![Caption](/img/Caption.jpg)   
@@ -197,7 +197,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 ![SuccessText](/img/SuccessText.jpg)     
 
 - `href` *[optional]* - external link that is opened in a new browser tab; is considered only if the *settings* field is absent. In this case *procedure* will not be executed.      
-- `settings` - custom form ID. The default is *"main"*. For more details see [custom settings section](/creating-templates/user-input-parameters/#custom-settings).           
+- `settings` - custom form ID. The default is *"main"*. For more details see [*custom settings*](/creating-templates/user-input-parameters/#custom-settings) section.                  
 
 Another sample with additional configurations: the next parameters can be enabled only when the `settings` field is present:
 ```
