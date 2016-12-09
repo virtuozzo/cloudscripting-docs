@@ -137,7 +137,7 @@ In this case, the filtering result will be the following:
 ![TargetNodesFilter](/img/TargetNodesFilter.jpg)
   
 ##Custom Buttons
-The custom buttons functionality is intended for planks within <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:   
+The custom buttons settings are intended for extending and adjusting functionality of planks within <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:      
 
 ![Addontab](/img/Addontab.jpg)    
 
@@ -146,9 +146,9 @@ Such buttons execute operations that are predefined within JPS manifest.
 ![TrafficManager](/img/TrafficManager.jpg)
 
 !!! note
-    > JPS manifest should include the [`targetNodes`](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation. Otherwise, it will be hidden.  
+    > JPS manifest should include the [*targetNodes*](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation. Otherwise, it will be hidden.  
 
-<b>Template</b>   
+<b>Templates</b>   
 
 Sample to set buttons within add-on plank:
 ```
@@ -199,7 +199,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 - `href` *[optional]* - external link that is opened in a new browser tab; is considered only if the *settings* field is absent. In this case *procedure* will not be executed.      
 - `settings` - custom form ID. The default is *"main"*. For more details see [custom settings section](/creating-templates/user-input-parameters/#custom-settings).           
 
-The next parameters can be enabled only when the `settings` field is present:
+Another sample with additional configurations: the next parameters can be enabled only when the `settings` field is present:
 ```
 {
   "jpsType": "update",
