@@ -199,7 +199,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 - `href` *[optional]* - external link that is opened in a new browser tab; is considered only if the *settings* field is absent. In this case *procedure* will not be executed.      
 - `settings` - custom form ID. The default is *"main"*. For more details see [*custom settings*](/creating-templates/user-input-parameters/#custom-settings) section.                  
 
-Another sample with additional configurations: the next parameters can be enabled only when the `settings` field is present:
+Another sample with additional configurations: the next parameters can be enabled only if the `settings` field is present:
 ```
 {
   "jpsType": "update",
@@ -240,7 +240,7 @@ where:
 
 ![LogsPath](/img/LogsPath.jpg)  
 
-- `logsNodeGroup` - [nodeGroup](/reference/container-types/#containers-by-groups-nodegroup) layer the logging path is opened for      
+- `logsNodeGroup` - [nodeGroup](/reference/container-types/#containers-by-groups-nodegroup) layer the logging path should be opened for      
 
 ##Custom Menus    
 Menu is an expandable list within the <b>Add-ons</b> section comprising custom actions, that execute corresponding operations.  
