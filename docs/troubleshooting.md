@@ -1,6 +1,6 @@
 # Troubleshooting
 
-- Choose hoster provider at ![Jelastic site](https://jelastic.cloud), log into your Jelastic account and open the following link in a new browser tab: <http://appstore.{HOSTER_URL}/console/>  
+- Choose hoster provider at [Jelastic site](https://jelastic.cloud), log into your Jelastic account and open the following link in a new browser tab: <http://appstore.{HOSTER_URL}/console/>  
 - In the opened browser tab you will see the Cloud Scripting execution log
 
 ![Console](https://download.jelastic.com/public.php?service=files&t=a662aacb111575cf3d37b1d94fe59af9&download)
