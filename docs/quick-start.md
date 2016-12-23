@@ -28,7 +28,7 @@ Below you can see two simple examples of how to:
     },
     "onInstall": {
       "deploy": {
-        "archive": "http://app.cloudscripting.com/HelloWorld.zip",
+        "archive": "http://app.demo.jelastic.com/HelloWorld.zip",
         "name": "Hello World",
         "context": "ROOT"
       }
@@ -46,7 +46,7 @@ Below you can see two simple examples of how to:
     "name": "Hello World!",
     "onInstall": {
       "deploy": {
-        "archive": "http://app.cloudscripting.com/HelloWorld.zip",
+        "archive": "http://app.demo.jelastic.com/HelloWorld.zip",
         "name": "Hello World",
         "context": "ROOT"
       }
@@ -57,7 +57,7 @@ Below you can see two simple examples of how to:
 
 ## Running Examples
 
-In order to test the manifest examples presented above, you need to register at [http://app.cloudscripting.com/](http://app.cloudscripting.com/) first. 
+In order to test the manifest examples presented above, you need to register at any Jelastic hosting providers at [https://jelastic.cloud//](https://jelastic.cloud//) first. 
 Then, log in to your Jelastic account and perform the following operations:
 
 1. Copy an appropriate example and save it as a file with **.json** extension.
