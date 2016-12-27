@@ -41,7 +41,7 @@ If it's not possible, placeholder will be unresolved and displayed in the text a
     - `{nodes.(group).first.(key)}`
     - `{nodes.(group).last.(key)}`   
     where:
-    - `(group)` - nodes group ([nodeGroup](/creating-templates/selecting-containers/#all-containers-by-group) or [nodeType](/creating-templates/selecting-containers/#all-containers-by-type))
+    - `(group)` - node group ([nodeGroup](/creating-templates/selecting-containers/#all-containers-by-group) or [nodeType](/creating-templates/selecting-containers/#all-containers-by-type))
     - `(i)` - index of node, starting from 0
     - `(key)` - parameter name according to the following list:   
         - `address` - internal or external IP address     
@@ -51,18 +51,18 @@ If it's not possible, placeholder will be unresolved and displayed in the text a
         - `contextValidatorRegex` - validation for context names    
         - `diskIopsLimit` - IOPS limitation quota   
         - `diskLimit` - hardware node disk space quota  
-        - `endpoints` - nodes endpoints ([More info](https://docs.jelastic.com/endpoints) about Envpoints). An indexes array.   
-            - `domain` - nodes full domain name   
-            - `id` - node's id   
-            - `name` - Endpoint name   
-            - `privatePort` - Endpoint private port in container   
-            - `publicPort` - Endpoint private port in container    
-            - `protocol` - protocol type (TCP)   
+        - `endpoints` [*array indexes*]- setting [endpoints](https://docs.jelastic.com/endpoints) functionality                       
+            - `domain` - full domain name of the node the endpoint is being set for                  
+            - `id` - node ID  
+            - `name` - title for a new endpoint (can be either custom or [predefined](https://docs.jelastic.com/endpoints#preconfigured))                
+            - `privatePort` - preferred local node’s port              
+            - `publicPort` - private (dynamic) port used for mapping                                         
+            - `protocol` - protocol type (currently, only TCP is provided)                     
         - `fixedCloudlets` - fixed cloudlets number   
         - `flexibleCloudlets` - flexible cloudlets number    
         - `id` - node ID   
         - `intIP` - internal IP address   
-        - `extIPs` - external ip array at the node. `extips` - ai an alias   
+        - `extIPs` - external IP address array (`extips` - is an alias)                                
         - `isClusterSupport`    
         - `isExternalIpRequired` - status, that node requires external IP address   
         - `isResetPassword` - enable to reset service password    
@@ -93,12 +93,12 @@ If it's not possible, placeholder will be unresolved and displayed in the text a
             - `type` - engine type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
             - `vcsSupport` - supporting VCS in container  
             - `version` - engine version   
-        - `packages` - installed packages in node. Example - [ftp add-on](https://docs.jelastic.com/ftp-ftps-support). An array.
-           - `description` - package description   
-           - `documentationurl` - url for full add-on description    
-           - `iconurl` - package logo   
-           - `id` - installed package id   
-           - `isInstalled` - 
+        - `packages` [*array*] - packages with add-ons installed over the appropriate node (e.g. [FTP add-on](https://docs.jelastic.com/ftp-ftps-support))                  
+            - `description` - package description                                       
+            - `documentationurl` - redirect to page(s) with more info on the corresponding add-on                          
+            - `iconurl` - add-on logo                                               
+            - `id` - ID of the installed package                       
+            - `isInstalled` - installation status, possible values are *"true"* & *"false"*.                       
     
 In case a few nodes are available within `nodeGroup`, you can execute actions in one of them.
 For example:    
@@ -107,11 +107,12 @@ For example:
 - `{nodes.db.last.address}` - last IP address of a compute node     
   
 ## Event Placeholders
-The dynamic parameters list which are available while events are executed.    
-Full events list is described [here](http://docs.cloudscripting.local/reference/events/) with their parameters.    
-All parameter placeholders have their custom parameter sets and begin with the default keywords:   
-- `${event.params.(key)}` - where *key* is an event name parameter   
-- `${event.response.(key)}` -where *key* is an event name response parameter. [See the full event placeholders list](/reference/events/).
+Event placeholders represent a set of dynamic parameters, which are executed as a result of a certain [event](/reference/events/) occurrence.                   
+Herewith, all event placeholders have their custom set of parameters and begin with the default keywords:                       
+- `${event.params.(key)}` - where *key* is a name of an event parameter                     
+- `${event.response.(key)}` -where *key* is a name of event response parameter             
+
+Learn more about event placeholders within the above-linked *Events* page.   
 
 ## Account Information                                                                                                                                       
 - `${user.uid}` - user ID at the Jelastic platform    
@@ -343,7 +344,8 @@ You can use the following placeholders, as well, with the definite `nodeType`. F
 - `${mysql5.SYSTEM_ETC}` - */etc*  
 - `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*  
 - `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*      
-Explore the full list of the [Jelastic native *nodeType*](/reference/container-types/#native-jelastic-nodetypes).
+
+Explore the full list of the [Jelastic native container types](/reference/container-types/#jelastic-native-container-types).                  
 
 The list of single placeholders:   
 - `${nginxphp.NGINX_CONF}` - */etc/nginx/nginx.conf*   
