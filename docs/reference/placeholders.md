@@ -9,31 +9,31 @@ If it's not possible, placeholder will be unresolved and displayed in the text a
 ## Environment Placeholders
 
 - `{env.}`
-    - `${env.appid}` *[string]* - application appid 
-    - `${env.domain}` *[string]* - application domain
-    - `${env.protocol}` *[string]* - protocol
-    - `${env.url}` *[string]* - link to application (env)
-    - `${env.displayName}` *[string]* - application display name
-    - `${env.envName}` *[string]* - short domain name (without hoster URL)
-    - `${env.shortdomain}` *[string]* - short domain name (alias to `envName`)
-    - `${env.hardwareNodeGroup}` *[string]* - hardware node node group
-    - `${env.ssl}` *[boolean]* - env SSL status
-    - `${env.sslstate}` *[boolean]* - env SSL state
-    - `${env.status}` *[number]* - environment status. Available statuses are: 1 - *running*, 2 - *down*, 3 - *launching*, 4 - *sleep*, 5 - *creating*, 6 - *cloning*, 7 - *exists*. 
-    - `${env.uid}` *[number]* - user ID
-    - `${env.ishaenabled}` *[boolean]* - high availability status 
-    - `${env.ha}` *[boolean]* - alias to `${env.ishaenabled}`
-    - `${env.isTransferring}` *[boolean]* - transferring status
-    - `${env.creatorUid}` *[number]* - env creator ID 
-    - `${env.engine.id}` *[number]* - engine ID
-    - `${env.engine.keyword}` *[string]* - engine keyword
-    - `${env.engine.name}` *[string]* - engine name
-    - `${env.engine.type}` *[string]* - engine type
-    - `${env.engine.vcsSupport}` *[boolean]* - VCS support status
-    - `${env.engine.version}` *[string]* - engine version 
-    - `${env.contexts.type}` *[string]* - env context type
-    - `${env.contexts.context}` *[string]* - context name
-    - `${env.contexts.archivename}` *[string]* - context display name
+    - `appid` *[string]* - application appid 
+    - `domain` *[string]* - application domain
+    - `protocol` *[string]* - protocol
+    - `url` *[string]* - link to application (env)
+    - `displayName` *[string]* - application display name
+    - `envName` *[string]* - short domain name (without hoster URL)
+    - `shortdomain` *[string]* - short domain name (alias to `envName`)
+    - `hardwareNodeGroup` *[string]* - hardware node node group
+    - `ssl` *[boolean]* - env SSL status
+    - `sslstate` *[boolean]* - env SSL state
+    - `status` *[number]* - environment status. Available statuses are: 1 - *running*, 2 - *down*, 3 - *launching*, 4 - *sleep*, 5 - *creating*, 6 - *cloning*, 7 - *exists*. 
+    - `uid` *[number]* - user ID
+    - `ishaenabled` *[boolean]* - high availability status 
+    - `ha` *[boolean]* - alias to `${env.ishaenabled}`
+    - `isTransferring` *[boolean]* - transferring status
+    - `creatorUid` *[number]* - env creator ID 
+    - `engine.id` *[number]* - engine ID
+    - `engine.keyword` *[string]* - engine keyword
+    - `engine.name` *[string]* - engine name
+    - `engine.type` *[string]* - engine type
+    - `engine.vcsSupport` *[boolean]* - VCS support status
+    - `engine.version` *[string]* - engine version 
+    - `contexts.type` *[string]* - env context type
+    - `contexts.context` *[string]* - context name
+    - `contexts.archivename` *[string]* - context display name
     
 ## Node Placeholders    
 - `${nodes.}`
@@ -47,12 +47,22 @@ If it's not possible, placeholder will be unresolved and displayed in the text a
         - `address` - internal or external IP address     
         - `adminUrl` - full URL address with protocol   
         - `canBeExported` *[boolean]* - Jelastic [Export](https://docs.jelastic.com/environment-export-import) feature    
+        - `bandwidthLimit` - node bandwidth limit   
+        - `contextValidatorRegex` - validation for context names    
         - `diskIopsLimit` - IOPS limitation quota   
-        - `diskLimit` - hardware node disk space quota   
+        - `diskLimit` - hardware node disk space quota  
+        - `endpoints` - nodes endpoints ([More info](https://docs.jelastic.com/endpoints) about Envpoints). An indexes array.   
+            - `domain` - nodes full domain name   
+            - `id` - node's id   
+            - `name` - Endpoint name   
+            - `privatePort` - Endpoint private port in container   
+            - `publicPort` - Endpoint private port in container    
+            - `protocol` - protocol type (TCP)   
         - `fixedCloudlets` - fixed cloudlets number   
         - `flexibleCloudlets` - flexible cloudlets number    
         - `id` - node ID   
         - `intIP` - internal IP address   
+        - `extIPs` - external ip array at the node. `extips` - ai an alias   
         - `isClusterSupport`    
         - `isExternalIpRequired` - status, that node requires external IP address   
         - `isResetPassword` - enable to reset service password    
@@ -83,6 +93,12 @@ If it's not possible, placeholder will be unresolved and displayed in the text a
             - `type` - engine type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
             - `vcsSupport` - supporting VCS in container  
             - `version` - engine version   
+        - `packages` - installed packages in node. Example - [ftp add-on](https://docs.jelastic.com/ftp-ftps-support). An array.
+           - `description` - package description   
+           - `documentationurl` - url for full add-on description    
+           - `iconurl` - package logo   
+           - `id` - installed package id   
+           - `isInstalled` - 
     
 In case a few nodes are available within `nodeGroup`, you can execute actions in one of them.
 For example:    
@@ -90,47 +106,12 @@ For example:
 - `{nodes.bl.first.address}` - first IP address of a balancer node in the `nodeGroup` array  
 - `{nodes.db.last.address}` - last IP address of a compute node     
   
-  
-## File Path Placeholders
-The values below can vary depending on the chosen [nodeType](/reference/container-types/#nodetype-values):    
-- `${HOME}` - for *couchdb*, *glassfish3*, *jetty6*, *nginx-ruby*, *nginx*, *nginxphp*, *tomcat6*,*tomcat7*, *tomee*    
-- `${WEBAPPS}` - for *apache2-ruby*, *apache2*, *jetty6*, *nginx-ruby*, *nginxphp*, *nodejs*, *tomcat6*, *tomcat7*, *tomee*    
-- `${JAVA_HOME}` - for *glassfish3*, *jetty6*, *maven3*, *tomcat6*, *tomcat7*, *tomee*   
-- `${JAVA_LIB}` - for *tomcat6*, *tomcat7*    
-- `${SYSTEM_CRON}` - for all native *nodeType*               
-- `${SYSTEM_ETC}`- for all *nodeType*    
-- `${SYSTEM_KEYS}` - for all native *nodeType*   
-- `${SERVER_CONF}` - for *apache2*, *glassfish3*, *jetty6*, *maven3*, *tomcat6*, *tomcat7*, *tomee*    
-- `${SERVER_CONF_D}` - for *apache2*, *memcached*, *nginx*, *nginxphp*    
-- `${SERVER_MODULES}` - for *apache2*, *glassfish3*, *jetty6*, *nginxphp*, *tomcat6*, *tomcat7*, *tomee*    
-- `${SERVER_SCRIPTS}` - for *couchdb*, *mariadb*, *mariadb10*, *mongodb*, *mysql5*, *postgres8*, *postgres9*    
-- `${SERVER_WEBROOT}` - for *apache2-ruby*, *apache2*, *jetty6*, *nginx-ruby*, *nginxphp*, *nodejs*, *tomcat6*, *tomcat7*, *tomee*    
-- `${SERVER_BACKUP}` - for *couchdb*, *mariadb*, *mariadb10*, *mongodb*, *mysql5*, *postgres8*, *postgres9*    
-- `${SERVER_LIBS}` - for *apache2*, *glassfish3*, *jetty6*, *nginxphp*, *tomcat6*, *tomcat7*, *tomee*    
-- `${SERVER_DATA}` - for *postgres8*, *postgres9*         
-
-You can use the following placeholders, as well, with the definite `nodeType`. For example:   
-- `${glassfish3.HOME}` - */opt/glassfish3/temp*  
-- `${jetty6.JAVA_HOME}` - */usr/java/latest*  
-- `${mariadb10.SERVER_BACKUP}` - */var/lib/jelastic/backup*  
-- `${maven3.SYSTEM_KEYS}` - */var/lib/jelastic/keys*  
-- `${memcached.SERVER_CONF}` - */etc/sysconfig*  
-- `${mongodb.SYSTEM_CRON}` - */var/spool/cron*  
-- `${mysql5.SERVER_SCRIPTS}` - */var/lib/jelastic/bin*  
-- `${mysql5.SYSTEM_ETC}` - */etc*  
-- `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*  
-- `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*      
-Explore the full list of the [Jelastic native *nodeType*](/reference/container-types/#native-jelastic-nodetypes).
-
-The list of single placeholders:   
-- `${nginxphp.NGINX_CONF}` - */etc/nginx/nginx.conf*   
-- `${postgresql.POSTGRES_CONF}` - */var/lib/pgsql/data*   
-- `${mysql5.MYSQL_CONF}` - */etc*   
-- `${mariadb.MARIADB_CONF}` - */etc*             
-- `${nginxphp.PHP_CONF}` - */etc/php.ini*   
-- `${nginxphp.PHPFPM_CONF}` - */etc/php-fpm.conf*   
-- `${nginxphp.PHP_MODULES}` - */usr/lib64/php/modules*   
-- `${nginxphp.WEBROOT}` - */var/www/webroot*   
+## Event Placeholders
+The dynamic parameters list which are available while events are executed.    
+Full events list is described [here](http://docs.cloudscripting.local/reference/events/) with their parameters.    
+All parameter placeholders have their custom parameter sets and begin with the default keywords:   
+- `${event.params.(key)}` - where *key* is an event name parameter   
+- `${event.response.(key)}` -where *key* is an event name response parameter. [See the full event placeholders list](/reference/events/).
 
 ## Account Information                                                                                                                                       
 - `${user.uid}` - user ID at the Jelastic platform    
@@ -205,10 +186,6 @@ Passing custom params to the procedure is performed in the following way:
 }
 ```
 As a result, console will display the *first* (1) custom parameter from `${this.first}` placeholder.
- 
-## Event Placeholders
-- `${event.params.(key)}` - where *key* is an event name parameter
-- `${event.response.(key)}` -where *key* is an event name response parameter. [See the full event placeholders list](/reference/events/).
 
 ## UI Placeholders
 - `${user.uid}` - user ID at the Jelastic platform
@@ -260,7 +237,8 @@ As a result, the new placeholders are created:
   "globals.value1": 1,
   "globals.value2": 2
 }
-```
+```  
+
 ##Function Placeholders
 The integrated functions inside Cloud Scripting are listed below:   
 
@@ -335,3 +313,44 @@ where:
 
 where:  
 - `key` - node parameter.   
+
+## File Path Placeholders
+The values below can vary depending on the chosen [nodeType](/reference/container-types/#nodetype-values):    
+- `${HOME}` - for *couchdb*, *glassfish3*, *jetty6*, *nginx-ruby*, *nginx*, *nginxphp*, *tomcat6*,*tomcat7*, *tomee*    
+- `${WEBAPPS}` - for *apache2-ruby*, *apache2*, *jetty6*, *nginx-ruby*, *nginxphp*, *nodejs*, *tomcat6*, *tomcat7*, *tomee*    
+- `${JAVA_HOME}` - for *glassfish3*, *jetty6*, *maven3*, *tomcat6*, *tomcat7*, *tomee*   
+- `${JAVA_LIB}` - for *tomcat6*, *tomcat7*    
+- `${SYSTEM_CRON}` - for all native *nodeType*               
+- `${SYSTEM_ETC}`- for all *nodeType*    
+- `${SYSTEM_KEYS}` - for all native *nodeType*   
+- `${SERVER_CONF}` - for *apache2*, *glassfish3*, *jetty6*, *maven3*, *tomcat6*, *tomcat7*, *tomee*    
+- `${SERVER_CONF_D}` - for *apache2*, *memcached*, *nginx*, *nginxphp*    
+- `${SERVER_MODULES}` - for *apache2*, *glassfish3*, *jetty6*, *nginxphp*, *tomcat6*, *tomcat7*, *tomee*    
+- `${SERVER_SCRIPTS}` - for *couchdb*, *mariadb*, *mariadb10*, *mongodb*, *mysql5*, *postgres8*, *postgres9*    
+- `${SERVER_WEBROOT}` - for *apache2-ruby*, *apache2*, *jetty6*, *nginx-ruby*, *nginxphp*, *nodejs*, *tomcat6*, *tomcat7*, *tomee*    
+- `${SERVER_BACKUP}` - for *couchdb*, *mariadb*, *mariadb10*, *mongodb*, *mysql5*, *postgres8*, *postgres9*    
+- `${SERVER_LIBS}` - for *apache2*, *glassfish3*, *jetty6*, *nginxphp*, *tomcat6*, *tomcat7*, *tomee*    
+- `${SERVER_DATA}` - for *postgres8*, *postgres9*         
+
+You can use the following placeholders, as well, with the definite `nodeType`. For example:   
+- `${glassfish3.HOME}` - */opt/glassfish3/temp*  
+- `${jetty6.JAVA_HOME}` - */usr/java/latest*  
+- `${mariadb10.SERVER_BACKUP}` - */var/lib/jelastic/backup*  
+- `${maven3.SYSTEM_KEYS}` - */var/lib/jelastic/keys*  
+- `${memcached.SERVER_CONF}` - */etc/sysconfig*  
+- `${mongodb.SYSTEM_CRON}` - */var/spool/cron*  
+- `${mysql5.SERVER_SCRIPTS}` - */var/lib/jelastic/bin*  
+- `${mysql5.SYSTEM_ETC}` - */etc*  
+- `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*  
+- `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*      
+Explore the full list of the [Jelastic native *nodeType*](/reference/container-types/#native-jelastic-nodetypes).
+
+The list of single placeholders:   
+- `${nginxphp.NGINX_CONF}` - */etc/nginx/nginx.conf*   
+- `${postgresql.POSTGRES_CONF}` - */var/lib/pgsql/data*   
+- `${mysql5.MYSQL_CONF}` - */etc*   
+- `${mariadb.MARIADB_CONF}` - */etc*             
+- `${nginxphp.PHP_CONF}` - */etc/php.ini*   
+- `${nginxphp.PHPFPM_CONF}` - */etc/php-fpm.conf*   
+- `${nginxphp.PHP_MODULES}` - */usr/lib64/php/modules*   
+- `${nginxphp.WEBROOT}` - */var/www/webroot*   
