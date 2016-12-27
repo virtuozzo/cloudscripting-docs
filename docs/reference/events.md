@@ -112,7 +112,7 @@ It’s also possible to bind extension execution to the *onUninstall* event - in
 }
 ```
 
-####Event placeholders:
+####Event placeholders:      
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
@@ -171,7 +171,7 @@ Add new node into topology.
 }
 ```
 
-####Event placeholders:
+####Event placeholders:    
 - `${event.params.}`:
     - `count` - nodes count to scale into topology    
     - `nodeGroup` - node group where will new nodes will be added      
@@ -219,8 +219,7 @@ Remove nodes from environment.
 }
 ```
 
-####Event placeholders: 
-
+####Event placeholders:    
 - `${event.params.}`:
     - `count` - nodes count to remove from topology
     - `nodeGroup` - node group where will new nodes will be removed
@@ -244,7 +243,7 @@ Remove nodes from environment.
 }
 ```
 
-####Event placeholders:
+####Event placeholders:     
 - `${event.params.}`:   
     - `count` - nodes count to remove from topology    
     - `nodeGroup` - node group where will new nodes will be removed 
@@ -254,7 +253,6 @@ Remove nodes from environment.
 ###onBeforeServiceScaleOut
 
 ####Event placeholders:    
-
 - `${event.params.}`:     
     - `session` - current user session   
     - `appid` - environment unique appid   
@@ -281,7 +279,7 @@ Remove nodes from environment.
 }
 ```
 
-####Event placeholders:
+####Event placeholders:     
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
@@ -309,7 +307,7 @@ Remove nodes from environment.
 }
 ```
 
-####Event placeholders:
+####Event placeholders:     
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
@@ -791,7 +789,7 @@ Remove nodes from environment.
 }
 ```
 
-####Event placeholders:   
+####Event placeholders:    
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -828,7 +826,7 @@ Remove nodes from environment.
 }
 ```
 
-####Event placeholders:   
+####Event placeholders:     
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -854,7 +852,7 @@ Remove nodes from environment.
 }
 ```
 
-####Event placeholders:   
+####Event placeholders:     
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -884,7 +882,7 @@ Remove nodes from environment.
 }
 ```
 
-####Event placeholders:   
+####Event placeholders:     
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    ,
@@ -919,7 +917,7 @@ Remove nodes from environment.
 }
 ```
 
-####Event placeholders:   
+####Event placeholders:      
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    ,
@@ -945,7 +943,7 @@ Remove nodes from environment.
 }
 ```
 
-####Event placeholders:   
+####Event placeholders:     
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    ,
@@ -967,7 +965,7 @@ Remove nodes from environment.
 }
 ```
 
-####Event placeholders:   
+####Event placeholders:       
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    ,
@@ -986,7 +984,7 @@ Remove nodes from environment.
 }
 ```
 
-####Event placeholders:   
+####Event placeholders:      
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1008,8 +1006,7 @@ Remove nodes from environment.
 }
 ```
 
-####Event placeholders:
-  
+####Event placeholders:     
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1029,7 +1026,7 @@ Remove nodes from environment.
 }
 ```
 
-####Event placeholders:   
+####Event placeholders:    
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1053,7 +1050,7 @@ Remove nodes from environment.
 }
 ```
 
-####Event placeholders:   
+####Event placeholders:      
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1074,7 +1071,7 @@ Remove nodes from environment.
 }
 ```
 
-####Event placeholders:   
+####Event placeholders:     
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
