@@ -112,13 +112,12 @@ It’s also possible to bind extension execution to the *onUninstall* event - in
 }
 ```
 
-Event placeholders:
+####Event placeholders:
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
     - `nodes` - nodes description for change topology    
     - `env` - environment settings: `engine`, `ssl`, `ha` etc 
-    
 - `${event.response.}` parameters are absent.    
 
 ### onAfterChangeTopology
@@ -143,12 +142,11 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `domain` - cloned environment name    
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.  
     - `nodeGroups` - node delays:     
@@ -173,11 +171,10 @@ Add new node into topology.
 }
 ```
 
-Event placeholders:
+####Event placeholders:
 - `${event.params.}`:
     - `count` - nodes count to scale into topology    
     - `nodeGroup` - node group where will new nodes will be added      
-    
 - `${event.response.}` parameters are absent.  
 
 ### onAfterScaleOut
@@ -197,11 +194,10 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `count` - nodes count to scale into topology    
     - `nodeGroup` - node group where will new nodes will be added 
-       
 - `${event.response.}`:  
     - `nodes` - nodes array with detailed info about nodes. Full node placeholders [here](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders) 
     
@@ -223,11 +219,11 @@ Remove nodes from environment.
 }
 ```
 
-Event placeholders:   
-- `${event.params.}`:   
-    - `count` - nodes count to remove from topology    
-    - `nodeGroup` - node group where will new nodes will be removed 
-       
+####Event placeholders: 
+
+- `${event.params.}`:
+    - `count` - nodes count to remove from topology
+    - `nodeGroup` - node group where will new nodes will be removed
 - `${event.response.}`:  
     - `nodes` - nodes array with detailed info about nodes. Full node placeholders [here](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders) 
     
@@ -248,33 +244,31 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:
 - `${event.params.}`:   
     - `count` - nodes count to remove from topology    
     - `nodeGroup` - node group where will new nodes will be removed 
-       
 - `${event.response.}`:  
     - `nodes` - nodes array with detailed info about nodes. Full node placeholders [here](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders) 
 
 ###onBeforeServiceScaleOut
 
-Event placeholders:
-- `${event.params.}`:
-    - `session` - current user session
-    - `appid` - environment unique appid
-    - `nodeId` - node identifier where event is executing
-    
+####Event placeholders:    
+
+- `${event.params.}`:     
+    - `session` - current user session   
+    - `appid` - environment unique appid   
+    - `nodeId` - node identifier where event is executing   
 - `${event.response.}` parameters are absent.    
 
-###onAfterServiceScaleOut
+###onAfterServiceScaleOut   
 
-Event placeholders:
-- `${event.params.}`:
-    - `session` - current user session
-    - `appid` - environment unique appid
-    - `nodeId` - node identifier where event is executing
-    
-- `${event.response.}` result code. 0 is success action result.    
+####Event placeholders:    
+- `${event.params.}`:    
+    - `session` - current user session    
+    - `appid` - environment unique appid   
+    - `nodeId` - node identifier where event is executing       
+- `${event.response.}` result code. 0 is success action result.     
 
 ### onBeforeRestartNode
 ```
@@ -287,12 +281,11 @@ Event placeholders:
 }
 ```
 
-Event placeholders:
+####Event placeholders:
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
     - `nodeType` - node type where event is executing
-    
 - `${event.response.}` parameters are absent.    
 
 ### onAfterRestartNode
@@ -316,12 +309,11 @@ Event placeholders:
 }
 ```
 
-Event placeholders:
+####Event placeholders:
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
     - `nodeType` - node type where event is executing
-    
 - `${event.response.}`:
     - `nodeid` - restarted node identifier   
     - `out` - success output message   
@@ -338,12 +330,11 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid   
-    - `password` - user password
-       
+    - `password` - user password   
 - `${event.response.}` parameters are absent.  
 
 ### onAfterDelete
@@ -360,12 +351,11 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid   
     - `password` - user password
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.   
 
@@ -387,7 +377,7 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `extip` *[boolean]* - external IP address with new node   
     - `session` - current user session   
@@ -396,7 +386,6 @@ Event placeholders:
     - `flexibleCloudlets` - flexible cloudlets   
     - `ismaster` *[boolean]* - if true than new node will be first in current group   
     - `nodeType` - predefined node type   
-       
 - `${event.response.}` parameters are absent.   
 
 ### onAfterAddNode
@@ -421,7 +410,7 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `extip` *[boolean]* - external IP address with new node    
     - `session` - current user session   
@@ -430,7 +419,6 @@ Event placeholders:
     - `flexibleCloudlets` - flexible cloudlets   
     - `ismaster` *[boolean]* - if true than new node will be first in current group   
     - `nodeType` - predefined node type   
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.  
 
@@ -446,14 +434,13 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `count` - nodes count to clone       
     - `session` - current user session   
     - `appid` - environment unique appid   
     - `nodeGroup` - nodes group   
     - `flexibleCloudlets` - flexible cloudlets     
-       
 - `${event.response.}`:  
     - `result` - parameters are absent.  
 
@@ -476,14 +463,13 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `count` - nodes count to clone       
     - `session` - current user session   
     - `appid` - environment unique appid   
     - `nodeGroup` - nodes group   
-    - `flexibleCloudlets` - flexible cloudlets     
-       
+    - `flexibleCloudlets` - flexible cloudlets        
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.  
     - `className` - class name for new node info - "com.hivext.api.server.system.persistence.SoftwareNode".   
@@ -501,13 +487,12 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `parentNodes` - node identifiers for linking  
     - `session` - current user session   
     - `appid` - environment unique appid   
     - `childNodes` - node identifier for linking with parents     
-       
 - `${event.response.}`:  
     - `result` - parameters are absent. 
 
@@ -531,13 +516,12 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `parentNodes` - node identifiers for linking  
     - `session` - current user session   
     - `appid` - environment unique appid   
-    - `childNodes` - node identifier for linking with parents       
-       
+    - `childNodes` - node identifier for linking with parents          
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.  
     - `infos` - info with result codes about all nodes links:   
@@ -554,12 +538,11 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `nodeid` - node identifier for attaching external IP address    
     - `session` - current user session   
-    - `appid` - environment unique appid   
-       
+    - `appid` - environment unique appid      
 - `${event.response.}`:  
     - `result` - parameters are absent. 
 
@@ -578,13 +561,12 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `parentNodes` - node identifiers for linking  
     - `session` - current user session   
     - `appid` - environment unique appid   
     - `childNodes` - node identifier for linking with parents       
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.  
     - `obejct` *[String]* - attached extrenal IP address      
@@ -601,13 +583,12 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `nodeid` - node identifier for attaching external IP address    
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `ip` - deattached IP address   
-       
 - `${event.response.}`:  
     - `result` - parameters are absent. 
 
@@ -626,13 +607,12 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `nodeid` - node identifier for attaching external IP address    
         - `session` - current user session   
         - `appid` - environment unique appid    
         - `ip` - deattached IP address    
-       
 - `${event.response.}`:  
     - `result` - parameters are absent.    
   
@@ -647,12 +627,11 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `project` - project name      
     - `session` - current user session   
     - `appid` - environment unique appid    
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.    
     
@@ -670,12 +649,11 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `project` - project name      
     - `session` - current user session   
     - `appid` - environment unique appid    
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result. 
     
@@ -692,14 +670,13 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `fixedCloudlets` - fixed cloudlets value
     - `flexibleCloudlets` - flexible cloudlets value     
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeGroup` - predefined node group   
-       
 - `${event.response.}`:  
     - `result` - parameters are absent.
 
@@ -719,14 +696,13 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `fixedCloudlets` - fixed cloudlets value
     - `flexibleCloudlets` - flexible cloudlets value     
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeGroup` - predefined node group  
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.  
 
@@ -741,12 +717,11 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `settings` - environment settings to change. For example `engine`, `ssl`.   
-       
 - `${event.response.}`:  
     - `result` - parameters are absent.
     
@@ -764,12 +739,11 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `settings` - environment settings to change. For example `engine`, `ssl`.
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result. 
     
@@ -782,11 +756,10 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
-       
 - `${event.response.}`:  
     - `result` - parameters are absent.
 
@@ -802,11 +775,10 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result. 
 
@@ -819,11 +791,10 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
-       
 - `${event.response.}`:  
     - `result` - parameters are absent.
 
@@ -839,11 +810,10 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.  
 
@@ -858,12 +828,11 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `domain` - cloned environment name    
-       
 - `${event.response.}`:  
     - `result` - parameters are absent.
 
@@ -885,12 +854,11 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `domain` - cloned environment name    
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.  
     - `nodeGroups` - node delays:     
@@ -916,7 +884,7 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    ,
@@ -924,7 +892,6 @@ Event placeholders:
     - `path` - context path     
     - `context` - context name    
     - `archivename` - deployed display name    
-       
 - `${event.response.}`:  
     - `result` - parameters are absent.   
 
@@ -952,7 +919,7 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    ,
@@ -960,7 +927,6 @@ Event placeholders:
     - `path` - context path     
     - `context` - context name    
     - `archivename` - deployed display name  
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.     
     - `responses` - deploy result texts:   
@@ -979,12 +945,11 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    ,
     - `nodeType` - predefined node type      
-       
 - `${event.response.}`:  
     - `result` - parameters are absent.   
 
@@ -1002,12 +967,11 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    ,
     - `nodeType` - predefined node type  
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.     
 
@@ -1022,12 +986,11 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeid` - predefined node identifier      
-       
 - `${event.response.}`:  
     - `result` - parameters are absent.   
 
@@ -1045,12 +1008,12 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:
+  
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeid` - predefined node identifier  
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.  
 
@@ -1066,13 +1029,12 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeGroup` - predefined node group   
     - `nodeType` - predefined node type
-       
 - `${event.response.}`:  
     - `result` - parameters are absent.   
   
@@ -1091,13 +1053,12 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeGroup` - predefined node group   
     - `nodeType` - predefined node type 
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result. 
 
@@ -1113,13 +1074,12 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `isOnline` *[boolean]* - online migration, with down time        
     - `hardwareNodeGroup` - predefined hard node group    
-       
 - `${event.response.}`:  
     - `result` - parameters are absent.  
     
@@ -1138,13 +1098,12 @@ Event placeholders:
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `isOnline` *[boolean]* - online migration, with down time        
     - `hardwareNodeGroup` - predefined hard node group    
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.
     
@@ -1163,14 +1122,13 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `sequential` *[boolean]* - sequential redeploy containers        
     - `nodeGroup` - predefined node group    
     - `useExistingVolumes` - using existing volumes on nodes
-       
 - `${event.response.}`:  
     - `result` - parameters are absent.  
     
@@ -1200,14 +1158,13 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `sequential` *[boolean]* - sequential redeploy containers        
     - `nodeGroup` - predefined node group    
     - `useExistingVolumes` - using existing volumes on nodes  
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.
 
@@ -1227,7 +1184,7 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1235,7 +1192,6 @@ Event placeholders:
     - `sourceNodeId` - source node for links storage       
     - `targetNodeId` - target node for links storage    
     - `isAutoRestart` *[boolean]* - auto restart after links
-       
 - `${event.response.}`:  
     - `result` - parameters are absent.  
     
@@ -1258,7 +1214,7 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1266,7 +1222,6 @@ Event placeholders:
     - `sourceNodeId` - source node for links storage       
     - `targetNodeId` - target node for links storage    
     - `isAutoRestart` *[boolean]* - auto restart after links
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.
     
@@ -1285,7 +1240,7 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1293,7 +1248,6 @@ Event placeholders:
     - `sourceNodeId` - source node for links storage       
     - `targetNodeId` - target node for links storage    
     - `isAutoRestart` *[boolean]* - auto restart after links
-       
 - `${event.response.}`:  
     - `result` - parameters are absent. 
     
@@ -1315,7 +1269,7 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1323,7 +1277,6 @@ Event placeholders:
     - `sourceNodeId` - source node for links storage       
     - `targetNodeId` - target node for links storage    
     - `isAutoRestart` *[boolean]* - auto restart after links
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.
 
@@ -1340,13 +1293,12 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeId` - curent node identifier        
     - `data` - variables set for container       
-       
 - `${event.response.}`:  
     - `result` - parameters are absent. 
     
@@ -1368,13 +1320,12 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeId` - curent node identifier        
     - `data` - variables set for container     
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.
     
@@ -1391,13 +1342,12 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeId` - curent node identifier        
     - `data` - entry point set for container       
-       
 - `${event.response.}`:  
     - `result` - parameters are absent. 
     
@@ -1417,13 +1367,12 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeId` - curent node identifier        
     - `data` - entry point set for container     
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.
     
@@ -1440,13 +1389,12 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeId` - curent node identifier        
     - `data` - run cmd set for container       
-       
 - `${event.response.}`:  
     - `result` - parameters are absent. 
     
@@ -1466,13 +1414,12 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeId` - curent node identifier        
     - `data` - run cmd set for container     
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.
     
@@ -1488,12 +1435,11 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeId` - curent node identifier        
-       
 - `${event.response.}`:  
     - `result` - parameters are absent. 
     
@@ -1512,12 +1458,11 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeId` - curent node identifier        
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.
     
@@ -1534,13 +1479,12 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeGroup` - curent node group      ,
     - `path` - volume path    
-       
 - `${event.response.}`:  
     - `result` - parameters are absent. 
     
@@ -1560,13 +1504,12 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeGroup` - curent node group      ,
     - `path` - volume path      
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.
     
@@ -1583,13 +1526,12 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeGroup` - curent node group      ,
     - `path` - volume path    
-       
 - `${event.response.}`:  
     - `result` - parameters are absent. 
     
@@ -1613,13 +1555,12 @@ For Docker containers only
 }
 ```
 
-Event placeholders:   
+####Event placeholders:   
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeGroup` - curent node group      ,
     - `path` - volume path      
-       
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.
     
