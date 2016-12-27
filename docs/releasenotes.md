@@ -1,5 +1,5 @@
-Change Log
-==========
+Release Notes
+=============
 
 #0.9
 

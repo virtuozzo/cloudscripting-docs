@@ -32,6 +32,9 @@ pages:
 # Jelastic & CloudScripting correspondence
 - Jelastic & CS correspondence: jelastic-cs-correspondence.md
 
+#Release Notes
+- Release Notes: releasenotes.md
+
 # Creating Templates
 - Creating Templates:
    - Template Basics: creating-templates/template-basics.md
@@ -63,7 +66,6 @@ pages:
    - Add-on install inside manifest: examples/addon-inside-manifest.md
    - Mount Data Storage: examples/mount-data-storage.md
 
-- Change Log: changelog.md
 #current_version: master
 versions:
    releases:
