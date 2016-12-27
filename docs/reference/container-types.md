@@ -78,6 +78,7 @@ where:
 <b>Predefined *nodeGroup* values</b>                 
 
 Jelastic platform supports the following predefined *nodeGroup* values:                         
+
 - **lb** (for load balancers) - *nginx, varnish, haproxy*                     
 - **cp** (for compute nodes) - *tomcat6, tomcat7, tomcat8, tomee, glassfish3, glassfish4, jetty6, jetty8, jetty9, jboss7, smartfox-server, powerdns, railo4, wildfly, wildfly9, wildfly10, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs*                     
 - **sql** (for *sql* databases) - *mysql5, mariadb, mariadb10, postgres8, postgres9*                          
@@ -90,6 +91,7 @@ Jelastic platform supports the following predefined *nodeGroup* values:
 ## Containers by Types (*nodeType*)
 
 Jelastic Platform supports the following software stacks:         
+
 - **Compute nodes:**                  
     - *Java*                
         - `tomcat6` - *Tomcat 6*                
@@ -149,6 +151,7 @@ Jelastic Platform supports the following software stacks:
 ##Jelastic Native Container Types
 
 Jelastic native software stacks include the following containers:                  
+
 - **Compute nodes:**                            
     - *Java*               
         - `tomcat6` - *Tomcat 6*                             
