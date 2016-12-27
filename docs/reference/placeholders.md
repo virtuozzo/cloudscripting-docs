@@ -109,7 +109,7 @@ For example:
 ## Event Placeholders
 Event placeholders represent a set of dynamic parameters, which are executed as a result of a certain [event](/reference/events/) occurrence.                   
 Herewith, all event placeholders have their custom set of parameters and begin with the default keywords:                       
-- `${event.params.(key)}` - where *key* is a name of an event parameter                     
+- `${event.params.(key)}` - where *key* is a name of event parameter                     
 - `${event.response.(key)}` -where *key* is a name of event response parameter             
 
 Learn more about event placeholders within the above-linked *Events* page.   
