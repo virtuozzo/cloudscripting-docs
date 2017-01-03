@@ -13,25 +13,19 @@ Below you can see two simple examples of how to:
 ```
 {
   "jpsType": "install",
-  "application": {
-    "name": "Hello World!",
-    "env": {
-      "topology": {
-        "engine": "php5.4",
-        "nodes": [
-          {
-            "nodeType": "apache2",
-            "cloudlets": 16
-          }
-        ]
-      }
-    },
-    "onInstall": {
-      "deploy": {
-        "archive": "http://app.demo.jelastic.com/HelloWorld.zip",
-        "name": "Hello World",
-        "context": "ROOT"
-      }
+  "name": "Hello World!",
+  "engine": "php5.4",
+  "nodes": [
+    {
+      "nodeType": "apache2",
+      "cloudlets": 16
+    }
+  ],
+  "onInstall": {
+    "deploy": {
+      "archive": "http://app.demo.jelastic.com/HelloWorld.zip",
+      "name": "Hello World",
+      "context": "ROOT"
     }
   }
 }
@@ -42,14 +36,12 @@ Below you can see two simple examples of how to:
 ```
 {
   "jpsType": "update",
-  "application": {
-    "name": "Hello World!",
-    "onInstall": {
-      "deploy": {
-        "archive": "http://app.demo.jelastic.com/HelloWorld.zip",
-        "name": "Hello World",
-        "context": "ROOT"
-      }
+  "name": "Hello World!",
+  "onInstall": {
+    "deploy": {
+      "archive": "http://app.demo.jelastic.com/HelloWorld.zip",
+      "name": "Hello World",
+      "context": "ROOT"
     }
   }
 }
@@ -57,14 +49,14 @@ Below you can see two simple examples of how to:
 
 ## Running Examples
 
-In order to test the manifest examples presented above, you need to register at any Jelastic hosting providers at [https://jelastic.cloud//](https://jelastic.cloud//) first. 
+In order to test the manifest examples presented above, you need to register at any Jelastic hosting providers at [https://jelastic.cloud/](https://jelastic.cloud/) first. 
 Then, log in to your Jelastic account and perform the following operations:
 
 1. Copy an appropriate example and save it as a file with **.json** extension.
 
 2. Expand the **New environment** drop-down list at the top left of your dashboard and select the ***Import*** option it contains.
 
-![Import](https://download.jelastic.com/index.php/apps/files_sharing/publicpreview?file=%2F%2Fimport.png&x=1904&a=true&t=0a79155f0039614d04c71840117b9d86&scalingup=0)
+![Import](img/import.png)
 
 3. Depending on the `jpsType` stated at the beginning of the manifest, in the opened **Confirm installation** window you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click **Install**.
 
@@ -99,7 +91,7 @@ In addition, you have the possibility to prepare and use your own actions within
 See [Writing Scripts](creating-templates/writing-scripts/).
 
 ### Build Actions Chain and reuse your code    
-Reuse your code and the chain of actions using [Procedures](/reference/procedures/)
+Reuse your code and the chain of actions using [Actions](/reference/actions/)
 
 ### Automate workflows
 Automate workflows using [Events](/reference/events/)

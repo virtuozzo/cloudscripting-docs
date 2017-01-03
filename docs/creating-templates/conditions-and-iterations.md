@@ -96,30 +96,20 @@ Nested conditions:
 Nesting of two *If* condition statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and logging the correspondent messages.
 ```
 {
-	"jpsType": "update",
-	"application": {
-		"name": "Nesting example",
-		"env": {},
-		"onInstall": {
-			"if (${nodes.cp[1].id})": [{
-				"execCmd": {
-					"nodeId": "${nodes.cp[1].id}",
-					"commands": [
-						"echo \"Environment consists of two compute nodes\" >> /tmp/result.txt "
-					]
-				}
-			}, {
-				"if (/^[0-9]{2,3}.[0-9]{2,3}.[0-9]{2,3}.[0-9]{2,3}/.test(\"${nodes.bl[0].extips}\"))": {
-					"execCmd": {
-						"nodeId": "${nodes.cp[0].id}",
-						"commands": [
-							"echo \"Balancer node with external IP address!\" >> /tmp/result.txt "
-						]
-					}
-				}
-			}]
-		}
-	}
+  "jpsType": "update",
+  "name": "Nesting example",
+  "onInstall": {
+    "if (${nodes.cp[1].id})": [
+      {
+        "cmd [${nodes.cp[1].id}]": "echo \"Environment consists of two compute nodes\" >> /tmp/result.txt "
+      },
+      {
+        "if (/^[0-9]{2,3}.[0-9]{2,3}.[0-9]{2,3}.[0-9]{2,3}/.test(\"${nodes.bl[0].extips}\"))": {
+          "cmd [${nodes.cp[0].id}]": "echo \"Balancer node with external IP address!\" >> /tmp/result.txt "
+        }
+      }
+    ]
+  }
 }
 ```
 
@@ -132,19 +122,15 @@ Balancer node with external IP address!
 Checking balancer stack type:
 ```
 {
-	"jpsType": "update",
-	"application": {
-		"name": "Nginx stack",
-		"env": {},
-		"onInstall": {
-			"if (nodes.bl[0].nodeType == 'nginx')": [{
-				"execScript": {
-					"type": "js",
-					"script": "return { result: 0, error: \"Environment balancer node is NGINX stack\"};"
-				}
-			}]
-		}
-	}
+  "jpsType": "update",
+  "name": "Nginx stack",
+  "onInstall": {
+    "if (nodes.bl[0].nodeType == 'nginx')": [
+      {
+        "script": "return { result: 0, error: \"Environment balancer node is NGINX stack\"};"
+      }
+    ]
+  }
 }
 ```
 
@@ -170,6 +156,7 @@ The main iterable object is *ForEach*. Its map:
 }
 ```
 where:    
+
 - `settings [optional]` - fields values predefined within a [user setting form](http://docs.cloudscripting.com/creating-templates/user-input-parameters/)   
 - `license [optional]` - link to fetch parameters specified within [prepopulate](http://docs.cloudscripting.com/creating-templates/user-input-parameters/) custom script. It enables to customize default field values and can be further initialized through [placeholders](http://docs.cloudscripting.com/reference/placeholders/) `$(license.{any_name}` within a manifest.   
 - `event [optional]` - object entity with [event](http://docs.cloudscripting.com/reference/events/) parameters.  Can be of two types that allows initiation of a particular [action](http://docs.cloudscripting.com/reference/actions/) before and after event execution   
@@ -191,6 +178,7 @@ Iteration can be executed by `env.nodes`, `nodes`, `env.contexts` and `env.extdo
 }
 ```
 where:    
+
 - `@i` - default iterator name
 
 ```
@@ -207,6 +195,7 @@ where:
 }
 ```
 where:  
+
 - `env.contexts` -  list of contexts (applications) deployed to environment    
 - `env.extdomains` - bound external domains 
 
@@ -215,32 +204,28 @@ See the [full list of available placeholders](/reference/placeholders/).
 Scaling nodes example:
 ```
 {
-	"jpsType": "install",
-	"application": {
-		"name": "Scaling Example",
-		"env": {
-			"onAfterScaleIn[nodeGroup:cp]": {
-				"call": "ScaleNodes"
-			},
-			"onAfterScaleOut[nodeGroup:cp]": {
-				"call": "ScaleNodes"
-			}
-		},
-		"procedures": [{
-			"id": "ScaleNodes",
-			"onCall": [{
-				"forEach(nodes.cp)": {
-					"execCmd": {
-						"commands": [
-							"{commands to rewrite all Compute nodes internal IP addresses in balancer configs. Here balancer node is NGINX}",
-							"/etc/init.d/nginx reload"
-						],
-						"nodeGroup": "bl"
-					}
-				}
-			}]
-		}]
-	}
+  "jpsType": "update",
+  "name": "Scaling Example",
+  "onAfterScaleIn[nodeGroup:cp]": {
+    "call": "ScaleNodes"
+  },
+  "onAfterScaleOut[nodeGroup:cp]": {
+    "call": "ScaleNodes"
+  },
+  "actions": [
+    {
+      "ScaleNodes": [
+        {
+          "forEach(nodes.cp)": {
+            "cmd [bl]": [
+              "{commands to rewrite all Compute nodes internal IP addresses in balancer configs. Here balancer node is NGINX}",
+              "/etc/init.d/nginx reload"
+            ]
+          }
+        }
+      ]
+    }
+  ]
 }
 ```
 As a result of *execCmd*, compute nodes internal IP addresses are rewritten within balancer configs and *NGINX* balancer node is reloaded. `onAfterScaleIn` and `onAfterScaleOut` events are executed immediately after adding or removing a compute node.
@@ -249,14 +234,11 @@ As a result of *execCmd*, compute nodes internal IP addresses are rewritten with
 
 ```
 {
-  "forEach(env.nodes)": [{
-    "execCmd": {
-	  "nodeId": "${@i.id}",
-		"commands": [
-	      "echo ${@i.address} > /tmp/example.txt"
-		]
-	}
-  }]
+  "forEach(env.nodes)": [
+    {
+      "cmd [${@i.id}]": "echo ${@i.address} > /tmp/example.txt"
+    }
+  ]
 }
 ```
 
