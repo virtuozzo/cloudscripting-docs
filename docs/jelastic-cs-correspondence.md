@@ -7,7 +7,7 @@ Cloud Scripting version can be choosen at the bottom of the page.
 <table style="width:100%">
     <tr id="cs">
 	<th id="table-head">CS</th>
-	    <td>1.0</td>
+	    <td>0.99</td>
 	    <td>0.9</td>
 	    <td>0.8</td>
 	    <td>0.5</td>
