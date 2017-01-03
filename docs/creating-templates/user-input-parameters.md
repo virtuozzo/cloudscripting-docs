@@ -3,30 +3,28 @@
 ```
 {
   "jpsType": "update",
-  "application": {
-    "settings": {
-      "prepopulate": "URL",
-      "fields": [{
+  "settings": {
+    "prepopulate": "URL",
+    "fields": [
+      {
         "showIf": "object",
-
         "type": "string",
-        "inputType" : "string",
+        "inputType": "string",
         "name": "string",
         "default": "string or localization object",
         "caption": "string or localization object",
         "placeholder": "string or localization object",
         "required": "boolean",
         "vtype": "string",
-        "vtypeText" : "string or localization object", 
-        "regex" : "string for RegExp constructor",
-        "regexText" : "string or localization object", 
-
+        "vtypeText": "string or localization object",
+        "regex": "string for RegExp constructor",
+        "regexText": "string or localization object",
         "hideLabel": "boolean",
         "id": "string",
         "cls": "string",
         "itemId": "string"
-      }]
-    }
+      }
+    ]
   }
 }
 ```   
@@ -82,7 +80,6 @@ Filtering for `targetNodes` can be performed by `nodeType`, `nodeGroup`, `docker
 ```
 {
 	"jpsType": "update",
-	"application": {
 		"name": "targetNodes",
 		"env": {},
 		"targetNodes": {
@@ -98,7 +95,6 @@ Filtering for `targetNodes` can be performed by `nodeType`, `nodeGroup`, `docker
 				"path": "/tmp/newFile"
 			}
 		}
-	}
 }
 ```
 There are two possible ways to define a nodeType:  
@@ -116,20 +112,17 @@ Let’s suppose you have three environments with different topology:
 Within these environments, the `targetNodes` filtering for JPS installation can be performed with the next example:
 ```
 {
-	"jpsType": "update",
-	"application": {
-		"name": "targetNodes",
-		"env": {},
-		"targetNodes": {
-			"nodeType": "nginx, mysql5"
-		},
-		"onInstall": {
-			"createFile": {
-				"nodeGroup": "cp",
-				"path": "/tmp/newFile"
-			}
-		}
-	}
+  "jpsType": "update",
+  "name": "targetNodes",
+  "targetNodes": {
+    "nodeType": "nginx, mysql5"
+  },
+  "onInstall": {
+    "createFile": {
+      "nodeGroup": "cp",
+      "path": "/tmp/newFile"
+    }
+  }
 }
 ```
 In this case, the filtering result will be the following:   
@@ -154,24 +147,23 @@ Sample to set buttons within add-on plank:
 ```
 {
   "jpsType": "update",
-  "application": {
-    "name": "Custom buttons",
-    "env": {},
-    "targetNodes": {
-      "nodeGroup": "bl"
-    },
-    "procedures": ["..."],
-    "buttons": [
-      {
-        "confirmText": "Custom confirm text",
-        "loadingText": "Load text while waiting",
-        "procedure": "{String}",
-        "caption": "Configure",
-        "successText": "Configuration saved successfully!",
-        "href": "http://google.com"
-      }
-    ]
-  }
+  "name": "Custom buttons",
+  "targetNodes": {
+    "nodeGroup": "bl"
+  },
+  "actions": [
+    "..."
+  ],
+  "buttons": [
+    {
+      "confirmText": "Custom confirm text",
+      "loadingText": "Load text while waiting",
+      "action": "{String}",
+      "caption": "Configure",
+      "successText": "Configuration saved successfully!",
+      "href": "http://google.com"
+    }
+  ]
 }
 ```
 Here: 
@@ -187,7 +179,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 ![LoadingText](/img/LoadingText.jpg)      
 
-- `procedure` *[required] [string]* - name of the procedure that will be executed. Procedure body structure is described in the [*procedure*](/reference/procedures/) section.        
+- `action` *[required] [string]* - name of the procedure that will be executed. Procedure body structure is described in the [*procedure*](/reference/procedures/) section.        
 - `caption` - title of the button  
 
 ![Caption](/img/Caption.jpg)   
@@ -196,37 +188,34 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 ![SuccessText](/img/SuccessText.jpg)     
 
-- `href` *[optional]* - external link that is opened in a new browser tab; is considered only if the *settings* field is absent. In this case *procedure* will not be executed.      
+- `href` *[optional]* - external link that is opened in a new browser tab; is considered only if the *settings* field is absent. In this case *action* will not be executed.      
 - `settings` - custom form ID. The default is *"main"*. For more details see [*custom settings*](/creating-templates/user-input-parameters/#custom-settings) section.                  
 
 Another sample with additional configurations: the next parameters can be enabled only if the `settings` field is present:
 ```
 {
   "jpsType": "update",
-  "application": {
-    "name": "Custom buttons",
-    "env": {},
-    "targetNodes": {
-      "nodeGroup": "bl"
-    },
-    "procedures": [
-      "..."
-    ],
-    "buttons": [
-      {
-        "confirmText": "Custom confirm text",
-        "loadingText": "Load text while waiting",
-        "procedure": "{String}",
-        "caption": "Configure",
-        "successText": "Configuration saved successfully!",
-        "settings": "config",
-        "title": "Title",
-        "submitButtonText": "Button Text",
-        "logsPath": "/var/log/add-on-action.log",
-        "logsNodeGroup": "cp"
-      }
-    ]
-  }
+  "name": "Custom buttons",
+  "targetNodes": {
+    "nodeGroup": "bl"
+  },
+  "actions": [
+    "..."
+  ],
+  "buttons": [
+    {
+      "confirmText": "Custom confirm text",
+      "loadingText": "Load text while waiting",
+      "action": "{String}",
+      "caption": "Configure",
+      "successText": "Configuration saved successfully!",
+      "settings": "config",
+      "title": "Title",
+      "submitButtonText": "Button Text",
+      "logsPath": "/var/log/add-on-action.log",
+      "logsNodeGroup": "cp"
+    }
+  ]
 }
 ```
 where:
@@ -256,43 +245,40 @@ For instance:
 ```
 {
   "jpsType": "update",
-  "application": {
-    "name": "Custom buttons",
-    "env": {},
-    "targetNodes": {
-      "nodeGroup": "bl"
+  "name": "Custom buttons",
+  "targetNodes": {
+    "nodeGroup": "bl"
+  },
+  "actions": [
+    "..."
+  ],
+  "settings": {
+    "main": {
+      "fields": [
+        {
+          "type": "text",
+          "caption": "Main form"
+        }
+      ]
     },
-    "procedures": [
-      "..."
-    ],
-    "settings": {
-      "main": {
-        "fields": [
-          {
-            "type": "text",
-            "caption": "Main form"
-          }
-        ]
-      },
-      "config": {
-        "fields": [
-          {
-            "type": "text",
-            "caption": "Custom form from button action"
-          }
-        ]
-      }
-    },
-    "buttons": [
-      {
-        "settings": "config",
-        "procedure": "customProc",
-        "caption": "Configure",
-        "submitButtonText": "Button Text",
-        "logsPath": "/var/lib/jelastic/keys/111"
-      }
-    ]
-  }
+    "config": {
+      "fields": [
+        {
+          "type": "text",
+          "caption": "Custom form from button action"
+        }
+      ]
+    }
+  },
+  "buttons": [
+    {
+      "settings": "config",
+      "action": "customProc",
+      "caption": "Configure",
+      "submitButtonText": "Button Text",
+      "logsPath": "/var/lib/jelastic/keys/111"
+    }
+  ]
 }
 ```
 Here, the *main settings* form appears during installation process.   
@@ -339,6 +325,7 @@ The multiline text field.
 }
 ```
 where:   
+
 - `caption` *[optional]* - field label  
 - `hideLabel`*[optional] [boolean]* - hide field Label. The default value is *'false'*.  
 ###list   
@@ -361,6 +348,7 @@ The drop-down list and a single-line non-editable textbox.
 }
 ```
 where:      
+
 - `caption` *[optional]* - field label                                  
 - `values` - objects' values (*"key"*:*"value"*)                            
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.          
@@ -381,9 +369,11 @@ The single checkbox field.
 }
 ```
 where:  
+
 - `caption` *[optional]* - field label           
 - `value` - enables or disables checkbox                         
-- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.                      
+- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*. 
+                    
 ###checkboxlist   
 The *checkbox* grouping.  
 
@@ -404,9 +394,11 @@ The *checkbox* grouping.
 }
 ```
 where:     
+
 - `caption` *[optional]* - field label  
 - `values` - checkboxes (*"key"*:*"value"*)  
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
+
 ###radiolist   
 The *radio* elements grouping.  
 
@@ -427,9 +419,11 @@ The *radio* elements grouping.
 }
 ```
 where:  
+
 - `caption` *[optional]* - field label   
 - `values` - checkboxes (*"key"*:*"value"*)  
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.  
+
 ###radio-fieldset    
 The groupping of the *radio* elements with the `showIf` function.     
 
@@ -471,12 +465,14 @@ The groupping of the *radio* elements with the `showIf` function.
 }
 ```
 where:   
+
 - `name` *[required]* - name of the `radio-fieldset` element (for other elements it’s not required)                       
 - `default` *[optional]* - selected field upon opening the form  
 - `values` - checkboxes (*"key"*:*"value"*)  
 - `showIf` - conditional object that shows predefined elements by clicking on the `radio-fieldset` elements. Predefined elements can be vary.  
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 - `caption` *[optional]* - field label
+
 ###dockertag   
 Displaying Docker tags within the `list` element.  
 
@@ -510,12 +506,14 @@ Displaying Docker tags within the `list` element.
 }
 ```
 where:   
+
 - `name` *[required]* - should have the *'tag'* value  
 - `values` *[required]* - Docker tag values (*name*: *"tag_name"* is required). By default Docker image is pulled from the Docker Hub registry.  
 - `dockerImage` - Docker image details   
    - `name`: *repository* is required   
    - `registry`, `username`, `password` are optional   
-- `env` - required object (can be empty)  
+- `env` - required object (can be empty) 
+ 
 ###compositefield
 The `compositefield` is a container with specific functionality and structural components that constitute it as the block for application-oriented custom user interfaces.  
 
@@ -559,12 +557,14 @@ The `compositefield` is a container with specific functionality and structural c
 }
 ```
 where:   
+
 - `pack` *[optional]* - manages the way items are packed together. The default value is *'start'*. Possible values: *'start'*, *'center'* and *'end'*.  
 - `align` *[optional]* - manages the way items are aligned. The default value is *'top'*. Possible values: *'top'*, *'middle'*, *'stretch'*, *'stretchmax'*.  
 - `defaultMargins` *[optional]* - default margins for items. The default value is *'0'*.  
 - `defaultPadding` *[optional]* - default paddings for items. The default value is *'0'*.  
 - `defaultFlex` *[optional]* - horizontal flex for items.   
 - `items` - elements  
+
 ###slider
 The slider element as a form field.
 
@@ -585,11 +585,13 @@ The slider element as a form field.
 }
 ```
 where:   
+
 - `min` - minimum slider value  
 - `max` - maximum slider value  
 - `useTips` - displaying tips for the value. The default value is *'true'*.  
 - `caption` *[optional]* - field label  
-- `name` *[optional]* - name of the field    
+- `name` *[optional]* - name of the field 
+   
 ###envlist
 The account environments list within a drop-down element.  
 
@@ -618,6 +620,7 @@ where:
     - **shortdomain** - short environment domain name (without platform URL)  
     - **displayName** - environment *displayName*  
     - **appid** - unique environment id     
+    
 ###popupselector
 (`popup-selector` is an alias)     
 
@@ -645,6 +648,7 @@ Opens popup window via the POST request to any external service. Functionality p
 }
 ```
 where:  
+
 - `caption` *[optional]* - field label                      
 - `name` *[optional]* - name of the field                  
 - `buttonText` *[optional]* - button label              
@@ -653,6 +657,7 @@ where:
 - `popupHeight` *[optional]* - height in pixels   
 - `popupCallbackEvent` - event handler   
 - `params` - parameters for sending in POST request to `URL` source.     
+
 ###displayfield
 (`spacer` is an alias)    
 
@@ -672,9 +677,11 @@ The text field intended only for display, which is not validated and not submitt
 }
 ```
 where:  
+
 - `caption` *[optional]* - field label                   
 - `name` *[optional]* - name of the field                
-- `markup` - value to initialize the field's display. The default value is "*'undefined'*".                 
+- `markup` - value to initialize the field's display. The default value is "*'undefined'*".      
+           
 ###spinner
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
 
@@ -695,12 +702,14 @@ Enhanced input field for entering numeric values, with up/down buttons and arrow
 }
 ```
 where:  
+
 - `name` *[optional]* - name of the field  
 - `caption` *[optional]* - field label  
 - `min` - minimum spinner value  
 - `max` - maximum spinner value  
 - `increment` - increment value  
 - `decimanPrecision` - precision value  
+
 ###numberpicker
 (`number-picker` is an alias)  
 
@@ -722,11 +731,13 @@ The text field with a number validation within range.
 }
 ```
 where:  
+
 - `name` *[optional]* - name of the field  
 - `caption` *[optional]* - field label    
 - `min` - minimum spinner value  
 - `max` - maximum spinner value  
 - `editable` *[optional] [boolean]* - enables/disables editing the `numberpicker` field. The default value is *'false'*.  
+
 ###hostpicker
 (`host-picker` is an alias)  
 
@@ -747,10 +758,17 @@ The drop-down menu with the environments hosts.
 }
 ```
 where:  
+
 - `name` *[optional]* - name of the field   
 - `caption` *[optional]* - field label   
 - `editable` *[optional] [boolean]* - enables/disables editing the `envlist` field. The default value is *'false'*.  
-- `valueField` *[optional]*   
+- `valueField` *[optional][string]* - The value from environment information which will be sent to server. The default value is **domain**. Available values are:    
+    - **iconCls** - css class     
+    - **isRunning** - check if environment status is *running*  
+    - **shortdomain** - short environment domain name (without platform URL)  
+    - **displayName** - environment *displayName*  
+    - **appid** - unique environment id   
+
 ###toggle
 The toggle element is a switch between two values.
 
