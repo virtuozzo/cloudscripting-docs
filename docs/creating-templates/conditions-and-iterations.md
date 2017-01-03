@@ -20,22 +20,20 @@ Comparing global variables:
 ```
 {
   "jpsType": "update",
-  "application": {
-    "name": "Comparing global variables",
-    "globals": {
-      "p1": 1,
-      "p2": 2
-    },
-    "onInstall": [
-      {
-        "if (globals.p1 < globals.p2)": {
-          "if (user.uid > 1)": {
-            "log": "## p1 < p2 and ${user.email} is not a platform owner"
-          }
+  "name": "Comparing global variables",
+  "globals": {
+    "p1": 1,
+    "p2": 2
+  },
+  "onInstall": [
+    {
+      "if (globals.p1 < globals.p2)": {
+        "if (user.uid > 1)": {
+          "log": "## p1 < p2 and ${user.email} is not a platform owner"
         }
       }
-    ]
-  }
+    }
+  ]
 }
 ```
 
@@ -228,7 +226,7 @@ Scaling nodes example:
   ]
 }
 ```
-As a result of *execCmd*, compute nodes internal IP addresses are rewritten within balancer configs and *NGINX* balancer node is reloaded. `onAfterScaleIn` and `onAfterScaleOut` events are executed immediately after adding or removing a compute node.
+As a result of *cmd*, compute nodes internal IP addresses are rewritten within balancer configs and *NGINX* balancer node is reloaded. `onAfterScaleIn` and `onAfterScaleOut` events are executed immediately after adding or removing a compute node.
 
 ###Iteration by all nodes in environment
 
@@ -246,19 +244,13 @@ As a result of *execCmd*, compute nodes internal IP addresses are rewritten with
 ```
 {
   "forEach(cp:nodes.cp)": {
-    "execCmd" : {
-      "nodeId": "${@cp.id}",
-      "nodeGroup": "${@cp.nodeGroup}",
-      "nodeType": "${@cp.nodeType}",
-      "commands": [
-        "echo ${@cp.address} > /tmp/example.txt"
-      ]
-    }
+    "cmd" [${@cp.id}]:
+    "echo ${@cp.address} > /tmp/example.txt"
   }
 }
 ```
 where:   
-- `@cp [optional]` - custom iterator name
+- `@cp [optional]` - custom iterator name. Target nodes also can be set by type -`${@cp.nodeType}` or group - `${@cp.nodeGroup}` 
 
 Custom iterator name can be used for nesting cycles one into another:
 ```
@@ -267,10 +259,7 @@ Custom iterator name can be used for nesting cycles one into another:
     {
       "forEach(env.nodes)": [
         {
-          "execCmd": {
-            "nodeId": "${@i.id}",
-            "commands": "[[ '${@i.id}' -eq '${@item.id}' ]] && touch /tmp/${@}.txt || touch /tmp/${@}${@}.txt"
-          }
+          "cmd [${@i.id}]": "[[ '${@i.id}' -eq '${@item.id}' ]] && touch /tmp/${@}.txt || touch /tmp/${@}${@}.txt"
         }
       ]
     }
