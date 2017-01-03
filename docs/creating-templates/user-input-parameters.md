@@ -29,34 +29,34 @@
     }
   }
 }
-```
+```   
+where:
 
-where:   
 - `prepopulate` *[optional]* - link to the script, that will fetch the default fields values  
-- `fields`   
+- `fields` - an array of fields which will be displayed in custom form     
     - `showIf` - show/hide field by condition (is applicable only to the *radio-fieldset* field)   
     - `type` *[optional]* - input field type. The default value is *“string”*. Possible values:   
-        * `string`     
-        * `text`                                                                              
-        * `list`  
-        * `checkbox`  
-        * `checkboxlist`  
-        * `radiolist`   
-        * `radio-fieldset`  
-        * `dockertags`        
-        * `compositefield` 
-        * `slider`  
-        * `envlist`   
-        * `popupselector`  
-        * `popup-selector`  
-        * `displayfield`  
-        * `spinner`  
-        * `numberpicker`  
-        * `number-picker`  
-        * `host-picher`  
-        * `hostpicker`  
-        * `toggle`  
-        * `spacer`  
+        * `string` - the basic [text field](/creating-templates/user-input-parameters/#string).      
+        * `text`  - Multiline [`string` field](/creating-templates/user-input-parameters/#text).                                                                             
+        * `list` - drop-dowm menu with non-editable textboxes. More info with example is [here](/creating-templates/user-input-parameters/#list). 
+        * `checkbox` - simgle checkbox field. More info [here.](/creating-templates/user-input-parameters/#checkbox) 
+        * `checkboxlist` - [the checkbox grouping](/creating-templates/user-input-parameters/#checkboxlist) 
+        * `radiolist` - [the radio field grouping](/creating-templates/user-input-parameters/#radiolist)    
+        * `radio-fieldset` - an alias to `radiolist`  
+        * `dockertags` drop-down menu with list of docker tags. [More info.](/creating-templates/user-input-parameters/#dockertag)        
+        * `compositefield` - a component with any available fields in it. [More info](/creating-templates/user-input-parameters/#compositefield)  
+        * `slider` - the slider element as a form field. [More info](/creating-templates/user-input-parameters/#slider)  
+        * `envlist` - [the account environments list](/creating-templates/user-input-parameters/#envlist)   
+        * `popupselector` - new popup window via POST request. Posibility to pass additional parameters. [More info](/creating-templates/user-input-parameters/#popupselector)      
+        * `popup-selector` - an alias for `popupselector` 
+        * `displayfield` - text field intended for displaying text. [More info.](/creating-templates/user-input-parameters/#displayfield) 
+        * `spacer` - an alias for `displayfield`   
+        * `spinner` - input field for entering numeric values. [More info](/creating-templates/user-input-parameters/#spinner)  
+        * `numberpicker` - text field within number validation within range. [More info](/creating-templates/user-input-parameters/#numberpicker)  
+        * `number-picker` - an alias for `numberpicker`  
+        * `hostpicker` - the drop-doown menu with environment hosts. [More info](/creating-templates/user-input-parameters/#hostpicker)  
+        * `host-picher` - an alias for `hostpicker`   
+        * `toggle` - the switcher between two values. [More info](/creating-templates/user-input-parameters/#toggle) 
     - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *"text"*. More info [here](https://www.w3.org/wiki/HTML/Elements/input#Point).        
     - `name` - input field name, that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests   
     - `default` *[optional]* - default value for the input field  
@@ -600,7 +600,7 @@ The account environments list within a drop-down element.
     {
       "caption": "Envlist",
       "editable": true,
-      "valueField": "1",
+      "valueField": "appid",
       "type": "envlist",
       "name": "envlist"
     }
@@ -608,10 +608,16 @@ The account environments list within a drop-down element.
 }
 ```
 where:  
+
 - `caption` *[optional]* - field label    
 - `name` *[optional]* - name of the field  
 - `editable` *[optional][boolean]* - enables/disables the `envlist` field editing. The default value is *'false'*.    
-- `valueField` *[optional]*  
+- `valueField` *[optional][string]* - The value from environment information which will be sent to server. The default value is **domain**. Available values are:    
+    - **iconCls** - css class     
+    - **isRunning** - check if environment status is *running*  
+    - **shortdomain** - short environment domain name (without platform URL)  
+    - **displayName** - environment *displayName*  
+    - **appid** - unique environment id     
 ###popupselector
 (`popup-selector` is an alias)     
 
