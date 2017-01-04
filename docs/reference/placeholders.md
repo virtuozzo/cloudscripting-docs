@@ -128,16 +128,14 @@ For example:
 ```example
 {
   "jpsType": "update",
-  "application": {
-    "settings": {
-      "fields": [
-        {
-          "type": "string",
-          "name": "customName",
-          "caption": "String field"
-        }
-      ]
-    }
+  "settings": {
+    "fields": [
+      {
+        "type": "string",
+        "name": "customName",
+        "caption": "String field"
+      }
+    ]
   }
 }
 ```
@@ -150,39 +148,27 @@ The placeholder's name here is `${settings.customName}`. Check the list of [fiel
 For example:
 ```
 {
-  "executeScript": [
-    {
-      "type": "js",
-      "script": "return '${this.greeting}';",
-      "params": {
-        "greeting": "Hello World!"
-      }
-    }
-  ]
+  "script": "return greeting;",
+  "params": {
+    "greeting": "Hello World!"
+  }
 }
 ```
 Passing custom params to the procedure is performed in the following way:
 ```
 {
 	"jpsType": "update",
-	"application": {
-		"name": "example",
-		"env": {},
-		"onInstall": {
-            "call": {"procedure": "customProcedure",
-            "params": {
-            	"first": 1,
-                "second": 2
-            }}
-		},
-        "procedures": [
-            {
-            	"id": "customProcedure",
-                "onCall": {
-                	"log": "${this.first}"
-                }
-            }
-        ]
+	"name": "example",
+	"onInstall": {
+		"customProcedure": {
+			"first": 1,
+			"second": 2
+		}
+	},
+	"actions": {
+		"customProcedure": {
+			"log": "${this.first}"
+		}
 	}
 }
 ```
@@ -199,17 +185,15 @@ For instance:
 ```example
 {
   "jpsType": "update",
-  "application": {
-    "settings": {
-      "fields": [
-        {
-          "type": "string",
-          "name": "email",
-          "caption": "Email",
-          "default": "${user.email}"
-        }
-      ]
-    }
+  "settings": {
+    "fields": [
+      {
+        "type": "string",
+        "name": "email",
+        "caption": "Email",
+        "default": "${user.email}"
+      }
+    ]
   }
 }
 ```
@@ -220,15 +204,12 @@ User defined placeholders can be predefined via <b>*globals declaration*</b>. Th
 For example:
 ```
 {
-	"jpsType": "update",
-	"application": {
-		"name": "Global declaration",
-		"env": {},
-		"globals": {
-			"value1": 1,
-			"value2": 2
-		}
-	}
+  "jpsType": "update",
+  "name": "Global declaration",
+  "globals": {
+    "value1": 1,
+    "value2": 2
+  }
 }
 ```
 

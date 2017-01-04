@@ -53,15 +53,16 @@ These basic string should be extended with the settings required by the applicat
 - `ssl` *[optional]*. **Default**: false - Jelastic ssl status for environment    
 - `ha` *[optional]*. **Default**: false. High availability for java stacks     
 - `description` - A text string that describes the template. This section must always follow the template format version section.
+- `categories` - available categories for filter manifests   
 - `version` *[optional]* - application custom version.
 - `logo` *[optional]* - jps image. Will be displayed at custom add-ons    
 - `homepage` *[optional]* - link for any external aplication source    
 - `type` *[optional]* - application language type   
 - `success` *[optional]* - success text. Will be sent to email and will be shown at the dashboard after installation
 - `startPage` *[optional]* - path. Can be open via button in success form *Open in browser*    
-- `actions` *[optional]* - objects where describe all [*actions*](/reference/procedures/)    
+- `actions` *[optional]* - objects where describe all [*custom actions*](/reference/actions/#custom-actions)    
 - `addons` *[optional]* - included jps manifests with jpsType *update* as a new jps installation   
-- `onInstall` *[optional]* - first action will be executed   
+- `onInstall` *[optional]* - first action which will be executed   
 
 
 # Extension Workflow
@@ -71,25 +72,24 @@ These basic string should be extended with the settings required by the applicat
 {
   "jpsType": "update",
   "jpsVersion": "0.3",
-    "name": "string",
-    "object<set of environment events subscriptions>",
-        
-    "description": "object/string", 
-    "categories" : "array",
-    "version": "string",
-    "logo": "string",
-    "homepage": "string",
-    "type": "string",         
-    "success": "object/string",
-    "startPage": "string",
-    
-    "procedures" : "array",
-
-    "onInstall" : "object/array",
-    "onUninstall" : "object/array"
+  "name": "string",
+  "description": "object/string",
+  "object<set of environment events subscriptions>",
+  "categories": "array",
+  "version": "string",
+  "logo": "string",
+  "homepage": "string",
+  "type": "string",
+  "success": "object/string",
+  "startPage": "string",
+  "actions": "array",
+  "onInstall": "object/array",
+  "onUninstall": "object/array"
 }
 ```
+where:
 
+- `jpsVersion` - *[optional]* - jps type supported by Jelastic platform. Correspondence between version [here](/jelastic-cs-correspondence/)  
 - `name` - *[optional]* - jps custom name.
 - `description` - A text string that describes the template. This section must always follow the template format version section.
 - `version` - *[optional]* - application custom version.

@@ -13,29 +13,28 @@ Output `Hello World!` two times in `greeting.txt`:
 ```
 {
   "jpsType": "update",
-  "application": {
-    "name": "Procedures Example",
-    "onInstall": [{
-      "createFile": {
-        "nodeGroup": "cp",
-        "path": "${SERVER_WEBROOT}/greeting.txt"
-      }
-    }, {
+  "name": "Procedures Example",
+  "onInstall": [
+    {
+      "createFile [cp]": "${SERVER_WEBROOT}/greeting.txt"
+    },
+    {
       "call": [
         "greeting",
         "greeting"
       ]
-    }],
-    "procedures": [{
-      "id": "greeting",
-      "onCall": [{
-        "appendFile": [{
+    }
+  ],
+  "actions": {
+    "greeting": {
+      "appendFile": [
+        {
           "nodeGroup": "cp",
           "path": "${SERVER_WEBROOT}/greeting.txt",
           "body": "Hello World!"
-        }]
-      }]
-    }]
+        }
+      ]
+    }
   }
 }
 ```
@@ -45,52 +44,40 @@ Output `Hello World!` two times in `greeting.txt`:
 Write `Hello World!` and output first and second compute node IP address 
 ```
 {
-  "jpsType": "update",
-  "application": {
-    "name": "Procedures Example",
-    "onInstall": [{
-      "createFile": {
-        "nodeGroup": "cp",
-        "path": "${SERVER_WEBROOT}/greeting.txt"
-      }
-    }, {
-      "call": [
-        "greeting",
-        "greeting",
-        {
-          "procedure": "log",
-          "params": {
-            "message": "${nodes.cp[0].address}"
-          }
-        },
-        {
-          "procedure": "log",
-          "params": {
-            "message": "${nodes.cp[1].address}"
-          }
-        }
-      ]
-    }],
-    "procedures": [{
-      "id": "greeting",
-      "onCall": [{
-        "appendFile": [{
-          "nodeGroup": "cp",
-          "path": "${SERVER_WEBROOT}/greeting.txt",
-          "body": "Hello World!"
-        }]
-      }]
-    }, {
-      "id": "log",
-      "onCall": [{
-        "appendFile": [{
-          "nodeGroup": "cp",
-          "path": "${SERVER_WEBROOT}/greeting.txt",
-          "body": "${this.message}"
-        }]
-      }]
-    }]
-  }
+	"jpsType": "update",
+	"name": "Procedures Example",
+	"onInstall": [{
+		"createFile [cp]": "${SERVER_WEBROOT}/greeting.txt"
+	}, {
+		"call": [
+			"greeting",
+			"greeting", {
+				"log": {
+					"message": "${nodes.cp[0].address}"
+				}
+			}, {
+				"log": {
+					"message": "${nodes.cp[1].address}"
+				}
+			}
+		]
+	}],
+	"actions": {
+		"greeting": {
+			"appendFile": [{
+				"nodeGroup": "cp",
+				"path": "${SERVER_WEBROOT}/greeting.txt",
+				"body": "Hello World!"
+			}]
+		},
+		"log": {
+			"appendFile": [{
+				"nodeGroup": "cp",
+				"path": "${SERVER_WEBROOT}/greeting.txt",
+				"body": "${this.message}"
+			}]
+		}
+	}
 }
 ```
 

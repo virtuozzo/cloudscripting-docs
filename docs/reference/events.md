@@ -11,10 +11,8 @@ It’s also possible to bind extension execution to the *onUninstall* event - in
 ```
 {
   "jpsType": "update",
-  "application": {    
-    "onInstall": {},
-    "onUninstall": {}
-  }
+  "onInstall": {},
+  "onUninstall": {}
 }
 ```
 
@@ -25,78 +23,74 @@ It’s also possible to bind extension execution to the *onUninstall* event - in
 ```
 {
   "jpsType": "update",
-  "application": {
-     "env" : {
-        "onBeforeChangeTopology": {},
-        "onAfterChangeTopology": {},
-        "onBeforeScaleOut": {},
-        "onAfterScaleOut": {},
-        "onBeforeScaleIn": {},
-        "onAfterScaleIn": {},
-        "onBeforeServiceScaleOut": {},
-        "onAfterServiceScaleOut": {},
-        "onBeforeRestartNode" : {},
-        "onAfterRestartNode" : {},
-        "onBeforeDelete" : {},
-        "onAfterDelete" : {},
-        "onBeforeAddNode" : {},
-        "onAfterAddNode" : {},
-        "onBeforeCloneNodes" : {},
-        "onAfterCloneNodes" : {},
-        "onBeforeLinkNode" : {},
-        "onAfterLinkNode" : {},
-        "onBeforeAttachExtIp" : {},
-        "onAfterAttachExtIp" : {},
-        "onBeforeDetachExtIp" : {},
-        "onAfterDetachExtIp" : {},
-        "onBeforeUpdateVcsProject" : {},
-        "onAfterUpdateVcsProject" : {},
-        "onBeforeSetCloudletCount" : {},
-        "onAfterSetCloudletCount" : {},
-        "onAfterChangeEngine" : {},
-        "onBeforeChangeEngine" : {},
-        "onBeforeStart" : {},
-        "onAfterStart" : {},
-        "onBeforeStop" : {},
-        "onAfterStop" : {},
-        "onBeforeClone" : {},
-        "onAfterClone" : {},
-        "onBeforeDeploy" : {},
-        "onAfterDeploy" : {},
-        "onBeforeResetNodePassword" : {},
-        "onAfterResetNodePassword " : {},
-        "onBeforeRemoveNode" : {},
-        "onAfterRemoveNode" : {},
-        "onBeforeRestartContainer" : {},
-        "onAfterRestartContainer" : {},        
-        "onBeforeMigrate" : {},        
-        "onAfterMigrate" : {},
-        "onBeforeRedeployContainer" : {},        
-        "onAfterRedeployContainer" : {},  
-        "onBeforeLinkDockerNodes" : {},        
-        "onAfterLinkDockerNodes" : {},
-        "onBeforeUnlinkDockerNodes" : {},        
-        "onAfterUnlinkDockerNodes" : {},
-        "onBeforeSetDockerEnvVars" : {},        
-        "onAfterSetDockerEnvVars" : {},
-        "onBeforeSetDockerEntryPoint" : {},        
-        "onAfterSetDockerEntryPoint" : {},
-        "onBeforeSetDockerRunCmd" : {},        
-        "onAfterSetDockerRunCmd" : {},
-        "onBeforeStartDockerService": {},
-        "onAfterStartDockerService": {},
-        "onBeforeAddDockerVolume" : {},        
-        "onAfterAddDockerVolume" : {},
-        "onBeforeRemoveDockerVolume" : {},        
-        "onAfterRemoveDockerVolume" : {}                                                                                                                                                                                                        
-     }
-  }
+  "onBeforeChangeTopology": {},
+  "onAfterChangeTopology": {},
+  "onBeforeScaleOut": {},
+  "onAfterScaleOut": {},
+  "onBeforeScaleIn": {},
+  "onAfterScaleIn": {},
+  "onBeforeServiceScaleOut": {},
+  "onAfterServiceScaleOut": {},
+  "onBeforeRestartNode": {},
+  "onAfterRestartNode": {},
+  "onBeforeDelete": {},
+  "onAfterDelete": {},
+  "onBeforeAddNode": {},
+  "onAfterAddNode": {},
+  "onBeforeCloneNodes": {},
+  "onAfterCloneNodes": {},
+  "onBeforeLinkNode": {},
+  "onAfterLinkNode": {},
+  "onBeforeAttachExtIp": {},
+  "onAfterAttachExtIp": {},
+  "onBeforeDetachExtIp": {},
+  "onAfterDetachExtIp": {},
+  "onBeforeUpdateVcsProject": {},
+  "onAfterUpdateVcsProject": {},
+  "onBeforeSetCloudletCount": {},
+  "onAfterSetCloudletCount": {},
+  "onAfterChangeEngine": {},
+  "onBeforeChangeEngine": {},
+  "onBeforeStart": {},
+  "onAfterStart": {},
+  "onBeforeStop": {},
+  "onAfterStop": {},
+  "onBeforeClone": {},
+  "onAfterClone": {},
+  "onBeforeDeploy": {},
+  "onAfterDeploy": {},
+  "onBeforeResetNodePassword": {},
+  "onAfterResetNodePassword ": {},
+  "onBeforeRemoveNode": {},
+  "onAfterRemoveNode": {},
+  "onBeforeRestartContainer": {},
+  "onAfterRestartContainer": {},
+  "onBeforeMigrate": {},
+  "onAfterMigrate": {},
+  "onBeforeRedeployContainer": {},
+  "onAfterRedeployContainer": {},
+  "onBeforeLinkDockerNodes": {},
+  "onAfterLinkDockerNodes": {},
+  "onBeforeUnlinkDockerNodes": {},
+  "onAfterUnlinkDockerNodes": {},
+  "onBeforeSetDockerEnvVars": {},
+  "onAfterSetDockerEnvVars": {},
+  "onBeforeSetDockerEntryPoint": {},
+  "onAfterSetDockerEntryPoint": {},
+  "onBeforeSetDockerRunCmd": {},
+  "onAfterSetDockerRunCmd": {},
+  "onBeforeStartDockerService": {},
+  "onAfterStartDockerService": {},
+  "onBeforeAddDockerVolume": {},
+  "onAfterAddDockerVolume": {},
+  "onBeforeRemoveDockerVolume": {},
+  "onAfterRemoveDockerVolume": {}
 }
 ```                              
 ##Event execution rules
 - Such events as *Install* & *Uninstall* application, as well as *BeforeDelete* and *AfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.
 - The *ScaleIn*, *ScaleOut* and *ServiceScaleOut* events are called once upon any node count change. Herewith, count of the *addNode* or *removeNode* actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.
-- For application server, load balancer and VPS node layers, the *cloneNodes* procedure is executed each time the node group is scaled out
+- For application server, load balancer and VPS node layers, the *cloneNodes* event is executed each time the node group is scaled out
 - *UnlinkDockerNodes*, *LinkDockerNodes*, *SetDockerEnvVars*, *SetDockerEntryPoint*, *SetDockerRunCmd*, *AddDockerVolume* and *RemoveDockerVolume* events can be executed only once per a single *changeTopology* action
 - The *StartDockerService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.
 
@@ -1604,4 +1598,5 @@ Otherwise (i.e. if no filtering rules are specified), every Event is listened by
 }
 ```
 where     
+
 - `number` - *nodeId* value for the corresponding instance

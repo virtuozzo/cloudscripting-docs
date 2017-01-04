@@ -15,6 +15,7 @@ Using *nodeType* field while performing the *writeFile* [action](/reference/acti
 } 
 ```
 where:              
+
 - `writeFile` - action to write data to a file                 
 - `nodeType` - value to define a particular node, where file is located                   
 - `path` - parameter specifying path to a file                
@@ -23,20 +24,19 @@ where:
 Creating environment with topology specifics, set by *engine* and *nodeType* values:                                      
 ```
 {
-  "env": {
-    "topology": {
-      "engine": "java7",
-      "nodes": [
-        {
-          "count": 1,
-          "nodeType": "tomcat7"
-        }
-      ]
+  "jpsType": "install",
+  "name": "install Tomcat7",
+  "engine": "java7",
+  "nodes": [
+    {
+      "count": 1,
+      "nodeType": "tomcat7"
     }
-  }
+  ]
 }
 ```
-where:                 
+where:     
+            
 - `engine` - value that specifies engine version (*java7* in our example)                  
 - `nodeType` - value that specifies compute node type (*tomcat7* in our example)                        
 
@@ -52,27 +52,24 @@ For *Docker* containers, *nodeGroup* can be stated to any value - either predefi
 For example:
 ```
 {
-  "env": {
-    "topology": {
-      "nodes": [
-        {
-          "docker": {
-            "image": "dockerImage:latest"
-          },
-          "cloudlets": 8,
-          "nodeGroup": "customGroup"
-        }
-      ]
+  "jpsType": "install",
+  "name": "install Docker",
+  "nodes": [
+    {
+      "image": "dockerImage:latest",
+      "cloudlets": 8,
+      "nodeGroup": "customGroup"
     }
-  }
+  ]
 }
 ```
-where:                   
+where:
+                   
 - `customGroup` - name of your custom *nodeGroup* value, that is called via `nodeGroup:customGroup` field, while performing an appropriate [action](/reference/actions/)                       
 
 !!! note
     > Upon stating non-predefined (i.e. custom) *nodeGroup* value for *Docker* containers, the corresponding container will be placed to the *Extra* layer:               
-    ![extra](https://download.jelastic.com/public.php?service=files&t=2bda4051062f413278b693d2898cdcbd&download)             
+    ![extra](img/extra_layer.jpg)             
     Subsequently, this *nodeGroup* value can be used within the same-named [actions](/reference/actions/) field to point to a particular *Extra* layer.                 
 
 <b>Predefined *nodeGroup* values</b>                 

@@ -50,7 +50,7 @@ pages:
 - Reference:
    - Actions: reference/actions.md
    - Events: reference/events.md
-   - Procedures: reference/procedures.md
+#   - Procedures: reference/procedures.md
    - Placeholders: reference/placeholders.md
    - Containers by Groups and Types: reference/container-types.md
    - Docker Actions: reference/docker-actions.md

@@ -74,7 +74,7 @@ where:
     > `vtypeText` is applied only in case the *vtype* value is set; otherwise, it is ignored.  
 
 ##Target Nodes
-`Target Nodes` is an optional method which allows to define environments, that are suitable for JPS installation. Herewith, this option is available only for *JpsType*: *update* procedure.   
+`Target Nodes` is an optional method which allows to define environments, that are suitable for JPS installation. Herewith, this option is available only for *JpsType*: *update* action.   
 
 Filtering for `targetNodes` can be performed by `nodeType`, `nodeGroup`, `dockerOs`, `dockerName` or `dockerTag`.   
 ```
@@ -179,7 +179,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 ![LoadingText](/img/LoadingText.jpg)      
 
-- `action` *[required] [string]* - name of the procedure that will be executed. Procedure body structure is described in the [*procedure*](/reference/procedures/) section.        
+- `action` *[required] [string]* - name of the custom action that will be executed. Procedure body structure is described in the [*actions*](/reference/actions/#custom-actions) section.        
 - `caption` - title of the button  
 
 ![Caption](/img/Caption.jpg)   
@@ -273,7 +273,7 @@ For instance:
   "buttons": [
     {
       "settings": "config",
-      "action": "customProc",
+      "action": "customAction",
       "caption": "Configure",
       "submitButtonText": "Button Text",
       "logsPath": "/var/lib/jelastic/keys/111"

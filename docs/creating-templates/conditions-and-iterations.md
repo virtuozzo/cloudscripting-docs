@@ -177,25 +177,22 @@ Iteration can be executed by `env.nodes`, `nodes`, `env.contexts` and `env.extdo
 ```
 where:    
 
-- `@i` - default iterator name
+- `@i` - default iterator name 
+- `env.extdomains` - bound external domains 
 
 ```
 {
-  "forEach(env.contexts)": [
-    {
-      "writeFile": {
-        "nodeGroup": "cp",
-        "path": "/var/lib/jelastic/keys/${@i.context}.txt",
-        "body": "1"
-      }
+  "forEach(env.contexts)": {
+    "writeFile [cp]": {
+      "path": "/var/lib/jelastic/keys/${@i.context}.txt",
+      "body": "1"
     }
-  ]
+  }
 }
 ```
 where:  
 
 - `env.contexts` -  list of contexts (applications) deployed to environment    
-- `env.extdomains` - bound external domains 
 
 See the [full list of available placeholders](/reference/placeholders/).
 
@@ -204,26 +201,18 @@ Scaling nodes example:
 {
   "jpsType": "update",
   "name": "Scaling Example",
-  "onAfterScaleIn[nodeGroup:cp]": {
-    "call": "ScaleNodes"
-  },
-  "onAfterScaleOut[nodeGroup:cp]": {
-    "call": "ScaleNodes"
-  },
-  "actions": [
-    {
-      "ScaleNodes": [
-        {
-          "forEach(nodes.cp)": {
-            "cmd [bl]": [
-              "{commands to rewrite all Compute nodes internal IP addresses in balancer configs. Here balancer node is NGINX}",
-              "/etc/init.d/nginx reload"
-            ]
-          }
-        }
-      ]
+  "onAfterScaleIn[nodeGroup:cp]": "ScaleNodes",
+  "onAfterScaleOut[nodeGroup:cp]": "ScaleNodes",
+  "actions": {
+    "ScaleNodes": {
+      "forEach(nodes.cp)": {
+        "cmd [bl]": [
+          "{commands to rewrite all Compute nodes internal IP addresses in balancer configs. Here balancer node is NGINX}",
+          "/etc/init.d/nginx reload"
+        ]
+      }
     }
-  ]
+  }
 }
 ```
 As a result of *cmd*, compute nodes internal IP addresses are rewritten within balancer configs and *NGINX* balancer node is reloaded. `onAfterScaleIn` and `onAfterScaleOut` events are executed immediately after adding or removing a compute node.
@@ -232,11 +221,9 @@ As a result of *cmd*, compute nodes internal IP addresses are rewritten within b
 
 ```
 {
-  "forEach(env.nodes)": [
-    {
-      "cmd [${@i.id}]": "echo ${@i.address} > /tmp/example.txt"
-    }
-  ]
+  "forEach(env.nodes)": {
+    "cmd [${@i.id}]": "echo ${@i.address} > /tmp/example.txt"
+  }
 }
 ```
 
@@ -244,8 +231,7 @@ As a result of *cmd*, compute nodes internal IP addresses are rewritten within b
 ```
 {
   "forEach(cp:nodes.cp)": {
-    "cmd" [${@cp.id}]:
-    "echo ${@cp.address} > /tmp/example.txt"
+    "cmd [${@cp.id}]": "echo ${@cp.address} > /tmp/example.txt"
   }
 }
 ```
@@ -255,18 +241,24 @@ where:
 Custom iterator name can be used for nesting cycles one into another:
 ```
 {
-  "forEach(item:env.nodes)": [
-    {
-      "forEach(env.nodes)": [
-        {
-          "cmd [${@i.id}]": "[[ '${@i.id}' -eq '${@item.id}' ]] && touch /tmp/${@}.txt || touch /tmp/${@}${@}.txt"
-        }
-      ]
+  "jpsType": "update",
+  "name": "execution actions",
+  "onInstall": {
+    "forEach(item:env.nodes)": {
+      "forEach(secondItem:env.nodes)": {
+        "log": "${@@item} - ${@@secondItem} - ${@}"
+      }
     }
-  ]
+  }
 }
 ```
 where:   
-- `@` iterator number
+
+- `${@}` - iterator number current loop  
+- `${@@item}` - iterator number of the first loop 
+- `${@@secondItem}` - iterator number of the second loop 
 
 In this case every environment node will have only one conjunction by node ID.
+
+`ForEach` **count** execution is printed in [user console log](/troubleshooting/) for usefull debugging code execution.
+![forEachCount](/img/forEachCount.jpg)
