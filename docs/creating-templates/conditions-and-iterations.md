@@ -20,22 +20,20 @@ Comparing global variables:
 ```
 {
   "jpsType": "update",
-  "application": {
-    "name": "Comparing global variables",
-    "globals": {
-      "p1": 1,
-      "p2": 2
-    },
-    "onInstall": [
-      {
-        "if (globals.p1 < globals.p2)": {
-          "if (user.uid > 1)": {
-            "log": "## p1 < p2 and ${user.email} is not a platform owner"
-          }
+  "name": "Comparing global variables",
+  "globals": {
+    "p1": 1,
+    "p2": 2
+  },
+  "onInstall": [
+    {
+      "if (globals.p1 < globals.p2)": {
+        "if (user.uid > 1)": {
+          "log": "## p1 < p2 and ${user.email} is not a platform owner"
         }
       }
-    ]
-  }
+    }
+  ]
 }
 ```
 
@@ -96,30 +94,20 @@ Nested conditions:
 Nesting of two *If* condition statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and logging the correspondent messages.
 ```
 {
-	"jpsType": "update",
-	"application": {
-		"name": "Nesting example",
-		"env": {},
-		"onInstall": {
-			"if (${nodes.cp[1].id})": [{
-				"execCmd": {
-					"nodeId": "${nodes.cp[1].id}",
-					"commands": [
-						"echo \"Environment consists of two compute nodes\" >> /tmp/result.txt "
-					]
-				}
-			}, {
-				"if (/^[0-9]{2,3}.[0-9]{2,3}.[0-9]{2,3}.[0-9]{2,3}/.test(\"${nodes.bl[0].extips}\"))": {
-					"execCmd": {
-						"nodeId": "${nodes.cp[0].id}",
-						"commands": [
-							"echo \"Balancer node with external IP address!\" >> /tmp/result.txt "
-						]
-					}
-				}
-			}]
-		}
-	}
+  "jpsType": "update",
+  "name": "Nesting example",
+  "onInstall": {
+    "if (${nodes.cp[1].id})": [
+      {
+        "cmd [${nodes.cp[1].id}]": "echo \"Environment consists of two compute nodes\" >> /tmp/result.txt "
+      },
+      {
+        "if (/^[0-9]{2,3}.[0-9]{2,3}.[0-9]{2,3}.[0-9]{2,3}/.test(\"${nodes.bl[0].extips}\"))": {
+          "cmd [${nodes.cp[0].id}]": "echo \"Balancer node with external IP address!\" >> /tmp/result.txt "
+        }
+      }
+    ]
+  }
 }
 ```
 
@@ -132,19 +120,15 @@ Balancer node with external IP address!
 Checking balancer stack type:
 ```
 {
-	"jpsType": "update",
-	"application": {
-		"name": "Nginx stack",
-		"env": {},
-		"onInstall": {
-			"if (nodes.bl[0].nodeType == 'nginx')": [{
-				"execScript": {
-					"type": "js",
-					"script": "return { result: 0, error: \"Environment balancer node is NGINX stack\"};"
-				}
-			}]
-		}
-	}
+  "jpsType": "update",
+  "name": "Nginx stack",
+  "onInstall": {
+    "if (nodes.bl[0].nodeType == 'nginx')": [
+      {
+        "script": "return { result: 0, error: \"Environment balancer node is NGINX stack\"};"
+      }
+    ]
+  }
 }
 ```
 
@@ -170,6 +154,7 @@ The main iterable object is *ForEach*. Its map:
 }
 ```
 where:    
+
 - `settings [optional]` - fields values predefined within a [user setting form](http://docs.cloudscripting.com/creating-templates/user-input-parameters/)   
 - `license [optional]` - link to fetch parameters specified within [prepopulate](http://docs.cloudscripting.com/creating-templates/user-input-parameters/) custom script. It enables to customize default field values and can be further initialized through [placeholders](http://docs.cloudscripting.com/reference/placeholders/) `$(license.{any_name}` within a manifest.   
 - `event [optional]` - object entity with [event](http://docs.cloudscripting.com/reference/events/) parameters.  Can be of two types that allows initiation of a particular [action](http://docs.cloudscripting.com/reference/actions/) before and after event execution   
@@ -191,72 +176,54 @@ Iteration can be executed by `env.nodes`, `nodes`, `env.contexts` and `env.extdo
 }
 ```
 where:    
-- `@i` - default iterator name
+
+- `@i` - default iterator name 
+- `env.extdomains` - bound external domains 
 
 ```
 {
-  "forEach(env.contexts)": [
-    {
-      "writeFile": {
-        "nodeGroup": "cp",
-        "path": "/var/lib/jelastic/keys/${@i.context}.txt",
-        "body": "1"
-      }
+  "forEach(env.contexts)": {
+    "writeFile [cp]": {
+      "path": "/var/lib/jelastic/keys/${@i.context}.txt",
+      "body": "1"
     }
-  ]
+  }
 }
 ```
 where:  
+
 - `env.contexts` -  list of contexts (applications) deployed to environment    
-- `env.extdomains` - bound external domains 
 
 See the [full list of available placeholders](/reference/placeholders/).
 
 Scaling nodes example:
 ```
 {
-	"jpsType": "install",
-	"application": {
-		"name": "Scaling Example",
-		"env": {
-			"onAfterScaleIn[nodeGroup:cp]": {
-				"call": "ScaleNodes"
-			},
-			"onAfterScaleOut[nodeGroup:cp]": {
-				"call": "ScaleNodes"
-			}
-		},
-		"procedures": [{
-			"id": "ScaleNodes",
-			"onCall": [{
-				"forEach(nodes.cp)": {
-					"execCmd": {
-						"commands": [
-							"{commands to rewrite all Compute nodes internal IP addresses in balancer configs. Here balancer node is NGINX}",
-							"/etc/init.d/nginx reload"
-						],
-						"nodeGroup": "bl"
-					}
-				}
-			}]
-		}]
-	}
+  "jpsType": "update",
+  "name": "Scaling Example",
+  "onAfterScaleIn[nodeGroup:cp]": "ScaleNodes",
+  "onAfterScaleOut[nodeGroup:cp]": "ScaleNodes",
+  "actions": {
+    "ScaleNodes": {
+      "forEach(nodes.cp)": {
+        "cmd [bl]": [
+          "{commands to rewrite all Compute nodes internal IP addresses in balancer configs. Here balancer node is NGINX}",
+          "/etc/init.d/nginx reload"
+        ]
+      }
+    }
+  }
 }
 ```
-As a result of *execCmd*, compute nodes internal IP addresses are rewritten within balancer configs and *NGINX* balancer node is reloaded. `onAfterScaleIn` and `onAfterScaleOut` events are executed immediately after adding or removing a compute node.
+As a result of *cmd*, compute nodes internal IP addresses are rewritten within balancer configs and *NGINX* balancer node is reloaded. `onAfterScaleIn` and `onAfterScaleOut` events are executed immediately after adding or removing a compute node.
 
 ###Iteration by all nodes in environment
 
 ```
 {
-  "forEach(env.nodes)": [{
-    "execCmd": {
-	  "nodeId": "${@i.id}",
-		"commands": [
-	      "echo ${@i.address} > /tmp/example.txt"
-		]
-	}
-  }]
+  "forEach(env.nodes)": {
+    "cmd [${@i.id}]": "echo ${@i.address} > /tmp/example.txt"
+  }
 }
 ```
 
@@ -264,38 +231,34 @@ As a result of *execCmd*, compute nodes internal IP addresses are rewritten with
 ```
 {
   "forEach(cp:nodes.cp)": {
-    "execCmd" : {
-      "nodeId": "${@cp.id}",
-      "nodeGroup": "${@cp.nodeGroup}",
-      "nodeType": "${@cp.nodeType}",
-      "commands": [
-        "echo ${@cp.address} > /tmp/example.txt"
-      ]
+    "cmd [${@cp.id}]": "echo ${@cp.address} > /tmp/example.txt"
+  }
+}
+```
+where:   
+- `@cp [optional]` - custom iterator name. Target nodes also can be set by type -`${@cp.nodeType}` or group - `${@cp.nodeGroup}` 
+
+Custom iterator name can be used for nesting cycles one into another:
+```
+{
+  "jpsType": "update",
+  "name": "execution actions",
+  "onInstall": {
+    "forEach(item:env.nodes)": {
+      "forEach(secondItem:env.nodes)": {
+        "log": "${@@item} - ${@@secondItem} - ${@}"
+      }
     }
   }
 }
 ```
 where:   
-- `@cp [optional]` - custom iterator name
 
-Custom iterator name can be used for nesting cycles one into another:
-```
-{
-  "forEach(item:env.nodes)": [
-    {
-      "forEach(env.nodes)": [
-        {
-          "execCmd": {
-            "nodeId": "${@i.id}",
-            "commands": "[[ '${@i.id}' -eq '${@item.id}' ]] && touch /tmp/${@}.txt || touch /tmp/${@}${@}.txt"
-          }
-        }
-      ]
-    }
-  ]
-}
-```
-where:   
-- `@` iterator number
+- `${@}` - iterator number current loop  
+- `${@@item}` - iterator number of the first loop 
+- `${@@secondItem}` - iterator number of the second loop 
 
 In this case every environment node will have only one conjunction by node ID.
+
+`ForEach` **count** execution is printed in [user console log](/troubleshooting/) for usefull debugging code execution.
+![forEachCount](/img/forEachCount.jpg)

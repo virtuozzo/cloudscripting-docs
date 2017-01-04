@@ -14,14 +14,12 @@ Output single placeholder value:
 ```
 {
   "jpsType": "update",
-  "application": {
-    "name": "LogTest",                                      
-    "onInstall": {
-      "log": [
-        "Hello", 
-        "${user.email}"
-      ]
-    }
+  "name": "LogTest",
+  "onInstall": {
+    "log": [
+      "Hello",
+      "${user.email}"
+    ]
   }
 }
 ```
@@ -30,11 +28,9 @@ Output all placeholders:
 ```
 {
   "jpsType": "update",
-  "application": {
-    "name": "LogTest",
-    "onInstall": {
-      "log": "${placeholders}"
-    }
+  "name": "LogTest",
+  "onInstall": {
+    "log": "${placeholders}"
   }
 }
 ```                                                                                      
@@ -43,23 +39,20 @@ Output from the script:
 ```
 {
   "jpsType": "update",
-  "application": {
-    "name": "LogTest",
-    "onInstall": {
-      "executeScript": {
-        "type": "js",
-        "script": "http://example.com/script.js"
+  "name": "LogTest",
+  "onInstall": {
+    "executeScript": {
+      "type": "js",
+      "script": "http://example.com/script.js"
+    }
+  },
+  "actions": [
+    {
+      "myaction": {
+        "log": "${this.message}"
       }
-    },
-    "procedures": [
-      {
-        "id": "log",
-        "onCall": {
-          "log": "${this.message}"
-        }
-      }
-    ]
-  }
+    }
+  ]
 }
 ```
 
@@ -72,12 +65,12 @@ return {
     result: 0, 
     onAfterReturn: {
         call: [{
-            procedure: 'log', 
+            action: 'log', 
             params: {
                 message: message
             } 
         }, {
-            procedure: 'log',
+            action: 'log',
             params: {
                 message: 'World !'
             }

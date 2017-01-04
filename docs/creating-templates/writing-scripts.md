@@ -1,7 +1,7 @@
 # Writing Scripts
 
 Custom users’ scripts can be written in Java or JavaScript. Inside these scripts, the set of client libraries for platform’s API methods calling is available. 
-A script can be subscribed to the onAfterReturn event on its outlet for, for example, execution of the [Call](/reference/actions/#call) action.
+A script can be subscribed to the onAfterReturn event on its outlet for execution any [Action](/reference/actions/).
 
 
 ## Intercontainer Scripts
@@ -10,14 +10,7 @@ In order to execute a shell script inside the container, action [ExecuteShellCom
 **Example #1 Execute bash script from URL**
 ```example
 {
-  "executeShellCommands": [
-    {
-      "nodeGroup": "cp",
-      "commands": [
-        "curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2"
-      ]
-    }
-  ]
+  "cmd [cp]": "curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2"
 }
 ```
 
@@ -25,14 +18,7 @@ In order to execute a shell script inside the container, action [ExecuteShellCom
 
 ```
 {
-  "executeShellCommands": [
-    {
-      "nodeType": "mysql5",
-      "commands": [
-        "curl -fsS http://example.com/script.sh | /bin/bash -s '${nodes.sqldb.password}' 'http://example.com/dump.sql' '${user.appPassword}'"
-      ]
-    }
-  ]
+  "cmd [mysql5]": "curl -fsS http://example.com/script.sh | /bin/bash -s '${nodes.sqldb.password}' 'http://example.com/dump.sql' '${user.appPassword}'"
 }
 ```
 
@@ -66,7 +52,7 @@ END
 `${nodes.sqldb.password}` - available only for jpsType *install* when sql node is created.
 
 ## Top level scripts
-Using `executeScript` action.
+Using `script` action.
 
 ### Java
 ```example
@@ -90,15 +76,7 @@ Using `executeScript` action.
 ### JavaScript
 ```example
 {
-  "executeScript": [
-    {
-        "type" : "js",        
-        "params" : {
-            "greeting" : "Hello World!"
-        },
-        "script" : "return getParam('greeting');"
-    }
-  ]
+  "script ["Hello World!"]": "return getParam('greeting');"
 }
 ```
 

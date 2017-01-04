@@ -7,6 +7,40 @@ There are three ways to select the containers.
 - [All Containers By Group](#all-containers-by-group) 
 - [All Containers By Type](#all-containers-by-type)
 
+Also there are thee ways to set container filters:
+
+* **Node Selectors** - select node in action name. For example:
+```
+[{
+    "createFile [cp]" : {
+          "path" : "/tmp/test.txt"
+    }
+}, {
+    "createDirectory [cp,bl,123]" : {
+          "path" : "/tmp/test.txt"
+    }
+}]
+```
+In this example new file will be created in compute node and new directory will be created in compute node, balancer, and node with id *123*. All node selectors will be executed in declaration order.  
+
+* set node parameters near the action. For example:
+```
+{
+  "createFile": {
+    "path": "/tmp/test.txt"
+  },
+  "createDirectory": {
+    "path": "/tmp/test"
+  },
+  "nodeGroup": "cp"
+}
+```
+There parameter *nodeGroup* is available for two actions - `createFile` and `createDirectory`. So these actions will be executed on same **nodeGroup**.
+
+* set required node as parameter in action object;
+
+Node Selectors have higher priority than node parameters near the action but lower than parameters set in action object.   
+
 ## Particular Container
 Use `nodeId` parameter to select a particular container.
 If you know the ID of a container on which you want to perform an action, you can set it statically:  
@@ -16,7 +50,6 @@ If you know the ID of a container on which you want to perform an action, you ca
   "writeFile": [
     {
       "nodeId": "123",
-      
       "path": "/var/www/webroot/hw.txt",
       "body": "Hello World!"      
     }
@@ -31,7 +64,6 @@ If you don't know the container's ID or the container does not created yet, you 
   "writeFile": [
     {
       "nodeId": "${nodes.apache2[0].id}",
-      
       "path": "/var/www/webroot/hw.txt",
       "body": "Hello World!"
     }

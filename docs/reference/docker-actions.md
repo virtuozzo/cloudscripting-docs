@@ -12,21 +12,17 @@ There are three available parameters to set Docker `volumes`:
 All of the fields are set within the Docker object:
 ```
 {
-  "env": {
-    "topology": {
-      "nodes": [
-        {
-          "nodeGroup": "sqldb",
-          "docker": {
-            "image": "centos:7",
-            "volumes": [...],
-            "volumeMounts": {...},
-            "volumesFrom": [...]
-          }
-        }
-      ]
+  "jpsType": "install",
+  "name": "docker volumes",
+  "nodes": [
+    {
+      "nodeGroup": "sqldb",
+      "image": "centos:7",
+      "volumes": [],
+      "volumeMounts": {},
+      "volumesFrom": []
     }
-  }
+  ]
 }
 ```
 ###Volumes  
@@ -60,6 +56,7 @@ This parameter is an object. It can be set like within the example below:
 }
 ```
 Here:  
+
 - `/example-path` - path to place the volume at a target node  
 - `sourcePath [optional]` - the default value repeats volume path (*/example-path* in our sample)   
 - `sourceNodeId` -  node identifier the volume should be mounted from (optional in case of the `sourceNodeGroup` parameter using)  
@@ -198,22 +195,18 @@ where:
 
 ```
 {
-  "env": {
-    "topology": {
-      "nodes": [
-        {
-          "nodeGroup": "cp",
-          "docker": {
-            "image": "wordpress:latest",
-            "env": {
-              "WORDPRESS_VERSION": "4.6.1",
-              "PHP_INI_DIR": "/usr/local/etc/php"
-            }
-          }
-        }
-      ]
+  "jpsType": "install",
+  "name": "docker environment variables",
+  "nodes": [
+    {
+      "nodeGroup": "cp",
+      "image": "wordpress:latest",
+      "env": {
+        "WORDPRESS_VERSION": "4.6.1",
+        "PHP_INI_DIR": "/usr/local/etc/php"
+      }
     }
-  }
+  ]
 }
 ```
 
@@ -225,36 +218,31 @@ The example below illustrates the way to link *sql* and *memcached* nodes to *cp
 ```
 [
   {
-    "docker": {
-      "image": "wordpress:latest",
-      "links": [
-        "db:DB",
-        "memcached:MEMCACHED"
-      ]
-    },
+    "image": "wordpress:latest",
+    "links": [
+      "db:DB",
+      "memcached:MEMCACHED"
+    ],
     "cloudlets": 8,
     "nodeGroup": "cp",
     "displayName": "AppServer"
   },
   {
-    "docker": {
-      "image": "mysql5:latest"
-    },
+    "image": "mysql5:latest",
     "cloudlets": 8,
     "nodeGroup": "db",
     "displayName": "Database"
   },
   {
-    "docker": {
-      "image": "memcached:latest"
-    },
+    "image": "memcached:latest",
     "cloudlets": 4,
     "nodeGroup": "memcached",
     "displayName": "Memcached"
   }
 ]
 ```
-where:   
+where:
+
 - `links` - an object that defines nodes to be linked to *cp* node by their *nodeGroup* and these links names.    
 - `db` - MYSQL server `nodeGroup` (environment layer)  
 - `memcached` - Memcached server `nodeGroup` (environment layer)   
