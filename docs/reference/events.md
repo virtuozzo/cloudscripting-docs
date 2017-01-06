@@ -7,87 +7,59 @@ Each event refers to a particular entity. For example, the entry point for execu
 Subscription to a particular application lifecycle event (e.g. topology change) can be done via [Environment Level Events](#environment-level-events).
 It’s also possible to bind extension execution to the *onUninstall* event - in such a way, you can implement custom logic of this extension removal from an environment.
 
-## Application Level Events
+## Events Subsribtion Example
 ```
 {
-  "jpsType": "update",
-  "onInstall": {},
-  "onUninstall": {}
+  "jpsType": "install",
+  "name": "Event Subsribtion Example",
+  "nodes": [
+    {
+      "image": "jelastic/nginx-php",
+      "volumeMounts": {
+        "/var/www/webroot/ROOT": {
+          "readOnly": false,
+          "sourcePath": "/data",
+          "sourceNodeGroup": "storage"
+        }
+      },
+      "volumes": [
+        "/var/www/webroot/ROOT"
+      ],
+      "cloudlets": 8,
+      "nodeGroup": "cp",
+      "displayName": "AppServer"
+    },
+    {
+      "image": "jelastic/storage",
+      "cloudlets": 8,
+      "nodeGroup": "storage",
+      "displayName": "Storage"
+    }
+  ],
+  "globals": {
+    "customDirectory": "/tmp/CloudSCripting"
+  },
+  "onInstall": {
+    "createDirectory [cp]": "${globals.customDirectory}"
+  },
+  "onAfterScaleOut [nodeGroup:cp]": {
+    "cmd [cp]": "echo 'New Compute node has been added' >> ${globals.customDirectory}/addedNodes.txt"
+  },
+  "onAfterRestartNode [nodeGroup:cp]": {
+    "cmd [cp]": "echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> ${globals.customDirectory}/addedNodes.txt"
+  }
 }
 ```
+where:
 
-### onInstall
-### onUninstall
-
-## Environment Level Events
-```
-{
-  "jpsType": "update",
-  "onBeforeChangeTopology": {},
-  "onAfterChangeTopology": {},
-  "onBeforeScaleOut": {},
-  "onAfterScaleOut": {},
-  "onBeforeScaleIn": {},
-  "onAfterScaleIn": {},
-  "onBeforeServiceScaleOut": {},
-  "onAfterServiceScaleOut": {},
-  "onBeforeRestartNode": {},
-  "onAfterRestartNode": {},
-  "onBeforeDelete": {},
-  "onAfterDelete": {},
-  "onBeforeAddNode": {},
-  "onAfterAddNode": {},
-  "onBeforeCloneNodes": {},
-  "onAfterCloneNodes": {},
-  "onBeforeLinkNode": {},
-  "onAfterLinkNode": {},
-  "onBeforeAttachExtIp": {},
-  "onAfterAttachExtIp": {},
-  "onBeforeDetachExtIp": {},
-  "onAfterDetachExtIp": {},
-  "onBeforeUpdateVcsProject": {},
-  "onAfterUpdateVcsProject": {},
-  "onBeforeSetCloudletCount": {},
-  "onAfterSetCloudletCount": {},
-  "onAfterChangeEngine": {},
-  "onBeforeChangeEngine": {},
-  "onBeforeStart": {},
-  "onAfterStart": {},
-  "onBeforeStop": {},
-  "onAfterStop": {},
-  "onBeforeClone": {},
-  "onAfterClone": {},
-  "onBeforeDeploy": {},
-  "onAfterDeploy": {},
-  "onBeforeResetNodePassword": {},
-  "onAfterResetNodePassword ": {},
-  "onBeforeRemoveNode": {},
-  "onAfterRemoveNode": {},
-  "onBeforeRestartContainer": {},
-  "onAfterRestartContainer": {},
-  "onBeforeMigrate": {},
-  "onAfterMigrate": {},
-  "onBeforeRedeployContainer": {},
-  "onAfterRedeployContainer": {},
-  "onBeforeLinkDockerNodes": {},
-  "onAfterLinkDockerNodes": {},
-  "onBeforeUnlinkDockerNodes": {},
-  "onAfterUnlinkDockerNodes": {},
-  "onBeforeSetDockerEnvVars": {},
-  "onAfterSetDockerEnvVars": {},
-  "onBeforeSetDockerEntryPoint": {},
-  "onAfterSetDockerEntryPoint": {},
-  "onBeforeSetDockerRunCmd": {},
-  "onAfterSetDockerRunCmd": {},
-  "onBeforeStartDockerService": {},
-  "onAfterStartDockerService": {},
-  "onBeforeAddDockerVolume": {},
-  "onAfterAddDockerVolume": {},
-  "onBeforeRemoveDockerVolume": {},
-  "onAfterRemoveDockerVolume": {}
-}
-```                              
-##Event execution rules
+- `jpsType` - *install* type means that new environment with `nodes` will be created.  
+- `globals` - create [Custom Global Placeholder](/reference/placeholders/#custom-global-placeholders) named customDirectory 
+- `onInstall` - first event which will be executed when environment will been installed - create new folder *CloudSCripting* in directory 
+- `onAfterScaleOut` - event will be performed after new compute node has been added - write message into file *addedNodes.txt*  
+- `onAfterRestartNode` - event will be performed after restart compute node - write message into file *addedNodes.txt* what node has been restarted
+                            
+                            
+##Event Execution Rules
 - Such events as *Install* & *Uninstall* application, as well as *BeforeDelete* and *AfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.
 - The *ScaleIn*, *ScaleOut* and *ServiceScaleOut* events are called once upon any node count change. Herewith, count of the *addNode* or *removeNode* actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.
 - For application server, load balancer and VPS node layers, the *cloneNodes* event is executed each time the node group is scaled out
@@ -95,18 +67,22 @@ It’s also possible to bind extension execution to the *onUninstall* event - in
 - The *StartDockerService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.
 
 ## Event parameters and response placeholders
-### onBeforeChangeTopology
-```
-{
-  "event":{
-    "params": {
-        "env": "string"
-      }
-  }
-}
-```
 
-####Event placeholders:      
+### onInstall
+
+**onInstall** is an entry point for actions execution.
+In case `jpsType` *install* event **onInstall** will be executed right after environment installation will be finished. In case `jpsType` *update* **onInstall** event is first event which will be performed.
+ 
+###onUninstall
+
+*onUninstall* event can be called from Add-ons tab in Jelastic Dashboard.
+This event means to do actions for removing data which were installed by *onInstall* action.
+![onUninstall](/img/addon-install.jpg)
+
+### onBeforeChangeTopology
+
+Event placeholders:      
+
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
@@ -115,28 +91,9 @@ It’s also possible to bind extension execution to the *onUninstall* event - in
 - `${event.response.}` parameters are absent.    
 
 ### onAfterChangeTopology
-```
-{
-  "event": {
-    "params": {
-      "env": "string"
-    },
-    "response": {
-      "response": {
-        "result": "number",
-        "nodes": [
-          {}
-        ],
-        "env": {},
-        "right": "string"
-      },
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -153,42 +110,18 @@ It’s also possible to bind extension execution to the *onUninstall* event - in
     - `env` - environment informartion. Full environment placehosders list [here](http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders)  
     
 ### onBeforeScaleOut
-Add new node into topology.
-```
-{
-  "event": {
-    "params": {
-      "count": "number",
-      "nodeGroup": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:    
+Event placeholders:    
+
 - `${event.params.}`:
     - `count` - nodes count to scale into topology    
     - `nodeGroup` - node group where will new nodes will be added      
 - `${event.response.}` parameters are absent.  
 
 ### onAfterScaleOut
-```
-{
-  "event": {
-    "params": {
-      "count": "number",
-      "nodeGroup": "string"
-    },
-    "response": {
-      "nodes": [
-        {}
-      ]
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:  
+ 
 - `${event.params.}`:   
     - `count` - nodes count to scale into topology    
     - `nodeGroup` - node group where will new nodes will be added 
@@ -196,24 +129,9 @@ Add new node into topology.
     - `nodes` - nodes array with detailed info about nodes. Full node placeholders [here](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders) 
     
 ### onBeforeScaleIn
-Remove nodes from environment.
-```
-{
-  "event": {
-    "params": {
-      "count": "number",
-      "nodeGroup": "string"
-    },
-    "response": {
-      "nodes": [
-        {}
-      ]
-    }
-  }
-}
-```
-
-####Event placeholders:    
+Remove nodes from environment.  
+Event placeholders:   
+ 
 - `${event.params.}`:
     - `count` - nodes count to remove from topology
     - `nodeGroup` - node group where will new nodes will be removed
@@ -221,23 +139,9 @@ Remove nodes from environment.
     - `nodes` - nodes array with detailed info about nodes. Full node placeholders [here](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders) 
     
 ### onAfterScaleIn
-```
-{
-  "event": {
-    "params": {
-      "count": "number",
-      "nodeGroup": "string"
-    },
-    "response": {
-      "nodes": [
-        {}
-      ]
-    }
-  }
-}
-```
 
-####Event placeholders:     
+Event placeholders:     
+
 - `${event.params.}`:   
     - `count` - nodes count to remove from topology    
     - `nodeGroup` - node group where will new nodes will be removed 
@@ -263,17 +167,9 @@ Remove nodes from environment.
 - `${event.response.}` result code. 0 is success action result.     
 
 ### onBeforeRestartNode
-```
-{
-  "event":{
-    "params": {
-        "nodeType": "string"
-      }
-  }
-}
-```
 
-####Event placeholders:     
+Event placeholders:     
+
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
@@ -281,27 +177,9 @@ Remove nodes from environment.
 - `${event.response.}` parameters are absent.    
 
 ### onAfterRestartNode
-```
-{
-  "event":{
-    "params": {
-        "nodeType": "string"
-      },
-    "response": {
-          "result": "number",
-          "responses": [
-        {
-          "result": "number",
-          "nodeid": "number",
-          "out": "string"
-        }
-      ]
-    }
-  }
-}
-```
 
-####Event placeholders:     
+Event placeholders:    
+ 
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
@@ -312,17 +190,9 @@ Remove nodes from environment.
     - `result` - result code. 0 is success action result.
 
 ### onBeforeDelete
-```
-{
-  "event": {
-    "params": {
-      "password": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid   
@@ -330,20 +200,9 @@ Remove nodes from environment.
 - `${event.response.}` parameters are absent.  
 
 ### onAfterDelete
-```
-{
-  "event": {
-    "params": {
-      "password": "string"
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid   
@@ -352,24 +211,9 @@ Remove nodes from environment.
     - `result` - result code. 0 is success action result.   
 
 ### onBeforeAddNode
-```
-{
-  "event": {
-    "params": {
-      "extip": "boolean",
-      "fixedCloudlets": "number",
-      "startService": "number",
-      "ismaster": "boolean",
-      "flexibleCloudlets": "number",
-      "nodeGroup": "string",
-      "nodeType": "string",
-      "metadata": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `extip` *[boolean]* - external IP address with new node   
     - `session` - current user session   
@@ -381,28 +225,9 @@ Remove nodes from environment.
 - `${event.response.}` parameters are absent.   
 
 ### onAfterAddNode
-```
-{
-  "event": {
-    "params": {
-      "extip": "boolean",
-      "fixedCloudlets": "number",
-      "startService": "number",
-      "ismaster": "boolean",
-      "flexibleCloudlets": "number",
-      "nodeGroup": "string",
-      "nodeType": "string",
-      "metadata": "string"
-    },
-    "response": {
-      "result": "number",
-      "node": {}
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `extip` *[boolean]* - external IP address with new node    
     - `session` - current user session   
@@ -415,18 +240,9 @@ Remove nodes from environment.
     - `result` - result code. 0 is success action result.  
 
 ### onBeforeCloneNodes
-```
-{
-  "event": {
-    "params": {
-      "count": "number",
-      "nodeGroup": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `count` - nodes count to clone       
     - `session` - current user session   
@@ -437,25 +253,9 @@ Remove nodes from environment.
     - `result` - parameters are absent.  
 
 ### onAfterCloneNodes
-```
-{
-  "event": {
-    "params": {
-      "count": "number",
-      "nodeGroup": "string"
-    },
-    "response": {
-      "result": 0,
-      "className": "string",
-      "array": [
-        {}
-      ]
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `count` - nodes count to clone       
     - `session` - current user session   
@@ -468,18 +268,9 @@ Remove nodes from environment.
     - `array` - new nodes array   
 
 ### onBeforeLinkNode
-```
-{
-  "event": {
-    "params": {
-      "parentNodes": "number",
-      "childNodes": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `parentNodes` - node identifiers for linking  
     - `session` - current user session   
@@ -489,26 +280,9 @@ Remove nodes from environment.
     - `result` - parameters are absent. 
 
 ### onAfterLinkNode
-```
-{
-  "event": {
-    "params": {
-      "parentNodes": "number",
-      "childNodes": "string"
-    },
-    "response": {
-      "result": "number",
-      "infos": [
-        {
-          "result": "number"
-        }
-      ]
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `parentNodes` - node identifiers for linking  
     - `session` - current user session   
@@ -520,17 +294,9 @@ Remove nodes from environment.
         - `result` - result code   
 
 ### onBeforeAttachExtIp
-```
-{
-  "event": {
-    "params": {
-      "nodeid": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `nodeid` - node identifier for attaching external IP address    
     - `session` - current user session   
@@ -539,21 +305,9 @@ Remove nodes from environment.
     - `result` - parameters are absent. 
 
 ### onAfterAttachExtIp
-```
-{
-  "event": {
-    "params": {
-      "nodeid": "number"
-    },
-    "response": {
-      "result": "number",
-      "object": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders: 
+  
 - `${event.params.}`:   
     - `parentNodes` - node identifiers for linking  
     - `session` - current user session   
@@ -564,18 +318,9 @@ Remove nodes from environment.
     - `obejct` *[String]* - attached extrenal IP address      
 
 ### onBeforeDetachExtIp
-```
-{
-  "event": {
-    "params": {
-      "ip": "string",
-      "nodeid": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `nodeid` - node identifier for attaching external IP address    
     - `session` - current user session   
@@ -585,21 +330,9 @@ Remove nodes from environment.
     - `result` - parameters are absent. 
 
 ### onAfterDetachExtIp
-```
-{
-  "event": {
-    "params": {
-      "ip": "string",
-      "nodeid": "number"
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `nodeid` - node identifier for attaching external IP address    
         - `session` - current user session   
@@ -609,17 +342,9 @@ Remove nodes from environment.
     - `result` - parameters are absent.    
   
 ### onBeforeUpdateVcsProject
-```
-{
-  "event": {
-    "params": {
-      "project": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `project` - project name      
     - `session` - current user session   
@@ -628,20 +353,9 @@ Remove nodes from environment.
     - `result` - result code. 0 is success action result.    
     
 ### onAfterUpdateVcsProject
-```
-{
-  "event": {
-    "params": {
-      "project": "string"
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `project` - project name      
     - `session` - current user session   
@@ -650,19 +364,9 @@ Remove nodes from environment.
     - `result` - result code. 0 is success action result. 
     
 ### onBeforeSetCloudletCount
-```
-{
-  "event": {
-    "params": {
-      "fixedCloudlets": "number",
-      "flexibleCloudlets": "number",
-      "nodeGroup": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `fixedCloudlets` - fixed cloudlets value
     - `flexibleCloudlets` - flexible cloudlets value     
@@ -673,22 +377,9 @@ Remove nodes from environment.
     - `result` - parameters are absent.
 
 ### onAfterSetCloudletCount
-```
-{
-  "event": {
-    "params": {
-      "fixedCloudlets": "number",
-      "flexibleCloudlets": "number",
-      "nodeGroup": "string"
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `fixedCloudlets` - fixed cloudlets value
     - `flexibleCloudlets` - flexible cloudlets value     
@@ -699,17 +390,9 @@ Remove nodes from environment.
     - `result` - result code. 0 is success action result.  
 
 ### onBeforeChangeEngine
-```
-{
-  "event": {
-    "params": {
-      "settings": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -718,20 +401,9 @@ Remove nodes from environment.
     - `result` - parameters are absent.
     
 ### onAfterChangeEngine
-```
-{
-  "event": {
-    "params": {
-      "settings": "string"
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -740,15 +412,9 @@ Remove nodes from environment.
     - `result` - result code. 0 is success action result. 
     
 ### onBeforeStart
-```
-{
-  "event": {
-    "params": {}
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -756,18 +422,9 @@ Remove nodes from environment.
     - `result` - parameters are absent.
 
 ### onAfterStart
-```
-{
-  "event": {
-    "params": {},
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -775,15 +432,9 @@ Remove nodes from environment.
     - `result` - result code. 0 is success action result. 
 
 ### onBeforeStop
-```
-{
-  "event": {
-    "params": {}
-  }
-}
-```
 
-####Event placeholders:    
+Event placeholders:    
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -791,18 +442,9 @@ Remove nodes from environment.
     - `result` - parameters are absent.
 
 ### onAfterStop
-```
-{
-  "event": {
-    "params": {},
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -810,17 +452,9 @@ Remove nodes from environment.
     - `result` - result code. 0 is success action result.  
 
 ### onBeforeClone
-```
-{
-  "event": {
-    "params": {
-      "domain": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:     
+Event placeholders:     
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -829,24 +463,9 @@ Remove nodes from environment.
     - `result` - parameters are absent.
 
 ### onAfterClone
-```
-{
-  "event": {
-    "params": {
-      "domain": "string"
-    },
-    "response": {
-      "result": "number",
-      "nodes": [
-        {}
-      ],
-      "env": {}
-    }
-  }
-}
-```
 
-####Event placeholders:     
+Event placeholders:     
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -863,20 +482,9 @@ Remove nodes from environment.
     - `env` - environment informartion. Full environment placehosders list [here](http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders)    
 
 ### onBeforeDeploy
-```
-{
-  "event": {
-    "params": {
-      "atomicDeploy": "boolean",
-      "path": "string",
-      "context": "string",
-      "archivename": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:     
+Event placeholders:     
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    ,
@@ -888,30 +496,9 @@ Remove nodes from environment.
     - `result` - parameters are absent.   
 
 ### onAfterDeploy
-```
-{
-  "event": {
-    "params": {
-      "atomicDeploy": "boolean",
-      "path": "string",
-      "context": "string",
-      "archivename": "string"
-    },
-    "response": {
-      "result": "number",
-      "responses": [
-        {
-          "result": "number",
-          "nodeid": "number",
-          "out": "string"
-        }
-      ]
-    }
-  }
-}
-```
 
-####Event placeholders:      
+Event placeholders:      
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    ,
@@ -927,17 +514,9 @@ Remove nodes from environment.
         - `nodeid` - ndoe identifier    
 
 ### onBeforeResetNodePassword
-```
-{
-  "event": {
-    "params": {
-      "nodeType": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:     
+Event placeholders:     
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    ,
@@ -946,20 +525,9 @@ Remove nodes from environment.
     - `result` - parameters are absent.   
 
 ### onAfterResetNodePassword 
-```
-{
-  "event": {
-    "params": {
-      "nodeType": "string"
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:       
+Event placeholders:   
+    
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    ,
@@ -968,17 +536,9 @@ Remove nodes from environment.
     - `result` - result code. 0 is success action result.     
 
 ### onBeforeRemoveNode
-```
-{
-  "event": {
-    "params": {
-      "nodeid": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:      
+Event placeholders:      
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -987,20 +547,9 @@ Remove nodes from environment.
     - `result` - parameters are absent.   
 
 ### onAfterRemoveNode
-```
-{
-  "event": {
-    "params": {
-      "nodeid": "number"
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:     
+Event placeholders:     
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1009,18 +558,9 @@ Remove nodes from environment.
     - `result` - result code. 0 is success action result.  
 
 ### onBeforeRestartContainer
-```
-{
-  "event": {
-    "params": {
-      "nodeGroup": "string",
-      "nodeType": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:    
+Event placeholders:    
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1030,21 +570,9 @@ Remove nodes from environment.
     - `result` - parameters are absent.   
   
 ### onAfterRestartContainer
-```
-{
-  "event": {
-    "params": {
-      "nodeGroup": "string",
-      "nodeType": "string"
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:      
+Event placeholders:      
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1054,18 +582,9 @@ Remove nodes from environment.
     - `result` - result code. 0 is success action result. 
 
 ### onBeforeMigrate
-```
-{
-  "event": {
-    "params": {
-      "isOnline": "boolean",
-      "hardwareNodeGroup": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:     
+Event placeholders:     
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1075,21 +594,9 @@ Remove nodes from environment.
     - `result` - parameters are absent.  
     
 ### onAfterMigrate
-```
-{
-  "event": {
-    "params": {
-      "isOnline": "boolean",
-      "hardwareNodeGroup": "string"
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1100,20 +607,9 @@ Remove nodes from environment.
     
 ### onBeforeRedeployContainer
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "sequential": "boolean",
-      "nodeId": "number",
-      "tag": "string",
-      "useExistingVolumes": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:  
+ 
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1125,31 +621,9 @@ For Docker containers only
     
 ### onAfterRedeployContainer
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "sequential": "boolean",
-      "nodeId": "number",
-      "tag": "string",
-      "useExistingVolumes": "string"
-    },
-    "response": {
-      "result": "number",
-      "responses": [
-        {
-          "result": "number",
-          "error": "",
-          "nodeid": "number",
-          "out": "string"
-        }
-      ]
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1161,21 +635,9 @@ For Docker containers only
 
 ### onBeforeLinkDockerNodes
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "groupAlias": "string",
-      "alias": "string",
-      "sourceNodeId": "number",
-      "targetNodeId": "number",
-      "isAutoRestart": "boolean"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1188,24 +650,9 @@ For Docker containers only
     
 ### onAfterLinkDockerNodes
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "groupAlias": "string",
-      "alias": "string",
-      "sourceNodeId": "number",
-      "targetNodeId": "number",
-      "isAutoRestart": "boolean"
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1218,20 +665,9 @@ For Docker containers only
     
 ### onBeforeUnlinkDockerNodes
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "alias": "string",
-      "sourceNodeId": "number",
-      "targetNodeId": "number",
-      "isAutoRestart": "boolean"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1244,23 +680,9 @@ For Docker containers only
     
 ### onAfterUnlinkDockerNodes
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "alias": "string",
-      "sourceNodeId": "number",
-      "targetNodeId": "number",
-      "isAutoRestart": "boolean"
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1273,18 +695,9 @@ For Docker containers only
 
 ### onBeforeSetDockerEnvVars
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "nodeId": "number",
-      "data": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1295,23 +708,9 @@ For Docker containers only
     
 ### onAfterSetDockerEnvVars
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "alias": "string",
-      "sourceNodeId": "number",
-      "targetNodeId": "number",
-      "isAutoRestart": "boolean"
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1322,18 +721,9 @@ For Docker containers only
     
 ### onBeforeSetDockerEntryPoint
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "nodeId": "number",
-      "data": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1344,21 +734,9 @@ For Docker containers only
     
 ### onAfterSetDockerEntryPoint
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "nodeId": "number",
-      "data": "string"
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1369,18 +747,9 @@ For Docker containers only
     
 ### onBeforeSetDockerRunCmd
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "nodeId": "number",
-      "data": ""
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1391,21 +760,9 @@ For Docker containers only
     
 ### onAfterSetDockerRunCmd
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "nodeId": "number",
-      "data": ""
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1416,17 +773,9 @@ For Docker containers only
     
 ### onBeforeStartDockerService
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "nodeId": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1436,20 +785,9 @@ For Docker containers only
     
 ### onAfterStartDockerService
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "nodeId": "number"
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1459,18 +797,9 @@ For Docker containers only
     
 ### onBeforeAddDockerVolume
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "nodeId": "number",
-      "path": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1481,21 +810,9 @@ For Docker containers only
     
 ### onAfterAddDockerVolume
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "nodeId": "number",
-      "path": "string"
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1506,18 +823,9 @@ For Docker containers only
     
 ### onBeforeRemoveDockerVolume
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "nodeId": "number",
-      "path": "string"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
@@ -1528,25 +836,9 @@ For Docker containers only
     
 ### onAfterRemoveDockerVolume
 For Docker containers only
-```
-{
-  "event": {
-    "params": {
-      "event": {
-        "params": {
-          "nodeId": "number",
-          "path": "string"
-        }
-      }
-    },
-    "response": {
-      "result": "number"
-    }
-  }
-}
-```
 
-####Event placeholders:   
+Event placeholders:   
+
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    

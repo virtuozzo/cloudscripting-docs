@@ -112,7 +112,7 @@ Herewith, all event placeholders have their custom set of parameters and begin w
 - `${event.params.(key)}` - where *key* is a name of event parameter                     
 - `${event.response.(key)}` -where *key* is a name of event response parameter             
 
-Learn more about event placeholders within the above-linked *Events* page.   
+Learn more about event placeholders within the above [*Events* page](/reference/events/).   
 
 ## Account Information                                                                                                                                       
 - `${user.uid}` - user ID at the Jelastic platform    
