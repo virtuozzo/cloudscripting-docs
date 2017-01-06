@@ -26,7 +26,7 @@ These basic string should be extended with the settings required by the applicat
 **Basic Template**
 ```
 {
-  "jpsType": "install(update)",
+  "jpsType": "string",
   "name": "string",
   "jpsVersion": "string",
   "nodes": "array",
