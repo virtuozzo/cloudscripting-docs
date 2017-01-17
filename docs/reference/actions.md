@@ -1,39 +1,45 @@
 # Actions
 
-Actions are the building blocks that perform arbitrary automation functions in your environment. Such as:
-                
+Actions represent the building blocks that perform arbitrary automation functions in your environment, such as:         
 - increasing/decreasing CPU or RAM amount     
 - adjusting configs according to specific environment's parameters     
 - restarting a service           
 - restarting a container                  
 - applying a database patch according to specific environment's parameters                  
-     
-The default workflow for any action is the following:   
 
-- replacing [placeholders](placeholders/)    
-- getting target containers list *[optional]* (see the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) section)     
+The default workflow for any action execution is the following:                           
+- replacing [placeholders](placeholders/)       
+- getting a list of target containers *[optional]* (for a detailed guidance see the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) section)     
 - checking permissions    
-- executing the action itself    
+- executing the action itself      
 
-Actions are executed when the called [event](events/) matches specified filter rules. 
+Actions are executed when the called [event](events/) matches specified filtering rules. 
 Multiple actions can be combined together into a [custom action](#custom-actions). 
 
-## Container Operations
-There are actions that perform some operations inside of a container. See the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) page.
+Thus, the following specific groups of actions are singled out:          
+- [container](#container-operations)                
+- [topology management](#topology-nodes-management)          
+- [database](#database-operations)               
+- [user-defined operations](#performing-user-defined-operations)                     
 
-Any container operation can be performed using [cmd](#cmd) action. Moreover, there are also several actions provided for convenience, that can be divided into three groups:   
-- SSH commands ([cmd](#cmd))    
-- Predefined modules ([Deploy](#deploy), [Upload](#upload), [Unpack](#unpack))    
-- File operations ([CreateFile](#createfile), [CreateDirectory](#createdirectory), [WriteFile](#writefile), [AppendFile](#appendfile), [ReplaceInFile](#replaceinfile))       
+## Container Operations
+There are actions that perform operations inside of a container. For a detailed guidance see the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) page.          
+
+Any container operation can be performed using a [cmd](#cmd) action. Herewith, there are also some additional actions provided for your convenience.             
+Thus, all the actions performed in confines of a container can be divided into three groups:                
+- SSH commands (e.g. [cmd](#cmd))                    
+- predefined modules (e.g. [Deploy](#deploy), [Upload](#upload), [Unpack](#unpack))       
+- operations with files (e.g. [CreateFile](#createfile), [CreateDirectory](#createdirectory), [WriteFile](#writefile), [AppendFile](#appendfile), [ReplaceInFile](#replaceinfile))               
  
 !!! note 
-    To process any container operation except [cmd](#cmd), Cloud Scripting executor will use a default system user with restricted permissions.    
+    To process any container operation (except for [cmd](#cmd)), the Cloud Scripting executor will use a default system user with restricted permissions.         
    
 ### Cmd
-Execute several SSH commands. 
+
+The *cmd* action executes [SSH](https://docs.jelastic.com/ssh-overview) commands.          
 <!--Available for all nodes.-->
 
-**Definition**
+**Example**                 
 
 ```json
 {
@@ -44,8 +50,7 @@ Execute several SSH commands.
   "sayYes" : true
 }
 ```
-where:  
-
+where:                            
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required. See the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) section.    
 - `cmd1` and `cmd2` - a set of commands that are executed. Its value is wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**.     
     Where:    
