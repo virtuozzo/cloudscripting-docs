@@ -57,6 +57,8 @@ pages:
 
 # Examples
 - Examples:
+   - Operation Examples: examples/operation-examples.md
+   - Add-ons : examples/add-ons.md
    - Vertical Scaling: examples/vertical-scaling.md
    - Horizontal Scaling: examples/horizontal-scaling.md
    - Using Docker&reg;: examples/using-docker.md

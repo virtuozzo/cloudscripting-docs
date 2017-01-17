@@ -8,31 +8,24 @@ Create two Nginx PHP nodes with Nginx balancer and automatic horizontal scaling 
 ```example
 {
   "jpsType": "install",
-  "application": {
-    "name": "Nginx PHP Auto Scaling",
-    "env": {
-      "topology": {
-        "engine": "php5.4",
-        "nodes": [{
-          "extip": true,
-          "count": 2,
-          "cloudlets": 16,
-          "nodeType": "nginx"
-        }, {
-          "extip": false,
-          "count": 2,
-          "cloudlets": 64,
-          "nodeType": "nginxphp"
-        }]
-      }
+  "name": "Nginx PHP Auto Scaling",
+  "engine": "php5.4",
+  "nodes": [
+    {
+      "extip": true,
+      "count": 2,
+      "cloudlets": 16,
+      "nodeType": "nginx"
     },
-    "onInstall": {
-      "executeScript": [{
-        "description": "Enable Auto Scaling Triggers",
-        "type": "javascript",
-        "script": "https://download.jelastic.com/public.php?service=files&t=f7dcaa75b7b3680af46ec6d107807c12&download"
-      }]
+    {
+      "count": 2,
+      "cloudlets": 64,
+      "nodeType": "nginxphp"
     }
+  ],
+  "onInstall": {
+    "description": "Enable Auto Scaling Triggers",
+    "script": "https://download.jelastic.com/public.php?service=files&t=f7dcaa75b7b3680af46ec6d107807c12&download"
   }
 }
 ```
