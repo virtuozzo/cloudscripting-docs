@@ -71,7 +71,7 @@ where:
 ### onInstall
 
 **onInstall** is an entry point for actions execution.
-In case `jpsType` *install* event **onInstall** will be executed right after environment installation will be finished. In case `jpsType` *update* **onInstall** event is first event which will be performed.
+In case `jpsType` is *install*, event **onInstall** will be executed right after environment creation. In case `jpsType` is *update*, **onInstall** event is performed first event while manifest instalation.
  
 ###onUninstall
 
@@ -150,7 +150,8 @@ Event placeholders:
 
 ###onBeforeServiceScaleOut
 
-####Event placeholders:    
+Event placeholders:    
+
 - `${event.params.}`:     
     - `session` - current user session   
     - `appid` - environment unique appid   
@@ -159,7 +160,8 @@ Event placeholders:
 
 ###onAfterServiceScaleOut   
 
-####Event placeholders:    
+Event placeholders:    
+
 - `${event.params.}`:    
     - `session` - current user session    
     - `appid` - environment unique appid   

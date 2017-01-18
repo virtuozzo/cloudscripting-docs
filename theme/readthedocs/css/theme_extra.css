@@ -135,16 +135,12 @@ pre code.example {
     color: #f6f8f7;
 }
 
-/*
- * Jelastic correspondence
-*/
-
-table, th, td, tr {
-    border: 2px solid grey;
-}
-
 #jel {
-   background-color: #E8E8E8
+   background-color: #E8E8E8;
+}
+table.bs-pr .tr {
+    border: 1px solid gray;
+    padding: 8px 8px;
 }
 
 #table-head {
@@ -152,7 +148,7 @@ table, th, td, tr {
    background-color: #c4c4c4;
 }
 
-th, td {
+#cs td, #jel td {
    text-align: center;
    font-size: 13px;
 }

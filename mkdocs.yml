@@ -30,7 +30,7 @@ pages:
 - Quick Start: quick-start.md
 
 # Jelastic & CloudScripting correspondence
-- Jelastic & CS correspondence: jelastic-cs-correspondence.md
+- Jelastic & CS Correspondence: jelastic-cs-correspondence.md
 
 #Release Notes
 - Release Notes: releasenotes.md
@@ -56,17 +56,19 @@ pages:
    - Docker Actions: reference/docker-actions.md
 
 # Examples
-- Examples:
-   - Operation Examples: examples/operation-examples.md
-   - Add-ons : examples/add-ons.md
-   - Vertical Scaling: examples/vertical-scaling.md
-   - Horizontal Scaling: examples/horizontal-scaling.md
-   - Using Docker&reg;: examples/using-docker.md
-   - Wordpress Cluster: examples/wordpress-cluster.md
-   - Migration&Cloning Environment: examples/environment-migration-after-cloning.md
-   - Two Envs in defferent regions: examples/two-envs-in-diff-regions.md
-   - Add-on install inside manifest: examples/addon-inside-manifest.md
-   - Mount Data Storage: examples/mount-data-storage.md
+#- Examples:
+- Best Practices: best-practices.md
+#   - Operation Examples: examples/operation-examples.md
+#   - Add-ons : examples/add-ons.md
+#   - Complex Ready to Go Solutions: examples/complex-ready-to-go-solutions.md
+#   - Vertical Scaling: examples/vertical-scaling.md
+#   - Horizontal Scaling: examples/horizontal-scaling.md
+#   - Using Docker&reg;: examples/using-docker.md
+#   - Wordpress Cluster: examples/wordpress-cluster.md
+#   - Migration&Cloning Environment: examples/environment-migration-after-cloning.md
+#   - Two Envs in defferent regions: examples/two-envs-in-diff-regions.md
+#   - Add-on install inside manifest: examples/addon-inside-manifest.md
+#   - Mount Data Storage: examples/mount-data-storage.md
 
 #current_version: master
 versions:

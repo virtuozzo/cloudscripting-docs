@@ -108,7 +108,7 @@ Using **sudo** to reload *Nginx* balancer:
 }
 ```
    
-### Api 
+### API 
 Executing [Jelastic Cloud API](http://docs.jelastic.com/api/)
 **Examples:**
 

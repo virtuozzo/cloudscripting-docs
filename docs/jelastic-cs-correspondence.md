@@ -1,10 +1,10 @@
-# Jelastic & CS correspondence
+# Jelastic & CS Correspondence
 
 The table below displays depends between installed Cloud Scripting and Jelastic versions on the same hoster platform.
 
 You can find Jelastic platform version at [Jelastic Cloud](https://jelastic.cloud/).<br>
 Cloud Scripting version can be choosen at the bottom of the page.
-<table style="width:100%">
+<table class="corresp" style="width:100%">
     <tr id="cs">
 	<th id="table-head">CS</th>
 	    <td>1.0</td>
