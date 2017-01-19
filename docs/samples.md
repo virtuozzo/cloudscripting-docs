@@ -31,7 +31,7 @@ There is a list of Jelastic manifests which published on Jelastic hosting provid
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/basic-examples/tree/master/using-dockers">Using Docker Containers</a>
+            <a target="_blank" href="https://github.com/jelastic-jps/basic-examples/tree/master/using-docker-containers">Using Docker Containers</a>
         </td>
         <td>
             Bundle of linked WordPress-Web and WordPress-DB Docker containers
