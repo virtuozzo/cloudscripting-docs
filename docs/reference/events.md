@@ -81,6 +81,8 @@ This event means to do actions for removing data which were installed by *onInst
 
 ### onBeforeChangeTopology
 
+Event will be executed before changing environment topology from Jelastic Dashboard.
+
 Event placeholders:      
 
 - `${event.params.}`:
@@ -91,6 +93,8 @@ Event placeholders:
 - `${event.response.}` parameters are absent.    
 
 ### onAfterChangeTopology
+
+Event execution will start when action *change Topology* will be finished.
 
 Event placeholders:   
 
@@ -111,6 +115,9 @@ Event placeholders:
     
 ### onBeforeScaleOut
 
+Event execution will start before the customer will add all new nodes to existing node Group (layer of nodes). New nodes can be added via [*change topology*](https://docs.jelastic.com/jelastic-dashboard-guide#change-topology) action or via [autoscaling feature](https://docs.jelastic.com/automatic-horizontal-scaling).
+Event will run only once for every nodeGroup. 
+
 Event placeholders:    
 
 - `${event.params.}`:
@@ -119,6 +126,9 @@ Event placeholders:
 - `${event.response.}` parameters are absent.  
 
 ### onAfterScaleOut
+
+Event execution will start after the customer will add all new nodes to existing node Group.
+Event will run only once for every nodeGroup. 
 
 Event placeholders:  
  
@@ -129,7 +139,9 @@ Event placeholders:
     - `nodes` - nodes array with detailed info about nodes. Full node placeholders [here](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders) 
     
 ### onBeforeScaleIn
-Remove nodes from environment.  
+
+Event will run before removing any stack node from Jelastic environment. Can be executed only once for every nodeGroup.
+
 Event placeholders:   
  
 - `${event.params.}`:
@@ -139,6 +151,8 @@ Event placeholders:
     - `nodes` - nodes array with detailed info about nodes. Full node placeholders [here](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders) 
     
 ### onAfterScaleIn
+
+Event will be run after removing any stack node from Jelastic environment. Can be executed only once for every nodeGroup.
 
 Event placeholders:     
 
@@ -150,6 +164,8 @@ Event placeholders:
 
 ###onBeforeServiceScaleOut
 
+Event will be executed before additing new docker containers to existing nodeGroup. Can be executed only once for every nodeGroup (nodes layer). Event available only for Docker containers.
+
 Event placeholders:    
 
 - `${event.params.}`:     
@@ -159,6 +175,8 @@ Event placeholders:
 - `${event.response.}` parameters are absent.    
 
 ###onAfterServiceScaleOut   
+
+Event will be executed before removing docker containers to existing nodeGroup. Can be executed only once for every nodeGroup (nodes layer). Event available only for Docker containers.
 
 Event placeholders:    
 
@@ -170,6 +188,8 @@ Event placeholders:
 
 ### onBeforeRestartNode
 
+Event will be executed before the restart node action will start. Event proceed on actions *restartNodeById* and *restartNodeByGroup*.
+
 Event placeholders:     
 
 - `${event.params.}`:
@@ -179,6 +199,8 @@ Event placeholders:
 - `${event.response.}` parameters are absent.    
 
 ### onAfterRestartNode
+
+Event will be executed after the restart node action will start. Event proceed on actions *restartNodeById* and *restartNodeByGroup*.
 
 Event placeholders:    
  
@@ -193,6 +215,8 @@ Event placeholders:
 
 ### onBeforeDelete
 
+Event will be called before the action *delete Environment* will start.
+
 Event placeholders:   
 
 - `${event.params.}`:   
@@ -202,6 +226,8 @@ Event placeholders:
 - `${event.response.}` parameters are absent.  
 
 ### onAfterDelete
+
+Event will be called after the action *delete Environment* will start.
 
 Event placeholders:   
 
@@ -213,6 +239,20 @@ Event placeholders:
     - `result` - result code. 0 is success action result.   
 
 ### onBeforeAddNode
+
+Event will be run before adding new node into environment.
+
+The list of possible node groups:
+
+- compute;
+- db;
+- balancer
+- build;
+- VDS
+- cache;
+- docker;
+
+Event will execute for every new node.
 
 Event placeholders:   
 
@@ -227,6 +267,20 @@ Event placeholders:
 - `${event.response.}` parameters are absent.   
 
 ### onAfterAddNode
+
+Event will be run after adding new node into environment.
+
+The list of possible node groups:
+
+- compute;
+- db;
+- balancer
+- build;
+- VDS
+- cache;
+- docker;
+
+Event will execute for every new node.
 
 Event placeholders:   
 
@@ -243,6 +297,13 @@ Event placeholders:
 
 ### onBeforeCloneNodes
 
+Event will be executed before cloning node in environment. 
+Event avaible only when nodeGroup doesn't *docker* and only for such *node groups*:
+
+- compute;
+- balancer;
+- VDS
+
 Event placeholders:   
 
 - `${event.params.}`:   
@@ -255,6 +316,13 @@ Event placeholders:
     - `result` - parameters are absent.  
 
 ### onAfterCloneNodes
+
+Event will be executed after cloning node in environment. 
+By *cloning nodes* means that new nodes are clonned from existing. Event avaible only when nodeGroup doesn't *docker* and only for such *node groups*:
+
+- compute;
+- balancer;
+- VDS
 
 Event placeholders:   
 
@@ -271,6 +339,9 @@ Event placeholders:
 
 ### onBeforeLinkNode
 
+Event will be executed before linking nodes with each others for configure IP addresses. 
+It is available only for *node groups* - *compute* nodes and *balancers* in case if these nodes are not Docker containers. 
+
 Event placeholders:   
 
 - `${event.params.}`:   
@@ -282,6 +353,9 @@ Event placeholders:
     - `result` - parameters are absent. 
 
 ### onAfterLinkNode
+
+Event will be executed after linking nodes with each others for configure IP addresses. 
+It is available only for *node groups* - *compute* nodes and *balancers* in case if these nodes are not Docker containers. 
 
 Event placeholders:   
 
@@ -297,6 +371,9 @@ Event placeholders:
 
 ### onBeforeAttachExtIp
 
+Event can handles custom actions before the action *attache Ext IP address* will execute.
+*onBeforeAttachExtIp* executes every time for each attaching IP address.
+
 Event placeholders:   
 
 - `${event.params.}`:   
@@ -307,6 +384,9 @@ Event placeholders:
     - `result` - parameters are absent. 
 
 ### onAfterAttachExtIp
+
+Event can handles custom actions after the action *attache Ext IP address* will execute.
+*onAftereAttachExtIp* executes every time for each attaching IP address.
 
 Event placeholders: 
   
@@ -321,6 +401,9 @@ Event placeholders:
 
 ### onBeforeDetachExtIp
 
+Event can handles custom actions before the action *deattache Ext IP address* will execute.
+*onBeforeDeattachExtIp* executes every time for each deattaching IP address.
+
 Event placeholders:   
 
 - `${event.params.}`:   
@@ -332,6 +415,9 @@ Event placeholders:
     - `result` - parameters are absent. 
 
 ### onAfterDetachExtIp
+
+Event can handles custom actions after the action *deattache Ext IP address* will execute.
+*onBeforeDeattachExtIp* executes every time for each deattaching IP address.
 
 Event placeholders:   
 
@@ -345,6 +431,9 @@ Event placeholders:
   
 ### onBeforeUpdateVcsProject
 
+Event will execute before *update vcs project* action will start.
+Details about [VCS project deployment here](https://docs.jelastic.com/cli-vcs-deploy). 
+
 Event placeholders:   
 
 - `${event.params.}`:   
@@ -356,6 +445,9 @@ Event placeholders:
     
 ### onAfterUpdateVcsProject
 
+Event will execute when *update vcs project* action will finished.
+Details about [VCS project deployment here](https://docs.jelastic.com/cli-vcs-deploy).
+
 Event placeholders:   
 
 - `${event.params.}`:   
@@ -366,6 +458,8 @@ Event placeholders:
     - `result` - result code. 0 is success action result. 
     
 ### onBeforeSetCloudletCount
+
+Event will execute before action *set cloudlet count* start. Action means changing cloudlets count on any node layer in environment. 
 
 Event placeholders:   
 
@@ -380,6 +474,8 @@ Event placeholders:
 
 ### onAfterSetCloudletCount
 
+Event will execute after action *set cloudlet count* start. Action means changing cloudlets count on any node layer in environment.
+
 Event placeholders:   
 
 - `${event.params.}`:   
@@ -393,6 +489,9 @@ Event placeholders:
 
 ### onBeforeChangeEngine
 
+Change engine version in existing environment. For example, php or java engine version. Event doesn't available for docker containers.
+Event will execute before changing engine version.
+
 Event placeholders:   
 
 - `${event.params.}`:   
@@ -403,6 +502,9 @@ Event placeholders:
     - `result` - parameters are absent.
     
 ### onAfterChangeEngine
+
+Change engine version in existing environment. For example, php or java engine version. Event doesn't available for docker containers.
+Event will execute after changing engine version.
 
 Event placeholders:   
 
@@ -415,6 +517,8 @@ Event placeholders:
     
 ### onBeforeStart
 
+Event relates to *start environment* action. Can be executed from Jelastic dashboard. Event will execute before the environment will be started.
+
 Event placeholders:   
 
 - `${event.params.}`:   
@@ -424,6 +528,8 @@ Event placeholders:
     - `result` - parameters are absent.
 
 ### onAfterStart
+
+Event relates to *start environment* action. Can be executed from Jelastic dashboard. Event will execute after the environment will be started.
 
 Event placeholders:   
 
@@ -435,6 +541,8 @@ Event placeholders:
 
 ### onBeforeStop
 
+Event relates to *stop environment* action. Can be executed from Jelastic dashboard. Event will execute before the environment will be stopped.
+
 Event placeholders:    
 
 - `${event.params.}`:   
@@ -444,6 +552,8 @@ Event placeholders:
     - `result` - parameters are absent.
 
 ### onAfterStop
+
+Event relates to *stop environment* action. Can be executed from Jelastic dashboard. Event will execute after the environment will be stopped.
 
 Event placeholders:   
 
@@ -455,6 +565,8 @@ Event placeholders:
 
 ### onBeforeClone
 
+Event relates to *clone environment* action. Can be executed from Jelastic dashboard by click on *clone environment* button. Event will execute before the environment will be clonned.
+
 Event placeholders:     
 
 - `${event.params.}`:   
@@ -465,6 +577,8 @@ Event placeholders:
     - `result` - parameters are absent.
 
 ### onAfterClone
+
+Event relates to *clone environment* action. Can be executed from Jelastic dashboard by click on *clone environment* button. Event will execute after the environment will be clonned.
 
 Event placeholders:     
 
@@ -485,6 +599,8 @@ Event placeholders:
 
 ### onBeforeDeploy
 
+Event relates to *deploy* action. Can be executed from Jelastic dashboard by deploying any context into environment. Event will execute before the archive will be deployed.
+
 Event placeholders:     
 
 - `${event.params.}`:   
@@ -498,6 +614,8 @@ Event placeholders:
     - `result` - parameters are absent.   
 
 ### onAfterDeploy
+
+Event relates to *deploy* action. Can be executed from Jelastic dashboard by deploying any context into environment. Event will execute after the archive will be deployed.
 
 Event placeholders:      
 
@@ -517,6 +635,8 @@ Event placeholders:
 
 ### onBeforeResetNodePassword
 
+Event relates to *reset node password* action. Can be executed from Jelastic dashboard by resetting password on node (sql for example). Event will execute before the password will be reset.
+
 Event placeholders:     
 
 - `${event.params.}`:   
@@ -527,6 +647,8 @@ Event placeholders:
     - `result` - parameters are absent.   
 
 ### onAfterResetNodePassword 
+
+Event relates to *reset node password* action. Can be executed from Jelastic dashboard by resetting password on node (sql for example). Event will execute after the password will be reset.
 
 Event placeholders:   
     
@@ -539,6 +661,8 @@ Event placeholders:
 
 ### onBeforeRemoveNode
 
+Event will be run before remove node from environment.
+
 Event placeholders:      
 
 - `${event.params.}`:   
@@ -550,6 +674,8 @@ Event placeholders:
 
 ### onAfterRemoveNode
 
+Event will be run after remove node from environment.
+
 Event placeholders:     
 
 - `${event.params.}`:   
@@ -560,6 +686,8 @@ Event placeholders:
     - `result` - result code. 0 is success action result.  
 
 ### onBeforeRestartContainer
+
+Event will be executed before the restart container action will start. Event proceed on actions *restartConteinerById* and *restartConteinerByGroup*.
 
 Event placeholders:    
 
@@ -573,6 +701,8 @@ Event placeholders:
   
 ### onAfterRestartContainer
 
+Event will be executed after the restart container action will start. Event proceed on actions *restartConteinerById* and *restartConteinerByGroup*.
+
 Event placeholders:      
 
 - `${event.params.}`:   
@@ -584,6 +714,8 @@ Event placeholders:
     - `result` - result code. 0 is success action result. 
 
 ### onBeforeMigrate
+
+Event relates to *migrate environment* action. Can be executed from Jelastic dashboard by [migrating environment](https://docs.jelastic.com/environment-regions-migration) to another region. Event will execute before the environment will be migrate.
 
 Event placeholders:     
 
@@ -597,6 +729,8 @@ Event placeholders:
     
 ### onAfterMigrate
 
+Event relates to *migrate environment* action. Can be executed from Jelastic dashboard by [migrating environment](https://docs.jelastic.com/environment-regions-migration) to another region. Event will execute after the environment will be migrate.
+
 Event placeholders:   
 
 - `${event.params.}`:   
@@ -608,6 +742,9 @@ Event placeholders:
     - `result` - result code. 0 is success action result.
     
 ### onBeforeRedeployContainer
+
+Event will be executed before the action *redeploy container* will run. It relates to actions *redeployContainerById* and *redeployContainerByGroup* (cases when will redeploy one container or all container group). 
+
 For Docker containers only
 
 Event placeholders:  
@@ -622,6 +759,9 @@ Event placeholders:
     - `result` - parameters are absent.  
     
 ### onAfterRedeployContainer
+
+Event will be executed after the action *redeploy container* will run. It relates to actions *redeployContainerById* and *redeployContainerByGroup* (cases when will redeploy one container or all container group).
+
 For Docker containers only
 
 Event placeholders:   
@@ -636,6 +776,8 @@ Event placeholders:
     - `result` - result code. 0 is success action result.
 
 ### onBeforeLinkDockerNodes
+
+Event will be executed before the action *linkDockerNodes* will run. This event will execute for every linking containers action.
 For Docker containers only
 
 Event placeholders:   
@@ -651,6 +793,8 @@ Event placeholders:
     - `result` - parameters are absent.  
     
 ### onAfterLinkDockerNodes
+
+Event will be executed after the action *linkDockerNodes* will run. This event will execute for every linking containers action.
 For Docker containers only
 
 Event placeholders:   
@@ -666,6 +810,8 @@ Event placeholders:
     - `result` - result code. 0 is success action result.
     
 ### onBeforeUnlinkDockerNodes
+
+Event will be executed before the action *unLinkDockerNodes* will run. This event will execute for every unlinking containers action.
 For Docker containers only
 
 Event placeholders:   
@@ -681,6 +827,8 @@ Event placeholders:
     - `result` - parameters are absent. 
     
 ### onAfterUnlinkDockerNodes
+
+Event will be executed after the action *unLinkDockerNodes* will run. This event will execute for every unlinking containers action.
 For Docker containers only
 
 Event placeholders:   
@@ -696,6 +844,8 @@ Event placeholders:
     - `result` - result code. 0 is success action result.
 
 ### onBeforeSetDockerEnvVars
+
+Event will be executed before the [action *setDockerEnvVars*](/reference/docker-actions/#docker-environment-variables) will run. This event will execute for every docker container which sets environment variables action. 
 For Docker containers only
 
 Event placeholders:   
@@ -709,6 +859,8 @@ Event placeholders:
     - `result` - parameters are absent. 
     
 ### onAfterSetDockerEnvVars
+
+Event will be executed after the [action *setDockerEnvVars*](/reference/docker-actions/#docker-environment-variables) will run. This event will execute for every docker container which sets environment variables action. 
 For Docker containers only
 
 Event placeholders:   
@@ -722,6 +874,8 @@ Event placeholders:
     - `result` - result code. 0 is success action result.
     
 ### onBeforeSetDockerEntryPoint
+
+Event will be executed before the [action *setDockerEntryPoint*](/reference/docker-actions/#docker-environment-variables) will run. This event will execute for every docker container which sets entry point action. 
 For Docker containers only
 
 Event placeholders:   
@@ -735,6 +889,8 @@ Event placeholders:
     - `result` - parameters are absent. 
     
 ### onAfterSetDockerEntryPoint
+
+Event will be executed after the [action *setDockerEntryPoint*](/reference/docker-actions/#docker-environment-variables) will run. This event will execute for every docker container which sets entry point action.
 For Docker containers only
 
 Event placeholders:   
@@ -748,6 +904,8 @@ Event placeholders:
     - `result` - result code. 0 is success action result.
     
 ### onBeforeSetDockerRunCmd
+
+Event will be executed before the [action *setDockerRunCmd*](/reference/docker-actions/#docker-environment-variables) will run. This event will execute for every docker container which sets run commands action.
 For Docker containers only
 
 Event placeholders:   
@@ -761,6 +919,8 @@ Event placeholders:
     - `result` - parameters are absent. 
     
 ### onAfterSetDockerRunCmd
+
+Event will be executed after the [action *setDockerRunCmd*](/reference/docker-actions/#docker-environment-variables) will run. This event will execute for every docker container which sets run commands action.
 For Docker containers only
 
 Event placeholders:   
@@ -774,7 +934,9 @@ Event placeholders:
     - `result` - result code. 0 is success action result.
     
 ### onBeforeStartDockerService
-For Docker containers only
+
+Event will execute every time when Docker RunCmd commands will be execute. So this event will execute always for each docker container. For example, before starting container, restarting container and start environment.
+For Docker containers only.
 
 Event placeholders:   
 
@@ -786,6 +948,8 @@ Event placeholders:
     - `result` - parameters are absent. 
     
 ### onAfterStartDockerService
+
+Event will execute every time when Docker RunCmd commands will be execute. So this event will execute always for each docker container. For example, after starting container, restarting container and start environment.
 For Docker containers only
 
 Event placeholders:   
@@ -798,6 +962,8 @@ Event placeholders:
     - `result` - result code. 0 is success action result.
     
 ### onBeforeAddDockerVolume
+
+Event will perform before adding volumes into docker container. It will execute once for every Docker container.
 For Docker containers only
 
 Event placeholders:   
@@ -811,6 +977,8 @@ Event placeholders:
     - `result` - parameters are absent. 
     
 ### onAfterAddDockerVolume
+
+Event will perform after adding volumes into docker container. It will execute once for every Docker container.
 For Docker containers only
 
 Event placeholders:   
@@ -824,6 +992,8 @@ Event placeholders:
     - `result` - result code. 0 is success action result.
     
 ### onBeforeRemoveDockerVolume
+
+Event will perform before removing volumes into docker container. It will execute once for every Docker container.
 For Docker containers only
 
 Event placeholders:   
@@ -837,6 +1007,8 @@ Event placeholders:
     - `result` - parameters are absent. 
     
 ### onAfterRemoveDockerVolume
+
+Event will perform after removing volumes into docker container. It will execute once for every Docker container.
 For Docker containers only
 
 Event placeholders:   
