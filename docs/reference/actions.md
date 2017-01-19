@@ -461,8 +461,7 @@ Available for *SQL* databases (except for *Docker* containers)
 ```
 where:          
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at.             
-By default the `nodeGroup` value is equal to `sqldb`.                       
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                            
 - `loginCredentials` - root creadentials for a new node                    
     - `user` - your custom user name                    
     - `password` - your custom password                 
@@ -493,8 +492,7 @@ Available for *SQL* databases (except for *Docker* container)
 ```
 where:
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at.                 
-By default the `nodeGroup` value is equal to `sqldb`.                         
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                                    
 - `databaseName` - the name of the database to be created                  
 - `user` - the user name in the database, on behalf of which the application will be used                
 - `password` - the password in the database, on behalf of which the application will be used                         
@@ -519,8 +517,7 @@ Available for *SQL* databases (except for *Docker* containers)
 ```
 where:  
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at.
-By default the `nodeGroup` value is equal to `sqldb`.                       
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                                   
 - `databaseName` - the name of the database for a patch to be applied                    
 - `user` - the user name in the database, on behalf of which the application will be used                                          
 - `password` - the password in the database, on behalf of which the application will be used                              
