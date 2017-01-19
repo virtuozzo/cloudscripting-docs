@@ -570,8 +570,7 @@ Setting a delay that is measured in milliseconds. The below example shows how to
 ```
 
 ### installJps
-Nesting a *JPS* manifest inside the current manifest file. The nested *JPS* manifest will be installed subsequently after the current one.                  
-The action is available for **install** and **update** *jpsType* modes.                         
+Nesting a *JPS* manifest inside the current manifest file. The nested *JPS* manifest will be installed subsequently after the current one. The action is available for **install** and **update** *jpsType* modes.                              
 
 **Examples**
 
@@ -664,7 +663,7 @@ where:
 ```
 where:  
 
-- `id` - an extension *ID* from the *marketplace* or from the *add-ons* section in the manifest                         
+- `id` - an extension *ID* from the marketplace or from the add-ons section in the manifest                         
 
 <!-- add example -->
 
@@ -742,8 +741,8 @@ Outputting `Hello World!` twice in the *greeting.txt*:
 #### Call action with parameters 
 
 The following example shows how to pass additional parameters to the custom action, where it can be used in action.                     
-Parameters should be passed as an object into custom action:                       
 
+Parameters should be passed as an object into custom action:                                  
 
 ```
 {
