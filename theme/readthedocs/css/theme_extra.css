@@ -137,15 +137,29 @@ pre code.example {
 
 #jel {
    background-color: #E8E8E8;
+   border: 1px solid #9d9da2;
 }
-table.bs-pr .tr {
+
+#cs {
+    border: 1px solid #9d9da2;
+}
+
+#bs-pr {
+    border: 3px solid #e1e4e5;
+}
+
+#bs-pr .tr {
     border: 1px solid gray;
     padding: 8px 8px;
 }
 
+#first-col {
+    font-size: 100%;
+}
+
 #table-head {
    font-size: 17px;
-   background-color: #c4c4c4;
+   background-color: #c5c5ca;
 }
 
 #cs td, #jel td {

@@ -57,7 +57,7 @@ pages:
 
 # Examples
 #- Examples:
-- Best Practices: best-practices.md
+- Samples: samples.md
 #   - Operation Examples: examples/operation-examples.md
 #   - Add-ons : examples/add-ons.md
 #   - Complex Ready to Go Solutions: examples/complex-ready-to-go-solutions.md
