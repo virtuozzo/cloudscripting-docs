@@ -32,7 +32,7 @@ where:
 
 - `prepopulate` *[optional]* - link to the script, that will fetch the default fields values  
 - `fields` - an array of fields, which will be displayed in custom form     
-    - `showIf` - show/hide field by condition (is applicable only to the *radio-fieldset* field)   
+    - `showIf` - shows/hides field by condition (is applicable only to the *radio-fieldset* field)   
     - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:   
         * `string` - basic [text field](/creating-templates/user-input-parameters/#string)                         
         * `text`  - multiline [string field](/creating-templates/user-input-parameters/#text)                                                                                                      
