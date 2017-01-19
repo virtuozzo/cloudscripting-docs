@@ -1016,7 +1016,7 @@ Event placeholders:
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
-    - `nodeGroup` - curent node group      ,
+    - `nodeGroup` - curent node group
     - `path` - volume path      
 - `${event.response.}`:  
     - `result` - result code. 0 is success action result.
