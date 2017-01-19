@@ -13,8 +13,7 @@ The default workflow for any action execution is the following:
 - checking permissions       
 - executing the action itself        
 
-Actions are executed when the called [event](events/) matches specified filtering rules.    
-Multiple actions can be combined together into a [custom action](#custom-actions).       
+Actions are executed when the called [event](events/) matches specified filtering rules. Multiple actions can be combined together into a [custom action](#custom-actions).                 
 
 Thus, the following specific groups of actions are singled out:                 
 - [container operations](#container-operations)                  
@@ -25,8 +24,7 @@ Thus, the following specific groups of actions are singled out:
 ## Container Operations
 There are actions that perform operations inside of a container. For a detailed guidance on how to define a target container visit the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) page.            
 
-Any container operation can be performed using a [cmd](#cmd) action. Herewith, there are also some additional actions provided for your convenience.                 
-Thus, all the actions performed in confines of a container can be divided into three groups:                       
+Any container operation can be performed using a [cmd](#cmd) action. Herewith, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:                                  
 - SSH commands (e.g. [cmd](#cmd))                        
 - predefined modules (e.g. [Deploy](#deploy), [Upload](#upload), [Unpack](#unpack))          
 - operations with files (e.g. [CreateFile](#createfile), [CreateDirectory](#createdirectory), [WriteFile](#writefile), [AppendFile](#appendfile), [ReplaceInFile](#replaceinfile))                    
@@ -126,7 +124,7 @@ Restarting all compute nodes in the environment:
 }
 ``` 
 where:        
-            
+       
 - `[cp]` - specifying a target node group for API method to be executed at (e.g. *cp*)                                   
 - *environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group                                                             
 
@@ -463,8 +461,7 @@ Available for *SQL* databases (except for *Docker* containers)
 ```
 where:          
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at.             
-By default the `nodeGroup` value is equal to `sqldb`.                       
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                            
 - `loginCredentials` - root creadentials for a new node                    
     - `user` - your custom user name                    
     - `password` - your custom password                 
@@ -495,8 +492,7 @@ Available for *SQL* databases (except for *Docker* container)
 ```
 where:
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at.                 
-By default the `nodeGroup` value is equal to `sqldb`.                         
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                                    
 - `databaseName` - the name of the database to be created                  
 - `user` - the user name in the database, on behalf of which the application will be used                
 - `password` - the password in the database, on behalf of which the application will be used                         
@@ -521,8 +517,7 @@ Available for *SQL* databases (except for *Docker* containers)
 ```
 where:  
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at.
-By default the `nodeGroup` value is equal to `sqldb`.                       
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                                   
 - `databaseName` - the name of the database for a patch to be applied                    
 - `user` - the user name in the database, on behalf of which the application will be used                                          
 - `password` - the password in the database, on behalf of which the application will be used                              
@@ -575,8 +570,7 @@ Setting a delay that is measured in milliseconds. The below example shows how to
 ```
 
 ### installJps
-Nesting a *JPS* manifest inside the current manifest file. The nested *JPS* manifest will be installed subsequently after the current one.                  
-The action is available for **install** and **update** *jpsType* modes.                         
+Nesting a *JPS* manifest inside the current manifest file. The nested *JPS* manifest will be installed subsequently after the current one. The action is available for **install** and **update** *jpsType* modes.                              
 
 **Examples**
 
@@ -669,7 +663,7 @@ where:
 ```
 where:  
 
-- `id` - an extension *ID* from the *marketplace* or from the *add-ons* section in the manifest                         
+- `id` - an extension *ID* from the marketplace or from the add-ons section in the manifest                         
 
 <!-- add example -->
 
@@ -747,8 +741,8 @@ Outputting `Hello World!` twice in the *greeting.txt*:
 #### Call action with parameters 
 
 The following example shows how to pass additional parameters to the custom action, where it can be used in action.                     
-Parameters should be passed as an object into custom action:                       
 
+Parameters should be passed as an object into custom action:                                  
 
 ```
 {
