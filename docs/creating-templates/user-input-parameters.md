@@ -33,41 +33,41 @@ where:
 - `prepopulate` *[optional]* - link to the script, that will fetch the default fields values  
 - `fields` - an array of fields which will be displayed in custom form     
     - `showIf` - show/hide field by condition (is applicable only to the *radio-fieldset* field)   
-    - `type` *[optional]* - input field type. The default value is *“string”*. Possible values:   
-        * `string` - the basic [text field](/creating-templates/user-input-parameters/#string).      
-        * `text`  - Multiline [`string` field](/creating-templates/user-input-parameters/#text).                                                                             
-        * `list` - drop-dowm menu with non-editable textboxes. More info with example is [here](/creating-templates/user-input-parameters/#list). 
-        * `checkbox` - simgle checkbox field. More info [here.](/creating-templates/user-input-parameters/#checkbox) 
-        * `checkboxlist` - [the checkbox grouping](/creating-templates/user-input-parameters/#checkboxlist) 
-        * `radiolist` - [the radio field grouping](/creating-templates/user-input-parameters/#radiolist)    
-        * `radio-fieldset` - an alias to `radiolist`  
-        * `dockertags` drop-down menu with list of docker tags. [More info.](/creating-templates/user-input-parameters/#dockertag)        
-        * `compositefield` - a component with any available fields in it. [More info](/creating-templates/user-input-parameters/#compositefield)  
-        * `slider` - the slider element as a form field. [More info](/creating-templates/user-input-parameters/#slider)  
-        * `envlist` - [the account environments list](/creating-templates/user-input-parameters/#envlist)   
-        * `popupselector` - new popup window via POST request. Posibility to pass additional parameters. [More info](/creating-templates/user-input-parameters/#popupselector)      
-        * `popup-selector` - an alias for `popupselector` 
-        * `displayfield` - text field intended for displaying text. [More info.](/creating-templates/user-input-parameters/#displayfield) 
-        * `spacer` - an alias for `displayfield`   
-        * `spinner` - input field for entering numeric values. [More info](/creating-templates/user-input-parameters/#spinner)  
-        * `numberpicker` - text field within number validation within range. [More info](/creating-templates/user-input-parameters/#numberpicker)  
-        * `number-picker` - an alias for `numberpicker`  
-        * `hostpicker` - the drop-doown menu with environment hosts. [More info](/creating-templates/user-input-parameters/#hostpicker)  
-        * `host-picher` - an alias for `hostpicker`   
-        * `toggle` - the switcher between two values. [More info](/creating-templates/user-input-parameters/#toggle) 
-    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *"text"*. More info [here](https://www.w3.org/wiki/HTML/Elements/input#Point).        
+    - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:   
+        * `string` - basic [text field](/creating-templates/user-input-parameters/#string)                         
+        * `text`  - multiline [string field](/creating-templates/user-input-parameters/#text)                                                                                                      
+        * `list` - dropdown menu with non-editable text boxes (see more details with example [here](/creating-templates/user-input-parameters/#list))                                           
+        * `checkbox` - single [checkbox field](/creating-templates/user-input-parameters/#checkbox)                     
+        * `checkboxlist` - checkbox [grouping](/creating-templates/user-input-parameters/#checkboxlist)                            
+        * `radiolist` - radio field [grouping](/creating-templates/user-input-parameters/#radiolist)                   
+        * `radio-fieldset` - alias to `radiolist`              
+        * `dockertags` - dropdown menu with a list of docker tags (see more details with example [here](/creating-templates/user-input-parameters/#dockertag))                   
+        * `compositefield` - [component](/creating-templates/user-input-parameters/#compositefield) that comprises any available field    
+        * `slider` - [slider element](/creating-templates/user-input-parameters/#slider) as a form field
+        * `envlist` - [list of environments](/creating-templates/user-input-parameters/#envlist) available for a corresponding account                  
+        * `popupselector` - new [pop-up window](/creating-templates/user-input-parameters/#popupselector) via POST request with osibility to pass additional parameters
+        * `popup-selector` - alias to `popupselector`                               
+        * `displayfield` - [text field](/creating-templates/user-input-parameters/#displayfield) intended for displaying text                            
+        * `spacer` - alias to `displayfield`                     
+        * `spinner` - [input field](/creating-templates/user-input-parameters/#spinner) for entering numeric values                       
+        * `numberpicker` - [text field within number validation](/creating-templates/user-input-parameters/#numberpicker) within range                            
+        * `number-picker` - alias to `numberpicker`  
+        * `hostpicker` - dropdown menu with [environment hosts](/creating-templates/user-input-parameters/#hostpicker)                             
+        * `host-picher` - alias to `hostpicker`                                      
+        * `toggle` - [switcher](/creating-templates/user-input-parameters/#toggle) between two values                        
+    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. More info [here](https://www.w3.org/wiki/HTML/Elements/input#Point).        
     - `name` - input field name, that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests   
     - `default` *[optional]* - default value for the input field  
     - `caption` *[optional]* - field label  
     - `placeholder` *[optional]* -  text, that describes the expected value of the input field  
-    - `required` *[optional]* - possible values are *"true"* & *"false"*. If left empty, the default value is *"true"*.  
-    - `regex` *[optional]* - constructor for testing the JavaScript RegExp object, that refers to the stated the field value, during validation. If test fails, the field will be marked invalid using *regexText*. The default value is *"null"*.                                                        
+    - `required` *[optional]* - possible values are *'true'* & *'false'*. If left empty, the default value is *'true'*.  
+    - `regex` *[optional]* - constructor for testing the JavaScript RegExp object, that refers to the stated the field value, during validation. If test fails, the field will be marked invalid using *regexText*. The default value is *'null'*.                                                        
     - `regexText` *[optional]* - displays error message in case of the *regex* test failure during validation. The default value is *' '* (blank space).     
     - `vtype` *[optional]* - validation type name. Possible values:      
-        - `alpha` - keystroke filter mask applied to alpha input. The default value is *"/[a-z_]/i"*.  
-        - `alphanum` - keystroke filter mask applied to alphanumeric input. The default value is *"/[a-z0-9_]/i"*.  
-        - `email` - keystroke filter mask applied to email input. The default value is *"/[a-z0-9_.-+\'@]/i"*. See the [appropriate method](http://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.VTypes-method-email) for more information about complex email validation.  
-        - `URL` - keystroke filter mask applied to URL input                        
+        - `alpha` - keystroke filter mask applied to alpha input. The default value is *'/[a-z_]/i'*.  
+        - `alphanum` - keystroke filter mask applied to alphanumeric input. The default value is *'/[a-z0-9_]/i'*.  
+        - `email` - keystroke filter mask applied to email input. The default value is *'/[a-z0-9_.-+\'@]/i'*. See the [appropriate method](http://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.VTypes-method-email) for more information about complex email validation.  
+        - `URL` - keystroke filter mask applied to *URL* input                        
     - `vtypeText` *[optional]* - custom error message to be displayed instead of the default one, provided by *vtype* for this field. The default value is *' '* (blank space).     
     
 !!! note
