@@ -1,39 +1,45 @@
 # Actions
 
-Actions are the building blocks that perform arbitrary automation functions in your environment. Such as:
-                
+Actions represent the building blocks that perform arbitrary automation functions in your environment, such as:         
 - increasing/decreasing CPU or RAM amount     
-- adjusting configs according to specific environment's parameters     
+- adjusting configs according to specific environment's settings             
 - restarting a service           
 - restarting a container                  
-- applying a database patch according to specific environment's parameters                  
-     
-The default workflow for any action is the following:   
+- applying a database patch according to specific environment's settings                                 
 
-- replacing [placeholders](placeholders/)    
-- getting target containers list *[optional]* (see the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) section)     
-- checking permissions    
-- executing the action itself    
+The default workflow for any action execution is the following:                             
+- replacing [placeholders](placeholders/)         
+- getting a list of target containers *[optional]* (for a detailed guidance see the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) section)         
+- checking permissions       
+- executing the action itself        
 
-Actions are executed when the called [event](events/) matches specified filter rules. 
-Multiple actions can be combined together into a [custom action](#custom-actions). 
+Actions are executed when the called [event](events/) matches specified filtering rules.    
+Multiple actions can be combined together into a [custom action](#custom-actions).       
+
+Thus, the following specific groups of actions are singled out:                 
+- [container operations](#container-operations)                  
+- [topology management](#topology-nodes-management)            
+- [database operations](#database-operations)                 
+- [user-defined operations](#performing-user-defined-operations)                       
 
 ## Container Operations
-There are actions that perform some operations inside of a container. See the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) page.
+There are actions that perform operations inside of a container. For a detailed guidance on how to define a target container visit the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) page.            
 
-Any container operation can be performed using [cmd](#cmd) action. Moreover, there are also several actions provided for convenience, that can be divided into three groups:   
-- SSH commands ([cmd](#cmd))    
-- Predefined modules ([Deploy](#deploy), [Upload](#upload), [Unpack](#unpack))    
-- File operations ([CreateFile](#createfile), [CreateDirectory](#createdirectory), [WriteFile](#writefile), [AppendFile](#appendfile), [ReplaceInFile](#replaceinfile))       
+Any container operation can be performed using a [cmd](#cmd) action. Herewith, there are also some additional actions provided for your convenience.                 
+Thus, all the actions performed in confines of a container can be divided into three groups:                       
+- SSH commands (e.g. [cmd](#cmd))                        
+- predefined modules (e.g. [Deploy](#deploy), [Upload](#upload), [Unpack](#unpack))          
+- operations with files (e.g. [CreateFile](#createfile), [CreateDirectory](#createdirectory), [WriteFile](#writefile), [AppendFile](#appendfile), [ReplaceInFile](#replaceinfile))                    
  
 !!! note 
-    To process any container operation except [cmd](#cmd), Cloud Scripting executor will use a default system user with restricted permissions.    
+    To process any container operation (except for [cmd](#cmd)), the Cloud Scripting executor will use a default system user with restricted permissions.                   
    
-### Cmd
-Execute several SSH commands. 
-<!--Available for all nodes.-->
+### Cmd   
 
-**Definition**
+The *cmd* action executes [SSH](https://docs.jelastic.com/ssh-overview) commands.            
+<!--Available for all nodes.-->      
+
+**Example**                  
 
 ```json
 {
@@ -44,24 +50,24 @@ Execute several SSH commands.
   "sayYes" : true
 }
 ```
-where:  
-
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required. See the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) section.    
-- `cmd1` and `cmd2` - a set of commands that are executed. Its value is wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**.     
+where:       
+     
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required). For a detailed guidance see the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) section.              
+- `cmd1` and `cmd2` - a set of commands that are being executed. Their values are wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**.     
     Where:    
-    - **cmd** - equals to a Base64 encoded string: **yes | (cmd1;cmd2)**. In case your commands require interactive input, by default the Cloud Scripting executor will always try to give a positive answer using **yes** utility.        
-    - **user** - default system user with restricted permissions.    
-- `sayYes` - optional parameter, that enables or disables the usage of **yes** utility. The default value is *'true'*.        
+    - **cmd** - is equal to a Base64 encoded string: **yes | (cmd1;cmd2)**. In case your commands require the interactive input, by default the Cloud Scripting executor will always try to give a positive answer using **yes** utility.        
+    - **user** - a default system user with restricted permissions    
+- `sayYes` *[optional]* - the parameter that enables or disables using **yes** utility. The default value is *'true'*.                  
 
-One single ssh command can be passed in string. For example, executing bash script from URL for all the *Tomcat 6* nodes:
-```example
+A single SSH command can be passed in a string. For example, executing a bash script from *URL* for all *Tomcat 6* nodes:                 
+```example 
 {
   "cmd [tomcat6]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
 }
 ```
-More info about selecting containers [here](/creating-templates/selecting-containers/).
+Learn more about [selecting a target container](/creating-templates/selecting-containers/) for your actions within the pointed guide.                   
 
-While accessing containers via *Cmd*, a user receives all the required permissions and additionally can manage the main services with **sudo** commands of the following kinds (and others):
+While accessing containers via *cmd*, a user receives all the required permissions and additionally can manage the main services with **sudo** commands of the following types (and others):       
 
 ```no-highlight
 sudo /etc/init.d/jetty start  
@@ -73,9 +79,9 @@ sudo /etc/init.d/nginx upgrade
 sudo /etc/init.d/httpd help;  
 ```                                                        
      
-**For example:**  
+**Examples**  
 
-SSH commands can be set in array. For example:
+Setting SSH commands in an array:                    
 ```
 {
   "cmd [tomcat6]": [
@@ -84,7 +90,7 @@ SSH commands can be set in array. For example:
 }
 ```
                              
-Downloading and unzipping a *WordPress* plugin on all the compute nodes: 
+Downloading and unzipping a *WordPress* plugin on all compute nodes:                
 ```example
 {
   "cmd [cp]": [
@@ -94,8 +100,8 @@ Downloading and unzipping a *WordPress* plugin on all the compute nodes:
   ]
 }
 ```
-In this case commands array will be execute like one ssh command.
-The same can be performed with the help of the [unpack method](/reference/actions/#unpack)
+Herewith, the commands' array is executed through a single SSH command.                             
+The same can be performed with the help of the [unpack](/reference/actions/#unpack) method.                     
 
 
 Using **sudo** to reload *Nginx* balancer:
@@ -109,27 +115,28 @@ Using **sudo** to reload *Nginx* balancer:
 ```
    
 ### API 
-Executing [Jelastic Cloud API](http://docs.jelastic.com/api/)
+Executing actions available by means of the [Jelastic Cloud API](http://docs.jelastic.com/api/) methods.                                        
+
 **Examples:**
 
-Restart all compute node in environment:    
+Restarting all compute nodes in the environment:                      
 ```
 {
     "api [cp]" : "jelastic.environment.control.RestartNodesByGroup"
 }
-```
-where:
+``` 
+where:                    
+- `[cp]` - specifying a target node group for API method to be executed at (e.g. *cp*)                                   
+- *environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group                                                             
 
-- **environment.control.RestartNodesByGroup** - Jelastic public API restart nodes by group  
-
-Another filtering form by node group. [See more details here](/creating-templates/selecting-containers/): 
+Below you can find one more approach to specify a target node group for API method to be executed at:                               
 ```
 {
     "api" : "jelastic.environment.control.RestartNodesByGroup",
     "nodeGroup" : "cp"
 }
 ```
-
+Learn more about [selecting a target container](/creating-templates/selecting-containers/) for your API actions within the linked guide.                                      
         
 ### Deploy
 Available for compute nodes (except for *Docker* containers)
@@ -164,9 +171,9 @@ Available for all nodes
 ```
 where:  
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed.   
-- `sourcePath` - URL to download external file   
-- `destPath` - container path where save uploaded file 
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at                      
+- `sourcePath` - *URL* to download an external file                    
+- `destPath` - the container path, where the uploaded file is to be saved                         
 
 ### Unpack
 Available for all nodes
@@ -187,9 +194,9 @@ Available for all nodes
 ```
 where:   
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.    
-- `sourcePath` - URL to download external archive   
-- `destPath` - container path where unpack uploaded archive     
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                    
+- `sourcePath` - *URL* to download an external archive   
+- `destPath` - the container path, where the uploaded archive is to be unpacked                               
 
 ### CreateFile
 Available for all nodes
@@ -201,21 +208,21 @@ Available for all nodes
 ```
 where:   
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.            
-- `string` - container path where create file 
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                          
+- `string` - a container path, where a file is to be created                              
 
 ### CreateDirectory
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
 ```
 {
-  "createFile [nodeId, nodeGroup, nodeType]": "string"
+  "createDirectory [nodeId, nodeGroup, nodeType]": "string"
 }
 ```
 where:  
 
-- `nodeId`, `nodGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.           
-- `string` - container path where create directory
+- `nodeId`, `nodGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                       
+- `string` - a container path, where a directory is to be created                         
 
 ### WriteFile
 Available for all nodes
@@ -235,10 +242,10 @@ Available for all nodes
 }
 ```
 where:  
-
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.                                 
-- `path` - container path where write file  
-- `body` - content to save in file    
+  
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                                      
+- `path` - the container path, where a file is to be written                
+- `body` - content saved to the file                                         
 
 ### AppendFile
 Available for all nodes
@@ -257,11 +264,11 @@ Available for all nodes
   ]
 }
 ```
-where:   
+where:      
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.                             
-- `path` - container path where write file    
-- `body` - content to save in file   
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                            
+- `path` - the container path, where a file is to be appended                                 
+- `body` - content saved to the file                               
 
 ### ReplaceInFile
 Available for all nodes
@@ -285,11 +292,11 @@ Available for all nodes
 ```
 where:   
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.                   
-- `path` - path where file is available   
-- `replacements` - the list of replacements within the node's configuration files    
-    - `pattern` - regular expressions to find the string (e.g. `app\\.host\\.url\\s*=\\s*.*`)    
-    - `replacement` - string to replace. You can use as replacement any string value, including any combination of [placeholders](placeholders/).    
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                       
+- `path` - the path, where a file is available               
+- `replacements` - the list of replacements within the node's configuration files                        
+    - `pattern` - regular expressions to find the string (e.g. `app\\.host\\.url\\s*=\\s*.*`)                   
+    - `replacement` - the string to replace. Herewith, you can use as replacement any string value, including any combination of [placeholders](placeholders/).                                 
 
 <!-- DeletePath -->
 <!-- RenamePath --> 
@@ -319,20 +326,21 @@ where:
 ```
 where:
 
-- `nodeType` - container defining software stack within a node. See [Container Types](/reference/container-types/). 
-- `extip` *[optional]* - attaching public IP address to the container. The default value is *'false'*.
-- `fixedCloudlets` *[optional]*. The default value is *'0'*. 
-- `flexibleCloudlets` *[optional]*. The default value is *'1'*.
-- `displayName` *[optional]* - node display name  
-- `image` *[optional]* - docker image name and tag. Required only for docker node    
-- `links` *[optional]* - docker links.   
-    - `sourceNodeGroup` - sounce node for link with current node   \
-    - `alias` - prefix alias for linked variables   
-- `env` *[optional]* - docker environment variables
-- `volumes` *[optional]* - docker node volumes 
-- `volumeMounts` *[optional]* - docker external volumes mounts   
-- `cmd` *[optional]* - docker run commands   
-- `entrypoint` *[optional]* - docker entry points   
+- `nodeType` - the parameter defining software stack within a node. For a detailed guidance see the [Container Types](/reference/container-types/) page.                        
+- `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.                     
+- `fixedCloudlets` *[optional]* - a number of reserved cloudlets. The default value is *'0'*.                             
+- `flexibleCloudlets` *[optional]* - a number of dynamic cloudlets. The default value is *'1'*.                           
+- `displayName` *[optional]* - node's display name (i.e. [alias](https://docs.jelastic.com/environment-aliases))                                  
+    The following parameters are required for Docker nodes only:                          
+- `image` *[optional]* - name and tag of Docker image                            
+- `links` *[optional]* - Docker links                         
+    - `sourceNodeGroup` - a source node to be linked with a current node                                
+    - `alias` - a prefix alias for linked variables                         
+- `env` *[optional]* - Docker environment variables                        
+- `volumes` *[optional]* - Docker node volumes               
+- `volumeMounts` *[optional]* - Docker external volumes mounts                             
+- `cmd` *[optional]* - Docker run configs                            
+- `entrypoint` *[optional]* - Docker entry points                                          
 
 <!-- SetCloudletsCount -->
 ### SetNodeDisplayName
@@ -344,8 +352,8 @@ Available for all nodes
 ```
 where:   
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.    
-- `string` - display name for node  
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                        
+- `string` - node’s display name (i.e. [alias](https://docs.jelastic.com/environment-aliases))                                                                    
 
 
 ### SetNodeCount
@@ -356,9 +364,9 @@ Available for all nodes (except for *Docker* containers and *Elastic VPS*)
 }
 ```
 where:
-  
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.    
-- `number` - nodes total count after action is finished
+
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                
+- `number` - nodes’ total count after action is finished                                          
 
 ### SetExtIpEnabled
 Available for all nodes
@@ -367,10 +375,10 @@ Available for all nodes
   "setExtIpEnabled [nodeId, nodeGroup, nodeType]": true or false
 }
 ```
-where:  
+where:               
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.    
-- `true` or `false` - parameter that allows to attach or deatach external IP address
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                   
+- `true` or `false` - the parameter that allows to attach or deatach external IP address                              
 
 ### RestartNodes
 Available for all nodes (except for *Elastic VPS*)
@@ -385,9 +393,9 @@ Available for all nodes (except for *Elastic VPS*)
   ]
 }
 ```
-where:   
+where:       
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.  
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                   
 
 ### RestartContainers
 Available for all nodes
@@ -402,9 +410,9 @@ Available for all nodes
   ]
 }
 ```
-where:   
+where:         
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed. One of these parameters is required.   
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                       
  
 ### AddContext
 Available for compute nodes (except for *Docker* containers)
@@ -419,11 +427,11 @@ Available for compute nodes (except for *Docker* containers)
   ]
 }
 ```
-where:  
+where:       
 
-- `name` - content name    
-- `fileName` - display file name at dashboard    
-- `type` - context type with the following possible values:    
+- `name` - context’s name    
+- `fileName` - the name of the file to be displayed at the dashboard                         
+- `type` - the context type with the following possible values:                             
     - `ARCHIVE`    
     - `GIT`    
     - `SVN`    
@@ -431,7 +439,7 @@ where:
 ## Database Operations
 
 ### PrepareSqlDatabase
-Available nodes: *SQL* Databases (except for *Docker* containers)
+Available for *SQL* databases (except for *Docker* containers)
 ```
 {
   "prepareSqlDatabase": [
@@ -452,23 +460,23 @@ Available nodes: *SQL* Databases (except for *Docker* containers)
   ]
 }
 ```
-where:   
+where:          
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed.
-By default `nodeGroup` equals to `sqldb`.    
-- `loginCredentials` - root creadentials for new node     
-    - `user` - custom user name.     
-    - `password` - custom password    
-- `newDatabaseName` - custom database name    
-- `newDatabaseUser` - new user with privileges only for new database    
-    - `name` - custom user name     
-    - `password` - custom password   
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at.             
+By default the `nodeGroup` value is equal to `sqldb`.                       
+- `loginCredentials` - root creadentials for a new node                    
+    - `user` - your custom user name                    
+    - `password` - your custom password                 
+- `newDatabaseName` - your custom database name              
+- `newDatabaseUser` - a new user with privileges granted only for a new database instance                           
+    - `name` - the custom user name     
+    - `password` - the custom password   
 
 !!! note
-    The function is executed only with `mysql5`, `mariadb` and `mariadb10` node types.
+    The function is executed only for `mysql5`, `mariadb` and `mariadb10` containers.                          
 
 ### RestoreSqlDump
-Available nodes: *SQL* Databases (except for *Docker* container)
+Available for *SQL* databases (except for *Docker* container)
 ```
 {
   "restoreSqlDump": [
@@ -486,15 +494,15 @@ Available nodes: *SQL* Databases (except for *Docker* container)
 ```
 where:
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed.
-By default `nodeGroup` equals to `sqldb`.    
-- `databaseName` - name of the database to be created    
-- `user` - user name in the database, on behalf of which the application will be used    
-- `password` - password in the database, on behalf of which the application will be used    
-- `dump` - link to the application database dump    
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at.                 
+By default the `nodeGroup` value is equal to `sqldb`.                         
+- `databaseName` - the name of the database to be created                  
+- `user` - the user name in the database, on behalf of which the application will be used                
+- `password` - the password in the database, on behalf of which the application will be used                         
+- `dump` - *URL* to the application's database dump                                
 
 ### ApplySqlPatch
-Available Nodes: *SQL* Databases (except for *Docker* containers)
+Available for *SQL* databases (except for *Docker* containers)                                 
 ```
 {
   "applySqlPatch": [
@@ -512,19 +520,19 @@ Available Nodes: *SQL* Databases (except for *Docker* containers)
 ```
 where:  
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed.
-By default `nodeGroup` equals to `sqldb`.    
-- `databaseName` - name of the database for patch to be applied    
-- `user` - user name in the database, on behalf of which the application will be used    
-- `password` - password in the database, on behalf of which the application will be used    
-- `patch` - *SQL* query or link to such a query. It is used only for *SQL* databases. Here, the [placeholders](placeholders/) support is available.    
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at.
+By default the `nodeGroup` value is equal to `sqldb`.                       
+- `databaseName` - the name of the database for a patch to be applied                    
+- `user` - the user name in the database, on behalf of which the application will be used                                          
+- `password` - the password in the database, on behalf of which the application will be used                              
+- `patch` - *SQL* query or link to such a query. It is used only for *SQL* databases. Here, the [placeholders](placeholders/) support is available.                    
 
 !!! note
-    The function is executed only with `mysql5`, `mariadb` and `mariadb10` node types.
+    The function is executed only for `mysql5`, `mariadb` and `mariadb10` containers.                         
 
 ## Performing User-Defined Operations
 
-### script
+### Script
 
 ```
 {
@@ -534,16 +542,13 @@ By default `nodeGroup` equals to `sqldb`.
 }
 ```
 where:   
-- `script` - script body or a link to such a script body    
-- `type` *[optional]* - script type with the following possible values:    
+
+- `script` - the script body or a link to it                                                
+- `type` *[optional]* - the script type with the following possible values (the default value is *'js'*):                                          
     - `js`    
     - `java`      
-The default value is *'js'*.    
-- `params` *[optional]* - script parameters    
+- `params` *[optional]* - script parameters                               
 
-!!! note
-    Learn more about using [Jelastic Cloud API](http://docs.jelastic.com/api/).
-       
 <b>For example:</b>
 ```example
 {
@@ -557,9 +562,11 @@ The default value is *'js'*.
   ]
 }
 ```
+!!! note
+    Learn more about using [Jelastic Cloud API](http://docs.jelastic.com/api/).
 
 ### Sleep
-Custom delay. Can be set by user in milisecond. Example below shows how to create delay for one second:
+Setting a delay that is measured in milliseconds. The below example shows how to create the delay for one second:                                    
 ```
 {
   "sleep": "1000"
@@ -567,10 +574,12 @@ Custom delay. Can be set by user in milisecond. Example below shows how to creat
 ```
 
 ### installJps
-Install jps manifests inside current jps. Available for jptType `install` and `update`.
+Nesting a *JPS* manifest inside the current manifest file. The nested *JPS* manifest will be installed subsequently after the current one.                  
+The action is available for **install** and **update** *jpsType* modes.                         
 
-**Install add-on via external link.**
-`jpsType` - **update** example:
+**Examples**
+
+**Installing add-on via the external link (with *update* `JpsType`):**
 ```
 {
   "installJps" : {
@@ -583,10 +592,10 @@ Install jps manifests inside current jps. Available for jptType `install` and `u
 ```
 where:
 
-- `jps` - URL for custom jps manifest  
+- `jps` - *URL* to your custom JPS manifest  
 - `settings` - [user custom form](/creating-templates/user-input-parameters/)  
 
-**Install add-on from local manifest**
+**Installing add-on from the local manifest:**
 ```
 {
   "installJps" : {
@@ -600,10 +609,9 @@ where:
 ```
 where:
 
-- `onInstall` - entry point for execute actions  
+- `onInstall` - an entry point for performed actions                                 
 
-**Install new environemnt via external link**
-`jpsType` - **install** example:
+**Installing a new environment via the external link (with *install* `JpsType`):**
 ```
 {
   "installJps" : {
@@ -617,11 +625,11 @@ where:
 ```
 where: 
 
-- `jps` - URL for custom jps manifest  
-- `envName` - new environment short domain name  
-- `settings` - [user custom form](/creating-templates/user-input-parameters/)  
+- `jps` - *URL* to your custom JPS manifest                    
+- `envName` - a short domain name of a new environment                                   
+- `settings` - [user custom form](/creating-templates/user-input-parameters/)                          
 
-**Install new environemnt from local manifest**
+**Installing a new environment from the local manifest:**
 ```
 {
   "installJps" : {
@@ -641,11 +649,11 @@ where:
 ```
 where:
 
-- `region` - hardwareNode region  
-- `envName` - new environment short domain name  
-- `name` - jps name  
-- `nodes` - an object of new nodes  
-- `onInstall` - entry point for execute actions  
+- `region` - hardware node’s region                        
+- `envName` - a short domain name of a new environment                     
+- `name` - JPS name  
+- `nodes` - an object of new nodes                   
+- `onInstall` - an entry point for performed actions               
 
 
 ### InstallAddon
@@ -659,15 +667,15 @@ where:
 }
 ```
 where:  
-- `id` - an extension ID from the *marketplace* or from the *add-ons* section in the manifest
+
+- `id` - an extension *ID* from the *marketplace* or from the *add-ons* section in the manifest                         
 
 <!-- add example -->
 
 ### Custom Actions
-The declarative code inside a manifest can be divided into a separate blocks, named **actions**. Afterwards, the particular actions can be run by means of appealing to Call actions with different parameters.
+The declarative code inside a manifest can be divided into separate blocks, named **actions**. Subsequently, the particular actions can be run by means of appealing to call actions with different parameters.             
 
-The example below shows how to create new file. This manifest example call Jelastic predefined action **createFile** on compute node where is created txt file *example.txt* in tmp directory:
-
+The example below shows how to create a new file (e.g. the *example.txt* file in the *tmp* directory) by executing a *createFile* action at the compute node:                
 ```
 {
   "jpsType": "update",
@@ -679,9 +687,9 @@ The example below shows how to create new file. This manifest example call Jelas
 ```
 where: 
 
- - `createFile` - [Jelastic action](#createfile)   
+ - `createFile` - the corresponding *createFile* [action](#createfile)               
 
-The next example shows creating new custom action named *customAction*:
+The next example illustrates how to create a new custom action (i.e. *customAction*), which can be called for several times:                                      
 
 ```
 {
@@ -697,17 +705,15 @@ The next example shows creating new custom action named *customAction*:
 ```
 where:  
 
-- `actions` - an object where can be predefined custom actions   
+- `actions` - an object, where custom actions can be predefined                                    
 
-Action **customAction** can be called several times.
+#### Action Placeholders
 
-####Action Placeholders
-
-In order to access any required data or parameters of allocated resources inside the manifest, a special set of placeholders should be used. Sent to the Call method parameters are transformed in a separate kit of placeholders, that can be received inside the appropriate action with the help of ${this} namespace. Access to the nodes inside environment can be performed according to the node’s type, as well as according to its role in an environment.
+In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. Parameters sent to a call method are transformed into a separate kit of placeholders, which can be received inside the appropriate action with the help of *${this}* namespace. Access to a node inside environment can be performed according to its type, as well as according to its role in the environment.                           
 
 #### Code Reuse
 
-Output `Hello World!` two times in `greeting.txt`:  
+Outputting `Hello World!` twice in the *greeting.txt*:  
 ```
 {
   "jpsType": "update",
@@ -739,8 +745,9 @@ Output `Hello World!` two times in `greeting.txt`:
 
 #### Call action with parameters 
 
-This one example shows how to pass additional parameters in custom action where it can be used in action.
-Parameters should be passed as an object in custom action:
+The following example shows how to pass additional parameters to the custom action, where it can be used in action.                     
+Parameters should be passed as an object into custom action:                       
+
 
 ```
 {
@@ -762,7 +769,7 @@ where:
 
 - `fileName` - additional parameter
 
-Write `Hello World!` and output first and second compute node IP address 
+Writing `Hello World!` and outputting first and second compute node's IP address:                                    
 ```
 {
 	"jpsType": "update",
