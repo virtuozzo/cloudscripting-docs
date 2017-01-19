@@ -323,7 +323,7 @@ The *config settings* form appears after clicking the <b>Configure</b> button wi
 
 ![settingCustom](/img/SettingsCustom.jpg)     
 
-##Supported Fields
+## Supported Fields
 ###string     
 The basic text field.  
 
@@ -510,7 +510,7 @@ where:
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 - `caption` *[optional]* - field label
 
-###dockertag   
+###dockertag    
 Displaying Docker tags within the `list` element.  
 
 ![text](/img/dockertag.jpg)  
@@ -551,7 +551,7 @@ where:
    - `registry`, `username`, `password` [*optional*]   
 - `env` - required object (can be empty) 
 
-###compositefield
+###compositefield      
 The `compositefield` is a container with specific functionality and structural components that constitute it as the block for application-oriented custom user interfaces.  
 
 ![compositefield](/img/compositefield.jpg)  
