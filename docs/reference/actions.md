@@ -125,7 +125,8 @@ Restarting all compute nodes in the environment:
     "api [cp]" : "jelastic.environment.control.RestartNodesByGroup"
 }
 ``` 
-where:                    
+where:        
+            
 - `[cp]` - specifying a target node group for API method to be executed at (e.g. *cp*)                                   
 - *environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group                                                             
 
