@@ -45,7 +45,7 @@ where:
         * `compositefield` - [component](/creating-templates/user-input-parameters/#compositefield) that comprises any available field    
         * `slider` - [slider element](/creating-templates/user-input-parameters/#slider) as a form field
         * `envlist` - [list of environments](/creating-templates/user-input-parameters/#envlist) available for a corresponding account                  
-        * `popupselector` - new [pop-up window](/creating-templates/user-input-parameters/#popupselector) via POST request with osibility to pass additional parameters
+        * `popupselector` - new [pop-up window](/creating-templates/user-input-parameters/#popupselector) via POST request with posibility to pass additional parameters
         * `popup-selector` - alias to `popupselector`                               
         * `displayfield` - [text field](/creating-templates/user-input-parameters/#displayfield) intended for displaying text                            
         * `spacer` - alias to `displayfield`                     
@@ -73,8 +73,8 @@ where:
 !!! note
     > `vtypeText` is applied only in case the *vtype* value is set; otherwise, it is ignored.  
 
-##Target Nodes
-`Target Nodes` is an optional method which allows to define environments, that are suitable for JPS installation. Herewith, this option is available only for *JpsType*: *update* action.   
+## Target Nodes
+*Target Nodes* is an optional method which allows to define environments, that are suitable for JPS installation. Herewith, this option is available only for *JpsType*: *update* action.   
 
 Filtering for `targetNodes` can be performed by `nodeType`, `nodeGroup`, `dockerOs`, `dockerName` or `dockerTag`.   
 ```
@@ -97,7 +97,7 @@ Filtering for `targetNodes` can be performed by `nodeType`, `nodeGroup`, `docker
 		}
 }
 ```
-There are two possible ways to define a nodeType:  
+There are two possible ways to define a `nodeType`:  
 ```
 "nodeType": ["..."] - to set the required nodeTypes in array
 
@@ -129,7 +129,7 @@ In this case, the filtering result will be the following:
 
 ![TargetNodesFilter](/img/TargetNodesFilter.jpg)
   
-##Custom Buttons
+## Custom Buttons
 The custom buttons settings are intended for extending and adjusting functionality of planks within <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:      
 
 ![Addontab](/img/Addontab.jpg)    
@@ -169,17 +169,17 @@ Sample to set buttons within add-on plank:
 Here: 
 
 - `buttons` - button parameters array   
-- `confirmText` *[optional]* - custom confirmation text for users. The default value is *"Are you sure?"*.   
+- `confirmText` *[optional]* - custom confirmation text for users. The default value is *'Are you sure?'*.   
 
 It will be displayed after clicking on the appropriate button for an add-on. According to the code above, the text will be:  
 
 ![Confirm](/img/Confirm.jpg)      
 
-- `loadingText` *[optional]* - UI text to be displayed during loading and applying changes. The default value is *"Applying..."*.    
+- `loadingText` *[optional]* - UI text to be displayed during loading and applying changes. The default value is *'Applying...'*.    
 
 ![LoadingText](/img/LoadingText.jpg)      
 
-- `action` *[required] [string]* - name of the custom action that will be executed. Procedure body structure is described in the [*actions*](/reference/actions/#custom-actions) section.        
+- `action` *[required] [string]* - name of the procedure that will be executed. Procedure body structure is described in the [*actions*](/reference/actions/#custom-actions) section.        
 - `caption` - title of the button  
 
 ![Caption](/img/Caption.jpg)   
@@ -188,10 +188,9 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 ![SuccessText](/img/SuccessText.jpg)     
 
-- `href` *[optional]* - external link that is opened in a new browser tab; is considered only if the *settings* field is absent. In this case *action* will not be executed.      
-- `settings` - custom form ID. The default is *"main"*. For more details see [*custom settings*](/creating-templates/user-input-parameters/#custom-settings) section.                  
+- `href` *[optional]* - external link that is opened in a new browser tab; is executed only if the `settings` field is absent. In case of `href` execution, `action` will not be carried out.     
 
-Another sample with additional configurations: the next parameters can be enabled only if the `settings` field is present:
+Another sample with additional configurations: the next parameters can be enabled only if the [`settings` field](/creating-templates/user-input-parameters/#custom-settings) is present:
 ```
 {
   "jpsType": "update",
@@ -220,26 +219,61 @@ Another sample with additional configurations: the next parameters can be enable
 ```
 where:
 
+- `settings` - custom form ID. The default is *'main'*.
 - `title` - custom dialog title. If absent, than `caption` will be applied.    
-- `submitButtonText` - text for submission button in the opened dialog. The default value is *"Apply"*.   
+- `submitButtonText` - text for submission button in the opened dialog. The default value is *'Apply'*.   
 
 ![SubmitButtonText](/img/SubmitButtonText.jpg)  
 
-- `logsPath` - button for showing logs in the defined path  
+- `logsPath` - specifying path to a definite log file for it to be accessible via **Show Logs** button                          
 
 ![LogsPath](/img/LogsPath.jpg)  
 
-- `logsNodeGroup` - [nodeGroup](/reference/container-types/#containers-by-groups-nodegroup) layer the logging path should be opened for      
+- `logsNodeGroup` - [nodeGroup](/reference/container-types/#containers-by-groups-nodegroup) layer the logging path should be opened for                   
 
-##Custom Menus    
-Menu is an expandable list within the <b>Add-ons</b> section comprising custom actions, that execute corresponding operations.  
+## Custom Menus    
+Menu is an expandable list within the <b>Add-ons</b> section comprising operations, that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
 
 ![menu](/img/menu.jpg)     
 
-Menu list contains the <b>Uninstall</b> option by default. Listed actions execute the operations from [application level](/reference/events/#application-level-events) if there are any. Custom menus use the same properties as [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).    
+By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the [application level events](/reference/events/#application-level-events) settings.          
 
-##Custom Settings
-The settings section can include a few custom forms. The default settings form ID is *"main"*.    
+The used properties for custom menus are the same as for custom buttons. Herewith, an appropriate menu field (instead of buttons) should be specified in order to adjust functionality exactly within menu list of add-ons plank.           
+
+Sample to set custom buttons within menu list of add-ons plank:
+```
+{
+  "jpsType": "update",
+  "application": {
+    "name": "Custom buttons",
+    "env": {},
+    "targetNodes": {
+      "nodeGroup": "bl"
+    },
+    "procedures": [
+      "..."
+    ],
+    "menu": [
+      {
+        "confirmText": "Custom confirm text",
+        "loadingText": "Load text while waiting",
+        "procedure": "{String}",
+        "caption": "Configure",
+        "successText": "Configuration saved successfully!",
+        "settings": "config",
+        "title": "Title",
+        "submitButtonText": "Button Text",
+        "logsPath": "/var/log/add-on-action.log",
+        "logsNodeGroup": "cp"
+      }
+    ]
+  }
+}
+```
+Refer to the *Custom Buttons* section above for a detailed description on the parameters set with the current sample.
+
+## Custom Settings
+The settings section can include a few custom forms. The default settings form ID is *'main'*.    
 
 For instance:  
 ```
@@ -309,6 +343,7 @@ The basic text field.
 where:  
 - `caption` *[optional]* - field label  
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
+
 ###text   
 The multiline text field.
 
@@ -327,9 +362,10 @@ The multiline text field.
 where:   
 
 - `caption` *[optional]* - field label  
-- `hideLabel`*[optional] [boolean]* - hide field Label. The default value is *'false'*.  
+- `hideLabel`*[optional] [boolean]* - hides field Label. The default value is *'false'*. 
+
 ###list   
-The drop-down list and a single-line non-editable textbox.  
+The dropdown list and a single-line non-editable textbox.  
 
 ![list](/img/list.jpg)  
 ```
@@ -352,6 +388,7 @@ where:
 - `caption` *[optional]* - field label                                  
 - `values` - objects' values (*"key"*:*"value"*)                            
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.          
+
 ###checkbox   
 The single checkbox field.
 
@@ -373,7 +410,7 @@ where:
 - `caption` *[optional]* - field label           
 - `value` - enables or disables checkbox                         
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*. 
-                    
+
 ###checkboxlist   
 The *checkbox* grouping.  
 
@@ -428,7 +465,7 @@ where:
 The groupping of the *radio* elements with the `showIf` function.     
 
 !!! note
-    The *hideLabel* boolean value is always *true* for this field   
+    The *hideLabel* boolean value is always *true* for this field.   
 
 ![text](/img/radio-fieldset.jpg)   
 ```
@@ -469,7 +506,7 @@ where:
 - `name` *[required]* - name of the `radio-fieldset` element (for other elements it’s not required)                       
 - `default` *[optional]* - selected field upon opening the form  
 - `values` - checkboxes (*"key"*:*"value"*)  
-- `showIf` - conditional object that shows predefined elements by clicking on the `radio-fieldset` elements. Predefined elements can be vary.  
+- `showIf` - conditional object that shows predefined elements by clicking on the `radio-fieldset` elements. Predefined elements can vary.  
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 - `caption` *[optional]* - field label
 
@@ -508,12 +545,12 @@ Displaying Docker tags within the `list` element.
 where:   
 
 - `name` *[required]* - should have the *'tag'* value  
-- `values` *[required]* - Docker tag values (*name*: *"tag_name"* is required). By default Docker image is pulled from the Docker Hub registry.  
+- `values` *[required]* - Docker tag values (*name*: *"tag_name"* is required). By default Docker image is pulled from Docker Hub registry.  
 - `dockerImage` - Docker image details   
-   - `name`: *repository* is required   
-   - `registry`, `username`, `password` are optional   
+   - `name` - *repository* is required   
+   - `registry`, `username`, `password` [*optional*]   
 - `env` - required object (can be empty) 
- 
+
 ###compositefield
 The `compositefield` is a container with specific functionality and structural components that constitute it as the block for application-oriented custom user interfaces.  
 
@@ -593,7 +630,7 @@ where:
 - `name` *[optional]* - name of the field 
    
 ###envlist
-The account environments list within a drop-down element.  
+The account environments list expanded within a drop-down element.  
 
 ![envlist](/img/envlist.jpg)  
 ```
@@ -614,17 +651,17 @@ where:
 - `caption` *[optional]* - field label    
 - `name` *[optional]* - name of the field  
 - `editable` *[optional][boolean]* - enables/disables the `envlist` field editing. The default value is *'false'*.    
-- `valueField` *[optional][string]* - The value from environment information which will be sent to server. The default value is **domain**. Available values are:    
+- `valueField` *[optional][string]* - The value from environment information, which will be sent to a server. The default value is **domain**. Available values are:    
     - **iconCls** - css class     
     - **isRunning** - check if environment status is *running*  
     - **shortdomain** - short environment domain name (without platform URL)  
     - **displayName** - environment *displayName*  
     - **appid** - unique environment id     
-    
+
 ###popupselector
 (`popup-selector` is an alias)     
 
-Opens popup window via the POST request to any external service. Functionality provides the possibility to pass additional parameters.  
+Opens pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.  
 
 ![popupselector](/img/popupselector.jpg)  
 ```
@@ -652,11 +689,11 @@ where:
 - `caption` *[optional]* - field label                      
 - `name` *[optional]* - name of the field                  
 - `buttonText` *[optional]* - button label              
-- `url` *[optional]* - external source URL. The default link is to the Jelastic platform.         
+- `url` *[optional]* - external source *URL*. The default link is to the Jelastic platform.         
 - `popupWidth` *[optional]* - width in pixels          
 - `popupHeight` *[optional]* - height in pixels   
 - `popupCallbackEvent` - event handler   
-- `params` - parameters for sending in POST request to `URL` source.     
+- `params` - parameters for sending in POST request to `URL` source     
 
 ###displayfield
 (`spacer` is an alias)    
@@ -681,7 +718,7 @@ where:
 - `caption` *[optional]* - field label                   
 - `name` *[optional]* - name of the field                
 - `markup` - value to initialize the field's display. The default value is "*'undefined'*".      
-           
+
 ###spinner
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
 
@@ -741,7 +778,7 @@ where:
 ###hostpicker
 (`host-picker` is an alias)  
 
-The drop-down menu with the environments hosts.  
+The dropdown menu with the environments hosts.  
 
 ![hostpicker](/img/hostpicker.jpg)  
 ```
@@ -762,7 +799,7 @@ where:
 - `name` *[optional]* - name of the field   
 - `caption` *[optional]* - field label   
 - `editable` *[optional] [boolean]* - enables/disables editing the `envlist` field. The default value is *'false'*.  
-- `valueField` *[optional][string]* - The value from environment information which will be sent to server. The default value is **domain**. Available values are:    
+- `valueField` *[optional][string]* - value from environment information, which will be sent to a server. The default value is **domain**. Available values are:    
     - **iconCls** - css class     
     - **isRunning** - check if environment status is *running*  
     - **shortdomain** - short environment domain name (without platform URL)  
