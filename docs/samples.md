@@ -209,7 +209,7 @@ There is a list of Jelastic manifests which published on Jelastic hosting provid
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/mysql-replication">Cyclos 4</a>
+            <a target="_blank" href="https://github.com/jelastic-jps/cyclos/tree/master/cyclos-4">Cyclos 4</a>
         </td>
         <td>
             Auto-deployed Cyclos 4 online bancking solution
