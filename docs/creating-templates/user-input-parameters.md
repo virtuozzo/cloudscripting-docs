@@ -599,10 +599,10 @@ where:
 - `align` *[optional]* - manages the way items are aligned. The default value is *'top'*. Possible values: *'top'*, *'middle'*, *'stretch'*, *'stretchmax'*.  
 - `defaultMargins` *[optional]* - default margins for items. The default value is *'0'*.  
 - `defaultPadding` *[optional]* - default paddings for items. The default value is *'0'*.  
-- `defaultFlex` *[optional]* - horizontal flex for items.   
+- `defaultFlex` *[optional]* - horizontal flex for items 
 - `items` - elements  
 
-###slider
+###slider              
 The slider element as a form field.
 
 ![slider](/img/slider.jpg)
@@ -628,8 +628,8 @@ where:
 - `useTips` - displaying tips for the value. The default value is *'true'*.  
 - `caption` *[optional]* - field label  
 - `name` *[optional]* - name of the field 
-   
-###envlist
+
+###envlist     
 The account environments list expanded within a drop-down element.  
 
 ![envlist](/img/envlist.jpg)  
@@ -658,7 +658,7 @@ where:
     - **displayName** - environment *displayName*  
     - **appid** - unique environment id     
 
-###popupselector
+###popupselector     
 (`popup-selector` is an alias)     
 
 Opens pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.  
@@ -695,7 +695,7 @@ where:
 - `popupCallbackEvent` - event handler   
 - `params` - parameters for sending in POST request to `URL` source     
 
-###displayfield
+###displayfield    
 (`spacer` is an alias)    
 
 The text field intended only for display, which is not validated and not submitted.  
@@ -719,7 +719,7 @@ where:
 - `name` *[optional]* - name of the field                
 - `markup` - value to initialize the field's display. The default value is "*'undefined'*".      
 
-###spinner
+###spinner    
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
 
 ![spinner](/img/spinner.jpg)  
@@ -747,7 +747,7 @@ where:
 - `increment` - increment value  
 - `decimanPrecision` - precision value  
 
-###numberpicker
+###numberpicker   
 (`number-picker` is an alias)  
 
 The text field with a number validation within range.   
@@ -775,7 +775,7 @@ where:
 - `max` - maximum spinner value  
 - `editable` *[optional] [boolean]* - enables/disables editing the `numberpicker` field. The default value is *'false'*.  
 
-###hostpicker
+###hostpicker    
 (`host-picker` is an alias)  
 
 The dropdown menu with the environments hosts.  
@@ -806,7 +806,7 @@ where:
     - **displayName** - environment *displayName*  
     - **appid** - unique environment id   
 
-###toggle
+###toggle    
 The toggle element is a switch between two values.
 
 ![toggle](/img/toggle.jpg)
