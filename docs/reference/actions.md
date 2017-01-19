@@ -213,7 +213,7 @@ Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
 ```
 {
-  "createFile [nodeId, nodeGroup, nodeType]": "string"
+  "createDirectory [nodeId, nodeGroup, nodeType]": "string"
 }
 ```
 where:  
