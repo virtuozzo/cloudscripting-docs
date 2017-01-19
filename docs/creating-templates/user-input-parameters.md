@@ -179,7 +179,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 ![LoadingText](/img/LoadingText.jpg)      
 
-- `action` *[required] [string]* - name of the procedure that will be executed. Procedure body structure is described in the [*actions*](/reference/actions/#custom-actions) section.        
+- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the [*actions*](/reference/actions/#custom-actions) section.        
 - `caption` - title of the button  
 
 ![Caption](/img/Caption.jpg)   
@@ -250,14 +250,14 @@ Sample to set custom buttons within the menu list of the add-ons plank:
     "targetNodes": {
       "nodeGroup": "bl"
     },
-    "procedures": [
+    "actions": [
       "..."
     ],
     "menu": [
       {
         "confirmText": "Custom confirm text",
         "loadingText": "Load text while waiting",
-        "procedure": "{String}",
+        "action": "{String}",
         "caption": "Configure",
         "successText": "Configuration saved successfully!",
         "settings": "config",

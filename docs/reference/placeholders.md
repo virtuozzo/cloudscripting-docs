@@ -142,8 +142,8 @@ For example:
 The placeholder's name here is `${settings.customName}`. Check the list of [fields defined by a user](/creating-templates/user-input-parameters/).
 
  
-## Procedure Placeholders
-- `${this.param}` - where *param* is a name of the procedure parameter
+## Action Placeholders
+- `${this.param}` - where *param* is a name of the action parameter
 
 For example:
 ```
@@ -154,19 +154,19 @@ For example:
   }
 }
 ```
-Passing custom params to the procedure is performed in the following way:
+Passing custom params to the action is performed in the following way:
 ```
 {
 	"jpsType": "update",
 	"name": "example",
 	"onInstall": {
-		"customProcedure": {
+		"customAction": {
 			"first": 1,
 			"second": 2
 		}
 	},
 	"actions": {
-		"customProcedure": {
+		"customAction": {
 			"log": "${this.first}"
 		}
 	}

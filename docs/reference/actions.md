@@ -712,7 +712,7 @@ Outputting `Hello World!` twice in the *greeting.txt*:
 ```
 {
   "jpsType": "update",
-  "name": "Procedures Example",
+  "name": "ACtions Example",
   "onInstall": [
     {
       "createFile [cp]": "${SERVER_WEBROOT}/greeting.txt"
