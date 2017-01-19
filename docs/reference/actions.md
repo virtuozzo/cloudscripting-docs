@@ -682,6 +682,7 @@ The next example illustrates how to create a new custom action (i.e. *customActi
 where:  
 - `actions` - an object, where custom actions can be predefined                                    
 
+
 ####Action Placeholders
 
 In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. Parameters sent to a call method are transformed into a separate kit of placeholders, which can be received inside the appropriate action with the help of *${this}* namespace. Access to a node inside environment can be performed according to its type, as well as according to its role in the environment.                           
