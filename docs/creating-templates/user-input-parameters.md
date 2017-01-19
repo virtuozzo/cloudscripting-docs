@@ -238,9 +238,9 @@ Menu is an expandable list within the <b>Add-ons</b> section comprising operatio
 
 By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the [application level events](/reference/events/#application-level-events) settings.          
 
-The used properties for custom menus are the same as for custom buttons. Herewith, an appropriate menu field (instead of buttons) should be specified in order to adjust functionality exactly within menu list of add-ons plank.           
+The used properties for custom menus are the same as for custom buttons. Herewith, an appropriate `menu` field (instead of `buttons`) should be specified in order to adjust functionality exactly within the menu list of the add-ons plank.           
 
-Sample to set custom buttons within menu list of add-ons plank:
+Sample to set custom buttons within the menu list of the add-ons plank:
 ```
 {
   "jpsType": "update",
