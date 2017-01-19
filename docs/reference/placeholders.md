@@ -290,8 +290,8 @@ where:
 
 **The First and the Last Array Elements** 
 
-`{nodes.cp.first.(key)}` - the array element with the the *'0'* index  
-`{nodes.sqldb.last.(key)}` - the array element with the last ID in the array   
+`{nodes.cp.first.(key)}` - array element with the the *'0'* index  
+`{nodes.sqldb.last.(key)}` - array element with the last ID in the array   
 
 where:  
 - `key` - node's parameter  
