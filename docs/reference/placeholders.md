@@ -1,7 +1,7 @@
 # Placeholders
 Cloud Scripting supports a list of placeholders that can be used in any section of the manifest file (if the section isn't strictly limited with its content). 
 The executor makes an attempt to resolve all placeholders on the package installation stage.
-If it's not possible, placeholder will be unresolved and displayed in the text as is (e.g. *${placeholder}*).
+If it's not possible, the placeholder will be unresolved and displayed in the text as is (e.g. *${placeholder}*).
 
 !!! note
     To output all available placeholders you can use the special placeholder: `${placeholders}`. See [Troubleshooting](/troubleshooting/) for more info.                                                                                         
@@ -14,12 +14,12 @@ If it's not possible, placeholder will be unresolved and displayed in the text a
     - `protocol` *[string]* - protocol
     - `url` *[string]* - link to application (env)
     - `displayName` *[string]* - application display name
-    - `envName` *[string]* - short domain name (without hoster URL)
+    - `envName` *[string]* - short domain name (without hoster *URL*)
     - `shortdomain` *[string]* - short domain name (alias to `envName`)
     - `hardwareNodeGroup` *[string]* - hardware node node group
     - `ssl` *[boolean]* - env SSL status
     - `sslstate` *[boolean]* - env SSL state
-    - `status` *[number]* - environment status. Available statuses are: 1 - *running*, 2 - *down*, 3 - *launching*, 4 - *sleep*, 5 - *creating*, 6 - *cloning*, 7 - *exists*. 
+    - `status` *[number]* - environment status. The available statuses are: 1 - *running*, 2 - *down*, 3 - *launching*, 4 - *sleep*, 5 - *creating*, 6 - *cloning*, 7 - *exists*. 
     - `uid` *[number]* - user ID
     - `ishaenabled` *[boolean]* - high availability status 
     - `ha` *[boolean]* - alias to `${env.ishaenabled}`
@@ -42,63 +42,63 @@ If it's not possible, placeholder will be unresolved and displayed in the text a
     - `{nodes.(group).last.(key)}`   
     where:
     - `(group)` - node group ([nodeGroup](/creating-templates/selecting-containers/#all-containers-by-group) or [nodeType](/creating-templates/selecting-containers/#all-containers-by-type))
-    - `(i)` - index of node, starting from 0
-    - `(key)` - parameter name according to the following list:   
-        - `address` - internal or external IP address     
-        - `adminUrl` - full URL address with protocol   
+    - `(i)` - node's index, starting from *'0'*
+    - `(key)` - name of the applied parameter, according to the following list:
+        - `address` - internal or external IP address                               
+        - `adminUrl` - full *URL* address with protocol   
         - `canBeExported` *[boolean]* - Jelastic [Export](https://docs.jelastic.com/environment-export-import) feature    
-        - `bandwidthLimit` - node bandwidth limit   
+        - `bandwidthLimit` - node's bandwidth limit   
         - `contextValidatorRegex` - validation for context names    
         - `diskIopsLimit` - IOPS limitation quota   
         - `diskLimit` - hardware node disk space quota  
         - `endpoints` [*array indexes*] - setting [endpoints](https://docs.jelastic.com/endpoints) functionality                         
             - `domain` - full domain name of the node the endpoint is being set for                  
             - `id` - node ID  
-            - `name` - title for a new endpoint (can be either custom or [predefined](https://docs.jelastic.com/endpoints#preconfigured))                
+            - `name` - title for the new endpoint (can be either custom or [predefined](https://docs.jelastic.com/endpoints#preconfigured))                
             - `privatePort` - preferred local node’s port              
             - `publicPort` - private (dynamic) port used for mapping                                         
             - `protocol` - protocol type (currently, only TCP is provided)                     
-        - `fixedCloudlets` - fixed cloudlets number   
-        - `flexibleCloudlets` - flexible cloudlets number    
+        - `fixedCloudlets` - fixed cloudlets amount     
+        - `flexibleCloudlets` - flexible cloudlets amount      
         - `id` - node ID   
         - `intIP` - internal IP address   
-        - `extIPs` - external IP address array (`extips` - is an alias)                                
+        - `extIPs` - external IP address array (`extips` is an alias)                                
         - `isClusterSupport`    
-        - `isExternalIpRequired` - status, that node requires external IP address   
-        - `isResetPassword` - enable to reset service password    
+        - `isExternalIpRequired` - status, indicating that node requires external IP address       
+        - `isResetPassword` - enables to reset a service password    
         - `isWebAccess`   
         - `ismaster` - master node's status in the [`nodeGroup`](/reference/container-types/#containers-by-group)(i.e. layer)   
         - `maxchanks`   
         - `name` - stack name   
-        - `nodeGroup` - nodes layer, i.e. *lb*, *cp*, *sqldb*, *nosqldb*, *cache*, *storage*, *extra* (for *Docker* containers)   
+        - `nodeGroup` - node's layer, e.g. *lb*, *cp*, *sqldb*, *nosqldb*, *cache*, *storage*, *extra* (for *Docker* containers)   
         - `nodeType` -  stacks [nodeType](/reference/container-types/#nodetype-values) list  
         - `nodemission` - deprecated value (same as `nodeGroup`)  
-        - `osType` - OS type (LINUX)   
-        - `password` - container password   
+        - `osType` - OS type (e.g. LINUX)   
+        - `password` - container's password   
         - `port` - service port   
         - `type` - container's compatibility (native)   
-        - `url` - full URL address with protocol   
+        - `url` - full *URL* address with protocol   
         - `version` - stack version   
         - `engines`(for compute nodes):  
-            - `id` - engine ID at the platform  
-            - `keyword` - engine keyword (e.g. *java7*, *php7.0*)  
-            - `name` - full engine name (e.g. *Java 8*, *PHP 7*)  
-            - `type` - engine type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
+            - `id` - engine's ID at the platform  
+            - `keyword` - engine's keyword (e.g. *java7*, *php7.0*)  
+            - `name` - full engine's name (e.g. *Java 8*, *PHP 7*)  
+            - `type` - engine's type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
             - `vcsSupport` - supporting VCS in container  
-            - `version` - engine version  
+            - `version` - engine's version  
         - `activeEngine`(current engine in container):  
-            - `id` - engine ID at the platform   
-            - `keyword` - engine keyword (e.g. *java7*, *php7.0*)  
-            - `name` - full engine name (e.g. *Java 8*, *PHP 7*)  
-            - `type` - engine type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
+            - `id` - engine's ID at the platform   
+            - `keyword` - engine's keyword (e.g. *java7*, *php7.0*)  
+            - `name` - full engine's name (e.g. *Java 8*, *PHP 7*)  
+            - `type` - engine's type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
             - `vcsSupport` - supporting VCS in container  
-            - `version` - engine version   
+            - `version` - engine's version   
         - `packages` [*array*] - packages with add-ons installed over the appropriate node (e.g. [FTP add-on](https://docs.jelastic.com/ftp-ftps-support))                  
-            - `description` - package description                                       
+            - `description` - package's description                                       
             - `documentationurl` - redirect to page(s) with more info on the corresponding add-on                          
-            - `iconurl` - add-on logo                                               
+            - `iconurl` - add-on's logo                                               
             - `id` - ID of the installed package                       
-            - `isInstalled` - installation status, possible values are *"true"* & *"false"*.                       
+            - `isInstalled` - the installation status, the possible values are *"true"* & *"false"*.                       
     
 In case a few nodes are available within `nodeGroup`, you can execute actions in one of them.
 For example:    
@@ -112,17 +112,17 @@ Herewith, all event placeholders have their custom set of parameters and begin w
 - `${event.params.(key)}` - where *key* is a name of event parameter                     
 - `${event.response.(key)}` -where *key* is a name of event response parameter             
 
-Learn more about event placeholders within the above [*Events* page](/reference/events/).   
+Learn more about the event placeholders within the above-linked *Events* page. 
 
 ## Account Information                                                                                                                                       
-- `${user.uid}` - user ID at the Jelastic platform    
-- `${user.email}` - user email address    
-- `${user.appPassword}` - random value that can be used to set application passwords    
+- `${user.uid}` - user's ID at the Jelastic platform    
+- `${user.email}` - user's email address    
+- `${user.appPassword}` - random value that can be used to set application's passwords    
 - `${user.name}` - email address value (same as `${user.email}`)    
 
 ## Input Parameters
-- `${settings.jelastic_email}` - user email that is always predefined    
-- `${settings.key}` - (where *key* is a name of application setting) - placeholder is defined in case user input parameters are specified within manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.     
+- `${settings.jelastic_email}` - user's email, which is always predefined    
+- `${settings.key}` - (where *key* is a name of the application setting) - the placeholder is defined in case user input parameters are specified within a manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.     
 
 For example:
 ```example
@@ -139,11 +139,11 @@ For example:
   }
 }
 ```
-The placeholder's name here is `${settings.customName}`. Check the list of [fields defined by user](/creating-templates/user-input-parameters/).
+The placeholder's name here is `${settings.customName}`. Check the list of [fields defined by a user](/creating-templates/user-input-parameters/).
 
  
 ## Procedure Placeholders
-- `${this.param}` - where *param* is a name of the procedure parameter.
+- `${this.param}` - where *param* is a name of the procedure parameter
 
 For example:
 ```
@@ -175,10 +175,10 @@ Passing custom params to the procedure is performed in the following way:
 As a result, console will display the *first* (1) custom parameter from `${this.first}` placeholder.
 
 ## UI Placeholders
-- `${user.uid}` - user ID at the Jelastic platform
-- `${user.email}` - user email address
-- `${env.domain}` - full domain name without protocol
-- `${env.appid}` - unique environment appid at the Jelastic platform
+- `${user.uid}` - user's ID at the Jelastic platform
+- `${user.email}` - user's email address
+- `${env.domain}` - a full domain name without protocol
+- `${env.appid}` - a unique environment appid at the Jelastic platform
 
 For instance: 
 
@@ -199,7 +199,7 @@ For instance:
 ```
 
 ##Custom Global Placeholders
-User defined placeholders can be predefined via <b>*globals declaration*</b>. The corresponding declaration is performed in advance of the manifest installation.  
+Placeholders managed by users can be predefined via <b>*globals declaration*</b>. The corresponding declaration is performed in advance of the manifest installation.  
 
 For example:
 ```
@@ -224,12 +224,12 @@ As a result, the new placeholders are created:
 ##Function Placeholders
 The integrated functions inside Cloud Scripting are listed below:   
 
-- `${fn.password}` - random value within the upper and lower cases. The default length value is *'10'*. Length can be passed as `${fn.password(max value)}`.   
-- `${fn.base64}` - base64 encoding passed value  
+- `${fn.password}` - random value within the upper and lower cases. The default length value is *'10'*. The length can be passed as `${fn.password(max value)}`.   
+- `${fn.base64}` - *base64* encoding passed value  
 ```
 ${fn.base64(value)}
 ```
-- `${fn.md5}` - md5 encoding  
+- `${fn.md5}` - *md5* encoding  
 ```
 ${fn.md5(value)}
 ```
@@ -247,8 +247,8 @@ Functions without required parameters have two input forms:
 
 Function parameter can be passed from existing placeholders. For example:   
 
-- `${fn.md5([fn.random])}` - md5 encoding random password   
-- `${fn.base64([user.email])}` - base64 encoding user email address  
+- `${fn.md5([fn.random])}` - *md5* encoding random password   
+- `${fn.base64([user.email])}` - *base64* encoding user email address  
 
 You can easily define function placeholders within the [cutom global placeholders](#/reference/placeholders/#global-variables).  
 
@@ -285,16 +285,16 @@ For example:
 `{nodes.cp[(i)].(key)}`   
 
 where:   
-- `i` - array index   
-- `key` - node parameter. See the details about [node parameters](#/reference/placeholders/#node-placeholders).   
+- `i` - array's index   
+- `key` - node's parameter. See the details on setting [node parameters](#/reference/placeholders/#node-placeholders).   
 
 **The First and the Last Array Elements** 
 
-`{nodes.cp.first.(key)}` -  array element with the *'0'* index  
-`{nodes.sqldb.last.(key)}` - array element with the last ID in the array   
+`{nodes.cp.first.(key)}` - the array element with the the *'0'* index  
+`{nodes.sqldb.last.(key)}` - the array element with the last ID in the array   
 
 where:  
-- `key` - node parameter.   
+- `key` - node's parameter  
 
 ## File Path Placeholders
 The values below can vary depending on the chosen [nodeType](/reference/container-types/#nodetype-values):    
