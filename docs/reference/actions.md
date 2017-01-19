@@ -322,7 +322,7 @@ where:
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.                     
 - `fixedCloudlets` *[optional]* - a number of reserved cloudlets. The default value is *'0'*.                             
 - `flexibleCloudlets` *[optional]* - a number of dynamic cloudlets. The default value is *'1'*.                           
-- `displayName` *[optional]* - node's display name (i.e. [alias](https://docs.jelastic.com/environment-aliases)
+- `displayName` *[optional]* - node's display name (i.e. [alias](https://docs.jelastic.com/environment-aliases))                                  
     The following parameters are required for Docker nodes only:                          
 - `image` *[optional]* - name and tag of Docker image                            
 - `links` *[optional]* - Docker links                         
@@ -344,7 +344,7 @@ Available for all nodes
 ```
 where:   
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                        
-- `string` - node’s display name (i.e. [alias](https://docs.jelastic.com/environment-aliases)                                         
+- `string` - node’s display name (i.e. [alias](https://docs.jelastic.com/environment-aliases))                                                                    
 
 
 ### SetNodeCount
