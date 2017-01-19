@@ -198,7 +198,7 @@ For instance:
 }
 ```
 
-##Custom Global Placeholders
+## Custom Global Placeholders
 Placeholders managed by users can be predefined via <b>*globals declaration*</b>. The corresponding declaration is performed in advance of the manifest installation.  
 
 For example:
@@ -221,7 +221,7 @@ As a result, the new placeholders are created:
 }
 ```  
 
-##Function Placeholders
+## Function Placeholders
 The integrated functions inside Cloud Scripting are listed below:   
 
 - `${fn.password}` - random value within the upper and lower cases. The default length value is *'10'*. The length can be passed as `${fn.password(max value)}`.   
@@ -262,7 +262,7 @@ For example:
 ```
 Now, you can use `${global.pass}` within the entire manifest.
 
-##Array Placeholders
+## Array Placeholders
 
 Any array has a list of specific placeholders: array *length*, element by *ID*, the *first* and the *last* array elements.   
 
