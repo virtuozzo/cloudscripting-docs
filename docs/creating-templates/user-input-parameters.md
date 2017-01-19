@@ -74,7 +74,7 @@ where:
     > `vtypeText` is applied only in case the *vtype* value is set; otherwise, it is ignored.  
 
 ## Target Nodes
-*Target Nodes* is an optional method which allows to define environments, that are suitable for JPS installation. Herewith, this option is available only for *JpsType*: *update* action.   
+*Target Nodes* is an optional method that allows to define environments, that are suitable for JPS installation. Herewith, this option is available only for *JpsType*: *update* action.   
 
 Filtering for `targetNodes` can be performed by `nodeType`, `nodeGroup`, `dockerOs`, `dockerName` or `dockerTag`.   
 ```
