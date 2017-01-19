@@ -177,8 +177,8 @@ As a result, console will display the *first* (1) custom parameter from `${this.
 ## UI Placeholders
 - `${user.uid}` - user's ID at the Jelastic platform
 - `${user.email}` - user's email address
-- `${env.domain}` - a full domain name without protocol
-- `${env.appid}` - a unique environment appid at the Jelastic platform
+- `${env.domain}` - full domain name without protocol
+- `${env.appid}` - unique environment appid at the Jelastic platform
 
 For instance: 
 
