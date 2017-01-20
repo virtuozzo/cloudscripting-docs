@@ -319,7 +319,7 @@ Here, the *main settings* form appears during installation process.
 
 ![settingMain](/img/SettingsMain.jpg)   
 
-The *config settings* form appears after clicking the <b>Configure</b> button within the add-ons section.   
+The *config settings* form appears after clicking the <b>Configure</b> button within the Add-ons section.   
 
 ![settingCustom](/img/SettingsCustom.jpg)     
 
