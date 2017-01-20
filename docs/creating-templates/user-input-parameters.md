@@ -656,7 +656,7 @@ where:
     - **isRunning** - check if environment status is *running*  
     - **shortdomain** - short environment domain name (without platform URL)  
     - **displayName** - environment *displayName*  
-    - **appid** - unique environment id     
+    - **appid** - unique environment ID     
 
 ###popupselector     
 (*popup-selector* is an alias)     
