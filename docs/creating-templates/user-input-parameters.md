@@ -38,8 +38,8 @@ where:
         * `text`  - [multiline](/creating-templates/user-input-parameters/#text) text field                                                                                                         
         * `list` - dropdown menu with non-editable textboxes (see more details with example [here](/creating-templates/user-input-parameters/#list))                                           
         * `checkbox` - single [checkbox field](/creating-templates/user-input-parameters/#checkbox)                     
-        * `checkboxlist` - checkbox [grouping](/creating-templates/user-input-parameters/#checkboxlist)                            
-        * `radiolist` - radio field [grouping](/creating-templates/user-input-parameters/#radiolist)                   
+        * `checkboxlist` - [checkbox](/creating-templates/user-input-parameters/#checkboxlist) grouping                             
+        * `radiolist` - [radio field](/creating-templates/user-input-parameters/#radiolist) grouping                       
         * `radio-fieldset` - alias to `radiolist`              
         * `dockertags` - dropdown menu with a list of docker tags (see more details with example [here](/creating-templates/user-input-parameters/#dockertag))                   
         * `compositefield` - [component](/creating-templates/user-input-parameters/#compositefield) that comprises any available field    
