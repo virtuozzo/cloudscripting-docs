@@ -49,7 +49,7 @@ Each event refers to a particular entity. For example, the entry point for execu
 where:
 
 - `jpsType` - *install* type presupposes a creation of a new environment with a predefined set of `nodes`                               
-- `globals` - creating [custom global placeholder](/reference/placeholders/#custom-global-placeholders) named *customDirectory*                    
+- `globals` - creating a [custom global placeholder](/reference/placeholders/#custom-global-placeholders) named *customDirectory*                    
 - `onInstall` - first event that will be executed upon environment installation, i.e. creating a new *CloudSCripting* directory                           
 - `onAfterScaleOut` - event that will be performed upon new compute node addition, namely writing the appropriate message to the <b>*addedNodes.txt*</b> file                     
 - `onAfterRestartNode` - event that will be triggered upon restarting a compute node, viz. writing a message to the <b>*fileaddedNodes.txt*</b> file with a record on which node has been restarted               
