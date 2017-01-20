@@ -16,7 +16,7 @@ If it's not possible, the placeholder will be unresolved and displayed in the te
     - `displayName` *[string]* - application display name
     - `envName` *[string]* - short domain name (without hoster *URL*)
     - `shortdomain` *[string]* - short domain name (alias to `envName`)
-    - `hardwareNodeGroup` *[string]* - hardware node node group
+    - `hardwareNodeGroup` *[string]* - hardware node group
     - `ssl` *[boolean]* - env SSL status
     - `sslstate` *[boolean]* - env SSL state
     - `status` *[number]* - environment status. The available statuses are: 1 - *running*, 2 - *down*, 3 - *launching*, 4 - *sleep*, 5 - *creating*, 6 - *cloning*, 7 - *exists*. 
