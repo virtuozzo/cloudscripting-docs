@@ -463,12 +463,12 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                            
 - `loginCredentials` - root creadentials for a new node                    
-    - `user` - your custom user name                    
-    - `password` - your custom password                 
+    - `user` - user name                    
+    - `password` - password                 
 - `newDatabaseName` - your custom database name              
 - `newDatabaseUser` - new user with privileges granted only for a new database instance                           
-    - `name` - custom user name     
-    - `password` - custom password   
+    - `name` - custom user name set for the new database  
+    - `password` - custom password generated for the new database 
 
 !!! note
     The function is executed only for `mysql5`, `mariadb` and `mariadb10` containers.                          
