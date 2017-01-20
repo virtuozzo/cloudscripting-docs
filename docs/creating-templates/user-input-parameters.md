@@ -220,7 +220,7 @@ Another sample with additional configurations: the next parameters can be enable
 where:
 
 - `settings` - custom form ID. The default is *'main'*.
-- `title` - custom dialog title. If absent, than `caption` will be applied.    
+- `title` - custom dialog title. If absent, then `caption` will be applied.    
 - `submitButtonText` - text for submission button in the opened dialog. The default value is *'Apply'*.   
 
 ![SubmitButtonText](/img/SubmitButtonText.jpg)  
