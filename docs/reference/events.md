@@ -70,7 +70,7 @@ If *jpsType* is set as **update**, *onInstall* is the first event to be performe
  
 ###onUninstall
 
-The *onUninstall* event can be called from the **Add-ons** tab at the Jelastic Dashboard.     
+The *onUninstall* event can be called from the **Add-ons** tab at the Jelastic dashboard.     
 This event is aimed at removing data, which was accumulated as a result of the *onInstall* action execution.           
 ![onUninstall](/img/addon-install.jpg)
 
@@ -81,111 +81,112 @@ The event will be executed before changing environment topology via the Jelastic
 **Event Placeholders:**      
 
 - `${event.params.}`:
-    - `session` - current user session
-    - `appid` - environment unique appid
-    - `nodes` - nodes description for change topology    
-    - `env` - environment settings: `engine`, `ssl`, `ha` etc 
-- `${event.response.}` parameters are absent.    
+    - `session` - current user session   
+    - `appid` - environment unique appid   
+    - `nodes` - nodes description for a topology change       
+    - `env` - environment settings, e.g. `engine`, `ssl`, `ha`, etc 
+- `${event.response.}` parameters are absent        
 
 ### onAfterChangeTopology
 
-Event execution will start when action *change Topology* will be finished.
+The event will be executed once the *changeTopology* action is finished.     
 
-Event placeholders:   
+**Event Placeholders:**   
 
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `domain` - cloned environment name    
 - `${event.response.}`:  
-    - `result` - result code. 0 is success action result.  
+    - `result` - result code. The successful action result is *'0"*.        
     - `nodeGroups` - node delays:     
         - `restartNodeDelay` - delay for restart    
         - `name` - node group name    
-        - `redeployContainerDelay` - delay for container redeploy     
-        - `redeployContextDelay` - delay for redeploy context     
-        - `restartContainerDelay` - delay for restart container    
-    - `nodes` - nodes array with detailed info about nodes. Full node placeholders [here](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders) 
-    - `env` - environment informartion. Full environment placehosders list [here](http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders)  
-    
+        - `redeployContainerDelay` - delay for container redeployment        
+        - `redeployContextDelay` - delay for context redeployment          
+        - `restartContainerDelay` - delay for container restart         
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).     
+    - `env` - environment information. Explore the full list of available [environment placehosders](http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders).      
+
 ### onBeforeScaleOut
 
-Event execution will start before the customer will add all new nodes to existing node Group (layer of nodes). New nodes can be added via [*change topology*](https://docs.jelastic.com/jelastic-dashboard-guide#change-topology) action or via [autoscaling feature](https://docs.jelastic.com/automatic-horizontal-scaling).
-Event will run only once for every nodeGroup. 
+The event will be executed before adding new node(s) (i.e. scaling *out*) to the existing node group (viz. layer). Scaling out/in can be performed either through [*changing topology*](https://docs.jelastic.com/jelastic-dashboard-guide#change-topology) or [auto horizontal scaling](https://docs.jelastic.com/automatic-horizontal-scaling) functionality.    
+The *onBeforeScaleOut* event will be run only once for each layer. 
 
-Event placeholders:    
-
-- `${event.params.}`:
-    - `count` - nodes count to scale into topology    
-    - `nodeGroup` - node group where will new nodes will be added      
-- `${event.response.}` parameters are absent.  
+**Event Placeholders:**    
+ 
+- `${event.params.}`: 
+    - `count` - number of nodes that are added     
+    - `nodeGroup` - node group that is scaled out       
+- `${event.response.}` parameters are absent        
 
 ### onAfterScaleOut
 
-Event execution will start after the customer will add all new nodes to existing node Group.
-Event will run only once for every nodeGroup. 
+The event will be executed after adding new node(s) to the existing node group. The *onAfterScaleOut* event will be run only once for each layer.   
 
-Event placeholders:  
+**Event Placeholders:**  
  
 - `${event.params.}`:   
-    - `count` - nodes count to scale into topology    
-    - `nodeGroup` - node group where will new nodes will be added 
+    - `count` - number of nodes that are added      
+    - `nodeGroup` - node group that is scaled out     
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about nodes. Full node placeholders [here](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders) 
-    
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).      
+
 ### onBeforeScaleIn
 
-Event will run before removing any stack node from Jelastic environment. Can be executed only once for every nodeGroup.
+The event will be executed before removing node(s) (i.e. scaling *in*) from the target node group. The *onBeforeScaleIn* event will be run only once for each layer.
 
-Event placeholders:   
+**Event Placeholders:**   
  
 - `${event.params.}`:
-    - `count` - nodes count to remove from topology
-    - `nodeGroup` - node group where will new nodes will be removed
+    - `count` - number of nodes that are removed    
+    - `nodeGroup` - node group that is scaled in   
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about nodes. Full node placeholders [here](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders) 
-    
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).      
+
 ### onAfterScaleIn
 
-Event will be run after removing any stack node from Jelastic environment. Can be executed only once for every nodeGroup.
+The event will be executed after scaling in the corresponding node group. The *onAfterScaleIn* event will be run only once for each layer.
 
-Event placeholders:     
+**Event Placeholders:**     
 
 - `${event.params.}`:   
-    - `count` - nodes count to remove from topology    
-    - `nodeGroup` - node group where will new nodes will be removed 
+    - `count` - number of nodes that are removed       
+    - `nodeGroup` - node group that is scaled in      
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about nodes. Full node placeholders [here](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders) 
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).    
 
 ###onBeforeServiceScaleOut
 
-Event will be executed before additing new docker containers to existing nodeGroup. Can be executed only once for every nodeGroup (nodes layer). Event available only for Docker containers.
+The event will be executed before adding new Docker container(s) to the existing node group. It will be run only once for each layer. 
+The *onBeforeServiceScaleOut* event is applicable only for Docker containers.
 
-Event placeholders:    
+**Event Placeholders:**    
 
 - `${event.params.}`:     
-    - `session` - current user session   
-    - `appid` - environment unique appid   
-    - `nodeId` - node identifier where event is executing   
-- `${event.response.}` parameters are absent.    
+    - `session` - current user session    
+    - `appid` - environment unique appid     
+    - `nodeId` - node identifier, where event is executed     
+- `${event.response.}` parameters are absent       
 
 ###onAfterServiceScaleOut   
 
-Event will be executed before removing docker containers to existing nodeGroup. Can be executed only once for every nodeGroup (nodes layer). Event available only for Docker containers.
+The event will be executed after adding new Docker container(s) to the existing node group. It will be run only once for each layer.
+The *onAfterServiceScaleOut* event is applicable only for Docker containers.  
 
-Event placeholders:    
+**Event Placeholders:**    
 
 - `${event.params.}`:    
-    - `session` - current user session    
-    - `appid` - environment unique appid   
-    - `nodeId` - node identifier where event is executing       
-- `${event.response.}` result code. 0 is success action result.     
+    - `session` - current user session     
+    - `appid` - environment unique appid     
+    - `nodeId` - node identifier, where event is executed       
+- `${event.response.}` result code. The successful action result is *'0'*.           
 
 ### onBeforeRestartNode
 
-Event will be executed before the restart node action will start. Event proceed on actions *restartNodeById* and *restartNodeByGroup*.
+The event will be triggered before restarting a node. It will be called before the corresponding *restartNodeById* and *restartNodeByGroup* actions.    
 
-Event placeholders:     
+**Event Placeholders:**     
 
 - `${event.params.}`:
     - `session` - current user session
@@ -195,7 +196,7 @@ Event placeholders:
 
 ### onAfterRestartNode
 
-Event will be executed after the restart node action will start. Event proceed on actions *restartNodeById* and *restartNodeByGroup*.
+The event will be triggered after restarting a node. It will be called subsequently upon the *restartNodeById* and *restartNodeByGroup* actions.
 
 Event placeholders:    
  
