@@ -566,13 +566,13 @@ The event is related to the *clone environment* action (performed via the Jelast
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.      
     - `nodeGroups` - node delays:     
-        - `restartNodeDelay` - delay for restart       
+        - `restartNodeDelay` - delay for node restart       
         - `name` - node group name    
-        - `redeployContainerDelay` - delay for container redeploy     
-        - `redeployContextDelay` - delay for redeploy context     
-        - `restartContainerDelay` - delay for restart container    
-    - `nodes` - nodes array with detailed info about nodes. Full node placeholders [here](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders) 
-    - `env` - environment informartion. Full environment placehosders list [here](http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders)    
+        - `redeployContainerDelay` - delay for container redeployment     
+        - `redeployContextDelay` - delay for context redeployment     
+        - `restartContainerDelay` - delay for container restart    
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).       
+    - `env` - environment information. Explore the full list of available [environment placehosders](http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders).       
 
 ### onBeforeDeploy
 
