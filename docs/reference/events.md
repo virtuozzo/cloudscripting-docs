@@ -110,8 +110,7 @@ The event will be executed once the *changeTopology* action is finished.
 
 ### onBeforeScaleOut
 
-The event will be executed before adding new node(s) (i.e. scaling *out*) to the existing node group (viz. layer). Scaling out/in can be performed either through [*changing topology*](https://docs.jelastic.com/jelastic-dashboard-guide#change-topology) or [auto horizontal scaling](https://docs.jelastic.com/automatic-horizontal-scaling) functionality.    
-The *onBeforeScaleOut* event will be run only once for each layer. 
+The event will be executed before adding new node(s) (i.e. scaling *out*) to the existing node group (viz. layer). Scaling out/in can be performed either through [*changing topology*](https://docs.jelastic.com/jelastic-dashboard-guide#change-topology) or [auto horizontal scaling](https://docs.jelastic.com/automatic-horizontal-scaling) functionality. The *onBeforeScaleOut* event will be run only once for each layer.    
 
 **Event Placeholders:**    
  
@@ -158,8 +157,7 @@ The event will be executed after scaling in the corresponding node group. The *o
 
 ###onBeforeServiceScaleOut
 
-The event will be executed before adding new Docker container(s) to the existing node group. It will be run only once for each layer. 
-The *onBeforeServiceScaleOut* event is applicable only for Docker containers.
+The event will be executed before adding new Docker container(s) to the existing node group. It will be run only once for each layer. The *onBeforeServiceScaleOut* event is applicable only for Docker containers.      
 
 **Event Placeholders:**    
 
@@ -171,8 +169,7 @@ The *onBeforeServiceScaleOut* event is applicable only for Docker containers.
 
 ###onAfterServiceScaleOut   
 
-The event will be executed after adding new Docker container(s) to the existing node group. It will be run only once for each layer.
-The *onAfterServiceScaleOut* event is applicable only for Docker containers.  
+The event will be executed after adding new Docker container(s) to the existing node group. It will be run only once for each layer. The *onAfterServiceScaleOut* event is applicable only for Docker containers.     
 
 **Event Placeholders:**    
 
@@ -198,103 +195,96 @@ The event will be triggered before restarting a node. It will be called before t
 
 The event will be triggered after restarting a node. It will be called subsequently upon the *restartNodeById* and *restartNodeByGroup* actions.
 
-Event placeholders:    
+**Event Placeholders:**     
  
 - `${event.params.}`:
-    - `session` - current user session
-    - `appid` - environment unique appid
-    - `nodeType` - node type where event is executing
-- `${event.response.}`:
-    - `nodeid` - restarted node identifier   
-    - `out` - success output message   
-    - `result` - result code. 0 is success action result.
+    - `session` - current user session    
+    - `appid` - environment unique appid   
+    - `nodeType` - node type, where event is executed
+- `${event.response.}`:    
+    - `nodeid` - restarted node's identifier     
+    - `out` - success output message       
+    - `result` - result code. The successful action result is *'0'*.     
 
 ### onBeforeDelete
 
-Event will be called before the action *delete Environment* will start.
+The event will be called before the *deleteEnvironment* action.       
 
-Event placeholders:   
+**Event Placeholders:**   
 
-- `${event.params.}`:   
-    - `session` - current user session   
-    - `appid` - environment unique appid   
-    - `password` - user password   
-- `${event.response.}` parameters are absent.  
+- `${event.params.}`:    
+    - `session` - current user session     
+    - `appid` - environment unique appid     
+    - `password` - user password     
+- `${event.response.}` parameters are absent      
 
 ### onAfterDelete
 
-Event will be called after the action *delete Environment* will start.
+The event will be called after the *deleteEnvironment* action.    
 
-Event placeholders:   
+**Event Placeholders:**   
 
 - `${event.params.}`:   
-    - `session` - current user session   
-    - `appid` - environment unique appid   
-    - `password` - user password
+    - `session` - current user session     
+    - `appid` - environment unique appid     
+    - `password` - user password  
 - `${event.response.}`:  
-    - `result` - result code. 0 is success action result.   
+    - `result` - result code. The successful action result is *'0'*.       
 
 ### onBeforeAddNode
 
-Event will be run before adding new node into environment.
+The event will be triggered before adding a new node to an environment. The *onBeforeAddNode* event will be executed for each new node. 
 
-The list of possible node groups:
+There are the following available node groups:     
+- *compute*
+- *db*
+- *balancer*
+- *build*
+- *VDS*
+- *cache*
+- *docker*
 
-- compute;
-- db;
-- balancer
-- build;
-- VDS
-- cache;
-- docker;
-
-Event will execute for every new node.
-
-Event placeholders:   
+**Event Placeholders:**   
 
 - `${event.params.}`:   
-    - `extip` *[boolean]* - external IP address with new node   
-    - `session` - current user session   
-    - `appid` - environment unique appid   
-    - `fixedCloudlets` - fixed cloudlets   
-    - `flexibleCloudlets` - flexible cloudlets   
-    - `ismaster` *[boolean]* - if true than new node will be first in current group   
-    - `nodeType` - predefined node type   
-- `${event.response.}` parameters are absent.   
+    - `extip` *[boolean]* - external IP address           
+    - `session` - current user session        
+    - `appid` - environment unique appid        
+    - `fixedCloudlets` - reserved cloudlets         
+    - `flexibleCloudlets` - dynamic cloudlets          
+    - `ismaster` *[boolean]* - if true, then a new node will be treated as first (i.e. master) one in the current layer     
+    - `nodeType` - predefined node type       
+- `${event.response.}` parameters are absent        
 
 ### onAfterAddNode
 
-Event will be run after adding new node into environment.
+The event will be triggered after adding a new node to an environment. The *onAfterAddNode* event will be executed for each new node.
 
-The list of possible node groups:
+There are the following available node groups:     
+- *compute*
+- *db*
+- *balancer*
+- *build*
+- *VDS*
+- *cache*
+- *docker*
 
-- compute;
-- db;
-- balancer
-- build;
-- VDS
-- cache;
-- docker;
-
-Event will execute for every new node.
-
-Event placeholders:   
+**Event Placeholders:**   
 
 - `${event.params.}`:   
-    - `extip` *[boolean]* - external IP address with new node    
-    - `session` - current user session   
-    - `appid` - environment unique appid   
-    - `fixedCloudlets` - fixed cloudlets   
-    - `flexibleCloudlets` - flexible cloudlets   
-    - `ismaster` *[boolean]* - if true than new node will be first in current group   
-    - `nodeType` - predefined node type   
+    - `extip` *[boolean]* - external IP address         
+    - `session` - current user session      
+    - `appid` - environment unique appid
+     - `fixedCloudlet`- reserved cloudlets     
+     - `flexibleCloudlets` - dynamic cloudlets        
+    - `ismaster` *[boolean]* - then a new node will be treated as first (i.e. master) one in the current layer        
+    - `nodeType` - predefined node type         
 - `${event.response.}`:  
-    - `result` - result code. 0 is success action result.  
+    - `result` - result code. The successful action result is *'0'*.        
 
 ### onBeforeCloneNodes
 
-Event will be executed before cloning node in environment. 
-Event avaible only when nodeGroup doesn't *docker* and only for such *node groups*:
+The event will be performed before cloning node in the environment. The event aplicable only for the next node groups:
 
 - compute;
 - balancer;
