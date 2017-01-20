@@ -579,7 +579,7 @@ Nesting a JPS manifest inside the current manifest file. The nested JPS manifest
 
 **Examples**
 
-**Installing add-on via the external link (with *update* `JpsType`):**
+Installing add-on via the external link (with **update** *JpsType*):
 ```
 {
   "installJps" : {
@@ -595,7 +595,7 @@ where:
 - `jps` - *URL* to your custom JPS manifest  
 - `settings` - [user custom form](/creating-templates/user-input-parameters/)  
 
-**Installing add-on from the local manifest:**
+Installing add-on from the local manifest:
 ```
 {
   "installJps" : {
@@ -611,7 +611,7 @@ where:
 
 - `onInstall` - entry point for performed actions                                 
 
-**Installing a new environment via the external link (with *install* `JpsType`):**
+Installing a new environment via the external link (with **install** *JpsType*):
 ```
 {
   "installJps" : {
@@ -629,7 +629,7 @@ where:
 - `envName` - short domain name of a new environment                                   
 - `settings` - [user custom form](/creating-templates/user-input-parameters/)                          
 
-**Installing a new environment from the local manifest:**
+Installing a new environment from the local manifest:
 ```
 {
   "installJps" : {
