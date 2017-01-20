@@ -325,7 +325,7 @@ You can use the following placeholders, as well, with the definite `nodeType`. F
 - `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*  
 - `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*      
 
-Explore the full list of the [Jelastic native container types](/reference/container-types/#jelastic-native-container-types).                  
+Explore the full list of the [Jelastic native container](/reference/container-types/#jelastic-native-container-types).                  
 
 The list of single placeholders:   
 - `${nginxphp.NGINX_CONF}` - */etc/nginx/nginx.conf*   
