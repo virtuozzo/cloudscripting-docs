@@ -377,7 +377,7 @@ Available for all nodes
 where:               
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                   
-- `true` or `false` - parameter that allows to attach or deatach external IP address                              
+- `true` or `false` - parameter that allows to attach or detach external IP address                              
 
 ### RestartNodes
 Available for all nodes (except for *Elastic VPS*)
