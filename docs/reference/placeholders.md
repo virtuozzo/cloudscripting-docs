@@ -121,7 +121,7 @@ Learn more about the event placeholders within the above-linked *Events* page.
 
 ## Input Parameters
 - `${settings.jelastic_email}` - user's email, which is always predefined    
-- `${settings.key}` - (where *key* is a name of the application setting) - the placeholder is defined in case user input parameters are specified within a manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.     
+- `${settings.key}` - (where *key* is a name of the application setting)ю The placeholder is defined in case user input parameters are specified within a manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.     
 
 For example:
 ```example
