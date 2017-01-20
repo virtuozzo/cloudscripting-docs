@@ -55,7 +55,7 @@ where:
     Where:    
     - **cmd** - is equal to a Base64 encoded string: **yes | (cmd1;cmd2)**. In case your commands require the interactive input, by default the Cloud Scripting executor will always try to give a positive answer using **yes** utility.        
     - **user** - a default system user with restricted permissions    
-- `sayYes` *[optional]* - the parameter that enables or disables using **yes** utility. The default value is *'true'*.                  
+- `sayYes` *[optional]* - parameter that enables or disables using **yes** utility. The default value is *'true'*.                  
 
 A single SSH command can be passed in a string. For example, executing a bash script from *URL* for all *Tomcat 6* nodes:                 
 ```example 
