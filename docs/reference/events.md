@@ -782,221 +782,209 @@ The event will be executed after the *linkDockerNodes* action. This event will b
 
 ### onBeforeUnlinkDockerNodes
 
-Event will be executed before the action *unLinkDockerNodes* will run. This event will execute for every unlinking containers action.
-For Docker containers only
+This event is executed before the *unLinkDockerNodes* action and is run for each unlinking containers action. The *onBeforeUnlinkDockerNodes* event is applied for Docker containers only.      
 
-Event placeholders:   
+**Event Placeholders:**     
 
 - `${event.params.}`:   
-    - `session` - current user session   
-    - `appid` - environment unique appid    
-    - `alias` - alias for unlinks nodes        
-    - `sourceNodeId` - source node for links storage       
-    - `targetNodeId` - target node for links storage    
-    - `isAutoRestart` *[boolean]* - auto restart after links
+    - `session` - current user session     
+    - `appid` - environment unique appid       
+    - `alias` - alias for unlinking nodes          
+    - `sourceNodeId` - source node for links storage        
+    - `targetNodeId` - target node for links storage      
+    - `isAutoRestart` *[boolean]* - auto restart after unlinking   
 - `${event.response.}`:  
-    - `result` - parameters are absent. 
-    
+    - `result` - parameters are absent   
+
 ### onAfterUnlinkDockerNodes
 
-Event will be executed after the action *unLinkDockerNodes* will run. This event will execute for every unlinking containers action.
-For Docker containers only
+This event is executed after the *unLinkDockerNodes* action and is run for each unlinking containers action. The *onAfterUnlinkDockerNodes* event is applied for Docker containers only.  
 
-Event placeholders:   
+**Event Placeholders:**       
 
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid    
-    - `alias` - alias for unlinks nodes        
+    - `alias` - alias for unlinking nodes        
     - `sourceNodeId` - source node for links storage       
-    - `targetNodeId` - target node for links storage    
-    - `isAutoRestart` *[boolean]* - auto restart after links
+    - `targetNodeId` - target node for links storage     
+    - `isAutoRestart` *[boolean]* - auto restart after unlinking   
 - `${event.response.}`:  
-    - `result` - result code. 0 is success action result.
+    - `result` - result code. The successful action result is *'0'*.       
 
 ### onBeforeSetDockerEnvVars
 
-Event will be executed before the [action *setDockerEnvVars*](/reference/docker-actions/#docker-environment-variables) will run. This event will execute for every docker container which sets environment variables action. 
-For Docker containers only
+The event will be triggered before the [*setDockerEnvVars*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting environment variables. The *onBeforeSetDockerEnvVars* event is applied for Docker containers only.     
 
-Event placeholders:   
+**Event Placeholders:**   
 
 - `${event.params.}`:   
-    - `session` - current user session   
-    - `appid` - environment unique appid    
-    - `nodeId` - curent node identifier        
-    - `data` - variables set for container       
+    - `session` - current user session     
+    - `appid` - environment unique appid      
+    - `nodeId` - curent node identifier          
+    - `data` - variables set for a container         
 - `${event.response.}`:  
-    - `result` - parameters are absent. 
-    
+    - `result` - parameters are absent     
+
 ### onAfterSetDockerEnvVars
 
-Event will be executed after the [action *setDockerEnvVars*](/reference/docker-actions/#docker-environment-variables) will run. This event will execute for every docker container which sets environment variables action. 
-For Docker containers only
+The event will be triggered before the [*setDockerEnvVars*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting environment variables. The *onAfterSetDockerEnvVars* event is applied for Docker containers only.
 
-Event placeholders:   
+**Event Placeholders:**    
 
-- `${event.params.}`:   
+- `${event.params.}`:    
     - `session` - current user session   
     - `appid` - environment unique appid    
     - `nodeId` - curent node identifier        
-    - `data` - variables set for container     
+    - `data` - variables set for a container       
 - `${event.response.}`:  
-    - `result` - result code. 0 is success action result.
-    
+    - `result` - result code. The successful action result is *'0'*.    
+
 ### onBeforeSetDockerEntryPoint
 
-Event will be executed before the [action *setDockerEntryPoint*](/reference/docker-actions/#docker-environment-variables) will run. This event will execute for every docker container which sets entry point action. 
-For Docker containers only
+This event will be called before the [*setDockerEntryPoint*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting the entry point. The *onBeforeSetDockerEntryPoint* event is applied for Docker containers only.   
 
-Event placeholders:   
+**Event Placeholders:**   
 
 - `${event.params.}`:   
-    - `session` - current user session   
-    - `appid` - environment unique appid    
-    - `nodeId` - curent node identifier        
-    - `data` - entry point set for container       
+    - `session` - current user session    
+    - `appid` - environment unique appid     
+    - `nodeId` - curent node identifier         
+    - `data` - entry point set for a container         
 - `${event.response.}`:  
-    - `result` - parameters are absent. 
-    
+    - `result` - parameters are absent    
+
 ### onAfterSetDockerEntryPoint
 
-Event will be executed after the [action *setDockerEntryPoint*](/reference/docker-actions/#docker-environment-variables) will run. This event will execute for every docker container which sets entry point action.
-For Docker containers only
+This event will be called after the [*setDockerEntryPoint*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting the entry point. The *onAfterSetDockerEntryPoint* event is applied for Docker containers only.    
 
-Event placeholders:   
+**Event Placeholders:**   
 
 - `${event.params.}`:   
-    - `session` - current user session   
-    - `appid` - environment unique appid    
-    - `nodeId` - curent node identifier        
-    - `data` - entry point set for container     
+    - `session` - current user session     
+    - `appid` - environment unique appid      
+    - `nodeId` - curent node identifier          
+    - `data` - entry point set for a container       
 - `${event.response.}`:  
-    - `result` - result code. 0 is success action result.
-    
+    - `result` - result code. The successful action result is *'0'*.    
+
 ### onBeforeSetDockerRunCmd
 
-Event will be executed before the [action *setDockerRunCmd*](/reference/docker-actions/#docker-environment-variables) will run. This event will execute for every docker container which sets run commands action.
-For Docker containers only
+The event will be executed before the [*setDockerRunCmd*](/reference/docker-actions/#docker-environment-variables) action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
 
-Event placeholders:   
+**Event Placeholders:**   
 
 - `${event.params.}`:   
-    - `session` - current user session   
-    - `appid` - environment unique appid    
-    - `nodeId` - curent node identifier        
-    - `data` - run cmd set for container       
+    - `session` - current user session     
+    - `appid` - environment unique appid      
+    - `nodeId` - curent node identifier          
+    - `data` - run cmd set for a container         
 - `${event.response.}`:  
-    - `result` - parameters are absent. 
+    - `result` - parameters are absent    
     
 ### onAfterSetDockerRunCmd
 
-Event will be executed after the [action *setDockerRunCmd*](/reference/docker-actions/#docker-environment-variables) will run. This event will execute for every docker container which sets run commands action.
-For Docker containers only
+The event will be executed after the [*setDockerRunCmd*](/reference/docker-actions/#docker-environment-variables) action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
 
-Event placeholders:   
+**Event Placeholders:**    
 
 - `${event.params.}`:   
-    - `session` - current user session   
-    - `appid` - environment unique appid    
-    - `nodeId` - curent node identifier        
-    - `data` - run cmd set for container     
+    - `session` - current user session      
+    - `appid` - environment unique appid      
+    - `nodeId` - curent node identifier          
+    - `data` - run cmd set for a container       
 - `${event.response.}`:  
-    - `result` - result code. 0 is success action result.
-    
+    - `result` - result code. The successful action result is *'0'*.     
+
 ### onBeforeStartDockerService
 
-Event will execute every time when Docker RunCmd commands will be execute. So this event will execute always for each docker container. For example, before starting container, restarting container and start environment.
-For Docker containers only.
+This event will be executed each time before running the Docker *RunCmd* commands. Thus, it will be always carried out for each docker container action, e.g. before starting/restarting container and starting environment.
 
-Event placeholders:   
+**Event Placeholders:**   
 
 - `${event.params.}`:   
-    - `session` - current user session   
-    - `appid` - environment unique appid    
-    - `nodeId` - curent node identifier        
+    - `session` - current user session     
+    - `appid` - environment unique appid      
+    - `nodeId` - curent node identifier          
 - `${event.response.}`:  
-    - `result` - parameters are absent. 
-    
+    - `result` - parameters are absent 
+
 ### onAfterStartDockerService
 
-Event will execute every time when Docker RunCmd commands will be execute. So this event will execute always for each docker container. For example, after starting container, restarting container and start environment.
-For Docker containers only
+This event will be executed each time after running the Docker *RunCmd* commands. 
 
-Event placeholders:   
+**Event Placeholders:**   
 
 - `${event.params.}`:   
-    - `session` - current user session   
-    - `appid` - environment unique appid    
-    - `nodeId` - curent node identifier        
+    - `session` - current user session    
+    - `appid` - environment unique appid      
+    - `nodeId` - curent node identifier          
 - `${event.response.}`:  
-    - `result` - result code. 0 is success action result.
-    
+    - `result` - result code. The successful action result is *'0'*.   
+
 ### onBeforeAddDockerVolume
 
-Event will perform before adding volumes into docker container. It will execute once for every Docker container.
-For Docker containers only
+The event will be performed before adding volumes to Docker container. It will be executed once for each Docker container.
 
-Event placeholders:   
+**Event Placeholders:**    
 
 - `${event.params.}`:   
-    - `session` - current user session   
-    - `appid` - environment unique appid    
-    - `nodeGroup` - curent node group      ,
-    - `path` - volume path    
+    - `session` - current user session    
+    - `appid` - environment unique appid     
+    - `nodeGroup` - curent node group        
+    - `path` - volume path      
 - `${event.response.}`:  
-    - `result` - parameters are absent. 
-    
+    - `result` - parameters are absent     
+
 ### onAfterAddDockerVolume
 
-Event will perform after adding volumes into docker container. It will execute once for every Docker container.
-For Docker containers only
+This event will be performed after adding volumes to Docker container. It will be executed once for each Docker container.
 
-Event placeholders:   
+**Event Placeholders:**      
 
 - `${event.params.}`:   
-    - `session` - current user session   
-    - `appid` - environment unique appid    
-    - `nodeGroup` - curent node group      ,
-    - `path` - volume path      
+    - `session` - current user session     
+    - `appid` - environment unique appid      
+    - `nodeGroup` - curent node group        
+    - `path` - volume path        
 - `${event.response.}`:  
-    - `result` - result code. 0 is success action result.
-    
+    - `result` - result code. The successful action result is *'0'*.   
+
 ### onBeforeRemoveDockerVolume
 
-Event will perform before removing volumes into docker container. It will execute once for every Docker container.
-For Docker containers only
+The *onBeforeRemoveDockerVolume* event will be called before removing volumes from Docker container. It will be executed once for each Docker container.
 
-Event placeholders:   
+**Event Placeholders:**  
 
 - `${event.params.}`:   
-    - `session` - current user session   
-    - `appid` - environment unique appid    
-    - `nodeGroup` - curent node group      ,
+    - `session` - current user session     
+    - `appid` - environment unique appid      
+    - `nodeGroup` - curent node group       
     - `path` - volume path    
 - `${event.response.}`:  
-    - `result` - parameters are absent. 
-    
+    - `result` - parameters are absent 
+
 ### onAfterRemoveDockerVolume
 
-Event will perform after removing volumes into docker container. It will execute once for every Docker container.
-For Docker containers only
+The *onAfterRemoveDockerVolume* event will be triggered after removing volumes from Docker container. It will be executed once for each Docker container.
 
-Event placeholders:   
+**Event Placeholders:**    
 
 - `${event.params.}`:   
-    - `session` - current user session   
-    - `appid` - environment unique appid    
-    - `nodeGroup` - curent node group
-    - `path` - volume path      
+    - `session` - current user session     
+    - `appid` - environment unique appid      
+    - `nodeGroup` - curent node group  
+    - `path` - volume path        
 - `${event.response.}`:  
-    - `result` - result code. 0 is success action result.
-    
+    - `result` - result code. The successful action result is *'0'*.      
+
 ## Events filtering
 
-Optionally, events can be filtered by *nodeGroup*, *nodeType* and *nodeId* parameters. As a result, the defined actions will be executed only when the called event matches specified filter rules. 
+Optionally, events can be filtered by *nodeGroup*, *nodeType* and *nodeId* parameters. As a result, the defined actions will be executed only when the called event matches specified filtering rules. 
 <br><br>
-Otherwise (i.e. if no filtering rules are specified), every Event is listened by all environment entities.
+Otherwise (i.e. if no filtering rules are specified), every **Event** is listened by all environment entities.
+
+<b>Examples</b>
 
 ###By nodeGroup
 ```
