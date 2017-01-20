@@ -569,7 +569,7 @@ Setting a delay that is measured in milliseconds. The below example shows how to
 }
 ```
 
-### installJps
+### InstallJps
 Nesting a *JPS* manifest inside the current manifest file. The nested *JPS* manifest will be installed subsequently after the current one. The action is available for **install** and **update** *jpsType* modes.                              
 
 **Examples**
