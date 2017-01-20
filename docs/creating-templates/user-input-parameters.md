@@ -412,7 +412,7 @@ where:
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*. 
 
 ###checkboxlist   
-The *checkbox* grouping.  
+The checkbox grouping.  
 
 ![text](/img/checkboxlist.jpg)  
 ```
@@ -437,7 +437,7 @@ where:
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 
 ###radiolist   
-The *radio* elements grouping.  
+The radio elements grouping.  
 
 ![text](/img/radiolist.jpg)  
 ```
@@ -462,7 +462,7 @@ where:
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.  
 
 ###radio-fieldset    
-The groupping of the *radio* elements with the `showIf` function.     
+The groupping of the radio elements with the `showIf` function.     
 
 !!! note
     The *hideLabel* boolean value is always *true* for this field.   
@@ -511,7 +511,7 @@ where:
 - `caption` *[optional]* - field label
 
 ###dockertag    
-Displaying Docker tags within the `list` element.  
+Displaying Docker tags within the list element.  
 
 ![text](/img/dockertag.jpg)  
 ```
@@ -552,7 +552,7 @@ where:
 - `env` - required object (can be empty) 
 
 ###compositefield      
-The *compositefield* is a container with specific functionality and structural components that constitute it as the block for application-oriented custom user interfaces.  
+The compositefield is a container with specific functionality and structural components that constitute it as the block for application-oriented custom user interfaces.  
 
 ![compositefield](/img/compositefield.jpg)  
 ```
@@ -659,7 +659,7 @@ where:
     - **appid** - unique environment id     
 
 ###popupselector     
-(`popup-selector` is an alias)     
+(*popup-selector* is an alias)     
 
 Opens pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.  
 
@@ -696,7 +696,7 @@ where:
 - `params` - parameters for sending in POST request to `URL` source     
 
 ###displayfield    
-(`spacer` is an alias)    
+(*spacer* is an alias)    
 
 The text field intended only for display, which is not validated and not submitted.  
 
@@ -748,7 +748,7 @@ where:
 - `decimanPrecision` - precision value  
 
 ###numberpicker   
-(`number-picker` is an alias)  
+(*number-picker* is an alias)  
 
 The text field with a number validation within range.   
 
@@ -776,7 +776,7 @@ where:
 - `editable` *[optional] [boolean]* - enables/disables editing the `numberpicker` field. The default value is *'false'*.  
 
 ###hostpicker    
-(`host-picker` is an alias)  
+(*host-picker* is an alias)  
 
 The dropdown menu with the environments hosts.  
 
