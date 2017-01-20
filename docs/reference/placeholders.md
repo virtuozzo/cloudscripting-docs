@@ -105,10 +105,9 @@ For example:
 - `{nodes.cp[1].address}` - IP address of the second compute node  
 - `{nodes.bl.first.address}` - first IP address of a balancer node in the `nodeGroup` array  
 - `{nodes.db.last.address}` - last IP address of a compute node     
-  
+
 ## Event Placeholders
-Event placeholders represent a set of dynamic parameters, which are executed as a result of a certain [event](/reference/events/) occurrence.                   
-Herewith, all event placeholders have their custom set of parameters and begin with the default keywords:                       
+Event placeholders represent a set of dynamic parameters, which are executed as a result of a certain [event](/reference/events/) occurrence. Herewith, all event placeholders have their custom set of parameters and begin with the default keywords:                         
 - `${event.params.(key)}` - where *key* is a name of event parameter                     
 - `${event.response.(key)}` -where *key* is a name of event response parameter             
 
