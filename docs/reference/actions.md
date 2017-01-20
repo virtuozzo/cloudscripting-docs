@@ -675,7 +675,7 @@ where:
 ### Custom Actions
 The declarative code inside a manifest can be divided into separate blocks, named **actions**. Subsequently, the particular actions can be run by means of appealing to call actions with different parameters.             
 
-The example below shows how to create a new file (e.g. the *example.txt* file in the *tmp* directory) by executing a *createFile* action at the compute node:                
+The example below shows how to create a new file (e.g. the <b>*example.txt*</b> file in the <b>*tmp*</b> directory) by executing a *createFile* action at the compute node:                
 ```
 {
   "jpsType": "update",
@@ -687,7 +687,7 @@ The example below shows how to create a new file (e.g. the *example.txt* file in
 ```
 where: 
 
- - `createFile` - corresponding *createFile* [action](#createfile)               
+ - `createFile` - corresponding [*createFile* action](#createfile)               
 
 The next example illustrates how to create a new custom action (i.e. *customAction*), which can be called for several times:                                      
 
@@ -713,7 +713,7 @@ In order to access any required data or parameters of allocated resources inside
 
 #### Code Reuse
 
-Outputting `Hello World!` twice in the *greeting.txt*:  
+Outputting *Hello World!* twice in the <b>*greeting.txt*</b>:  
 ```
 {
   "jpsType": "update",
@@ -769,7 +769,7 @@ where:
 
 - `fileName` - additional parameter
 
-Writing `Hello World!` and outputting first and second compute node's IP address:                                    
+Writing *Hello World!* and outputting first and second compute node's IP address:                                    
 ```
 {
 	"jpsType": "update",
