@@ -51,7 +51,7 @@ If it's not possible, the placeholder will be unresolved and displayed in the te
         - `contextValidatorRegex` - validation for context names    
         - `diskIopsLimit` - IOPS limitation quota   
         - `diskLimit` - hardware node disk space quota  
-        - `endpoints` [*array indexes*] - setting [endpoints](https://docs.jelastic.com/endpoints) functionality                         
+        - `endpoints` [*array indexes*] - [endpoints](https://docs.jelastic.com/endpoints) functionality                         
             - `domain` - full domain name of the node the endpoint is being set for                  
             - `id` - node ID  
             - `name` - title for the new endpoint (can be either custom or [predefined](https://docs.jelastic.com/endpoints#preconfigured))                
