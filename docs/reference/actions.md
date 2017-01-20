@@ -150,6 +150,11 @@ Available for compute nodes (except for *Docker* containers)
   ]
 }
 ```
+where:
+
+- `archive` - *URL* to the archive with a compressed application
+- `name` - set application's name, that will be displayed at the dashboard
+- `context`- specify the desired context for your app
 
 ### Upload
 Available for all nodes
