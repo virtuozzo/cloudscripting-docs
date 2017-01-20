@@ -3,10 +3,6 @@
 Any action, available to be performed by means of API (including custom users’ scripts running), should be bound to some event, i.e. executed as a result of this event occurrence.
 Each event refers to a particular entity. For example, the entry point for executing any action with application is the *onInstall* event.
 <br>
-<br>
-Subscription to a particular application lifecycle event (e.g. topology change) can be done via [Environment Level Events](#environment-level-events).
-It’s also possible to bind extension execution to the *onUninstall* event - in such a way, you can implement custom logic of this extension removal from an environment.
-
 ## Events Subsribtion Example
 ```
 {
@@ -52,13 +48,12 @@ It’s also possible to bind extension execution to the *onUninstall* event - in
 ```
 where:
 
-- `jpsType` - *install* type means that new environment with `nodes` will be created.  
-- `globals` - create [Custom Global Placeholder](/reference/placeholders/#custom-global-placeholders) named customDirectory 
-- `onInstall` - first event which will be executed when environment will been installed - create new folder *CloudSCripting* in directory 
-- `onAfterScaleOut` - event will be performed after new compute node has been added - write message into file *addedNodes.txt*  
-- `onAfterRestartNode` - event will be performed after restart compute node - write message into file *addedNodes.txt* what node has been restarted
-                            
-                            
+- `jpsType` - *install* type presupposes a creation of a new environment with a predefined set of `nodes`                               
+- `globals` - creating [custom global placeholder](/reference/placeholders/#custom-global-placeholders) named *customDirectory*                    
+- `onInstall` - first event that will be executed upon environment installation, i.e. creating a new *CloudSCripting* directory                           
+- `onAfterScaleOut` - event that will be performed upon new compute node addition, namely writing the appropriate message to the <b>*addedNodes.txt*</b> file                     
+- `onAfterRestartNode` - event that will be triggered upon restarting a compute node, viz. writing a message to the <b>*fileaddedNodes.txt*</b> file with a record on which node has been restarted               
+
 ##Event Execution Rules
 - Such events as *Install* & *Uninstall* application, as well as *BeforeDelete* and *AfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.
 - The *ScaleIn*, *ScaleOut* and *ServiceScaleOut* events are called once upon any node count change. Herewith, count of the *addNode* or *removeNode* actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.
@@ -70,20 +65,20 @@ where:
 
 ### onInstall
 
-**onInstall** is an entry point for actions execution.
-In case `jpsType` is *install*, event **onInstall** will be executed right after environment creation. In case `jpsType` is *update*, **onInstall** event is performed first event while manifest instalation.
+The *onInstall* event is the entry point for executing any action. In case *jpsType* is **install**, the *onInstall* event will be carried out right after environment creation.      
+If *jpsType* is set as **update**, *onInstall* is the first event to be performed during the manifest installation.      
  
 ###onUninstall
 
-*onUninstall* event can be called from Add-ons tab in Jelastic Dashboard.
-This event means to do actions for removing data which were installed by *onInstall* action.
+The *onUninstall* event can be called from the **Add-ons** tab at the Jelastic Dashboard.     
+This event is aimed at removing data, which was accumulated as a result of the *onInstall* action execution.           
 ![onUninstall](/img/addon-install.jpg)
 
 ### onBeforeChangeTopology
 
-Event will be executed before changing environment topology from Jelastic Dashboard.
+The event will be executed before changing environment topology via the Jelastic dashboard.
 
-Event placeholders:      
+**Event Placeholders:**      
 
 - `${event.params.}`:
     - `session` - current user session
