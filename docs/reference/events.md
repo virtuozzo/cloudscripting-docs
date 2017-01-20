@@ -284,136 +284,131 @@ There are the following available node groups:
 
 ### onBeforeCloneNodes
 
-The event will be performed before cloning node in the environment. The event aplicable only for the next node groups:
+The event will be performed before cloning node in the environment. The process of cloning nodes presupposes that new nodes are cloned from the existing ones. 
 
-- compute;
-- balancer;
-- VDS
+The *onBeforeCloneNodes* event is aplicable only for the next node groups (excluding Docker-based nodes):
+- *compute*
+- *balancer*
+- *VDS*
 
-Event placeholders:   
+**Event Placeholders:**   
 
 - `${event.params.}`:   
-    - `count` - nodes count to clone       
-    - `session` - current user session   
-    - `appid` - environment unique appid   
-    - `nodeGroup` - nodes group   
-    - `flexibleCloudlets` - flexible cloudlets     
+    - `count` - number of nodes to be cloned              
+    - `session` - current user session       
+    - `appid` - environment unique appid      
+    - `nodeGroup` - nodes group     
+    - `flexibleCloudlets` - dynamic cloudlets     
 - `${event.response.}`:  
-    - `result` - parameters are absent.  
+    - `result` - parameters are absent      
 
 ### onAfterCloneNodes
 
-Event will be executed after cloning node in environment. 
-By *cloning nodes* means that new nodes are clonned from existing. Event avaible only when nodeGroup doesn't *docker* and only for such *node groups*:
+The event will be performed after cloning node in the environment. 
 
-- compute;
-- balancer;
-- VDS
+The *onAfterCloneNodes* event is aplicable only for the next node groups (excluding Docker-based nodes):
+- *compute*
+- *balancer*
+- *VDS*
 
-Event placeholders:   
+**Event Placeholders:**   
 
 - `${event.params.}`:   
-    - `count` - nodes count to clone       
-    - `session` - current user session   
-    - `appid` - environment unique appid   
-    - `nodeGroup` - nodes group   
-    - `flexibleCloudlets` - flexible cloudlets        
-- `${event.response.}`:  
-    - `result` - result code. 0 is success action result.  
-    - `className` - class name for new node info - "com.hivext.api.server.system.persistence.SoftwareNode".   
+    - `count` - number of nodes to be cloned          
+    - `session` - current user session      
+    - `appid` - environment unique appid      
+    - `nodeGroup` - nodes group      
+    - `flexibleCloudlets` - dynamic cloudlets           
+- `${event.response.}`:     
+    - `result` - result code. The successful action result is *'0'*.       
+    - `className` - class name for a new node info, viz. *"com.hivext.api.server.system.persistence.SoftwareNode"*   
     - `array` - new nodes array   
 
 ### onBeforeLinkNode
 
-Event will be executed before linking nodes with each others for configure IP addresses. 
-It is available only for *node groups* - *compute* nodes and *balancers* in case if these nodes are not Docker containers. 
+The event will be executed before linking nodes to apply configurations to IP addresses. It is compatible only with *compute* and *balancer* node groups and exludes Docker-based nodes. 
 
-Event placeholders:   
+**Event Placeholders:**   
 
 - `${event.params.}`:   
-    - `parentNodes` - node identifiers for linking  
-    - `session` - current user session   
-    - `appid` - environment unique appid   
-    - `childNodes` - node identifier for linking with parents     
+    - `parentNodes` - node identifiers for linking      
+    - `session` - current user session       
+    - `appid` - environment unique appid       
+    - `childNodes` - node identifier for linking with parent nodes      
 - `${event.response.}`:  
-    - `result` - parameters are absent. 
+    - `result` - parameters are absent    
 
 ### onAfterLinkNode
 
-Event will be executed after linking nodes with each others for configure IP addresses. 
-It is available only for *node groups* - *compute* nodes and *balancers* in case if these nodes are not Docker containers. 
+The event will be executed after linking nodes to apply configurations to IP addresses. It is available only with *compute* and *balancer* node groups and exludes Docker-based nodes.
 
-Event placeholders:   
+**Event Placeholders:**   
 
 - `${event.params.}`:   
-    - `parentNodes` - node identifiers for linking  
-    - `session` - current user session   
-    - `appid` - environment unique appid   
-    - `childNodes` - node identifier for linking with parents          
+    - `parentNodes` - node identifiers for linking     
+    - `session` - current user session     
+    - `appid` - environment unique appid     
+    - `childNodes` - node identifier for linking with parent nodes          
 - `${event.response.}`:  
-    - `result` - result code. 0 is success action result.  
-    - `infos` - info with result codes about all nodes links:   
-        - `result` - result code   
+    - `result` - result code. The successful action result is *'0'*.      
+    - `infos` - info with result codes about all nodes' linkings:      
+        - `result` - result code     
 
 ### onBeforeAttachExtIp
 
-Event can handles custom actions before the action *attache Ext IP address* will execute.
-*onBeforeAttachExtIp* executes every time for each attaching IP address.
+The event can handle custom action before the *attache Ext IP address* action execution. The *onBeforeAttachExtIp* event is triggered each time upon the external IP address attachment.
 
-Event placeholders:   
+**Event Placeholders:**   
 
 - `${event.params.}`:   
-    - `nodeid` - node identifier for attaching external IP address    
-    - `session` - current user session   
-    - `appid` - environment unique appid      
+    - `nodeid` - node identifier for attaching external IP address        
+    - `session` - current user session      
+    - `appid` - environment unique appid         
 - `${event.response.}`:  
-    - `result` - parameters are absent. 
+    - `result` - parameters are absent      
 
 ### onAfterAttachExtIp
 
-Event can handles custom actions after the action *attache Ext IP address* will execute.
-*onAftereAttachExtIp* executes every time for each attaching IP address.
+The event can handle custom action after the *attache Ext IP address* action execution. The *onBeforeAttachExtIp* event is triggered each time upon the external IP address attachment.
 
-Event placeholders: 
+**Event Placeholders:**  
   
 - `${event.params.}`:   
-    - `parentNodes` - node identifiers for linking  
-    - `session` - current user session   
-    - `appid` - environment unique appid   
-    - `childNodes` - node identifier for linking with parents       
+    - `parentNodes` - node identifiers for attaching external IP address  
+    - `session` - current user session     
+    - `appid` - environment unique appid     
+    - `childNodes` - node identifier for attaching external IP address          
 - `${event.response.}`:  
-    - `result` - result code. 0 is success action result.  
-    - `obejct` *[String]* - attached extrenal IP address      
+    - `result` - result code. The successful action result is *'0'*.      
+    - `obejct` *[string]* - attached extrenal IP address         
 
 ### onBeforeDetachExtIp
 
-Event can handles custom actions before the action *deattache Ext IP address* will execute.
-*onBeforeDeattachExtIp* executes every time for each deattaching IP address.
+The event can handle custom action before the *detach Ext Ip address* action execution. The *onBeforeDetachExtIp* event is triggered each time upon the external IP address detachment.    
 
-Event placeholders:   
+**Event placeholders:**   
 
 - `${event.params.}`:   
-    - `nodeid` - node identifier for attaching external IP address    
-    - `session` - current user session   
-    - `appid` - environment unique appid    
-    - `ip` - deattached IP address   
+    - `nodeid` - node identifier for detaching external IP address       
+    - `session` - current user session     
+    - `appid` - environment unique appid      
+    - `ip` - detached IP address     
 - `${event.response.}`:  
-    - `result` - parameters are absent. 
+    - `result` - parameters are absent    
 
 ### onAfterDetachExtIp
 
-Event can handles custom actions after the action *deattache Ext IP address* will execute.
-*onBeforeDeattachExtIp* executes every time for each deattaching IP address.
+The event can handle custom action after the *detach Ext Ip address* action execution. The *onAfterDetachExtIp* event is triggered each time upon the external IP address detachment.
 
 Event placeholders:   
 
 - `${event.params.}`:   
-    - `nodeid` - node identifier for attaching external IP address    
-        - `session` - current user session   
-        - `appid` - environment unique appid    
-        - `ip` - deattached IP address    
+    - `nodeid` - node identifier for detaching external IP address       
+        - `session` - current user session     
+        - `appid` - environment unique appid      
+        - `ip` - deattached IP address      
 - `${event.response.}`:  
-    - `result` - parameters are absent.    
+    - `result` - parameters are absent       
   
 ### onBeforeUpdateVcsProject
 
