@@ -51,10 +51,10 @@ The *cmd* action executes [SSH](https://docs.jelastic.com/ssh-overview) commands
 where:       
      
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required). For a detailed guidance see the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) section.              
-- `cmd1` and `cmd2` - a set of commands that are being executed. Their values are wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**.     
+- `cmd1` and `cmd2` - set of commands that are being executed. Their values are wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**.     
     Where:    
     - **cmd** - is equal to a Base64 encoded string: **yes | (cmd1;cmd2)**. In case your commands require the interactive input, by default the Cloud Scripting executor will always try to give a positive answer using **yes** utility.        
-    - **user** - a default system user with restricted permissions    
+    - **user** - default system user with restricted permissions    
 - `sayYes` *[optional]* - parameter that enables or disables using **yes** utility. The default value is *'true'*.                  
 
 A single SSH command can be passed in a string. For example, executing a bash script from *URL* for all *Tomcat 6* nodes:                 
@@ -172,7 +172,7 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at                      
 - `sourcePath` - *URL* to download an external file                    
-- `destPath` - the container path, where the uploaded file is to be saved                         
+- `destPath` - container path, where the uploaded file is to be saved                         
 
 ### Unpack
 Available for all nodes
@@ -195,7 +195,7 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                    
 - `sourcePath` - *URL* to download an external archive   
-- `destPath` - the container path, where the uploaded archive is to be unpacked                               
+- `destPath` - container path, where the uploaded archive is to be unpacked                               
 
 ### CreateFile
 Available for all nodes
@@ -208,7 +208,7 @@ Available for all nodes
 where:   
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                          
-- `string` - a container path, where a file is to be created                              
+- `string` - container path, where a file is to be created                              
 
 ### CreateDirectory
 Available for all nodes
@@ -221,7 +221,7 @@ Available for all nodes
 where:  
 
 - `nodeId`, `nodGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                       
-- `string` - a container path, where a directory is to be created                         
+- `string` - container path, where a directory is to be created                         
 
 ### WriteFile
 Available for all nodes
@@ -243,7 +243,7 @@ Available for all nodes
 where:  
   
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                                      
-- `path` - the container path, where a file is to be written                
+- `path` - container path, where a file is to be written                
 - `body` - content saved to the file                                         
 
 ### AppendFile
@@ -266,7 +266,7 @@ Available for all nodes
 where:      
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                            
-- `path` - the container path, where a file is to be appended                                 
+- `path` - container path, where a file is to be appended                                 
 - `body` - content saved to the file                               
 
 ### ReplaceInFile
@@ -292,10 +292,10 @@ Available for all nodes
 where:   
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                       
-- `path` - the path, where a file is available               
-- `replacements` - the list of replacements within the node's configuration files                        
+- `path` - path, where a file is available               
+- `replacements` - list of replacements within the node's configuration files                        
     - `pattern` - regular expressions to find the string (e.g. `app\\.host\\.url\\s*=\\s*.*`)                   
-    - `replacement` - the string to replace. Herewith, you can use as replacement any string value, including any combination of [placeholders](placeholders/).                                 
+    - `replacement` - string to replace. Herewith, you can use as replacement any string value, including any combination of [placeholders](placeholders/).                                 
 
 <!-- DeletePath -->
 <!-- RenamePath --> 
@@ -325,16 +325,16 @@ where:
 ```
 where:
 
-- `nodeType` - the parameter defining software stack within a node. For a detailed guidance see the [Container Types](/reference/container-types/) page.                        
+- `nodeType` - parameter defining software stack within a node. For a detailed guidance see the [Container Types](/reference/container-types/) page.                        
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.                     
-- `fixedCloudlets` *[optional]* - a number of reserved cloudlets. The default value is *'0'*.                             
-- `flexibleCloudlets` *[optional]* - a number of dynamic cloudlets. The default value is *'1'*.                           
+- `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.                             
+- `flexibleCloudlets` *[optional]* - number of dynamic cloudlets. The default value is *'1'*.                           
 - `displayName` *[optional]* - node's display name (i.e. [alias](https://docs.jelastic.com/environment-aliases))                                  
     The following parameters are required for Docker nodes only:                          
 - `image` *[optional]* - name and tag of Docker image                            
 - `links` *[optional]* - Docker links                         
-    - `sourceNodeGroup` - a source node to be linked with a current node                                
-    - `alias` - a prefix alias for linked variables                         
+    - `sourceNodeGroup` - source node to be linked with a current node                                
+    - `alias` - prefix alias for linked variables                         
 - `env` *[optional]* - Docker environment variables                        
 - `volumes` *[optional]* - Docker node volumes               
 - `volumeMounts` *[optional]* - Docker external volumes mounts                             
@@ -377,7 +377,7 @@ Available for all nodes
 where:               
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                   
-- `true` or `false` - the parameter that allows to attach or deatach external IP address                              
+- `true` or `false` - parameter that allows to attach or deatach external IP address                              
 
 ### RestartNodes
 Available for all nodes (except for *Elastic VPS*)
@@ -429,8 +429,8 @@ Available for compute nodes (except for *Docker* containers)
 where:       
 
 - `name` - context’s name    
-- `fileName` - the name of the file to be displayed at the dashboard                         
-- `type` - the context type with the following possible values:                             
+- `fileName` - name of the file to be displayed at the dashboard                         
+- `type` - context type with the following possible values:                             
     - `ARCHIVE`    
     - `GIT`    
     - `SVN`    
@@ -466,9 +466,9 @@ where:
     - `user` - your custom user name                    
     - `password` - your custom password                 
 - `newDatabaseName` - your custom database name              
-- `newDatabaseUser` - a new user with privileges granted only for a new database instance                           
-    - `name` - the custom user name     
-    - `password` - the custom password   
+- `newDatabaseUser` - new user with privileges granted only for a new database instance                           
+    - `name` - custom user name     
+    - `password` - custom password   
 
 !!! note
     The function is executed only for `mysql5`, `mariadb` and `mariadb10` containers.                          
@@ -493,9 +493,9 @@ Available for *SQL* databases (except for *Docker* container)
 where:
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                                    
-- `databaseName` - the name of the database to be created                  
-- `user` - the user name in the database, on behalf of which the application will be used                
-- `password` - the password in the database, on behalf of which the application will be used                         
+- `databaseName` - name of the database to be created                  
+- `user` - user name in the database, on behalf of which the application will be used                
+- `password` - password in the database, on behalf of which the application will be used                         
 - `dump` - *URL* to the application's database dump                                
 
 ### ApplySqlPatch
@@ -518,9 +518,9 @@ Available for *SQL* databases (except for *Docker* containers)
 where:  
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                                   
-- `databaseName` - the name of the database for a patch to be applied                    
-- `user` - the user name in the database, on behalf of which the application will be used                                          
-- `password` - the password in the database, on behalf of which the application will be used                              
+- `databaseName` - name of the database for a patch to be applied                    
+- `user` - user name in the database, on behalf of which the application will be used                                          
+- `password` - password in the database, on behalf of which the application will be used                              
 - `patch` - *SQL* query or link to such a query. It is used only for *SQL* databases. Here, the [placeholders](placeholders/) support is available.                    
 
 !!! note
@@ -539,8 +539,8 @@ where:
 ```
 where:   
 
-- `script` - the script body or a link to it                                                
-- `type` *[optional]* - the script type with the following possible values (the default value is *'js'*):                                          
+- `script` - script body or a link to it                                                
+- `type` *[optional]* - script type with the following possible values (the default value is *'js'*):                                          
     - `js`    
     - `java`      
 - `params` *[optional]* - script parameters                               
@@ -604,7 +604,7 @@ where:
 ```
 where:
 
-- `onInstall` - an entry point for performed actions                                 
+- `onInstall` - entry point for performed actions                                 
 
 **Installing a new environment via the external link (with *install* `JpsType`):**
 ```
@@ -621,7 +621,7 @@ where:
 where: 
 
 - `jps` - *URL* to your custom JPS manifest                    
-- `envName` - a short domain name of a new environment                                   
+- `envName` - short domain name of a new environment                                   
 - `settings` - [user custom form](/creating-templates/user-input-parameters/)                          
 
 **Installing a new environment from the local manifest:**
@@ -645,10 +645,10 @@ where:
 where:
 
 - `region` - hardware node’s region                        
-- `envName` - a short domain name of a new environment                     
+- `envName` - short domain name of a new environment                     
 - `name` - JPS name  
-- `nodes` - an object of new nodes                   
-- `onInstall` - an entry point for performed actions               
+- `nodes` - object of new nodes                   
+- `onInstall` - entry point for performed actions               
 
 
 ### InstallAddon
@@ -663,7 +663,7 @@ where:
 ```
 where:  
 
-- `id` - an extension *ID* from the marketplace or from the add-ons section in the manifest                         
+- `id` - extension *ID* from the marketplace or from the add-ons section in the manifest                         
 
 <!-- add example -->
 
@@ -682,7 +682,7 @@ The example below shows how to create a new file (e.g. the *example.txt* file in
 ```
 where: 
 
- - `createFile` - the corresponding *createFile* [action](#createfile)               
+ - `createFile` - corresponding *createFile* [action](#createfile)               
 
 The next example illustrates how to create a new custom action (i.e. *customAction*), which can be called for several times:                                      
 
@@ -700,7 +700,7 @@ The next example illustrates how to create a new custom action (i.e. *customActi
 ```
 where:  
 
-- `actions` - an object, where custom actions can be predefined                                    
+- `actions` - object, where custom actions can be predefined                                    
 
 #### Action Placeholders
 
