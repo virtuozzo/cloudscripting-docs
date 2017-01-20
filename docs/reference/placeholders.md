@@ -1,5 +1,5 @@
 # Placeholders
-Cloud Scripting supports a list of placeholders that can be used in any section of the manifest file (if the section isn't strictly limited with its content). 
+Cloud Scripting supports a set of placeholders that can be used in any section of the manifest file (if the section isn't strictly limited with its content). 
 The executor makes an attempt to resolve all placeholders on the package installation stage.
 If it's not possible, the placeholder will be unresolved and displayed in the text as is (e.g. *${placeholder}*).
 
