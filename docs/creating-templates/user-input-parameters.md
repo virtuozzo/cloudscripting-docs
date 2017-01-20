@@ -240,7 +240,7 @@ By default, this menu contains the <b>Uninstall</b> option. The rest of listed a
 
 The used properties for custom menus are the same as for custom buttons. Herewith, the appropriate `menu` field (instead of `buttons`) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
 
-Sample to set custom buttons within the menu list of the add-ons plank:
+Sample to set custom buttons within the menu list of the Add-ons plank:
 ```
 {
   "jpsType": "update",
