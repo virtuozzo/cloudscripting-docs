@@ -552,7 +552,7 @@ where:
 - `env` - required object (can be empty) 
 
 ###compositefield      
-The `compositefield` is a container with specific functionality and structural components that constitute it as the block for application-oriented custom user interfaces.  
+The *compositefield* is a container with specific functionality and structural components that constitute it as the block for application-oriented custom user interfaces.  
 
 ![compositefield](/img/compositefield.jpg)  
 ```
