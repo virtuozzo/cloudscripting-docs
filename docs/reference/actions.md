@@ -668,7 +668,7 @@ where:
 ```
 where:  
 
-- `id` - extension *ID* from the marketplace or from the add-ons section in the manifest                         
+- `id` - extension ID from the **Marketplace** or from the **Add-ons** section in the manifest                         
 
 <!-- add example -->
 
