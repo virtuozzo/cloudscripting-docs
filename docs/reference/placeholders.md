@@ -98,7 +98,7 @@ If it's not possible, the placeholder will be unresolved and displayed in the te
             - `documentationurl` - redirect to page(s) with more info on the corresponding add-on                          
             - `iconurl` - add-on's logo                                               
             - `id` - ID of the installed package                       
-            - `isInstalled` - installation status, the possible values are *"true"* & *"false"*                      
+            - `isInstalled` - installation status, the possible values are *'true'* & *'false'*                      
     
 In case a few nodes are available within `nodeGroup`, you can execute actions in one of them.
 For example:    
