@@ -34,8 +34,8 @@ where:
 - `fields` - array of fields, which will be displayed in a custom form     
     - `showIf` - shows/hides field by condition (is applicable only to the *radio-fieldset* field)   
     - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:   
-        * `string` - basic [text field](/creating-templates/user-input-parameters/#string)                         
-        * `text`  - multiline [text field](/creating-templates/user-input-parameters/#text)                                                                                                      
+        * `string` - [basic](/creating-templates/user-input-parameters/#string) text field                                  
+        * `text`  - [multiline](/creating-templates/user-input-parameters/#text) text field                                                                                                         
         * `list` - dropdown menu with non-editable textboxes (see more details with example [here](/creating-templates/user-input-parameters/#list))                                           
         * `checkbox` - single [checkbox field](/creating-templates/user-input-parameters/#checkbox)                     
         * `checkboxlist` - checkbox [grouping](/creating-templates/user-input-parameters/#checkboxlist)                            
