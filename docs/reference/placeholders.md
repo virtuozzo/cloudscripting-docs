@@ -102,9 +102,9 @@ If it's not possible, the placeholder will be unresolved and displayed in the te
     
 In case a few nodes are available within `nodeGroup`, you can execute actions in one of them.
 For example:    
-- `{nodes.cp[1].address}` - IP address of the second compute node  
-- `{nodes.bl.first.address}` - first IP address of a balancer node in the `nodeGroup` array  
-- `{nodes.db.last.address}` - last IP address of a compute node     
+- `{nodes.cp[1].address}` - internal IP address of the second compute node  
+- `{nodes.bl.first.address}` - first internal IP address of a balancer node in the `nodeGroup` array  
+- `{nodes.db.last.address}` - last internal IP address of a batabase node     
 
 ## Event Placeholders
 Event placeholders represent a set of dynamic parameters, which are executed as a result of a certain [event](/reference/events/) occurrence. Herewith, all event placeholders have their custom set of parameters and begin with the default keywords:                         
