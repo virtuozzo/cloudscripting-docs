@@ -143,7 +143,7 @@ Such buttons execute operations that are predefined within JPS manifest.
 
 <b>Templates</b>   
 
-Sample to set buttons within add-on plank:
+Sample to set buttons within **Add-on** plank:
 ```
 {
   "jpsType": "update",
