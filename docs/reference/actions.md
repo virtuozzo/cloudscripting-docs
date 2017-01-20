@@ -113,7 +113,15 @@ Using **sudo** to reload *Nginx* balancer:
 ```
    
 ### API 
-Executing actions available by means of the [Jelastic Cloud API](http://docs.jelastic.com/api/) methods.                                        
+Executing actions available by means of the [Jelastic Cloud API](http://docs.jelastic.com/api/) methods.   
+There are a list of parameters, required by Jelastic API, which are defined automatically:
+
+- envName - the environment domain name where API will be executed;
+- appid - unique environment identifier. It can be passed into API instead `envName`;
+- session - unique session of current user
+
+Target nodes, where API execution should be, can be passed by node keywords. API can be executed in all nodes in one `nodeGroup` or `nodeType`. 
+Also it can be run in separate node. In this case node id is required, which is available from [Node placeholders](/reference/placeholders/#node-placeholders) or from custom action parameters (`this`).   
 
 **Examples:**
 
@@ -125,10 +133,16 @@ Restarting all compute nodes in the environment:
 ``` 
 where:        
        
-- `[cp]` - specifying a target node group for API method to be executed at (e.g. *cp*)                                   
-- *environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group                                                             
+- `[cp]` - specifying a target node group for API method to be executed at (e.g. *cp*). More details about [selecting target nodes are here.](/creating-templates/selecting-containers/)                                   
+- *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group. This parameter can be simplified like example below:                                                             
 
-Below you can find one more approach to specify a target node group for API method to be executed at:                               
+```
+{
+    "api [cp]" : "environment.control.RestartNodesByGroup"
+}
+```
+
+Below you can find one more approache to specify a target node group for API method to be executed at:                               
 ```
 {
     "api" : "jelastic.environment.control.RestartNodesByGroup",
@@ -667,7 +681,7 @@ where:
 
 <!-- add example -->
 
-### Custom Actions
+## Custom Actions
 The declarative code inside a manifest can be divided into separate blocks, named **actions**. Subsequently, the particular actions can be run by means of appealing to call actions with different parameters.             
 
 The example below shows how to create a new file (e.g. the *example.txt* file in the *tmp* directory) by executing a *createFile* action at the compute node:                
