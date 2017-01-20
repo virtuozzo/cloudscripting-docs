@@ -693,7 +693,7 @@ where:
 - `popupWidth` *[optional]* - width in pixels          
 - `popupHeight` *[optional]* - height in pixels   
 - `popupCallbackEvent` - event handler   
-- `params` - parameters for sending in POST request to `URL` source     
+- `params` - parameters for sending in POST request to `url` source     
 
 ###displayfield    
 (*spacer* is an alias)    
