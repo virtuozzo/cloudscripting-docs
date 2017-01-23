@@ -304,7 +304,7 @@ The *onBeforeCloneNodes* event is aplicable only for the next node groups (exclu
 
 The event will be performed after cloning node in the environment. 
 
-The *onAfterCloneNodes* event is aplicable only for the next node groups (excluding Docker-based nodes):
+The *onAfterCloneNodes* event is aplicable only for the next node groups (excluding Docker-based nodes):           
 - *compute*
 - *balancer*
 - *VDS*
