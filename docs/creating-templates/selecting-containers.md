@@ -85,14 +85,14 @@ Visit the [Placeholders](/reference/placeholders/) documentation page for more i
  
 The `nodeGroup` value is used to point out all containers within a specific layer.   
 
-Jelastic platform supports the following predefined *nodeGroup* values:    
-- `bl`  
-- `cp`  
-- `sqldb`  
-- `nosqldb`  
-- `cache` 
-- `build`  
-- `vds`  
+Jelastic platform supports the following predefined *nodeGroup* values:     
+- *bl*  
+- *cp*  
+- *sqldb*   
+- *nosqldb*   
+- *cache*  
+- *build*   
+- *vds*         
 
 Actions for a specified *nodeGroup* are executed successively one by one. For Docker containers the *nodeGroup* value is not predefined, therefore, it can be stated to any above value or your custom one. Visit the [Containers by Groups](/reference/container-types/#containers-by-group) documentation page for more information.        
 
