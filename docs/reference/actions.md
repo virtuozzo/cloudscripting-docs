@@ -480,12 +480,12 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                            
 - `loginCredentials` - root creadentials for a new node                    
-    - `user` - user name                    
+    - `user` - username                    
     - `password` - password                 
 - `newDatabaseName` - your custom database name              
 - `newDatabaseUser` - new user with privileges granted only for a new database instance                           
-    - `name` - custom user name set for the new database  
-    - `password` - custom password generated for the new database 
+    - `name` - custom username set for a new database  
+    - `password` - custom password generated for a new database 
 
 !!! note
     The function is executed only for `mysql5`, `mariadb` and `mariadb10` containers.                          
@@ -511,7 +511,7 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                                    
 - `databaseName` - name of the database to be created                  
-- `user` - user name in the database, on behalf of which the application will be used                
+- `user` - username in the database, on behalf of which the application will be used                
 - `password` - password in the database, on behalf of which the application will be used                         
 - `dump` - *URL* to the application's database dump                                
 
@@ -536,7 +536,7 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                                   
 - `databaseName` - name of the database for a patch to be applied                    
-- `user` - user name in the database, on behalf of which the application will be used                                          
+- `user` - username in the database, on behalf of which the application will be used                                          
 - `password` - password in the database, on behalf of which the application will be used                              
 - `patch` - *SQL* query or link to such a query. It is used only for *SQL* databases. Here, the [placeholders](placeholders/) support is available.                    
 
@@ -699,7 +699,7 @@ The example below shows how to create a new file (e.g. the <b>*example.txt*</b> 
 ```
 where: 
 
- - `createFile` - corresponding [*createFile* action](#createfile)               
+ - `createFile` - corresponding [*createFile*](#createfile) action                     
 
 The next example illustrates how to create a new custom action (i.e. *customAction*), which can be called for several times:                                      
 
