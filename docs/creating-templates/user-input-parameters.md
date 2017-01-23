@@ -462,7 +462,7 @@ where:
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.  
 
 ###radio-fieldset    
-The groupping of the radio elements with the `showIf` function.     
+The grouping of the radio elements with the `showIf` function.     
 
 !!! note
     The *hideLabel* boolean value is always *true* for this field.   
@@ -552,7 +552,7 @@ where:
 - `env` - required object (can be empty) 
 
 ###compositefield      
-The compositefield is a container with specific functionality and structural components that constitute it as the block for application-oriented custom user interfaces.  
+The compositefield is a container with specific functionality and structural components that constitute it as a block for application-oriented custom user interfaces.  
 
 ![compositefield](/img/compositefield.jpg)  
 ```
@@ -822,7 +822,8 @@ The toggle element is a switch between two values.
   ]
 }
 ```
-where:  
+where:    
+
 - `name` *[optional]* - name of the field  
 - `caption` *[optional]* - field label    
 - `value` *[boolean]* - enables/disables toggle value. The default value is *'false'*.   
