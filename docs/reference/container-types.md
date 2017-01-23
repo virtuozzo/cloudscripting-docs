@@ -71,7 +71,7 @@ where:
 
 !!! note
     > Upon stating non-predefined (i.e. custom) *nodeGroup* value for *Docker* containers, the corresponding container will be placed to the *Extra* layer:               
-    ![extra](img/extra_layer.jpg)             
+    ![extra](/img/extra_layer.jpg)             
     Subsequently, this *nodeGroup* value can be used within the same-named [actions](/reference/actions/) field to point to a particular *Extra* layer.                 
 
 <b>Predefined *nodeGroup* values</b>                 
