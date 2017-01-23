@@ -132,7 +132,7 @@ Restarting all compute nodes in the environment:
 ``` 
 where:        
        
-- `[cp]` - specifying a target node group for API method to be executed at (e.g. *cp*)                                   
+- `[cp]` - specifying a target node group for API method to be executed at (e.g. *cp*). Learn more details about [selecting target nodes](/creating-templates/selecting-containers/) within the linked page.                                  
 - *environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group                                                             
 
 Below you can find one more approach to specify a target node group for API method to be executed at:                               
