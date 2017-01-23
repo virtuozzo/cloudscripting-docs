@@ -115,7 +115,7 @@ Using **sudo** to reload *Nginx* balancer:
 ### API 
 Executing actions available by means of the [Jelastic Cloud API](http://docs.jelastic.com/api/) methods.
 
-There is a list of parameters required by Jelastic API, which are defined automatically:
+There is a list of parameters required by Jelastic API, which are defined automatically:           
 - *envName* - environment domain name, where the API method is executed     
 - *appid* - unique environment identifier, that can be passed into API instead of the *envName*     
 - *session* - unique session of a current user            
