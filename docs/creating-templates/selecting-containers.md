@@ -63,7 +63,7 @@ For example:
 }
 ```
 
-If you don't know the container's ID or the container hasn't been created yet, you can set the dynamic value using special placeholders.   
+If you don't know container's ID or container hasn't been created yet, you can set the dynamic value using special placeholders.   
 
 For example:  
 
@@ -81,20 +81,11 @@ For example:
 
 Visit the [Placeholders](/reference/placeholders/) documentation page for more information.    
 
-## All Containers By Type
-The `nodeType` parameter is applied to select all containers built upon the same software stacks.       
-
-See [Container Types](/reference/container-types/).      	
-
-list of available node types. Sync exec one by one.
-available noteTypes
-See [All Containers By Role](#all-containers-by-group) if you don't know your containers software type or it's not static.  
-
 ## All Containers By Group
  
-The `nodeGroup` value is used to point out all containers within a specific layer. list of available predefined node groups. Sync exec one by one,
-available nodeGroup
+The `nodeGroup` value is used to point out all containers within a specific layer.
 
+Jelastic platform supports the following predefined *nodeGroup* values:
 - `bl`
 - `cp`
 - `sqldb`
@@ -103,9 +94,17 @@ available nodeGroup
 - `build`
 - `vds`
 
-In Docker® case nodeGroup is not defined, it can be any.
+Visit the [Containers by Groups](/reference/container-types/#containers-by-group) documentation page for more information.    
+
+For Docker containers the *nodeGroup* value is not predefined, therefore, it can vary depending on the image.
 
 !!! note
-    > If you set all three parameters, a container selection would work in the following order: _nodeId -> nodeGroup -> nodeType_
-    
-More details about nodeGroup [here](/reference/container-types/#containers-by-group)
+    > If you set all three parameters, the container selection would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.
+
+## All Containers By Type
+The `nodeType` parameter is applied to select all containers built upon the same software stacks.       
+
+Visit the [Containers by Types](/reference/container-types/) documentation page to explore the provided containers listed by their type.    	
+
+Sync exec one by one.
+See [All Containers By Role](#all-containers-by-group) if you don't know your containers software type or it's not static.  
