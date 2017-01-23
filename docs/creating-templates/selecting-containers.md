@@ -94,17 +94,14 @@ Jelastic platform supports the following predefined *nodeGroup* values:
 - `build`
 - `vds`
 
-Visit the [Containers by Groups](/reference/container-types/#containers-by-group) documentation page for more information.    
+Actions are executed Visit the [Containers by Groups](/reference/container-types/#containers-by-group) documentation page for more information.    
 
-For Docker containers the *nodeGroup* value is not predefined, therefore, it can vary depending on the image.
-
-!!! note
-    > If you set all three parameters, the container selection would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.
+For Docker containers the *nodeGroup* value is not predefined, therefore, it can be stated to any above value or your custom one.        
 
 ## All Containers By Type
 The `nodeType` parameter is applied to select all containers built upon the same software stacks.       
 
 Visit the [Containers by Types](/reference/container-types/) documentation page to explore the provided containers listed by their type.    	
 
-Sync exec one by one.
-See [All Containers By Role](#all-containers-by-group) if you don't know your containers software type or it's not static.  
+!!! note
+    > If you set all three parameters, the container selection would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>. 
