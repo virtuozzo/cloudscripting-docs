@@ -233,7 +233,7 @@ ${fn.base64(value)}
 ${fn.md5(value)}
 ```
 - `${fn.uuid}` - generates new Universally Unique Identifier     
-- `${fn.random}` - random value within the default length comprising 7 digits.  
+- `${fn.random}` - random value within the default length comprising 7 digits  
 Herewith, either one or two values can be passed optionally:
     - `${fn.random(max)}` - random value to maximum value inclusively
     - `${fn.random(min,max)}` - random value between minimum and maximum values inclusively 
