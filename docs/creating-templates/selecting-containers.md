@@ -1,15 +1,12 @@
 # Selecting Containers For Your Actions
 
-Some actions require a list of containers in which the action will be executed.
-There are three ways to select the containers.
+Running a specific [action](/reference/actions/) requires to select a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their [*nodeGroup*](/reference/container-types/#containers-by-groups-nodegroup) value (e.g. *sql*) or all containers of the same type by their [*nodeType*](/reference/container-types/#containers-by-types-nodetype) value (e.g. *MySQL*).      
 
-- [Particular Container](#particular-container)
-- [All Containers By Group](#all-containers-by-group) 
-- [All Containers By Type](#all-containers-by-type)
+Also, there are three possible approaches to set containers filtering:       
 
-Also there are thee ways to set container filters:
+* **Node Selectors** - specifying a target node within the name of the action     
 
-* **Node Selectors** - select node in action name. For example:
+For example:  
 ```
 [{
     "createFile [cp]" : {
@@ -21,9 +18,11 @@ Also there are thee ways to set container filters:
     }
 }]
 ```
-In this example new file will be created in compute node and new directory will be created in compute node, balancer, and node with id *123*. All node selectors will be executed in declaration order.  
+In the example above, a new file will be created in the compute node (*[cp]*) and new directory will be created in the compute node (*[cp]*), balancer (*[bl]*), and node with ID *123*. Actions for the specified nodes are executed in the declared order.       
 
-* set node parameters near the action. For example:
+* setting a target node next to the performed action     
+
+For example:     
 ```
 {
   "createFile": {
@@ -34,16 +33,23 @@ In this example new file will be created in compute node and new directory will 
   },
   "nodeGroup": "cp"
 }
-```
-There parameter *nodeGroup* is available for two actions - `createFile` and `createDirectory`. So these actions will be executed on same **nodeGroup**.
+``` 
+Herein, the `createFile` and `createDirectory` actions are applied to the specified *nodeGroup*, namely compute node (*[cp]*).     
+ 
+* setting a required node as a parameter in the action object     
+Learn more on this parameter [here](/reference/actions/#custom-actions).      
+!!! note 
+    > **Node Selectors** have higher priority than nodes specified next to the action but lower than parameters set in the action object.     
 
-* set required node as parameter in action object;
+Have a look at more detailed descriptions on approaches provided for container selection:          
+- [Particular Container](#particular-container)   
+- [All Containers By Group](#all-containers-by-group)    
+- [All Containers By Type](#all-containers-by-type)   
 
-Node Selectors have higher priority than node parameters near the action but lower than parameters set in action object.   
-
-## Particular Container
-Use `nodeId` parameter to select a particular container.
-If you know the ID of a container on which you want to perform an action, you can set it statically:  
+## Particular Container   
+The `nodeId` parameter is used to select a particular container for the action to be executed at it. If you know the Node ID (displayed at the Jelastic dashboard) of a container, you can set it statically.   
+  
+For example:     
 
 ```
 {
@@ -57,7 +63,9 @@ If you know the ID of a container on which you want to perform an action, you ca
 }
 ```
 
-If you don't know the container's ID or the container does not created yet, you can set the value dynamically using special placeholders:  
+If you don't know container's ID or container hasn't been created yet, you can set the dynamic value using special placeholders.     
+
+For example:    
 
 ```
 {
@@ -71,34 +79,25 @@ If you don't know the container's ID or the container does not created yet, you 
 }
 ```
 
-See the [Placeholders](/reference/placeholders/) documentation for more information.
+Visit the [Placeholders](/reference/placeholders/) documentation page for more information.      
+
+## All Containers By Group   
+ 
+The `nodeGroup` value is used to point out all containers within a specific layer.   
+
+Jelastic platform supports the following predefined *nodeGroup* values:     
+- *bl*  
+- *cp*  
+- *sqldb*   
+- *nosqldb*   
+- *cache*  
+- *build*   
+- *vds*         
+
+Actions for a specified *nodeGroup* are executed successively one by one. For Docker containers the *nodeGroup* value is not predefined, therefore, it can be stated to any above value or your custom one. Visit the [Containers by Groups](/reference/container-types/#containers-by-group) documentation page for more information.        
 
 ## All Containers By Type
-Use `nodeType` parameter to select all container nodes by software type.
-
-See [Container Types](/reference/container-types/).      	
-
-list of available node types. Sync exec one by one.
-available noteTypes
-See [All Containers By Role](#all-containers-by-group) if you don't know your containers software type or it's not static.  
-
-## All Containers By Group
- 
-`nodeGroup`
-list of available predefined node groups. Sync exec one by one,
-available nodeGroup
-
-- `bl`
-- `cp`
-- `sqldb`
-- `nosqldb`
-- `cache`
-- `build`
-- `vds`
-
-In Docker® case nodeGroup is not defined, it can be any.
+The `nodeType` parameter is applied to select all containers built upon the same software stacks. Visit the [Containers by Types](/reference/container-types/) documentation page to explore the provided containers listed by their type.    	  
 
 !!! note
-    > If you set all three parameters, a container selection would work in the following order: _nodeId -> nodeGroup -> nodeType_
-    
-More details about nodeGroup [here](/reference/container-types/#containers-by-group)
+    > If you set all three parameters, the container selection would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>. 
