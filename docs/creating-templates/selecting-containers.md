@@ -1,6 +1,6 @@
 # Selecting Containers For Your Actions
 
-Running a specific [action](/reference/actions/) requires to select a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their [*nodeGroup*](/reference/container-types/#containers-by-groups-nodegroup) value (e.g. *sql*) or all containers of the same type by the [*nodeType*](/reference/container-types/#containers-by-types-nodetype) value (e.g. *MySQL*).  
+Running a specific [action](/reference/actions/) requires to select a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their [*nodeGroup*](/reference/container-types/#containers-by-groups-nodegroup) value (e.g. *sql*) or all containers of the same type by their [*nodeType*](/reference/container-types/#containers-by-types-nodetype) value (e.g. *MySQL*).  
 
 Also, there are three possible approaches to set containers filtering:
 
