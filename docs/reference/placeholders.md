@@ -1,5 +1,5 @@
 # Placeholders
-Cloud Scripting supports a list of placeholders that can be used in any section of the manifest file (if the section isn't strictly limited with its content). 
+Cloud Scripting supports a set of placeholders that can be used in any section of the manifest file (if the section isn't strictly limited with its content). 
 The executor makes an attempt to resolve all placeholders on the package installation stage.
 If it's not possible, the placeholder will be unresolved and displayed in the text as is (e.g. *${placeholder}*).
 
@@ -16,7 +16,7 @@ If it's not possible, the placeholder will be unresolved and displayed in the te
     - `displayName` *[string]* - application display name
     - `envName` *[string]* - short domain name (without hoster *URL*)
     - `shortdomain` *[string]* - short domain name (alias to `envName`)
-    - `hardwareNodeGroup` *[string]* - hardware node node group
+    - `hardwareNodeGroup` *[string]* - hardware node group
     - `ssl` *[boolean]* - env SSL status
     - `sslstate` *[boolean]* - env SSL state
     - `status` *[number]* - environment status. The available statuses are: 1 - *running*, 2 - *down*, 3 - *launching*, 4 - *sleep*, 5 - *creating*, 6 - *cloning*, 7 - *exists*. 
@@ -51,7 +51,7 @@ If it's not possible, the placeholder will be unresolved and displayed in the te
         - `contextValidatorRegex` - validation for context names    
         - `diskIopsLimit` - IOPS limitation quota   
         - `diskLimit` - hardware node disk space quota  
-        - `endpoints` [*array indexes*] - setting [endpoints](https://docs.jelastic.com/endpoints) functionality                         
+        - `endpoints` [*array indexes*] - [endpoints](https://docs.jelastic.com/endpoints) functionality                         
             - `domain` - full domain name of the node the endpoint is being set for                  
             - `id` - node ID  
             - `name` - title for the new endpoint (can be either custom or [predefined](https://docs.jelastic.com/endpoints#preconfigured))                
@@ -98,17 +98,16 @@ If it's not possible, the placeholder will be unresolved and displayed in the te
             - `documentationurl` - redirect to page(s) with more info on the corresponding add-on                          
             - `iconurl` - add-on's logo                                               
             - `id` - ID of the installed package                       
-            - `isInstalled` - installation status, the possible values are *"true"* & *"false"*                      
+            - `isInstalled` - installation status, the possible values are *'true'* & *'false'*                      
     
 In case a few nodes are available within `nodeGroup`, you can execute actions in one of them.
 For example:    
 - `{nodes.cp[1].address}` - IP address of the second compute node  
 - `{nodes.bl.first.address}` - first IP address of a balancer node in the `nodeGroup` array  
-- `{nodes.db.last.address}` - last IP address of a compute node     
-  
+- `{nodes.db.last.address}` - last IP address of a batabase node     
+
 ## Event Placeholders
-Event placeholders represent a set of dynamic parameters, which are executed as a result of a certain [event](/reference/events/) occurrence.                   
-Herewith, all event placeholders have their custom set of parameters and begin with the default keywords:                       
+Event placeholders represent a set of dynamic parameters, which are executed as a result of a certain [event](/reference/events/) occurrence. Herewith, all event placeholders have their custom set of parameters and begin with the default keywords:                         
 - `${event.params.(key)}` - where *key* is a name of event parameter                     
 - `${event.response.(key)}` -where *key* is a name of event response parameter             
 
@@ -122,7 +121,7 @@ Learn more about the event placeholders within the above-linked *Events* page.
 
 ## Input Parameters
 - `${settings.jelastic_email}` - user's email, which is always predefined    
-- `${settings.key}` - (where *key* is a name of the application setting) - the placeholder is defined in case user input parameters are specified within a manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.     
+- `${settings.key}` - (where *key* is a name of the application setting)ю The placeholder is defined in case user input parameters are specified within a manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.     
 
 For example:
 ```example
@@ -326,7 +325,7 @@ You can use the following placeholders, as well, with the definite `nodeType`. F
 - `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*  
 - `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*      
 
-Explore the full list of the [Jelastic native container types](/reference/container-types/#jelastic-native-container-types).                  
+Explore the full list of the [Jelastic native container](/reference/container-types/#jelastic-native-container-types).                  
 
 The list of single placeholders:   
 - `${nginxphp.NGINX_CONF}` - */etc/nginx/nginx.conf*   

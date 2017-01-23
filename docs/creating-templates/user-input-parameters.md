@@ -31,15 +31,15 @@
 where:
 
 - `prepopulate` *[optional]* - link to the script, that will fetch the default fields values  
-- `fields` - an array of fields, which will be displayed in custom form     
+- `fields` - array of fields, which will be displayed in a custom form     
     - `showIf` - shows/hides field by condition (is applicable only to the *radio-fieldset* field)   
     - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:   
-        * `string` - basic [text field](/creating-templates/user-input-parameters/#string)                         
-        * `text`  - multiline [string field](/creating-templates/user-input-parameters/#text)                                                                                                      
+        * `string` - [basic](/creating-templates/user-input-parameters/#string) text field                                  
+        * `text`  - [multiline](/creating-templates/user-input-parameters/#text) text field                                                                                                         
         * `list` - dropdown menu with non-editable textboxes (see more details with example [here](/creating-templates/user-input-parameters/#list))                                           
         * `checkbox` - single [checkbox field](/creating-templates/user-input-parameters/#checkbox)                     
-        * `checkboxlist` - checkbox [grouping](/creating-templates/user-input-parameters/#checkboxlist)                            
-        * `radiolist` - radio field [grouping](/creating-templates/user-input-parameters/#radiolist)                   
+        * `checkboxlist` - [checkbox](/creating-templates/user-input-parameters/#checkboxlist) grouping                             
+        * `radiolist` - [radio field](/creating-templates/user-input-parameters/#radiolist) grouping                       
         * `radio-fieldset` - alias to `radiolist`              
         * `dockertags` - dropdown menu with a list of docker tags (see more details with example [here](/creating-templates/user-input-parameters/#dockertag))                   
         * `compositefield` - [component](/creating-templates/user-input-parameters/#compositefield) that comprises any available field    
@@ -143,7 +143,7 @@ Such buttons execute operations that are predefined within JPS manifest.
 
 <b>Templates</b>   
 
-Sample to set buttons within add-on plank:
+Sample to set buttons within **Add-on** plank:
 ```
 {
   "jpsType": "update",
@@ -190,7 +190,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 - `href` *[optional]* - external link that is opened in a new browser tab; is executed only if the `settings` field is absent. In case of `href` execution, `action` will not be carried out.     
 
-Another sample with additional configurations: the next parameters can be enabled only if the [`settings` field](/creating-templates/user-input-parameters/#custom-settings) is present:
+Another sample with additional configurations: the next parameters can be enabled only if the [*settings* field](/creating-templates/user-input-parameters/#custom-settings) is present:
 ```
 {
   "jpsType": "update",
@@ -220,7 +220,7 @@ Another sample with additional configurations: the next parameters can be enable
 where:
 
 - `settings` - custom form ID. The default is *'main'*.
-- `title` - custom dialog title. If absent, than `caption` will be applied.    
+- `title` - custom dialog title. If absent, then `caption` will be applied.    
 - `submitButtonText` - text for submission button in the opened dialog. The default value is *'Apply'*.   
 
 ![SubmitButtonText](/img/SubmitButtonText.jpg)  
@@ -238,9 +238,9 @@ Menu is an expandable list within the <b>Add-ons</b> section comprising operatio
 
 By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the [application level events](/reference/events/#application-level-events) settings.          
 
-The used properties for custom menus are the same as for custom buttons. Herewith, an appropriate `menu` field (instead of `buttons`) should be specified in order to adjust functionality exactly within the menu list of the add-ons plank.           
+The used properties for custom menus are the same as for custom buttons. Herewith, the appropriate `menu` field (instead of `buttons`) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
 
-Sample to set custom buttons within the menu list of the add-ons plank:
+Sample to set custom buttons within the menu list of the Add-ons plank:
 ```
 {
   "jpsType": "update",
@@ -319,7 +319,7 @@ Here, the *main settings* form appears during installation process.
 
 ![settingMain](/img/SettingsMain.jpg)   
 
-The *config settings* form appears after clicking the <b>Configure</b> button within the add-ons section.   
+The *config settings* form appears after clicking the <b>Configure</b> button within the Add-ons section.   
 
 ![settingCustom](/img/SettingsCustom.jpg)     
 
@@ -412,7 +412,7 @@ where:
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*. 
 
 ###checkboxlist   
-The *checkbox* grouping.  
+The checkbox grouping.  
 
 ![text](/img/checkboxlist.jpg)  
 ```
@@ -437,7 +437,7 @@ where:
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 
 ###radiolist   
-The *radio* elements grouping.  
+The radio elements grouping.  
 
 ![text](/img/radiolist.jpg)  
 ```
@@ -462,7 +462,7 @@ where:
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.  
 
 ###radio-fieldset    
-The groupping of the *radio* elements with the `showIf` function.     
+The groupping of the radio elements with the `showIf` function.     
 
 !!! note
     The *hideLabel* boolean value is always *true* for this field.   
@@ -511,7 +511,7 @@ where:
 - `caption` *[optional]* - field label
 
 ###dockertag    
-Displaying Docker tags within the `list` element.  
+Displaying Docker tags within the list element.  
 
 ![text](/img/dockertag.jpg)  
 ```
@@ -552,7 +552,7 @@ where:
 - `env` - required object (can be empty) 
 
 ###compositefield      
-The `compositefield` is a container with specific functionality and structural components that constitute it as the block for application-oriented custom user interfaces.  
+The compositefield is a container with specific functionality and structural components that constitute it as the block for application-oriented custom user interfaces.  
 
 ![compositefield](/img/compositefield.jpg)  
 ```
@@ -656,10 +656,10 @@ where:
     - **isRunning** - check if environment status is *running*  
     - **shortdomain** - short environment domain name (without platform URL)  
     - **displayName** - environment *displayName*  
-    - **appid** - unique environment id     
+    - **appid** - unique environment ID     
 
 ###popupselector     
-(`popup-selector` is an alias)     
+(*popup-selector* is an alias)     
 
 Opens pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.  
 
@@ -693,10 +693,10 @@ where:
 - `popupWidth` *[optional]* - width in pixels          
 - `popupHeight` *[optional]* - height in pixels   
 - `popupCallbackEvent` - event handler   
-- `params` - parameters for sending in POST request to `URL` source     
+- `params` - parameters for sending in POST request to `url` source     
 
 ###displayfield    
-(`spacer` is an alias)    
+(*spacer* is an alias)    
 
 The text field intended only for display, which is not validated and not submitted.  
 
@@ -748,7 +748,7 @@ where:
 - `decimanPrecision` - precision value  
 
 ###numberpicker   
-(`number-picker` is an alias)  
+(*number-picker* is an alias)  
 
 The text field with a number validation within range.   
 
@@ -776,7 +776,7 @@ where:
 - `editable` *[optional] [boolean]* - enables/disables editing the `numberpicker` field. The default value is *'false'*.  
 
 ###hostpicker    
-(`host-picker` is an alias)  
+(*host-picker* is an alias)  
 
 The dropdown menu with the environments hosts.  
 
@@ -804,7 +804,7 @@ where:
     - **isRunning** - check if environment status is *running*  
     - **shortdomain** - short environment domain name (without platform URL)  
     - **displayName** - environment *displayName*  
-    - **appid** - unique environment id   
+    - **appid** - unique environment ID        
 
 ###toggle    
 The toggle element is a switch between two values.
