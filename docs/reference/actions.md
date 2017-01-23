@@ -120,7 +120,7 @@ There is a list of parameters required by Jelastic API, which are defined automa
 - *appid* - unique environment identifier, that can be passed into API instead of the *envName*     
 - *session* - unique session of a current user            
 
-Target nodes selected for the API methods execution can be passed by the node keywords. API methods can be executed in all nodes within a single *nodeGroup* (i.e. layer) or *nodeType*. Also, API methods can be applied to a separate node. In this case the node ID is required, which is available either through the [node placeholders](http://cloudscripting.demo.jelastic.com/reference/placeholders/#node-placeholders) or set of custom action parameters (`this`).
+Target nodes selected for the API methods execution can be passed by the node keywords. API methods can be executed in all nodes within a single *nodeGroup* (i.e. layer) or *nodeType*. Also, API methods can be applied to a separate node. In this case the node ID is required, which is available either through the [node placeholders](http://cloudscripting.demo.jelastic.com/reference/placeholders/#node-placeholders) or set of [custom action parameters](#custom-actions) (`this`).
 
 **Examples:**
 
