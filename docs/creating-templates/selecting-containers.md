@@ -1,15 +1,12 @@
 # Selecting Containers For Your Actions
 
-Some actions require a list of containers in which the action will be executed.
-There are three ways to select the containers.
+Running a specific [action](/reference/actions/) requires to select a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their [*nodeGroup*](/reference/container-types/#containers-by-groups-nodegroup) value (e.g. *sql*) or all containers of the same type by the [*nodeType*](/reference/container-types/#containers-by-types-nodetype) value (e.g. *MySQL*).  
 
-- [Particular Container](#particular-container)
-- [All Containers By Group](#all-containers-by-group) 
-- [All Containers By Type](#all-containers-by-type)
+Also, there are three possible approaches to set containers filtering:
 
-Also there are thee ways to set container filters:
+* **Node Selectors** - specifying a target node within the name of the action 
 
-* **Node Selectors** - select node in action name. For example:
+For example:
 ```
 [{
     "createFile [cp]" : {
@@ -21,9 +18,11 @@ Also there are thee ways to set container filters:
     }
 }]
 ```
-In this example new file will be created in compute node and new directory will be created in compute node, balancer, and node with id *123*. All node selectors will be executed in declaration order.  
+In the example above, a new file will be created in the compute node (*[cp]*) and new directory will be created in the compute node (*[cp]*), balancer (*[bl]*), and node with ID *123*. Actions for the specified nodes are be executed in the declared order.     
 
-* set node parameters near the action. For example:
+* setting a target node next to the performed action   
+
+For example:     
 ```
 {
   "createFile": {
@@ -34,12 +33,17 @@ In this example new file will be created in compute node and new directory will 
   },
   "nodeGroup": "cp"
 }
-```
-There parameter *nodeGroup* is available for two actions - `createFile` and `createDirectory`. So these actions will be executed on same **nodeGroup**.
-
-* set required node as parameter in action object;
+``` 
+Herein, the `createFile` and `createDirectory` actions are applied to the specified *nodeGroup*, namely compute node (*[cp]*).     
+ 
+* setting a required node as a parameter in the action object
 
 Node Selectors have higher priority than node parameters near the action but lower than parameters set in action object.   
+
+Have a look at a detailed description considerin
+- [Particular Container](#particular-container)
+- [All Containers By Group](#all-containers-by-group) 
+- [All Containers By Type](#all-containers-by-type)
 
 ## Particular Container
 Use `nodeId` parameter to select a particular container.
