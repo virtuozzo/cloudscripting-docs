@@ -93,9 +93,9 @@ If it's not possible, the placeholder will be unresolved and displayed in the te
             - `type` - engine's type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
             - `vcsSupport` - supporting VCS in a container  
             - `version` - engine's version   
-        - `packages` [*array*] - packages with add-ons installed over the appropriate node (e.g. [FTP add-on](https://docs.jelastic.com/ftp-ftps-support))                  
+        - `packages` [*array*] - packages with add-ons installed over the corresponding nodes (e.g. [FTP add-on](https://docs.jelastic.com/ftp-ftps-support))                  
             - `description` - package's description                                       
-            - `documentationurl` - redirect to page(s) with more info on the corresponding add-on                          
+            - `documentationurl` - redirect to page(s) with more info on the particular add-on                          
             - `iconurl` - add-on's logo                                               
             - `id` - ID of the installed package                       
             - `isInstalled` - installation status, the possible values are *'true'* & *'false'*                      
