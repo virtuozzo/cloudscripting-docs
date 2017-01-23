@@ -1,8 +1,12 @@
 #Samples
 
-There is a list of Jelastic manifests which published on Jelastic hosting providers.
+Cloud Scripting provides almost unlimited possibilities for environment management, allowing to automatically tune its settings, adjust topology, implement events handling and a lot of more. Having a pool of scripts with such basic actions prescribed can speed up the new projects development and become a basis for more complex automation solutions.
+
+Below we provide a bunch of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions. You can use them independently or examine and adjust scripts to create your own packages.
 
 ##Operation Examples
+
+The following list contains examples of some basic environment management procedures, which can be subsequently combined to implement more complex solutions and application lifecycle pipelines.
 
 <table id="bs-pr">
     <tr>
@@ -79,7 +83,9 @@ There is a list of Jelastic manifests which published on Jelastic hosting provid
     </tr>
 </table>
 
-##Add-ons
+##Add-ons Examples
+
+Use pluggable add-ons to easily extend functionality of the already existing environments without the necessity to reconfigure each of them manually.
 
 <table id="bs-pr">
     <tr>
@@ -125,6 +131,8 @@ There is a list of Jelastic manifests which published on Jelastic hosting provid
     </table>
     
 ##Complex Ready-to-Go Solutions
+
+Jelastic also provides you with a set of ready-to-go preconfigured CS packages for some of the most popular solutions’ deployment and CI/CD integration. All of them can be used without any additional changes and provide all of the options for being properly tuned according to your needs.
 
 <table id="bs-pr">
     <tr>
@@ -216,3 +224,5 @@ There is a list of Jelastic manifests which published on Jelastic hosting provid
         </td>
     </tr>
 </table>
+
+Сheck out even more awesome open source solutions within our <a href="https://github.com/jelastic-jps" target="_blank">JPS Collection</a> at GitHub (continuously updating). All the given packages are completely free to use and, simultaneously, represent a good basis to learn about the Cloud Scripting possibilities.

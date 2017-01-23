@@ -682,7 +682,7 @@ where:
 <!-- add example -->
 
 ## Custom Actions
-The declarative code inside a manifest can be divided into separate blocks, named **actions**. Subsequently, the particular actions can be run by means of appealing to call actions with different parameters.             
+The declarative code inside a manifest can be divided into separate blocks, named **actions**. Subsequently, the particular actions can be run by means of appealing to call actions with different parameters. More examples about using [action placeholders are here](/reference/actions/#call-action-with-parameters).             
 
 The example below shows how to create a new file (e.g. the *example.txt* file in the *tmp* directory) by executing a *createFile* action at the compute node:                
 ```
@@ -731,18 +731,13 @@ Outputting `Hello World!` twice in the *greeting.txt*:
     {
       "createFile [cp]": "${SERVER_WEBROOT}/greeting.txt"
     },
-    {
-      "call": [
-        "greeting",
-        "greeting"
-      ]
-    }
+    "greeting",
+    "greeting"
   ],
   "actions": {
     "greeting": {
-      "appendFile": [
+      "appendFile [cp]": [
         {
-          "nodeGroup": "cp",
           "path": "${SERVER_WEBROOT}/greeting.txt",
           "body": "Hello World!"
         }
@@ -781,39 +776,38 @@ where:
 Writing `Hello World!` and outputting first and second compute node's IP address:                                    
 ```
 {
-	"jpsType": "update",
-	"name": "Action Example",
-	"onInstall": [{
-		"createFile [cp]": "${SERVER_WEBROOT}/greeting.txt"
-	}, {
-		"call": [
-			"greeting",
-			"greeting", {
-				"log": {
-					"message": "${nodes.cp[0].address}"
-				}
-			}, {
-				"log": {
-					"message": "${nodes.cp[1].address}"
-				}
-			}
-		]
-	}],
-	"actions": {
-		"greeting": {
-			"appendFile": [{
-				"nodeGroup": "cp",
-				"path": "${SERVER_WEBROOT}/greeting.txt",
-				"body": "Hello World!"
-			}]
-		},
-		"log": {
-			"appendFile": [{
-				"nodeGroup": "cp",
-				"path": "${SERVER_WEBROOT}/greeting.txt",
-				"body": "${this.message}"
-			}]
-		}
-	}
+  "jpsType": "update",
+  "name": "Action Example",
+  "onInstall": [
+    {
+      "createFile [cp]": "${SERVER_WEBROOT}/greeting.txt"
+    },
+    "greeting",
+    "greeting",
+    {
+      "log": {
+        "message": "${nodes.cp[0].address}"
+      }
+    },
+    {
+      "log": {
+        "message": "${nodes.cp[1].address}"
+      }
+    }
+  ],
+  "actions": {
+    "greeting": {
+      "appendFile [cp]": {
+        "path": "${SERVER_WEBROOT}/greeting.txt",
+        "body": "Hello World!"
+      }
+    },
+    "log": {
+      "appendFile [cp]": {
+        "path": "${SERVER_WEBROOT}/greeting.txt",
+        "body": "${this.message}"
+      }
+    }
+  }
 }
 ```
