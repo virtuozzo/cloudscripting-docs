@@ -190,7 +190,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 - `href` *[optional]* - external link that is opened in a new browser tab; is executed only if the `settings` field is absent. In case of `href` execution, `action` will not be carried out.     
 
-Another sample with additional configurations: the next parameters can be enabled only if the [*settings* field](/creating-templates/user-input-parameters/#custom-settings) is present:
+Another sample with additional configurations: the next parameters can be enabled only if the [*settings*](/creating-templates/user-input-parameters/#custom-settings)field is present:     
 ```
 {
   "jpsType": "update",
