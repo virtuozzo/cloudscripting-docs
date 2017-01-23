@@ -46,9 +46,10 @@ Have a look at a detailed description on approaches provided for container selec
 - [All Containers By Group](#all-containers-by-group) 
 - [All Containers By Type](#all-containers-by-type)
 
-## Particular Container
-Use `nodeId` parameter to select a particular container.
-If you know the ID of a container on which you want to perform an action, you can set it statically:  
+## Particular Container   
+The `nodeId` parameter is used to select a particular container for the action to be executed at it. If you know the Node ID (displayed at the Jelastic dashboard) of a container, you can set it statically.
+ 
+For example:   
 
 ```
 {
@@ -62,7 +63,9 @@ If you know the ID of a container on which you want to perform an action, you ca
 }
 ```
 
-If you don't know the container's ID or the container does not created yet, you can set the value dynamically using special placeholders:  
+If you don't know the container's ID or the container hasn't been created yet, you can set the dynamic value using special placeholders.   
+
+For example:  
 
 ```
 {
@@ -76,10 +79,10 @@ If you don't know the container's ID or the container does not created yet, you 
 }
 ```
 
-See the [Placeholders](/reference/placeholders/) documentation for more information.
+Visit the [Placeholders](/reference/placeholders/) documentation page for more information.    
 
 ## All Containers By Type
-Use `nodeType` parameter to select all container nodes by software type.
+The `nodeType` parameter is applied to select all containers built upon the same software stacks.       
 
 See [Container Types](/reference/container-types/).      	
 
@@ -89,8 +92,7 @@ See [All Containers By Role](#all-containers-by-group) if you don't know your co
 
 ## All Containers By Group
  
-`nodeGroup`
-list of available predefined node groups. Sync exec one by one,
+The `nodeGroup` value is used to point out all containers within a specific layer. list of available predefined node groups. Sync exec one by one,
 available nodeGroup
 
 - `bl`
