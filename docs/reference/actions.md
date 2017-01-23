@@ -311,7 +311,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                       
 - `path` - path, where a file is available               
 - `replacements` - list of replacements within the node's configuration files                        
-    - `pattern` - regular expressions to find the string (e.g. `app\\.host\\.url\\s*=\\s*.*`)                   
+    - `pattern` - regular expressions to find a string (e.g. `app\\.host\\.url\\s*=\\s*.*`)                   
     - `replacement` - string to replace. Herewith, you can use as replacement any string value, including any combination of [placeholders](placeholders/).                                 
 
 <!-- DeletePath -->
