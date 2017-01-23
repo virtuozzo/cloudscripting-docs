@@ -18,7 +18,7 @@ For example:
     }
 }]
 ```
-In the example above, a new file will be created in the compute node (*[cp]*) and new directory will be created in the compute node (*[cp]*), balancer (*[bl]*), and node with ID *123*. Actions for the specified nodes are be executed in the declared order.       
+In the example above, a new file will be created in the compute node (*[cp]*) and new directory will be created in the compute node (*[cp]*), balancer (*[bl]*), and node with ID *123*. Actions for the specified nodes are executed in the declared order.       
 
 * setting a target node next to the performed action     
 
