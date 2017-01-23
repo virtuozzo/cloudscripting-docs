@@ -42,6 +42,7 @@ pages:
    - Selecting Containers For Your Actions: creating-templates/selecting-containers.md
    - Getting User Input: creating-templates/user-input-parameters.md
    - Conditions and Iterations: creating-templates/conditions-and-iterations.md
+   - Relative Links: creating-templates/relative-links.md
 
 # Troubleshooting
 - Troubleshooting: troubleshooting.md
