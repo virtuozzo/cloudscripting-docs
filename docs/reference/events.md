@@ -1,7 +1,7 @@
 # Events
 
 Any action, available to be performed by means of API (including custom users’ scripts running), should be bound to some event, i.e. executed as a result of this event occurrence.
-Each event refers to a particular entity. For example, the entry point for executing any action with application is the *onInstall* event.
+Each event refers to a particular entity. For example, the entry point for executing any action with application is the [*onInstall*](#oninstall) event.
 <br>
 ## Events Subsribtion Example
 ```
