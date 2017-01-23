@@ -1,5 +1,5 @@
 # Placeholders
-Cloud Scripting supports a set of placeholders that can be used in any section of the manifest file (if the section isn't strictly limited with its content). 
+Cloud Scripting supports a set of placeholders that can be used in any section of a manifest file (if the section isn't strictly limited with its content). 
 The executor makes an attempt to resolve all placeholders on the package installation stage.
 If it's not possible, the placeholder will be unresolved and displayed in the text as is (e.g. *${placeholder}*).
 
@@ -54,7 +54,7 @@ If it's not possible, the placeholder will be unresolved and displayed in the te
         - `endpoints` [*array indexes*] - [endpoints](https://docs.jelastic.com/endpoints) functionality                         
             - `domain` - full domain name of the node the endpoint is being set for                  
             - `id` - node ID  
-            - `name` - title for the new endpoint (can be either custom or [predefined](https://docs.jelastic.com/endpoints#preconfigured))                
+            - `name` - title for a new endpoint (can be either custom or [predefined](https://docs.jelastic.com/endpoints#preconfigured))                
             - `privatePort` - preferred local node’s port              
             - `publicPort` - private (dynamic) port used for mapping                                         
             - `protocol` - protocol type (currently, only TCP is provided)                     
@@ -86,16 +86,16 @@ If it's not possible, the placeholder will be unresolved and displayed in the te
             - `type` - engine's type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
             - `vcsSupport` - supporting VCS in container  
             - `version` - engine's version  
-        - `activeEngine`(current engine in container):  
+        - `activeEngine`(current engine in a container):  
             - `id` - engine's ID at the platform   
             - `keyword` - engine's keyword (e.g. *java7*, *php7.0*)  
             - `name` - full engine's name (e.g. *Java 8*, *PHP 7*)  
             - `type` - engine's type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
-            - `vcsSupport` - supporting VCS in container  
+            - `vcsSupport` - supporting VCS in a container  
             - `version` - engine's version   
-        - `packages` [*array*] - packages with add-ons installed over the appropriate node (e.g. [FTP add-on](https://docs.jelastic.com/ftp-ftps-support))                  
+        - `packages` [*array*] - packages with add-ons installed over the corresponding nodes (e.g. [FTP add-on](https://docs.jelastic.com/ftp-ftps-support))                  
             - `description` - package's description                                       
-            - `documentationurl` - redirect to page(s) with more info on the corresponding add-on                          
+            - `documentationurl` - redirect to page(s) with more info on the particular add-on                          
             - `iconurl` - add-on's logo                                               
             - `id` - ID of the installed package                       
             - `isInstalled` - installation status, the possible values are *'true'* & *'false'*                      
@@ -121,7 +121,7 @@ Learn more about the event placeholders within the above-linked *Events* page.
 
 ## Input Parameters
 - `${settings.jelastic_email}` - user's email, which is always predefined    
-- `${settings.key}` - (where *key* is a name of the application setting)ю The placeholder is defined in case user input parameters are specified within a manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.     
+- `${settings.key}` - (where *key* is a name of the application setting). The placeholder is defined in case user input parameters are specified within a manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.     
 
 For example:
 ```example
@@ -233,7 +233,7 @@ ${fn.base64(value)}
 ${fn.md5(value)}
 ```
 - `${fn.uuid}` - generates new Universally Unique Identifier     
-- `${fn.random}` - random value within the default length comprising 7 digits.  
+- `${fn.random}` - random value within the default length comprising 7 digits  
 Herewith, either one or two values can be passed optionally:
     - `${fn.random(max)}` - random value to maximum value inclusively
     - `${fn.random(min,max)}` - random value between minimum and maximum values inclusively 

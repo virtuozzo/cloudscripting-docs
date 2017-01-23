@@ -113,15 +113,14 @@ Using **sudo** to reload *Nginx* balancer:
 ```
    
 ### API 
-Executing actions available by means of the [Jelastic Cloud API](http://docs.jelastic.com/api/) methods.   
-There are a list of parameters, required by Jelastic API, which are defined automatically:
+Executing actions available by means of the [Jelastic Cloud API](http://docs.jelastic.com/api/) methods.
 
-- envName - the environment domain name where API will be executed;
-- appid - unique environment identifier. It can be passed into API instead `envName`;
-- session - unique session of current user
+There is a list of parameters required by Jelastic API, which are defined automatically:
+- *envName* - environment domain name, where the API method is executed     
+- *appid* - unique environment identifier, that can be passed into API instead of the *envName*     
+- *session* - unique session of a current user            
 
-Target nodes, where API execution should be, can be passed by node keywords. API can be executed in all nodes in one `nodeGroup` or `nodeType`. 
-Also it can be run in separate node. In this case node id is required, which is available from [Node placeholders](/reference/placeholders/#node-placeholders) or from custom action parameters (`this`).   
+Target nodes selected for the API methods execution can be passed by the node keywords. API methods can be executed in all nodes within a single *nodeGroup* (i.e. layer) or *nodeType*. Also, API methods can be applied to a separate node. In this case the node ID is required, which is available either through the [node placeholders](http://cloudscripting.demo.jelastic.com/reference/placeholders/#node-placeholders) or set of custom action parameters (`this`).
 
 **Examples:**
 
@@ -133,16 +132,15 @@ Restarting all compute nodes in the environment:
 ``` 
 where:        
        
-- `[cp]` - specifying a target node group for API method to be executed at (e.g. *cp*). More details about [selecting target nodes are here.](/creating-templates/selecting-containers/)                                   
-- *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group. This parameter can be simplified like example below:                                                             
-
+- `[cp]` - specifying a target node group for API method to be executed at (e.g. *cp*). Learn more details about [selecting target nodes](/creating-templates/selecting-containers/) within the linked page.                                     
+- *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group. This parameter can be simplified like shown in the example below:
 ```
 {
     "api [cp]" : "environment.control.RestartNodesByGroup"
 }
 ```
-
-Below you can find one more approache to specify a target node group for API method to be executed at:                               
+ 
+Below you can find one more approach to specify a target node group for API method to be executed at:                               
 ```
 {
     "api" : "jelastic.environment.control.RestartNodesByGroup",
@@ -167,8 +165,8 @@ Available for compute nodes (except for *Docker* containers)
 where:
 
 - `archive` - *URL* to the archive with a compressed application
-- `name` - set application's name, that will be displayed at the dashboard
-- `context`- specify the desired context for your app
+- `name` - application's name, that will be displayed at the dashboard
+- `context`- desired context for a deployed app
 
 ### Upload
 Available for all nodes
@@ -313,7 +311,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                       
 - `path` - path, where a file is available               
 - `replacements` - list of replacements within the node's configuration files                        
-    - `pattern` - regular expressions to find the string (e.g. `app\\.host\\.url\\s*=\\s*.*`)                   
+    - `pattern` - regular expressions to find a string (e.g. `app\\.host\\.url\\s*=\\s*.*`)                   
     - `replacement` - string to replace. Herewith, you can use as replacement any string value, including any combination of [placeholders](placeholders/).                                 
 
 <!-- DeletePath -->
@@ -384,7 +382,7 @@ Available for all nodes (except for *Docker* containers and *Elastic VPS*)
 where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                
-- `number` - nodes’ total count after action is finished                                          
+- `number` - nodes’ total amount after action is finished                                          
 
 ### SetExtIpEnabled
 Available for all nodes
@@ -482,12 +480,12 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                            
 - `loginCredentials` - root creadentials for a new node                    
-    - `user` - user name                    
+    - `user` - username                    
     - `password` - password                 
 - `newDatabaseName` - your custom database name              
 - `newDatabaseUser` - new user with privileges granted only for a new database instance                           
-    - `name` - custom user name set for the new database  
-    - `password` - custom password generated for the new database 
+    - `name` - custom username set for a new database  
+    - `password` - custom password generated for a new database 
 
 !!! note
     The function is executed only for `mysql5`, `mariadb` and `mariadb10` containers.                          
@@ -513,7 +511,7 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                                    
 - `databaseName` - name of the database to be created                  
-- `user` - user name in the database, on behalf of which the application will be used                
+- `user` - username in the database, on behalf of which the application will be used                
 - `password` - password in the database, on behalf of which the application will be used                         
 - `dump` - *URL* to the application's database dump                                
 
@@ -538,7 +536,7 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                                   
 - `databaseName` - name of the database for a patch to be applied                    
-- `user` - user name in the database, on behalf of which the application will be used                                          
+- `user` - username in the database, on behalf of which the application will be used                                          
 - `password` - password in the database, on behalf of which the application will be used                              
 - `patch` - *SQL* query or link to such a query. It is used only for *SQL* databases. Here, the [placeholders](placeholders/) support is available.                    
 
@@ -686,8 +684,8 @@ where:
 
 <!-- add example -->
 
-## Custom Actions
-The declarative code inside a manifest can be divided into separate blocks, named **actions**. Subsequently, the particular actions can be run by means of appealing to call actions with different parameters. More examples about using [action placeholders are here](/reference/actions/#call-action-with-parameters).             
+### Custom Actions
+The declarative code inside a manifest can be divided into separate blocks, named **actions**. Subsequently, the particular actions can be run by means of appealing to call actions with different parameters.             
 
 The example below shows how to create a new file (e.g. the <b>*example.txt*</b> file in the <b>*tmp*</b> directory) by executing a *createFile* action at the compute node:                
 ```
@@ -701,7 +699,7 @@ The example below shows how to create a new file (e.g. the <b>*example.txt*</b> 
 ```
 where: 
 
- - `createFile` - corresponding [*createFile* action](#createfile)               
+ - `createFile` - corresponding [*createFile*](#createfile) action                     
 
 The next example illustrates how to create a new custom action (i.e. *customAction*), which can be called for several times:                                      
 
