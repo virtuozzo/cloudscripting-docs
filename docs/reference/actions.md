@@ -382,7 +382,7 @@ Available for all nodes (except for *Docker* containers and *Elastic VPS*)
 where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                
-- `number` - nodes’ total count after action is finished                                          
+- `number` - nodes’ total amount after action is finished                                          
 
 ### SetExtIpEnabled
 Available for all nodes
