@@ -38,9 +38,10 @@ Herein, the `createFile` and `createDirectory` actions are applied to the specif
  
 * setting a required node as a parameter in the action object
 
-Node Selectors have higher priority than node parameters near the action but lower than parameters set in action object.   
+!!! note 
+    > **Node Selectors** have higher priority than nodes specified next to the action but lower than parameters set in the action object.   
 
-Have a look at a detailed description considerin
+Have a look at a detailed description on approaches provided for container selection:
 - [Particular Container](#particular-container)
 - [All Containers By Group](#all-containers-by-group) 
 - [All Containers By Type](#all-containers-by-type)
