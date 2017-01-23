@@ -28,6 +28,8 @@ These basic string should be extended with the settings required by the applicat
 {
   "jpsType": "string",
   "name": "string",
+  "baseUrl": "string",
+  "settings": "object",
   "jpsVersion": "string",
   "nodes": "array",
   "engine": "string",
@@ -50,6 +52,8 @@ These basic string should be extended with the settings required by the applicat
 ```
 
 - `name` *[required]* - jps custom name.
+- `baseUrl` *[optional]* - custom relative links. [Click here for more details](creating-templates/relative-links/)
+- `settings` *[optional]* - custom form with predefined user input elements. [See more details](creating-templates/user-input-parameters/)
 - `jpsVersion` - *[optional]* - jps type supported by Jelastic platform. Correspondence between version [here](/jelastic-cs-correspondence/)  
 - `nodes` - an object where describes nodes information for installation. Requered option for `jpsType` **install**.       
 - `engine` *[optional]*. **Default**: `java6` 
