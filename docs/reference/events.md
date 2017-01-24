@@ -61,7 +61,7 @@ where:
 - *UnlinkDockerNodes*, *LinkDockerNodes*, *SetDockerEnvVars*, *SetDockerEntryPoint*, *SetDockerRunCmd*, *AddDockerVolume* and *RemoveDockerVolume* events can be executed only once per a single *changeTopology* action
 - The *StartDockerService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.
 
-## Event parameters and response placeholders
+## Event Parameters and Response Placeholders
 
 ### onInstall
 
@@ -304,10 +304,10 @@ The *onBeforeCloneNodes* event is aplicable only for the next node groups (exclu
 
 The event will be performed after cloning node in the environment. 
 
-The *onAfterCloneNodes* event is aplicable only for the next node groups (excluding Docker-based nodes):           
-- *compute*
-- *balancer*
-- *VDS*
+The *onAfterCloneNodes* event is aplicable only for the next node groups (excluding Docker-based nodes):                               
+- *compute*              
+- *balancer*                 
+- *VDS*                 
 
 **Event Placeholders:**   
 
@@ -976,7 +976,7 @@ The *onAfterRemoveDockerVolume* event will be triggered after removing volumes f
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.      
 
-## Events filtering
+## Events Filtering
 
 Optionally, events can be filtered by *nodeGroup*, *nodeType* and *nodeId* parameters. As a result, the defined actions will be executed only when the called event matches specified filtering rules. 
 <br><br>

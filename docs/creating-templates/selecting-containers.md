@@ -18,7 +18,7 @@ For example:
     }
 }]
 ```
-In the example above, a new file will be created in the compute node (*[cp]*) and new directory will be created in the compute node (*[cp]*), balancer (*[bl]*), and node with ID *123*. Actions for the specified nodes are executed in the declared order.       
+In the example above, a new file will be created in the compute node (*[cp]*) and a new directory will be created in the compute node (*[cp]*), balancer (*[bl]*) and node with ID *123*. Actions for the specified nodes are executed in the declared order.       
 
 * setting a target node next to the performed action     
 
@@ -37,7 +37,9 @@ For example:
 Herein, the `createFile` and `createDirectory` actions are applied to the specified *nodeGroup*, namely compute node (*[cp]*).     
  
 * setting a required node as a parameter in the action object     
+
 Learn more on this parameter [here](/reference/actions/#custom-actions).      
+
 !!! note 
     > **Node Selectors** have higher priority than nodes specified next to the action but lower than parameters set in the action object.     
 
@@ -47,7 +49,7 @@ Have a look at more detailed descriptions on approaches provided for container s
 - [All Containers By Type](#all-containers-by-type)   
 
 ## Particular Container   
-The `nodeId` parameter is used to select a particular container for the action to be executed at it. If you know the Node ID (displayed at the Jelastic dashboard) of a container, you can set it statically.   
+The `nodeId` parameter is used to select a particular container for the action to be executed at it. If you know the Node ID (displayed at the Jelastic dashboard next to the required node) of a container, you can set it statically.   
   
 For example:     
 

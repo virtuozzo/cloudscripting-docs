@@ -46,8 +46,7 @@ Below you can find data on supported software stacks in confines of [*nodeGroup*
 
 ##Containers by Groups (*nodeGroup*)
 
-The *nodeGroup* parameter is applied to set a paradigm for *nodeType* division into groups, i.e. it determines environment layer for container(s) to be placed to.       
-The *nodeGroup* value can be used within *nodeType* field while executing the appropriate [actions](/reference/actions/).     
+The *nodeGroup* parameter is applied to set a paradigm for *nodeType* division into groups, i.e. it determines environment layer for container(s) to be placed to. The *nodeGroup* value can be used within *nodeType* field while executing the appropriate [actions](/reference/actions/).        
 
 For *Docker* containers, *nodeGroup* can be stated to any value - either predefined (listed below) or your custom one.       
 
@@ -83,9 +82,9 @@ Jelastic platform supports the following predefined *nodeGroup* values:
 - **sql** (for *sql* databases) - *mysql5, mariadb, mariadb10, postgres8, postgres9*                          
 - **nosql** (for *nosql* databases) - *mongodb, couchdb, redis, redis3, cassandra2*                   
 - **vps** (for virtual private servers) - *centos6, centos7*                        
-- **cache** (for cache server) - *memcached*                       
-- **build** (for build node) - *maven3*                     
-- **storage** (for storage container) - *storage*                        
+- **cache** (for a cache server) - *memcached*                       
+- **build** (for a build node) - *maven3*                     
+- **storage** (for a storage container) - *storage*                        
 
 ## Containers by Types (*nodeType*)
 
@@ -185,9 +184,9 @@ Jelastic native software stacks include the following containers:
 - **Storage:**                   
      - `storage` - *Shared storage*         
 
-## Engine versions (*engine*)
+## Engine Versions (*engine*)
 
-The following section deals with supported engine versions and their availability within corresponding *nodeType* (i.e. compute nodes).
+The following section deals with supported engine versions and their availability within a corresponding *nodeType* (i.e. compute node).
 
 **Java Stacks**
 
@@ -224,4 +223,4 @@ The following section deals with supported engine versions and their availabilit
 |engine  |*nodejs0.10*<br>*nodejs0.12*<br>*nodejs4.3*<br>*nodejs5.6*|
 
 !!! note
-    > The list of supported [Software Stacks](https://docs.jelastic.com/software-stacks-versions) can vary depending on your Jelastic platform version - it can be checked at your dashboard.  
+    > The list of supported [software stacks](https://docs.jelastic.com/software-stacks-versions) can vary depending on your Jelastic platform version - it can be checked at your dashboard.  
