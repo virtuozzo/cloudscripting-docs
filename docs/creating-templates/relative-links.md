@@ -1,10 +1,11 @@
 #Relative Links
 
-The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the *baseUrl* parameter or specified while <a href="https://docs.jelastic.com/environment-export-import" target="_blank">Importing</a> a corresponding JPS file via the Jelastic dashboard.          
+The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the <b>*baseUrl*</b> parameter or specified while <a href="https://docs.jelastic.com/environment-export-import" target="_blank">importing</a> a corresponding JPS file via the Jelastic dashboard.          
 
-`baseUrl` inside manifest has higher priority than installation by URL.
+!!! note
+    > The <b>*baseUrl*</b> value declared within the manifest has higher priority than installation via URL (i.e. <a href="https://docs.jelastic.com/environment-export-import" target="_blank">Import</a>).                
 
-Simple example:
+**Example:**
 ```
 {
     "jpsType" : "update",
@@ -20,23 +21,26 @@ Simple example:
 }
 ```
 
-In case manifest is installing by URL via Import Jelastic feature than `baseUrl` placeholder will defined if URL like example bellow:
+In case of the manifest installation via URL by means of the Jelastic **Import** functionality, the `baseUrl` placeholder will be defined if the specified path is set like in the example below:      
   
 ```
-{protocol}://{domain}/myfile.extension
+<b>*{protocol}*</b>://<b>*{domain}*</b>/*<b>myfile.extension*</b>
 ```
-In the end of URL should be file name with extension. 
+where:                
 
-Cloud Scriptiong rules for parsing relative path for file:
+- <b>*{protocol}*</b> - *http* or *https* protocols              
+- <b>*{domain}*</b> - domain name of the website, where the manifest is stored                     
+- myfile.extension - name of the file with indicated extension (i.e. jps) at the end                     
 
-  - `baseUrl` parameter is defined;
-  - text doesn't contain whitespaces (includes tabs, line breaks);
-  - text doesn't contain semicolons and round brackets.
+There are the following Cloud Scripting rules applied while parsing a relative path for a file:                         
+  - `baseUrl` parameter is being defined                            
+  - verification that the linked file’s text doesn't contain whitespaces (including tabs, line breaks)                                     
+  - verification that the linked file’s text doesn't contain semicolons and round brackets                                  
 
-If installation is going from <a href="https://github.com/jelastic-jps" target="_blank">*GitHub*</a> and URL is consists */blob/* - it will replaced to */raw/* word.
-if `baseUrl` parameter is defined without slash in the end, it will be added automatically.
+If installation is being run from <a href="https://github.com/jelastic-jps" target="_blank">*GitHub*</a> and URL includes <b>*‘/blob/’*</b>, it will be replaced with <b>*‘/raw/’*</b>. In case the `baseUrl` parameter is defined without a slash at the end, it will be added automatically.              
+
  
-Cloud Scripting engine supports placeholder `${baseUrl}`. Every customer can use it in their customs scripts (in [`cmd`](actions/#cmd), [`script`](actions/#script) actions).
+The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the [*cmd*](reference/actions/#cmd) and [*script*](reference/actions/#script) actions).              
 
 For example:
 
@@ -53,11 +57,11 @@ For example:
 }
 ```
 
-##Success Text Customize
+##Success Text Customization
 
-Ability to customize `success` text inside manifest. See examples bellow:
+It is possible to customize the `success` text, which is displayed upon successful application installation either at the dashboard or via email notification, in confines of a manifest.         
 
-- set [`baseUrl`](creating-templates/relative-links/) relative URL which is based path for README.md file in success text:
+- Setting a relative to `baseUrl` link, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                  
 ```
 {
     "jpsType" : "update",
@@ -70,7 +74,7 @@ Ability to customize `success` text inside manifest. See examples bellow:
 }
 ```
 
-- customizing `success` text by external link:
+- Customizing the *success* return text by means of the external link.                    
 ```
 {
   "jpsType": "update",
@@ -82,9 +86,9 @@ Ability to customize `success` text inside manifest. See examples bellow:
 }
 ```
 
-`Success` text can be divided on two values:
+As it was mentioned above, the success response is distinguished between two values:                        
 
- - text on dashboard when application will be installed
+ - text displayed at the dashboard after application installation is successfully conducted                       
  
 ```
 {
@@ -99,7 +103,7 @@ Ability to customize `success` text inside manifest. See examples bellow:
 }
 ```
  
- - text to notify user about successfull application installation by email
+ - message delivered via email notifying about the successful application setup                             
  
 ```
 {
@@ -117,4 +121,4 @@ Ability to customize `success` text inside manifest. See examples bellow:
 }
 ```
 
-Last example also shows localization functionality depends on Jelastic platform selected language. 
+In the last example above, the localization functionality is applied, which depends upon the Jelastic Platform selected language.                        
