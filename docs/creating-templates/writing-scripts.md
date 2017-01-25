@@ -5,7 +5,7 @@ A script can be subscribed to the onAfterReturn event on its outlet for executio
 
 
 ## Intercontainer Scripts
-In order to execute a shell script inside the container, action [ExecuteShellCommands](/reference/actions/#executeshellcommands) is used.
+In order to execute a shell script inside the container, the [ExecuteShellCommands](/reference/actions/#executeshellcommands) action is used.         
 
 **Example #1 Execute bash script from URL**
 ```example
@@ -51,10 +51,10 @@ END
 
 `${nodes.sqldb.password}` - available only for jpsType *install* when sql node is created.
 
-## Top level scripts
-Using `script` action.
-
-### Java
+## Top Level Scripts  
+Using `script` action.  
+ 
+### Java   
 ```example
 {
   "executeScript": [
@@ -73,7 +73,7 @@ Using `script` action.
 **Example #1 Generate random password**
 -->
 
-### JavaScript
+### JavaScript    
 ```example
 {
   "script ["Hello World!"]": "return getParam('greeting');"
@@ -81,4 +81,4 @@ Using `script` action.
 ```
 
 ## What's next?
-Learn more about using [Jelastic Cloud API](http://docs.jelastic.com/api/)
+Learn more about using [Jelastic Cloud API](http://docs.jelastic.com/api/).          
