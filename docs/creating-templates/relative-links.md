@@ -32,7 +32,7 @@ where:
 - <b>*{domain}*</b> - domain name of the website, where the manifest is stored                     
 - <b>*myfile.extension*</b> - name of the file with indicated extension (i.e. *jps*) at the end                     
 
-There are the following Cloud Scripting rules applied while parsing a relative path for a file:                         
+There are the following Cloud Scripting rules applied while parsing a relative path to a file:                         
   - `baseUrl` parameter is being defined                            
   - verification that the linked file’s text doesn't contain whitespaces (including tabs, line breaks)                                     
   - verification that the linked file’s text doesn't contain semicolons and round brackets                                  
