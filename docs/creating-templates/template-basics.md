@@ -64,11 +64,11 @@ These basic string should be extended with the settings required by the applicat
 - `description` - text string that describes the template. This section should always follow the template format version section.          
 - `categories` - available categories for manifests filtering                 
 - `version` *[optional]* - application custom version          
-- `logo` *[optional]* - JPS image, that will be displayed within the custom add-ons             
+- `logo` *[optional]* - JPS image that will be displayed within the custom add-ons             
 - `homepage` *[optional]* - link for any external aplication source        
 - `type` *[optional]* - application language type          
-- `success` *[optional]* - success text, that will be sent via email and will be shown at the dashboard after installation      
+- `success` *[optional]* - success text that will be sent via email and will be shown at the dashboard after installation      
 - `startPage` *[optional]* - path to be opened via the *Open in browser* button in a success form                          
 - `actions` *[optional]* - objects to describe all [*custom actions*](/reference/actions/#custom-actions)             
 - `addons` *[optional]* - includes JPS manifests with jpsType *update* as a new jps installation      
-- `onInstall` *[optional]* - first action which will be executed            
+- `onInstall` *[optional]* - first action, which will be executed            
