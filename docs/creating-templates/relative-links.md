@@ -24,13 +24,13 @@ The relative links functionality is intended to specify the JPS file’s base UR
 In case of the manifest installation via URL by means of the Jelastic **Import** functionality, the `baseUrl` placeholder will be defined if the specified path is set like in the example below:      
   
 ```
-<b>*{protocol}*</b>://<b>*{domain}*</b>/*<b>myfile.extension*</b>
+{protocol}://{domain}/myfile.extension*
 ```
 where:                
 
 - <b>*{protocol}*</b> - *http* or *https* protocols              
 - <b>*{domain}*</b> - domain name of the website, where the manifest is stored                     
-- myfile.extension - name of the file with indicated extension (i.e. jps) at the end                     
+- <b>*myfile.extension*</b> - name of the file with indicated extension (i.e. jps) at the end                     
 
 There are the following Cloud Scripting rules applied while parsing a relative path for a file:                         
   - `baseUrl` parameter is being defined                            
