@@ -249,7 +249,7 @@ Function parameter can be passed from existing placeholders. For example:
 - `${fn.md5([fn.random])}` - *md5* encoding random password   
 - `${fn.base64([user.email])}` - *base64* encoding user email address  
 
-You can easily define function placeholders within the [cutom global placeholders](#/reference/placeholders/#global-variables).  
+You can easily define function placeholders within the [cutom global placeholders](#custom-global-placeholders).  
 
 For example:
 ```
@@ -285,7 +285,7 @@ For example:
 
 where:   
 - `i` - array's index   
-- `key` - node's parameter. See the details on setting [node parameters](#/reference/placeholders/#node-placeholders).   
+- `key` - node's parameter. See the details on setting [node parameters](#node-placeholders).   
 
 **The First and the Last Array Elements** 
 
@@ -325,7 +325,7 @@ You can use the following placeholders, as well, with the definite `nodeType`. F
 - `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*  
 - `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*      
 
-Explore the full list of the [Jelastic native container](/reference/container-types/#jelastic-native-container-types).                  
+Explore the full list of [Jelastic native containers](/reference/container-types/#jelastic-native-container-types).                  
 
 The list of single placeholders:   
 - `${nginxphp.NGINX_CONF}` - */etc/nginx/nginx.conf*   
