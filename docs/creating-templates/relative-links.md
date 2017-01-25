@@ -30,7 +30,7 @@ where:
 
 - <b>*{protocol}*</b> - *http* or *https* protocols              
 - <b>*{domain}*</b> - domain name of the website, where the manifest is stored                     
-- <b>*myfile.extension*</b> - name of the file with indicated extension (i.e. jps) at the end                     
+- <b>*myfile.extension*</b> - name of the file with indicated extension (i.e. *jps*) at the end                     
 
 There are the following Cloud Scripting rules applied while parsing a relative path for a file:                         
   - `baseUrl` parameter is being defined                            
