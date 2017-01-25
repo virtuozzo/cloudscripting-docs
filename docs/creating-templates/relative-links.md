@@ -1,7 +1,6 @@
 #Relative Links
 
-A relative link takes advantage of the fact that the server knows where the current manifest is loaded.  
-Relative link specifies the external link which contains a text of file. It can be used in case when manifest contains parameter `baseUrl` or manifest installation is defined via URL in <a href="https://docs.jelastic.com/environment-export-import" target="_blank">Import feature</a>.  
+The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the *baseUrl* parameter or specified while <a href="https://docs.jelastic.com/environment-export-import" target="_blank">Importing</a> a corresponding JPS file via the Jelastic dashboard.          
 
 `baseUrl` inside manifest has higher priority than installation by URL.
 
