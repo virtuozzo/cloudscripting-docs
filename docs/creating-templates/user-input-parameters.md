@@ -651,7 +651,7 @@ where:
 - `caption` *[optional]* - field label    
 - `name` *[optional]* - name of the field  
 - `editable` *[optional][boolean]* - enables/disables the `envlist` field editing. The default value is *'false'*.    
-- `valueField` *[optional][string]* - The value from environment information, which will be sent to a server. The default value is **domain**. Available values are:    
+- `valueField` *[optional][string]* - value from environment information, which will be sent to a server. The default value is **domain**. Available values are:    
     - **iconCls** - css class     
     - **isRunning** - check if environment status is *running*  
     - **shortdomain** - short environment domain name (without platform URL)  
