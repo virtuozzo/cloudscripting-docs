@@ -9,7 +9,7 @@ Each event refers to a particular entity. For example, the entry point for execu
   "jpsType": "update",
   "name": "Event Subsribtion Example",
   "onInstall": {
-    "createDirectory [cp]": "${globals.customDirectory}"
+    "createFile [cp]": "/tmp/result.txt"
   },
   "onAfterScaleOut [nodeGroup:cp]": {
     "cmd [cp]": "echo 'New Compute node has been added' >> /tmp/result.txt"
@@ -22,7 +22,7 @@ Each event refers to a particular entity. For example, the entry point for execu
 where:
 
 - `jpsType` - *update* type presupposes a install add-on in an existing environment with a predefined listeners for *events*                               
-- `onInstall` - first event that will be executed upon environment installation, i.e. creating a new *CloudSCripting* directory                           
+- `onInstall` - first event that will be executed upon add-on installation, i.e. creating a new *CloudSCripting* file                           
     - cp - predefined `actions` and `events` in example required compute node. So they are filtered by *nodeGroup* **cp**  
 - `onAfterScaleOut` - event that will be performed upon new compute node addition, namely writing the appropriate message to the <b>*addedNodes.txt*</b> file                     
 - `onAfterRestartNode` - event that will be triggered upon restarting a compute node, viz. writing a message to the <b>*fileaddedNodes.txt*</b> file with a record on which node has been restarted               
