@@ -51,24 +51,24 @@ These basic string should be extended with the settings required by the applicat
 }
 ```
 
-- `name` *[required]* - jps custom name.
-- `baseUrl` *[optional]* - custom relative links. [Click here for more details](creating-templates/relative-links/)
-- `settings` *[optional]* - custom form with predefined user input elements. [See more details](creating-templates/user-input-parameters/)
-- `jpsVersion` - *[optional]* - jps type supported by Jelastic platform. Correspondence between version [here](/jelastic-cs-correspondence/)  
-- `nodes` - an object where describes nodes information for installation. Requered option for `jpsType` **install**.       
-- `engine` *[optional]*. **Default**: `java6` 
-- `region` *[optional]* - region where will be installed environment. Required option of `jpsType` **install**.   
-- `displayName` *[optional]* - display name for environment. Required option of `jpsType` **install**.   
-- `ssl` *[optional]*. **Default**: false - Jelastic ssl status for environment    
-- `ha` *[optional]*. **Default**: false. High availability for java stacks     
-- `description` - A text string that describes the template. This section must always follow the template format version section.
-- `categories` - available categories for filter manifests   
-- `version` *[optional]* - application custom version.
-- `logo` *[optional]* - jps image. Will be displayed at custom add-ons    
-- `homepage` *[optional]* - link for any external aplication source    
-- `type` *[optional]* - application language type   
-- `success` *[optional]* - success text. Will be sent to email and will be shown at the dashboard after installation
-- `startPage` *[optional]* - path. Can be open via button in success form *Open in browser*    
-- `actions` *[optional]* - objects where describe all [*custom actions*](/reference/actions/#custom-actions)    
-- `addons` *[optional]* - included jps manifests with jpsType *update* as a new jps installation   
-- `onInstall` *[optional]* - first action which will be executed   
+- `name` *[required]* - jps custom name      
+- `baseUrl` *[optional]* - custom [relative links](/relative-links/)              
+- `settings` *[optional]* - custom form with [predefined user input elements](/user-input-parameters/)      
+- `jpsVersion` - *[optional]* - jps type supported by the Jelastic platform. Correspondence between version is located [here](/jelastic-cs-correspondence/).              
+- `nodes` - object to describe information about nodes for installation. Requered option for `jpsType` **install**.          
+- `engine` *[optional]* - engine [version](/reference/container-types/#engine-versions-engine), **default**: `java6`      
+- `region` *[optional]* - region, where environment will be installed . Required option of `jpsType` **install**.          
+- `displayName` *[optional]* - display name for environment. Required option of `jpsType` **install**.      
+- `ssl` *[optional]* - Jelastic ssl status for environment, **default**: false         
+- `ha` *[optional]* - high availability for java stacks, **default**: false                  
+- `description` - text string that describes the template. This section should always follow the template format version section.          
+- `categories` - available categories for manifests filtering                 
+- `version` *[optional]* - application custom version          
+- `logo` *[optional]* - jps image, that will be displayed within the custom add-ons             
+- `homepage` *[optional]* - link for any external aplication source        
+- `type` *[optional]* - application language type          
+- `success` *[optional]* - success text, that will be sent via email and will be shown at the dashboard after installation      
+- `startPage` *[optional]* - path to be opened via the *Open in browser* button in a success form                          
+- `actions` *[optional]* - objects to describe all [*custom actions*](/reference/actions/#custom-actions)             
+- `addons` *[optional]* - includes jps manifests with jpsType *update* as a new jps installation      
+- `onInstall` *[optional]* - first action which will be executed            
