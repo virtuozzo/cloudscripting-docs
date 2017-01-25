@@ -24,7 +24,7 @@ The relative links functionality is intended to specify the JPS file’s base UR
 In case of the manifest installation via URL by means of the Jelastic **Import** functionality, the `baseUrl` placeholder will be defined if the specified path is set like in the example below:      
   
 ```
-{protocol}://{domain}/myfile.extension*
+{protocol}://{domain}/myfile.extension
 ```
 where:                
 
