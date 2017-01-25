@@ -59,7 +59,7 @@ These basic string should be extended with the settings required by the applicat
 - `engine` *[optional]* - engine [version](/reference/container-types/#engine-versions-engine), **default**: `java6`      
 - `region` *[optional]* - region, where environment will be installed . Required option of `jpsType` **install**.          
 - `displayName` *[optional]* - display name for environment. Required option of `jpsType` **install**.      
-- `ssl` *[optional]* - Jelastic ssl status for environment, **default**: false         
+- `ssl` *[optional]* - Jelastic SSL status for environment, **default**: false         
 - `ha` *[optional]* - high availability for java stacks, **default**: false                  
 - `description` - text string that describes the template. This section should always follow the template format version section.          
 - `categories` - available categories for manifests filtering                 
