@@ -34,7 +34,7 @@ where:
 
 There are the following Cloud Scripting rules applied while parsing a relative path to a file:                         
   - `baseUrl` parameter is being defined                            
-  - verification that the linked file’s text doesn't contain whitespaces (including tabs, line breaks)                                     
+  - verification that the linked file’s text doesn't contain whitespaces (including tabs and line breaks)                                     
   - verification that the linked file’s text doesn't contain semicolons and round brackets                                  
 
 If installation is being run from <a href="https://github.com/jelastic-jps" target="_blank">*GitHub*</a> and URL includes <b>*‘/blob/’*</b>, it will be replaced with <b>*‘/raw/’*</b>. In case the `baseUrl` parameter is defined without a slash at the end, it will be added automatically.              
@@ -59,7 +59,7 @@ For example:
 
 ##Success Text Customization
 
-It is possible to customize the `success` text, which is displayed upon successful application installation either at the dashboard or via email notification, in confines of a manifest.         
+It is possible to customize the *success* text, which is displayed upon successful application installation either at the dashboard or via email notification, in confines of a manifest.         
 
 - Setting a relative to `baseUrl` link, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                  
 ```
