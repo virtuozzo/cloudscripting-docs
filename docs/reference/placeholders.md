@@ -284,8 +284,8 @@ For example:
 `{nodes.cp[(i)].(key)}`   
 
 where:   
-- `i` - array's index   
-- `key` - node's parameter. See the details on setting [node parameters](#node-placeholders).   
+- `(i)` - array's index. Indexes of array start from 0..   
+- `(key)` - node's parameter. See the details on setting [node parameters](#node-placeholders).   
 
 **The First and the Last Array Elements** 
 

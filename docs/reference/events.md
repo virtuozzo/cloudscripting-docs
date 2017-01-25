@@ -6,51 +6,24 @@ Each event refers to a particular entity. For example, the entry point for execu
 ## Events Subsribtion Example
 ```
 {
-  "jpsType": "install",
+  "jpsType": "update",
   "name": "Event Subsribtion Example",
-  "nodes": [
-    {
-      "image": "jelastic/nginx-php",
-      "volumeMounts": {
-        "/var/www/webroot/ROOT": {
-          "readOnly": false,
-          "sourcePath": "/data",
-          "sourceNodeGroup": "storage"
-        }
-      },
-      "volumes": [
-        "/var/www/webroot/ROOT"
-      ],
-      "cloudlets": 8,
-      "nodeGroup": "cp",
-      "displayName": "AppServer"
-    },
-    {
-      "image": "jelastic/storage",
-      "cloudlets": 8,
-      "nodeGroup": "storage",
-      "displayName": "Storage"
-    }
-  ],
-  "globals": {
-    "customDirectory": "/tmp/CloudSCripting"
-  },
   "onInstall": {
     "createDirectory [cp]": "${globals.customDirectory}"
   },
   "onAfterScaleOut [nodeGroup:cp]": {
-    "cmd [cp]": "echo 'New Compute node has been added' >> ${globals.customDirectory}/addedNodes.txt"
+    "cmd [cp]": "echo 'New Compute node has been added' >> /tmp/result.txt"
   },
   "onAfterRestartNode [nodeGroup:cp]": {
-    "cmd [cp]": "echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> ${globals.customDirectory}/addedNodes.txt"
+    "cmd [cp]": "echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> /tmp/result.txt"
   }
 }
 ```
 where:
 
-- `jpsType` - *install* type presupposes a creation of a new environment with a predefined set of `nodes`                               
-- `globals` - creating a [custom global placeholder](/reference/placeholders/#custom-global-placeholders) named *customDirectory*                    
+- `jpsType` - *update* type presupposes a install add-on in an existing environment with a predefined listeners for *events*                               
 - `onInstall` - first event that will be executed upon environment installation, i.e. creating a new *CloudSCripting* directory                           
+    - cp - predefined `actions` and `events` in example required compute node. So they are filtered by *nodeGroup* **cp**  
 - `onAfterScaleOut` - event that will be performed upon new compute node addition, namely writing the appropriate message to the <b>*addedNodes.txt*</b> file                     
 - `onAfterRestartNode` - event that will be triggered upon restarting a compute node, viz. writing a message to the <b>*fileaddedNodes.txt*</b> file with a record on which node has been restarted               
 
@@ -61,7 +34,7 @@ where:
 - *UnlinkDockerNodes*, *LinkDockerNodes*, *SetDockerEnvVars*, *SetDockerEntryPoint*, *SetDockerRunCmd*, *AddDockerVolume* and *RemoveDockerVolume* events can be executed only once per a single *changeTopology* action
 - The *StartDockerService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.
 
-## Event Parameters and Response Placeholders
+## Event List
 
 ### onInstall
 
