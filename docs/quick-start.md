@@ -3,7 +3,7 @@ This guide will walk you through the Cloud Scripting basics and will help you to
 
 The required operations should be declared within the appropriate Cloud Scripting manifest, written in [JSON](http://ru.wikipedia.org/wiki/JSON) format.
 You can name this file with manifest as you need. The only requirement is that it should have the **.json** extension.
-A manifest file can be composed via any text editor; using a modern code editor with the support of JSON syntax highlighting is recommended
+The manifest file can be composed via any text editor, using a modern code editor with the support of JSON syntax highlighting is recommended
 (e.g. [JSON Editor Online](http://jsoneditoronline.org/)).
 
 Below you can see two simple examples of how to: 
@@ -54,7 +54,7 @@ Then, log in to your Jelastic account and perform the following operations:
 
 1. Copy an appropriate example and save it as a file with **.json** extension.
 
-2. Expand the **New environment** drop-down list at the top left of your dashboard and select the ***Import*** option it contains.
+2. Click the ***Import*** button at the top of your dashboard and select one of the options it contains.        
 
 ![Import](img/import.png)
 
@@ -74,14 +74,14 @@ While preparing your own manifest file, we recommend to:
 
 ## What's next?
 
-### Explore more complex examples:
+### Explore more complex examples:    
 
-- [Vertical Scaling](/examples/vertical-scaling/)
-- [Horizontal Scaling](/examples/horizontal-scaling/)
-- [Using Docker&reg;](/examples/using-docker/)
-- [WordPress Cluster](/examples/wordpress-cluster/)
+- [Vertical Scaling](/examples/vertical-scaling/)  
+- [Horizontal Scaling](/examples/horizontal-scaling/)  
+- [Using Docker&reg;](/examples/using-docker/)  
+- [WordPress Cluster](/examples/wordpress-cluster/)   
 
-### Learn Template Basics
+### Learn Template Basics 
 See the [Template Basics](creating-templates/template-basics/) section to learn the required basis of any JSON manifest and find out the differences between *Application* and *Extension*. 
 
 ### Write Cloud Scripts  
@@ -97,14 +97,14 @@ Reuse your code and the chain of actions using [Actions](/reference/actions/)
 Automate workflows using [Events](/reference/events/)
 
 ### Define user input parameters 
-Customize your app's input parameters that should be specified by a user before the installation. See [Getting User Input](creating-templates/user-input-parameters/) 
+Customize your app's input parameters that should be specified by a user before the installation. For that, see the [Getting User Input](creating-templates/user-input-parameters/) documentation page.   
 
 ### Use Placeholders 
-Learn how to use [Placeholders](/reference/placeholders/) for:
+Learn how to use [Placeholders](/reference/placeholders/) for:     
 
-- options / parameters which are user-defined or are changed often
-- filtering events 
-- selecting containers for your actions
+- options / parameters which are user-defined or are often changed     
+- filtering events   
+- selecting containers for your actions     
 
-### Explore Troubleshooting
-Follow the [Troubleshooting](troubleshooting/) guide if you experience any issues.
+### Explore Troubleshooting  
+Follow the [Troubleshooting](troubleshooting/) guide if you experience any issues.  
