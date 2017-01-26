@@ -40,7 +40,7 @@ There are the following Cloud Scripting rules applied while parsing file's relat
 If installation is being run from <a href="https://github.com/jelastic-jps" target="_blank">*GitHub*</a> and URL includes <b>*‘/blob/’*</b>, it will be replaced with <b>*‘/raw/’*</b>. In case the `baseUrl` parameter is defined without a slash at the end, it will be added automatically.              
 
  
-The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the [*cmd*](reference/actions/#cmd) and [*script*](reference/actions/#script) actions).              
+The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the [*cmd*](/reference/actions/#cmd) and [*script*](/reference/actions/#script) actions).              
 
 For example:
 
