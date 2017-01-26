@@ -186,7 +186,7 @@ Jelastic native software stacks include the following containers:
 
 ## Engine Versions (*engine*)
 
-The following section deals with supported engine versions and their availability within a corresponding *nodeType* (i.e. compute node).
+The following section deals with supported engine versions and their availability for a corresponding *nodeType* (in confines of the compute nodes).                               
 
 **Java Stacks**
 
