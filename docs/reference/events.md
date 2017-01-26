@@ -257,7 +257,7 @@ There are the following available node groups:
 
 The event will be performed before cloning node in the environment. The process of cloning nodes presupposes that new nodes are cloned from the existing ones. 
 
-The *onBeforeCloneNodes* event is aplicable only for the next node groups (excluding Docker-based nodes):      
+The *onBeforeCloneNodes* event is applicable only for the next node groups (excluding Docker-based nodes):      
 - *compute*   
 - *balancer*  
 - *VDS*    
@@ -277,7 +277,7 @@ The *onBeforeCloneNodes* event is aplicable only for the next node groups (exclu
 
 The event will be performed after cloning node in the environment. 
 
-The *onAfterCloneNodes* event is aplicable only for the next node groups (excluding Docker-based nodes):                               
+The *onAfterCloneNodes* event is applicable only for the next node groups (excluding Docker-based nodes):                               
 - *compute*              
 - *balancer*                 
 - *VDS*                 
@@ -297,7 +297,7 @@ The *onAfterCloneNodes* event is aplicable only for the next node groups (exclud
 
 ### onBeforeLinkNode
 
-The event will be executed before linking nodes to apply configurations to IP addresses. It is compatible only with *compute* and *balancer* node groups and exludes Docker-based nodes. 
+The event will be executed before linking nodes to apply configurations to IP addresses. It is compatible only with *compute* and *balancer* node groups and excludes Docker-based nodes. 
 
 **Event Placeholders:**   
 
@@ -311,7 +311,7 @@ The event will be executed before linking nodes to apply configurations to IP ad
 
 ### onAfterLinkNode
 
-The event will be executed after linking nodes to apply configurations to IP addresses. It is available only for *compute* and *balancer* node groups and exludes Docker-based nodes.
+The event will be executed after linking nodes to apply configurations to IP addresses. It is available only for *compute* and *balancer* node groups and excludes Docker-based nodes.
 
 **Event Placeholders:**   
 
@@ -547,14 +547,14 @@ The event is related to the *clone environment* action (performed via the Jelast
 
 ### onBeforeDeploy
 
-The event is bound to the *deploy* action, which is executed at the Jelastic dashboard by deploying any contex (i.e. archive with a compressed app) to the environment, and is triggered before it (viz. *deploy* acton).    
+The event is bound to the *deploy* action, which is executed at the Jelastic dashboard by deploying any context (i.e. archive with a compressed app) to the environment, and is triggered before it (viz. *deploy* action).    
 
 **Event Placeholders:**     
 
 - `${event.params.}`:   
     - `session` - current user session      
     - `appid` - environment unique appid     
-    - `atomicDeploy` *[boolean]* - deployment of a contex to all nodes at once          
+    - `atomicDeploy` *[boolean]* - deployment of a context to all nodes at once          
     - `path` - context path       
     - `context` - context name      
     - `archivename` - deployed context display name that is shown at the dashboard         
@@ -563,14 +563,14 @@ The event is bound to the *deploy* action, which is executed at the Jelastic das
 
 ### onAfterDeploy
 
-The event is bound to the *deploy* action, which is executed at the Jelastic dashboard by deploying any contex (i.e. archive with a compressed app) to the environment, and is triggered after it (viz. *deploy* acton).
+The event is bound to the *deploy* action, which is executed at the Jelastic dashboard by deploying any context (i.e. archive with a compressed app) to the environment, and is triggered after it (viz. *deploy* action).
 
 **Event Placeholders:**       
 
 - `${event.params.}`:   
     - `session` - current user session   
     - `appid` - environment unique appid      
-    - `atomicDeploy` *[boolean]* - deployment of a contex to all nodes at once        
+    - `atomicDeploy` *[boolean]* - deployment of a context to all nodes at once        
     - `path` - context path       
     - `context` - context name        
     - `archivename` - deployed context display name that is shown at the dashboard      
