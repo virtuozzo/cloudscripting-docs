@@ -2,7 +2,7 @@
 
 <b>Containers by Types (*NodeType*)</b>
 
-Container *nodeType* parameter defines software stacks (among the supported ones) to be implemented within environment. Node type value is specified within *nodeType* field while performing an appropriate [action](/reference/actions/).                   
+The *nodeType* parameter defines software stacks (among the supported ones) to be implemented within environment. Node type value is specified within *nodeType* field while performing an appropriate [action](/reference/actions/).                   
 
 **For example:**   
 
