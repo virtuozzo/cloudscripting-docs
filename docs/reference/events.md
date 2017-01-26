@@ -3,7 +3,7 @@
 Any action, available to be performed by means of API (including custom users’ scripts running), should be bound to some event, i.e. executed as a result of this event occurrence.
 Each event refers to a particular entity. For example, the entry point for executing any action with application is the [*onInstall*](#oninstall) event.
 <br>
-## Events Subsribtion Example
+## Events Subsription Example
 ```
 {
   "jpsType": "update",
@@ -21,9 +21,9 @@ Each event refers to a particular entity. For example, the entry point for execu
 ```
 where:
 
-- `jpsType` - *update* type presupposes a install add-on in an existing environment with a predefined listeners for *events*                               
+- `jpsType` - *update* type presupposes installing add-on in the existing environment with the predefined listeners for *events*                               
 - `onInstall` - first event that will be executed upon environment installation, i.e. creating a new *CloudSCripting* directory                           
-    - cp - predefined `actions` and `events` in example required compute node. So they are filtered by *nodeGroup* **cp**  
+    - cp - predefined `actions` and `events` in the example require a compute node, therefore, they are filtered by *nodeGroup* as **cp**                            
 - `onAfterScaleOut` - event that will be performed upon new compute node addition, namely writing the appropriate message to the <b>*addedNodes.txt*</b> file                     
 - `onAfterRestartNode` - event that will be triggered upon restarting a compute node, viz. writing a message to the <b>*fileaddedNodes.txt*</b> file with a record on which node has been restarted               
 
