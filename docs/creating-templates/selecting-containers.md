@@ -99,7 +99,7 @@ Jelastic platform supports the following predefined *nodeGroup* values:
 Actions for a specified *nodeGroup* are executed successively one by one. For Docker containers the *nodeGroup* value is not predefined, therefore, it can be stated to any value above or your custom one. Visit the [Containers by Groups](/reference/container-types/#containers-by-group) documentation page for more information.        
 
 ## All Containers By Type
-The `nodeType` parameter is applied to select all containers built upon the same software stacks. Visit the [Containers by Types](/reference/container-types/) documentation page to explore the provided containers listed by their type.    	  
+The `nodeType` parameter is applied to select all containers built upon the same software stacks. Visit the [Containers by Types](/reference/container-types/) documentation page to explore the provided containers listed according to their type.    	  
 
 !!! note
     > If you set all three parameters, the container selection would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>. 
