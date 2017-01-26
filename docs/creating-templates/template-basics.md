@@ -52,8 +52,8 @@ These basic string should be extended with the settings required by the applicat
 ```
 
 - `name` *[required]* - JPS custom name      
-- `baseUrl` *[optional]* - custom [relative links](/relative-links/)              
-- `settings` *[optional]* - custom form with [predefined user input elements](/user-input-parameters/)      
+- `baseUrl` *[optional]* - custom [relative links](/creating-templates/relative-links/)              
+- `settings` *[optional]* - custom form with [predefined user input elements](/creating-templates/user-input-parameters/)      
 - `jpsVersion` - *[optional]* - JPS type supported by the Jelastic platform. Correspondence between version is located [here](/jelastic-cs-correspondence/).              
 - `nodes` - object to describe information about nodes for installation. Required option for `jpsType` **install**.          
 - `engine` *[optional]* - engine [version](/reference/container-types/#engine-versions-engine), **default**: `java6`      
