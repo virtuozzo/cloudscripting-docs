@@ -1,13 +1,15 @@
 # Actions
 
-Actions represent the building blocks that perform arbitrary automation functions in your environment, such as:         
+Actions represent the building blocks that perform arbitrary automation functions in your environment, such as:
+
 - increasing/decreasing CPU or RAM amount     
 - adjusting configs according to specific environment's settings             
 - restarting a service           
 - restarting a container                  
 - applying a database patch according to specific environment's settings                                 
 
-The default workflow for any action execution is the following:                             
+The default workflow for any action execution is the following:
+
 - replacing [placeholders](placeholders/)         
 - getting a list of target containers *[optional]* (for a detailed guidance see the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) section)         
 - checking permissions       
@@ -15,7 +17,8 @@ The default workflow for any action execution is the following:
 
 Actions are executed when the called [event](events/) matches specified filtering rules. Multiple actions can be combined together into a [custom action](#custom-actions).                 
 
-Thus, the following specific groups of actions are singled out:                 
+Thus, the following specific groups of actions are singled out:
+
 - [container operations](#container-operations)                  
 - [topology management](#topology-nodes-management)            
 - [database operations](#database-operations)                 
@@ -24,7 +27,8 @@ Thus, the following specific groups of actions are singled out:
 ## Container Operations
 There are actions that perform operations inside of a container. For a detailed guidance on how to define a target container visit the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) page.            
 
-Any container operation can be performed using a [cmd](#cmd) action. Herewith, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:                                  
+Any container operation can be performed using a [cmd](#cmd) action. Herewith, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:
+
 - SSH commands (e.g. [cmd](#cmd))                        
 - predefined modules (e.g. [Deploy](#deploy), [Upload](#upload), [Unpack](#unpack))          
 - operations with files (e.g. [CreateFile](#createfile), [CreateDirectory](#createdirectory), [WriteFile](#writefile), [AppendFile](#appendfile), [ReplaceInFile](#replaceinfile))                    
@@ -58,7 +62,7 @@ where:
 - `sayYes` *[optional]* - parameter that enables or disables using **yes** utility. The default value is *'true'*.                  
 
 A single SSH command can be passed in a string. For example, executing a bash script from *URL* for all *Tomcat 6* nodes:                 
-```example 
+``` 
 {
   "cmd [tomcat6]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
 }
@@ -89,7 +93,7 @@ Setting SSH commands in an array:
 ```
                              
 Downloading and unzipping a *WordPress* plugin on all compute nodes:                
-```example
+```
 {
   "cmd [cp]": [
     "cd /var/www/webroot/ROOT/wp-content/plugins/",
@@ -104,7 +108,7 @@ The same can be performed with the help of the [unpack](/reference/actions/#unpa
 
 Using **sudo** to reload *Nginx* balancer:
 
-```example
+```
 {
   "cmd [nginx]": [
     "sudo /etc/init.d/nginx reload"
@@ -115,7 +119,8 @@ Using **sudo** to reload *Nginx* balancer:
 ### API 
 Executing actions available by means of the [Jelastic Cloud API](http://docs.jelastic.com/api/) methods.
 
-There is a list of parameters required by Jelastic API, which are defined automatically:           
+There is a list of parameters required by Jelastic API, which are defined automatically:
+
 - *envName* - environment domain name, where the API method is executed     
 - *appid* - unique environment identifier, that can be passed into API instead of the *envName*     
 - *session* - unique session of a current user            
@@ -669,18 +674,53 @@ where:
 
 
 ### InstallAddon
+
+The possibility to install few custom add-ons in one manifest. It can be installed into:
+
+- an existing environment if when `jpsType` is *update*  
+- an new environment if `jpsType` is *install*. Add-ons will be installed sequentially one by one right after new environment will be created. 
+
+All add-ons have `jpsType` *update* by default.   
+The example below shows how to pass add-on identifier into `installAddon` action. This add-on should be described in the `addons` section. The Custom add-on with identifier *firstAddon* will create a new file into compute node in *tmp* directory.
 ```
 {
-  "installAddon": [
-    {
-        "id" : "string"
-    }
-  ]
+	"jpsType": "update",
+	"name": "Install Add-on example",
+	"onInstall": {
+		"installAddon": {
+			"id": "firstAddon"
+		}
+	},
+	"addons": [{
+		"id": "firstAddon",
+		"name": "firstAddon",
+		"onInstall": {
+			"createFile [cp]": "/tmp/exampleFile.txt"
+		}
+	}]
 }
 ```
 where:  
 
-- `id` - extension ID from the **Marketplace** or from the **Add-ons** section in the manifest                         
+- `id` - custom identifier for custom add-on                         
+
+Installed add-ons can be displayed in Add-ons tab into Jelastic dashboard. 
+
+![Add-ons tab](/img/add-on_tab.jpg)
+
+In this case into `installAddon` action need to pass `nodeGroup` parameter where add-on will be displayed.
+For example:
+
+```
+{
+  "installAddon": {
+    "id": "firstAddon",
+    "nodeGroup": "bl"
+  }
+}
+```
+
+Then the installed add-on will be marked as installed in *balancer* layer. 
 
 <!-- add example -->
 
