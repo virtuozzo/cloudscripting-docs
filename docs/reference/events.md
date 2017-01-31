@@ -21,11 +21,11 @@ Each event refers to a particular entity. For example, the entry point for execu
 ```
 where:
 
-- `jpsType` - *update* type presupposes installing add-on in the existing environment with the predefined listeners for *events*                               
-- `onInstall` - first event that will be executed upon environment installation, i.e. creating a new *CloudSCripting* directory                           
-    - cp - predefined `actions` and `events` in the example require a compute node, therefore, they are filtered by *nodeGroup* as **cp**                            
-- `onAfterScaleOut` - event that will be performed upon new compute node addition, namely writing the appropriate message to the <b>*addedNodes.txt*</b> file                     
-- `onAfterRestartNode` - event that will be triggered upon restarting a compute node, viz. writing a message to the <b>*fileaddedNodes.txt*</b> file with a record on which node has been restarted               
+- `jpsType` - *update* type presupposes installing add-on in the existing environment with the predefined listeners for *events*                                 
+- `onInstall` - first event that will be executed upon environment installation                                                
+    - cp - predefined `actions` and `events` in the example require a compute node, therefore, they are filtered by *nodeGroup* as **cp**                                       
+- `onAfterScaleOut` - event that will be performed upon new compute node addition                                         
+- `onAfterRestartNode` - event that will be triggered upon restarting a compute node                           
 
 ##Event Execution Rules
 - Such events as *Install* & *Uninstall* application, as well as *BeforeDelete* and *AfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.
