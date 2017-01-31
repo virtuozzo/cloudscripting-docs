@@ -43,7 +43,7 @@ Learn more on this [parameter](/reference/actions/#custom-actions) within the li
 !!! note 
     > **Node Selectors** have higher priority than nodes specified next to the action but lower than parameters set in the action object.     
 
-Have a look at more detailed descriptions on approaches provided for container selection:          
+Have a look at more detailed descriptions on approaches available for container selection:          
 - [Particular Container](#particular-container)   
 - [All Containers By Group](#all-containers-by-group)    
 - [All Containers By Type](#all-containers-by-type)   
