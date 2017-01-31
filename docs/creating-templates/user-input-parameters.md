@@ -52,7 +52,7 @@ where:
         * `spinner` - [input field](/creating-templates/user-input-parameters/#spinner) for entering numeric values                       
         * `numberpicker` - [text field within number validation](/creating-templates/user-input-parameters/#numberpicker) within range                            
         * `number-picker` - alias to `numberpicker`  
-        * `hostpicker` - dropdown menu with [environment hosts](/creating-templates/user-input-parameters/#hostpicker)                             
+        * `hostpicker` - drop-down menu with [environment hosts](/creating-templates/user-input-parameters/#hostpicker)                             
         * `host-picher` - alias to `hostpicker`                                      
         * `toggle` - [switcher](/creating-templates/user-input-parameters/#toggle) between two values                        
     - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. More info [here](https://www.w3.org/wiki/HTML/Elements/input#Point).        
