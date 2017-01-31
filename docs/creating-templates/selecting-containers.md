@@ -38,7 +38,7 @@ Herein, the `createFile` and `createDirectory` actions are applied to the specif
  
 * setting a required node as a parameter in the action object     
 
-Learn more on this parameter [here](/reference/actions/#custom-actions).      
+Learn more on this [parameter](/reference/actions/#custom-actions) within the linked page.         
 
 !!! note 
     > **Node Selectors** have higher priority than nodes specified next to the action but lower than parameters set in the action object.     
