@@ -8,7 +8,7 @@ Also, there are three possible approaches to set containers filtering:
 
 For example:  
 ```
-[{
+{
     "createFile [cp]" : {
           "path" : "/tmp/test.txt"
     }
@@ -16,7 +16,7 @@ For example:
     "createDirectory [cp,bl,123]" : {
           "path" : "/tmp/test.txt"
     }
-}]
+}
 ```
 In the example above, a new file will be created in the compute node (*[cp]*) and a new directory will be created in the compute node (*[cp]*), balancer (*[bl]*) and node with ID *123*. Actions for the specified nodes are executed in the declared order.       
 
