@@ -651,12 +651,12 @@ where:
 - `caption` *[optional]* - field label    
 - `name` *[optional]* - name of the field  
 - `editable` *[optional][boolean]* - enables/disables the `envlist` field editing. The default value is *'false'*.    
-- `valueField` *[optional][string]* - value from environment information, which will be sent to a server. The default value is **domain**. Available values are:    
-    - **iconCls** - css class     
-    - **isRunning** - check if environment status is *running*  
+- `valueField` *[optional][string]* - value from environment information, which will be sent to a server. The default value is *'domain'*. Available values are:    
+    - **iconCls** - CSS class     
+    - **isRunning** - checking whether environment status is *running*    
     - **shortdomain** - short environment domain name (without platform URL)  
     - **displayName** - environment *displayName*  
-    - **appid** - unique environment ID     
+    - **appid** - unique environment ID       
 
 ###popupselector     
 (*popup-selector* is an alias)     
