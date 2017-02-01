@@ -71,4 +71,4 @@ These basic string should be extended with the settings required by the applicat
 - `startPage` *[optional]* - path to be opened via the *Open in browser* button in a success form                          
 - `actions` *[optional]* - objects to describe all [*custom actions*](/reference/actions/#custom-actions)             
 - `addons` *[optional]* - includes JPS manifests with jpsType *update* as a new jps installation      
-- `onInstall` *[optional]* - [even](http://docs.cloudscripting.com/reference/events/#oninstall) that is an entry point for the first action execution                        
+- `onInstall` *[optional]* - [even](http://docs.cloudscripting.com/reference/events/#oninstall) that is an entry point for actions execution                            
