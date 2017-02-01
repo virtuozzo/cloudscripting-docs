@@ -34,7 +34,7 @@ For example:
   "nodeGroup": "cp"
 }
 ``` 
-Herein, the `createFile` and `createDirectory` actions are applied to the specified *nodeGroup*, namely compute node (*[cp]*).     
+Here, the `createFile` and `createDirectory` actions are applied to the specified *nodeGroup*, namely compute node (*[cp]*).     
  
 * setting a required node as a parameter in the action object     
 
