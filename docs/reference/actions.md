@@ -1,12 +1,15 @@
 # Actions
-Actions represent the building blocks that perform arbitrary automation functions in your environment, such as:         
+
+Actions represent the building blocks that perform arbitrary automation functions in your environment, such as:
+
 - increasing/decreasing CPU or RAM amount     
 - adjusting configs according to specific environment's settings             
 - restarting a service           
 - restarting a container                  
 - applying a database patch according to specific environment's settings                                 
 
-The default workflow for any action execution is the following:                             
+The default workflow for any action execution is the following:
+
 - replacing [placeholders](placeholders/)         
 - getting a list of target containers *[optional]* (for a detailed guidance see the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) section)         
 - checking permissions       
@@ -14,7 +17,8 @@ The default workflow for any action execution is the following:
 
 Actions are executed when the called [event](events/) matches specified filtering rules. Multiple actions can be combined together into a [custom action](#custom-actions).                 
 
-Thus, the following specific groups of actions are singled out:                 
+Thus, the following specific groups of actions are singled out:
+
 - [container operations](#container-operations)                  
 - [topology management](#topology-nodes-management)            
 - [database operations](#database-operations)                 
@@ -23,7 +27,8 @@ Thus, the following specific groups of actions are singled out:
 ## Container Operations
 There are actions that perform operations inside of a container. For a detailed guidance on how to define a target container visit the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) page.            
 
-Any container operation can be performed using a [cmd](#cmd) action. Herewith, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:                                  
+Any container operation can be performed using a [cmd](#cmd) action. Herewith, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:
+
 - SSH commands (e.g. [cmd](#cmd))                        
 - predefined modules (e.g. [Deploy](#deploy), [Upload](#upload), [Unpack](#unpack))          
 - operations with files (e.g. [CreateFile](#createfile), [CreateDirectory](#createdirectory), [WriteFile](#writefile), [AppendFile](#appendfile), [ReplaceInFile](#replaceinfile))                    
@@ -31,7 +36,7 @@ Any container operation can be performed using a [cmd](#cmd) action. Herewith, t
 !!! note 
     To process any container operation (except for [cmd](#cmd)), the Cloud Scripting executor will use a default system user with restricted permissions.                   
    
-### Cmd   
+### cmd   
 
 The *cmd* action executes <a href="https://docs.jelastic.com/ssh-overview" target="_blank">SSH</a> commands.             
 <!--Available for all nodes.-->      
@@ -56,7 +61,7 @@ where:
     - **user** - default system user with restricted permissions    
 - `sayYes` *[optional]* - parameter that enables or disables using **yes** utility. The default value is *'true'*.                  
 
-A single SSH command can be passed in a string. For example, executing a bash script from URL for all *Tomcat 6* nodes:                 
+A single SSH command can be passed in a string. For example, executing a bash script from *URL* for all *Tomcat 6* nodes:                 
 ```example 
 {
   "cmd [tomcat6]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
@@ -88,7 +93,7 @@ Setting SSH commands in an array:
 ```
                              
 Downloading and unzipping a *WordPress* plugin on all compute nodes:                
-```example
+```
 {
   "cmd [cp]": [
     "cd /var/www/webroot/ROOT/wp-content/plugins/",
@@ -111,10 +116,11 @@ Using **sudo** to reload *Nginx* balancer:
 }
 ```
    
-### API 
-Executing actions available by means of the <a href="http://docs.jelastic.com/api/" target="_blank">Jelastic Cloud API</a> methods.                          
+### api 
+Executing actions available by means of the [Jelastic Cloud API](http://docs.jelastic.com/api/) methods.
 
-There is a list of parameters required by Jelastic API, which are defined automatically:           
+There is a list of parameters required by Jelastic API, which are defined automatically:
+
 - *envName* - environment domain name, where the API method is executed     
 - *appid* - unique environment identifier, that can be passed into API instead of the *envName*     
 - *session* - unique session of a current user            
@@ -148,7 +154,7 @@ Below you can find one more approach to specify a target node group for API meth
 ```
 Learn more about [selecting a target container](/creating-templates/selecting-containers/) for your API actions within the linked guide.                                      
         
-### Deploy
+### deploy
 Available for compute nodes (except for *Docker* containers)
 ```
 {
@@ -167,7 +173,7 @@ where:
 - `name` - application's name, that will be displayed at the dashboard
 - `context`- desired context for a deployed app
 
-### Upload
+### upload
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)-->
 ```
@@ -190,7 +196,7 @@ where:
 - `sourcePath` - URL to download an external file                    
 - `destPath` - container path, where the uploaded file is to be saved                         
 
-### Unpack
+### unpack
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
 ```
@@ -213,7 +219,7 @@ where:
 - `sourcePath` - URL to download an external archive   
 - `destPath` - container path, where the uploaded archive is to be unpacked                               
 
-### CreateFile
+### createFile
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
 ```
@@ -226,7 +232,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                          
 - `string` - container path, where a file is to be created                              
 
-### CreateDirectory
+### createDirectory
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
 ```
@@ -239,7 +245,7 @@ where:
 - `nodeId`, `nodGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                       
 - `string` - container path, where a directory is to be created                         
 
-### WriteFile
+### writeFile
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
 ```
@@ -262,7 +268,7 @@ where:
 - `path` - container path, where a file is to be written                
 - `body` - content saved to the file                                         
 
-### AppendFile
+### appendFile
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
 ```
@@ -285,7 +291,7 @@ where:
 - `path` - container path, where a file is to be appended                                 
 - `body` - content saved to the file                               
 
-### ReplaceInFile
+### replaceInFile
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
 ```
@@ -318,7 +324,7 @@ where:
 
 ## Topology Nodes Management
 
-### AddNodes
+### addNodes
 ```
 {
   "addNodes": [
@@ -358,7 +364,7 @@ where:
 - `entrypoint` *[optional]* - Docker entry points                                          
 
 <!-- SetCloudletsCount -->
-### SetNodeDisplayName
+### setNodeDisplayName
 Available for all nodes
 ```
 {
@@ -371,7 +377,7 @@ where:
 - `string` - node’s display name (i.e. [alias](https://docs.jelastic.com/environment-aliases))                                                                    
 
 
-### SetNodeCount
+### setNodeCount
 Available for all nodes (except for *Docker* containers and *Elastic VPS*)
 ```
 {
@@ -383,7 +389,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                
 - `number` - nodes’ total amount after action is finished                                          
 
-### SetExtIpEnabled
+### setExtIpEnabled
 Available for all nodes
 ```
 {
@@ -395,7 +401,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                   
 - `true` or `false` - parameter that allows to attach or detach external IP address                              
 
-### RestartNodes
+### restartNodes
 Available for all nodes (except for *Elastic VPS*)
 ```
 {
@@ -412,7 +418,7 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                   
 
-### RestartContainers
+### restartContainers
 Available for all nodes
 ```
 {
@@ -429,7 +435,7 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                       
  
-### AddContext
+### addContext
 Available for compute nodes (except for *Docker* containers)
 ```
 {
@@ -453,7 +459,7 @@ where:
 
 ## Database Operations
 
-### PrepareSqlDatabase
+### prepareSqlDatabase
 Available for *SQL* databases (except for *Docker* containers)
 ```
 {
@@ -489,7 +495,7 @@ where:
 !!! note
     The function is executed only for `mysql5`, `mariadb` and `mariadb10` containers.                          
 
-### RestoreSqlDump
+### restoreSqlDump
 Available for *SQL* databases (except for *Docker* container)
 ```
 {
@@ -514,7 +520,7 @@ where:
 - `password` - password in the database, on behalf of which the application will be used                         
 - `dump` - URL to the application's database dump                                
 
-### ApplySqlPatch
+### applySqlPatch
 Available for *SQL* databases (except for *Docker* containers)                                 
 ```
 {
@@ -544,7 +550,7 @@ where:
 
 ## Performing User-Defined Operations
 
-### Script
+### script
 
 ```
 {
@@ -577,15 +583,15 @@ where:
 !!! note
     Learn more about using [Jelastic Cloud API](http://docs.jelastic.com/api/).
 
-### Sleep
-Setting a delay that is measured in milliseconds. The example below shows how to create the delay for one second:                                    
+### sleep
+Setting a delay that is measured in milliseconds. The below example shows how to create the delay for one second:                                    
 ```
 {
   "sleep": "1000"
 }
 ```
 
-### InstallJps
+### installJps
 Nesting a JPS manifest inside the current manifest file. The nested JPS manifest will be installed subsequently after the current one. The action is available for **install** and **update** *jpsType* modes.                              
 
 **Examples**
@@ -667,19 +673,54 @@ where:
 - `onInstall` - entry point for performed actions               
 
 
-### InstallAddon
+### installAddon
+
+The possibility to install few custom add-ons in one manifest. It can be installed into:
+
+- an existing environment if when `jpsType` is *update*  
+- an new environment if `jpsType` is *install*. Add-ons will be installed sequentially one by one right after new environment will be created. 
+
+All add-ons have `jpsType` *update* by default.   
+The example below shows how to pass add-on identifier into `installAddon` action. This add-on should be described in the `addons` section. The Custom add-on with identifier *firstAddon* will create a new file into compute node in *tmp* directory.
 ```
 {
-  "installAddon": [
-    {
-        "id" : "string"
-    }
-  ]
+	"jpsType": "update",
+	"name": "Install Add-on example",
+	"onInstall": {
+		"installAddon": {
+			"id": "firstAddon"
+		}
+	},
+	"addons": [{
+		"id": "firstAddon",
+		"name": "firstAddon",
+		"onInstall": {
+			"createFile [cp]": "/tmp/exampleFile.txt"
+		}
+	}]
 }
 ```
 where:  
 
-- `id` - extension ID from the **Marketplace** or from the **Add-ons** section in the manifest                         
+- `id` - custom identifier for custom add-on                         
+
+Installed add-ons can be displayed in Add-ons tab into Jelastic dashboard. 
+
+![Add-ons tab](/img/add-on_tab.jpg)
+
+In this case into `installAddon` action need to pass `nodeGroup` parameter where add-on will be displayed.
+For example:
+
+```
+{
+  "installAddon": {
+    "id": "firstAddon",
+    "nodeGroup": "bl"
+  }
+}
+```
+
+Then the installed add-on will be marked as installed in *balancer* layer. 
 
 <!-- add example -->
 

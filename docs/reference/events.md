@@ -9,7 +9,7 @@ Each event refers to a particular entity. For example, the entry point for execu
   "jpsType": "update",
   "name": "Event Subsribtion Example",
   "onInstall": {
-    "createDirectory [cp]": "${globals.customDirectory}"
+    "createFile [cp]": "/tmp/result.txt"
   },
   "onAfterScaleOut [nodeGroup:cp]": {
     "cmd [cp]": "echo 'New Compute node has been added' >> /tmp/result.txt"

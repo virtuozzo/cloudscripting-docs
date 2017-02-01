@@ -270,6 +270,7 @@ Any array has a list of specific placeholders: array *length*, element by *ID*, 
 Any array length placeholder can be defined within a manifest. 
 
 For example:
+
 ```
 ${nodes.cp.length},
 ${nodes.bl.extips.length}
