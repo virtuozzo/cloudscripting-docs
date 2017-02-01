@@ -5,7 +5,7 @@ A script can be subscribed to the onAfterReturn event on its outlet for executio
 
 
 ## Intercontainer Scripts
-In order to execute a shell script inside the container, the [ExecuteShellCommands](/reference/actions/#executeshellcommands) action is used.         
+In order to execute a shell script inside the container, the [ExecuteShellCommands](http://docs.cloudscripting.com/reference/actions/#cmd) action is used.           
 
 **Example #1 Execute bash script from URL**
 ```example
