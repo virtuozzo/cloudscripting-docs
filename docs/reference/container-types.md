@@ -2,11 +2,11 @@
 
 <b>Containers by Types (*NodeType*)</b>
 
-The *nodeType* parameter defines software stacks (among the supported ones) to be implemented to an environment. Node type value is specified within the *nodeType* field while performing an appropriate [action](/reference/actions/).                   
+The *nodeType* parameter defines software stacks (among the supported ones) to be implemented within an environment. The node type value is specified within the *nodeType* field while performing an appropriate [action](/reference/actions/).                   
 
 **For example:**   
 
-Using *nodeType* field while performing the *writeFile* [action](/reference/actions/#writefile):                         
+Using the *nodeType* field while performing the *writeFile* [action](/reference/actions/#writefile):                         
 ```
 {
   "writeFile": {
@@ -23,7 +23,7 @@ where:
 - `path` - parameter specifying path to a file                
 - `body` - data that is being written to a file                          
 
-Creating environment with topology specifics, set by *engine* and *nodeType* values:                                      
+Creating an environment with topology specifics, set by the *engine* and *nodeType* values:                                      
 ```
 {
   "jpsType": "install",
@@ -42,7 +42,7 @@ where:
 - `engine` - value that specifies engine version (*java7* in our example)                  
 - `nodeType` - value that specifies compute node type (*tomcat7* in our example)                        
 
-Below you can find data on supported software stacks in confines of [*nodeGroup*](/reference/container-types/#containers-by-groups-nodegroup), [*nodeType*](/reference/container-types/#containers-by-types-nodetype) and [*engine*](/reference/container-types/#engine-versions-engine) values.        
+Below you can find data on supported software stacks in confines of the [*nodeGroup*](/reference/container-types/#containers-by-groups-nodegroup), [*nodeType*](/reference/container-types/#containers-by-types-nodetype) and [*engine*](/reference/container-types/#engine-versions-engine) values.        
 
 ##Containers by Groups (*nodeGroup*)
 
