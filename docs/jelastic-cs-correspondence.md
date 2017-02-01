@@ -18,7 +18,7 @@ Cloud Scripting version can be choosen at the bottom of the page.
     </tr>
     <tr id="jel">
         <th id="table-head">Jelastic</th>
-        <td>4.9.6</td>
+        <td>4.10</td>
         <td>4.9.5</td>
         <td>4.8</td>
         <td>4.6, 4.7</td>
