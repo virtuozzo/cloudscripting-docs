@@ -1,7 +1,7 @@
 # Quick Start 
 This guide will walk you through the Cloud Scripting basics and will help you to build and run such simple automation processes like creating new environments and deploying applications.
 
-The required operations should be declared within the appropriate Cloud Scripting manifest, written in [JSON](http://ru.wikipedia.org/wiki/JSON) format.
+The required operations should be declared within the appropriate Cloud Scripting manifest, written in [JSON](https://en.wikipedia.org/wiki/JSON) format.    
 You can name this file with manifest as you need. The only requirement is that it should have the **.json** extension.
 The manifest file can be composed via any text editor, using a modern code editor with the support of JSON syntax highlighting is recommended
 (e.g. [JSON Editor Online](http://jsoneditoronline.org/)).
