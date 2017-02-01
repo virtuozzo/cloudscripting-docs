@@ -38,12 +38,13 @@ where:
 
 ### onInstall
 
-The *onInstall* event is the entry point for executing any action. In case *jpsType* is **install**, the *onInstall* event will be carried out right after environment creation. If *jpsType* is set as **update**, *onInstall* is the first event to be performed during the manifest installation.           
+The *onInstall* event is the entry point for executing any action. In case *jpsType* is **install**, the *onInstall* event will be carried out right after environment creation. If *jpsType* is set as **update**, *onInstall*  is the first event to be performed during the manifest installation.           
  
 ###onUninstall
 
 The *onUninstall* event can be called from the **Add-ons** tab at the Jelastic dashboard. This event is aimed at removing data, which was accumulated as a result of the *onInstall* action execution.            
-![onUninstall](/img/addon-install.jpg)
+  
+![onUninstall](/img/addon-install.jpg)    
 
 ### onBeforeChangeTopology
 
