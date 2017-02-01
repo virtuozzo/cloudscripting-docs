@@ -57,18 +57,18 @@ These basic string should be extended with the settings required by the applicat
 - `jpsVersion` - *[optional]* - JPS type supported by the Jelastic platform. Correspondence between version is located [here](http://docs.cloudscripting.com/jelastic-cs-correspondence/).                  
 - `nodes` - object to describe information about nodes for installation. Required option for `jpsType` **install**.          
 - `engine` *[optional]* - engine [version](/reference/container-types/#engine-versions-engine), **default**: `java6`      
-- `region` *[optional]* - region, where environment will be installed . Required option of `jpsType` **install**.          
-- `displayName` *[optional]* - display name for environment. Required option of `jpsType` **install**.      
-- `ssl` *[optional]* - Jelastic SSL status for environment, **default**: false         
+- `region` *[optional]* - region, where an environment will be installed . Required option of `jpsType` **install**.          
+- `displayName` *[optional]* - display name for an environment. Required option of `jpsType` **install**.      
+- `ssl` *[optional]* - Jelastic SSL status for an environment, **default**: false         
 - `ha` *[optional]* - high availability for Java stacks, **default**: false                  
-- `description` - text string that describes the template. This section should always follow the template format version section.          
-- `categories` - available categories for manifests filtering                 
-- `version` *[optional]* - application custom version          
-- `logo` *[optional]* - JPS image that will be displayed within the custom add-ons             
+- `description` - text string that describes a template. This section should always follow the template format version section.          
+- `categories` - available categories for manifests filtering                   
+- `version` *[optional]* - custom version of application                        
+- `logo` *[optional]* - JPS image that will be displayed within custom add-ons                
 - `homepage` *[optional]* - link for any external aplication source        
-- `type` *[optional]* - application language type          
+- `type` *[optional]* - language type of application           
 - `success` *[optional]* - success text that will be sent via email and will be shown at the dashboard after installation      
 - `startPage` *[optional]* - path to be opened via the *Open in browser* button in a success form                          
 - `actions` *[optional]* - objects to describe all [*custom actions*](/reference/actions/#custom-actions)             
 - `addons` *[optional]* - includes JPS manifests with jpsType *update* as a new jps installation      
-- `onInstall` *[optional]* - first action, which will be executed            
+- `onInstall` *[optional]* - [even](http://docs.cloudscripting.com/reference/events/#oninstall) that is an entry point for the first action execution                        
