@@ -65,7 +65,7 @@ For example:
 }
 ```
 
-If you don't know container's ID or container hasn't been created yet, you can set the dynamic value using special placeholders.     
+If you don't know the ID or a container hasn't been created yet, you can set the dynamic value using special placeholders.     
 
 For example:    
 
