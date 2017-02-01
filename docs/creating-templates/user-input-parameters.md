@@ -36,12 +36,12 @@ where:
     - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:   
         * `string` - [basic](/creating-templates/user-input-parameters/#string) text field                                  
         * `text`  - [multiline](/creating-templates/user-input-parameters/#text) text field                                                                                                         
-        * `list` - dropdown menu with non-editable textboxes (see more details with example [here](/creating-templates/user-input-parameters/#list))                                           
+        * `list` - drop-down menu with non-editable textboxes (see more details with example [here](/creating-templates/user-input-parameters/#list))                                           
         * `checkbox` - single [checkbox field](/creating-templates/user-input-parameters/#checkbox)                     
         * `checkboxlist` - [checkbox](/creating-templates/user-input-parameters/#checkboxlist) grouping                             
         * `radiolist` - [radio field](/creating-templates/user-input-parameters/#radiolist) grouping                       
         * `radio-fieldset` - alias to `radiolist`              
-        * `dockertags` - dropdown menu with a list of docker tags (see more details with example [here](/creating-templates/user-input-parameters/#dockertag))                   
+        * `dockertags` - drop-down menu with a list of docker tags (see more details with example [here](/creating-templates/user-input-parameters/#dockertag))                   
         * `compositefield` - [component](/creating-templates/user-input-parameters/#compositefield) that comprises any available field    
         * `slider` - [slider element](/creating-templates/user-input-parameters/#slider) as a form field
         * `envlist` - [list of environments](/creating-templates/user-input-parameters/#envlist) available for a corresponding account                  
@@ -50,12 +50,12 @@ where:
         * `displayfield` - [text field](/creating-templates/user-input-parameters/#displayfield) intended for displaying text                            
         * `spacer` - alias to `displayfield`                     
         * `spinner` - [input field](/creating-templates/user-input-parameters/#spinner) for entering numeric values                       
-        * `numberpicker` - [text field within number validation](/creating-templates/user-input-parameters/#numberpicker) within range                            
+        * `numberpicker` - [text field within number validation](/creating-templates/user-input-parameters/#numberpicker) within a range                            
         * `number-picker` - alias to `numberpicker`  
         * `hostpicker` - drop-down menu with [environment hosts](/creating-templates/user-input-parameters/#hostpicker)                             
         * `host-picher` - alias to `hostpicker`                                      
         * `toggle` - [switcher](/creating-templates/user-input-parameters/#toggle) between two values                        
-    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. More info [here](https://www.w3.org/wiki/HTML/Elements/input#Point).        
+    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. More info <a href="https://www.w3.org/wiki/HTML/Elements/input#Point" target="_blank">here</a>.                      
     - `name` - input field name, that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests   
     - `default` *[optional]* - default value for the input field  
     - `caption` *[optional]* - field label  
@@ -66,7 +66,7 @@ where:
     - `vtype` *[optional]* - validation type name. Possible values:      
         - `alpha` - keystroke filter mask applied to alpha input. The default value is *'/[a-z_]/i'*.  
         - `alphanum` - keystroke filter mask applied to alphanumeric input. The default value is *'/[a-z0-9_]/i'*.  
-        - `email` - keystroke filter mask applied to email input. The default value is *'/[a-z0-9_.-+\'@]/i'*. See the [appropriate method](http://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.VTypes-method-email) for more information about complex email validation.  
+        - `email` - keystroke filter mask applied to email input. The default value is *'/[a-z0-9_.-+\'@]/i'*. See the <a href="http://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.VTypes-method-email" target="_blank">appropriate method</a> for more information about complex email validation.      
         - `URL` - keystroke filter mask applied to *URL* input                        
     - `vtypeText` *[optional]* - custom error message to be displayed instead of the default one, provided by *vtype* for this field. The default value is *' '* (blank space).     
     
@@ -74,9 +74,9 @@ where:
     > `vtypeText` is applied only in case the *vtype* value is set; otherwise, it is ignored.  
 
 ## Target Nodes
-*Target Nodes* is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *JpsType*: *update* action.   
+*Target Nodes* is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *JpsType*: <b>*update*</b> action.   
 
-Filtering for `targetNodes` can be performed by `nodeType`, `nodeGroup`, `dockerOs`, `dockerName` or `dockerTag`.   
+Filtering for `targetNodes` can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
 ```
 {
 	"jpsType": "update",
@@ -103,8 +103,9 @@ There are two possible ways to define a `nodeType`:
 
 "nodeType": "..., ..." - to set the required nodeTypes being separated with commas
 ```
-<b>Example</b> 
-
+  
+<b>Example</b>   
+ 
 Let’s suppose you have three environments with different topology:     
 
 ![targetNodes](/img/targetNodes.jpg)  
@@ -130,7 +131,7 @@ In this case, the filtering result will be the following:
 ![TargetNodesFilter](/img/TargetNodesFilter.jpg)
   
 ## Custom Buttons
-The custom buttons settings are intended for extending and adjusting functionality of planks within <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:      
+The custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:      
 
 ![Addontab](/img/Addontab.jpg)    
 
@@ -139,11 +140,11 @@ Such buttons execute operations that are predefined within JPS manifest.
 ![TrafficManager](/img/TrafficManager.jpg)
 
 !!! note
-    > JPS manifest should include the [*targetNodes*](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation. Otherwise, it will be hidden.  
+    > JPS manifest should include the [*targetNodes*](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
 
 <b>Templates</b>   
 
-Sample to set buttons within **Add-on** plank:
+Sample to set buttons within the **Add-ons** plank:
 ```
 {
   "jpsType": "update",
@@ -225,7 +226,7 @@ where:
 
 ![SubmitButtonText](/img/SubmitButtonText.jpg)  
 
-- `logsPath` - specifying path to a definite log file for it to be accessible via **Show Logs** button                          
+- `logsPath` - specifying path to a definite log file for it to be accessible via the **Show Logs** button                          
 
 ![LogsPath](/img/LogsPath.jpg)  
 
@@ -340,8 +341,9 @@ The basic text field.
   ]
 }
 ```
-where:  
-- `caption` *[optional]* - field label  
+where:          
+ 
+- `caption` *[optional]* - field label   
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 
 ###text   
@@ -365,7 +367,7 @@ where:
 - `hideLabel`*[optional] [boolean]* - hides field Label. The default value is *'false'*. 
 
 ###list   
-The dropdown list and a single-line non-editable textbox.  
+The drop-down list and a single-line non-editable textbox.  
 
 ![list](/img/list.jpg)  
 ```
@@ -651,17 +653,17 @@ where:
 - `caption` *[optional]* - field label    
 - `name` *[optional]* - name of the field  
 - `editable` *[optional][boolean]* - enables/disables the `envlist` field editing. The default value is *'false'*.    
-- `valueField` *[optional][string]* - value from environment information, which will be sent to a server. The default value is *'domain'*. Available values are:    
-    - **iconCls** - CSS class     
-    - **isRunning** - checking whether environment status is *running*    
-    - **shortdomain** - short environment domain name (without platform URL)  
-    - **displayName** - environment *displayName*  
-    - **appid** - unique environment ID       
+- `valueField` *[optional][string]* - value from environment information, which will be sent to a server. The default value is *'domain'*. Available values are:      
+    - *iconCls* - CSS class     
+    - *isRunning* - checking whether environment status is *running*    
+    - *shortdomain* - short environment domain name (without platform URL)  
+    - *displayName* - environment *displayName*  
+    - *appid* - unique environment ID       
 
 ###popupselector     
 (*popup-selector* is an alias)     
 
-Opens pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.  
+Opens a pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.  
 
 ![popupselector](/img/popupselector.jpg)  
 ```
@@ -689,7 +691,7 @@ where:
 - `caption` *[optional]* - field label                      
 - `name` *[optional]* - name of the field                  
 - `buttonText` *[optional]* - button label              
-- `url` *[optional]* - external source *URL*. The default link is to the Jelastic platform.         
+- `url` *[optional]* - external source *URL*. The default link is to the Jelastic Platform.         
 - `popupWidth` *[optional]* - width in pixels          
 - `popupHeight` *[optional]* - height in pixels   
 - `popupCallbackEvent` - event handler   
@@ -750,7 +752,7 @@ where:
 ###numberpicker   
 (*number-picker* is an alias)  
 
-The text field with a number validation within range.   
+The text field with a number validation within a range.   
 
 ![numberpicker](/img/numberpicker.jpg)  
 ```
@@ -778,7 +780,7 @@ where:
 ###hostpicker    
 (*host-picker* is an alias)  
 
-The dropdown menu with the environments hosts.  
+The drop-down menu with the environments hosts.  
 
 ![hostpicker](/img/hostpicker.jpg)  
 ```
