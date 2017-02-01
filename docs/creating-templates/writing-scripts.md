@@ -49,11 +49,11 @@ mysql -u${USER} -p${PASSWORD} << END
 END
 ```
 
-`${nodes.sqldb.password}` - available only for jpsType *install* when sql node is created.
+`${nodes.sqldb.password}` - available only for jpsType *install* when SQL node is created.
 
 ## Top Level Scripts  
-Using `script` action.  
- 
+Using `script` action              
+              
 ### Java   
 ```example
 {
@@ -81,4 +81,4 @@ Using `script` action.
 ```
 
 ## What's next?
-Learn more about using [Jelastic Cloud API](http://docs.jelastic.com/api/).          
+Learn more about using <a href="http://docs.jelastic.com/api/" target="_blank">Jelastic Cloud API</a>.                                    
