@@ -56,7 +56,7 @@ Then, log in to your Jelastic account and perform the following operations:
 
 2. Click the ***Import*** button at the top of your dashboard and select one of the options it contains.        
 
-![Import](img/import.png)
+![import](img/import.jpg)          
 
 3. Depending on the `jpsType` stated at the beginning of the manifest, in the opened **Confirm installation** window you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click **Install**.
 
