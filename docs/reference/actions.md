@@ -675,13 +675,14 @@ where:
 
 ### installAddon
 
-The possibility to install few custom add-ons in one manifest. It can be installed into:
+The possibility to install few custom add-ons within a single manifest. It can be installed into:
 
-- an existing environment if when `jpsType` is *update*  
-- an new environment if `jpsType` is *install*. Add-ons will be installed sequentially one by one right after new environment will be created. 
+- an existing environment if `jpsType` is *update*  
+- a new environment if `jpsType` is *install*. Add-ons will be installed sequentially one by one right after a new environment set up. 
 
-All add-ons have `jpsType` *update* by default.   
-The example below shows how to pass add-on identifier into `installAddon` action. This add-on should be described in the `addons` section. The Custom add-on with identifier *firstAddon* will create a new file into compute node in *tmp* directory.
+All the add-ons will have `jpsType` *update* by default.   
+
+The example below shows how to pass an add-on identifier into `installAddon` action. This add-on should be described in the `addons` section. The custom add-on with the *firstAddon* identifier will create a new file in a compute node in the *tmp* directory.
 ```
 {
 	"jpsType": "update",
@@ -702,13 +703,13 @@ The example below shows how to pass add-on identifier into `installAddon` action
 ```
 where:  
 
-- `id` - custom identifier for custom add-on                         
+- `id` - custom identifier for a custom add-on                         
 
-Installed add-ons can be displayed in Add-ons tab into Jelastic dashboard. 
+Installed add-ons can be displayed within the **Add-ons** tab at the Jelastic dashboard. 
 
 ![Add-ons tab](/img/add-on_tab.jpg)
 
-In this case into `installAddon` action need to pass `nodeGroup` parameter where add-on will be displayed.
+In the following example into the `installAddon` action is passed the `nodeGroup` parameter targeting tan add-on to the particular *nodeGroup* (i.e. `bl`).            
 For example:
 
 ```
@@ -720,7 +721,7 @@ For example:
 }
 ```
 
-Then the installed add-on will be marked as installed in *balancer* layer. 
+Consequently, the installed add-on will be marked as set up to the *balancer* layer. 
 
 <!-- add example -->
 
