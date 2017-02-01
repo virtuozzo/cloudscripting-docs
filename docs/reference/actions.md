@@ -675,11 +675,11 @@ where:
 
 ### installAddon
 
-The possibility to install few custom add-ons within a single manifest. It can be installed into:
+The possibility to install few custom add-ons within a single manifest. It can be installed to:
 
 - an existing environment if `jpsType` is *update*  
 - a new environment if `jpsType` is *install*. Add-ons will be installed sequentially one by one right after a new environment set up. 
-
+-
 All the add-ons will have `jpsType` *update* by default.   
 
 The example below shows how to pass an add-on identifier into `installAddon` action. This add-on should be described in the `addons` section. The custom add-on with the *firstAddon* identifier will create a new file in a compute node in the *tmp* directory.
@@ -709,7 +709,7 @@ Installed add-ons can be displayed within the **Add-ons** tab at the Jelastic da
 
 ![Add-ons tab](/img/add-on_tab.jpg)
 
-In the following example into the `installAddon` action is passed the `nodeGroup` parameter targeting an add-on to the particular *nodeGroup* (i.e. `bl`).             
+In the following example into the `installAddon` action is passed the `nodeGroup` parameter, targeting an add-on to the particular *nodeGroup* (i.e. `bl`).             
 
 ```
 {
