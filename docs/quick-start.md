@@ -1,10 +1,10 @@
 # Quick Start 
 This guide will walk you through the Cloud Scripting basics and will help you to build and run such simple automation processes like creating new environments and deploying applications.
 
-The required operations should be declared within the appropriate Cloud Scripting manifest, written in [JSON](https://en.wikipedia.org/wiki/JSON) format.    
+The required operations should be declared within the appropriate Cloud Scripting manifest, written in <a href="https://en.wikipedia.org/wiki/JSON" target="_blank">JPS</a>) format.    
 You can name this file with manifest as you need. The only requirement is that it should have the **.json** extension.
 The manifest file can be composed via any text editor, using a modern code editor with the support of JSON syntax highlighting is recommended
-(e.g. [JSON Editor Online](http://jsoneditoronline.org/)).
+(e.g. <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a>).
 
 Below you can see two simple examples of how to: 
 
@@ -49,8 +49,8 @@ Below you can see two simple examples of how to:
 
 ## Running Examples
 
-In order to test the manifest examples presented above, you need to register at any Jelastic hosting providers at [https://jelastic.cloud/](https://jelastic.cloud/) first. 
-Then, log in to your Jelastic account and perform the following operations:
+In order to test the manifest examples presented above, you need to register at any Jelastic hosting provider from the <a href="https://jelastic.cloud" target="_blank">Jelastic Cloud Union</a> first.       
+Then, log in to your Jelastic account and perform the following operations: 
 
 1. Copy an appropriate example and save it as a file with **.json** extension.
 
@@ -68,43 +68,40 @@ Then, log in to your Jelastic account and perform the following operations:
 
 While preparing your own manifest file, we recommend to:
 
-- use JSON formatter and validator (such as [JSON Editor Online](http://jsoneditoronline.org/))
-- use [GitHub](https://github.com/) to store your manifest, scripts and files together
+- use JSON formatter and validator (such as <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a>)       
+- use <a href="https://github.com/" target="_blank">GitHub</a> to store your manifest, scripts and files together
    
 
 ## What's next?
 
 ### Explore more complex examples:    
 
-- [Vertical Scaling](/examples/vertical-scaling/)  
-- [Horizontal Scaling](/examples/horizontal-scaling/)  
-- [Using Docker&reg;](/examples/using-docker/)  
-- [WordPress Cluster](/examples/wordpress-cluster/)   
+Visit the <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> page to find a set of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions.                  
 
 ### Learn Template Basics 
-See the [Template Basics](creating-templates/template-basics/) section to learn the required basis of any JSON manifest and find out the differences between *Application* and *Extension*. 
+See the <a href="http://docs.cloudscripting.com/creating-templates/template-basics/" target="_blank">Template Basics </a> section to learn the required basis of any JSON manifest and find out the differences between *Application* and *Extension*.     
 
 ### Write Cloud Scripts  
-Cloud Scripting comes with several generic actions out of the box - see the [Actions](/reference/actions/) section to find out the list of them.
+Cloud Scripting comes with several generic actions out of the box - see the <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a> section to find out the list of them.      
 
 In addition, you have the possibility to prepare and use your own actions within manifest. Such Custom Actions can be scripted either using Java, Javascript or PHP if you need to manage your whole environment or using any intercontainer language, if you need to script something inside of a container.
-See [Writing Scripts](creating-templates/writing-scripts/).
-
+See <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">Writing Scripts</a> section.                                 
+ 
 ### Build Actions Chain and reuse your code    
-Reuse your code and the chain of actions using [Actions](/reference/actions/)
+Reuse your code and the chain of actions using <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a>                                 
 
 ### Automate workflows
-Automate workflows using [Events](/reference/events/)
+Automate workflows using <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">Events</a>
 
 ### Define user input parameters 
-Customize your app's input parameters that should be specified by a user before the installation. For that, see the [Getting User Input](creating-templates/user-input-parameters/) documentation page.   
+Customize your app's input parameters that should be specified by a user before the installation. For that, see the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Getting User Input</a> documentation page.       
 
 ### Use Placeholders 
-Learn how to use [Placeholders](/reference/placeholders/) for:     
+Learn how to use <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for:                   
 
 - options / parameters which are user-defined or are often changed     
 - filtering events   
 - selecting containers for your actions     
 
 ### Explore Troubleshooting  
-Follow the [Troubleshooting](troubleshooting/) guide if you experience any issues.  
+Follow the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> guide if you experience any issues.              
