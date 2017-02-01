@@ -709,8 +709,7 @@ Installed add-ons can be displayed within the **Add-ons** tab at the Jelastic da
 
 ![Add-ons tab](/img/add-on_tab.jpg)
 
-In the following example into the `installAddon` action is passed the `nodeGroup` parameter targeting tan add-on to the particular *nodeGroup* (i.e. `bl`).            
-For example:
+In the following example into the `installAddon` action is passed the `nodeGroup` parameter targeting an add-on to the particular *nodeGroup* (i.e. `bl`).             
 
 ```
 {
