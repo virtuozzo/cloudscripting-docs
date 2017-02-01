@@ -49,7 +49,7 @@ Have a look at more detailed descriptions on approaches available for containers
 - [All Containers By Type](#all-containers-by-type)   
 
 ## Particular Container   
-The `nodeId` parameter is used to select a particular container for the action to be executed at it. If you know the **Node ID** (displayed at the Jelastic dashboard next to the required node) of a container, you can set it statically.   
+The `nodeId` parameter is used to select a particular container for the action to be executed at it. If you know the **Node ID** of a container (displayed at the Jelastic dashboard next to the required node), you can set it statically.       
   
 For example:     
 
