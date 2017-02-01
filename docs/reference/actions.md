@@ -1,5 +1,4 @@
 # Actions
-
 Actions represent the building blocks that perform arbitrary automation functions in your environment, such as:         
 - increasing/decreasing CPU or RAM amount     
 - adjusting configs according to specific environment's settings             
@@ -34,7 +33,7 @@ Any container operation can be performed using a [cmd](#cmd) action. Herewith, t
    
 ### Cmd   
 
-The *cmd* action executes [SSH](https://docs.jelastic.com/ssh-overview) commands.            
+The *cmd* action executes <a href="https://docs.jelastic.com/ssh-overview" target="_blank">SSH</a> commands.             
 <!--Available for all nodes.-->      
 
 **Example**                  
@@ -57,7 +56,7 @@ where:
     - **user** - default system user with restricted permissions    
 - `sayYes` *[optional]* - parameter that enables or disables using **yes** utility. The default value is *'true'*.                  
 
-A single SSH command can be passed in a string. For example, executing a bash script from *URL* for all *Tomcat 6* nodes:                 
+A single SSH command can be passed in a string. For example, executing a bash script from URL for all *Tomcat 6* nodes:                 
 ```example 
 {
   "cmd [tomcat6]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
@@ -113,7 +112,7 @@ Using **sudo** to reload *Nginx* balancer:
 ```
    
 ### API 
-Executing actions available by means of the [Jelastic Cloud API](http://docs.jelastic.com/api/) methods.
+Executing actions available by means of the <a href="http://docs.jelastic.com/api/" target="_blank">Jelastic Cloud API</a> methods.                          
 
 There is a list of parameters required by Jelastic API, which are defined automatically:           
 - *envName* - environment domain name, where the API method is executed     
@@ -124,7 +123,7 @@ Target nodes selected for the API methods execution can be passed by the node ke
 
 **Examples:**
 
-Restarting all compute nodes in the environment:                      
+Restarting all compute nodes in an environment:                      
 ```
 {
     "api [cp]" : "jelastic.environment.control.RestartNodesByGroup"
@@ -164,7 +163,7 @@ Available for compute nodes (except for *Docker* containers)
 ```
 where:
 
-- `archive` - *URL* to the archive with a compressed application
+- `archive` - URL to the archive with a compressed application
 - `name` - application's name, that will be displayed at the dashboard
 - `context`- desired context for a deployed app
 
@@ -188,7 +187,7 @@ Available for all nodes
 where:  
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at                      
-- `sourcePath` - *URL* to download an external file                    
+- `sourcePath` - URL to download an external file                    
 - `destPath` - container path, where the uploaded file is to be saved                         
 
 ### Unpack
@@ -211,7 +210,7 @@ Available for all nodes
 where:   
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                    
-- `sourcePath` - *URL* to download an external archive   
+- `sourcePath` - URL to download an external archive   
 - `destPath` - container path, where the uploaded archive is to be unpacked                               
 
 ### CreateFile
@@ -478,7 +477,7 @@ Available for *SQL* databases (except for *Docker* containers)
 ```
 where:          
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                            
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the *nodeGroup* value is equal to `sqldb`.                            
 - `loginCredentials` - root creadentials for a new node                    
     - `user` - username                    
     - `password` - password                 
@@ -509,11 +508,11 @@ Available for *SQL* databases (except for *Docker* container)
 ```
 where:
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the `nodeGroup` value is equal to `sqldb`.                                    
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the *nodeGroup* value is equal to `sqldb`.                                    
 - `databaseName` - name of the database to be created                  
 - `user` - username in the database, on behalf of which the application will be used                
 - `password` - password in the database, on behalf of which the application will be used                         
-- `dump` - *URL* to the application's database dump                                
+- `dump` - URL to the application's database dump                                
 
 ### ApplySqlPatch
 Available for *SQL* databases (except for *Docker* containers)                                 
@@ -579,7 +578,7 @@ where:
     Learn more about using [Jelastic Cloud API](http://docs.jelastic.com/api/).
 
 ### Sleep
-Setting a delay that is measured in milliseconds. The below example shows how to create the delay for one second:                                    
+Setting a delay that is measured in milliseconds. The example below shows how to create the delay for one second:                                    
 ```
 {
   "sleep": "1000"
@@ -604,7 +603,7 @@ Installing add-on via the external link (with **update** *JpsType*):
 ```
 where:
 
-- `jps` - *URL* to your custom JPS manifest  
+- `jps` - URL to your custom JPS manifest  
 - `settings` - [user custom form](/creating-templates/user-input-parameters/)  
 
 Installing add-on from the local manifest:
@@ -637,7 +636,7 @@ Installing a new environment via the external link (with **install** *JpsType*):
 ```
 where: 
 
-- `jps` - *URL* to your custom JPS manifest                    
+- `jps` - URL to your custom JPS manifest                    
 - `envName` - short domain name of a new environment                                   
 - `settings` - [user custom form](/creating-templates/user-input-parameters/)                          
 
