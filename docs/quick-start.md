@@ -85,7 +85,7 @@ See the <a href="http://docs.cloudscripting.com/creating-templates/template-basi
 Cloud Scripting comes with several generic actions out of the box - see the <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a> section to find out the list of them.      
 
 In addition, you have the possibility to prepare and use your own actions within manifest. Such Custom Actions can be scripted either using Java, Javascript or PHP if you need to manage your whole environment or using any intercontainer language, if you need to script something inside of a container.
-See <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">Writing Scripts</a> section.                                 
+See the <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">Writing Scripts</a> section.                                 
  
 ### Build Actions Chain and reuse your code    
 Reuse your code and the chain of actions using <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a>                                 
