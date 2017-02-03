@@ -1,10 +1,8 @@
 # Cloud Scripting Overview
 Jelastic <b>Cloud Scripting (CS)</b> is a tool, designed to extend Platform functionality by automating the usually complex and elaborate *CI/CD* practices. Such automation is possible due to a number of highly configurable mechanisms and features available within Jelastic and their smart combination. Thus, objectives accomplished with the help of CS, can vary from the most frequent automation tasks to rather sophisticated solutions (i.e. complex distributed applications and <a href="https://docs.jelastic.com/cluster-in-cloud" target="_blank">clusters</a>).                                 
 
-<div style="display:table-cell; vertical-align:middle; text-align:center">
-<img src="![overview](/img/overview.jpg)">
-</div>
-       
+<center>![overview](/img/overview.jpg)</center>
+
 Cloud Scripting is based on the following underlying treats and possibilities:                        
 - <b>Application Dynamic Behaviour Control:</b> With Cloud Scripting it becomes possible to set a paradigm for application dynamic workflow, which is subject to change depending on the occurring events during its lifecycle. Keeping in mind factors that most likely going to vary from time to time (e.g. big load spikes), CS allows to automatically adjust the proper application functioning according to the changed conditions.                                          
 - <b><a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> Methods Interconnection:</b> In confines of CS, you can also run your <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">custom scripts</a>, written in *Java* or *JavaScript*. You can use them to interconnect different API methods and build kind of action chains. Thus, any action performed by means of API (including running custom user scripts) should be bound to some <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">event</a>. Herewith, an appropriate API action will be executed as a result of this event occurrence.                                             
