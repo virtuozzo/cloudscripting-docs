@@ -4,7 +4,19 @@ The executor makes an attempt to resolve all placeholders on the package install
 If it's not possible, the placeholder will be unresolved and displayed in the text as is (e.g. *${placeholder}*).
 
 !!! note
-    To output all available placeholders you can use the special placeholder: `${placeholders}`. See [Troubleshooting](/troubleshooting/) for more info.                                                                                         
+    To output all available placeholders, use a special `${placeholders}` placeholder. See [Troubleshooting](/troubleshooting/) for more info.                                                                                         
+
+The following specific groups of placeholders are singled out:                       
+- [Environment Placeholders](http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders)           
+- [Node Placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders)                 
+- [Event Placeholders](http://docs.cloudscripting.com/reference/placeholders/#event-placeholders)                    
+- [Account Information](http://docs.cloudscripting.com/reference/placeholders/#account-information)                 
+- [Action Placeholders](http://docs.cloudscripting.com/reference/placeholders/#action-placeholders)                  
+- [UI Placeholders](http://docs.cloudscripting.com/reference/placeholders/#ui-placeholders)                     
+- [Custom Global Placeholders](http://docs.cloudscripting.com/reference/placeholders/#custom-global-placeholders)                                
+- [Function Placeholders](http://docs.cloudscripting.com/reference/placeholders/#function-placeholders)                             
+- [Array Placeholders](http://docs.cloudscripting.com/reference/placeholders/#array-placeholders)                                       
+- [File Path Placeholders](http://docs.cloudscripting.com/reference/placeholders/#file-path-placeholders)                                 
 
 ## Environment Placeholders
 
