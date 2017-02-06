@@ -2,7 +2,7 @@
 
 The above two units display the outer side of JPS usage and now let’s have a closer look at the inner side - the code of the package with all required configurations.
 
-JPS manifest is a file with .json extension which contains an appropriate code written in JSON format. This manifest file includes the links to the web only dependencies. This file can be named as you require. 
+JPS manifest is a file with <b>*.json*</b> extension which contains an appropriate code written in JSON format. This manifest file includes the links to the web only dependencies. This file can be named as you require. 
 
 The code should contain a set of strings needed for successful installation of application. The basis of the code is represented by the following string:
 
@@ -18,7 +18,7 @@ The code should contain a set of strings needed for successful installation of a
     - `update` - extension  
 - `name` - JPS custom name. 
 
-This is a mandatory body part of the application package which includes the information about JPS name and the type of the application installation (“install” mode initiates a new environment creation required for deploy, "update" mode performs actions on the existing environment).
+This is a mandatory body part of the application package which includes the information about JPS name and the type of the application installation ("install" mode initiates a new environment creation required for deploy, "update" mode performs actions on the existing environment).
 These basic string should be extended with the settings required by the application you are packing. The following configuration details are included beside "jpsType": { } parameter:
 
 # Application Workflow

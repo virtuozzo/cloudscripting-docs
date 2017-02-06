@@ -1,31 +1,21 @@
-# Overview
-Cloud Scripting is a tool for creating, managing and automating complex distributed applications.
+# Cloud Scripting Overview
+Jelastic <b>Cloud Scripting (CS)</b> is a tool, designed to extend Platform functionality by automating the usually complex and elaborate *CI/CD* practices. Such automation is possible due to a number of highly configurable mechanisms and features available within Jelastic and their smart combination. Thus, objectives accomplished with the help of CS, can vary from the most frequent automation tasks to rather sophisticated solutions (i.e. complex distributed applications and <a href="https://docs.jelastic.com/cluster-in-cloud" target="_blank">clusters</a>).                                 
 
-## About
+<center>![overview](/img/overview.jpg)</center>
 
-Cloud Scripting can help you to achieve:
+Cloud Scripting is based on the following underlying treats and possibilities:                        
+- <b>Application Dynamic Behaviour Control:</b> With Cloud Scripting it becomes possible to set a paradigm for application dynamic workflow, which is subject to change depending on the occurring events during its lifecycle. Keeping in mind factors that most likely going to vary from time to time (e.g. big load spikes), CS allows to automatically adjust the proper application functioning according to the changed conditions.                                          
+- <b><a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> Methods Interconnection:</b> In confines of CS, you can also run your <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">custom scripts</a>, written in *Java* or *JavaScript*. You can use them to interconnect different API methods and build kind of action chains. Thus, any action performed by means of API (including running custom user scripts) should be bound to some <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">event</a>. Herewith, an appropriate API action will be executed as a result of this event occurrence.                                             
+- <b>Placeholders Support:</b> Use of special automatically substituted parameters within your package manifest allows to fetch the required data right during solution installation. In such a way, you get rid of the necessity to hardcode and change the specific user or environment settings upon each package deployment. Such <a href ="http://docs.cloudscripting.com/reference/placeholders/"target="_blank">placeholders</a> can be called within any manifest section (unless its content is strictly limited).                                  
 
-- Provisioning of distributed applications
-- Automatic Vertical Scaling
-- Automatic Horizontal Scaling
-- Automatic Load balancing
-- Database replication
-...
+Cloud Scripting output is delivered through Jelastic Packaging Standard (<a href="https://docs.jelastic.com/jps" target="_blank">JPS</a>). In this way, JPS is used to prepare a template (i.e. *manifest.jps* file) declared in <a href="http://www.json.org/" target="_blank">JSON</a> format, that contains data accumulated with the help of CS practices. Eventually, any packaged application can be effortlessly deployed to the Platform by means of <a href="https://docs.jelastic.com/environment-import" target="_blank">import</a> functionality.                             
 
-<!--
-``describe`` general use cases
+## What’s next?
 
-
-execute cutom actions in response of cloud events
-
-scripts to manipulate a fleet of containers or envitonments
-
-intercontainer operations
-
-flexible addressing of each created resource
-->
-
-<!-- describe limits -->
-
-## What’s Next?
-- Build a simple automation - follow [Quick Start](/quick-start/) Guide
+- Build a simple automation with <a href="http://docs.cloudscripting.com/quick-start/" target="_blank">Quick Start</a> Guide                           
+- Learn how to <a href="http://docs.cloudscripting.com/creating-templates/template-basics/" target="_blank">Create Manifest</a>                    
+- Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples                            
+- Read how to integrate your <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">Custom Scripts</a>                              
+- Explore the list of available <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a>                
+- See the <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">Events</a> list the actions can be bound to                                     
+- Find out the list of <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching                    
