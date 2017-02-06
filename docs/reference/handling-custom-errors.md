@@ -8,15 +8,15 @@ There is a list of predefined pop-up windows, which emerge while custom errors a
 
 - `info` - *information* pop-up window              
 
-<center>![SuccessText](/img/SuccessText.jpg)</center>      
+![SuccessText](/img/SuccessText.jpg)     
 
 - `warning` - *warning* pop-up window with a custom message              
  
-<center>![warningType](/img/warningType.jpg)</center>     
+![warningType](/img/warningType.jpg)    
 
 - `error` - *error* pop-up window         
 
-<center>![errorType](/img/errorType.jpg)</center>      
+![errorType](/img/errorType.jpg)     
 
 Result message text can be localized according to the languages, available within the Jelastic Platform:
 
