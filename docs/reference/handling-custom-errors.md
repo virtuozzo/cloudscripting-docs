@@ -4,7 +4,7 @@ The Cloud Scripting engine provides functionality for handling custom errors. Th
 The errors handling is related to the action result codes. You can locate these codes within the [Jelastic Console Log Panel](/troubleshooting/) upon a corresponding action execution.    
 Therefore, you can predefine a message text that will be displayed in case of an error occurrence.     
 
-There is a list of predefined pop-up windows, which can be displayed while custom errors are being handled:  
+There is a list of predefined pop-up windows, which emerge while custom errors are being handled:  
 
 - `info` - *information* pop-up window              
 
@@ -32,7 +32,7 @@ Result message text can be localized according to the languages, available withi
 
 ##Examples
 
-**File creating error**
+**File creation error**
 
 The example below describes a creation of the same file twice and handling an error, which will occur as a result of such action execution. Consequently, the result code of this error will be defined as *4036*.           
 
@@ -88,7 +88,7 @@ where:
 - `script` - Cloud Scripting <a href= "/reference/actions/#script" target="__blank">action</a> for executing *Javascript* or *Java* code (*Javascript* is set by default)                     
 - `1000` - custom predefined result code for error handling. It will be returned from the `script` action in the `onInstall` block.        
 
-If the result code is a *string* type when the default result code is *11039*. Therefore, `errorHandlers` can be handling by this outcoming *string* text:
+If the result code is delivered via *string*, then the default result code is *11039*. Therefore, `errorHandlers` can be handled by the following outcoming *string* text:            
 
 ```
 {
@@ -106,4 +106,4 @@ If the result code is a *string* type when the default result code is *11039*. T
 }
 ```
 
-All other cases when custom error is not predefined in the block `errorHandler` the default popup type is `error` with output message in it.
+In all the other cases, i.e. when a custom error is not predefined within the `errorHandler` block, the default pop-up window is *error* containing an output message.          
