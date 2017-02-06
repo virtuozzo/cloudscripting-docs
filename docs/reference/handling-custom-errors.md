@@ -34,7 +34,7 @@ Result message text can be localized according to the languages, available withi
 
 **File creation error**
 
-The example below describes a creation of the same file twice and handling an error, which will occur as a result of such action execution. Consequently, the result code of this error will be defined as *4036*.           
+The example below describes a creation of the same file twice and handling an error, which occurs as a result of such action execution. Consequently, the result code of this error will be defined as *4036*.           
 
 ```
 {
@@ -106,4 +106,4 @@ If the result code is delivered via *string*, then the default result code is *1
 }
 ```
 
-In all the other cases, i.e. when a custom error is not predefined within the `errorHandler` block, the default pop-up window is *error* containing an output message.          
+In all the other cases, i.e. when a custom error is not predefined within the `errorHandler` block, the default pop-up window type is *error* with an output message.          
