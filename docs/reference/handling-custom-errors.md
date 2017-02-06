@@ -1,7 +1,7 @@
 #Handling Custom Errors
 
 The Cloud Scripting engine provides functionality for handling custom errors. These possible errors should be described within a separate `errorHandlers` block.            
-The errors handling is related to the action result codes. You can locate these codes within the [Jelastic Console Log Panel](/troubleshooting/) upon a corresponding action execution.    
+The errors handling is related to the action result codes. You can locate these codes within the <a href="http://docs.cloudscripting.com/troubleshooting/" target"_blank">Jelastic Console Log Panel</a> upon a corresponding action execution.    
 Therefore, you can predefine a message text that will be displayed in case of an error occurrence.     
 
 There is a list of predefined pop-up windows, which emerge while custom errors are being handled:  
