@@ -11,8 +11,7 @@ Cloud Scripting is based on the following underlying treats and possibilities:
 Cloud Scripting output is delivered through Jelastic Packaging Standard (<a href="https://docs.jelastic.com/jps" target="_blank">JPS</a>). In this way, JPS is used to prepare a template (i.e. *manifest.jps* file) declared in <a href="http://www.json.org/" target="_blank">JSON</a> format, that contains data accumulated with the help of CS practices. Eventually, any packaged application can be effortlessly deployed to the Platform by means of <a href="https://docs.jelastic.com/environment-import" target="_blank">import</a> functionality.                             
 
 ## What’s next?
-
-
+<br>
 - Build a simple automation with <a href="http://docs.cloudscripting.com/quick-start/" target="_blank">Quick Start</a> Guide                           
 - Learn how to <a href="http://docs.cloudscripting.com/creating-templates/template-basics/" target="_blank">Create Manifest</a>                    
 - Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples                            
