@@ -679,7 +679,7 @@ The possibility to install few custom add-ons within a single manifest. It can b
 
 - an existing environment if `jpsType` is *update*  
 - a new environment if `jpsType` is *install*. Add-ons will be installed sequentially one by one right after a new environment set up. 
--
+
 All the add-ons will have `jpsType` *update* by default.   
 
 The example below shows how to pass an add-on identifier into `installAddon` action. This add-on should be described in the `addons` section. The custom add-on with the *firstAddon* identifier will create a new file in a compute node in the *tmp* directory.
