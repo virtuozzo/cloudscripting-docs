@@ -1,7 +1,7 @@
 # Cloud Scripting Overview
 Jelastic <b>Cloud Scripting (CS)</b> is a tool, designed to extend Platform functionality by automating the usually complex and elaborate *CI/CD* practices. Such automation is possible due to a number of highly configurable mechanisms and features available within Jelastic and their smart combination. Thus, objectives accomplished with the help of CS, can vary from the most frequent automation tasks to rather sophisticated solutions (i.e. complex distributed applications and <a href="https://docs.jelastic.com/cluster-in-cloud" target="_blank">clusters</a>).                                 
 
-<center>![overview](/img/overview.jpg)</center>
+<center>![overview](/img/overview.png)</center>
 
 Cloud Scripting is based on the following underlying treats and possibilities:                        
 - <b>Application Dynamic Behaviour Control:</b> With Cloud Scripting it becomes possible to set a paradigm for application dynamic workflow, which is subject to change depending on the occurring events during its lifecycle. Keeping in mind factors that most likely going to vary from time to time (e.g. big load spikes), CS allows to automatically adjust the proper application functioning according to the changed conditions.                                          
