@@ -65,7 +65,7 @@ where:
 
 Thus, the example above sets all the actions with *4036* result to be displayed via *error* pop-up window with a custom error message text.      
 
-The additional functionality is provided to display action errors using [*return* action](reference/actions/#handleErrors).             
+The additional functionality is provided to display action errors using *return* <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">action</a>.                      
 
 ```
 {
