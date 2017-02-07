@@ -1,10 +1,10 @@
 # Selecting Containers For Your Actions
 
-Running a specific [action](/reference/actions/) requires to select a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their [*nodeGroup*](/reference/container-types/#containers-by-groups-nodegroup) value (e.g. *sql*) or all containers of the same type by their [*nodeType*](/reference/container-types/#containers-by-types-nodetype) value (e.g. *MySQL*).      
+Running a specific <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> requires to select a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">*nodeGroup*</a> value (e.g. *sql*) or all containers of the same type by their <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-types-nodetype"target="_blank">*nodeType*</a> value (e.g. *MySQL*).          
 
 Also, there are three possible approaches to set containers filtering:       
 
-* **Node Selectors** - specifying a target node within the name of the action     
+* **Node Selectors** - specifying a target node within a name of an action     
 
 For example:  
 ```
@@ -38,7 +38,7 @@ Here, the `createFile` and `createDirectory` actions are applied to the specifie
  
 * setting a required node as a parameter in the action object     
 
-Learn more on this [parameter](/reference/actions/#custom-actions) within the linked page.         
+Learn more on this <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank">parameter</a> within the linked page.             
 
 !!! note 
     > **Node Selectors** have higher priority than nodes specified next to the action but lower than parameters set in the action object.     
@@ -81,7 +81,7 @@ For example:
 }
 ```
 
-Visit the [Placeholders](/reference/placeholders/) documentation page for more information.      
+Visit the <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> documentation page for more information.      
 
 ## All Containers By Group   
  
@@ -96,10 +96,10 @@ Jelastic platform supports the following predefined *nodeGroup* values:
 - *build*   
 - *vds*         
 
-Actions for a specified *nodeGroup* are executed successively one by one. For Docker containers the *nodeGroup* value is not predefined, therefore, it can be stated to any value above or your custom one. Visit the [Containers by Groups](http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup) documentation page for more information.        
+Actions for a specified *nodeGroup* are executed successively one by one. For Docker containers the *nodeGroup* value is not predefined, therefore, it can be stated to any value above or your custom one. Visit the <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">Containers by Groups</a> documentation page for more information.        
 
 ## All Containers By Type
-The `nodeType` parameter is applied to select all containers built upon the same software stacks. Visit the [Containers by Types](/reference/container-types/) documentation page to explore the provided containers listed according to their type.    	  
+The `nodeType` parameter is applied to select all containers built upon the same software stacks. Visit the <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-types-nodetype"target="_blank">Containers by Types</a> documentation page to explore the provided containers listed according to their type.    	  
 
 !!! note
     > If you set all three parameters, the container selection would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>. 
