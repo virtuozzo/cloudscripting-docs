@@ -14,7 +14,7 @@ if (env.protocol == 'http')
 
 Both *If* and *ForEach* can be of any nesting level.
 
-- In case a condition is specified incorrectly, the actions inside *if* statement won't be executed. Herewith, <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Cloud Scripting Console</a> will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.
+- In case a condition is specified incorrectly, the actions inside *if* statement won't be executed. Herewith, the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Cloud Scripting Console</a> will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.
 - If condition is valid but hasn’t being executed, the <b>*'condition is not met'*</b> message will be logged.
 
 <b>Examples</b>    
@@ -264,6 +264,6 @@ where:
 
 In this case, every environment node will have only one conjunction by <b>Node ID</b>.
 
-`ForEach` **count** execution is printed in a <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">user console log</a> for usefull debugging code execution.     
+**ForEach count** execution is printed in a <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">user console log</a> for usefull debugging code execution.     
 
 <center>![forEachCount](/img/forEachCount.jpg)</center>
