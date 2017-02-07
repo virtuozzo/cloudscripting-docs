@@ -94,7 +94,7 @@ Jelastic platform supports the following predefined *nodeGroup* values:
 - *nosqldb*   
 - *cache*  
 - *build*   
-- *vds*         
+- *vps*         
 
 Actions for a specified *nodeGroup* are executed successively one by one. For Docker containers the *nodeGroup* value is not predefined, therefore, it can be stated to any value above or your custom one. Visit the <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">Containers by Groups</a> documentation page for more information.        
 
