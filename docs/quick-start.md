@@ -50,17 +50,17 @@ In order to test the manifest examples presented above, you need to register at 
 
 Then, log in to your Jelastic account and perform the following operations: 
 
-1. Copy an appropriate example and save it as a file with <b>*.json*</b> extension.   
+- Copy an appropriate example and save it as a file with <b>*.json*</b> extension.   
 
-2. Click the ***Import*** button at the top of your dashboard and select one of the options it contains.        
+- Click the ***Import*** button at the top of your dashboard and select one of the options it contains.        
 
 <center>![import](img/import.jpg)</center>          
 
-3. Depending on the `jpsType` stated at the beginning of the manifest, in the opened **Confirm installation** window you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click **Install**.
+- Depending on the `jpsType` stated at the beginning of the manifest, in the opened **Confirm installation** window you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click **Install**.
 
-4. The process of installation will be started. Wait a minute for Preparing, Deploying and Configuring to be finished.
+- The process of installation will be started. Wait a minute for Preparing, Deploying and Configuring to be finished.
 
-5. Once these operations are finished, you will see a message about the successful installation completion. It can also contain the text from the `success` manifest section (if it's declared).
+- Once these operations are finished, you will see a message about the successful installation completion. It can also contain the text from the `success` manifest section (if it's declared).
 
 ## Best Practices
 
