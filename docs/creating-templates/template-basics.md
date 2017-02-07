@@ -13,10 +13,10 @@ The code should contain a set of strings needed for a successful installation of
 }
 ```
 
-- `jpsType`
-    - `install` - application 
-    - `update` - extension  
-- `name` - JPS custom name. 
+- *jpsType*
+    - `install` - application    
+    - `update` - extension    
+- *name* - JPS custom name           
 
 This is a mandatory body part of the application package, which includes the information about JPS name and the type of the application installation (the <b>*'install'*</b> mode initiates a new environment creation required for a deployment, the <b>*'update'*</b> mode performs actions on the existing environment).
 This basic string should be extended with the settings required by the application you are packing. The following configuration details are included beside the <b>*'jpsType': { }*</b> parameter:
