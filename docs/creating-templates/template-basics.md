@@ -55,12 +55,12 @@ This basic string should be extended with the settings required by the applicati
 - `baseUrl` *[optional]* - custom <a href="http://docs.cloudscripting.com/creating-templates/relative-links/" target="_blank">relative links</a>                                       
 - `settings` *[optional]* - custom form with <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">predefined user input elements</a>                        
 - `jpsVersion` - *[optional]* - JPS type supported by the Jelastic Platform. See the <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">correspondence between version page.</a>                          
-- `nodes` - object to describe information about nodes for an installation. Required option for `jpsType` **install**.               
-- `engine` *[optional]* - engine <a href="http://docs.cloudscripting.com/reference/container-types/#engine-versions-engine" target="_blank">version</a>, **default**: `java6`           
-- `region` *[optional]* - region, where an environment will be installed. Required option for `jpsType` **install**.            
-- `displayName` *[optional]* - display name for an environment. Required option for `jpsType` **install**.         
-- `ssl` *[optional]* - Jelastic SSL status for an environment, **default**: *false*            
-- `ha` *[optional]* - high availability for Java stacks, **default**: *false*                             
+- `nodes` - object to describe information about nodes for an installation. Required option for **jpsType** `install`.               
+- `engine` *[optional]* - engine <a href="http://docs.cloudscripting.com/reference/container-types/#engine-versions-engine" target="_blank">version</a>, **default**: `java6`            
+- `region` *[optional]* - region, where an environment will be installed. Required option for **jpsType** `install`.             
+- `displayName` *[optional]* - display name for an environment. Required option for **jpsType** `install`.          
+- `ssl` *[optional]* - Jelastic SSL status for an environment, **default**: `false`             
+- `ha` *[optional]* - high availability for Java stacks, **default**: `false`                              
 - `description` - text string that describes a template. This section should always follow the template format version section.            
 - `categories` - categories available for manifests filtering                         
 - `version` *[optional]* - custom version of an application                           
@@ -70,5 +70,5 @@ This basic string should be extended with the settings required by the applicati
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation          
 - `startPage` *[optional]* - path to be opened via the **Open in browser** button through a successful installation message                                        
 - `actions` *[optional]* - objects to describe all <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank">custom actions</a>             
-- `addons` *[optional]* - includes JPS manifests with the `jpsType` <b>update</b> as a new JPS installation      
+- `addons` *[optional]* - includes JPS manifests with the **jpsType** `update` as a new JPS installation      
 - `onInstall` *[optional]* - [event](http://docs.cloudscripting.com/reference/events/#oninstall) that is an entry point for actions execution                               
