@@ -133,11 +133,11 @@ In this case, the filtering result will be the following:
 ## Custom Buttons
 The custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:      
 
-![Addontab](/img/Addontab.jpg)    
+<center>![Addontab](/img/Addontab.jpg)</center>       
 
 Such buttons execute operations that are predefined within JPS manifest.   
 
-![TrafficManager](/img/TrafficManager.jpg)
+<center>![TrafficManager](/img/TrafficManager.jpg)</center>    
 
 !!! note
     > JPS manifest should include the [*targetNodes*](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
@@ -174,20 +174,20 @@ Here:
 
 It will be displayed after clicking on the appropriate button for an add-on. According to the code above, the text will be:  
 
-![Confirm](/img/Confirm.jpg)      
+<center>![Confirm](/img/Confirm.jpg)</center>      
 
 - `loadingText` *[optional]* - UI text to be displayed during loading and applying changes. The default value is *'Applying...'*.    
 
-![LoadingText](/img/LoadingText.jpg)      
+<center>![LoadingText](/img/LoadingText.jpg)</center>      
 
-- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the [*actions*](/reference/actions/#custom-actions) section.        
+- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank">*actions*</a> section.          
 - `caption` - title of the button  
 
-![Caption](/img/Caption.jpg)   
+<center>![Caption](/img/Caption.jpg)</center>   
 
 - `successText` -  message, that appears once action is successfully performed  
 
-![SuccessText](/img/SuccessText.jpg)     
+<center>![SuccessText](/img/SuccessText.jpg)</center>     
 
 - `href` *[optional]* - external link that is opened in a new browser tab; is executed only if the `settings` field is absent. In case of `href` execution, `action` will not be carried out.     
 
@@ -224,20 +224,20 @@ where:
 - `title` - custom dialog title. If absent, then `caption` will be applied.    
 - `submitButtonText` - text for submission button in the opened dialog. The default value is *'Apply'*.   
 
-![SubmitButtonText](/img/SubmitButtonText.jpg)  
+<center>![SubmitButtonText](/img/SubmitButtonText.jpg)</center>  
 
 - `logsPath` - specifying path to a definite log file for it to be accessible via the **Show Logs** button                          
 
-![LogsPath](/img/LogsPath.jpg)  
+<center>![LogsPath](/img/LogsPath.jpg)</center>  
 
-- `logsNodeGroup` - [nodeGroup](/reference/container-types/#containers-by-groups-nodegroup) layer the logging path should be opened for                   
+- `logsNodeGroup` - <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">nodeGroup</a> layer the logging path should be opened for                     
 
 ## Custom Menus    
 Menu is an expandable list within the <b>Add-ons</b> section comprising operations, that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
 
-![menu](/img/menu.jpg)     
+<center>![menu](/img/menu.jpg)</center>     
 
-By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the [application level events](/reference/events/#application-level-events) settings.          
+By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the <a href="http://docs.cloudscripting.com/reference/events/#application-level-events" target="_blank">application level events</a> settings.          
 
 The used properties for custom menus are the same as for custom buttons. Herewith, the appropriate `menu` field (instead of `buttons`) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
 
@@ -318,17 +318,17 @@ For instance:
 ```
 Here, the *main settings* form appears during installation process.   
 
-![settingMain](/img/SettingsMain.jpg)   
+<center>![settingMain](/img/SettingsMain.jpg)</center>   
 
 The *config settings* form appears after clicking the <b>Configure</b> button within the Add-ons section.   
 
-![settingCustom](/img/SettingsCustom.jpg)     
+<center>![settingCustom](/img/SettingsCustom.jpg)</center>     
 
 ## Supported Fields
 ###string     
 The basic text field.  
 
-![string](/img/string.jpg)  
+<center>![string](/img/string.jpg)</center>  
 ```
 {
   "fields": [
@@ -349,7 +349,7 @@ where:
 ###text   
 The multiline text field.
 
-![text](/img/text.jpg)  
+<center>![text](/img/text.jpg)</center>  
 ```
 {
   "fields": [
@@ -369,7 +369,7 @@ where:
 ###list   
 The drop-down list and a single-line non-editable textbox.  
 
-![list](/img/list.jpg)  
+<center>![list](/img/list.jpg)</center>  
 ```
 {
   "fields": [
@@ -394,7 +394,7 @@ where:
 ###checkbox   
 The single checkbox field.
 
-![text](/img/checkbox.jpg)  
+<center>![text](/img/checkbox.jpg)</center>  
 ```
 {
   "fields": [
@@ -416,7 +416,7 @@ where:
 ###checkboxlist   
 The checkbox grouping.  
 
-![text](/img/checkboxlist.jpg)  
+<center>![text](/img/checkboxlist.jpg)</center>  
 ```
 {
   "fields": [
@@ -441,7 +441,7 @@ where:
 ###radiolist   
 The radio elements grouping.  
 
-![text](/img/radiolist.jpg)  
+<center>![text](/img/radiolist.jpg)</center>  
 ```
 {
   "fields": [
@@ -469,7 +469,7 @@ The grouping of the radio elements with the `showIf` function.
 !!! note
     The *hideLabel* boolean value is always *true* for this field.   
 
-![text](/img/radio-fieldset.jpg)   
+<center>![text](/img/radio-fieldset.jpg)</center>   
 ```
 {
   "fields": [
@@ -515,7 +515,7 @@ where:
 ###dockertag    
 Displaying Docker tags within the list element.  
 
-![text](/img/dockertag.jpg)  
+<center>![text](/img/dockertag.jpg)</center>  
 ```
 {
   "name": "Cloud Scripting",
@@ -556,7 +556,7 @@ where:
 ###compositefield      
 The compositefield is a container with specific functionality and structural components that constitute it as a block for application-oriented custom user interfaces.  
 
-![compositefield](/img/compositefield.jpg)  
+<center>![compositefield](/img/compositefield.jpg)</center>  
 ```
 {
   "fields": [
@@ -607,7 +607,7 @@ where:
 ###slider              
 The slider element as a form field.
 
-![slider](/img/slider.jpg)
+<center>![slider](/img/slider.jpg)</center>
 ```
 {
   "fields": [
@@ -634,7 +634,7 @@ where:
 ###envlist     
 The account environments list expanded within a drop-down element.  
 
-![envlist](/img/envlist.jpg)  
+<center>![envlist](/img/envlist.jpg)</center>  
 ```
 {
   "fields": [
@@ -665,7 +665,7 @@ where:
 
 Opens a pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.  
 
-![popupselector](/img/popupselector.jpg)  
+<center>![popupselector](/img/popupselector.jpg)</center>  
 ```
 {
   "fields": [
@@ -702,7 +702,7 @@ where:
 
 The text field intended only for display, which is not validated and not submitted.  
 
-![displayfield](/img/displayfield.jpg)  
+<center>![displayfield](/img/displayfield.jpg)</center>  
 ```
 {
   "fields": [
@@ -724,7 +724,7 @@ where:
 ###spinner    
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
 
-![spinner](/img/spinner.jpg)  
+<center>![spinner](/img/spinner.jpg)</center>  
 ```
 {
   "fields": [
@@ -754,7 +754,7 @@ where:
 
 The text field with a number validation within a range.   
 
-![numberpicker](/img/numberpicker.jpg)  
+<center>![numberpicker](/img/numberpicker.jpg)</center>  
 ```
 {
   "fields": [
@@ -782,7 +782,7 @@ where:
 
 The drop-down menu with the environments hosts.  
 
-![hostpicker](/img/hostpicker.jpg)  
+<center>![hostpicker](/img/hostpicker.jpg)</center>  
 ```
 {
   "fields": [
@@ -811,7 +811,7 @@ where:
 ###toggle    
 The toggle element is a switch between two values.
 
-![toggle](/img/toggle.jpg)
+<center>![toggle](/img/toggle.jpg)</center>
 ```
 {
   "fields": [
