@@ -34,6 +34,21 @@ where:
 - *UnlinkNodes*, *LinkNodes*, *SetEnvVars*, *SetEntryPoint*, *SetRunCmd*, *AddVolume* and *RemoveVolume* events can be executed only once per a single *changeTopology* action
 - The *StartService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.
 
+## Event Execution Sequence
+Below are presented a graphs where all actions with adjoined their events are displayed. Every action has the pair of events. One of them will be executed before action and another one will be started when this action is finished.  
+
+!!! note
+    The act `createEnvironment` has not any event subscribers because they are subscribed after environment creation.    
+ 
+One of the most complicated acts in Jelastic Dashboard is `changeTopology`. The graph below describes a list of a possible actions and their sequence:  
+<center><img style="height: 900px"  src="/img/changeTopologySequence.png" alt="change topology sequence icon" /></center>
+
+The another one act is scaling nodes in environment within one *nodeGroup* (node layer). The graph below describes a list of possible actions and related events:
+
+<center><img style="height: 626px"  src="/img/scalingEventSequence.png" alt="scaling sequence icon" /></center>
+
+
+
 ## Events List
 
 ### onInstall
