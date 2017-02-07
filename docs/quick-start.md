@@ -47,13 +47,14 @@ Below you can see two simple examples of how to:
 ## Running Examples
 
 In order to test the manifest examples presented above, you need to register at any Jelastic hosting provider from the <a href="https://jelastic.cloud" target="_blank">Jelastic Cloud Union</a> first.       
+
 Then, log in to your Jelastic account and perform the following operations: 
 
-1. Copy an appropriate example and save it as a file with **.json** extension.
+1. Copy an appropriate example and save it as a file with <b>*.json*</b> extension.   
 
 2. Click the ***Import*** button at the top of your dashboard and select one of the options it contains.        
 
-![import](img/import.jpg)          
+<center>![import](img/import.jpg)</center>          
 
 3. Depending on the `jpsType` stated at the beginning of the manifest, in the opened **Confirm installation** window you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click **Install**.
 
