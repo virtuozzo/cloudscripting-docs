@@ -59,7 +59,7 @@ The example below describes a creation of the same file twice and handling an er
 
 where: 
 
-- `createFile` - predefined within the Cloud Scripting [action](reference/actions/#createfile)        
+- `createFile` - predefined within the Cloud Scripting <a href="http://docs.cloudscripting.com/reference/actions/#createfile" target="_blank">action</a>              
 - `errorHandlers` - object (array) to describe custom errors     
 - `type` - type of a pop-up window, emerging upon the error occurrence. The available values are: *error*, *warning*, *info*.       
 
