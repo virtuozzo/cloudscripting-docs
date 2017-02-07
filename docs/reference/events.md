@@ -38,12 +38,12 @@ where:
 Below are presented a graphs where all actions with adjoined their events are displayed. Every action has the pair of events. One of them will be executed before action and another one will be started when this action is finished.  
 
 !!! note
-    The act `createEnvironment` has not any event subscribers because they are subscribed after environment creation.    
+    The action `createEnvironment` does not have any event subscribers because they are subscribed after environment creation.    
  
 One of the most complicated acts in Jelastic Dashboard is `changeTopology`. The graph below describes a list of a possible actions and their sequence:  
 <center><img style="height: 900px"  src="/img/changeTopologySequence.png" alt="change topology sequence icon" /></center>
 
-The another one act is scaling nodes in environment within one *nodeGroup* (node layer). The graph below describes a list of possible actions and related events:
+The another one action is scaling nodes in environment within one *nodeGroup* (node layer). The graph below describes a list of possible actions and related events:
 
 <center><img style="height: 626px"  src="/img/scalingEventSequence.png" alt="scaling sequence icon" /></center>
 
