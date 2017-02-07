@@ -31,8 +31,8 @@ where:
 - Such events as *Install* & *Uninstall* application, as well as *BeforeDelete* and *AfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.
 - The *ScaleIn*, *ScaleOut* and *ServiceScaleOut* events are called once upon any node count change. Herewith, count of the *addNode* or *removeNode* actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.
 - For application server, load balancer and VPS node layers, the *cloneNodes* event is executed each time the node group is scaled out
-- *UnlinkDockerNodes*, *LinkDockerNodes*, *SetDockerEnvVars*, *SetDockerEntryPoint*, *SetDockerRunCmd*, *AddDockerVolume* and *RemoveDockerVolume* events can be executed only once per a single *changeTopology* action
-- The *StartDockerService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.
+- *UnlinkNodes*, *LinkNodes*, *SetEnvVars*, *SetEntryPoint*, *SetRunCmd*, *AddVolume* and *RemoveVolume* events can be executed only once per a single *changeTopology* action
+- The *StartService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.
 
 ## Events List
 
@@ -720,9 +720,9 @@ This event is performed after the container redeployment. It is bound to the *re
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.     
 
-### onBeforeLinkDockerNodes
+### onBeforeLinkNodes
 
-The event will be executed before the *linkDockerNodes* action. This event will be run for each linking containers action. Obviously, it is provided for Docker containers only.
+The event will be executed before the *linkNodes* action. This event will be run for each linking containers action. Obviously, it is provided for Docker containers only.
 
 **Event Placeholders:**     
 
@@ -736,9 +736,9 @@ The event will be executed before the *linkDockerNodes* action. This event will 
 - `${event.response.}`:  
     - `result` - parameters are absent     
 
-### onAfterLinkDockerNodes
+### onAfterLinkNodes
 
-The event will be executed after the *linkDockerNodes* action. This event will be run for each linking containers action. Obviously, it is provided for Docker containers only.
+The event will be executed after the *linkNodes* action. This event will be run for each linking containers action. Obviously, it is provided for Docker containers only.
 
 **Event Placeholders:**    
 
@@ -752,9 +752,9 @@ The event will be executed after the *linkDockerNodes* action. This event will b
 - `${event.response.}`:   
     - `result` - result code. The successful action result is *'0'*.    
 
-### onBeforeUnlinkDockerNodes
+### onBeforeUnlinkNodes
 
-This event is executed before the *unLinkDockerNodes* action and is run for each unlinking containers action. The *onBeforeUnlinkDockerNodes* event is applied for Docker containers only.      
+This event is executed before the *unLinkNodes* action and is run for each unlinking containers action. The *onBeforeUnlinkNodes* event is applied for Docker containers only.      
 
 **Event Placeholders:**     
 
@@ -768,9 +768,9 @@ This event is executed before the *unLinkDockerNodes* action and is run for each
 - `${event.response.}`:  
     - `result` - parameters are absent   
 
-### onAfterUnlinkDockerNodes
+### onAfterUnlinkNodes
 
-This event is executed after the *unLinkDockerNodes* action and is run for each unlinking containers action. The *onAfterUnlinkDockerNodes* event is applied for Docker containers only.  
+This event is executed after the *unLinkNodes* action and is run for each unlinking containers action. The *onAfterUnlinkNodes* event is applied for Docker containers only.  
 
 **Event Placeholders:**       
 
@@ -784,9 +784,9 @@ This event is executed after the *unLinkDockerNodes* action and is run for each 
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.       
 
-### onBeforeSetDockerEnvVars
+### onBeforeSetEnvVars
 
-The event will be triggered before the [*setDockerEnvVars*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting environment variables. The *onBeforeSetDockerEnvVars* event is applied for Docker containers only.     
+The event will be triggered before the [*setEnvVars*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting environment variables. The *onBeforeSetEnvVars* event is applied for Docker containers only.     
 
 **Event Placeholders:**   
 
@@ -798,9 +798,9 @@ The event will be triggered before the [*setDockerEnvVars*](/reference/docker-ac
 - `${event.response.}`:  
     - `result` - parameters are absent     
 
-### onAfterSetDockerEnvVars
+### onAfterSetEnvVars
 
-The event will be triggered before the [*setDockerEnvVars*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting environment variables. The *onAfterSetDockerEnvVars* event is applied for Docker containers only.
+The event will be triggered before the [*setEnvVars*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting environment variables. The *onAfterSetEnvVars* event is applied for Docker containers only.
 
 **Event Placeholders:**    
 
@@ -812,9 +812,9 @@ The event will be triggered before the [*setDockerEnvVars*](/reference/docker-ac
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.    
 
-### onBeforeSetDockerEntryPoint
+### onBeforeSetEntryPoint
 
-This event will be called before the [*setDockerEntryPoint*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting the entry point. The *onBeforeSetDockerEntryPoint* event is applied for Docker containers only.   
+This event will be called before the [*setEntryPoint*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting the entry point. The *onBeforeSetEntryPoint* event is applied for Docker containers only.   
 
 **Event Placeholders:**   
 
@@ -826,9 +826,9 @@ This event will be called before the [*setDockerEntryPoint*](/reference/docker-a
 - `${event.response.}`:  
     - `result` - parameters are absent    
 
-### onAfterSetDockerEntryPoint
+### onAfterSetEntryPoint
 
-This event will be called after the [*setDockerEntryPoint*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting the entry point. The *onAfterSetDockerEntryPoint* event is applied for Docker containers only.    
+This event will be called after the [*setEntryPoint*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting the entry point. The *onAfterSetEntryPoint* event is applied for Docker containers only.    
 
 **Event Placeholders:**   
 
@@ -840,9 +840,9 @@ This event will be called after the [*setDockerEntryPoint*](/reference/docker-ac
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.    
 
-### onBeforeSetDockerRunCmd
+### onBeforeSetRunCmd
 
-The event will be executed before the [*setDockerRunCmd*](/reference/docker-actions/#docker-environment-variables) action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
+The event will be executed before the [*setRunCmd*](/reference/docker-actions/#docker-environment-variables) action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
 
 **Event Placeholders:**   
 
@@ -854,9 +854,9 @@ The event will be executed before the [*setDockerRunCmd*](/reference/docker-acti
 - `${event.response.}`:  
     - `result` - parameters are absent    
     
-### onAfterSetDockerRunCmd
+### onAfterSetRunCmd
 
-The event will be executed after the [*setDockerRunCmd*](/reference/docker-actions/#docker-environment-variables) action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
+The event will be executed after the [*setRunCmd*](/reference/docker-actions/#docker-environment-variables) action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
 
 **Event Placeholders:**    
 
@@ -868,9 +868,8 @@ The event will be executed after the [*setDockerRunCmd*](/reference/docker-actio
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.     
 
-### onBeforeStartDockerService
+### onBeforeStartService
 
-This event will be executed each time before running the Docker *RunCmd* commands. Thus, it will be always carried out for each docker container action, e.g. before starting/restarting container and starting environment.
 
 **Event Placeholders:**   
 
@@ -881,7 +880,7 @@ This event will be executed each time before running the Docker *RunCmd* command
 - `${event.response.}`:  
     - `result` - parameters are absent 
 
-### onAfterStartDockerService
+### onAfterStartService
 
 This event will be executed each time after running the Docker *RunCmd* commands. 
 
@@ -894,7 +893,7 @@ This event will be executed each time after running the Docker *RunCmd* commands
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.   
 
-### onBeforeAddDockerVolume
+### onBeforeAddVolume
 
 The event will be performed before adding volumes to Docker container. It will be executed once for each Docker container.
 
@@ -908,7 +907,7 @@ The event will be performed before adding volumes to Docker container. It will b
 - `${event.response.}`:  
     - `result` - parameters are absent     
 
-### onAfterAddDockerVolume
+### onAfterAddVolume
 
 This event will be performed after adding volumes to Docker container. It will be executed once for each Docker container.
 
@@ -922,9 +921,9 @@ This event will be performed after adding volumes to Docker container. It will b
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.   
 
-### onBeforeRemoveDockerVolume
+### onBeforeRemoveVolume
 
-The *onBeforeRemoveDockerVolume* event will be called before removing volumes from Docker container. It will be executed once for each Docker container.
+The *onBeforeRemoveVolume* event will be called before removing volumes from Docker container. It will be executed once for each Docker container.
 
 **Event Placeholders:**  
 
@@ -936,9 +935,9 @@ The *onBeforeRemoveDockerVolume* event will be called before removing volumes fr
 - `${event.response.}`:  
     - `result` - parameters are absent 
 
-### onAfterRemoveDockerVolume
+### onAfterRemoveVolume
 
-The *onAfterRemoveDockerVolume* event will be triggered after removing volumes from Docker container. It will be executed once for each Docker container.
+The *onAfterRemoveVolume* event will be triggered after removing volumes from Docker container. It will be executed once for each Docker container.
 
 **Event Placeholders:**    
 
