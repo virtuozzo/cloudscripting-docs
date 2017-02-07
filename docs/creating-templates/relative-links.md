@@ -5,7 +5,7 @@ The relative links functionality is intended to specify the JPS file’s base UR
 !!! note
     > The *baseUrl* value declared within the manifest has higher priority than installation via URL (i.e. <a href="https://docs.jelastic.com/environment-export-import" target="_blank">Import</a>).                
 
-**Example:**
+**Example**
 ```
 {
     "jpsType" : "update",
@@ -40,7 +40,7 @@ There are the following Cloud Scripting rules applied while parsing file's relat
 If installation is being run from <a href="https://github.com/jelastic-jps" target="_blank">*GitHub*</a> and URL includes <b>*‘/blob/’*</b>, it will be replaced with <b>*‘/raw/’*</b>. In case the `baseUrl` parameter is defined without a slash at the end, it will be added automatically.              
 
  
-The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the [*cmd*](http://docs.cloudscripting.com/reference/actions/#cmd) and [*script*](http://docs.cloudscripting.com/reference/actions/#script) actions).                
+The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="http://docs.cloudscripting.com/reference/actions/#cmd" target="_blank">*cmd*</a> and <a href="http://docs.cloudscripting.com/reference/actions/#script" target="_blank">*script*</a> actions).                 
 
 For example:
 
@@ -57,11 +57,12 @@ For example:
 }
 ```
 
+
 ##Success Text Customization
 
-It is possible to customize the *success* text, which is displayed upon successful application installation either at the dashboard or via email notification, in confines of a manifest.         
+It is possible to customize (in confines of a manifest) the *success* text, which is displayed upon successful application installation either at the dashboard or via email notification.         
 
-- Setting a relative to `baseUrl` link, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                  
+- Setting a relative to `baseUrl` link, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                    
 ```
 {
     "jpsType" : "update",

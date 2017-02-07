@@ -1,8 +1,7 @@
 # Quick Start 
 This guide will walk you through the Cloud Scripting basics and will help you to build and run such simple automation processes like creating new environments and deploying applications.
 
-The required operations should be declared within the appropriate Cloud Scripting manifest, written in <a href="http://www.json.org/" target="_blank">JSON</a> format. You can name this file with manifest as you need. The only requirement is that it should have the **.json** extension.     
-The manifest file can be composed via any text editor, using a modern code editor with the support of JSON syntax highlighting is recommended (e.g. <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a>).    
+The required operations should be declared within the appropriate Cloud Scripting manifest, written in <a href="http://www.json.org/" target="_blank">JSON</a> format. You can name this file with manifest as you need. The only requirement is that it should have the <b>*.json*</b> extension. The manifest file can be composed via any text editor, using a modern code editor with the support of JSON syntax highlighting is recommended (e.g. <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a>).        
 
 Below you can see two simple examples of how to: 
 
@@ -48,19 +47,20 @@ Below you can see two simple examples of how to:
 ## Running Examples
 
 In order to test the manifest examples presented above, you need to register at any Jelastic hosting provider from the <a href="https://jelastic.cloud" target="_blank">Jelastic Cloud Union</a> first.       
+
 Then, log in to your Jelastic account and perform the following operations: 
 
-1. Copy an appropriate example and save it as a file with **.json** extension.
+- Copy an appropriate example and save it as a file with <b>*.json*</b> extension.   
 
-2. Click the ***Import*** button at the top of your dashboard and select one of the options it contains.        
+- Click the ***Import*** button at the top of your dashboard and select one of the options it contains.        
 
-![import](img/import.jpg)          
+<center>![import](img/import.jpg)</center>          
 
-3. Depending on the `jpsType` stated at the beginning of the manifest, in the opened **Confirm installation** window you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click **Install**.
+- Depending on the `jpsType` stated at the beginning of the manifest, in the opened **Confirm installation** window you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click **Install**.
 
-4. The process of installation will be started. Wait a minute for Preparing, Deploying and Configuring to be finished.
+- The process of installation will be started. Wait a minute for Preparing, Deploying and Configuring to be finished.
 
-5. Once these operations are finished, you will see a message about the successful installation completion. It can also contain the text from the `success` manifest section (if it's declared).
+- Once these operations are finished, you will see a message about the successful installation completion. It can also contain the text from the `success` manifest section (if it's declared).
 
 ## Best Practices
 

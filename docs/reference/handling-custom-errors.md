@@ -1,19 +1,24 @@
 #Handling Custom Errors
 
-The Cloud Scripting engine provides functionality for handling custom errors. These possible errors should be described in separate block `errorHandlers`.
-The handling errors relates to action result codes. These codes can be found at [Jelastic Console Log Panel](/troubleshooting/) after action was executed. 
-Therefore, Jelastic customers can predefine possible messages for such errors.
+The Cloud Scripting engine provides functionality for handling custom errors. These possible errors should be described within a separate `errorHandlers` block.            
+The errors handling is related to the action result codes. You can locate these codes within the <a href="http://docs.cloudscripting.com/troubleshooting/" target"_blank">Jelastic Console Log Panel</a> upon a corresponding action execution.    
+Therefore, you can predefine a message text that will be displayed in case of an error occurrence.     
 
-There is a list of predefined popup windows which can be displayed while custom errors are handled:  
+There is a list of predefined pop-up windows, which emerge while custom errors are being handled:  
 
-- `info` - information type popup   
-![SuccessText](/img/SuccessText.jpg)    
-- `warning` - warning popup type with custom message  
-![warningType](/img/warningType.jpg)
-- `error` - error popup type window  
-![errorType](/img/errorType.jpg)
+- `info` - *information* pop-up window                
 
-Result message text can be localized according to an available languages at Jelastic platform:
+![SuccessText](/img/SuccessText.jpg)       
+
+- `warning` - *warning* pop-up window with a custom message                
+ 
+![warningType](/img/warningType.jpg)     
+
+- `error` - *error* pop-up window          
+
+![errorType](/img/errorType.jpg)      
+
+Result message text can be localized according to the languages, available within the Jelastic Platform:
 
 ```example
 {
@@ -25,11 +30,11 @@ Result message text can be localized according to an available languages at Jela
 }
 ```
 
-
 ##Examples
 
-**File creating error**  
-The example below describes a double creating the same file and handling it error. Jelastic defined the result code of such errors - *4036*.
+**File creation error**
+
+The example below describes a creation of the same file twice and handling an error, which occurs as a result of such action execution. Consequently, the result code of this error will be defined as *4036*.           
 
 ```
 {
@@ -54,14 +59,13 @@ The example below describes a double creating the same file and handling it erro
 
 where: 
 
-- `createFile` - Cloud Scripting predefined [action](reference/actions/#createfile)
-- `errorHandlers` - an object (array) of custom descripbed errors.  
-- `type` - popup window type after the error has a place. Available values are: *error*, *warning*, *info*.    
+- `createFile` - predefined within the Cloud Scripting <a href="http://docs.cloudscripting.com/reference/actions/#createfile" target="_blank">action</a>              
+- `errorHandlers` - object (array) to describe custom errors     
+- `type` - type of a pop-up window, emerging upon the error occurrence. The available values are: *error*, *warning*, *info*.       
 
-Therefore, the example subscribed all actions with result *4036* for displaying error popup menu with custom error message.
+Thus, the example above sets all the actions with *4036* result to be displayed via *error* pop-up window with a custom error message text.      
 
-
-An additional ability is provided to display action errors using [`return` action.](reference/actions/#handleErrors)
+The additional functionality is provided to display action errors using *return* <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">action</a>.                      
 
 ```
 {
@@ -81,10 +85,11 @@ An additional ability is provided to display action errors using [`return` actio
 
 where:
 
-- `script` - Cloud Scripting <a href= "/reference/actions/#script" target="__blank">action</a> for executing javascript or java code. Javascript type script is by default.  
-- `1000` - custom predefined result code for handling. It will be returned from `script` action in `onInstall` block.
+- `script` - Cloud Scripting <a href= "/reference/actions/#script" target="__blank">action</a> for executing *Javascript* or *Java* code (*Javascript* is set by default)                     
+- `1000` - custom predefined result code for error handling. It will be returned from the `script` action in the `onInstall` block.        
 
-If the result code is a *string* type when the default result code is *11039*. Therefore, `errorHandlers` can be handling by this outcoming *string* text:
+If the result code is delivered via *string*, then the default result code is *11039*. Therefore, `errorHandlers` can be handled by the following outcoming *string* text:            
+
 ```
 {
 	"jpsType": "update",
@@ -101,4 +106,4 @@ If the result code is a *string* type when the default result code is *11039*. T
 }
 ```
 
-All other cases when custom error is not predefined in the block `errorHandler` the default popup type is `error` with output message in it.
+In all the other cases, i.e. when a custom error is not predefined within the `errorHandler` block, the default pop-up window type is *error* with an output message.          

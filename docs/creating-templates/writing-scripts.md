@@ -1,11 +1,11 @@
 # Writing Scripts
 
-Custom users’ scripts can be written in Java or JavaScript. Inside these scripts, the set of client libraries for platform’s API methods calling is available. 
-A script can be subscribed to the onAfterReturn event on its outlet for execution any [Action](/reference/actions/).
+Custom users scripts can be written in Java or JavaScript. Inside these scripts, the set of client libraries for <a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> methods calling is available. 
+A script can be subscribed to the <b>*onAfterReturn*</b> event on its outlet for an execution of any [action](/reference/actions/).
 
 
 ## Intercontainer Scripts
-In order to execute a shell script inside the container, the [ExecuteShellCommands](http://docs.cloudscripting.com/reference/actions/#cmd) action is used.           
+In order to execute a shell script inside a container, the [ExecuteShellCommands](http://docs.cloudscripting.com/reference/actions/#cmd) action is used.           
 
 **Example #1 Execute bash script from URL**
 ```example
@@ -49,7 +49,7 @@ mysql -u${USER} -p${PASSWORD} << END
 END
 ```
 
-`${nodes.sqldb.password}` - available only for jpsType *install* when SQL node is created               
+`${nodes.sqldb.password}` - available only for *jpsType* `install`, when a SQL node is created               
 
 ## Top Level Scripts  
 Using `script` action              
