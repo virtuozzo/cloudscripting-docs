@@ -56,11 +56,11 @@ This basic string should be extended with the settings required by the applicati
 - `settings` *[optional]* - custom form with <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">predefined user input elements</a>                        
 - `jpsVersion` - *[optional]* - JPS type supported by the Jelastic Platform. See the <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">correspondence between version page.</a>                          
 - `nodes` - object to describe information about nodes for an installation. Required option for **jpsType** `install`.               
-- `engine` *[optional]* - engine <a href="http://docs.cloudscripting.com/reference/container-types/#engine-versions-engine" target="_blank">version</a>, **default**: `java6`            
+- `engine` *[optional]* - engine <a href="http://docs.cloudscripting.com/reference/container-types/#engine-versions-engine" target="_blank">version</a>, by **default** `java6`            
 - `region` *[optional]* - region, where an environment will be installed. Required option for **jpsType** `install`.             
 - `displayName` *[optional]* - display name for an environment. Required option for **jpsType** `install`.          
-- `ssl` *[optional]* - Jelastic SSL status for an environment, **default**: `false`             
-- `ha` *[optional]* - high availability for Java stacks, **default**: `false`                              
+- `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`             
+- `ha` *[optional]* - high availability for Java stacks, by **default** `false`                                
 - `description` - text string that describes a template. This section should always follow the template format version section.            
 - `categories` - categories available for manifests filtering                         
 - `version` *[optional]* - custom version of an application                           
