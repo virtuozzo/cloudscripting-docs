@@ -1,7 +1,7 @@
 # Writing Scripts
 
 Custom users’ scripts can be written in Java or JavaScript. Inside these scripts, the set of client libraries for platform’s API methods calling is available. 
-A script can be subscribed to the onAfterReturn event on its outlet for execution any [Action](/reference/actions/).
+A script can be subscribed to the <b>*onAfterReturn*</b> event on its outlet for execution of any [Action](/reference/actions/).
 
 
 ## Intercontainer Scripts
