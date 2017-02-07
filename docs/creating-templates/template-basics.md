@@ -68,7 +68,7 @@ This basic string should be extended with the settings required by the applicati
 - `homepage` *[optional]* - link to any external aplication source            
 - `type` *[optional]* - language type of an application                
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation          
-- `startPage` *[optional]* - path to be opened via the **Open in browser** button through a success installation message                                        
+- `startPage` *[optional]* - path to be opened via the **Open in browser** button through a successful installation message                                        
 - `actions` *[optional]* - objects to describe all <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank">custom actions</a>             
-- `addons` *[optional]* - includes JPS manifests with the jpsType <b>*update*</b> as a new JPS installation      
+- `addons` *[optional]* - includes JPS manifests with the `jpsType` <b>update</b> as a new JPS installation      
 - `onInstall` *[optional]* - [event](http://docs.cloudscripting.com/reference/events/#oninstall) that is an entry point for actions execution                               
