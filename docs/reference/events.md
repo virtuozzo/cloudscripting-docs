@@ -233,7 +233,7 @@ This example display executing Jelastic API *addTrigger* with set of required pa
         - `notify`- send alert notification to user email 
         - `reminderPeriod` - resending period of notification 
 
-Jelastic will send an alert to Cloud Scripting system when appropriate trigger is be executed. Therefore, event `onAlert` is an ability to subscribe to alert notifications and execute *custom actions*.
+Jelastic will send an alert to the Cloud Scripting system when appropriate trigger is being executed. Therefore, event `onAlert` is an ability to subscribe to alert notifications and execute *custom actions*.
 
 **Event Placeholders:**     
 
