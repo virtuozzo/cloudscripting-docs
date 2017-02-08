@@ -8,7 +8,7 @@ The relative links functionality is intended to specify the JPS file’s base UR
 **Example**
 ```
 {
-    "jpsType" : "update",
+    "type" : "update",
     "name" : "Base URL test",
     "baseUrl" : "https://github.com/jelastic-jps/minio/blob/master",
     "onInstall" : {
@@ -46,7 +46,7 @@ For example:
 
 ```
 {
-  "jpsType" : "update",
+  "type" : "update",
   "name" : "Test Base URL",
   "baseUrl" : "http://example.com/",
   "onInstall" : {
@@ -65,7 +65,7 @@ It is possible to customize (in confines of a manifest) the *success* text, whic
 - Setting a relative to `baseUrl` link, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                    
 ```
 {
-    "jpsType" : "update",
+    "type" : "update",
     "name" : "Success Text first example",
     "baseUrl" : "https://github.com/jelastic-jps/minio",
     "onInstall" : {
@@ -78,7 +78,7 @@ It is possible to customize (in confines of a manifest) the *success* text, whic
 - Customizing the *success* return text by means of the external link.                    
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Success Text Second Example",
   "onInstall": {
     "log": "success Text Second Example"
@@ -93,7 +93,7 @@ As it was mentioned above, the success response is distinguished between two val
  
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Success Text Second Example",
   "onInstall": {
     "log": "success Text Second Example"
@@ -108,16 +108,16 @@ As it was mentioned above, the success response is distinguished between two val
  
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Success Text Test 4",
-  "baseUrl": "https://git.jelastic.com/sk/jps-test/raw/master/",
+  "baseUrl": "https://github.com/jelastic-jps/lets-encrypt",
   "onInstall": {
     "log": "success text test 4"
   },
   "success": {
     "email": "README.md",
     "en": "README.md",
-    "ru": "https://github.com/jelastic-jps/git-push-deploy/blob/master/README.md"
+    "ru": "https://github.com/jelastic-jps/lets-encrypt/blob/master/README.md"
   }
 }
 ```

@@ -22,7 +22,7 @@ Both *If* and *ForEach* can be of any nesting level.
 Comparing global variables:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Comparing global variables",
   "globals": {
     "p1": 1,
@@ -97,7 +97,7 @@ Nested conditions:
 Nesting of two *If* condition statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and logging the correspondent messages.
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Nesting example",
   "onInstall": {
     "if (${nodes.cp[1].id})": [
@@ -123,7 +123,7 @@ Balancer node with external IP address!
 Checking balancer stack type:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Nginx stack",
   "onInstall": {
     "if (nodes.bl[0].nodeType == 'nginx')": [
@@ -203,7 +203,7 @@ See the <a href="http://docs.cloudscripting.com/reference/placeholders/#procedur
 Scaling nodes example:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Scaling Example",
   "onAfterScaleIn[nodeGroup:cp]": "ScaleNodes",
   "onAfterScaleOut[nodeGroup:cp]": "ScaleNodes",
@@ -245,7 +245,7 @@ where:
 Custom iterator name can be used for nesting cycles one into another:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "execution actions",
   "onInstall": {
     "forEach(item:env.nodes)": {

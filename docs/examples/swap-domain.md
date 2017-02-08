@@ -2,7 +2,7 @@
 
 ```example
 {
-	"jpsType": "install",
+	"type": "install",
 	"application": {
 		"name": "swapDomain",
 		"env": {

@@ -6,7 +6,7 @@ Each event refers to a particular entity. For example, the entry point for execu
 ## Events Subscription Example            
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Event Subsribtion Example",
   "onInstall": {
     "createFile [cp]": "/tmp/result.txt"
@@ -21,7 +21,7 @@ Each event refers to a particular entity. For example, the entry point for execu
 ```
 where:
 
-- `jpsType` - *update* type presupposes installing add-on in the existing environment with the predefined listeners for *events*                                 
+- `type` - *update* type presupposes installing add-on in the existing environment with the predefined listeners for *events*                                 
 - `onInstall` - first event that will be executed upon environment installation                                                
     - cp - predefined `actions` and `events` in the example require a compute node, therefore, they are filtered by *nodeGroup* as **cp**                                       
 - `onAfterScaleOut` - event that will be performed upon new compute node addition                                         
@@ -53,7 +53,7 @@ The another one action is scaling nodes in environment within one *nodeGroup* (n
 
 ### onInstall
 
-The *onInstall* event is the entry point for executing any action. In case *jpsType* is **install**, the *onInstall* event will be carried out right after environment creation. If *jpsType* is set as **update**, *onInstall*  is the first event to be performed during the manifest installation.           
+The *onInstall* event is the entry point for executing any action. In case *type* is **install**, the *onInstall* event will be carried out right after environment creation. If *type* is set as **update**, *onInstall*  is the first event to be performed during the manifest installation.           
  
 ###onUninstall
 

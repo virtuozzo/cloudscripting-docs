@@ -38,7 +38,7 @@ The example below describes a creation of the same file twice and handling an er
 
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Handling File Creation",
   "onInstall": [
     {
@@ -69,7 +69,7 @@ The additional functionality is provided to display action errors using *return*
 
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Custom Error Handlers",
   "onInstall": {
     "script": "return {result : 1000};"
@@ -92,7 +92,7 @@ If the result code is delivered via *string*, then the default result code is *1
 
 ```
 {
-	"jpsType": "update",
+	"type": "update",
 	"name": "Custom Error Handlers",
 	"onInstall": {
 		"script": "return 'error'"

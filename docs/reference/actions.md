@@ -592,11 +592,11 @@ Setting a delay that is measured in milliseconds. The below example shows how to
 ```
 
 ### installJps
-Nesting a JPS manifest inside the current manifest file. The nested JPS manifest will be installed subsequently after the current one. The action is available for **install** and **update** *jpsType* modes.                              
+Nesting a JPS manifest inside the current manifest file. The nested JPS manifest will be installed subsequently after the current one. The action is available for **install** and **update** *type* modes.                              
 
 **Examples**
 
-Installing add-on via the external link (with **update** *JpsType*):
+Installing add-on via the external link (with **update** *type*):
 ```
 {
   "installJps" : {
@@ -616,7 +616,7 @@ Installing add-on from the local manifest:
 ```
 {
   "installJps" : {
-    "jpsType" : "update",
+    "type" : "update",
     "name" : "test",
     "onInstall" : {
       "log" : "installJps test"
@@ -628,7 +628,7 @@ where:
 
 - `onInstall` - entry point for performed actions                                 
 
-Installing a new environment via the external link (with **install** *JpsType*):
+Installing a new environment via the external link (with **install** *type*):
 ```
 {
   "installJps" : {
@@ -650,7 +650,7 @@ Installing a new environment from the local manifest:
 ```
 {
   "installJps" : {
-    "jpsType" : "install",
+    "type" : "install",
     "region" : "dev",
     "envName" : "env-${fn.random}",
     "name" : "test",
@@ -677,15 +677,15 @@ where:
 
 The possibility to install few custom add-ons within a single manifest. It can be installed to:
 
-- an existing environment if `jpsType` is *update*  
-- a new environment if `jpsType` is *install*. Add-ons will be installed sequentially one by one right after a new environment set up. 
+- an existing environment if `type` is *update*  
+- a new environment if `type` is *install*. Add-ons will be installed sequentially one by one right after a new environment set up. 
 
-All the add-ons will have `jpsType` *update* by default.   
+All the add-ons will have `type` *update* by default.   
 
 The example below shows how to pass an add-on identifier into `installAddon` action. This add-on should be described in the `addons` section. The custom add-on with the *firstAddon* identifier will create a new file in a compute node in the *tmp* directory.
 ```
 {
-	"jpsType": "update",
+	"type": "update",
 	"name": "Install Add-on example",
 	"onInstall": {
 		"installAddon": {
@@ -730,7 +730,7 @@ The declarative code inside a manifest can be divided into separate blocks, name
 The example below shows how to create a new file (e.g. the <b>*example.txt*</b> file in the <b>*tmp*</b> directory) by executing a *createFile* action at the compute node:                
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "execution actions",
   "onInstall": {
     "createFile [cp]": "/tmp/example.txt"
@@ -745,7 +745,7 @@ The next example illustrates how to create a new custom action (i.e. *customActi
 
 ```
 {
-	"jpsType": "update",
+	"type": "update",
     "name": "execution actions",
 	"onInstall": "customAction",
 	"actions": {
@@ -768,7 +768,7 @@ In order to access any required data or parameters of allocated resources inside
 Outputting *Hello World!* twice in the <b>*greeting.txt*</b>:  
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Actions Example",
   "onInstall": [
     {
@@ -798,7 +798,7 @@ Parameters should be passed as an object into custom action:
 
 ```
 {
-	"jpsType": "update",
+	"type": "update",
     "name": "execution actions",
 	"onInstall": {
 		"customAction": {
@@ -819,7 +819,7 @@ where:
 Writing *Hello World!* and outputting first and second compute node's IP address:                                    
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Action Example",
   "onInstall": [
     {

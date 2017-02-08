@@ -13,7 +13,7 @@ Below you can see an examples of how to write custom information to the log.
 Output single placeholder value:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "LogTest",
   "onInstall": {
     "log": [
@@ -27,7 +27,7 @@ Output single placeholder value:
 Output all placeholders:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "LogTest",
   "onInstall": {
     "log": "${placeholders}"
@@ -38,7 +38,7 @@ Output all placeholders:
 Output from the script:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "LogTest",
   "onInstall": {
     "executeScript": {

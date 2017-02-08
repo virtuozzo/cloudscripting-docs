@@ -1,7 +1,7 @@
 # Automated Environment Migration after Cloning
 ```example
 {
-	"jpsType": "install",
+	"type": "install",
 	"application": {
 		"name": "cloneEnv",
 		"env": {

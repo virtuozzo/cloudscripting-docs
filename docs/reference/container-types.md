@@ -26,7 +26,7 @@ where:
 Creating an environment with topology specifics, set by the *engine* and *nodeType* values:                                      
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "install Tomcat7",
   "engine": "java7",
   "nodes": [
@@ -53,7 +53,7 @@ For *Docker* containers, *nodeGroup* can be stated to any value - either predefi
 For example:
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "install Docker",
   "nodes": [
     {

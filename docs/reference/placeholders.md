@@ -139,7 +139,7 @@ Learn more about the event placeholders within the above-linked *Events* page.
 For example:
 ```example
 {
-  "jpsType": "update",
+  "type": "update",
   "settings": {
     "fields": [
       {
@@ -169,7 +169,7 @@ For example:
 Passing custom params to the action is performed in the following way:
 ```
 {
-	"jpsType": "update",
+	"type": "update",
 	"name": "example",
 	"onInstall": {
 		"customAction": {
@@ -196,7 +196,7 @@ For instance:
 
 ```example
 {
-  "jpsType": "update",
+  "type": "update",
   "settings": {
     "fields": [
       {
@@ -216,7 +216,7 @@ Placeholders managed by users can be predefined via <b>*globals declaration*</b>
 For example:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Global declaration",
   "globals": {
     "value1": 1,

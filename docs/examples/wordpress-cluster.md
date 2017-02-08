@@ -1,9 +1,9 @@
 # Wordpress Cluster
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "WordPress Cluster",
-  "version": "4.0",
+  "appVersion": "4.0",
   "type": "php",
   "homepage": "http://www.wordpress.org/",
   "logo": "https://download.jelastic.com/public.php?service=files&t=3da2215839f82aa50d3d961271cd1cb9&download",

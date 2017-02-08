@@ -2,7 +2,7 @@
 
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "settings": {
     "prepopulate": "URL",
     "fields": [
@@ -74,12 +74,12 @@ where:
     > `vtypeText` is applied only in case the *vtype* value is set; otherwise, it is ignored.  
 
 ## Target Nodes
-*Target Nodes* is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *JpsType*: <b>*update*</b> action.   
+*Target Nodes* is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *type*: <b>*update*</b> action.   
 
 Filtering for `targetNodes` can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
 ```
 {
-	"jpsType": "update",
+	"type": "update",
 		"name": "targetNodes",
 		"env": {},
 		"targetNodes": {
@@ -113,7 +113,7 @@ Let’s suppose you have three environments with different topology:
 Within these environments, the `targetNodes` filtering for JPS installation can be performed with the next example:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "targetNodes",
   "targetNodes": {
     "nodeType": "nginx, mysql5"
@@ -147,7 +147,7 @@ Such buttons execute operations that are predefined within JPS manifest.
 Sample to set buttons within the **Add-ons** plank:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Custom buttons",
   "targetNodes": {
     "nodeGroup": "bl"
@@ -194,7 +194,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 Another sample with additional configurations: the next parameters can be enabled only if the [*settings*](/creating-templates/user-input-parameters/#custom-settings) field is present:     
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Custom buttons",
   "targetNodes": {
     "nodeGroup": "bl"
@@ -244,7 +244,7 @@ The used properties for custom menus are the same as for custom buttons. Herewit
 Sample to set custom buttons within the menu list of the Add-ons plank:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "application": {
     "name": "Custom buttons",
     "env": {},
@@ -279,7 +279,7 @@ The settings section can include a few custom forms. The default settings form I
 For instance:  
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Custom buttons",
   "targetNodes": {
     "nodeGroup": "bl"

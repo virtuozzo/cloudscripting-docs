@@ -3,7 +3,7 @@
 Adjust Nginx Balancer workers count depending on CPU cores amount:
 ```example
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Nginx Balancer Vertical Scaling",
   "onInstall": "adjustWorkersCount",
   "onAfterSetCloudletCount[nodeType:nginx]": "adjustWorkersCount",

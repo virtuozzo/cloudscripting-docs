@@ -4,7 +4,7 @@ Create and link WordPress Web and WordPress DB containers:
 
 ```example
 {
-  "jpsType": "install",
+  "type": "install",
   "application": {
     "name": "Wordpress",            
     "homepage": "http://wordpress.org/",

@@ -10,7 +10,7 @@ Highly reliable S3-compatible storage. S3 compatible object storage server in Do
 
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "Minio",
   "homepage": "https://github.com/minio/minio",
   "description": "Minio is an object storage server, compatible with Amazon S3 cloud storage service, best suited for storing unstructured data such as photos, videos, log files and backups.",
@@ -101,7 +101,7 @@ Due to the native GlassFish clustering architecture, its topology includes three
 
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "Auto Scaling GlassFish Cluster",
   "logo": "https://github.com/jelastic-jps/glassfish/raw/master/glassfish-cluster/img/glassfish-logo.png",
   "description": "Pre-configured and ready-to-work GlassFish Cluster with auto scaling triggers. The cluster consists of 1 DAS node, 1 Worker node and 1 HAProxy node as the load balancer. By default connection to the cluster is secured by Jelastic SSL.",
@@ -275,7 +275,7 @@ To get your personal Minecraft server inside the cloud, perform the following:
 
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "Minecraft Server",
   "description": "Minecraft server allows players to play online or via a local area network with other people.",
   "logo": "https://github.com/jelastic-jps/minecraft-server/raw/master/images/minecraft-logo-90px.png",
@@ -353,7 +353,7 @@ In order to get this solution instantly deployed, click the "Deploy" button, spe
 [More details here](https://github.com/jelastic-jps/git-push-deploy)
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "Git-Push-Deploy Example",
   "homepage": "https://github.com/jelastic-jps/git-push-deploy",
   "description": "Example of continuous integration (CI) with git-push-deploy ",
@@ -404,7 +404,7 @@ Bundle of WildFly application server and Maven build node for CD from GIT.
 [More details here](https://github.com/jelastic-jps/wildfly)
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "logo": "https://github.com/jelastic-jps/wildfly/raw/master/images/wildfly-logo-70px.png",
   "name": "WildFly Continuous Deployment",
   "categories": [
@@ -467,7 +467,7 @@ PostgreSQL Cluster with preconfigured Master-Slave replication.
 [More details here](https://github.com/jelastic-jps/postgresql-replication)
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "categories": [
     "apps/clustered-dbs",
     "apps/clusters"
@@ -517,7 +517,7 @@ The target usage for replication in MariaDB databases includes:
   
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "categories": [
     "apps/clustered-dbs",
     "apps/clusters"
@@ -578,7 +578,7 @@ The target usage for replication in MariaDB databases includes:
     ]
   },
   "homepage": "http://docs.jelastic.com/mariadb-master-slave-replication",
-  "version": "0.1",
+  "appVersion": "0.1",
   "success": "The environment with multiple databases has been successfully created. The login and password of your database servers are sent to your email.\nPlease wait a minute for the replication settings to be completed. The process can be monitored in the <b>cron > mysql</b> file of your database servers. This file becomes empty when the configurations are finished. <br><br /> <table style='font-size:13px; border: none;'><tr><td>Admin panel URL:</td><td style='padding-left: 10px;'><a href='${nodes.mariadb.url}' target='_blank'>${nodes.mariadb.url}/</a></td></tr></table><br />To add custom domain name for your MariaDB installation follow the steps described in our <a href='http://docs.jelastic.com/custom-domains' target='_blank'>documentation"
 }
 ```
@@ -601,7 +601,7 @@ The target usage for replication in MySQL databases includes:
 
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "homepage": "http://docs.jelastic.com/database-master-slave-replication",
   "categories": [
     "apps/clustered-dbs",
@@ -681,7 +681,7 @@ The JPS package deploys Cyclos 4 that initially contains 1 application server an
 
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "logo": "https://github.com/jelastic-jps/cyclos/raw/master/images/cyclos.png",
   "description": "Cyclos 4 PRO is our payment platform for large businesses and organisations. It is secure and reliable JAVA software that can be installed on your server. Both application server as the database server are fully clusterable. It offers mobile banking (Mobile app, SMS, USSD*, and IVR*), online banking and much more.",
   "name": "Cyclos4 Pro",
@@ -691,7 +691,7 @@ The JPS package deploys Cyclos 4 that initially contains 1 application server an
     "apps/sales-and-marketing"
   ],
   "homepage": "http://www.cyclos.org/",
-  "version": "4.5",
+  "appVersion": "4.5",
   "success": "Instance address: <a href='${env.url}' target='_blank'>${env.url}</a> </br></br>To add custom domain name for your Cyclos installation follow the steps described in our <a href='http://docs.jelastic.com/custom-domains' target='_blank'>documentation</a>",
   "engine": "java8",
   "nodes": [
@@ -775,7 +775,7 @@ The JPS package initially deploys one container with Payara Micro application se
 
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "Simple Payara Micro Cluster",
   "logo": "https://raw.githubusercontent.com/jelastic-jps/payara/master/images/70.png",
   "categories": "apps/clusters",
@@ -826,7 +826,7 @@ The JPS package initially deploys one container with Payara Server Full. The pac
 
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "Payara Server Full",
   "homepage": "http://www.payara.fish/",
   "description": "Example of Payara Server in Docker",
@@ -857,7 +857,7 @@ The JPS package initially deploys one container with Payara Micro application se
 
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "Multicast Payara Cluster",
   "logo": "https://raw.githubusercontent.com/jelastic-jps/payara/master/images/70.png",
   "categories": "apps/clusters",
@@ -900,7 +900,7 @@ Autoscaling triggers + Load balancing and Auto-discovery + Storage container wit
 
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "Advanced Payara Micro Cluster",
   "categories": "apps/clusters",
   "homepage": "https://github.com/jelastic-jps/payara/tree/master/payara-micro-cluster-advanced",

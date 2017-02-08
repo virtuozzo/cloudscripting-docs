@@ -13,7 +13,7 @@ This add-on allows to configure SSL for:
 
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "id": "letsencrypt-ssl-addon",
   "name": "Let's Encrypt Free SSL",
   "categories": [
@@ -38,7 +38,7 @@ This add-on allows to configure SSL for:
       "apache-lb"
     ]
   },
-  "version": "1.1",
+  "Appversion": "1.1",
   "homepage": "https://github.com/jelastic-jps/lets-encrypt",
   "logo": "https://raw.githubusercontent.com/jelastic-jps/lets-encrypt/master/images/lets-encrypt.png",
   "description": {
@@ -135,8 +135,8 @@ In order to get this solution instantly deployed, click the "Get It Hosted Now" 
 
 ```
 {
-  "jpsType": "update",
-  "version": "0.9.6",
+  "type": "update",
+  "Appversion": "0.9.6",
   "categories": [
     "apps/others",
     "apps/management-and-monitoring"
@@ -236,8 +236,8 @@ To deploy this package to Jelastic Private Cloud, import [this JPS manifest](../
 
 ```
 {
-  "jpsVersion": "0.4",
-  "jpsType": "update",
+  "version": "0.4",
+  "type": "update",
   "logo": "https://github.com/jelastic-jps/managecat/raw/master/images/manageCat.png",
   "onUninstall": "removeManageCat",
   "settings": {
@@ -325,7 +325,7 @@ To deploy this package to Jelastic Private Cloud, import [this JPS manifest](../
     }
   ],
   "homepage": "http://www.managecat.com/",
-  "version": "1.0.0",
+  "Appversion": "1.0.0",
   "targetNodes": {
     "nodeType": [
       "tomcat8",
@@ -357,7 +357,7 @@ To deploy this package to Jelastic Private Cloud, import [this JPS manifest](../
 Add-on to complement environment with auto-configured Docker Haproxy LB container.  
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Managed Load Balancer for Payara micro cluster",
   "homepage": "http://www.payara.fish/",
   "description": "Autoscalable Load Balancer",
