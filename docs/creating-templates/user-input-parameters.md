@@ -367,7 +367,7 @@ where:
 - `hideLabel`*[optional] [boolean]* - hides field Label. The default value is *'false'*. 
 
 ###list   
-The drop-down list and a single-line non-editable textbox.  
+The drop-down list and a single-line textbox.  
 
 <center>![list](/img/list.jpg)</center>  
 ```
