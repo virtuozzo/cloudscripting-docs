@@ -380,16 +380,18 @@ The drop-down list and a single-line non-editable textbox.
         "value1": "hello",
         "value2": "world"
       },
-      "hideLabel": false
+      "hideLabel": false,
+      "editable": true
     }
   ]
 }
 ```
 where:      
 
-- `caption` *[optional]* - field label                                  
+- `caption` *[optional]* - field label         
 - `values` - objects' values (*"key"*:*"value"*)                            
-- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.          
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.
+- `editable` [optional][boolean] - enables/disables the list field editing. The default value is 'false'.
 
 ###checkbox   
 The single checkbox field.
