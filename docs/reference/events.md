@@ -176,6 +176,19 @@ The event will be executed after adding new Docker container(s) to the existing 
     - `nodeId` - node identifier, where event is executed       
 - `${event.response.}` result code. The successful action result is *'0'*.           
 
+### onAlert
+The ability to subscribe for Jelastic <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a>. The event will be executed while an alerts are executed.
+
+**Event Placeholders:**     
+
+- `${event.params.}`:
+    - `name` - an alert name
+    - `nodeGroup` - *nodeGroup* where aan alert is executed 
+    - `resourceType` - monitoring resource type
+- `${event.response.}`:
+    - `result` - result code. The successful action result is *'0'*. 
+
+
 ### onBeforeRestartNode
 
 The event will be triggered before restarting a node. It will be called before the corresponding *restartNodeById* and *restartNodeByGroup* actions.    
