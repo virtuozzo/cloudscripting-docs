@@ -177,7 +177,63 @@ The event will be executed after adding new Docker container(s) to the existing 
 - `${event.response.}` result code. The successful action result is *'0'*.           
 
 ### onAlert
-The ability to subscribe for Jelastic <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a>. The event will be executed during an alerts are executed.
+The ability to subscribe to Jelastic <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a> and Jelastic <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">Automatic Horizontal Scaling alerts</a>. These features are configured through Jelastic triggers.   
+There are five types of monitoring triggers, which are based on the usage of a particular resource type:
+ 
+- CPU
+- Memory (RAM)
+- Network
+- Disk I/O
+- Disk IOPS
+
+The example **new trigger creation** is provided below:
+```
+{
+  "type": "update",
+  "name": "AddTrigger",
+  "onInstall": {
+    "environment.trigger.AddTrigger": {
+      "data": {
+        "name": "new alert",
+        "nodeGroup": "sqldb",
+        "period": "10",
+        "condition": {
+          "type": "GREATER",
+          "value": "55",
+          "resourceType": "MEM",
+          "valueType": "PERCENTAGES"
+        },
+        "actions": [
+          {
+            "type": "NOTIFY",
+            "customData": {
+              "notify": false,
+              "reminderPeriod": 60
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+This example display executing Jelastic API *addTrigger* with set of required parameters:
+
+- `name` - name of the notification trigger
+- `nodeGroup` - type of the environment’s node (you can apply trigger to any node within the chosen environment)
+- `period` - a load period for nodes
+- `condition` - rules for monitoring resources.
+    - `type` - a comparison sign. Available values are: *GREATER*, *LESS*.
+    - `value` - stated percentage of monitoring resource
+    - `resourceType` - type of resources that will be monitored by trigger: CPU, Memory (RAM), Network, Disk I/O, Disk IOPS
+    - `valueType` - a measuring value. *PERCENTAGES* is only available. The available range from 0 till 100.
+- `actions` - an object describe trigger action.
+    - `type` - trigger action. Available values are: *NOTIFY*, *ADD_NODE*, *REMOVE_NODE*
+    - `customData`:
+        - `notify`- send alert notification to user email 
+        - `reminderPeriod` - resending period of notification 
+
+Jelastic will send an alert to Cloud Scripting system when appropriate trigger is be executed. Therefore, event `onAlert` is an ability to subscribe to alert notifications and execute *custom actions*.
 
 **Event Placeholders:**     
 
