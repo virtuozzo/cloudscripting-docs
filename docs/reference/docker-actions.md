@@ -12,7 +12,7 @@ There are three available parameters to set Docker `volumes`:
 All of the fields are set within the Docker object:
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "docker volumes",
   "nodes": [
     {
@@ -195,7 +195,7 @@ where:
 
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "docker environment variables",
   "nodes": [
     {
