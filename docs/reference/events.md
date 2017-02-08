@@ -177,7 +177,7 @@ The event will be executed after adding new Docker container(s) to the existing 
 - `${event.response.}` result code. The successful action result is *'0'*.           
 
 ### onAlert
-The ability to subscribe for Jelastic <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a>. The event will be executed while an alerts are executed.
+The ability to subscribe for Jelastic <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a>. The event will be executed during an alerts are executed.
 
 **Event Placeholders:**     
 
