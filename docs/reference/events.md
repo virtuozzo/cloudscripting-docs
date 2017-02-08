@@ -2,8 +2,21 @@
 
 Any action, available to be performed by means of API (including custom users’ scripts running), should be bound to some event, i.e. executed as a result of this event occurrence.
 Each event refers to a particular entity. For example, the entry point for executing any action with application is the [*onInstall*](#oninstall) event.
-<br>
-## Events Subscription Example            
+
+##Event Execution Rules
+- Such events as *Install* & *Uninstall* application, as well as *BeforeDelete* and *AfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.
+- The *ScaleIn*, *ScaleOut* and *ServiceScaleOut* events are called once upon any node count change. Herewith, count of the *addNode* or *removeNode* actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.
+- For application server, load balancer and VPS node layers, the *cloneNodes* event is executed each time the node group is scaled out
+- *UnlinkNodes*, *LinkNodes*, *SetEnvVars*, *SetEntryPoint*, *SetRunCmd*, *AddVolume* and *RemoveVolume* events can be executed only once per a single *changeTopology* action
+- The *StartService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.
+
+##Event Filtration
+All Cloud Scripting events can be subscribed only to specific node, <a href="/reference/container-types/#jelastic-native-container-types" target="_blank">predefined stacks</a> or `nodeGroup`. The events can be filtered same like the <a href="/creating-templates/selecting-containers/"  target="_blank">`actions`</a>.
+
+The example below describes the event subscribtion only to compute nodes layer - *cmd* action will be executed only after a compute nodes are scaled.
+The event `onAfterRestartNode` is subscribed for *nodeType* **apache2** - *cmd* action will be executed after restart action has finished.
+The event `onAfterResetNodePassword` is subscribed only for first compute node in layer.
+
 ```
 {
   "type": "update",
@@ -11,28 +24,25 @@ Each event refers to a particular entity. For example, the entry point for execu
   "onInstall": {
     "createFile [cp]": "/tmp/result.txt"
   },
-  "onAfterScaleOut [nodeGroup:cp]": {
+  "onAfterScaleOut [cp]": {
     "cmd [cp]": "echo 'New Compute node has been added' >> /tmp/result.txt"
   },
-  "onAfterRestartNode [nodeGroup:cp]": {
+  "onAfterRestartNode [apache2]": {
     "cmd [cp]": "echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> /tmp/result.txt"
+  },
+  "onAfterResetNodePassword [${nodes.cp[0].id}]": {
+    "cmd [${nodes.cp[0].id}]": "echo 'First compute node has been restarted' >> /tmp/result.txt"
   }
 }
 ```
+
 where:
 
 - `type` - *update* type presupposes installing add-on in the existing environment with the predefined listeners for *events*                                 
 - `onInstall` - first event that will be executed upon environment installation                                                
     - cp - predefined `actions` and `events` in the example require a compute node, therefore, they are filtered by *nodeGroup* as **cp**                                       
 - `onAfterScaleOut` - event that will be performed upon new compute node addition                                         
-- `onAfterRestartNode` - event that will be triggered upon restarting a compute node                           
-
-##Events Execution Rules
-- Such events as *Install* & *Uninstall* application, as well as *BeforeDelete* and *AfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.
-- The *ScaleIn*, *ScaleOut* and *ServiceScaleOut* events are called once upon any node count change. Herewith, count of the *addNode* or *removeNode* actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.
-- For application server, load balancer and VPS node layers, the *cloneNodes* event is executed each time the node group is scaled out
-- *UnlinkNodes*, *LinkNodes*, *SetEnvVars*, *SetEntryPoint*, *SetRunCmd*, *AddVolume* and *RemoveVolume* events can be executed only once per a single *changeTopology* action
-- The *StartService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.
+- `onAfterRestartNode` - event that will be triggered upon restarting a compute node 
 
 ## Event Execution Sequence
 Below are presented a graphs where all actions with adjoined their events are displayed. Every action has the pair of events. One of them will be executed before action and another one will be started when this action is finished.  
@@ -987,7 +997,7 @@ Otherwise (i.e. if no filtering rules are specified), every **Event** is listene
 ###By nodeType
 ```
 {
-  "onBeforeScaleIn[nodeType:tomcat7]": {
+  "onBeforeScaleIn[tomcat7]": {
     "writeFile": {
       "nodeType": "tomcat7",
       "path": "/tmp/tomcat7.txt",
@@ -999,7 +1009,7 @@ Otherwise (i.e. if no filtering rules are specified), every **Event** is listene
 ###By nodeId
 ```
 {
-  "onBeforeRestartNode[nodeId:number]": {
+  "onBeforeRestartNode[number]": {
     "writeFile": {
       "nodeId": "number",
       "path": "/tmp/tomcat7.txt",
