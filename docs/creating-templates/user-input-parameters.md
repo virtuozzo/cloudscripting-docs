@@ -391,7 +391,7 @@ where:
 - `caption` *[optional]* - field label         
 - `values` - objects' values (*"key"*:*"value"*)                            
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.
-- `editable` [optional][boolean] - enables/disables the list field editing. The default value is 'false'.
+- `editable` [optional][boolean] - allows to input custom values. The default value is 'false'.
 
 ###checkbox   
 The single checkbox field.
