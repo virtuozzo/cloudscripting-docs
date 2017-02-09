@@ -3,19 +3,24 @@
 Any action, available to be performed by means of API (including custom users’ scripts running), should be bound to some event, i.e. executed as a result of this event occurrence.
 Each event refers to a particular entity. For example, the entry point for executing any action with application is the [*onInstall*](#oninstall) event.
 
-##Event Execution Rules
+##Events Execution Rules
 - Such events as *Install* & *Uninstall* application, as well as *BeforeDelete* and *AfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.
 - The *ScaleIn*, *ScaleOut* and *ServiceScaleOut* events are called once upon any node count change. Herewith, count of the *addNode* or *removeNode* actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.
 - For application server, load balancer and VPS node layers, the *cloneNodes* event is executed each time the node group is scaled out
 - *UnlinkNodes*, *LinkNodes*, *SetEnvVars*, *SetEntryPoint*, *SetRunCmd*, *AddVolume* and *RemoveVolume* events can be executed only once per a single *changeTopology* action
 - The *StartService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.
 
-##Event Filtration
-All Cloud Scripting events can be subscribed only to specific node, <a href="/reference/container-types/#jelastic-native-container-types" target="_blank">predefined stacks</a> or `nodeGroup`. The events can be filtered same like the <a href="/creating-templates/selecting-containers/"  target="_blank">`actions`</a>.
+## Events Filtering
 
-The example below describes the event subscribtion only to compute nodes layer - *cmd* action will be executed only after a compute nodes are scaled.
-The event `onAfterRestartNode` is subscribed for *nodeType* **apache2** - *cmd* action will be executed after restart action has finished.
-The event `onAfterResetNodePassword` is subscribed only for first compute node in layer.
+Events can be filtered by <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> and <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the defined <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> will be executed only when the called event matches specified filtering rules. 
+
+Otherwise (i.e. if no filtering rules are specified), every **event** is listened by all environment entities.
+
+<b>Examples</b>
+
+The example below describes events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event) and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event).         
+
+Here, the *nodeGroup* filtering, namely by a compute nodes (*[cp]*) layer, is set so that the *cmd* action is executed only after the compute nodes are scaled out. The *nodeType* filtering is set for <b>*apache2*</b> nodes, so that the *cmd* action is executed upon these particular nodes restart. The *nodeID* filtering is implemented in such a way that the <b>*onAfterResetNodePassword*</b> event is subscribed only for the first compute node in a layer.
 
 ```
 {
@@ -38,26 +43,27 @@ The event `onAfterResetNodePassword` is subscribed only for first compute node i
 
 where:
 
-- `type` - *update* type presupposes installing add-on in the existing environment with the predefined listeners for *events*                                 
+- `type` - *update* type presupposes the add-on installation in the existing environment with the predefined listeners for *events*                                 
 - `onInstall` - first event that will be executed upon environment installation                                                
-    - cp - predefined `actions` and `events` in the example require a compute node, therefore, they are filtered by *nodeGroup* as **cp**                                       
-- `onAfterScaleOut` - event that will be performed upon new compute node addition                                         
-- `onAfterRestartNode` - event that will be triggered upon restarting a compute node 
+    - cp - predefined `actions` and `events` in the example require a target node, therefore, they are filtered by *nodeGroup* as **cp**                                       
+- `onAfterScaleOut` - event that causes an action to be performed upon a new compute node addition                                            
+- `onAfterRestartNode` - event that that causes an action to be performed upon restarting a compute node     
+- `onAfterResetNodePassword` - event that that causes an action to be performed upon resetting a password for the first compute node in a layer       
 
-## Event Execution Sequence
-Below are presented a graphs where all actions with adjoined their events are displayed. Every action has the pair of events. One of them will be executed before action and another one will be started when this action is finished.  
+## Events Execution Sequence
+
+Below are provided the graphs that show the actions with the adjoining events. Every action has a pair of adjoining events - one of them is executed *before* the action and another one is launched *after* the action, that is when the action is finished.  
 
 !!! note
-    The action `createEnvironment` does not have any event subscribers because they are subscribed after environment creation.    
+    The <b>*createEnvironment*</b> action does not have any adjoining event, because the events are subscribed after an environment creation.      
  
-One of the most complicated acts in Jelastic Dashboard is `changeTopology`. The graph below describes a list of a possible actions and their sequence:  
+The `changeTopology` actions are considered quite laborious to be performed via the Jelastic dashboard, therefore, the graph below provides a sequence of a possible actions and related events:     
+
 <center><img style="height: 900px"  src="/img/changeTopologySequence.png" alt="change topology sequence icon" /></center>
 
-The another one action is scaling nodes in environment within one *nodeGroup* (node layer). The graph below describes a list of possible actions and related events:
+One more demanded action is scaling nodes in an environment within a single *nodeGroup* (layer). The following graph provides a list of possible actions and adjoining events:
 
 <center><img style="height: 626px"  src="/img/scalingEventSequence.png" alt="scaling sequence icon" /></center>
-
-
 
 ## Events List
 
@@ -1042,51 +1048,3 @@ The *onAfterRemoveVolume* event will be triggered after removing volumes from Do
     - `path` - volume path        
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.      
-
-## Events Filtering
-
-Optionally, events can be filtered by *nodeGroup*, *nodeType* and *nodeId* parameters. As a result, the defined actions will be executed only when the called event matches specified filtering rules. 
-<br><br>
-Otherwise (i.e. if no filtering rules are specified), every **Event** is listened by all environment entities.
-
-<b>Examples</b>
-
-###By nodeGroup
-```
-{
-  "onBeforeScaleOut[nodeGroup:cp]": {
-    "writeFile": {
-      "nodeGroup": "cp",
-      "path": "/tmp/apache2.txt",
-      "body": "hello"
-    }
-  }
-}
-```
-###By nodeType
-```
-{
-  "onBeforeScaleIn[tomcat7]": {
-    "writeFile": {
-      "nodeType": "tomcat7",
-      "path": "/tmp/tomcat7.txt",
-      "body": "hello"
-    }
-  }
-}
-```
-###By nodeId
-```
-{
-  "onBeforeRestartNode[number]": {
-    "writeFile": {
-      "nodeId": "number",
-      "path": "/tmp/tomcat7.txt",
-      "body": "hello"
-    }
-  }
-}
-```
-where     
-
-- `number` - *nodeId* value for the corresponding instance
