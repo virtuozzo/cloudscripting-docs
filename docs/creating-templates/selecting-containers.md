@@ -49,7 +49,7 @@ Have a look at more detailed descriptions on approaches available to determine a
 - [All Containers By Type](#all-containers-by-type)   
 
 ## Particular Container   
-The `nodeId` parameter is used to select a particular container for the action to be executed at it. If you know the **Node ID** of a container (displayed at the Jelastic dashboard next to the required node), you can set it statically.       
+The `nodeId` parameter is used to indicate a particular container for the action to be executed at it. If you know the **Node ID** of a container (displayed at the Jelastic dashboard next to the required node), you can set it statically.       
   
 For example:     
 
@@ -99,7 +99,7 @@ Jelastic platform supports the following predefined *nodeGroup* values:
 Actions for a specified *nodeGroup* are executed successively one by one. For Docker containers the *nodeGroup* value is not predefined, therefore, it can be stated to any value above or your custom one. Visit the <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">Containers by Groups</a> documentation page for more information.        
 
 ## All Containers By Type
-The `nodeType` parameter is applied to select all containers built upon the same software stacks. Visit the <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-types-nodetype"target="_blank">Containers by Types</a> documentation page to explore the provided containers listed according to their type.    	  
+The `nodeType` parameter is applied to point out all containers built upon the same software stacks. Visit the <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-types-nodetype"target="_blank">Containers by Types</a> documentation page to explore the provided containers listed according to their type.    	  
 
 !!! note
     > If you set all three parameters, actions for indicated containers would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>. 
