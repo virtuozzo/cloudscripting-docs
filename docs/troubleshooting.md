@@ -2,9 +2,9 @@
 
 - Choose a hosting provider from the <a href="https://jelastic.cloud" target="_blank">Jelastic Cloud Union</a>, log in to your Jelastic account and open the link of the following type in a new browser tab: 
 
-<http://appstore.{HOSTER_URL}/console/> 
+    <http://appstore.{HOSTER_URL}/console/> 
 
-Here, substitute a *{HOSTER_URL}* with the platform domain of the chosen hosting provider (see the last column of the table within the <a href="https://docs.jelastic.com/jelastic-hoster-info" target="_blank">Hosters Info</a> page).     
+    Here, substitute a *{HOSTER_URL}* with the platform domain of the chosen hosting provider (see the last column of the table within the <a href="https://docs.jelastic.com/jelastic-hoster-info" target="_blank">Hosters Info</a> page).     
 
 - In the opened browser tab you will see the Cloud Scripting execution log
 
