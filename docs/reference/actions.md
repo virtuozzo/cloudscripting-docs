@@ -591,7 +591,7 @@ Setting a delay that is measured in milliseconds. The below example shows how to
 }
 ```
 
-### installJps
+### install
 Nesting a JPS manifest inside the current manifest file. The nested JPS manifest will be installed subsequently after the current one. The action is available for **install** and **update** *type* modes.                              
 
 **Examples**
@@ -599,7 +599,7 @@ Nesting a JPS manifest inside the current manifest file. The nested JPS manifest
 Installing add-on via the external link (with **update** *type*):
 ```
 {
-  "installJps" : {
+  "install" : {
     "jps" : "http://example.com/manifest.jps",
     "settings" : {
       "myparam" : "test"
@@ -615,11 +615,11 @@ where:
 Installing add-on from the local manifest:
 ```
 {
-  "installJps" : {
+  "install" : {
     "type" : "update",
     "name" : "test",
     "onInstall" : {
-      "log" : "installJps test"
+      "log" : "install test"
     }
   }
 }
@@ -631,7 +631,7 @@ where:
 Installing a new environment via the external link (with **install** *type*):
 ```
 {
-  "installJps" : {
+  "install" : {
     "jps" : "http://example.com/manifest.jps",
     "envName" : "env-${fn.random}",
     "settings" : {
@@ -649,7 +649,7 @@ where:
 Installing a new environment from the local manifest:
 ```
 {
-  "installJps" : {
+  "install" : {
     "type" : "install",
     "region" : "dev",
     "envName" : "env-${fn.random}",
@@ -659,7 +659,7 @@ Installing a new environment from the local manifest:
           "cloudlets" : 16
     },
     "onInstall" : {
-      "log" : "installJps test"
+      "log" : "install test"
     }
   }
 }
