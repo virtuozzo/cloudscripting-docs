@@ -102,4 +102,4 @@ Actions for a specified *nodeGroup* are executed successively one by one. For Do
 The `nodeType` parameter is applied to select all containers built upon the same software stacks. Visit the <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-types-nodetype"target="_blank">Containers by Types</a> documentation page to explore the provided containers listed according to their type.    	  
 
 !!! note
-    > If you set all three parameters, the container selection would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>. 
+    > If you set all three parameters, actions for indicated containers would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>. 
