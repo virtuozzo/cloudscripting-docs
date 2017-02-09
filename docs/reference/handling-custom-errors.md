@@ -1,24 +1,22 @@
 #Handling Custom Errors
 
-The Cloud Scripting engine provides functionality for handling custom errors. These possible errors should be described within a separate `errorHandlers` block.            
-The errors handling is related to the action result codes. You can locate these codes within the <a href="http://docs.cloudscripting.com/troubleshooting/" target"_blank">Jelastic Console Log Panel</a> upon a corresponding action execution.    
-Therefore, you can predefine a message text that will be displayed in case of an error occurrence.     
+The Cloud Scripting engine provides functionality to handle custom errors. These possible errors should be described within a separate `errorHandlers` block. The errors handling is related to the action result codes. You can locate these codes within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
 
-There is a list of predefined pop-up windows, which emerge while custom errors are being handled:  
+There is a number of predefined pop-up windows, which emerge while custom errors are being handled:  
 
 - `info` - *information* pop-up window                
 
-![SuccessText](/img/SuccessText.jpg)       
+<center>![SuccessText](/img/SuccessText.jpg)</center>          
 
 - `warning` - *warning* pop-up window with a custom message                
  
-![warningType](/img/warningType.jpg)     
+<center>![warningType](/img/warningType.jpg)</center>        
 
 - `error` - *error* pop-up window          
 
-![errorType](/img/errorType.jpg)      
+<center>![errorType](/img/errorType.jpg)</center>          
 
-Result message text can be localized according to the languages, available within the Jelastic Platform:
+The result message text can be localized according to the languages, available within the Jelastic Platform:
 
 ```example
 {
@@ -65,7 +63,7 @@ where:
 
 Thus, the example above sets all the actions with *4036* result to be displayed via *error* pop-up window with a custom error message text.      
 
-The additional functionality is provided to display action errors using *return* <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">action</a>.                      
+The additional functionality is provided to display action errors using <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">*return*</a> action.                         
 
 ```
 {
