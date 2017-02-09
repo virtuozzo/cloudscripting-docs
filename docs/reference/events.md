@@ -44,11 +44,11 @@ Here, the *nodeGroup* filtering, namely by a compute nodes (*[cp]*) layer, is se
 where:
 
 - `type` - *update* type presupposes the add-on installation in the existing environment with the predefined listeners for *events*                                 
-- `onInstall` - first event that will be executed upon environment installation                                                
+- `onInstall` - event to set the first action that will be executed                                               
     - cp - predefined `actions` and `events` in the example require a target node, therefore, they are filtered by *nodeGroup* as **cp**                                       
-- `onAfterScaleOut` - event that causes an action to be performed upon a new compute node addition                                            
-- `onAfterRestartNode` - event that that causes an action to be performed upon restarting a compute node     
-- `onAfterResetNodePassword` - event that that causes an action to be performed upon resetting a password for the first compute node in a layer       
+- `onAfterScaleOut` - event that triggers an action upon a new compute node addition                                            
+- `onAfterRestartNode` - event that triggers an action upon restarting a compute node     
+- `onAfterResetNodePassword` - event that triggers an action upon resetting a password for the first compute node in a layer       
 
 ## Events Execution Sequence
 
