@@ -55,7 +55,7 @@ where:
 Below are provided the graphs that show the actions with the adjoining events. Every action has a pair of adjoining events - one of them is executed *before* the action and another one is launched *after* the action, that is when the action is finished.  
 
 !!! note
-    The <b>*createEnvironment*</b> action does not have any adjoining event, because the events are subscribed after an environment creation.      
+    The <b>*createEnvironment*</b> action does not have any adjoining events, because the events are subscribed after an environment creation.      
  
 The `changeTopology` actions are considered quite laborious to be performed via the Jelastic dashboard, therefore, the graph below provides a sequence of a possible actions and related events:     
 
