@@ -1,7 +1,7 @@
 # Writing Scripts
 
 Custom users scripts can be written in Java or JavaScript. Inside these scripts, the set of client libraries for <a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> methods calling is available. 
-A script can be subscribed to the <b>*onAfterReturn*</b> event on its outlet for an execution of any <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank"action</a>.          
+A script can be subscribed to the <b>*onAfterReturn*</b> event on its outlet for an execution of any <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a>.          
 
 
 ## Intercontainer Scripts
