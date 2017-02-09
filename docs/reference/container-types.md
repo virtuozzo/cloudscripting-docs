@@ -2,11 +2,11 @@
 
 <b>Containers by Types (*NodeType*)</b>
 
-The *nodeType* parameter defines software stacks (among the supported ones) to be implemented within an environment. The node type value is specified within the *nodeType* field while performing an appropriate [action](/reference/actions/).                   
+The *nodeType* parameter defines software stacks (among the supported ones) to be implemented within an environment. The node type value is specified within the *nodeType* field while performing an appropriate <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a>.                         
 
 **For example:**   
 
-Using the *nodeType* field while performing the *writeFile* [action](/reference/actions/#writefile):                         
+Using the *nodeType* field while performing the <a href="http://docs.cloudscripting.com/reference/actions/#writefile" target="_blank">*writeFile*</a> action:                              
 ```
 {
   "writeFile": {
@@ -46,7 +46,7 @@ Below you can find data on supported software stacks in confines of the [*nodeGr
 
 ##Containers by Groups (*nodeGroup*)
 
-The *nodeGroup* parameter is applied to set a paradigm for *nodeType* division into groups, i.e. it determines environment layer for container(s) to be placed to. The *nodeGroup* value can be used within *nodeType* field while executing the appropriate [actions](/reference/actions/).        
+The *nodeGroup* parameter is applied to set a paradigm for *nodeType* division into groups, i.e. it determines environment layer for container(s) to be placed to. The *nodeGroup* value can be used within *nodeType* field while executing the appropriate <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a>.        
 
 For *Docker* containers, *nodeGroup* can be stated to any value - either predefined (listed below) or your custom one.       
 
@@ -66,12 +66,12 @@ For example:
 ```
 where:
                    
-- `customGroup` - name of your custom *nodeGroup* value, that is called via `nodeGroup:customGroup` field, while performing an appropriate [action](/reference/actions/)                       
+- `customGroup` - name of your custom *nodeGroup* value, that is called via `nodeGroup:customGroup` field, while performing an appropriate <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a>                                        
 
 !!! note
     > Upon stating non-predefined (i.e. custom) *nodeGroup* value for *Docker* containers, the corresponding container will be placed to the *Extra* layer:               
-    ![extra](/img/extra_layer.jpg)             
-    Subsequently, this *nodeGroup* value can be used within the same-named [actions](/reference/actions/) field to point to a particular *Extra* layer.                 
+    <br><center>![extra](/img/extra_layer.jpg)</center><br>             
+    Subsequently, this *nodeGroup* value can be used within the same-named <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> field to point to a particular *Extra* layer.                 
 
 <b>Predefined *nodeGroup* values</b>                 
 
@@ -223,4 +223,4 @@ The following section deals with supported engine versions and their availabilit
 |engine  |*nodejs0.10*<br>*nodejs0.12*<br>*nodejs4.3*<br>*nodejs5.6*|
 
 !!! note
-    > The list of supported [software stacks](https://docs.jelastic.com/software-stacks-versions) can vary depending on your Jelastic platform version - it can be checked at your dashboard.  
+    > The list of supported <a href="https://docs.jelastic.com/software-stacks-versions" targer="_blank">software stacks</a> can vary depending on your Jelastic platform version - it can be checked at your dashboard.  
