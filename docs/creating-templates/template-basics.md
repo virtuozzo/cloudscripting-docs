@@ -54,7 +54,7 @@ This basic string should be extended with the settings required by the applicati
 - `name` *[required]* - JPS custom name      
 - `baseUrl` *[optional]* - custom <a href="http://docs.cloudscripting.com/creating-templates/relative-links/" target="_blank">relative links</a>                                       
 - `settings` *[optional]* - custom form with <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">predefined user input elements</a>                        
-- `jpsVersion` - *[optional]* - JPS type supported by the Jelastic Platform. See the <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">correspondence between version</a> page.                            
+- `jpsVersion` - *[optional]* - JPS type supported by the Jelastic Platform. See the <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">correspondence between versions</a> page.                            
 - `nodes` - object to describe information about nodes for an installation. Required option for **jpsType** `install`.               
 - `engine` *[optional]* - engine <a href="http://docs.cloudscripting.com/reference/container-types/#engine-versions-engine" target="_blank">version</a>, by **default** `java6`            
 - `region` *[optional]* - region, where an environment will be installed. Required option for **jpsType** `install`.             
