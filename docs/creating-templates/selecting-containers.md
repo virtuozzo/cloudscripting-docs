@@ -43,7 +43,7 @@ Learn more on this <a href="http://docs.cloudscripting.com/reference/actions/#cu
 !!! note 
     > **Node Selectors** have higher priority than nodes specified next to the action but lower than parameters set in the action object.     
 
-Have a look at more detailed descriptions on approaches available to determine a target container:          
+Have a look at more detailed descriptions on approaches available to set a target container:          
 - [Particular Container](#particular-container)   
 - [All Containers By Group](#all-containers-by-group)    
 - [All Containers By Type](#all-containers-by-type)   
