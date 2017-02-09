@@ -47,7 +47,7 @@ where:
 - `onInstall` - event to set the first action that will be executed                                               
     - cp - predefined `actions` and `events` in the example require a target node, therefore, they are filtered by *nodeGroup* as **cp**                                       
 - `onAfterScaleOut` - event that triggers an action upon a new compute node addition                                            
-- `onAfterRestartNode` - event that triggers an action upon restarting a compute node     
+- `onAfterRestartNode` - event that triggers an action upon restarting compute nodes     
 - `onAfterResetNodePassword` - event that triggers an action upon resetting a password for the first compute node in a layer       
 
 ## Events Execution Sequence
