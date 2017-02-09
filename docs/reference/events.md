@@ -75,7 +75,7 @@ The *onInstall* event is the entry point for executing any action. In case *type
 
 The *onUninstall* event can be called from the **Add-ons** tab at the Jelastic dashboard. This event is aimed at removing data, which was accumulated as a result of the *onInstall* action execution.            
   
-![onUninstall](/img/addon-install.jpg)    
+<center>![onUninstall](/img/addon-install.jpg)</center>    
 
 ### onBeforeChangeTopology
 
@@ -108,13 +108,12 @@ The event will be executed once the *changeTopology* action is finished.
         - `redeployContainerDelay` - delay for container redeployment        
         - `redeployContextDelay` - delay for context redeployment          
         - `restartContainerDelay` - delay for container restart         
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).     
-    - `env` - environment information. Explore the full list of available [environment placeholders](http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders).      
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>).         
+    - `env` - environment information. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>).        
 
 ### onBeforeScaleOut
 
-The event will be executed before adding new node(s) (i.e. scaling *out*) to the existing node group (viz. layer). Scaling out/in can be performed either through [changing topology](https://docs.jelastic.com/jelastic-dashboard-guide#change-topology) or [auto horizontal scaling](https://docs.jelastic.com/automatic-horizontal-scaling) functionality. The *onBeforeScaleOut* event will be run only once for each layer.    
-
+The event will be executed before adding new node(s) (i.e. scaling *out*) to the existing node group (viz. layer). Scaling out/in can be performed either through <a href="https://docs.jelastic.com/jelastic-dashboard-guide#change-topology" target="_blank">changing topology</a> or <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">auto horizontal scaling</a> functionality. The *onBeforeScaleOut* event will be run only once for each layer.    
 **Event Placeholders:**    
  
 - `${event.params.}`: 
@@ -132,7 +131,7 @@ The event will be executed after adding new node(s) to the existing node group. 
     - `count` - number of nodes that are added      
     - `nodeGroup` - node group that is scaled out     
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).      
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                                
 
 ### onBeforeScaleIn
 
@@ -144,7 +143,7 @@ The event will be executed before removing node(s) (i.e. scaling *in*) from the 
     - `count` - number of nodes that are removed    
     - `nodeGroup` - node group that is scaled in   
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).      
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                              
 
 ### onAfterScaleIn
 
@@ -156,7 +155,7 @@ The event will be executed after scaling *in* the corresponding node group. The 
     - `count` - number of nodes that are removed       
     - `nodeGroup` - node group that is scaled in      
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).    
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                                
 
 ###onBeforeServiceScaleOut
 
@@ -183,16 +182,17 @@ The event will be executed after adding new Docker container(s) to the existing 
 - `${event.response.}` result code. The successful action result is *'0'*.           
 
 ### onAlert
-The ability to subscribe to Jelastic <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a> and Jelastic <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">Automatic Horizontal Scaling alerts</a>. These features are configured through Jelastic triggers.   
-There are five types of monitoring triggers, which are based on the usage of a particular resource type:
- 
-- CPU
-- Memory (RAM)
-- Network
-- Disk I/O
-- Disk IOPS
+This event provides a possibility to boud actions to Jelastic <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a> and <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">Automatic Horizontal Scaling Alerts</a>. These features are configured through the Jelastic triggers.   
 
-The example **new trigger creation** is provided below:
+There are five available types of the monitoring triggers, which are based on the usage of a particular resource type:
+ 
+- *CPU*
+- *Memory (RAM)*
+- *Network*
+- *Disk I/O*
+- *Disk IOPS*
+
+The following example shows how a **new trigger creation** is performed:
 ```
 {
   "type": "update",
@@ -223,29 +223,29 @@ The example **new trigger creation** is provided below:
   }
 }
 ```
-This example display executing Jelastic API *addTrigger* with set of required parameters:
+This example demonstrates execution of the Jelastic API *addTrigger* method with a set of required parameters:     
 
-- `name` - name of the notification trigger
-- `nodeGroup` - type of the environment’s node (you can apply trigger to any node within the chosen environment)
-- `period` - a load period for nodes
-- `condition` - rules for monitoring resources.
-    - `type` - a comparison sign. Available values are: *GREATER*, *LESS*.
-    - `value` - stated percentage of monitoring resource
-    - `resourceType` - type of resources that will be monitored by trigger: CPU, Memory (RAM), Network, Disk I/O, Disk IOPS
-    - `valueType` - a measuring value. *PERCENTAGES* is only available. The available range from 0 till 100.
-- `actions` - an object describe trigger action.
-    - `type` - trigger action. Available values are: *NOTIFY*, *ADD_NODE*, *REMOVE_NODE*
+- `name` - name of a notification trigger
+- `nodeGroup` - target node (you can apply trigger to any node within the chosen environment)
+- `period` - load period for nodes
+- `condition` - rules for monitoring resources
+    - `type` - comparison sign, the available values are: *GREATER* and *LESS*
+    - `value` - stated percentage of a monitoring resource
+    - `resourceType` - types of resources that will be monitored by a trigger, namely *CPU, Memory (RAM), Network, Disk I/O* and *Disk IOPS*
+    - `valueType` - measurement value. Here, *PERCENTAGES* is the only possible value. The available range - from **0** till **100**.
+- `actions` - object to describe a trigger action
+    - `type` - trigger action, the available values are: *NOTIFY*, *ADD_NODE* and *REMOVE_NODE*
     - `customData`:
-        - `notify`- send alert notification to user email 
-        - `reminderPeriod` - resending period of notification 
+        - `notify`- alert notification sent to a user via email 
+        - `reminderPeriod` - reminder period in days to send a notification again       
 
-Jelastic will send an alert to the Cloud Scripting system when appropriate trigger is being executed. Therefore, event `onAlert` is an ability to subscribe to alert notifications and execute *custom actions*.
+Jelastic will send an alert to the Cloud Scripting system, when the appropriate trigger is being executed. Therefore, the `onAlert` event provides a possibility to bound actions to alert notifications and execute *custom actions*.
 
 **Event Placeholders:**     
 
 - `${event.params.}`:
-    - `name` - an alert name
-    - `nodeGroup` - *nodeGroup* where aan alert is executed 
+    - `name` - alert name
+    - `nodeGroup` - *nodeGroup*, where an alert is executed 
     - `resourceType` - monitoring resource type
 - `${event.response.}`:
     - `result` - result code. The successful action result is *'0'*. 
@@ -484,7 +484,7 @@ The event can handle custom action after the *detach Ext Ip address* action exec
 
 ### onBeforeUpdateVcsProject
 
-The event will be carried out before the *update vcs project* action. For a detailed guidance on the [VCS project deployment](https://docs.jelastic.com/cli-vcs-deploy) refer to the linked page. 
+The event will be carried out before the *update vcs project* action. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a> refer to the linked page. 
 
 **Event Placeholders:**   
 
@@ -497,7 +497,7 @@ The event will be carried out before the *update vcs project* action. For a deta
 
 ### onAfterUpdateVcsProject
 
-The event will be carried out after the *update vcs project* action. For a detailed guidance on the [VCS project deployment](https://docs.jelastic.com/cli-vcs-deploy) refer to the linked page.      
+The event will be carried out after the *update vcs project* action. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a> refer to the linked page.      
 
 **Event Placeholders:**   
 
@@ -643,8 +643,8 @@ The event is related to the *clone environment* action (performed via the Jelast
         - `redeployContainerDelay` - delay for container redeployment     
         - `redeployContextDelay` - delay for context redeployment     
         - `restartContainerDelay` - delay for container restart    
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).       
-    - `env` - environment information. Explore the full list of available [environment placeholders](http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders).       
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.       
+    - `env` - environment information. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.       
 
 ### onBeforeDeploy
 
@@ -764,7 +764,7 @@ This event will be carried out after restarting container. The *onBeforeRestartC
 
 ### onBeforeMigrate
 
-The event is related to the [*migrate environment*](https://docs.jelastic.com/environment-regions-migration) action and is called before it.        
+The event is related to the <a href="https://docs.jelastic.com/environment-regions-migration" target="_blank">*migrate environment*</a> action and is called before it.        
 
 **Event Placeholders:**          
 
@@ -778,7 +778,7 @@ The event is related to the [*migrate environment*](https://docs.jelastic.com/en
 
 ### onAfterMigrate
 
-The event is related to the [*migrate environment*](https://docs.jelastic.com/environment-regions-migration) action and is called after it.   
+The event is related to the <a href="https://docs.jelastic.com/environment-regions-migration" target="_blank">*migrate environment*</a> action and is called after it.   
 
 **Event Placeholders:**   
 
@@ -886,7 +886,7 @@ This event is executed after the *unLinkNodes* action and is run for each unlink
 
 ### onBeforeSetEnvVars
 
-The event will be triggered before the [*setEnvVars*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting environment variables. The *onBeforeSetEnvVars* event is applied for Docker containers only.     
+The event will be triggered before the <a href="http://docs.cloudscripting.com/reference/docker-actions/#docker-environment-variables" target="_blank">*setEnvVars*</a> action. It is executed for every docker container upon setting environment variables. The *onBeforeSetEnvVars* event is applied for Docker containers only.     
 
 **Event Placeholders:**   
 
@@ -900,7 +900,7 @@ The event will be triggered before the [*setEnvVars*](/reference/docker-actions/
 
 ### onAfterSetEnvVars
 
-The event will be triggered before the [*setEnvVars*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting environment variables. The *onAfterSetEnvVars* event is applied for Docker containers only.
+The event will be triggered before the <a href="http://docs.cloudscripting.com/reference/docker-actions/#docker-environment-variables" target="_blank">*setEnvVars*</a> action. It is executed for every docker container upon setting environment variables. The *onAfterSetEnvVars* event is applied for Docker containers only.
 
 **Event Placeholders:**    
 
@@ -914,7 +914,7 @@ The event will be triggered before the [*setEnvVars*](/reference/docker-actions/
 
 ### onBeforeSetEntryPoint
 
-This event will be called before the [*setEntryPoint*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting the entry point. The *onBeforeSetEntryPoint* event is applied for Docker containers only.   
+This event will be called before the <a href="http://docs.cloudscripting.com/reference/docker-actions/" target="_blank">*setEntryPoint*</a> action. It is executed for every docker container upon setting the entry point. The *onBeforeSetEntryPoint* event is applied for Docker containers only.   
 
 **Event Placeholders:**   
 
@@ -928,7 +928,7 @@ This event will be called before the [*setEntryPoint*](/reference/docker-actions
 
 ### onAfterSetEntryPoint
 
-This event will be called after the [*setEntryPoint*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting the entry point. The *onAfterSetEntryPoint* event is applied for Docker containers only.    
+This event will be called after the <a href="http://docs.cloudscripting.com/reference/docker-actions/" target="_blank">*setEntryPoint*</a> action. It is executed for every docker container upon setting the entry point. The *onAfterSetEntryPoint* event is applied for Docker containers only.    
 
 **Event Placeholders:**   
 
@@ -942,7 +942,7 @@ This event will be called after the [*setEntryPoint*](/reference/docker-actions/
 
 ### onBeforeSetRunCmd
 
-The event will be executed before the [*setRunCmd*](/reference/docker-actions/#docker-environment-variables) action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
+The event will be executed before the <a href="http://docs.cloudscripting.com/reference/docker-actions/" target="_blank">*setRunCmd*</a> action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
 
 **Event Placeholders:**   
 
@@ -956,7 +956,7 @@ The event will be executed before the [*setRunCmd*](/reference/docker-actions/#d
     
 ### onAfterSetRunCmd
 
-The event will be executed after the [*setRunCmd*](/reference/docker-actions/#docker-environment-variables) action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
+The event will be executed after the <a href="http://docs.cloudscripting.com/reference/docker-actions/" target="_blank">*setRunCmd*</a> action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
 
 **Event Placeholders:**    
 
