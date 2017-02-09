@@ -135,12 +135,12 @@ The custom buttons settings are intended for extending and adjusting functionali
 
 <center>![Addontab](/img/Addontab.jpg)</center>       
 
-Such buttons execute operations that are predefined within JPS manifest.   
+Such buttons execute operations that are predefined within a JPS manifest.   
 
 <center>![TrafficManager](/img/TrafficManager.jpg)</center>    
 
 !!! note
-    > JPS manifest should include the [*targetNodes*](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
+    > The JPS manifest should include the [*targetNodes*](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
 
 <b>Templates</b>   
 
