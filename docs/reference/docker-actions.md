@@ -60,7 +60,7 @@ Here:
 - `/example-path` - path to place the volume at a target node  
 - `sourcePath [optional]` - default value that repeats volume path (*/example-path* in our sample)    
 - `sourceNodeId` -  node identifier the volume should be mounted from (optional, in case of the `sourceNodeGroup` parameter using)       
-- `sourceHost [optional]` - parameter for <u>[external mounts](https://docs.jelastic.com/configure-external-nfs-server)</u> usage    
+- `sourceHost [optional]` - parameter for <a href="https://docs.jelastic.com/configure-external-nfs-server" target="_blank">external mounts</a> usage    
 - `readOnly` - defines write data permissions at source node, the default value is `false`   
 - `sourceNodeGroup` - any available *nodeGroup* within a source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.    
 
@@ -191,7 +191,7 @@ where:
 
 ##Docker Environment Variables
 
-[Docker environment variable](https://docs.jelastic.com/docker-variables) is an optional topology object. The *env* instruction allows to set the required environment variables to specified values. 
+Docker environment <a href="https://docs.jelastic.com/docker-variables" target="_blank">variable</a> is an optional topology object. The *env* instruction allows to set the required environment variables to specified values. 
 
 ```
 {
@@ -212,7 +212,7 @@ where:
 
 ##Docker Links
 
-[Docker links](https://docs.jelastic.com/docker-links) option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
+Docker <a href="https://docs.jelastic.com/docker-links" target="_blank">links</a> option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
 <br>
 
 The example below illustrates the way to link *sql* and *memcached* nodes to *cp* container.
