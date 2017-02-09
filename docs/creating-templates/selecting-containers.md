@@ -2,7 +2,7 @@
 
 Running a specific <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> requires to indicate a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">*nodeGroup*</a> value (e.g. *sql*) or all containers of the same type by their <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-types-nodetype"target="_blank">*nodeType*</a> value (e.g. *MySQL*).          
 
-Also, there are three possible approaches to set containers filtering:       
+Also, there are three alternative approaches to set containers filtering:       
 
 * **Node Selectors** - specifying a target node within a name of an action     
 
@@ -43,7 +43,7 @@ Learn more on this <a href="http://docs.cloudscripting.com/reference/actions/#cu
 !!! note 
     > **Node Selectors** have higher priority than nodes specified next to the action but lower than parameters set in the action object.     
 
-Have a look at more detailed descriptions on approaches available for containers selection:          
+Have a look at more detailed descriptions on approaches available to determine a target container:          
 - [Particular Container](#particular-container)   
 - [All Containers By Group](#all-containers-by-group)    
 - [All Containers By Type](#all-containers-by-type)   
