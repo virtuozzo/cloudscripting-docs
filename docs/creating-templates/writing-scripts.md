@@ -49,7 +49,7 @@ mysql -u${USER} -p${PASSWORD} << END
 END
 ```
 
-`${nodes.sqldb.password}` - available only for *jpsType* `install`, when a SQL node is created               
+`${nodes.sqldb.password}` - available only for *type* `install`, when a SQL node is created               
 
 ## Top Level Scripts  
 Using `script` action              

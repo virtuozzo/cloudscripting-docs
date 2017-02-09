@@ -2,7 +2,7 @@
 
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "settings": {
     "prepopulate": "URL",
     "fields": [
@@ -36,12 +36,12 @@ where:
     - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:   
         * `string` - [basic](/creating-templates/user-input-parameters/#string) text field                                  
         * `text`  - [multiline](/creating-templates/user-input-parameters/#text) text field                                                                                                         
-        * `list` - drop-down menu with non-editable textboxes (see [more details with example](/creating-templates/user-input-parameters/#list))                                           
+        * `list` - drop-down menu with textboxes (see more details with example [here](/creating-templates/user-input-parameters/#list))                                           
         * `checkbox` - single [checkbox field](/creating-templates/user-input-parameters/#checkbox)                     
         * `checkboxlist` - [checkbox](/creating-templates/user-input-parameters/#checkboxlist) grouping                             
         * `radiolist` - [radio field](/creating-templates/user-input-parameters/#radiolist) grouping                       
         * `radio-fieldset` - alias to `radiolist`              
-        * `dockertags` - drop-down menu with a list of docker tags (see [more details with example](/creating-templates/user-input-parameters/#dockertag))                   
+        * `dockertags` - drop-down menu with a list of docker tags (see more details with example [here](/creating-templates/user-input-parameters/#dockertag))                   
         * `compositefield` - [component](/creating-templates/user-input-parameters/#compositefield) that comprises any available field    
         * `slider` - [slider element](/creating-templates/user-input-parameters/#slider) as a form field
         * `envlist` - [list of environments](/creating-templates/user-input-parameters/#envlist) available for a corresponding account                  
@@ -74,12 +74,12 @@ where:
     > `vtypeText` is applied only in case the *vtype* value is set; otherwise, it is ignored.  
 
 ## Target Nodes
-*Target Nodes* is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *JpsType*: <b>*update*</b> action.   
+*Target Nodes* is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *type*: <b>*update*</b> action.   
 
 Filtering for `targetNodes` can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
 ```
 {
-	"jpsType": "update",
+	"type": "update",
 		"name": "targetNodes",
 		"env": {},
 		"targetNodes": {
@@ -113,7 +113,7 @@ Let’s suppose you have three environments with different topology:
 Within these environments, the `targetNodes` filtering for JPS installation can be performed with the next example:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "targetNodes",
   "targetNodes": {
     "nodeType": "nginx, mysql5"
@@ -147,7 +147,7 @@ Such buttons execute operations that are predefined within a JPS manifest.
 Sample to set buttons within the **Add-ons** plank:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Custom buttons",
   "targetNodes": {
     "nodeGroup": "bl"
@@ -194,7 +194,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 Another sample with additional configurations: the next parameters can be enabled only if the [*settings*](/creating-templates/user-input-parameters/#custom-settings) field is present:     
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Custom buttons",
   "targetNodes": {
     "nodeGroup": "bl"
@@ -244,7 +244,7 @@ The used properties for custom menus are the same as for custom buttons. Herewit
 Sample to set custom buttons within the menu list of the Add-ons plank:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "application": {
     "name": "Custom buttons",
     "env": {},
@@ -279,7 +279,7 @@ The settings section can include a few custom forms. The default settings form I
 For instance:  
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Custom buttons",
   "targetNodes": {
     "nodeGroup": "bl"
@@ -367,7 +367,7 @@ where:
 - `hideLabel`*[optional] [boolean]* - hides field Label. The default value is *'false'*. 
 
 ###list   
-The drop-down list and a single-line non-editable textbox.  
+The drop-down list and a single-line textbox.  
 
 <center>![list](/img/list.jpg)</center>  
 ```
@@ -380,16 +380,18 @@ The drop-down list and a single-line non-editable textbox.
         "value1": "hello",
         "value2": "world"
       },
-      "hideLabel": false
+      "hideLabel": false,
+      "editable": true
     }
   ]
 }
 ```
 where:      
 
-- `caption` *[optional]* - field label                                  
+- `caption` *[optional]* - field label         
 - `values` - objects' values (*"key"*:*"value"*)                            
-- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.          
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.
+- `editable` [optional][boolean] - allows to input custom values. The default value is 'false'.
 
 ###checkbox   
 The single checkbox field.

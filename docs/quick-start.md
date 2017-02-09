@@ -9,7 +9,7 @@ Below you can see two simple examples of how to:
 
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "Hello World!",
   "engine": "php5.4",
   "nodes": [
@@ -32,7 +32,7 @@ Below you can see two simple examples of how to:
 
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Hello World!",
   "onInstall": {
     "deploy": {
@@ -56,7 +56,7 @@ Then, log in to your Jelastic account and perform the following operations:
 
 <center>![import](img/import.jpg)</center>          
 
-- Depending on the `jpsType` stated at the beginning of the manifest, in the opened **Confirm installation** window you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click **Install**.
+- Depending on the `type` stated at the beginning of the manifest, in the opened **Confirm installation** window you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click **Install**.
 
 - The process of installation will be started. Wait a minute for Preparing, Deploying and Configuring to be finished.
 

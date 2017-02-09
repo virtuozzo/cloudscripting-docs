@@ -2,37 +2,47 @@
 
 Any action, available to be performed by means of API (including custom users’ scripts running), should be bound to some event, i.e. executed as a result of this event occurrence.
 Each event refers to a particular entity. For example, the entry point for executing any action with application is the [*onInstall*](#oninstall) event.
-<br>
-## Events Subscription Example            
-```
-{
-  "jpsType": "update",
-  "name": "Event Subsribtion Example",
-  "onInstall": {
-    "createFile [cp]": "/tmp/result.txt"
-  },
-  "onAfterScaleOut [nodeGroup:cp]": {
-    "cmd [cp]": "echo 'New Compute node has been added' >> /tmp/result.txt"
-  },
-  "onAfterRestartNode [nodeGroup:cp]": {
-    "cmd [cp]": "echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> /tmp/result.txt"
-  }
-}
-```
-where:
 
-- `jpsType` - *update* type presupposes installing add-on in the existing environment with the predefined listeners for *events*                                 
-- `onInstall` - first event that will be executed upon environment installation                                                
-    - cp - predefined `actions` and `events` in the example require a compute node, therefore, they are filtered by *nodeGroup* as **cp**                                       
-- `onAfterScaleOut` - event that will be performed upon new compute node addition                                         
-- `onAfterRestartNode` - event that will be triggered upon restarting a compute node                           
-
-##Events Execution Rules
+##Event Execution Rules
 - Such events as *Install* & *Uninstall* application, as well as *BeforeDelete* and *AfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.
 - The *ScaleIn*, *ScaleOut* and *ServiceScaleOut* events are called once upon any node count change. Herewith, count of the *addNode* or *removeNode* actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.
 - For application server, load balancer and VPS node layers, the *cloneNodes* event is executed each time the node group is scaled out
 - *UnlinkNodes*, *LinkNodes*, *SetEnvVars*, *SetEntryPoint*, *SetRunCmd*, *AddVolume* and *RemoveVolume* events can be executed only once per a single *changeTopology* action
 - The *StartService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.
+
+##Event Filtration
+All Cloud Scripting events can be subscribed only to specific node, <a href="/reference/container-types/#jelastic-native-container-types" target="_blank">predefined stacks</a> or `nodeGroup`. The events can be filtered same like the <a href="/creating-templates/selecting-containers/"  target="_blank">`actions`</a>.
+
+The example below describes the event subscribtion only to compute nodes layer - *cmd* action will be executed only after a compute nodes are scaled.
+The event `onAfterRestartNode` is subscribed for *nodeType* **apache2** - *cmd* action will be executed after restart action has finished.
+The event `onAfterResetNodePassword` is subscribed only for first compute node in layer.
+
+```
+{
+  "type": "update",
+  "name": "Event Subsribtion Example",
+  "onInstall": {
+    "createFile [cp]": "/tmp/result.txt"
+  },
+  "onAfterScaleOut [cp]": {
+    "cmd [cp]": "echo 'New Compute node has been added' >> /tmp/result.txt"
+  },
+  "onAfterRestartNode [apache2]": {
+    "cmd [cp]": "echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> /tmp/result.txt"
+  },
+  "onAfterResetNodePassword [${nodes.cp[0].id}]": {
+    "cmd [${nodes.cp[0].id}]": "echo 'First compute node has been restarted' >> /tmp/result.txt"
+  }
+}
+```
+
+where:
+
+- `type` - *update* type presupposes installing add-on in the existing environment with the predefined listeners for *events*                                 
+- `onInstall` - first event that will be executed upon environment installation                                                
+    - cp - predefined `actions` and `events` in the example require a compute node, therefore, they are filtered by *nodeGroup* as **cp**                                       
+- `onAfterScaleOut` - event that will be performed upon new compute node addition                                         
+- `onAfterRestartNode` - event that will be triggered upon restarting a compute node 
 
 ## Event Execution Sequence
 Below are presented a graphs where all actions with adjoined their events are displayed. Every action has the pair of events. One of them will be executed before action and another one will be started when this action is finished.  
@@ -53,7 +63,7 @@ The another one action is scaling nodes in environment within one *nodeGroup* (n
 
 ### onInstall
 
-The *onInstall* event is the entry point for executing any action. In case *jpsType* is **install**, the *onInstall* event will be carried out right after environment creation. If *jpsType* is set as **update**, *onInstall*  is the first event to be performed during the manifest installation.           
+The *onInstall* event is the entry point for executing any action. In case *type* is **install**, the *onInstall* event will be carried out right after environment creation. If *type* is set as **update**, *onInstall*  is the first event to be performed during the manifest installation.           
  
 ###onUninstall
 
@@ -165,6 +175,75 @@ The event will be executed after adding new Docker container(s) to the existing 
     - `appid` - environment unique appid     
     - `nodeId` - node identifier, where event is executed       
 - `${event.response.}` result code. The successful action result is *'0'*.           
+
+### onAlert
+The ability to subscribe to Jelastic <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a> and Jelastic <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">Automatic Horizontal Scaling alerts</a>. These features are configured through Jelastic triggers.   
+There are five types of monitoring triggers, which are based on the usage of a particular resource type:
+ 
+- CPU
+- Memory (RAM)
+- Network
+- Disk I/O
+- Disk IOPS
+
+The example **new trigger creation** is provided below:
+```
+{
+  "type": "update",
+  "name": "AddTrigger",
+  "onInstall": {
+    "environment.trigger.AddTrigger": {
+      "data": {
+        "name": "new alert",
+        "nodeGroup": "sqldb",
+        "period": "10",
+        "condition": {
+          "type": "GREATER",
+          "value": "55",
+          "resourceType": "MEM",
+          "valueType": "PERCENTAGES"
+        },
+        "actions": [
+          {
+            "type": "NOTIFY",
+            "customData": {
+              "notify": false,
+              "reminderPeriod": 60
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+This example display executing Jelastic API *addTrigger* with set of required parameters:
+
+- `name` - name of the notification trigger
+- `nodeGroup` - type of the environment’s node (you can apply trigger to any node within the chosen environment)
+- `period` - a load period for nodes
+- `condition` - rules for monitoring resources.
+    - `type` - a comparison sign. Available values are: *GREATER*, *LESS*.
+    - `value` - stated percentage of monitoring resource
+    - `resourceType` - type of resources that will be monitored by trigger: CPU, Memory (RAM), Network, Disk I/O, Disk IOPS
+    - `valueType` - a measuring value. *PERCENTAGES* is only available. The available range from 0 till 100.
+- `actions` - an object describe trigger action.
+    - `type` - trigger action. Available values are: *NOTIFY*, *ADD_NODE*, *REMOVE_NODE*
+    - `customData`:
+        - `notify`- send alert notification to user email 
+        - `reminderPeriod` - resending period of notification 
+
+Jelastic will send an alert to the Cloud Scripting system when appropriate trigger is being executed. Therefore, event `onAlert` is an ability to subscribe to alert notifications and execute *custom actions*.
+
+**Event Placeholders:**     
+
+- `${event.params.}`:
+    - `name` - an alert name
+    - `nodeGroup` - *nodeGroup* where aan alert is executed 
+    - `resourceType` - monitoring resource type
+- `${event.response.}`:
+    - `result` - result code. The successful action result is *'0'*. 
+
 
 ### onBeforeRestartNode
 
@@ -987,7 +1066,7 @@ Otherwise (i.e. if no filtering rules are specified), every **Event** is listene
 ###By nodeType
 ```
 {
-  "onBeforeScaleIn[nodeType:tomcat7]": {
+  "onBeforeScaleIn[tomcat7]": {
     "writeFile": {
       "nodeType": "tomcat7",
       "path": "/tmp/tomcat7.txt",
@@ -999,7 +1078,7 @@ Otherwise (i.e. if no filtering rules are specified), every **Event** is listene
 ###By nodeId
 ```
 {
-  "onBeforeRestartNode[nodeId:number]": {
+  "onBeforeRestartNode[number]": {
     "writeFile": {
       "nodeId": "number",
       "path": "/tmp/tomcat7.txt",

@@ -5,7 +5,7 @@
 Adjust Nginx Balancer workers count depending on CPU cores amount:
 ```example
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Nginx Balancer Vertical Scaling",
   "onInstall": "adjustWorkersCount",
   "onAfterSetCloudletCount[nodeType:nginx]": "adjustWorkersCount",
@@ -26,7 +26,7 @@ Create two Nginx PHP nodes with Nginx balancer and automatic horizontal scaling 
    
 ```example
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "Nginx PHP Auto Scaling",
   "engine": "php5.4",
   "nodes": [
@@ -120,7 +120,7 @@ Create and link WordPress Web and WordPress DB containers:
 
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "Wordpress",
   "homepage": "http://wordpress.org/",
   "description": "WordPress is web software you can use to create a beautiful website or blog. We like to say that WordPress is both free and priceless at the same time.",
@@ -152,9 +152,9 @@ Create and link WordPress Web and WordPress DB containers:
 ## Wordpress Cluster
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "WordPress Cluster",
-  "version": "4.0",
+  "appVersion": "4.0",
   "type": "php",
   "homepage": "http://www.wordpress.org/",
   "logo": "https://download.jelastic.com/public.php?service=files&t=3da2215839f82aa50d3d961271cd1cb9&download",
@@ -812,7 +812,7 @@ return {
 ## Automated Environment Migration after Cloning
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "cloneEnv",
   "nodes": [
     {
@@ -1024,7 +1024,7 @@ return processEnvironment();
 
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "2Envs",
   "nodes": [
     {
@@ -1071,7 +1071,7 @@ return jelastic.env.control.CreateEnvironment(sAppid, sSession, sActionkey, oEnv
 This manifest provides an environment, that is handled with the help of **Apache PHP** aplication server, is powered by **PHP 7** engine version and has external IP address attached. Subsequently, Public IP address can be detached with the help of the **Add-on** button.
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "example",
   "nodes": [
     {
@@ -1116,7 +1116,7 @@ Mount `data` directory from `storage` node to application server node:
 
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "mount Data Storage",
   "nodes": [
     {
