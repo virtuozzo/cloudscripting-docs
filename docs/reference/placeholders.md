@@ -120,7 +120,7 @@ For example:
 - `{nodes.db.last.address}` - last IP address of a batabase node     
 
 ## Event Placeholders
-Event placeholders represent a set of dynamic parameters, which are executed as a result of a certain [event](/reference/events/) occurrence. Herewith, all event placeholders have their custom set of parameters and begin with the default keywords:                         
+Event placeholders represent a set of dynamic parameters, which are executed as a result of a certain <a href="http://docs.cloudscripting.com/reference/events" target="_blank">event</a> occurrence. Herewith, all event placeholders have their custom set of parameters and begin with the default keywords:                         
 - `${event.params.(key)}` - where *key* is a name of event parameter                     
 - `${event.response.(key)}` -where *key* is a name of event response parameter             
 
@@ -151,7 +151,7 @@ For example:
   }
 }
 ```
-The placeholder's name here is `${settings.customName}`. Check the list of [fields defined by a user](/creating-templates/user-input-parameters/).
+The placeholder's name here is `${settings.customName}`. Check the list of <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">fields defined by users</a>).       
 
  
 ## Action Placeholders
@@ -299,7 +299,7 @@ For example:
 
 where:   
 - `(i)` - array's index. Indexes of array start from 0..   
-- `(key)` - node's parameter. See the details on setting [node parameters](#node-placeholders).   
+- `(key)` - node's parameter. See the details on setting <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node parameters</a>.       
 
 **The First and the Last Array Elements** 
 
@@ -310,7 +310,7 @@ where:
 - `key` - node's parameter  
 
 ## File Path Placeholders
-The values below can vary depending on the chosen [nodeType](/reference/container-types/#nodetype-values):    
+The values below can vary depending on the chosen <a href="http://docs.cloudscripting.com/reference/container-types/#nodetype-values" target="_blank">nodeType</a>:    
 - `${HOME}` - for *couchdb*, *glassfish3*, *jetty6*, *nginx-ruby*, *nginx*, *nginxphp*, *tomcat6*,*tomcat7*, *tomee*    
 - `${WEBAPPS}` - for *apache2-ruby*, *apache2*, *jetty6*, *nginx-ruby*, *nginxphp*, *nodejs*, *tomcat6*, *tomcat7*, *tomee*    
 - `${JAVA_HOME}` - for *glassfish3*, *jetty6*, *maven3*, *tomcat6*, *tomcat7*, *tomee*   
@@ -339,7 +339,7 @@ You can use the following placeholders, as well, with the definite `nodeType`. F
 - `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*  
 - `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*      
 
-Explore the full list of [Jelastic native containers](/reference/container-types/#jelastic-native-container-types).                  
+Explore the full list of <a href="http://docs.cloudscripting.com/reference/container-types/#jelastic-native-container-types" target="_blank">Jelastic native containers</a>.                       
 
 The list of single placeholders:   
 - `${nginxphp.NGINX_CONF}` - */etc/nginx/nginx.conf*   
