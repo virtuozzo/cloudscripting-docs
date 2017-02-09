@@ -18,7 +18,7 @@ For example:
     }
 }
 ```
-In the example above, a new file will be created in the compute node (*[cp]*) and a new directory will be created in the compute node (*[cp]*) and balancer (*[bl]*) [layers](http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group) and node with ID *123*. Actions for the specified nodes are executed in the declared order.       
+In the example above, a new file will be created in the compute node (*[cp]*) and a new directory will be created in the compute node (*[cp]*) and balancer (*[bl]*) [layers](http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group) and container with [Node ID](http://docs.cloudscripting.com/creating-templates/selecting-containers/#particular-container) *123*. Actions for the specified nodes are executed in the declared order.       
 
 * setting a target node next to the performed action     
 
