@@ -6,9 +6,9 @@
 
     Here, substitute a *{HOSTER_URL}* with the platform domain of the chosen hosting provider (see the last column of the table within the <a href="https://docs.jelastic.com/jelastic-hoster-info" target="_blank">Hosters Info</a> page).     
 
-- In the opened browser tab you will see the Cloud Scripting execution log
+- In the opened browser tab you will see the Cloud Scripting execution log.              
 
-![Console](https://download.jelastic.com/public.php?service=files&t=a662aacb111575cf3d37b1d94fe59af9&download)
+<center>![Console](https://download.jelastic.com/public.php?service=files&t=a662aacb111575cf3d37b1d94fe59af9&download)</center>   
 
 !!! note
     The maximum log size is 1 MB. The log will be truncated or overwritten, if this limit exceeded.
