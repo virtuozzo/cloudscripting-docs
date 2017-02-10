@@ -1,4 +1,4 @@
-Release Notes
+# Release Notes
 =============
 
 #1.0
@@ -19,7 +19,7 @@ Release Notes
     - *width*
     - *height*
 
-##Change
+<h3>Change</h3>
 
 - Changes in [user input](/creating-templates/user-input-parameters/) page.   
 Added new CS elements for custom form.
