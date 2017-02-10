@@ -31,26 +31,47 @@ pages:
 
 # Creating Templates
 - Creating Manifest:
-   - Template Basics: creating-templates/template-basics.md
-   - Writing Scripts: creating-templates/writing-scripts.md
-   - Selecting Containers For Your Actions: creating-templates/selecting-containers.md
-   - Getting User Input: creating-templates/user-input-parameters.md
-   - Conditions and Iterations: creating-templates/conditions-and-iterations.md
-   - Relative Links: creating-templates/relative-links.md
+   - Basic Configs: creating-templates/basic-configs.md
+   - Specifying Target Container: creating-templates/selecting-containers.md
    - Actions: reference/actions.md
    - Events: reference/events.md
-#   - Procedures: reference/procedures.md
    - Placeholders: reference/placeholders.md
+   - Conditions and Iterations: creating-templates/conditions-and-iterations.md
+   - Custom Scripts: creating-templates/custom-scripts.md
+   - Visual Settings: creating-templates/user-input-parameters.md
+   - Custom Errors: reference/handling-custom-errors.md
+
+#Samples
+- Samples:
+   - Overview: samples.md
+# Troubleshooting
+- Troubleshooting: troubleshooting.md
+
+#Release Notes
+- Release Notes:
+    - CS Releases: releasenotes.md
+    - CS vs Jelastic Versions: jelastic-cs-correspondence.md
+
+    #  - Docker Actions : reference/docker-actions.md
+   #- Relative Links: creating-templates/relative-links.md
+
+#- Specifting Target Container:
+   #- Writing Scripts: creating-templates/custom-scripts.md
+ #  - Selecting Containers For Your Actions: creating-templates/selecting-containers.md
+   #- Getting User Input: creating-templates/user-input-parameters.md
+   #- Conditions and Iterations: creating-templates/conditions-and-iterations.md
+   #- Actions: reference/actions.md
+   #- Events: reference/events.md
+#   - Procedures: reference/procedures.md
+   #- Placeholders: reference/placeholders.md
 
 # Configurations
-- Configurations:
-   - Containers by Groups and Types: reference/container-types.md
-   - Docker Actions: reference/docker-actions.md
-   - Custom Errors: reference/handling-custom-errors.md
+#- Configurations:
+ #  - Containers by Groups and Types: reference/container-types.md
 
 # Examples
 #- Examples:
-- Samples: samples.md
+
 #   - Operation Examples: examples/operation-examples.md
 #   - Add-ons : examples/add-ons.md
 #   - Complex Ready to Go Solutions: examples/complex-ready-to-go-solutions.md
@@ -63,14 +84,11 @@ pages:
 #   - Add-on install inside manifest: examples/addon-inside-manifest.md
 #   - Mount Data Storage: examples/mount-data-storage.md
 
-# Troubleshooting
-- Troubleshooting: troubleshooting.md
+
 
 # Jelastic & CloudScripting correspondence
-- Jelastic & CS Correspondence: jelastic-cs-correspondence.md
+#- Jelastic & CS Correspondence: jelastic-cs-correspondence.md
 
-#Release Notes
-- Release Notes: releasenotes.md
 
 #current_version: master
 versions:

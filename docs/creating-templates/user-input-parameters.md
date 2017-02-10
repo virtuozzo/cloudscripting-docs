@@ -1,4 +1,5 @@
-# Getting User Input
+#Visual Settings
+## Getting User Input
 
 ```
 {
@@ -73,28 +74,37 @@ where:
 !!! note
     > `vtypeText` is applied only in case the *vtype* value is set; otherwise, it is ignored.  
 
-## Target Nodes
+<h3>Target Nodes</h3>
 *Target Nodes* is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *type*: <b>*update*</b> action.   
 
 Filtering for `targetNodes` can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
 ```
 {
-	"type": "update",
-		"name": "targetNodes",
-		"env": {},
-		"targetNodes": {
-			"nodeType": ["..."],
-			"nodeGroup": ["..."],
-			"dockerOs": ["..."],
-			"dockerName": ["..."],
-			"dockerTag": ["..."]
-		},
-		"onInstall": {
-			"createFile": {
-				"nodeGroup": "cp",
-				"path": "/tmp/newFile"
-			}
-		}
+  "type": "update",
+  "name": "targetNodes",
+  "targetNodes": {
+    "nodeType": [
+      "..."
+    ],
+    "nodeGroup": [
+      "..."
+    ],
+    "dockerOs": [
+      "..."
+    ],
+    "dockerName": [
+      "..."
+    ],
+    "dockerTag": [
+      "..."
+    ]
+  },
+  "onInstall": {
+    "createFile": {
+      "nodeGroup": "cp",
+      "path": "/tmp/newFile"
+    }
+  }
 }
 ```
 There are two possible ways to define a `nodeType`:  
@@ -130,6 +140,42 @@ In this case, the filtering result will be the following:
 
 <center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
   
+## Custom Menus    
+Menu is an expandable list within the <b>Add-ons</b> section comprising operations, that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
+
+<center>![menu](/img/menu.jpg)</center>     
+
+By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the <a href="http://docs.cloudscripting.com/reference/events/#application-level-events" target="_blank">application level events</a> settings.          
+
+The used properties for custom menus are the same as for custom buttons. Herewith, the appropriate `menu` field (instead of `buttons`) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
+
+Sample to set custom buttons within the menu list of the Add-ons plank:
+```
+{
+  "type": "update",
+  "name": "Custom buttons",
+  "targetNodes": {
+    "nodeGroup": "bl"
+  },
+  "actions": [
+    "..."
+  ],
+  "menu": {
+    "confirmText": "Custom confirm text",
+    "loadingText": "Load text while waiting",
+    "action": "{String}",
+    "caption": "Configure",
+    "successText": "Configuration saved successfully!",
+    "settings": "config",
+    "title": "Title",
+    "submitButtonText": "Button Text",
+    "logsPath": "/var/log/add-on-action.log",
+    "logsNodeGroup": "cp"
+  }
+}
+```
+Refer to the *Custom Buttons* section above for a detailed description on the parameters set with the current sample.
+
 ## Custom Buttons
 The custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:      
 
@@ -231,47 +277,6 @@ where:
 <center>![LogsPath](/img/LogsPath.jpg)</center>  
 
 - `logsNodeGroup` - <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">nodeGroup</a> layer the logging path should be opened for                     
-
-## Custom Menus    
-Menu is an expandable list within the <b>Add-ons</b> section comprising operations, that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
-
-<center>![menu](/img/menu.jpg)</center>     
-
-By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the <a href="http://docs.cloudscripting.com/reference/events/#application-level-events" target="_blank">application level events</a> settings.          
-
-The used properties for custom menus are the same as for custom buttons. Herewith, the appropriate `menu` field (instead of `buttons`) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
-
-Sample to set custom buttons within the menu list of the Add-ons plank:
-```
-{
-  "type": "update",
-  "application": {
-    "name": "Custom buttons",
-    "env": {},
-    "targetNodes": {
-      "nodeGroup": "bl"
-    },
-    "actions": [
-      "..."
-    ],
-    "menu": [
-      {
-        "confirmText": "Custom confirm text",
-        "loadingText": "Load text while waiting",
-        "action": "{String}",
-        "caption": "Configure",
-        "successText": "Configuration saved successfully!",
-        "settings": "config",
-        "title": "Title",
-        "submitButtonText": "Button Text",
-        "logsPath": "/var/log/add-on-action.log",
-        "logsNodeGroup": "cp"
-      }
-    ]
-  }
-}
-```
-Refer to the *Custom Buttons* section above for a detailed description on the parameters set with the current sample.
 
 ## Custom Settings
 The settings section can include a few custom forms. The default settings form ID is *'main'*.    
