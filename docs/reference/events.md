@@ -12,9 +12,7 @@ Each event refers to a particular entity. For example, the entry point for execu
 
 ## Events Filtering
 
-Events can be filtered by <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> and <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the defined <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> will be executed only when the called event matches specified filtering rules. 
-
-Otherwise (i.e. if no filtering rules are specified), every **event** is listened by all environment entities.
+Events can be filtered by <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> and <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the defined <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> will be executed only when the called event matches specified filtering rules. Otherwise (i.e. if no filtering rules are specified), every **event** is listened by all environment entities.         
 
 <b>Examples</b>
 
