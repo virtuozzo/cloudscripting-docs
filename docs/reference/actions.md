@@ -10,12 +10,12 @@ Actions represent the building blocks that perform arbitrary automation function
 
 The default workflow for any action execution is the following:
 
-- replacing [placeholders](placeholders/)         
-- getting a list of target containers *[optional]* (for a detailed guidance see the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) section)         
+- replacing <a href="http://docs.cloudscripting.com/reference/placeholders" target="_blank">placeholders</a>                                 
+- getting a list of target containers *[optional]* (for a detailed guidance see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank">Setting Target Containers</a> page)                
 - checking permissions       
 - executing the action itself        
 
-Actions are executed when the called [event](events/) matches specified filtering rules. Multiple actions can be combined together into a [custom action](#custom-actions).                 
+Actions are executed when the called <a href="http://docs.cloudscripting.com/reference/events" target="_blank">event</a> matches specified filtering rules. Multiple actions can be combined together into a [custom action](#custom-actions).                 
 
 Thus, the following specific groups of actions are singled out:
 
@@ -25,7 +25,7 @@ Thus, the following specific groups of actions are singled out:
 - [user-defined operations](#performing-user-defined-operations)                       
 
 ## Container Operations
-There are actions that perform operations inside of a container. For a detailed guidance on how to define a target container visit the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) page.            
+There are actions that perform operations inside of a container. For a detailed guidance on how to define a target container visit the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank">Setting Target Containers</a> page.                        
 
 Any container operation can be performed using a [cmd](#cmd) action. Herewith, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:
 
@@ -54,7 +54,7 @@ The *cmd* action executes <a href="https://docs.jelastic.com/ssh-overview" targe
 ```
 where:       
      
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required). For a detailed guidance see the [Selecting Containers for your Actions](/creating-templates/selecting-containers/) section.              
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required). For a detailed guidance see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank">Setting Target Containers</a> section.                   
 - `cmd1` and `cmd2` - set of commands that are being executed. Their values are wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**.     
     Where:    
     - **cmd** - is equal to a Base64 encoded string: **yes | (cmd1;cmd2)**. In case your commands require the interactive input, by default the Cloud Scripting executor will always try to give a positive answer using **yes** utility.        
@@ -67,7 +67,7 @@ A single SSH command can be passed in a string. For example, executing a bash sc
   "cmd [tomcat6]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
 }
 ```
-Learn more about [selecting a target container](/creating-templates/selecting-containers/) for your actions within the pointed guide.                   
+Learn more about <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank">setting a target container</a> for your actions within the pointed guide.                      
 
 While accessing containers via *cmd*, a user receives all the required permissions and additionally can manage the main services with **sudo** commands of the following types (and others):       
 
@@ -116,16 +116,16 @@ Using **sudo** to reload *Nginx* balancer:
 }
 ```
    
-<h3>api</h3>
-Executing actions available by means of the [Jelastic Cloud API](http://docs.jelastic.com/api/) methods.
+<h3>api</h3> 
+Executing actions available by means of the <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a> methods.     
 
-There is a list of parameters required by Jelastic API, which are defined automatically:
+There are a number parameters required by Jelastic API, which are defined automatically:
 
 - *envName* - environment domain name, where the API method is executed     
 - *appid* - unique environment identifier, that can be passed into API instead of the *envName*     
 - *session* - unique session of a current user            
 
-Target nodes selected for the API methods execution can be passed by the node keywords. API methods can be executed in all nodes within a single *nodeGroup* (i.e. layer) or *nodeType*. Also, API methods can be applied to a separate node. In this case the node ID is required, which is available either through the [node placeholders](http://cloudscripting.demo.jelastic.com/reference/placeholders/#node-placeholders) or set of [custom action parameters](#custom-actions) (`this`).
+Target nodes selected for the API methods execution can be passed by the node keywords. API methods can be executed at all nodes within a single *nodeGroup* (i.e. layer) or *nodeType*. Also, API methods can be applied to a separate node. In this case, the Node ID is required, which is available either through the <a href="http://cloudscripting.demo.jelastic.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a> or set of [custom action parameters](#custom-actions) (`this`).
 
 **Examples:**
 
@@ -137,7 +137,7 @@ Restarting all compute nodes in an environment:
 ``` 
 where:        
        
-- `[cp]` - specifying a target node group for API method to be executed at (e.g. *cp*). Learn more details about [selecting target nodes](/creating-templates/selecting-containers/) within the linked page.                                     
+- `[cp]` - specifying a target node group for API method to be executed at (e.g. *cp*). Learn more details about <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank">setting target containers</a> within the linked page.                                        
 - *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group. This parameter can be simplified like shown in the example below:
 ```
 {
@@ -152,7 +152,7 @@ Below you can find one more approach to specify a target node group for API meth
     "nodeGroup" : "cp"
 }
 ```
-Learn more about [selecting a target container](/creating-templates/selecting-containers/) for your API actions within the linked guide.                                      
+Learn more about <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank">setting a target containers</a> for your API actions within the linked guide.                                        
         
 <h3>deploy</h3>
 Available for compute nodes (except for *Docker* containers)
@@ -317,7 +317,7 @@ where:
 - `path` - path, where a file is available               
 - `replacements` - list of replacements within the node's configuration files                        
     - `pattern` - regular expressions to find a string (e.g. `app\\.host\\.url\\s*=\\s*.*`)                   
-    - `replacement` - string to replace. Herewith, you can use as replacement any string value, including any combination of [placeholders](placeholders/).                                 
+    - `replacement` - string to replace. Herewith, you can use as replacement any string value, including any combination of <a href="http://docs.cloudscripting.com/reference/placeholders" target="_blank">placeholders</a>.                                    
 
 <!-- DeletePath -->
 <!-- RenamePath --> 
@@ -347,11 +347,11 @@ where:
 ```
 where:
 
-- `nodeType` - parameter defining software stack within a node. For a detailed guidance see the [Container Types](/reference/container-types/) page.                        
+- `nodeType` - parameter defining software stack within a node. For a detailed guidance see the <a href="http://docs.cloudscripting.com/reference/container-types/" target="_blank">Container Types</a> page.                        
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.                     
 - `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.                             
 - `flexibleCloudlets` *[optional]* - number of dynamic cloudlets. The default value is *'1'*.                           
-- `displayName` *[optional]* - node's display name (i.e. [alias](https://docs.jelastic.com/environment-aliases))                                  
+- `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
     The following parameters are required for Docker nodes only:                          
 - `image` *[optional]* - name and tag of Docker image                            
 - `links` *[optional]* - Docker links                         
@@ -374,7 +374,7 @@ Available for all nodes
 where:   
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                        
-- `string` - node’s display name (i.e. [alias](https://docs.jelastic.com/environment-aliases))                                                                    
+- `string` - node’s display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                                                        
 
 
 <h3>setNodeCount</h3>
@@ -543,12 +543,12 @@ where:
 - `databaseName` - name of the database for a patch to be applied                    
 - `user` - username in the database, on behalf of which the application will be used                                          
 - `password` - password in the database, on behalf of which the application will be used                              
-- `patch` - *SQL* query or link to such a query. It is used only for *SQL* databases. Here, the [placeholders](placeholders/) support is available.                    
+- `patch` - *SQL* query or link to such a query. It is used only for *SQL* databases. Here, the <a href="http://docs.cloudscripting.com/reference/placeholders" target="_blank">placeholders</a> support is available.                    
 
 !!! note
     The function is executed only for `mysql5`, `mariadb` and `mariadb10` containers.                         
 
-## Performing User-Defined Operations
+## User-Defined Operations
 
 <h3>script</h3>
 
@@ -581,7 +581,7 @@ where:
 }
 ```
 !!! note
-    Learn more about using [Jelastic Cloud API](http://docs.jelastic.com/api/).
+    Learn more about using <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a>).    
 
 <h3>sleep</h3>
 Setting a delay that is measured in milliseconds. The below example shows how to create the delay for one second:                                    
@@ -591,15 +591,15 @@ Setting a delay that is measured in milliseconds. The below example shows how to
 }
 ```
 
-<h3>installJps</h3>
-Nesting a JPS manifest inside the current manifest file. The nested JPS manifest will be installed subsequently after the current one. The action is available for **install** and **update** *jpsType* modes.                              
+<h3>install</h3>
+Nesting a JPS manifest inside the current manifest file. The nested JPS manifest will be installed subsequently after the current one. The action is available for **install** and **update** *type* modes.                              
 
 **Examples**
 
-Installing add-on via the external link (with **update** *JpsType*):
+Installing add-on via the external link (with **update** *type*):
 ```
 {
-  "installJps" : {
+  "install" : {
     "jps" : "http://example.com/manifest.jps",
     "settings" : {
       "myparam" : "test"
@@ -610,16 +610,16 @@ Installing add-on via the external link (with **update** *JpsType*):
 where:
 
 - `jps` - URL to your custom JPS manifest  
-- `settings` - [user custom form](/creating-templates/user-input-parameters/)  
+- `settings` - user <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">custom form</a>           
 
 Installing add-on from the local manifest:
 ```
 {
-  "installJps" : {
-    "jpsType" : "update",
+  "install" : {
+    "type" : "update",
     "name" : "test",
     "onInstall" : {
-      "log" : "installJps test"
+      "log" : "install test"
     }
   }
 }
@@ -628,10 +628,10 @@ where:
 
 - `onInstall` - entry point for performed actions                                 
 
-Installing a new environment via the external link (with **install** *JpsType*):
+Installing a new environment via the external link (with **install** *type*):
 ```
 {
-  "installJps" : {
+  "install" : {
     "jps" : "http://example.com/manifest.jps",
     "envName" : "env-${fn.random}",
     "settings" : {
@@ -644,13 +644,13 @@ where:
 
 - `jps` - URL to your custom JPS manifest                    
 - `envName` - short domain name of a new environment                                   
-- `settings` - [user custom form](/creating-templates/user-input-parameters/)                          
+- `settings` - user <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">custom form</a>                                               
 
 Installing a new environment from the local manifest:
 ```
 {
-  "installJps" : {
-    "jpsType" : "install",
+  "install" : {
+    "type" : "install",
     "region" : "dev",
     "envName" : "env-${fn.random}",
     "name" : "test",
@@ -659,7 +659,7 @@ Installing a new environment from the local manifest:
           "cloudlets" : 16
     },
     "onInstall" : {
-      "log" : "installJps test"
+      "log" : "install test"
     }
   }
 }
@@ -677,15 +677,15 @@ where:
 
 The possibility to install few custom add-ons within a single manifest. It can be installed to:
 
-- an existing environment if `jpsType` is *update*. 
-- a new environment if `jpsType` is *install*. Add-ons will be installed sequentially one by one right after a new environment set up. 
+- an existing environment if `type` is *update*  
+- a new environment if `type` is *install*. Add-ons will be installed sequentially one by one right after a new environment set up. 
 
-All the add-ons will have `jpsType` *update* by default.   
+All the add-ons will have `type` *update* by default.   
 
 The example below shows how to pass an add-on identifier into `installAddon` action. This add-on should be described in the `addons` section. The custom add-on with the *firstAddon* identifier will create a new file in a compute node in the *tmp* directory.
 ```
 {
-	"jpsType": "update",
+	"type": "update",
 	"name": "Install Add-on example",
 	"onInstall": {
 		"installAddon": {
@@ -707,7 +707,7 @@ where:
 
 Installed add-ons can be displayed within the **Add-ons** tab at the Jelastic dashboard. 
 
-![Add-ons tab](/img/add-on_tab.jpg)
+<center>![Add-ons tab](/img/add-on_tab.jpg)</center>
 
 In the following example into the `installAddon` action is passed the `nodeGroup` parameter, targeting an add-on to the particular *nodeGroup* (i.e. `bl`).             
 
@@ -730,7 +730,7 @@ The declarative code inside a manifest can be divided into separate blocks, name
 The example below shows how to create a new file (e.g. the <b>*example.txt*</b> file in the <b>*tmp*</b> directory) by executing a *createFile* action at the compute node:                
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "execution actions",
   "onInstall": {
     "createFile [cp]": "/tmp/example.txt"
@@ -745,7 +745,7 @@ The next example illustrates how to create a new custom action (i.e. *customActi
 
 ```
 {
-	"jpsType": "update",
+	"type": "update",
     "name": "execution actions",
 	"onInstall": "customAction",
 	"actions": {
@@ -768,7 +768,7 @@ In order to access any required data or parameters of allocated resources inside
 Outputting *Hello World!* twice in the <b>*greeting.txt*</b>:  
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Actions Example",
   "onInstall": [
     {
@@ -798,7 +798,7 @@ Parameters should be passed as an object into custom action:
 
 ```
 {
-	"jpsType": "update",
+	"type": "update",
     "name": "execution actions",
 	"onInstall": {
 		"customAction": {
@@ -819,7 +819,7 @@ where:
 Writing *Hello World!* and outputting first and second compute node's IP address:                                    
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Action Example",
   "onInstall": [
     {

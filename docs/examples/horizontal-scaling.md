@@ -7,7 +7,7 @@ Create two Nginx PHP nodes with Nginx balancer and automatic horizontal scaling 
    
 ```example
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "Nginx PHP Auto Scaling",
   "engine": "php5.4",
   "nodes": [

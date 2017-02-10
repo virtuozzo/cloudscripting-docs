@@ -2,49 +2,80 @@
 
 Any action, available to be performed by means of API (including custom users’ scripts running), should be bound to some event, i.e. executed as a result of this event occurrence.
 Each event refers to a particular entity. For example, the entry point for executing any action with application is the [*onInstall*](#oninstall) event.
-<br>
-## Events Subscription Example            
+
+##Events Execution Rules
+- Such events as *Install* & *Uninstall* application, as well as *BeforeDelete* and *AfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.
+- The *ScaleIn*, *ScaleOut* and *ServiceScaleOut* events are called once upon any node count change. Herewith, count of the *addNode* or *removeNode* actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.
+- For application server, load balancer and VPS node layers, the *cloneNodes* event is executed each time the node group is scaled out
+- *UnlinkNodes*, *LinkNodes*, *SetEnvVars*, *SetEntryPoint*, *SetRunCmd*, *AddVolume* and *RemoveVolume* events can be executed only once per a single *changeTopology* action
+- The *StartService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.
+
+## Events Filtering
+
+Events can be filtered by <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> and <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the defined <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> will be executed only when the called event matches specified filtering rules. 
+
+Otherwise (i.e. if no filtering rules are specified), every **event** is listened by all environment entities.
+
+<b>Examples</b>
+
+The example below describes events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event) and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event).         
+
+Here, the *nodeGroup* filtering, namely by a compute nodes (*[cp]*) layer, is set so that the *cmd* action is executed only after the compute nodes are scaled out. The *nodeType* filtering is set for <b>*apache2*</b> nodes, so that the *cmd* action is executed upon these particular nodes restart. The *nodeID* filtering is implemented in such a way that the <b>*onAfterResetNodePassword*</b> event is subscribed only for the first compute node in a layer.
+
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Event Subsribtion Example",
   "onInstall": {
     "createFile [cp]": "/tmp/result.txt"
   },
-  "onAfterScaleOut [nodeGroup:cp]": {
+  "onAfterScaleOut [cp]": {
     "cmd [cp]": "echo 'New Compute node has been added' >> /tmp/result.txt"
   },
-  "onAfterRestartNode [nodeGroup:cp]": {
+  "onAfterRestartNode [apache2]": {
     "cmd [cp]": "echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> /tmp/result.txt"
+  },
+  "onAfterResetNodePassword [${nodes.cp[0].id}]": {
+    "cmd [${nodes.cp[0].id}]": "echo 'First compute node has been restarted' >> /tmp/result.txt"
   }
 }
 ```
+
 where:
 
-- `jpsType` - *update* type presupposes installing add-on in the existing environment with the predefined listeners for *events*                                 
-- `onInstall` - first event that will be executed upon environment installation                                                
-    - cp - predefined `actions` and `events` in the example require a compute node, therefore, they are filtered by *nodeGroup* as **cp**                                       
-- `onAfterScaleOut` - event that will be performed upon new compute node addition                                         
-- `onAfterRestartNode` - event that will be triggered upon restarting a compute node                           
+- `type` - *update* type presupposes the add-on installation in the existing environment with the predefined listeners for *events*                                 
+- `onInstall` - event to set the first action that will be executed                                               
+    - cp - predefined `actions` and `events` in the example require a target node, therefore, they are filtered by *nodeGroup* as **cp**                                       
+- `onAfterScaleOut` - event that triggers an action upon a new compute node addition                                            
+- `onAfterRestartNode` - event that triggers an action upon restarting compute nodes     
+- `onAfterResetNodePassword` - event that triggers an action upon resetting a password for the first compute node in a layer       
 
-##Event Execution Rules
-- Such events as *Install* & *Uninstall* application, as well as *BeforeDelete* and *AfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.
-- The *ScaleIn*, *ScaleOut* and *ServiceScaleOut* events are called once upon any node count change. Herewith, count of the *addNode* or *removeNode* actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.
-- For application server, load balancer and VPS node layers, the *cloneNodes* event is executed each time the node group is scaled out
-- *UnlinkDockerNodes*, *LinkDockerNodes*, *SetDockerEnvVars*, *SetDockerEntryPoint*, *SetDockerRunCmd*, *AddDockerVolume* and *RemoveDockerVolume* events can be executed only once per a single *changeTopology* action
-- The *StartDockerService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.
+## Events Execution Sequence
 
-## Event List
+Below are provided the graphs that show the actions with the adjoining events. Every action has a pair of adjoining events - one of them is executed *before* the action and another one is launched *after* the action, that is when the action is finished.  
+
+!!! note
+    The <b>*createEnvironment*</b> action does not have any adjoining events, because the events are being bound after an environment creation.      
+ 
+The `changeTopology` actions are considered quite laborious to be performed via the Jelastic dashboard, therefore, the graph below provides a sequence of a possible actions and related events:     
+
+<center><img style="height: 900px"  src="/img/changeTopologySequence.png" alt="change topology sequence icon" /></center>
+
+One more demanded action is scaling nodes in an environment within a single *nodeGroup* (layer). The following graph provides a list of possible actions and adjoining events:
+
+<center><img style="height: 626px"  src="/img/scalingEventSequence.png" alt="scaling sequence icon" /></center>
+
+## Events List
 
 <h3>onInstall</h3>
 
-The *onInstall* event is the entry point for executing any action. In case *jpsType* is **install**, the *onInstall* event will be carried out right after environment creation. If *jpsType* is set as **update**, *onInstall*  is the first event to be performed during the manifest installation.           
+The *onInstall* event is the entry point for executing any action. In case *type* is **install**, the *onInstall* event will be carried out right after environment creation. If *type* is set as **update**, *onInstall*  is the first event to be performed during the manifest installation.           
  
 <h3>onUninstall</h3>
 
 The *onUninstall* event can be called from the **Add-ons** tab at the Jelastic dashboard. This event is aimed at removing data, which was accumulated as a result of the *onInstall* action execution.            
   
-![onUninstall](/img/addon-install.jpg)    
+<center>![onUninstall](/img/addon-install.jpg)</center>    
 
 <h3>onBeforeChangeTopology</h3>
 
@@ -77,13 +108,12 @@ The event will be executed once the *changeTopology* action is finished.
         - `redeployContainerDelay` - delay for container redeployment        
         - `redeployContextDelay` - delay for context redeployment          
         - `restartContainerDelay` - delay for container restart         
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).     
-    - `env` - environment information. Explore the full list of available [environment placeholders](http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders).      
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>).         
+    - `env` - environment information. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>).        
 
 <h3>onBeforeScaleOut</h3>
 
-The event will be executed before adding new node(s) (i.e. scaling *out*) to the existing node group (viz. layer). Scaling out/in can be performed either through [changing topology](https://docs.jelastic.com/jelastic-dashboard-guide#change-topology) or [auto horizontal scaling](https://docs.jelastic.com/automatic-horizontal-scaling) functionality. The *onBeforeScaleOut* event will be run only once for each layer.    
-
+The event will be executed before adding new node(s) (i.e. scaling *out*) to the existing node group (viz. layer). Scaling out/in can be performed either through <a href="https://docs.jelastic.com/jelastic-dashboard-guide#change-topology" target="_blank">changing topology</a> or <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">auto horizontal scaling</a> functionality. The *onBeforeScaleOut* event will be run only once for each layer.    
 **Event Placeholders:**    
  
 - `${event.params.}`: 
@@ -101,7 +131,7 @@ The event will be executed after adding new node(s) to the existing node group. 
     - `count` - number of nodes that are added      
     - `nodeGroup` - node group that is scaled out     
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).      
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                                
 
 <h3>onBeforeScaleIn</h3>
 
@@ -113,7 +143,7 @@ The event will be executed before removing node(s) (i.e. scaling *in*) from the 
     - `count` - number of nodes that are removed    
     - `nodeGroup` - node group that is scaled in   
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).      
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                              
 
 <h3>onAfterScaleIn</h3>
 
@@ -125,7 +155,7 @@ The event will be executed after scaling *in* the corresponding node group. The 
     - `count` - number of nodes that are removed       
     - `nodeGroup` - node group that is scaled in      
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).    
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                                
 
 <h3>onBeforeServiceScaleOut</h3>
 
@@ -152,6 +182,77 @@ The event will be executed after adding new Docker container(s) to the existing 
 - `${event.response.}` result code. The successful action result is *'0'*.           
 
 <h3>onBeforeRestartNode</h3>
+<h3>onAlert</h3>
+This event provides a possibility to boud actions to Jelastic <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a> and <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">Automatic Horizontal Scaling Alerts</a>. These features are configured through the Jelastic triggers.   
+
+There are five available types of the monitoring triggers, which are based on the usage of a particular resource type:
+ 
+- *CPU*
+- *Memory (RAM)*
+- *Network*
+- *Disk I/O*
+- *Disk IOPS*
+
+The following example shows how a **new trigger creation** is performed:
+```
+{
+  "type": "update",
+  "name": "AddTrigger",
+  "onInstall": {
+    "environment.trigger.AddTrigger": {
+      "data": {
+        "name": "new alert",
+        "nodeGroup": "sqldb",
+        "period": "10",
+        "condition": {
+          "type": "GREATER",
+          "value": "55",
+          "resourceType": "MEM",
+          "valueType": "PERCENTAGES"
+        },
+        "actions": [
+          {
+            "type": "NOTIFY",
+            "customData": {
+              "notify": false,
+              "reminderPeriod": 60
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+This example demonstrates execution of the Jelastic API *addTrigger* method with a set of required parameters:     
+
+- `name` - name of a notification trigger
+- `nodeGroup` - target node (you can apply trigger to any node within the chosen environment)
+- `period` - load period for nodes
+- `condition` - rules for monitoring resources
+    - `type` - comparison sign, the available values are: *GREATER* and *LESS*
+    - `value` - stated percentage of a monitoring resource
+    - `resourceType` - types of resources that will be monitored by a trigger, namely *CPU, Memory (RAM), Network, Disk I/O* and *Disk IOPS*
+    - `valueType` - measurement value. Here, *PERCENTAGES* is the only possible value. The available range - from **0** till **100**.
+- `actions` - object to describe a trigger action
+    - `type` - trigger action, the available values are: *NOTIFY*, *ADD_NODE* and *REMOVE_NODE*
+    - `customData`:
+        - `notify`- alert notification sent to a user via email 
+        - `reminderPeriod` - reminder period in days to send a notification again       
+
+Jelastic will send an alert to the Cloud Scripting system, when the appropriate trigger is being executed. Therefore, the `onAlert` event provides a possibility to bound actions to alert notifications and execute *custom actions*.
+
+**Event Placeholders:**     
+
+- `${event.params.}`:
+    - `name` - alert name
+    - `nodeGroup` - *nodeGroup*, where an alert is executed 
+    - `resourceType` - monitoring resource type
+- `${event.response.}`:
+    - `result` - result code. The successful action result is *'0'*. 
+
+
+<h3> onBeforeRestartNode</h3>
 
 The event will be triggered before restarting a node. It will be called before the corresponding *restartNodeById* and *restartNodeByGroup* actions.    
 
@@ -212,7 +313,7 @@ There are the following available node groups:
 - *database*   
 - *balancer*  
 - *build*  
-- *VDS*  
+- *VPS*  
 - *cache*  
 - *docker*  
 
@@ -237,7 +338,7 @@ There are the following available node groups:
 - *database*  
 - *balancer*   
 - *build*   
-- *VDS*   
+- *VPS*   
 - *cache*   
 - *docker*   
 
@@ -261,7 +362,7 @@ The event will be performed before cloning node in the environment. The process 
 The *onBeforeCloneNodes* event is applicable only for the next node groups (excluding Docker-based nodes):      
 - *compute*   
 - *balancer*  
-- *VDS*    
+- *VPS*    
  
 **Event Placeholders:**   
 
@@ -281,7 +382,7 @@ The event will be performed after cloning node in the environment.
 The *onAfterCloneNodes* event is applicable only for the next node groups (excluding Docker-based nodes):                               
 - *compute*              
 - *balancer*                 
-- *VDS*                 
+- *VPS*                 
 
 **Event Placeholders:**   
 
@@ -384,7 +485,7 @@ The event can handle custom action after the *detach Ext Ip address* action exec
 
 <h3>onBeforeUpdateVcsProject</h3>
 
-The event will be carried out before the *update vcs project* action. For a detailed guidance on the [VCS project deployment](https://docs.jelastic.com/cli-vcs-deploy) refer to the linked page. 
+The event will be carried out before the *update vcs project* action. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a> refer to the linked page. 
 
 **Event Placeholders:**   
 
@@ -397,7 +498,7 @@ The event will be carried out before the *update vcs project* action. For a deta
 
 <h3>onAfterUpdateVcsProject</h3>
 
-The event will be carried out after the *update vcs project* action. For a detailed guidance on the [VCS project deployment](https://docs.jelastic.com/cli-vcs-deploy) refer to the linked page.      
+The event will be carried out after the *update vcs project* action. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a> refer to the linked page.      
 
 **Event Placeholders:**   
 
@@ -543,8 +644,8 @@ The event is related to the *clone environment* action (performed via the Jelast
         - `redeployContainerDelay` - delay for container redeployment     
         - `redeployContextDelay` - delay for context redeployment     
         - `restartContainerDelay` - delay for container restart    
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).       
-    - `env` - environment information. Explore the full list of available [environment placeholders](http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders).       
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.       
+    - `env` - environment information. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.       
 
 <h3>onBeforeDeploy</h3>
 
@@ -664,7 +765,7 @@ This event will be carried out after restarting container. The *onBeforeRestartC
 
 <h3>onBeforeMigrate</h3>
 
-The event is related to the [*migrate environment*](https://docs.jelastic.com/environment-regions-migration) action and is called before it.        
+The event is related to the <a href="https://docs.jelastic.com/environment-regions-migration" target="_blank">*migrate environment*</a> action and is called before it.        
 
 **Event Placeholders:**          
 
@@ -678,7 +779,7 @@ The event is related to the [*migrate environment*](https://docs.jelastic.com/en
 
 <h3>onAfterMigrate</h3>
 
-The event is related to the [*migrate environment*](https://docs.jelastic.com/environment-regions-migration) action and is called after it.   
+The event is related to the <a href="https://docs.jelastic.com/environment-regions-migration" target="_blank">*migrate environment*</a> action and is called after it.   
 
 **Event Placeholders:**   
 
@@ -720,9 +821,10 @@ This event is performed after the container redeployment. It is bound to the *re
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.     
 
-<h3>onBeforeLinkDockerNodes</h3>
+<h3>onBeforeLinkNodes</h3>
 
-The event will be executed before the *linkDockerNodes* action. This event will be run for each linking containers action. Obviously, it is provided for Docker containers only.
+
+The event will be executed before the *linkNodes* action. This event will be run for each linking containers action. Obviously, it is provided for Docker containers only.
 
 **Event Placeholders:**     
 
@@ -736,9 +838,9 @@ The event will be executed before the *linkDockerNodes* action. This event will 
 - `${event.response.}`:  
     - `result` - parameters are absent     
 
-<h3>onAfterLinkDockerNodes</h3>
+<h3>onAfterLinkNodes</h3>
 
-The event will be executed after the *linkDockerNodes* action. This event will be run for each linking containers action. Obviously, it is provided for Docker containers only.
+The event will be executed after the *linkNodes* action. This event will be run for each linking containers action. Obviously, it is provided for Docker containers only.
 
 **Event Placeholders:**    
 
@@ -752,9 +854,9 @@ The event will be executed after the *linkDockerNodes* action. This event will b
 - `${event.response.}`:   
     - `result` - result code. The successful action result is *'0'*.    
 
-<h3>onBeforeUnlinkDockerNodes</h3>
+<h3>onBeforeUnlinkNodes</h3>
 
-This event is executed before the *unLinkDockerNodes* action and is run for each unlinking containers action. The *onBeforeUnlinkDockerNodes* event is applied for Docker containers only.      
+This event is executed before the *unLinkNodes* action and is run for each unlinking containers action. The *onBeforeUnlinkNodes* event is applied for Docker containers only.      
 
 **Event Placeholders:**     
 
@@ -768,9 +870,9 @@ This event is executed before the *unLinkDockerNodes* action and is run for each
 - `${event.response.}`:  
     - `result` - parameters are absent   
 
-<h3>onAfterUnlinkDockerNodes</h3>
+<h3>onAfterUnlinkNodes</h3>
 
-This event is executed after the *unLinkDockerNodes* action and is run for each unlinking containers action. The *onAfterUnlinkDockerNodes* event is applied for Docker containers only.  
+This event is executed after the *unLinkNodes* action and is run for each unlinking containers action. The *onAfterUnlinkNodes* event is applied for Docker containers only.  
 
 **Event Placeholders:**       
 
@@ -784,9 +886,9 @@ This event is executed after the *unLinkDockerNodes* action and is run for each 
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.       
 
-<h3>onBeforeSetDockerEnvVars</h3>
+<h3>onBeforeSetEnvVars</h3>
 
-The event will be triggered before the [*setDockerEnvVars*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting environment variables. The *onBeforeSetDockerEnvVars* event is applied for Docker containers only.     
+The event will be triggered before the <a href="http://docs.cloudscripting.com/reference/docker-actions/#docker-environment-variables" target="_blank">*setEnvVars*</a> action. It is executed for every docker container upon setting environment variables. The *onBeforeSetEnvVars* event is applied for Docker containers only.     
 
 **Event Placeholders:**   
 
@@ -798,9 +900,9 @@ The event will be triggered before the [*setDockerEnvVars*](/reference/docker-ac
 - `${event.response.}`:  
     - `result` - parameters are absent     
 
-<h3>onAfterSetDockerEnvVars</h3>
+<h3>onAfterSetEnvVars</h3>
 
-The event will be triggered before the [*setDockerEnvVars*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting environment variables. The *onAfterSetDockerEnvVars* event is applied for Docker containers only.
+The event will be triggered before the <a href="http://docs.cloudscripting.com/reference/docker-actions/#docker-environment-variables" target="_blank">*setEnvVars*</a> action. It is executed for every docker container upon setting environment variables. The *onAfterSetEnvVars* event is applied for Docker containers only.
 
 **Event Placeholders:**    
 
@@ -812,9 +914,9 @@ The event will be triggered before the [*setDockerEnvVars*](/reference/docker-ac
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.    
 
-<h3>onBeforeSetDockerEntryPoint</h3>
+<h3>onBeforeSetEntryPoint</h3>
 
-This event will be called before the [*setDockerEntryPoint*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting the entry point. The *onBeforeSetDockerEntryPoint* event is applied for Docker containers only.   
+This event will be called before the <a href="http://docs.cloudscripting.com/reference/docker-actions/" target="_blank">*setEntryPoint*</a> action. It is executed for every docker container upon setting the entry point. The *onBeforeSetEntryPoint* event is applied for Docker containers only.   
 
 **Event Placeholders:**   
 
@@ -826,9 +928,9 @@ This event will be called before the [*setDockerEntryPoint*](/reference/docker-a
 - `${event.response.}`:  
     - `result` - parameters are absent    
 
-<h3>onAfterSetDockerEntryPoint</h3>
+<h3>onAfterSetEntryPoint</h3>
 
-This event will be called after the [*setDockerEntryPoint*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting the entry point. The *onAfterSetDockerEntryPoint* event is applied for Docker containers only.    
+This event will be called after the <a href="http://docs.cloudscripting.com/reference/docker-actions/" target="_blank">*setEntryPoint*</a> action. It is executed for every docker container upon setting the entry point. The *onAfterSetEntryPoint* event is applied for Docker containers only.    
 
 **Event Placeholders:**   
 
@@ -840,9 +942,9 @@ This event will be called after the [*setDockerEntryPoint*](/reference/docker-ac
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.    
 
-<h3>onBeforeSetDockerRunCmd</h3>
+<h3>onBeforeSetRunCmd</h3>
 
-The event will be executed before the [*setDockerRunCmd*](/reference/docker-actions/#docker-environment-variables) action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
+The event will be executed before the <a href="http://docs.cloudscripting.com/reference/docker-actions/" target="_blank">*setRunCmd*</a> action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
 
 **Event Placeholders:**   
 
@@ -854,9 +956,9 @@ The event will be executed before the [*setDockerRunCmd*](/reference/docker-acti
 - `${event.response.}`:  
     - `result` - parameters are absent    
     
-<h3>onAfterSetDockerRunCmd</h3>
+<h3>onAfterSetRunCmd</h3>
 
-The event will be executed after the [*setDockerRunCmd*](/reference/docker-actions/#docker-environment-variables) action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
+The event will be executed after the <a href="http://docs.cloudscripting.com/reference/docker-actions/" target="_blank">*setRunCmd*</a> action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
 
 **Event Placeholders:**    
 
@@ -868,7 +970,7 @@ The event will be executed after the [*setDockerRunCmd*](/reference/docker-actio
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.     
 
-<h3>onBeforeStartDockerService</h3>
+<h3>onBeforeStartService</h3>
 
 This event will be executed each time before running the Docker *RunCmd* commands. Thus, it will be always carried out for each docker container action, e.g. before starting/restarting container and starting environment.
 
@@ -881,7 +983,7 @@ This event will be executed each time before running the Docker *RunCmd* command
 - `${event.response.}`:  
     - `result` - parameters are absent 
 
-<h3>onAfterStartDockerService</h3>
+<h3>onAfterStartService</h3>
 
 This event will be executed each time after running the Docker *RunCmd* commands. 
 
@@ -894,7 +996,7 @@ This event will be executed each time after running the Docker *RunCmd* commands
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.   
 
-<h3>onBeforeAddDockerVolume</h3>
+<h3>onBeforeAddVolume</h3>
 
 The event will be performed before adding volumes to Docker container. It will be executed once for each Docker container.
 
@@ -908,7 +1010,7 @@ The event will be performed before adding volumes to Docker container. It will b
 - `${event.response.}`:  
     - `result` - parameters are absent     
 
-<h3>onAfterAddDockerVolume</h3>
+<h3>onAfterAddVolume</h3>
 
 This event will be performed after adding volumes to Docker container. It will be executed once for each Docker container.
 
@@ -922,9 +1024,9 @@ This event will be performed after adding volumes to Docker container. It will b
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.   
 
-<h3>onBeforeRemoveDockerVolume</h3>
+<h3>onBeforeRemoveVolume</h3>
 
-The *onBeforeRemoveDockerVolume* event will be called before removing volumes from Docker container. It will be executed once for each Docker container.
+The *onBeforeRemoveVolume* event will be called before removing volumes from Docker container. It will be executed once for each Docker container.
 
 **Event Placeholders:**  
 
@@ -936,9 +1038,9 @@ The *onBeforeRemoveDockerVolume* event will be called before removing volumes fr
 - `${event.response.}`:  
     - `result` - parameters are absent 
 
-<h3>onAfterRemoveDockerVolume</h3>
+<h3>onAfterRemoveVolume</h3>
 
-The *onAfterRemoveDockerVolume* event will be triggered after removing volumes from Docker container. It will be executed once for each Docker container.
+The *onAfterRemoveVolume* event will be triggered after removing volumes from Docker container. It will be executed once for each Docker container.
 
 **Event Placeholders:**    
 
@@ -949,51 +1051,3 @@ The *onAfterRemoveDockerVolume* event will be triggered after removing volumes f
     - `path` - volume path        
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.      
-
-<h3>Events Filtering</h3>
-
-Optionally, events can be filtered by *nodeGroup*, *nodeType* and *nodeId* parameters. As a result, the defined actions will be executed only when the called event matches specified filtering rules. 
-<br><br>
-Otherwise (i.e. if no filtering rules are specified), every **Event** is listened by all environment entities.
-
-<b>Examples</b>
-
-<h3>By nodeGroup</h3>
-```
-{
-  "onBeforeScaleOut[nodeGroup:cp]": {
-    "writeFile": {
-      "nodeGroup": "cp",
-      "path": "/tmp/apache2.txt",
-      "body": "hello"
-    }
-  }
-}
-```
-<h3>By nodeType</h3>
-```
-{
-  "onBeforeScaleIn[nodeType:tomcat7]": {
-    "writeFile": {
-      "nodeType": "tomcat7",
-      "path": "/tmp/tomcat7.txt",
-      "body": "hello"
-    }
-  }
-}
-```
-<h3>By nodeId</h3>
-```
-{
-  "onBeforeRestartNode[nodeId:number]": {
-    "writeFile": {
-      "nodeId": "number",
-      "path": "/tmp/tomcat7.txt",
-      "body": "hello"
-    }
-  }
-}
-```
-where     
-
-- `number` - *nodeId* value for the corresponding instance

@@ -46,10 +46,11 @@ pages:
 - Configurations:
    - Containers by Groups and Types: reference/container-types.md
    - Docker Actions: reference/docker-actions.md
+   - Custom Errors: reference/handling-custom-errors.md
 
 # Examples
-- Samples:
-   - Samples: samples.md
+#- Examples:
+- Samples: samples.md
 #   - Operation Examples: examples/operation-examples.md
 #   - Add-ons : examples/add-ons.md
 #   - Complex Ready to Go Solutions: examples/complex-ready-to-go-solutions.md

@@ -5,10 +5,10 @@ The relative links functionality is intended to specify the JPS file’s base UR
 !!! note
     > The *baseUrl* value declared within the manifest has higher priority than installation via URL (i.e. <a href="https://docs.jelastic.com/environment-export-import" target="_blank">Import</a>).                
 
-**Example:**
+**Example**
 ```
 {
-    "jpsType" : "update",
+    "type" : "update",
     "name" : "Base URL test",
     "baseUrl" : "https://github.com/jelastic-jps/minio/blob/master",
     "onInstall" : {
@@ -21,7 +21,7 @@ The relative links functionality is intended to specify the JPS file’s base UR
 }
 ```
 
-In case of the manifest installation via URL by means of the Jelastic **Import** functionality, the `baseUrl` placeholder will be defined if the specified path is set like in the example below:      
+In case of the manifest installation via URL by means of the Jelastic **Import** functionality, the `baseUrl` placeholder will be defined if the specified path is set as in the example below:      
   
 ```
 {protocol}://{domain}/myfile.extension
@@ -40,13 +40,13 @@ There are the following Cloud Scripting rules applied while parsing file's relat
 If installation is being run from <a href="https://github.com/jelastic-jps" target="_blank">*GitHub*</a> and URL includes <b>*‘/blob/’*</b>, it will be replaced with <b>*‘/raw/’*</b>. In case the `baseUrl` parameter is defined without a slash at the end, it will be added automatically.              
 
  
-The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the [*cmd*](http://docs.cloudscripting.com/reference/actions/#cmd) and [*script*](http://docs.cloudscripting.com/reference/actions/#script) actions).                
+The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="http://docs.cloudscripting.com/reference/actions/#cmd" target="_blank">*cmd*</a> and <a href="http://docs.cloudscripting.com/reference/actions/#script" target="_blank">*script*</a> actions).                 
 
 For example:
 
 ```
 {
-  "jpsType" : "update",
+  "type" : "update",
   "name" : "Test Base URL",
   "baseUrl" : "http://example.com/",
   "onInstall" : {
@@ -57,14 +57,15 @@ For example:
 }
 ```
 
+
 ##Success Text Customization
 
-It is possible to customize the *success* text, which is displayed upon successful application installation either at the dashboard or via email notification, in confines of a manifest.         
+It is possible to customize (in confines of a manifest) the *success* text, which is displayed upon successful application installation either at the dashboard or via email notification.         
 
-- Setting a relative to `baseUrl` link, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                  
+- Setting a relative to `baseUrl` link, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                    
 ```
 {
-    "jpsType" : "update",
+    "type" : "update",
     "name" : "Success Text first example",
     "baseUrl" : "https://github.com/jelastic-jps/minio",
     "onInstall" : {
@@ -77,7 +78,7 @@ It is possible to customize the *success* text, which is displayed upon successf
 - Customizing the *success* return text by means of the external link.                    
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Success Text Second Example",
   "onInstall": {
     "log": "success Text Second Example"
@@ -92,7 +93,7 @@ As it was mentioned above, the success response is distinguished between two val
  
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Success Text Second Example",
   "onInstall": {
     "log": "success Text Second Example"
@@ -107,16 +108,16 @@ As it was mentioned above, the success response is distinguished between two val
  
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Success Text Test 4",
-  "baseUrl": "https://git.jelastic.com/sk/jps-test/raw/master/",
+  "baseUrl": "https://github.com/jelastic-jps/lets-encrypt",
   "onInstall": {
     "log": "success text test 4"
   },
   "success": {
     "email": "README.md",
     "en": "README.md",
-    "ru": "https://github.com/jelastic-jps/git-push-deploy/blob/master/README.md"
+    "ru": "https://github.com/jelastic-jps/lets-encrypt/blob/master/README.md"
   }
 }
 ```

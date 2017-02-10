@@ -2,7 +2,7 @@
 
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "settings": {
     "prepopulate": "URL",
     "fields": [
@@ -36,7 +36,7 @@ where:
     - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:   
         * `string` - [basic](/creating-templates/user-input-parameters/#string) text field                                  
         * `text`  - [multiline](/creating-templates/user-input-parameters/#text) text field                                                                                                         
-        * `list` - drop-down menu with non-editable textboxes (see more details with example [here](/creating-templates/user-input-parameters/#list))                                           
+        * `list` - drop-down menu with textboxes (see more details with example [here](/creating-templates/user-input-parameters/#list))                                           
         * `checkbox` - single [checkbox field](/creating-templates/user-input-parameters/#checkbox)                     
         * `checkboxlist` - [checkbox](/creating-templates/user-input-parameters/#checkboxlist) grouping                             
         * `radiolist` - [radio field](/creating-templates/user-input-parameters/#radiolist) grouping                       
@@ -55,7 +55,7 @@ where:
         * `hostpicker` - drop-down menu with [environment hosts](/creating-templates/user-input-parameters/#hostpicker)                             
         * `host-picher` - alias to `hostpicker`                                      
         * `toggle` - [switcher](/creating-templates/user-input-parameters/#toggle) between two values                        
-    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. More info <a href="https://www.w3.org/wiki/HTML/Elements/input#Point" target="_blank">here</a>.                      
+    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. See more info on the <a href="https://www.w3.org/wiki/HTML/Elements/input#Point" target="_blank">type attribute</a>.                         
     - `name` - input field name, that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests   
     - `default` *[optional]* - default value for the input field  
     - `caption` *[optional]* - field label  
@@ -74,12 +74,12 @@ where:
     > `vtypeText` is applied only in case the *vtype* value is set; otherwise, it is ignored.  
 
 ## Target Nodes
-*Target Nodes* is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *JpsType*: <b>*update*</b> action.   
+*Target Nodes* is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *type*: <b>*update*</b> action.   
 
 Filtering for `targetNodes` can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
 ```
 {
-	"jpsType": "update",
+	"type": "update",
 		"name": "targetNodes",
 		"env": {},
 		"targetNodes": {
@@ -108,12 +108,12 @@ There are two possible ways to define a `nodeType`:
  
 Let’s suppose you have three environments with different topology:     
 
-![targetNodes](/img/targetNodes.jpg)  
+<center>![targetNodes](/img/targetNodes.jpg)</center>  
 
 Within these environments, the `targetNodes` filtering for JPS installation can be performed with the next example:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "targetNodes",
   "targetNodes": {
     "nodeType": "nginx, mysql5"
@@ -128,26 +128,26 @@ Within these environments, the `targetNodes` filtering for JPS installation can 
 ```
 In this case, the filtering result will be the following:   
 
-![TargetNodesFilter](/img/TargetNodesFilter.jpg)
+<center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
   
 ## Custom Buttons
 The custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:      
 
-![Addontab](/img/Addontab.jpg)    
+<center>![Addontab](/img/Addontab.jpg)</center>       
 
-Such buttons execute operations that are predefined within JPS manifest.   
+Such buttons execute operations that are predefined within a JPS manifest.   
 
-![TrafficManager](/img/TrafficManager.jpg)
+<center>![TrafficManager](/img/TrafficManager.jpg)</center>    
 
 !!! note
-    > JPS manifest should include the [*targetNodes*](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
+    > The JPS manifest should include the [*targetNodes*](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
 
 <b>Templates</b>   
 
 Sample to set buttons within the **Add-ons** plank:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Custom buttons",
   "targetNodes": {
     "nodeGroup": "bl"
@@ -174,27 +174,27 @@ Here:
 
 It will be displayed after clicking on the appropriate button for an add-on. According to the code above, the text will be:  
 
-![Confirm](/img/Confirm.jpg)      
+<center>![Confirm](/img/Confirm.jpg)</center>      
 
 - `loadingText` *[optional]* - UI text to be displayed during loading and applying changes. The default value is *'Applying...'*.    
 
-![LoadingText](/img/LoadingText.jpg)      
+<center>![LoadingText](/img/LoadingText.jpg)</center>      
 
-- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the [*actions*](/reference/actions/#custom-actions) section.        
+- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank">*actions*</a> section.          
 - `caption` - title of the button  
 
-![Caption](/img/Caption.jpg)   
+<center>![Caption](/img/Caption.jpg)</center>   
 
 - `successText` -  message, that appears once action is successfully performed  
 
-![SuccessText](/img/SuccessText.jpg)     
+<center>![SuccessText](/img/SuccessText.jpg)</center>     
 
 - `href` *[optional]* - external link that is opened in a new browser tab; is executed only if the `settings` field is absent. In case of `href` execution, `action` will not be carried out.     
 
 Another sample with additional configurations: the next parameters can be enabled only if the [*settings*](/creating-templates/user-input-parameters/#custom-settings) field is present:     
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Custom buttons",
   "targetNodes": {
     "nodeGroup": "bl"
@@ -224,27 +224,27 @@ where:
 - `title` - custom dialog title. If absent, then `caption` will be applied.    
 - `submitButtonText` - text for submission button in the opened dialog. The default value is *'Apply'*.   
 
-![SubmitButtonText](/img/SubmitButtonText.jpg)  
+<center>![SubmitButtonText](/img/SubmitButtonText.jpg)</center>  
 
 - `logsPath` - specifying path to a definite log file for it to be accessible via the **Show Logs** button                          
 
-![LogsPath](/img/LogsPath.jpg)  
+<center>![LogsPath](/img/LogsPath.jpg)</center>  
 
-- `logsNodeGroup` - [nodeGroup](/reference/container-types/#containers-by-groups-nodegroup) layer the logging path should be opened for                   
+- `logsNodeGroup` - <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">nodeGroup</a> layer the logging path should be opened for                     
 
 ## Custom Menus    
 Menu is an expandable list within the <b>Add-ons</b> section comprising operations, that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
 
-![menu](/img/menu.jpg)     
+<center>![menu](/img/menu.jpg)</center>     
 
-By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the [application level events](/reference/events/#application-level-events) settings.          
+By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the <a href="http://docs.cloudscripting.com/reference/events/#application-level-events" target="_blank">application level events</a> settings.          
 
 The used properties for custom menus are the same as for custom buttons. Herewith, the appropriate `menu` field (instead of `buttons`) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
 
 Sample to set custom buttons within the menu list of the Add-ons plank:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "application": {
     "name": "Custom buttons",
     "env": {},
@@ -279,7 +279,7 @@ The settings section can include a few custom forms. The default settings form I
 For instance:  
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Custom buttons",
   "targetNodes": {
     "nodeGroup": "bl"
@@ -318,17 +318,17 @@ For instance:
 ```
 Here, the *main settings* form appears during installation process.   
 
-![settingMain](/img/SettingsMain.jpg)   
+<center>![settingMain](/img/SettingsMain.jpg)</center>   
 
 The *config settings* form appears after clicking the <b>Configure</b> button within the Add-ons section.   
 
-![settingCustom](/img/SettingsCustom.jpg)     
+<center>![settingCustom](/img/SettingsCustom.jpg)</center>     
 
 ## Supported Fields
 <h3>string</h3>
 The basic text field.  
 
-![string](/img/string.jpg)  
+<center>![string](/img/string.jpg)</center>  
 ```
 {
   "fields": [
@@ -349,7 +349,7 @@ where:
 <h3>text</h3>
 The multiline text field.
 
-![text](/img/text.jpg)  
+<center>![text](/img/text.jpg)</center>  
 ```
 {
   "fields": [
@@ -366,10 +366,10 @@ where:
 - `caption` *[optional]* - field label  
 - `hideLabel`*[optional] [boolean]* - hides field Label. The default value is *'false'*. 
 
-<h3>list</h3>
-The drop-down list and a single-line non-editable textbox.  
+<h3>list</h3>   
+The drop-down list and a single-line textbox.  
 
-![list](/img/list.jpg)  
+<center>![list](/img/list.jpg)</center>  
 ```
 {
   "fields": [
@@ -380,21 +380,23 @@ The drop-down list and a single-line non-editable textbox.
         "value1": "hello",
         "value2": "world"
       },
-      "hideLabel": false
+      "hideLabel": false,
+      "editable": true
     }
   ]
 }
 ```
 where:      
 
-- `caption` *[optional]* - field label                                  
+- `caption` *[optional]* - field label         
 - `values` - objects' values (*"key"*:*"value"*)                            
-- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.          
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.
+- `editable` [optional][boolean] - allows to input custom values. The default value is 'false'.
 
 <h3>checkbox</h3>
 The single checkbox field.
 
-![text](/img/checkbox.jpg)  
+<center>![text](/img/checkbox.jpg)</center>  
 ```
 {
   "fields": [
@@ -416,7 +418,7 @@ where:
 <h3>checkboxlist</h3>
 The checkbox grouping.  
 
-![text](/img/checkboxlist.jpg)  
+<center>![text](/img/checkboxlist.jpg)</center>  
 ```
 {
   "fields": [
@@ -441,7 +443,7 @@ where:
 <h3>radiolist</h3>
 The radio elements grouping.  
 
-![text](/img/radiolist.jpg)  
+<center>![text](/img/radiolist.jpg)</center>  
 ```
 {
   "fields": [
@@ -469,7 +471,7 @@ The grouping of the radio elements with the `showIf` function.
 !!! note
     The *hideLabel* boolean value is always *true* for this field.   
 
-![text](/img/radio-fieldset.jpg)   
+<center>![text](/img/radio-fieldset.jpg)</center>   
 ```
 {
   "fields": [
@@ -515,7 +517,7 @@ where:
 <h3>dockertag</h3>
 Displaying Docker tags within the list element.  
 
-![text](/img/dockertag.jpg)  
+<center>![text](/img/dockertag.jpg)</center>  
 ```
 {
   "name": "Cloud Scripting",
@@ -556,7 +558,7 @@ where:
 <h3>compositefield</h3>
 The compositefield is a container with specific functionality and structural components that constitute it as a block for application-oriented custom user interfaces.  
 
-![compositefield](/img/compositefield.jpg)  
+<center>![compositefield](/img/compositefield.jpg)</center>  
 ```
 {
   "fields": [
@@ -607,7 +609,7 @@ where:
 <h3>slider</h3>
 The slider element as a form field.
 
-![slider](/img/slider.jpg)
+<center>![slider](/img/slider.jpg)</center>
 ```
 {
   "fields": [
@@ -634,7 +636,7 @@ where:
 <h3>envlist</h3>
 The account environments list expanded within a drop-down element.  
 
-![envlist](/img/envlist.jpg)  
+<center>![envlist](/img/envlist.jpg)</center>  
 ```
 {
   "fields": [
@@ -665,7 +667,7 @@ where:
 
 Opens a pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.  
 
-![popupselector](/img/popupselector.jpg)  
+<center>![popupselector](/img/popupselector.jpg)</center>  
 ```
 {
   "fields": [
@@ -702,7 +704,7 @@ where:
 
 The text field intended only for display, which is not validated and not submitted.  
 
-![displayfield](/img/displayfield.jpg)  
+<center>![displayfield](/img/displayfield.jpg)</center>  
 ```
 {
   "fields": [
@@ -724,7 +726,7 @@ where:
 <h3>spinner</h3>
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
 
-![spinner](/img/spinner.jpg)  
+<center>![spinner](/img/spinner.jpg)</center>  
 ```
 {
   "fields": [
@@ -754,7 +756,7 @@ where:
 
 The text field with a number validation within a range.   
 
-![numberpicker](/img/numberpicker.jpg)  
+<center>![numberpicker](/img/numberpicker.jpg)</center>  
 ```
 {
   "fields": [
@@ -782,7 +784,7 @@ where:
 
 The drop-down menu with the environments hosts.  
 
-![hostpicker](/img/hostpicker.jpg)  
+<center>![hostpicker](/img/hostpicker.jpg)</center>  
 ```
 {
   "fields": [
@@ -811,7 +813,7 @@ where:
 <h3>toggle</h3>
 The toggle element is a switch between two values.
 
-![toggle](/img/toggle.jpg)
+<center>![toggle](/img/toggle.jpg)</center>
 ```
 {
   "fields": [

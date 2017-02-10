@@ -12,7 +12,7 @@ In order to access any required data or parameters of allocated resources inside
 Output `Hello World!` two times in `greeting.txt`:  
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Procedures Example",
   "onInstall": [
     {
@@ -44,7 +44,7 @@ Output `Hello World!` two times in `greeting.txt`:
 Write `Hello World!` and output first and second compute node IP address 
 ```
 {
-	"jpsType": "update",
+	"type": "update",
 	"name": "Procedures Example",
 	"onInstall": [{
 		"createFile [cp]": "${SERVER_WEBROOT}/greeting.txt"

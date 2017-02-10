@@ -1,7 +1,9 @@
 #Control Flows: Conditions and Iterations
 
 ##Conditions
-The main condition statement is *“if”*. Within this parameter, all available [Placeholders](http://docs.cloudscripting.com/reference/placeholders/) and their objective JavaScript  mappings can be used. For example:
+The main condition statement is *'if'*. Within this parameter, all available <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
+
+For example:
 ```
 if ('${env.protocol}' == 'http')
 ```
@@ -12,14 +14,15 @@ if (env.protocol == 'http')
 
 Both *If* and *ForEach* can be of any nesting level.
 
-- In case a condition is specified incorrectly, the actions inside *if* statement won't be executed. Herewith, [Cloud Scripting Console](http://docs.cloudscripting.com/troubleshooting/) will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.
+- In case a condition is specified incorrectly, the actions inside *if* statement won't be executed. Herewith, the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Cloud Scripting Console</a> will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.
 - If condition is valid but hasn’t being executed, the <b>*'condition is not met'*</b> message will be logged.
 
-<b>Examples:</b>     
+<b>Examples</b>    
+
 Comparing global variables:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Comparing global variables",
   "globals": {
     "p1": 1,
@@ -94,7 +97,7 @@ Nested conditions:
 Nesting of two *If* condition statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and logging the correspondent messages.
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Nesting example",
   "onInstall": {
     "if (${nodes.cp[1].id})": [
@@ -120,7 +123,7 @@ Balancer node with external IP address!
 Checking balancer stack type:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Nginx stack",
   "onInstall": {
     "if (nodes.bl[0].nodeType == 'nginx')": [
@@ -133,7 +136,8 @@ Checking balancer stack type:
 ```
 
 ##Iterations
-<b>ForEach.</b>
+<b>ForEach</b>
+
 The main iterable object is *ForEach*. Its map:
 
 ```
@@ -155,10 +159,10 @@ The main iterable object is *ForEach*. Its map:
 ```
 where:    
 
-- `settings [optional]` - fields values predefined within a [user setting form](http://docs.cloudscripting.com/creating-templates/user-input-parameters/)   
-- `license [optional]` - link to fetch parameters specified within [prepopulate](http://docs.cloudscripting.com/creating-templates/user-input-parameters/) custom script. It enables to customize default field values and can be further initialized through [placeholders](http://docs.cloudscripting.com/reference/placeholders/) `$(license.{any_name}` within a manifest.   
-- `event [optional]` - object entity with [event](http://docs.cloudscripting.com/reference/events/) parameters; can be of two types that allows initiation of a particular [action](http://docs.cloudscripting.com/reference/actions/) before and after event execution   
-- `this [optional]` - parameters object to be transmitted within the procedure body. See the [full list of available placeholders](http://docs.cloudscripting.com/reference/placeholders/#procedure-placeholders) on this parameter.   
+- `settings` *[optional]* - fields values predefined within a <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">user setting form</a>          
+- `license [optional]` - link to fetch parameters specified within <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">placeholders</a> `$(license.{any_name}` within a manifest.    
+- `event [optional]` - object entity with <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">events</a> parameters; can be of two types that allow initiation of a particular <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank"> action</a>before and after event execution       
+- `this [optional]` - parameters object to be transmitted within the procedure body. See the <a href="http://docs.cloudscripting.com/reference/placeholders/#procedure-placeholders" target="_blank">full list of available placeholders</a> on this parameter.     
 
 Iteration can be executed by `env.nodes`, `nodes`, `env.contexts` and `env.extdomains` objects:
 
@@ -194,12 +198,12 @@ where:
 
 - `env.contexts` -  list of contexts (applications) deployed to an environment    
 
-See the [full list of available placeholders](/reference/placeholders/).
+See the <a href="http://docs.cloudscripting.com/reference/placeholders/#procedure-placeholders" target="_blank">full list of available placeholders</a>.             
 
 Scaling nodes example:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Scaling Example",
   "onAfterScaleIn[nodeGroup:cp]": "ScaleNodes",
   "onAfterScaleOut[nodeGroup:cp]": "ScaleNodes",
@@ -215,10 +219,11 @@ Scaling nodes example:
   }
 }
 ```
-As a result of *cmd*, compute nodes internal IP addresses are rewritten within balancer configs and *NGINX* balancer node is reloaded. `onAfterScaleIn` and `onAfterScaleOut` events are executed immediately after adding or removing a compute node.
+As a result of *cmd*, compute nodes internal IP addresses are rewritten within balancer configs and *NGINX* balancer node is reloaded. <b>*onAfterScaleIn*</b> and <b>*onAfterScaleOut*</b> events are executed immediately after adding or removing a compute node.   
 
-<h3>Iteration by all nodes in environment</h3>
+###By all nodes
 
+Iteration by all nodes in an environment:
 ```
 {
   "forEach(env.nodes)": {
@@ -227,7 +232,9 @@ As a result of *cmd*, compute nodes internal IP addresses are rewritten within b
 }
 ```
 
-<h3>Iteration by compute nodes with custom iterator name</h3>
+###By compute nodes 
+
+Iteration by compute nodes with a custom iterator name:
 ```
 {
   "forEach(cp:nodes.cp)": {
@@ -241,7 +248,7 @@ where:
 Custom iterator name can be used for nesting cycles one into another:
 ```
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "execution actions",
   "onInstall": {
     "forEach(item:env.nodes)": {
@@ -258,8 +265,8 @@ where:
 - `${@@item}` - iterator number of the first loop 
 - `${@@secondItem}` - iterator number of the second loop 
 
-In this case every environment node will have only one conjunction by Node ID.
+In this case, every environment node will have only one conjunction by <b>Node ID</b>.
 
-`ForEach` **count** execution is printed in [user console log](/troubleshooting/) for usefull debugging code execution.
+**ForEach count** execution is printed in a <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">user console log</a> for usefull debugging code execution.     
 
-![forEachCount](/img/forEachCount.jpg)
+<center>![forEachCount](/img/forEachCount.jpg)</center>

@@ -4,7 +4,7 @@ Mount `data` directory from `storage` node to application server node:
 
 ```
 {
-  "jpsType": "install",
+  "type": "install",
   "name": "mount Data Storage",
   "nodes": [
     {
