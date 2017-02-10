@@ -36,17 +36,17 @@ where:
 
 ## Event List
 
-### onInstall
+<h3>onInstall</h3>
 
 The *onInstall* event is the entry point for executing any action. In case *jpsType* is **install**, the *onInstall* event will be carried out right after environment creation. If *jpsType* is set as **update**, *onInstall*  is the first event to be performed during the manifest installation.           
  
-###onUninstall
+<h3>onUninstall</h3>
 
 The *onUninstall* event can be called from the **Add-ons** tab at the Jelastic dashboard. This event is aimed at removing data, which was accumulated as a result of the *onInstall* action execution.            
   
 ![onUninstall](/img/addon-install.jpg)    
 
-### onBeforeChangeTopology
+<h3>onBeforeChangeTopology</h3>
 
 The event will be executed before changing environment topology via the Jelastic dashboard.
 
@@ -59,7 +59,7 @@ The event will be executed before changing environment topology via the Jelastic
     - `env` - environment settings, e.g. `engine`, `ssl`, `ha`, etc 
 - `${event.response.}` parameters are absent        
 
-### onAfterChangeTopology
+<h3>onAfterChangeTopology</h3>
 
 The event will be executed once the *changeTopology* action is finished.     
 
@@ -80,7 +80,7 @@ The event will be executed once the *changeTopology* action is finished.
     - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).     
     - `env` - environment information. Explore the full list of available [environment placeholders](http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders).      
 
-### onBeforeScaleOut
+<h3>onBeforeScaleOut</h3>
 
 The event will be executed before adding new node(s) (i.e. scaling *out*) to the existing node group (viz. layer). Scaling out/in can be performed either through [changing topology](https://docs.jelastic.com/jelastic-dashboard-guide#change-topology) or [auto horizontal scaling](https://docs.jelastic.com/automatic-horizontal-scaling) functionality. The *onBeforeScaleOut* event will be run only once for each layer.    
 
@@ -91,7 +91,7 @@ The event will be executed before adding new node(s) (i.e. scaling *out*) to the
     - `nodeGroup` - node group that is scaled out       
 - `${event.response.}` parameters are absent        
 
-### onAfterScaleOut
+<h3>onAfterScaleOut</h3>
 
 The event will be executed after adding new node(s) to the existing node group. The *onAfterScaleOut* event will be run only once for each layer.   
 
@@ -103,7 +103,7 @@ The event will be executed after adding new node(s) to the existing node group. 
 - `${event.response.}`:  
     - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).      
 
-### onBeforeScaleIn
+<h3>onBeforeScaleIn</h3>
 
 The event will be executed before removing node(s) (i.e. scaling *in*) from the target node group. The *onBeforeScaleIn* event will be run only once for each layer.
 
@@ -115,7 +115,7 @@ The event will be executed before removing node(s) (i.e. scaling *in*) from the 
 - `${event.response.}`:  
     - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).      
 
-### onAfterScaleIn
+<h3>onAfterScaleIn</h3>
 
 The event will be executed after scaling *in* the corresponding node group. The *onAfterScaleIn* event will be run only once for each layer.
 
@@ -127,7 +127,7 @@ The event will be executed after scaling *in* the corresponding node group. The 
 - `${event.response.}`:  
     - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).    
 
-###onBeforeServiceScaleOut
+<h3>onBeforeServiceScaleOut</h3>
 
 The event will be executed before adding new Docker container(s) to the existing node group. It will be run only once for each layer. The *onBeforeServiceScaleOut* event is applicable only for Docker containers.      
 
@@ -139,7 +139,7 @@ The event will be executed before adding new Docker container(s) to the existing
     - `nodeId` - node identifier, where event is executed     
 - `${event.response.}` parameters are absent       
 
-###onAfterServiceScaleOut   
+<h3>onAfterServiceScaleOut</h3>
 
 The event will be executed after adding new Docker container(s) to the existing node group. It will be run only once for each layer. The *onAfterServiceScaleOut* event is applicable only for Docker containers.     
 
@@ -151,7 +151,7 @@ The event will be executed after adding new Docker container(s) to the existing 
     - `nodeId` - node identifier, where event is executed       
 - `${event.response.}` result code. The successful action result is *'0'*.           
 
-### onBeforeRestartNode
+<h3>onBeforeRestartNode</h3>
 
 The event will be triggered before restarting a node. It will be called before the corresponding *restartNodeById* and *restartNodeByGroup* actions.    
 
@@ -163,7 +163,7 @@ The event will be triggered before restarting a node. It will be called before t
     - `nodeType` - node type, where event is executed
 - `${event.response.}` parameters are absent    
 
-### onAfterRestartNode
+<h3>onAfterRestartNode</h3>
 
 The event will be triggered after restarting a node. It will be called subsequently upon the *restartNodeById* and *restartNodeByGroup* actions.
 
@@ -178,7 +178,7 @@ The event will be triggered after restarting a node. It will be called subsequen
     - `out` - success output message       
     - `result` - result code. The successful action result is *'0'*.     
 
-### onBeforeDelete
+<h3>onBeforeDelete</h3>
 
 The event will be called before the *deleteEnvironment* action.       
 
@@ -190,7 +190,7 @@ The event will be called before the *deleteEnvironment* action.
     - `password` - user password     
 - `${event.response.}` parameters are absent      
 
-### onAfterDelete
+<h3>onAfterDelete</h3>
 
 The event will be called after the *deleteEnvironment* action.    
 
@@ -203,7 +203,7 @@ The event will be called after the *deleteEnvironment* action.
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.       
 
-### onBeforeAddNode
+<h3>onBeforeAddNode</h3>
 
 The event will be triggered before adding a new node to an environment. The *onBeforeAddNode* event will be executed for each newly added node.   
 
@@ -228,7 +228,7 @@ There are the following available node groups:
     - `nodeType` - predefined node type       
 - `${event.response.}` parameters are absent        
 
-### onAfterAddNode
+<h3>onAfterAddNode</h3>
 
 The event will be triggered after adding a new node to an environment. The *onAfterAddNode* event will be executed for each newly added node.     
 
@@ -254,7 +254,7 @@ There are the following available node groups:
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.        
 
-### onBeforeCloneNodes
+<h3>onBeforeCloneNodes</h3>
 
 The event will be performed before cloning node in the environment. The process of cloning nodes presupposes that new nodes are cloned from the existing ones. 
 
@@ -274,7 +274,7 @@ The *onBeforeCloneNodes* event is applicable only for the next node groups (excl
 - `${event.response.}`:  
     - `result` - parameters are absent      
 
-### onAfterCloneNodes
+<h3>onAfterCloneNodes</h3>
 
 The event will be performed after cloning node in the environment. 
 
@@ -296,7 +296,7 @@ The *onAfterCloneNodes* event is applicable only for the next node groups (exclu
     - `className` - class name for a new node info, viz. *"com.hivext.api.server.system.persistence.SoftwareNode"*   
     - `array` - new nodes array   
 
-### onBeforeLinkNode
+<h3>onBeforeLinkNode</h3>
 
 The event will be executed before linking nodes to apply configurations to IP addresses. It is compatible only with *compute* and *balancer* node groups and excludes Docker-based nodes. 
 
@@ -310,7 +310,7 @@ The event will be executed before linking nodes to apply configurations to IP ad
 - `${event.response.}`:  
     - `result` - parameters are absent    
 
-### onAfterLinkNode
+<h3>onAfterLinkNode</h3>
 
 The event will be executed after linking nodes to apply configurations to IP addresses. It is available only for *compute* and *balancer* node groups and excludes Docker-based nodes.
 
@@ -326,7 +326,7 @@ The event will be executed after linking nodes to apply configurations to IP add
     - `infos` - info with result codes about all nodes' linkings:      
         - `result` - result code     
 
-### onBeforeAttachExtIp
+<h3>onBeforeAttachExtIp</h3>
 
 The event can handle custom action before the *attache Ext IP address* action execution. The *onBeforeAttachExtIp* event is triggered each time before the external IP address attachment.
 
@@ -339,7 +339,7 @@ The event can handle custom action before the *attache Ext IP address* action ex
 - `${event.response.}`:  
     - `result` - parameters are absent      
 
-### onAfterAttachExtIp
+<h3>onAfterAttachExtIp</h3>
 
 The event can handle custom action after the *attache Ext IP address* action execution. The *onBeforeAttachExtIp* event is triggered each time upon the external IP address attachment.
 
@@ -354,7 +354,7 @@ The event can handle custom action after the *attache Ext IP address* action exe
     - `result` - result code. The successful action result is *'0'*.      
     - `obejct` *[string]* - attached extrenal IP address         
 
-### onBeforeDetachExtIp
+<h3>onBeforeDetachExtIp</h3>
 
 The event can handle custom action before the *detach Ext Ip address* action execution. The *onBeforeDetachExtIp* event is triggered each time before the external IP address detachment.    
 
@@ -368,7 +368,7 @@ The event can handle custom action before the *detach Ext Ip address* action exe
 - `${event.response.}`:  
     - `result` - parameters are absent    
 
-### onAfterDetachExtIp
+<h3>onAfterDetachExtIp</h3>
 
 The event can handle custom action after the *detach Ext Ip address* action execution. The *onAfterDetachExtIp* event is triggered each time upon the external IP address detachment.
 
@@ -382,7 +382,7 @@ The event can handle custom action after the *detach Ext Ip address* action exec
 - `${event.response.}`:  
     - `result` - parameters are absent       
 
-### onBeforeUpdateVcsProject
+<h3>onBeforeUpdateVcsProject</h3>
 
 The event will be carried out before the *update vcs project* action. For a detailed guidance on the [VCS project deployment](https://docs.jelastic.com/cli-vcs-deploy) refer to the linked page. 
 
@@ -395,7 +395,7 @@ The event will be carried out before the *update vcs project* action. For a deta
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.        
 
-### onAfterUpdateVcsProject
+<h3>onAfterUpdateVcsProject</h3>
 
 The event will be carried out after the *update vcs project* action. For a detailed guidance on the [VCS project deployment](https://docs.jelastic.com/cli-vcs-deploy) refer to the linked page.      
 
@@ -408,7 +408,7 @@ The event will be carried out after the *update vcs project* action. For a detai
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.        
 
-### onBeforeSetCloudletCount
+<h3>onBeforeSetCloudletCount</h3>
 
 The event will be executed before the *set cloudlet count* action, which implies changing the amount of allocated cloudlets per any layer in the environment.       
 
@@ -423,7 +423,7 @@ The event will be executed before the *set cloudlet count* action, which implies
 - `${event.response.}`:  
     - `result` - parameters are absent   
 
-### onAfterSetCloudletCount
+<h3>onAfterSetCloudletCount</h3>
 
 The event will be executed after the *set cloudlet count* action, which implies changing the amount of allocated cloudlets per any layer in the environment.          
 
@@ -438,7 +438,7 @@ The event will be executed after the *set cloudlet count* action, which implies 
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.       
 
-### onBeforeChangeEngine
+<h3>onBeforeChangeEngine</h3>
 
 The event will be performed before changing the engine's version (e.g. from *php 7* to *php 7.1*) in the required environment. The *onBeforeChangeEngine* event is not compatible with Docker-based environments.     
 
@@ -451,7 +451,7 @@ The event will be performed before changing the engine's version (e.g. from *php
 - `${event.response.}`:  
     - `result` - parameters are absent    
 
-### onAfterChangeEngine
+<h3>onAfterChangeEngine</h3>
 
 The event will be performed after changing the engine's version (e.g. from *php 7* to *php 7.1*) in the required environment. The *onBeforeChangeEngine* event is not compatible with Docker-based environments.   
  
@@ -464,7 +464,7 @@ The event will be performed after changing the engine's version (e.g. from *php 
 - `${event.response.}`:   
     - `result` - result code. The successful action result is *'0'*.    
 
-### onBeforeStart
+<h3>onBeforeStart</h3>
 
 The event is related to the *start environment* action (executed from the Jelastic dashboard) and is triggered before it. 
 
@@ -476,7 +476,7 @@ The event is related to the *start environment* action (executed from the Jelast
 - `${event.response.}`:  
     - `result` - parameters are absent       
 
-### onAfterStart
+<h3>onAfterStart</h3>
 
 The event is related to the *start environment* action (executed from the Jelastic dashboard) and is triggered after it.     
 
@@ -488,7 +488,7 @@ The event is related to the *start environment* action (executed from the Jelast
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.      
 
-### onBeforeStop
+<h3>onBeforeStop</h3>
 
 The event is related to the *stop environment* action (executed from the Jelastic dashboard) and is triggered before it.
 
@@ -500,7 +500,7 @@ The event is related to the *stop environment* action (executed from the Jelasti
 - `${event.response.}`:  
     - `result` - parameters are absent    
 
-### onAfterStop
+<h3>onAfterStop</h3>
 
 The event is related to the *stop environment* action (executed from the Jelastic dashboard) and is triggered after it. 
 
@@ -512,7 +512,7 @@ The event is related to the *stop environment* action (executed from the Jelasti
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.      
 
-### onBeforeClone
+<h3>onBeforeClone</h3>
 
 The event is related to the *clone environment* action (performed via the Jelastic dashboard by means of the same-named button) and is triggered before it.
 
@@ -525,7 +525,7 @@ The event is related to the *clone environment* action (performed via the Jelast
 - `${event.response.}`:  
     - `result` - parameters are absent
 
-### onAfterClone
+<h3>onAfterClone</h3>
 
 The event is related to the *clone environment* action (performed via the Jelastic dashboard by means of the same-named button) and is triggered after it.     
 
@@ -546,7 +546,7 @@ The event is related to the *clone environment* action (performed via the Jelast
     - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders).       
     - `env` - environment information. Explore the full list of available [environment placeholders](http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders).       
 
-### onBeforeDeploy
+<h3>onBeforeDeploy</h3>
 
 The event is bound to the *deploy* action, which is executed at the Jelastic dashboard by deploying any context (i.e. archive with a compressed app) to the environment, and is triggered before it (viz. *deploy* action).    
 
@@ -562,7 +562,7 @@ The event is bound to the *deploy* action, which is executed at the Jelastic das
 - `${event.response.}`:  
     - `result` - parameters are absent           
 
-### onAfterDeploy
+<h3>onAfterDeploy</h3>
 
 The event is bound to the *deploy* action, which is executed at the Jelastic dashboard by deploying any context (i.e. archive with a compressed app) to the environment, and is triggered after it (viz. *deploy* action).
 
@@ -582,7 +582,7 @@ The event is bound to the *deploy* action, which is executed at the Jelastic das
         - `out` - deploy result text      
         - `nodeid` - node identifier       
 
-### onBeforeResetNodePassword
+<h3>onBeforeResetNodePassword</h3>
 
 The event is bound to the *reset node password* action (executed at the Jelastic dashboard via the **Reset password** button) and is triggered before it.
 
@@ -595,7 +595,7 @@ The event is bound to the *reset node password* action (executed at the Jelastic
 - `${event.response.}`:  
     - `result` - parameters are absent     
 
-### onAfterResetNodePassword 
+<h3>onAfterResetNodePassword</h3>
 
 The event is bound to the *reset node password* action (executed at the Jelastic dashboard via the **Reset password** button) and is triggered after it.      
 
@@ -608,7 +608,7 @@ The event is bound to the *reset node password* action (executed at the Jelastic
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.          
 
-### onBeforeRemoveNode
+<h3>onBeforeRemoveNode</h3>
 
 This event will be executed before deleting node(s) from your environment.
 
@@ -621,7 +621,7 @@ This event will be executed before deleting node(s) from your environment.
 - `${event.response.}`:  
     - `result` - parameters are absent      
 
-### onAfterRemoveNode
+<h3>onAfterRemoveNode</h3>
 
 This event will be executed after deleting node(s) from your environment.        
 
@@ -634,7 +634,7 @@ This event will be executed after deleting node(s) from your environment.
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.      
 
-### onBeforeRestartContainer
+<h3>onBeforeRestartContainer</h3>
 
 This event will be carried out before restarting container. The *onBeforeRestartContainer* event is triggered before the *restartConteinerById* and *restartConteinerByGroup* actions.     
 
@@ -648,7 +648,7 @@ This event will be carried out before restarting container. The *onBeforeRestart
 - `${event.response.}`:  
     - `result` - parameters are absent        
 
-### onAfterRestartContainer
+<h3>onAfterRestartContainer</h3>
 
 This event will be carried out after restarting container. The *onBeforeRestartContainer* event is triggered after the *restartConteinerById* and *restartConteinerByGroup* actions.
 
@@ -662,7 +662,7 @@ This event will be carried out after restarting container. The *onBeforeRestartC
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.      
 
-### onBeforeMigrate
+<h3>onBeforeMigrate</h3>
 
 The event is related to the [*migrate environment*](https://docs.jelastic.com/environment-regions-migration) action and is called before it.        
 
@@ -676,7 +676,7 @@ The event is related to the [*migrate environment*](https://docs.jelastic.com/en
 - `${event.response.}`:  
     - `result` - parameters are absent                      
 
-### onAfterMigrate
+<h3>onAfterMigrate</h3>
 
 The event is related to the [*migrate environment*](https://docs.jelastic.com/environment-regions-migration) action and is called after it.   
 
@@ -690,7 +690,7 @@ The event is related to the [*migrate environment*](https://docs.jelastic.com/en
 - `${event.response.}`:     
     - `result` - result code. The successful action result is *'0'*.     
 
-### onBeforeRedeployContainer
+<h3>onBeforeRedeployContainer</h3>
 
 This event is performed before the container redeployment. It is bound to the *redeployContainerById* and *redeployContainerByGroup* (i.e. redeployment of all containers in a layer) actions. The event is available for Docker containers only.   
 
@@ -705,7 +705,7 @@ This event is performed before the container redeployment. It is bound to the *r
 - `${event.response.}`:  
     - `result` - parameters are absent      
 
-### onAfterRedeployContainer
+<h3>onAfterRedeployContainer</h3>
 
 This event is performed after the container redeployment. It is bound to the *redeployContainerById* and *redeployContainerByGroup* (i.e. redeployment of all containers in a layer) actions. The event is available for Docker containers only.   
 
@@ -720,7 +720,7 @@ This event is performed after the container redeployment. It is bound to the *re
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.     
 
-### onBeforeLinkDockerNodes
+<h3>onBeforeLinkDockerNodes</h3>
 
 The event will be executed before the *linkDockerNodes* action. This event will be run for each linking containers action. Obviously, it is provided for Docker containers only.
 
@@ -736,7 +736,7 @@ The event will be executed before the *linkDockerNodes* action. This event will 
 - `${event.response.}`:  
     - `result` - parameters are absent     
 
-### onAfterLinkDockerNodes
+<h3>onAfterLinkDockerNodes</h3>
 
 The event will be executed after the *linkDockerNodes* action. This event will be run for each linking containers action. Obviously, it is provided for Docker containers only.
 
@@ -752,7 +752,7 @@ The event will be executed after the *linkDockerNodes* action. This event will b
 - `${event.response.}`:   
     - `result` - result code. The successful action result is *'0'*.    
 
-### onBeforeUnlinkDockerNodes
+<h3>onBeforeUnlinkDockerNodes</h3>
 
 This event is executed before the *unLinkDockerNodes* action and is run for each unlinking containers action. The *onBeforeUnlinkDockerNodes* event is applied for Docker containers only.      
 
@@ -768,7 +768,7 @@ This event is executed before the *unLinkDockerNodes* action and is run for each
 - `${event.response.}`:  
     - `result` - parameters are absent   
 
-### onAfterUnlinkDockerNodes
+<h3>onAfterUnlinkDockerNodes</h3>
 
 This event is executed after the *unLinkDockerNodes* action and is run for each unlinking containers action. The *onAfterUnlinkDockerNodes* event is applied for Docker containers only.  
 
@@ -784,7 +784,7 @@ This event is executed after the *unLinkDockerNodes* action and is run for each 
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.       
 
-### onBeforeSetDockerEnvVars
+<h3>onBeforeSetDockerEnvVars</h3>
 
 The event will be triggered before the [*setDockerEnvVars*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting environment variables. The *onBeforeSetDockerEnvVars* event is applied for Docker containers only.     
 
@@ -798,7 +798,7 @@ The event will be triggered before the [*setDockerEnvVars*](/reference/docker-ac
 - `${event.response.}`:  
     - `result` - parameters are absent     
 
-### onAfterSetDockerEnvVars
+<h3>onAfterSetDockerEnvVars</h3>
 
 The event will be triggered before the [*setDockerEnvVars*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting environment variables. The *onAfterSetDockerEnvVars* event is applied for Docker containers only.
 
@@ -812,7 +812,7 @@ The event will be triggered before the [*setDockerEnvVars*](/reference/docker-ac
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.    
 
-### onBeforeSetDockerEntryPoint
+<h3>onBeforeSetDockerEntryPoint</h3>
 
 This event will be called before the [*setDockerEntryPoint*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting the entry point. The *onBeforeSetDockerEntryPoint* event is applied for Docker containers only.   
 
@@ -826,7 +826,7 @@ This event will be called before the [*setDockerEntryPoint*](/reference/docker-a
 - `${event.response.}`:  
     - `result` - parameters are absent    
 
-### onAfterSetDockerEntryPoint
+<h3>onAfterSetDockerEntryPoint</h3>
 
 This event will be called after the [*setDockerEntryPoint*](/reference/docker-actions/#docker-environment-variables) action. It is executed for every docker container upon setting the entry point. The *onAfterSetDockerEntryPoint* event is applied for Docker containers only.    
 
@@ -840,7 +840,7 @@ This event will be called after the [*setDockerEntryPoint*](/reference/docker-ac
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.    
 
-### onBeforeSetDockerRunCmd
+<h3>onBeforeSetDockerRunCmd</h3>
 
 The event will be executed before the [*setDockerRunCmd*](/reference/docker-actions/#docker-environment-variables) action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
 
@@ -854,7 +854,7 @@ The event will be executed before the [*setDockerRunCmd*](/reference/docker-acti
 - `${event.response.}`:  
     - `result` - parameters are absent    
     
-### onAfterSetDockerRunCmd
+<h3>onAfterSetDockerRunCmd</h3>
 
 The event will be executed after the [*setDockerRunCmd*](/reference/docker-actions/#docker-environment-variables) action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
 
@@ -868,7 +868,7 @@ The event will be executed after the [*setDockerRunCmd*](/reference/docker-actio
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.     
 
-### onBeforeStartDockerService
+<h3>onBeforeStartDockerService</h3>
 
 This event will be executed each time before running the Docker *RunCmd* commands. Thus, it will be always carried out for each docker container action, e.g. before starting/restarting container and starting environment.
 
@@ -881,7 +881,7 @@ This event will be executed each time before running the Docker *RunCmd* command
 - `${event.response.}`:  
     - `result` - parameters are absent 
 
-### onAfterStartDockerService
+<h3>onAfterStartDockerService</h3>
 
 This event will be executed each time after running the Docker *RunCmd* commands. 
 
@@ -894,7 +894,7 @@ This event will be executed each time after running the Docker *RunCmd* commands
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.   
 
-### onBeforeAddDockerVolume
+<h3>onBeforeAddDockerVolume</h3>
 
 The event will be performed before adding volumes to Docker container. It will be executed once for each Docker container.
 
@@ -908,7 +908,7 @@ The event will be performed before adding volumes to Docker container. It will b
 - `${event.response.}`:  
     - `result` - parameters are absent     
 
-### onAfterAddDockerVolume
+<h3>onAfterAddDockerVolume</h3>
 
 This event will be performed after adding volumes to Docker container. It will be executed once for each Docker container.
 
@@ -922,7 +922,7 @@ This event will be performed after adding volumes to Docker container. It will b
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.   
 
-### onBeforeRemoveDockerVolume
+<h3>onBeforeRemoveDockerVolume</h3>
 
 The *onBeforeRemoveDockerVolume* event will be called before removing volumes from Docker container. It will be executed once for each Docker container.
 
@@ -936,7 +936,7 @@ The *onBeforeRemoveDockerVolume* event will be called before removing volumes fr
 - `${event.response.}`:  
     - `result` - parameters are absent 
 
-### onAfterRemoveDockerVolume
+<h3>onAfterRemoveDockerVolume</h3>
 
 The *onAfterRemoveDockerVolume* event will be triggered after removing volumes from Docker container. It will be executed once for each Docker container.
 
@@ -950,7 +950,7 @@ The *onAfterRemoveDockerVolume* event will be triggered after removing volumes f
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.      
 
-## Events Filtering
+<h3>Events Filtering</h3>
 
 Optionally, events can be filtered by *nodeGroup*, *nodeType* and *nodeId* parameters. As a result, the defined actions will be executed only when the called event matches specified filtering rules. 
 <br><br>
@@ -958,7 +958,7 @@ Otherwise (i.e. if no filtering rules are specified), every **Event** is listene
 
 <b>Examples</b>
 
-###By nodeGroup
+<h3>By nodeGroup</h3>
 ```
 {
   "onBeforeScaleOut[nodeGroup:cp]": {
@@ -970,7 +970,7 @@ Otherwise (i.e. if no filtering rules are specified), every **Event** is listene
   }
 }
 ```
-###By nodeType
+<h3>By nodeType</h3>
 ```
 {
   "onBeforeScaleIn[nodeType:tomcat7]": {
@@ -982,7 +982,7 @@ Otherwise (i.e. if no filtering rules are specified), every **Event** is listene
   }
 }
 ```
-###By nodeId
+<h3>By nodeId</h3>
 ```
 {
   "onBeforeRestartNode[nodeId:number]": {

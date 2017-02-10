@@ -70,36 +70,43 @@ While preparing your own manifest file, we recommend to:
 - use <a href="https://github.com/" target="_blank">GitHub</a> to store your manifest, scripts and files together
    
 
-## What's next?
+<h3>What's next?</h3>
 
-### Explore more complex examples:    
+<h3>Explore more complex examples:</h3>
 
 Visit the <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> page to find a set of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions.                  
 
-### Learn Template Basics 
+<h3>Learn Template Basics</h3>
+
 See the <a href="http://docs.cloudscripting.com/creating-templates/template-basics/" target="_blank">Template Basics </a> section to learn the required basis of any JSON manifest and find out the differences between *Application* and *Extension*.     
 
-### Write Cloud Scripts  
+<h3>Write Cloud Scripts</h3>
+
 Cloud Scripting comes with several generic actions out of the box - see the <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a> section to find out the list of them.      
 
 In addition, you have the possibility to prepare and use your own actions within manifest. Such Custom Actions can be scripted either using Java, Javascript or PHP if you need to manage your whole environment or using any intercontainer language, if you need to script something inside of a container.
 See the <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">Writing Scripts</a> section.                                 
  
-### Build Actions Chain and reuse your code    
+<h3>Build Actions Chain and reuse your code</h3>
+
 Reuse your code and the chain of actions using <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a>                                 
 
-### Automate workflows
+<h3>Automate workflows</h3>
+
 Automate workflows using <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">Events</a>
 
-### Define user input parameters 
+<h3>Define user input parameters</h3>
+
 Customize your app's input parameters that should be specified by a user before the installation. For that, see the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Getting User Input</a> documentation page.       
 
-### Use Placeholders 
+<h3>Use Placeholders</h3>
+
 Learn how to use <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for:                   
 
 - options / parameters which are user-defined or are often changed     
 - filtering events   
 - selecting containers for your actions     
 
-### Explore Troubleshooting  
+<h3>Explore Troubleshooting</h3>
+
 Follow the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> guide if you experience any issues.              

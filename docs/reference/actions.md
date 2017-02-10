@@ -36,7 +36,7 @@ Any container operation can be performed using a [cmd](#cmd) action. Herewith, t
 !!! note 
     To process any container operation (except for [cmd](#cmd)), the Cloud Scripting executor will use a default system user with restricted permissions.                   
    
-### cmd   
+<h3>cmd</h3>
 
 The *cmd* action executes <a href="https://docs.jelastic.com/ssh-overview" target="_blank">SSH</a> commands.             
 <!--Available for all nodes.-->      
@@ -116,7 +116,7 @@ Using **sudo** to reload *Nginx* balancer:
 }
 ```
    
-### api 
+<h3>api</h3>
 Executing actions available by means of the [Jelastic Cloud API](http://docs.jelastic.com/api/) methods.
 
 There is a list of parameters required by Jelastic API, which are defined automatically:
@@ -154,7 +154,7 @@ Below you can find one more approach to specify a target node group for API meth
 ```
 Learn more about [selecting a target container](/creating-templates/selecting-containers/) for your API actions within the linked guide.                                      
         
-### deploy
+<h3>deploy</h3>
 Available for compute nodes (except for *Docker* containers)
 ```
 {
@@ -173,7 +173,7 @@ where:
 - `name` - application's name, that will be displayed at the dashboard
 - `context`- desired context for a deployed app
 
-### upload
+<h3>upload</h3>
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)-->
 ```
@@ -196,7 +196,7 @@ where:
 - `sourcePath` - URL to download an external file                    
 - `destPath` - container path, where the uploaded file is to be saved                         
 
-### unpack
+<h3>unpack</h3>
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
 ```
@@ -219,7 +219,7 @@ where:
 - `sourcePath` - URL to download an external archive   
 - `destPath` - container path, where the uploaded archive is to be unpacked                               
 
-### createFile
+<h3>createFile</h3>
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
 ```
@@ -232,7 +232,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                          
 - `string` - container path, where a file is to be created                              
 
-### createDirectory
+<h3>createDirectory</h3>
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
 ```
@@ -245,7 +245,7 @@ where:
 - `nodeId`, `nodGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                       
 - `string` - container path, where a directory is to be created                         
 
-### writeFile
+<h3>writeFile</h3>
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
 ```
@@ -268,7 +268,7 @@ where:
 - `path` - container path, where a file is to be written                
 - `body` - content saved to the file                                         
 
-### appendFile
+<h3>appendFile</h3>
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
 ```
@@ -291,7 +291,7 @@ where:
 - `path` - container path, where a file is to be appended                                 
 - `body` - content saved to the file                               
 
-### replaceInFile
+<h3>replaceInFile</h3>
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
 ```
@@ -324,7 +324,7 @@ where:
 
 ## Topology Nodes Management
 
-### addNodes
+<h3>addNodes</h3>
 ```
 {
   "addNodes": [
@@ -364,7 +364,7 @@ where:
 - `entrypoint` *[optional]* - Docker entry points                                          
 
 <!-- SetCloudletsCount -->
-### setNodeDisplayName
+<h3>setNodeDisplayName</h3>
 Available for all nodes
 ```
 {
@@ -377,7 +377,7 @@ where:
 - `string` - node’s display name (i.e. [alias](https://docs.jelastic.com/environment-aliases))                                                                    
 
 
-### setNodeCount
+<h3>setNodeCount</h3>
 Available for all nodes (except for *Docker* containers and *Elastic VPS*)
 ```
 {
@@ -389,7 +389,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                
 - `number` - nodes’ total amount after action is finished                                          
 
-### setExtIpEnabled
+<h3>setExtIpEnabled</h3>
 Available for all nodes
 ```
 {
@@ -401,7 +401,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                   
 - `true` or `false` - parameter that allows to attach or detach external IP address                              
 
-### restartNodes
+<h3>restartNodes</h3>
 Available for all nodes (except for *Elastic VPS*)
 ```
 {
@@ -418,7 +418,7 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                   
 
-### restartContainers
+<h3>restartContainers</h3>
 Available for all nodes
 ```
 {
@@ -435,7 +435,7 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                       
  
-### addContext
+<h3>addContext</h3>
 Available for compute nodes (except for *Docker* containers)
 ```
 {
@@ -459,7 +459,7 @@ where:
 
 ## Database Operations
 
-### prepareSqlDatabase
+<h3>prepareSqlDatabase</h3>
 Available for *SQL* databases (except for *Docker* containers)
 ```
 {
@@ -495,7 +495,7 @@ where:
 !!! note
     The function is executed only for `mysql5`, `mariadb` and `mariadb10` containers.                          
 
-### restoreSqlDump
+<h3>restoreSqlDump</h3>
 Available for *SQL* databases (except for *Docker* container)
 ```
 {
@@ -520,7 +520,7 @@ where:
 - `password` - password in the database, on behalf of which the application will be used                         
 - `dump` - URL to the application's database dump                                
 
-### applySqlPatch
+<h3>applySqlPatch</h3>
 Available for *SQL* databases (except for *Docker* containers)                                 
 ```
 {
@@ -550,7 +550,7 @@ where:
 
 ## Performing User-Defined Operations
 
-### script
+<h3>script</h3>
 
 ```
 {
@@ -583,7 +583,7 @@ where:
 !!! note
     Learn more about using [Jelastic Cloud API](http://docs.jelastic.com/api/).
 
-### sleep
+<h3>sleep</h3>
 Setting a delay that is measured in milliseconds. The below example shows how to create the delay for one second:                                    
 ```
 {
@@ -591,7 +591,7 @@ Setting a delay that is measured in milliseconds. The below example shows how to
 }
 ```
 
-### installJps
+<h3>installJps</h3>
 Nesting a JPS manifest inside the current manifest file. The nested JPS manifest will be installed subsequently after the current one. The action is available for **install** and **update** *jpsType* modes.                              
 
 **Examples**
@@ -673,13 +673,13 @@ where:
 - `onInstall` - entry point for performed actions               
 
 
-### installAddon
+<h3>installAddon</h3>
 
 The possibility to install few custom add-ons within a single manifest. It can be installed to:
 
-- an existing environment if `jpsType` is *update*  
+- an existing environment if `jpsType` is *update*. 
 - a new environment if `jpsType` is *install*. Add-ons will be installed sequentially one by one right after a new environment set up. 
--
+
 All the add-ons will have `jpsType` *update* by default.   
 
 The example below shows how to pass an add-on identifier into `installAddon` action. This add-on should be described in the `addons` section. The custom add-on with the *firstAddon* identifier will create a new file in a compute node in the *tmp* directory.
@@ -724,7 +724,7 @@ Consequently, the installed add-on will be marked as set up to the *balancer* la
 
 <!-- add example -->
 
-### Custom Actions
+<h3>Custom Actions</h3>
 The declarative code inside a manifest can be divided into separate blocks, named **actions**. Subsequently, the particular actions can be run by means of appealing to call actions with different parameters.             
 
 The example below shows how to create a new file (e.g. the <b>*example.txt*</b> file in the <b>*tmp*</b> directory) by executing a *createFile* action at the compute node:                
@@ -759,11 +759,11 @@ where:
 
 - `actions` - object, where custom actions can be predefined                                    
 
-#### Action Placeholders
+<h4>Action Placeholders</h4>
 
 In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. Parameters sent to a call method are transformed into a separate kit of placeholders, which can be received inside the appropriate action with the help of *${this}* namespace. Access to a node inside environment can be performed according to its type, as well as according to its role in the environment.                           
 
-#### Code Reuse
+<h4>Code Reuse</h4>
 
 Outputting *Hello World!* twice in the <b>*greeting.txt*</b>:  
 ```
@@ -790,7 +790,7 @@ Outputting *Hello World!* twice in the <b>*greeting.txt*</b>:
 }
 ```
 
-#### Call action with parameters 
+<h4>Call action with parameters</h4> 
 
 The following example shows how to pass additional parameters to the custom action, where it can be used in action.                     
 

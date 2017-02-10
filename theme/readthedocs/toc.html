@@ -37,7 +37,7 @@
                         {% endif %}
 
                         {% for toc_item in toc_item.children %}
-                            <li><a class="toctree-l4" href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                            <li><a class="toctree-l4 {% if nav_item.active%}activecurrent{%endif%}" href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
                         {% endfor %}
                     {% endfor %}
                     </ul>
@@ -47,4 +47,3 @@
 
     {% endfor %}
 </ul>
-

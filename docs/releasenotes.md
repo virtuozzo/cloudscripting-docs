@@ -3,11 +3,7 @@ Release Notes
 
 #1.0
 
-##New
-
 #0.9
-
-##New
 
 - Added new elements for [user input form](/creating-templates/user-input-parameters/):  
     - `displayfield`

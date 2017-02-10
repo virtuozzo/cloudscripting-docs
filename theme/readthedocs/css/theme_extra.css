@@ -6,13 +6,22 @@ body {
     color: #2C3E50;
 }
 
-h1, h2, h3, h4, h5, h6, legend {
+h2, h3, h4, h5, h6, legend {
     font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+h1 {
+  {
+font-size:30px;
+    letter-spacing: -.5px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    font-family: OpenSansSemiBold,sans-serif;
+}
+}
+
 h1, h2 {
-    color: #2C3E50;
-    font-weight: 600;
+    color: #0077e0;
 }
 
 h3, h4, h5, h6 {
@@ -184,9 +193,10 @@ pre code.example {
 
 #mkdocs-search-query{
     width: 100%;
-    border-radius: 50px;
+    border-radius: 0px;
     padding: 6px 12px;
-    border-color: #D1D4D5;
+    border-color: #ccc;
+    background-color: #fff;
 }
 
 .wy-menu-vertical li ul {

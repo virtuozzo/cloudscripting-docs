@@ -49,12 +49,12 @@ mysql -u${USER} -p${PASSWORD} << END
 END
 ```
 
-`${nodes.sqldb.password}` - available only for jpsType *install* when SQL node is created               
+`${nodes.sqldb.password}` - available only for jpsType *install* when SQL node is created
 
 ## Top Level Scripts  
-Using `script` action              
-              
-### Java   
+Using `script` action
+
+<h3>Java</h3>
 ```example
 {
   "executeScript": [
@@ -73,12 +73,12 @@ Using `script` action
 **Example #1 Generate random password**
 -->
 
-### JavaScript    
+<h3>JavaScript</h3>
 ```example
 {
   "script ["Hello World!"]": "return getParam('greeting');"
 }
 ```
 
-## What's next?
+<h3>What's next?</h3>
 Learn more about using <a href="http://docs.jelastic.com/api/" target="_blank">Jelastic Cloud API</a>.                                    

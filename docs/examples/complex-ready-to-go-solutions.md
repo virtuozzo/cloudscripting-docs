@@ -765,7 +765,7 @@ The JPS package deploys Cyclos 4 that initially contains 1 application server an
 
 ##Paraya Clusters
 Java-based app server clusters with autoscaling and session replication
-###Payara Micro Cluster
+<h3>Payara Micro Cluster</h3>
 
 The JPS package initially deploys one container with Payara Micro application server.
 
@@ -816,7 +816,7 @@ The JPS package initially deploys one container with Payara Micro application se
 }
 ```
 
-###Payara Server Full
+<h3>Payara Server Full</h3>
 
 The JPS package initially deploys one container with Payara Server Full. The package is based on the official Payara Docker image.
 
@@ -847,7 +847,7 @@ The JPS package initially deploys one container with Payara Server Full. The pac
 }
 ```
 
-###Payara Micro Cluster Multicast
+<h3>Payara Micro Cluster Multicast</h3>
 
 The JPS package initially deploys one container with Payara Micro application server and one container with VTun bridge together with DCHP server for multicast networking setup across all containers in the environment.
 
@@ -890,7 +890,7 @@ The JPS package initially deploys one container with Payara Micro application se
 }
 ```
 
-###Payara Micro Cluster Advanced
+<h3>Payara Micro Cluster Advanced</h3>
 
 Autoscaling triggers + Load balancing and Auto-discovery + Storage container with pre-deployed war application.
 

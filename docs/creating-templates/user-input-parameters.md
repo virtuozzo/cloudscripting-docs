@@ -325,7 +325,7 @@ The *config settings* form appears after clicking the <b>Configure</b> button wi
 ![settingCustom](/img/SettingsCustom.jpg)     
 
 ## Supported Fields
-###string     
+<h3>string</h3>
 The basic text field.  
 
 ![string](/img/string.jpg)  
@@ -346,7 +346,7 @@ where:
 - `caption` *[optional]* - field label   
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 
-###text   
+<h3>text</h3>
 The multiline text field.
 
 ![text](/img/text.jpg)  
@@ -366,7 +366,7 @@ where:
 - `caption` *[optional]* - field label  
 - `hideLabel`*[optional] [boolean]* - hides field Label. The default value is *'false'*. 
 
-###list   
+<h3>list</h3>
 The drop-down list and a single-line non-editable textbox.  
 
 ![list](/img/list.jpg)  
@@ -391,7 +391,7 @@ where:
 - `values` - objects' values (*"key"*:*"value"*)                            
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.          
 
-###checkbox   
+<h3>checkbox</h3>
 The single checkbox field.
 
 ![text](/img/checkbox.jpg)  
@@ -413,7 +413,7 @@ where:
 - `value` - enables or disables checkbox                         
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*. 
 
-###checkboxlist   
+<h3>checkboxlist</h3>
 The checkbox grouping.  
 
 ![text](/img/checkboxlist.jpg)  
@@ -438,7 +438,7 @@ where:
 - `values` - checkboxes (*"key"*:*"value"*)  
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 
-###radiolist   
+<h3>radiolist</h3>
 The radio elements grouping.  
 
 ![text](/img/radiolist.jpg)  
@@ -463,7 +463,7 @@ where:
 - `values` - checkboxes (*"key"*:*"value"*)  
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.  
 
-###radio-fieldset    
+<h3>radio-fieldset</h3>
 The grouping of the radio elements with the `showIf` function.     
 
 !!! note
@@ -512,7 +512,7 @@ where:
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 - `caption` *[optional]* - field label
 
-###dockertag    
+<h3>dockertag</h3>
 Displaying Docker tags within the list element.  
 
 ![text](/img/dockertag.jpg)  
@@ -553,7 +553,7 @@ where:
    - `registry`, `username`, `password` [*optional*]   
 - `env` - required object (can be empty) 
 
-###compositefield      
+<h3>compositefield</h3>
 The compositefield is a container with specific functionality and structural components that constitute it as a block for application-oriented custom user interfaces.  
 
 ![compositefield](/img/compositefield.jpg)  
@@ -604,7 +604,7 @@ where:
 - `defaultFlex` *[optional]* - horizontal flex for items 
 - `items` - elements  
 
-###slider              
+<h3>slider</h3>
 The slider element as a form field.
 
 ![slider](/img/slider.jpg)
@@ -631,7 +631,7 @@ where:
 - `caption` *[optional]* - field label  
 - `name` *[optional]* - name of the field 
 
-###envlist     
+<h3>envlist</h3>
 The account environments list expanded within a drop-down element.  
 
 ![envlist](/img/envlist.jpg)  
@@ -660,7 +660,7 @@ where:
     - *displayName* - environment *displayName*  
     - *appid* - unique environment ID       
 
-###popupselector     
+<h3>popupselector</h3>
 (*popup-selector* is an alias)     
 
 Opens a pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.  
@@ -697,7 +697,7 @@ where:
 - `popupCallbackEvent` - event handler   
 - `params` - parameters for sending in POST request to `url` source     
 
-###displayfield    
+<h3>displayfield</h3>
 (*spacer* is an alias)    
 
 The text field intended only for display, which is not validated and not submitted.  
@@ -721,7 +721,7 @@ where:
 - `name` *[optional]* - name of the field                
 - `markup` - value to initialize the field's display. The default value is "*'undefined'*".      
 
-###spinner    
+<h3>spinner</h3>
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
 
 ![spinner](/img/spinner.jpg)  
@@ -749,7 +749,7 @@ where:
 - `increment` - increment value  
 - `decimanPrecision` - precision value  
 
-###numberpicker   
+<h3>numberpicker</h3>
 (*number-picker* is an alias)  
 
 The text field with a number validation within a range.   
@@ -777,7 +777,7 @@ where:
 - `max` - maximum spinner value  
 - `editable` *[optional] [boolean]* - enables/disables editing the `numberpicker` field. The default value is *'false'*.  
 
-###hostpicker    
+<h3>hostpicker</h3>
 (*host-picker* is an alias)  
 
 The drop-down menu with the environments hosts.  
@@ -808,7 +808,7 @@ where:
     - *displayName* - environment *displayName*  
     - *appid* - unique environment ID        
 
-###toggle    
+<h3>toggle</h3>
 The toggle element is a switch between two values.
 
 ![toggle](/img/toggle.jpg)

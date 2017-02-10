@@ -25,7 +25,7 @@ All of the fields are set within the Docker object:
   ]
 }
 ```
-###Volumes  
+<h3>Volumes</h3>
 This field represents a string array:  
 ```
 [
@@ -40,7 +40,7 @@ This field represents a string array:
 ]
 ```
 
-###VolumeMounts   
+<h3>VolumeMounts</h3>
 This parameter is an object. It can be set like within the example below:    
 ```
 {
@@ -77,7 +77,7 @@ In case not all source node volumes are required to be mounted, the particular o
 ]
 ```
 
-####*VolumeMounts* examples   
+<h4>*VolumeMounts* examples</h4>
  
 **Master Node Mount:**   
 Samples to mount a particular volume by exact node identifier & path (*/master*) and to mount all volumes from the layer master node by *nodeGroup* (*/master-1*)

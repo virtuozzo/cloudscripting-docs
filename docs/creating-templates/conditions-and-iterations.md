@@ -217,7 +217,7 @@ Scaling nodes example:
 ```
 As a result of *cmd*, compute nodes internal IP addresses are rewritten within balancer configs and *NGINX* balancer node is reloaded. `onAfterScaleIn` and `onAfterScaleOut` events are executed immediately after adding or removing a compute node.
 
-###Iteration by all nodes in environment
+<h3>Iteration by all nodes in environment</h3>
 
 ```
 {
@@ -227,7 +227,7 @@ As a result of *cmd*, compute nodes internal IP addresses are rewritten within b
 }
 ```
 
-###Iteration by compute nodes with custom iterator name
+<h3>Iteration by compute nodes with custom iterator name</h3>
 ```
 {
   "forEach(cp:nodes.cp)": {
