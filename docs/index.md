@@ -1,7 +1,7 @@
 # Cloud Scripting Overview
 Jelastic <b>Cloud Scripting (CS)</b> is a tool, designed to program the cloud platform behaviour related to your application lifecycle for automating frequent tasks, complex CI/CD flows and clustering configurations.                                         
 
-<center>![overview](/img/overview.png)</center>
+<center>![overview](/img/newoverview.png)</center>
 
 There are three main pillars of cloud scripting:                                       
 - **Actions** - scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS and Java scripts                                                      
