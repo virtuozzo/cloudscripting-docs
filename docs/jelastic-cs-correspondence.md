@@ -2,7 +2,7 @@
 
 The table below displays depends between installed Cloud Scripting and Jelastic versions on the same hoster platform.
 
-You can find Jelastic platform version at [Jelastic Cloud](https://jelastic.cloud/).<br>
+You can find Jelastic platform version at <a href="https://jelastic.cloud/" target="_blank">Jelastic Cloud Union</a>.<br>
 Cloud Scripting version can be choosen at the bottom of the page.
 <table class="corresp" style="width:100%">
     <tr id="cs">

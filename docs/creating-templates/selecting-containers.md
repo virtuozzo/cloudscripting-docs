@@ -1,8 +1,8 @@
-# Selecting Containers For Your Actions
+# Setting Target Containers
 
-Running a specific <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> requires to select a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">*nodeGroup*</a> value (e.g. *sql*) or all containers of the same type by their <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-types-nodetype"target="_blank">*nodeType*</a> value (e.g. *MySQL*).          
+Running a specific <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> requires to set a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">*nodeGroup*</a> value (e.g. *sql*) or all containers of the same type by their <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-types-nodetype"target="_blank">*nodeType*</a> value (e.g. *MySQL*).          
 
-Also, there are three possible approaches to set containers filtering:       
+Also, there are three alternative approaches to set containers filtering:       
 
 * **Node Selectors** - specifying a target node within a name of an action     
 
@@ -18,7 +18,7 @@ For example:
     }
 }
 ```
-In the example above, a new file will be created in the compute node (*[cp]*) and a new directory will be created in the compute node (*[cp]*), balancer (*[bl]*) and node with ID *123*. Actions for the specified nodes are executed in the declared order.       
+In the example above, a new file will be created in the compute node (*[cp]*) and a new directory will be created in the compute node (*[cp]*) and balancer (*[bl]*) [layers](http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group) and container with [Node ID](http://docs.cloudscripting.com/creating-templates/selecting-containers/#particular-container) *123*. Actions for the specified nodes are executed in the declared order.       
 
 * setting a target node next to the performed action     
 
@@ -34,7 +34,7 @@ For example:
   "nodeGroup": "cp"
 }
 ``` 
-Here, the `createFile` and `createDirectory` actions are applied to the specified *nodeGroup*, namely compute node (*[cp]*).     
+Here, the `createFile` and `createDirectory` actions are applied to the specified *nodeGroup*, namely compute node (*[cp]*) layer.         
  
 * setting a required node as a parameter in the action object     
 
@@ -43,13 +43,13 @@ Learn more on this <a href="http://docs.cloudscripting.com/reference/actions/#cu
 !!! note 
     > **Node Selectors** have higher priority than nodes specified next to the action but lower than parameters set in the action object.     
 
-Have a look at more detailed descriptions on approaches available for containers selection:          
+Have a look at more detailed descriptions on approaches available to set a target container:          
 - [Particular Container](#particular-container)   
 - [All Containers By Group](#all-containers-by-group)    
 - [All Containers By Type](#all-containers-by-type)   
 
 ## Particular Container   
-The `nodeId` parameter is used to select a particular container for the action to be executed at it. If you know the **Node ID** of a container (displayed at the Jelastic dashboard next to the required node), you can set it statically.       
+The `nodeId` parameter is used to set a particular container for the action to be executed at it. If you know the **Node ID** of a container (displayed at the Jelastic dashboard next to the required node), you can set it statically.       
   
 For example:     
 
@@ -99,7 +99,7 @@ Jelastic platform supports the following predefined *nodeGroup* values:
 Actions for a specified *nodeGroup* are executed successively one by one. For Docker containers the *nodeGroup* value is not predefined, therefore, it can be stated to any value above or your custom one. Visit the <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">Containers by Groups</a> documentation page for more information.        
 
 ## All Containers By Type
-The `nodeType` parameter is applied to select all containers built upon the same software stacks. Visit the <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-types-nodetype"target="_blank">Containers by Types</a> documentation page to explore the provided containers listed according to their type.    	  
+The `nodeType` parameter is applied to set all containers built upon the same software stacks. Visit the <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-types-nodetype"target="_blank">Containers by Types</a> documentation page to explore the provided containers listed according to their type.    	  
 
 !!! note
-    > If you set all three parameters, the container selection would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>. 
+    > If you set all three parameters, actions for indicated containers would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>. 

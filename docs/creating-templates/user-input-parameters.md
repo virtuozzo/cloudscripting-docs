@@ -55,7 +55,7 @@ where:
         * `hostpicker` - drop-down menu with [environment hosts](/creating-templates/user-input-parameters/#hostpicker)                             
         * `host-picher` - alias to `hostpicker`                                      
         * `toggle` - [switcher](/creating-templates/user-input-parameters/#toggle) between two values                        
-    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. More info <a href="https://www.w3.org/wiki/HTML/Elements/input#Point" target="_blank">here</a>.                      
+    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. See more info on the <a href="https://www.w3.org/wiki/HTML/Elements/input#Point" target="_blank">type attribute</a>.                         
     - `name` - input field name, that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests   
     - `default` *[optional]* - default value for the input field  
     - `caption` *[optional]* - field label  
@@ -108,7 +108,7 @@ There are two possible ways to define a `nodeType`:
  
 Let’s suppose you have three environments with different topology:     
 
-![targetNodes](/img/targetNodes.jpg)  
+<center>![targetNodes](/img/targetNodes.jpg)</center>  
 
 Within these environments, the `targetNodes` filtering for JPS installation can be performed with the next example:
 ```
@@ -128,19 +128,19 @@ Within these environments, the `targetNodes` filtering for JPS installation can 
 ```
 In this case, the filtering result will be the following:   
 
-![TargetNodesFilter](/img/TargetNodesFilter.jpg)
+<center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
   
 ## Custom Buttons
 The custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:      
 
 <center>![Addontab](/img/Addontab.jpg)</center>       
 
-Such buttons execute operations that are predefined within JPS manifest.   
+Such buttons execute operations that are predefined within a JPS manifest.   
 
 <center>![TrafficManager](/img/TrafficManager.jpg)</center>    
 
 !!! note
-    > JPS manifest should include the [*targetNodes*](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
+    > The JPS manifest should include the [*targetNodes*](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
 
 <b>Templates</b>   
 

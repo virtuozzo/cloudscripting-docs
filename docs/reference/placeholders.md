@@ -4,7 +4,7 @@ The executor makes an attempt to resolve all placeholders on the package install
 If it's not possible, the placeholder will be unresolved and displayed in the text as is (e.g. *${placeholder}*).
 
 !!! note
-    To output all available placeholders, use a special `${placeholders}` placeholder. See [Troubleshooting](/troubleshooting/) for more info.                                                                                         
+    To output all available placeholders, use a special `${placeholders}` placeholder. See <a href="http://docs.cloudscripting.com/troubleshooting/" target ="_blank">Troubleshooting</a> for more info.                                                                                                
 
 The following specific groups of placeholders are singled out:                       
 - [Environment Placeholders](http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders)           
@@ -54,20 +54,20 @@ The following specific groups of placeholders are singled out:
     - `{nodes.(group).first.(key)}`
     - `{nodes.(group).last.(key)}`   
     where:
-    - `(group)` - node group ([nodeGroup](/creating-templates/selecting-containers/#all-containers-by-group) or [nodeType](/creating-templates/selecting-containers/#all-containers-by-type))
+    - `(group)` - node group (<a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">nodeGroup</a> or <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-types-nodetype" target="_blank">nodeType</a>)           
     - `(i)` - node's index, starting from *'0'*
     - `(key)` - name of the applied parameter, according to the following list:
         - `address` - internal or external IP address                               
         - `adminUrl` - full *URL* address with protocol   
-        - `canBeExported` *[boolean]* - Jelastic [Export](https://docs.jelastic.com/environment-export-import) feature    
+        - `canBeExported` *[boolean]* - Jelastic <a href="https://docs.jelastic.com/environment-export-import" target="_blank">Export</a> feature       
         - `bandwidthLimit` - node's bandwidth limit   
         - `contextValidatorRegex` - validation for context names    
         - `diskIopsLimit` - IOPS limitation quota   
         - `diskLimit` - hardware node disk space quota  
-        - `endpoints` [*array indexes*] - [endpoints](https://docs.jelastic.com/endpoints) functionality                         
+        - `endpoints` [*array indexes*] - <a href="https://docs.jelastic.com/endpoints" target="_blank">endpoints</a> functionality                              
             - `domain` - full domain name of the node the endpoint is being set for                  
             - `id` - node ID  
-            - `name` - title for a new endpoint (can be either custom or [predefined](https://docs.jelastic.com/endpoints#preconfigured))                
+            - `name` - title for a new endpoint (can be either custom or <a href="https://docs.jelastic.com/endpoints#preconfigured" target="_blank">predefined</a>)                         
             - `privatePort` - preferred local node’s port              
             - `publicPort` - private (dynamic) port used for mapping                                         
             - `protocol` - protocol type (currently, only TCP is provided)                     
@@ -80,11 +80,11 @@ The following specific groups of placeholders are singled out:
         - `isExternalIpRequired` - status, indicating that node requires external IP address       
         - `isResetPassword` - enables to reset a service password    
         - `isWebAccess`   
-        - `ismaster` - master node's status in the [`nodeGroup`](/reference/container-types/#containers-by-group)(i.e. layer)   
+        - `ismaster` - master node's status in the <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">nodeGroup</a> (i.e. layer)   
         - `maxchanks`   
         - `name` - stack name   
         - `nodeGroup` - node's layer, e.g. *lb*, *cp*, *sqldb*, *nosqldb*, *cache*, *storage*, *extra* (for *Docker* containers)   
-        - `nodeType` -  stacks [nodeType](/reference/container-types/#nodetype-values) list  
+        - `nodeType` -  stacks <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-types-nodetype" target="_blank">nodeType</a> list     
         - `nodemission` - deprecated value (same as `nodeGroup`)  
         - `osType` - OS type (e.g. LINUX)   
         - `password` - container's password   
@@ -106,7 +106,7 @@ The following specific groups of placeholders are singled out:
             - `type` - engine's type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
             - `vcsSupport` - supporting VCS in a container  
             - `version` - engine's version   
-        - `packages` [*array*] - packages with add-ons installed over the corresponding nodes (e.g. [FTP add-on](https://docs.jelastic.com/ftp-ftps-support))                  
+        - `packages` [*array*] - packages with add-ons installed over the corresponding nodes (e.g. <a href="https://docs.jelastic.com/ftp-ftps-support" target="_blank">FTP add-on</a>)                       
             - `description` - package's description                                       
             - `documentationurl` - redirect to page(s) with more info on the particular add-on                          
             - `iconurl` - add-on's logo                                               
@@ -120,7 +120,7 @@ For example:
 - `{nodes.db.last.address}` - last IP address of a batabase node     
 
 ## Event Placeholders
-Event placeholders represent a set of dynamic parameters, which are executed as a result of a certain [event](/reference/events/) occurrence. Herewith, all event placeholders have their custom set of parameters and begin with the default keywords:                         
+Event placeholders represent a set of dynamic parameters, which are executed as a result of a certain <a href="http://docs.cloudscripting.com/reference/events" target="_blank">event</a> occurrence. Herewith, all event placeholders have their custom set of parameters and begin with the default keywords:                         
 - `${event.params.(key)}` - where *key* is a name of event parameter                     
 - `${event.response.(key)}` -where *key* is a name of event response parameter             
 
@@ -139,7 +139,7 @@ Learn more about the event placeholders within the above-linked *Events* page.
 For example:
 ```example
 {
-  "type": "update",
+  "jpsType": "update",
   "settings": {
     "fields": [
       {
@@ -151,7 +151,7 @@ For example:
   }
 }
 ```
-The placeholder's name here is `${settings.customName}`. Check the list of [fields defined by a user](/creating-templates/user-input-parameters/).
+The placeholder's name here is `${settings.customName}`. Check the list of <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">fields defined by users</a>).       
 
  
 ## Action Placeholders
@@ -169,7 +169,7 @@ For example:
 Passing custom params to the action is performed in the following way:
 ```
 {
-	"type": "update",
+	"jpsType": "update",
 	"name": "example",
 	"onInstall": {
 		"customAction": {
@@ -196,7 +196,7 @@ For instance:
 
 ```example
 {
-  "type": "update",
+  "jpsType": "update",
   "settings": {
     "fields": [
       {
@@ -216,7 +216,7 @@ Placeholders managed by users can be predefined via <b>*globals declaration*</b>
 For example:
 ```
 {
-  "type": "update",
+  "jpsType": "update",
   "name": "Global declaration",
   "globals": {
     "value1": 1,
@@ -299,7 +299,7 @@ For example:
 
 where:   
 - `(i)` - array's index. Indexes of array start from 0..   
-- `(key)` - node's parameter. See the details on setting [node parameters](#node-placeholders).   
+- `(key)` - node's parameter. See the details on setting <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node parameters</a>.       
 
 **The First and the Last Array Elements** 
 
@@ -310,7 +310,7 @@ where:
 - `key` - node's parameter  
 
 ## File Path Placeholders
-The values below can vary depending on the chosen [nodeType](/reference/container-types/#nodetype-values):    
+The values below can vary depending on the chosen <a href="http://docs.cloudscripting.com/reference/container-types/#nodetype-values" target="_blank">nodeType</a>:    
 - `${HOME}` - for *couchdb*, *glassfish3*, *jetty6*, *nginx-ruby*, *nginx*, *nginxphp*, *tomcat6*,*tomcat7*, *tomee*    
 - `${WEBAPPS}` - for *apache2-ruby*, *apache2*, *jetty6*, *nginx-ruby*, *nginxphp*, *nodejs*, *tomcat6*, *tomcat7*, *tomee*    
 - `${JAVA_HOME}` - for *glassfish3*, *jetty6*, *maven3*, *tomcat6*, *tomcat7*, *tomee*   
@@ -339,7 +339,7 @@ You can use the following placeholders, as well, with the definite `nodeType`. F
 - `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*  
 - `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*      
 
-Explore the full list of [Jelastic native containers](/reference/container-types/#jelastic-native-container-types).                  
+Explore the full list of <a href="http://docs.cloudscripting.com/reference/container-types/#jelastic-native-container-types" target="_blank">Jelastic native containers</a>.                       
 
 The list of single placeholders:   
 - `${nginxphp.NGINX_CONF}` - */etc/nginx/nginx.conf*   

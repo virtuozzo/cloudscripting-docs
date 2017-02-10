@@ -1,11 +1,11 @@
 # Writing Scripts
 
 Custom users scripts can be written in Java or JavaScript. Inside these scripts, the set of client libraries for <a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> methods calling is available. 
-A script can be subscribed to the <b>*onAfterReturn*</b> event on its outlet for an execution of any [action](/reference/actions/).
+A script can be subscribed to the <b>*onAfterReturn*</b> event on its outlet for an execution of any <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a>.          
 
 
 ## Intercontainer Scripts
-In order to execute a shell script inside a container, the [ExecuteShellCommands](http://docs.cloudscripting.com/reference/actions/#cmd) action is used.           
+In order to execute a shell script inside a container, the <a href="http://docs.cloudscripting.com/reference/actions/#cmd" target="_blank">ExecuteShellCommands</a> action is used.                
 
 **Example #1 Execute bash script from URL**
 ```example
