@@ -39,7 +39,7 @@ pages:
    - Conditions and Iterations: creating-templates/conditions-and-iterations.md
    - Custom Scripts: creating-templates/custom-scripts.md
    - Visual Settings: creating-templates/user-input-parameters.md
-   - Custom Errors: reference/handling-custom-errors.md
+#   - Custom Errors: reference/handling-custom-errors.md
 
 #Samples
 - Samples:

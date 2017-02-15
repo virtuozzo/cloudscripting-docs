@@ -24,6 +24,20 @@ $( document ).ready(function() {
     $('table').addClass('docutils');
 });
 
+function showChildren(hiddenId) {
+    var sDesc = '.fa-angle-down',
+        sAsc = '.fa-angle-up';
+
+    //if ($('.toctree-l4 ' + sDesc).is(':visible')) {
+        $(sAsc).toggle();
+        $(sDesc).toggle();
+        console.log(true);
+    //}
+
+    $('#hidden_' + hiddenId).toggle();
+
+}
+
 window.SphinxRtdTheme = (function (jquery) {
     var stickyNav = (function () {
         var navBar,

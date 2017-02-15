@@ -14,11 +14,35 @@
                                 {% endif %}
 
                                 {% for toc_item in toc_item.children %}
-                                    <li><a class="toctree-l4" href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                                    <!--<li class="toctree-l4">{{ toc_item.title }}</li>-->
 
-                                    {% for toc_item in toc_item.children %}
-                                        <li><a class="toctree-l4" href="{{ toc_item.url }}">&nbsp;&nbsp;&nbsp;&nbsp;&blacksquare;&nbsp; {{ toc_item.title }}</a></li>
-                                    {% endfor %}
+                                <!--<li><a class="toctree-l4" href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>-->
+
+                                    {% if toc_item.children %}
+
+                                    <label onclick="showChildren('toctree-l4-incl')" for="for-label" class="toctree-l4">{{ toc_item.title }}
+
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                        <i class="fa fa-angle-up" aria-hidden="true"></i>
+                                    </label>
+                                    <!--<i class="fa fa-sort-desc" aria-hidden="true"></i>-->
+                                    <!--<i class="fa fa-sort-asc" aria-hidden="true"></i>-->
+
+
+                                <input id="for-label" class="toctree-l4-inp" type="checkbox" style="display:none">
+
+
+                                    <div id="hidden_toctree-l4-incl">
+                                        {% for toc_item in toc_item.children %}
+                                            <!--<li id="toctree-l4-incl">-->
+                                                <a class="toctree-l4-incl" href="{{ toc_item.url }}" style="">&nbsp;&nbsp;&nbsp;&nbsp;&blacksquare;&nbsp; {{ toc_item.title }}</a>
+                                            <!--</li>-->
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                        <li><a class="toctree-l4" href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                                    {% endif %}
+
                                 {% endfor %}
                             {% endfor %}
                             </ul>

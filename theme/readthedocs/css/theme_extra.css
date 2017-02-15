@@ -47,8 +47,54 @@ h3, h4, h5, h6 {
     color: #fff;
 }
 
-.wy-menu-vertical .toctree-l2 a {
+.wy-menu-vertical .subnav a {
     padding: 0.4045em 2.427em;
+}
+
+.wy-menu-vertical li ul {
+    display: inherit;
+}
+
+.wy-menu-vertical li ul.subnav ul.subnav{
+    padding-left: 1em;
+}
+
+#hidden_toctree-l4-incl {
+    display: none;
+}
+
+.fa-angle-up {
+    display: none;
+}
+
+#for-label:checked ~ #hidden_toctree-l4-incl {
+    display: block;
+}
+
+#for-label:checked > .fa-angle-down {
+    display: none;
+}
+#for-label:checked > .fa-angle-up {
+    display: none;
+}
+
+.fa-angle-down, .fa-angle-up {
+    padding-left: 5px;
+}
+
+.wy-menu-vertical li.current ul .toctree-l4:checked ~ .toctree-l4-incl{
+    display: block;
+}
+
+.wy-menu-vertical li.current ul .toctree-l4 {
+    color:#fff;;padding:0.4045em 2.427em; background-color:#5a6078;
+    margin-bottom: 0;
+    font-size: 100%;
+}
+
+
+.wy-menu-vertical li.current ul .toctree-l4:not(checked) ~ .toctree-l4-incl{
+    display: none;
 }
 
 /*

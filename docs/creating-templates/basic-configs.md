@@ -19,9 +19,11 @@ The code should contain a set of strings needed for a successful installation of
 - *name* - JPS custom name           
 
 This is a mandatory body part of the application package, which includes the information about JPS name and the type of the application installation (the <b>*'install'*</b> mode initiates a new environment creation required for a deployment, the <b>*'update'*</b> mode performs actions on the existing environment).
-This basic string should be extended with the settings required by the application you are packing. The following configuration details are included beside the <b>*'type': { }*</b> parameter:
+This basic string should be extended with the settings required by the application you are packing. The following configuration details are included beside the <b>*'type': " "*</b> parameter:
 
-<h2>Application Workflow</h2>
+<h2>Manifest Overview</h2>
+
+There is a set of available parameters to define a manifest installation behaviour, custom description and design, application icons and success texts etc.
 
 **Basic Template**
 ```
@@ -56,12 +58,12 @@ This basic string should be extended with the settings required by the applicati
 - `settings` *[optional]* - custom form with <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">predefined user input elements</a>                        
 - `version` - *[optional]* - JPS type supported by the Jelastic Platform. See the <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">correspondence between version</a> page.
 - `appVersion` *[optional]* - custom version of an application            
-- `nodes` - object to describe information about nodes for an installation. Required option for **type** `install`.               
+- `nodes` - an array to describe information about nodes for an installation. Required option for JPS with **type** `install`.               
 - `engine` *[optional]* - engine <a href="http://docs.cloudscripting.com/reference/container-types/#engine-versions-engine" target="_blank">version</a>, by **default** `java6`            
 - `region` *[optional]* - region, where an environment will be installed. Required option for **type** `install`.             
 - `displayName` *[optional]* - display name for an environment. Required option for **type** `install`.          
-- `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`             
-- `ha` *[optional]* - high availability for Java stacks, by **default** `false`                                
+- `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with `type` *install* mode.            
+- `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with `type` *install* mode.                                
 - `description` - text string that describes a template. This section should always follow the template format version section.            
 - `categories` - categories available for manifests filtering                                        
 - `logo` *[optional]* - JPS image that will be displayed within custom add-ons                    
@@ -73,13 +75,43 @@ This basic string should be extended with the settings required by the applicati
 - `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation      
 - `onInstall` *[optional]* - <a href="http://docs.cloudscripting.com/reference/events/#oninstall" target="_blank">event</a> that is an entry point for actions execution                               
 
-##Docker Actions
+##Environment Installation
+
+The environment can be installed in case when the `type` parameter is set to **install**.Then the set of nodes with their parameters should be defined also.
+
+###Nodes Definition
+
+The list of available parameters are:
+
+- `nodeType` *[required]* - the defined node type. The list of available stacks are <a href="/creating-templates/selecting-containers/#supported-stacks" target="_blank">here</a>. 
+- `cloudlets` *[optional]* - a number of dynamic cloudlets. The default value is 0. `flexible` is an alias. 
+- `fixedCloudlets` *[optional]* - a mount of fixed cloudlets. The default value is 1.
+- `count` *[optional]* - a mount of nodes in one group. The default value is 1.
+- `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any cistom node group.
+- `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
+- `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.
+
+The following parameters are available for Docker nodes only:   
+                       
+- `image` *[optional]* - name and tag of Docker image                            
+- `links` *[optional]* - Docker links                         
+    - `sourceNodeGroup` - source node to be linked with a current node                                
+    - `alias` - prefix alias for linked variables                         
+- `env` *[optional]* - Docker environment variables                        
+- `volumes` *[optional]* - Docker node volumes               
+- `volumeMounts` *[optional]* - Docker external volumes mounts                             
+- `cmd` *[optional]* - Docker run configs                            
+- `entrypoint` *[optional]* - Docker entry points  
+
+
+<!--##Docker Actions-->
+###Nodes Actions
 
 Specific Cloud Scripting actions for Docker containers include operations of *volumes*, *links* and *environment variables* management.
 <br>
-<!--**Volumes**-->
 
 There are three available parameters to set Docker volumes:  
+
 - *volumes* - list of volume paths   
 - *volumeMounts* - mount configurations  
 - *volumesFrom* - list of nodes the volumes are imported from    
@@ -100,7 +132,8 @@ All of the fields are set within the Docker object:
   ]
 }
 ```
-<h3>Volumes</h3>
+**Volumes**
+
 This field represents a string array:  
 ```
 [
@@ -115,7 +148,7 @@ This field represents a string array:
 ]
 ```
 
-<h3>VolumeMounts</h3>
+**VolumeMounts**
 This parameter is an object. It can be set like within the example below:    
 ```
 {
@@ -264,14 +297,14 @@ where:
 - *"storage:ro"* - like { sourceNodeGroup : "storage", readOnly : true }
 -->
 
-<h3>Docker Environment Variables</h3>
+**Environment Variables**
 
 Docker environment <a href="https://docs.jelastic.com/docker-variables" target="_blank">variable</a> is an optional topology object. The *env* instruction allows to set the required environment variables to specified values. 
 
 ```
 {
   "type": "install",
-  "name": "docker environment variables",
+  "name": "Environment variables",
   "nodes": [
     {
       "nodeGroup": "cp",
@@ -285,7 +318,7 @@ Docker environment <a href="https://docs.jelastic.com/docker-variables" target="
 }
 ```
 
-<h3>Docker Links</h3>
+**Links**
 
 Docker <a href="https://docs.jelastic.com/docker-links" target="_blank">links</a> option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
 <br>
@@ -327,6 +360,7 @@ As a result, all the environment variables within *db* and *memcached* nodes wil
  
 Here, environment variables of linked nodes will have the names, predefined within the `links` array.     
 For example:  
+
 - variable *MYSQL_ROOT_PASSWORD* from *sql* node is *DB_MYSQL_ROOT_PASSWORD* in *cp* node   
 - variable *IP_ADDRESS* from *memcached* node is *MEMCACHED_IP_ADDRESS* in *cp* node
 
@@ -364,10 +398,11 @@ where:
 - <b>*{domain}*</b> - domain name of the website, where the manifest is stored                     
 - <b>*myfile.extension*</b> - name of the file with indicated extension (i.e. *jps*) at the end                     
 
-There are the following Cloud Scripting rules applied while parsing file's relative path:                         
-  - `baseUrl` parameter is being defined                            
-  - verification that the linked file’s text doesn't contain whitespaces (including tabs and line breaks)                                     
-  - verification that the linked file’s text doesn't contain semicolons and round brackets                                  
+There are the following Cloud Scripting rules applied while parsing file's relative path:   
+                      
+- `baseUrl` parameter is being defined                            
+- verification that the linked file’s text doesn't contain whitespaces (including tabs and line breaks)                                     
+- verification that the linked file’s text doesn't contain semicolons and round brackets                                  
 
 If installation is being run from <a href="https://github.com/jelastic-jps" target="_blank">*GitHub*</a> and URL includes <b>*‘/blob/’*</b>, it will be replaced with <b>*‘/raw/’*</b>. In case the `baseUrl` parameter is defined without a slash at the end, it will be added automatically.              
 
@@ -388,70 +423,4 @@ For example:
   }
 }
 ```
-
-
-<h3>Success Text Customization</h3>
-
-It is possible to customize (in confines of a manifest) the *success* text, which is displayed upon successful application installation either at the dashboard or via email notification.         
-
-- Setting a relative to `baseUrl` link, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                    
-```
-{
-    "type" : "update",
-    "name" : "Success Text first example",
-    "baseUrl" : "https://github.com/jelastic-jps/minio",
-    "onInstall" : {
-        "log" : "success text first example"
-    },
-    "success" : "README.md"
-}
-```
-
-- Customizing the *success* return text by means of the external link.                    
-```
-{
-  "type": "update",
-  "name": "Success Text Second Example",
-  "onInstall": {
-    "log": "success Text Second Example"
-  },
-  "success": "https://github.com/jelastic-jps/lets-encrypt/raw/master/README.md"
-}
-```
-
-As it was mentioned above, the success response is distinguished between two values:                        
-
- - text displayed at the dashboard after application installation is successfully conducted                       
- 
-```
-{
-  "type": "update",
-  "name": "Success Text Second Example",
-  "onInstall": {
-    "log": "success Text Second Example"
-  },
-  "success": {
-    "text": "https://github.com/jelastic-jps/lets-encrypt/raw/master/README.md"
-  }
-}
-```
- 
- - message delivered via email notifying about the successful application setup                             
- 
-```
-{
-  "type": "update",
-  "name": "Success Text Test 4",
-  "baseUrl": "https://github.com/jelastic-jps/lets-encrypt",
-  "onInstall": {
-    "log": "success text test 4"
-  },
-  "success": {
-    "email": "README.md",
-    "en": "README.md",
-    "ru": "https://github.com/jelastic-jps/lets-encrypt/blob/master/README.md"
-  }
-}
-```
-
-In the last example above, the localization functionality is applied, which depends upon the Jelastic Platform selected language.                        
+                        
