@@ -337,8 +337,8 @@ The compositefield is a container with specific functionality and structural com
         "bottom": 0,
         "left": 10
       },
-      "defaultPadding": "0",
-      "defaultFlex": "",
+      "defaultPadding": 0,
+      "defaultFlex": 0,
       "caption": "Compositefield",
       "type": "compositefield",
       "name": "compositefield",
