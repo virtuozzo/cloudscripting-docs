@@ -10,7 +10,7 @@ There are three available parameters to set Docker volumes:
 - *volumesFrom* - list of nodes the volumes are imported from    
 
 All of the fields are set within the Docker object:
-```
+``` json
 {
   "type": "install",
   "name": "docker volumes",
@@ -27,7 +27,7 @@ All of the fields are set within the Docker object:
 ```
 <h3>Volumes</h3>
 This field represents a string array:  
-```
+``` json
 [
   {
     "volumes": [
@@ -42,7 +42,7 @@ This field represents a string array:
 
 <h3>VolumeMounts</h3>
 This parameter is an object. It can be set like within the example below:    
-```
+``` json
 {
   "volumeMounts": {
     "/example-path": {
@@ -65,7 +65,7 @@ Here:
 - `sourceNodeGroup` - any available <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">*nodeGroup*</a> within a source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.    
 
 In case not all source node volumes are required to be mounted, the particular ones can be specified:
-```
+``` json
 [
   {
     "sourceNodeGroup": "storage",
@@ -81,7 +81,7 @@ In case not all source node volumes are required to be mounted, the particular o
  
 **Master Node Mount:**   
 Samples to mount a particular volume by exact node identifier & path (*/master*) and to mount all volumes from the layer master node by *nodeGroup* (*/master-1*)
-```
+``` json
 {
   "volumeMounts": {
     "/master": {
@@ -102,7 +102,7 @@ Here, *sourcePath* and *readOnly* parameters are optional.
 <br>
 Samples to mount all volumes from a particular node by exact node identifier & path (*/node*) and to mount master node volumes by *nodeGroup* type (*/data*)
 
-```
+``` json
 {
   "volumeMounts": {
     "/node": {
@@ -118,7 +118,7 @@ Samples to mount all volumes from a particular node by exact node identifier & p
 **External Server Mounts:**
 <br>
 Sample to mount a volume (*/external*) from external server by indicating its host (`sourceHost`), path (`sourcePath`) and access permissions (`readOnly`).
-```
+``` json
 {
   "volumeMounts": {
     "/external": {
@@ -132,7 +132,7 @@ Sample to mount a volume (*/external*) from external server by indicating its ho
 **Short Set for External Server:**
 <br>
 Sample to mount a number of volumes from external server by specifying the required parameters (i.e. volume path, `sourceHost`, `sourcePath`, access permissions) for each of them within one string.     
-```
+``` json
 {
   "volumeMounts": {
     "/ext-domain": "aws.com",
@@ -193,7 +193,7 @@ where:
 
 Docker environment <a href="https://docs.jelastic.com/docker-variables" target="_blank">variable</a> is an optional topology object. The *env* instruction allows to set the required environment variables to specified values. 
 
-```
+``` json
 {
   "type": "install",
   "name": "docker environment variables",
@@ -216,7 +216,7 @@ Docker <a href="https://docs.jelastic.com/docker-links" target="_blank">links</a
 <br>
 
 The example below illustrates the way to link *sql* and *memcached* nodes to *cp* container.
-```
+``` json
 [
   {
     "image": "wordpress:latest",

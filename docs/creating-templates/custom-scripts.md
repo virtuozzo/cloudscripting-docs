@@ -8,7 +8,7 @@ A script can be subscribed to the <b>*onAfterReturn*</b> event on its outlet for
 In order to execute a shell script inside a container, the <a href="http://docs.cloudscripting.com/reference/actions/#cmd" target="_blank">ExecuteShellCommands</a> action is used.                
 
 **Example #1 Execute bash script from URL**
-```example
+``` json
 {
   "cmd [cp]": "curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2"
 }
@@ -16,7 +16,7 @@ In order to execute a shell script inside a container, the <a href="http://docs.
 
 **Example #2 Restore MySQL database**
 
-```
+``` json
 {
   "cmd [mysql5]": "curl -fsS http://example.com/script.sh | /bin/bash -s '${nodes.sqldb.password}' 'http://example.com/dump.sql' '${user.appPassword}'"
 }
@@ -55,7 +55,7 @@ END
 Using `script` action
 
 <h3>Java</h3>
-```example
+``` json
 {
   "executeScript": [
     {
@@ -74,7 +74,7 @@ Using `script` action
 -->
 
 <h3>JavaScript</h3>
-```example
+``` json
 {
   "script ["Hello World!"]": "return getParam('greeting');"
 }

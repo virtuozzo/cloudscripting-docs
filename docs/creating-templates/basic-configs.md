@@ -6,7 +6,7 @@ The JPS manifest is a file with <b>*.json*</b> extension, which contains an appr
 
 The code should contain a set of strings needed for a successful installation of an application. The basis of the code is represented by the following string:
 
-```
+``` json
 {
     "type": "string",
     "name": "any require name"
@@ -26,7 +26,7 @@ This basic string should be extended with the settings required by the applicati
 There is a set of available parameters to define a manifest installation behaviour, custom description and design, application icons and success texts etc.
 
 **Basic Template**
-```
+``` json
 {
   "type": "string",
   "name": "string",
@@ -51,7 +51,7 @@ There is a set of available parameters to define a manifest installation behavio
   "addons": "array",
   "onInstall": "object/array"
 }
-```
+``` 
 
 - `name` *[required]* - JPS custom name      
 - `baseUrl` *[optional]* - custom <a href="http://docs.cloudscripting.com/creating-templates/relative-links/" target="_blank">relative links</a>                                       
@@ -117,7 +117,7 @@ There are three available parameters to set Docker volumes:
 - *volumesFrom* - list of nodes the volumes are imported from    
 
 All of the fields are set within the Docker object:
-```
+``` json
 {
   "type": "install",
   "name": "docker volumes",
@@ -132,10 +132,11 @@ All of the fields are set within the Docker object:
   ]
 }
 ```
+
 **Volumes**
 
 This field represents a string array:  
-```
+``` json
 [
   {
     "volumes": [
@@ -150,7 +151,7 @@ This field represents a string array:
 
 **VolumeMounts**
 This parameter is an object. It can be set like within the example below:    
-```
+``` json
 {
   "volumeMounts": {
     "/example-path": {
@@ -173,7 +174,7 @@ Here:
 - `sourceNodeGroup` - any available <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">*nodeGroup*</a> within a source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.    
 
 In case not all source node volumes are required to be mounted, the particular ones can be specified:
-```
+``` json
 [
   {
     "sourceNodeGroup": "storage",
@@ -189,7 +190,7 @@ In case not all source node volumes are required to be mounted, the particular o
  
 **Master Node Mount:**   
 Samples to mount a particular volume by exact node identifier & path (*/master*) and to mount all volumes from the layer master node by *nodeGroup* (*/master-1*)
-```
+``` json
 {
   "volumeMounts": {
     "/master": {
@@ -210,7 +211,7 @@ Here, *sourcePath* and *readOnly* parameters are optional.
 <br>
 Samples to mount all volumes from a particular node by exact node identifier & path (*/node*) and to mount master node volumes by *nodeGroup* type (*/data*)
 
-```
+``` json
 {
   "volumeMounts": {
     "/node": {
@@ -226,7 +227,7 @@ Samples to mount all volumes from a particular node by exact node identifier & p
 **External Server Mounts:**
 <br>
 Sample to mount a volume (*/external*) from external server by indicating its host (`sourceHost`), path (`sourcePath`) and access permissions (`readOnly`).
-```
+``` json
 {
   "volumeMounts": {
     "/external": {
@@ -240,7 +241,7 @@ Sample to mount a volume (*/external*) from external server by indicating its ho
 **Short Set for External Server:**
 <br>
 Sample to mount a number of volumes from external server by specifying the required parameters (i.e. volume path, `sourceHost`, `sourcePath`, access permissions) for each of them within one string.     
-```
+``` json
 {
   "volumeMounts": {
     "/ext-domain": "aws.com",
@@ -258,7 +259,7 @@ Here, "*ro*" stands for *readOnly* permissions.
 
 `volumesFrom` is an list object.    
 There are two ways to select the volume source container:
-```
+``` json
 [
   {
     "sourceNodeId": "49",
@@ -271,7 +272,7 @@ There are two ways to select the volume source container:
 ```
 
 In case to import not full source node volumes list You can set like below:
-```
+``` json
 [
   {
     "sourceNodeGroup": "storage",
@@ -284,7 +285,7 @@ In case to import not full source node volumes list You can set like below:
 ```
 
 Simple set examples above:
-```
+``` json
 [
   49,
   "storage",
@@ -301,7 +302,7 @@ where:
 
 Docker environment <a href="https://docs.jelastic.com/docker-variables" target="_blank">variable</a> is an optional topology object. The *env* instruction allows to set the required environment variables to specified values. 
 
-```
+``` json
 {
   "type": "install",
   "name": "Environment variables",
@@ -324,7 +325,7 @@ Docker <a href="https://docs.jelastic.com/docker-links" target="_blank">links</a
 <br>
 
 The example below illustrates the way to link *sql* and *memcached* nodes to *cp* container.
-```
+``` json
 [
   {
     "image": "wordpress:latest",
@@ -372,7 +373,7 @@ The relative links functionality is intended to specify the JPS file’s base UR
     > The *baseUrl* value declared within the manifest has higher priority than installation via URL (i.e. <a href="https://docs.jelastic.com/environment-export-import" target="_blank">Import</a>).                
 
 **Example**
-```
+``` json
 {
     "type" : "update",
     "name" : "Base URL test",
@@ -411,7 +412,7 @@ The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be u
 
 For example:
 
-```
+``` json
 {
   "type" : "update",
   "name" : "Test Base URL",

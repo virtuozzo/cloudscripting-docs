@@ -7,7 +7,7 @@ The *nodeType* parameter defines software stacks (among the supported ones) to b
 **For example:**   
 
 Using the *nodeType* field while performing the <a href="http://docs.cloudscripting.com/reference/actions/#writefile" target="_blank">*writeFile*</a> action:                              
-```
+``` json
 {
   "writeFile": {
     "nodeType": "apache2",
@@ -24,7 +24,7 @@ where:
 - `body` - data that is being written to a file                          
 
 Creating an environment with topology specifics, set by the *engine* and *nodeType* values:                                      
-```
+``` json
 {
   "type": "install",
   "name": "install Tomcat7",
@@ -51,7 +51,7 @@ The *nodeGroup* parameter is applied to set a paradigm for *nodeType* division i
 For *Docker* containers, *nodeGroup* can be stated to any value - either predefined (listed below) or your custom one.       
 
 For example:
-```
+``` json
 {
   "type": "install",
   "name": "install Docker",

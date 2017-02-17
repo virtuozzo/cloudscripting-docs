@@ -22,7 +22,7 @@ The example below describes events filtering by *nodeGroup* (for the <b>*onAfter
 
 Here, the *nodeGroup* filtering, namely by a compute nodes (*[cp]*) layer, is set so that the *cmd* action is executed only after the compute nodes are scaled out. The *nodeType* filtering is set for <b>*apache2*</b> nodes, so that the *cmd* action is executed upon these particular nodes restart. The *nodeID* filtering is implemented in such a way that the <b>*onAfterResetNodePassword*</b> event is subscribed only for the first compute node in a layer.
 
-```
+``` json
 {
   "type": "update",
   "name": "Event Subsribtion Example",
@@ -193,7 +193,7 @@ There are five available types of the monitoring triggers, which are based on th
 - *Disk IOPS*
 
 The following example shows how a **new trigger creation** is performed:
-```
+``` json
 {
   "type": "update",
   "name": "AddTrigger",

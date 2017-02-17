@@ -20,7 +20,7 @@ Both *If* and *ForEach* can be of any nesting level.
 <b>Examples</b>    
 
 Comparing global variables:
-```
+``` json
 {
   "type": "update",
   "name": "Comparing global variables",
@@ -41,7 +41,7 @@ Comparing global variables:
 ```
 
 Checking environment status:
-```
+``` json
 {
   "onInstall": {
     "if (env.status == 1)": {
@@ -52,7 +52,7 @@ Checking environment status:
 ```
      
 Checking Jelastic SSL status: 
-```
+``` json
 {
   "onInstall": {
     "if(!${env.ssl})": {
@@ -63,7 +63,7 @@ Checking Jelastic SSL status:
 ```
 
 Environment domain validation:
-```
+``` json
 {
   "onInstall": {
     "if (/^env-/.test(env.domain))": {
@@ -75,7 +75,7 @@ Environment domain validation:
 
 
 Checking compute node OS type and balancer presence: 
-```
+``` json
 {
   "onInstall": {
     "if (nodes.cp && nodes.cp[0].osType == 'LINUX')": [
@@ -95,7 +95,7 @@ Checking compute node OS type and balancer presence:
 Nested conditions:   
   
 Nesting of two *If* condition statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and logging the correspondent messages.
-```
+``` json
 {
   "type": "update",
   "name": "Nesting example",
@@ -121,7 +121,7 @@ Balancer node with external IP address!
 ```
 
 Checking balancer stack type:
-```
+``` json
 {
   "type": "update",
   "name": "Nginx stack",
@@ -140,7 +140,7 @@ Checking balancer stack type:
 
 The main iterable object is *ForEach*. Its map:
 
-```
+``` json
 {
   "env": {
     "nodes": [],
@@ -166,7 +166,7 @@ where:
 
 Iteration can be executed by `env.nodes`, `nodes`, `env.contexts` and `env.extdomains` objects:
 
-```
+``` json
 {
   "forEach(env.extdomains)": [
     {
@@ -184,7 +184,7 @@ where:
 - `@i` - default iterator name 
 - `env.extdomains` - bound external domains 
 
-```
+``` json
 {
   "forEach(env.contexts)": {
     "writeFile [cp]": {
@@ -201,7 +201,7 @@ where:
 See the <a href="http://docs.cloudscripting.com/reference/placeholders/#procedure-placeholders" target="_blank">full list of available placeholders</a>.             
 
 Scaling nodes example:
-```
+``` json
 {
   "type": "update",
   "name": "Scaling Example",
@@ -224,7 +224,7 @@ As a result of *cmd*, compute nodes internal IP addresses are rewritten within b
 ###By all nodes
 
 Iteration by all nodes in an environment:
-```
+``` json
 {
   "forEach(env.nodes)": {
     "cmd [${@i.id}]": "echo ${@i.address} > /tmp/example.txt"
@@ -235,7 +235,7 @@ Iteration by all nodes in an environment:
 ###By compute nodes 
 
 Iteration by compute nodes with a custom iterator name:
-```
+``` json
 {
   "forEach(cp:nodes.cp)": {
     "cmd [${@cp.id}]": "echo ${@cp.address} > /tmp/example.txt"
@@ -246,7 +246,7 @@ where:
 - `@cp [optional]` - custom iterator name. Target nodes also can be set by type -`${@cp.nodeType}` or group - `${@cp.nodeGroup}` 
 
 Custom iterator name can be used for nesting cycles one into another:
-```
+``` json
 {
   "type": "update",
   "name": "execution actions",

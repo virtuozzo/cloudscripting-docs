@@ -8,7 +8,7 @@ Highly reliable S3-compatible storage. S3 compatible object storage server in Do
 
 [More details here.](https://github.com/jelastic-jps/minio)
 
-```
+``` json
 {
   "type": "install",
   "name": "Minio",
@@ -99,7 +99,7 @@ Due to the native GlassFish clustering architecture, its topology includes three
 
 [More details here](https://github.com/jelastic-jps/glassfish)
 
-```
+``` json
 {
   "type": "install",
   "name": "Auto Scaling GlassFish Cluster",
@@ -273,7 +273,7 @@ To get your personal Minecraft server inside the cloud, perform the following:
 
 [More details here](https://github.com/jelastic-jps/minecraft-server)
 
-```
+``` json
 {
   "type": "install",
   "name": "Minecraft Server",
@@ -351,7 +351,7 @@ In order to get this solution instantly deployed, click the "Deploy" button, spe
 [![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fgit-push-deploy%2Fraw%2Fmaster%2Fmanifest.jps)
 
 [More details here](https://github.com/jelastic-jps/git-push-deploy)
-```
+``` json
 {
   "type": "install",
   "name": "Git-Push-Deploy Example",
@@ -402,7 +402,7 @@ Bundle of WildFly application server and Maven build node for CD from GIT.
 [![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/wildfly/master/manifest.jps) 
 
 [More details here](https://github.com/jelastic-jps/wildfly)
-```
+``` json
 {
   "type": "install",
   "logo": "https://github.com/jelastic-jps/wildfly/raw/master/images/wildfly-logo-70px.png",
@@ -465,7 +465,7 @@ PostgreSQL Cluster with preconfigured Master-Slave replication.
 [![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fpostgresql-replication%2Fraw%2Fmaster%2Fmanifest.jps)
 
 [More details here](https://github.com/jelastic-jps/postgresql-replication)
-```
+``` json
 {
   "type": "install",
   "categories": [
@@ -515,7 +515,7 @@ The target usage for replication in MariaDB databases includes:
   
 [More details here](https://github.com/jelastic-jps/mariadb-replication)
   
-```
+``` json
 {
   "type": "install",
   "categories": [
@@ -599,7 +599,7 @@ The target usage for replication in MySQL databases includes:
 
 [More details here](https://github.com/jelastic-jps/mysql-replication)
 
-```
+``` json
 {
   "type": "install",
   "homepage": "http://docs.jelastic.com/database-master-slave-replication",
@@ -679,7 +679,7 @@ The JPS package deploys Cyclos 4 that initially contains 1 application server an
 
 [More details here](https://github.com/jelastic-jps/cyclos/tree/master/cyclos-4)
 
-```
+``` json
 {
   "type": "install",
   "logo": "https://github.com/jelastic-jps/cyclos/raw/master/images/cyclos.png",
@@ -773,7 +773,7 @@ The JPS package initially deploys one container with Payara Micro application se
 
 [More details here](https://github.com/jelastic-jps/payara/tree/master/payara-micro-cluster)
 
-```
+``` json
 {
   "type": "install",
   "name": "Simple Payara Micro Cluster",
@@ -824,7 +824,7 @@ The JPS package initially deploys one container with Payara Server Full. The pac
 
 [More details here](https://github.com/jelastic-jps/payara/tree/master/payara-server-full)
 
-```
+``` json
 {
   "type": "install",
   "name": "Payara Server Full",
@@ -855,7 +855,7 @@ The JPS package initially deploys one container with Payara Micro application se
 
 [More details here]([More details here](https://github.com/jelastic-jps/payara/tree/master/payara-server-full)
 
-```
+``` json
 {
   "type": "install",
   "name": "Multicast Payara Cluster",
@@ -898,7 +898,7 @@ Autoscaling triggers + Load balancing and Auto-discovery + Storage container wit
 
 [More details here]([More details here](https://github.com/jelastic-jps/payara/tree/master/payara-micro-cluster-advanced)
 
-```
+``` json
 {
   "type": "install",
   "name": "Advanced Payara Micro Cluster",

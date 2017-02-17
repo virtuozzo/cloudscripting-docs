@@ -11,7 +11,7 @@ This add-on allows to configure SSL for:
  
  See [more details about add-on installation and configuration here.](https://github.com/jelastic-jps/lets-encrypt)
 
-```
+``` json
 {
   "type": "update",
   "id": "letsencrypt-ssl-addon",
@@ -133,7 +133,7 @@ In order to get this solution instantly deployed, click the "Get It Hosted Now" 
 
 [![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Ffail2ban%2Fraw%2Fmaster%2Fmanifest.jps)
 
-```
+``` json
 {
   "type": "update",
   "Appversion": "0.9.6",
@@ -234,7 +234,7 @@ In order to get this solution instantly deployed, click the "Get It Hosted Now" 
 
 To deploy this package to Jelastic Private Cloud, import [this JPS manifest](../../raw/master/manifest.jps) within your dashboard ([detailed instruction](https://docs.jelastic.com/environment-export-import#import)).
 
-```
+``` json
 {
   "version": "0.4",
   "type": "update",
@@ -355,7 +355,7 @@ To deploy this package to Jelastic Private Cloud, import [this JPS manifest](../
 ##Managed Haproxy Load Balancer
 
 Add-on to complement environment with auto-configured Docker Haproxy LB container.  
-```
+``` json
 {
   "type": "update",
   "name": "Managed Load Balancer for Payara micro cluster",
