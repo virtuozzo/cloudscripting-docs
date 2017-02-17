@@ -81,7 +81,7 @@ Jelastic platform supports the following predefined *nodeGroup* values:
 - **cp** (for compute nodes) - *tomcat6, tomcat7, tomcat8, tomee, glassfish3, glassfish4, jetty6, jetty8, jetty9, jboss7, smartfox-server, powerdns, railo4, wildfly, wildfly9, wildfly10, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs*                     
 - **sql** (for *sql* databases) - *mysql5, mariadb, mariadb10, postgres8, postgres9*                          
 - **nosql** (for *nosql* databases) - *mongodb, couchdb, redis, redis3, cassandra2*                   
-- **vps** (for virtual private servers) - *centos6, centos7*                        
+- **vds** (for virtual private servers) - *centos6, centos7*                        
 - **cache** (for a cache server) - *memcached*                       
 - **build** (for a build node) - *maven3*                     
 - **storage** (for a storage container) - *storage*                        
