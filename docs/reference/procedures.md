@@ -10,7 +10,7 @@ In order to access any required data or parameters of allocated resources inside
 <h3>Code Reuse</h3>
 
 Output `Hello World!` two times in `greeting.txt`:  
-```
+``` json
 {
   "type": "update",
   "name": "Procedures Example",
@@ -42,7 +42,7 @@ Output `Hello World!` two times in `greeting.txt`:
 <h3>Call procedure with parameters</h3>
 
 Write `Hello World!` and output first and second compute node IP address 
-```
+``` json
 {
 	"type": "update",
 	"name": "Procedures Example",

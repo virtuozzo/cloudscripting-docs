@@ -16,7 +16,7 @@
 Below, some examples are provided on how to edit custom information to the log.        
 
 Output single placeholder value:
-```
+``` json
 {
   "type": "update",
   "name": "LogTest",
@@ -30,7 +30,7 @@ Output single placeholder value:
 ```
 
 Output all placeholders:
-```
+``` json
 {
   "type": "update",
   "name": "LogTest",
@@ -41,7 +41,7 @@ Output all placeholders:
 ```                                                                                      
 
 Output from the script:
-```
+``` json
 {
   "type": "update",
   "name": "LogTest",
@@ -63,7 +63,7 @@ Output from the script:
 
 `script.js` body:
 
-```                                                
+``` javascript                                               
 var message = 'Hello';
 
 return { 

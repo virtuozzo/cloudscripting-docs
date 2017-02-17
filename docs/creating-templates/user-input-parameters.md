@@ -1,7 +1,7 @@
 #Visual Settings
 ##Supported Fields
 
-```
+``` json
 {
   "type": "update",
   "settings": {
@@ -78,7 +78,8 @@ where:
 The basic text field.  
 
 <center>![string](/img/string.jpg)</center>  
-```
+
+``` json
 {
   "fields": [
     {
@@ -90,6 +91,7 @@ The basic text field.
   ]
 }
 ```
+
 where:          
  
 - `caption` *[optional]* - field label   
@@ -99,7 +101,8 @@ where:
 The multiline text field.
 
 <center>![text](/img/text.jpg)</center>  
-```
+
+``` json
 {
   "fields": [
     {
@@ -110,6 +113,7 @@ The multiline text field.
   ]
 }
 ```
+
 where:   
 
 - `caption` *[optional]* - field label  
@@ -119,7 +123,8 @@ where:
 The drop-down list and a single-line textbox.  
 
 <center>![list](/img/list.jpg)</center>  
-```
+
+``` json
 {
   "fields": [
     {
@@ -135,6 +140,7 @@ The drop-down list and a single-line textbox.
   ]
 }
 ```
+
 where:      
 
 - `caption` *[optional]* - field label         
@@ -146,7 +152,8 @@ where:
 The single checkbox field.
 
 <center>![text](/img/checkbox.jpg)</center>  
-```
+
+``` json
 {
   "fields": [
     {
@@ -158,6 +165,7 @@ The single checkbox field.
   ]
 }
 ```
+
 where:  
 
 - `caption` *[optional]* - field label           
@@ -168,7 +176,8 @@ where:
 The checkbox grouping.  
 
 <center>![text](/img/checkboxlist.jpg)</center>  
-```
+
+``` json
 {
   "fields": [
     {
@@ -183,6 +192,7 @@ The checkbox grouping.
   ]
 }
 ```
+
 where:     
 
 - `caption` *[optional]* - field label  
@@ -193,7 +203,8 @@ where:
 The radio elements grouping.  
 
 <center>![text](/img/radiolist.jpg)</center>  
-```
+
+``` json
 {
   "fields": [
     {
@@ -208,6 +219,7 @@ The radio elements grouping.
   ]
 }
 ```
+
 where:  
 
 - `caption` *[optional]* - field label   
@@ -221,7 +233,8 @@ The grouping of the radio elements with the `showIf` function.
     The *hideLabel* boolean value is always *true* for this field.   
 
 <center>![text](/img/radio-fieldset.jpg)</center>   
-```
+
+``` json
 {
   "fields": [
     {
@@ -254,6 +267,7 @@ The grouping of the radio elements with the `showIf` function.
   ]
 }
 ```
+
 where:   
 
 - `name` *[required]* - name of the `radio-fieldset` element (for other elements it’s not required)                       
@@ -267,7 +281,8 @@ where:
 Displaying Docker tags within the list element.  
 
 <center>![text](/img/dockertag.jpg)</center>  
-```
+
+``` json
 {
   "name": "Cloud Scripting",
   "settings": {
@@ -295,6 +310,7 @@ Displaying Docker tags within the list element.
   "env": {}
 }
 ```
+
 where:   
 
 - `name` *[required]* - should have the *'tag'* value  
@@ -308,7 +324,8 @@ where:
 The compositefield is a container with specific functionality and structural components that constitute it as a block for application-oriented custom user interfaces.  
 
 <center>![compositefield](/img/compositefield.jpg)</center>  
-```
+
+``` json
 {
   "fields": [
     {
@@ -346,6 +363,7 @@ The compositefield is a container with specific functionality and structural com
   ]
 }
 ```
+
 where:   
 
 - `pack` *[optional]* - manages the way items are packed together. The default value is *'start'*. Possible values: *'start'*, *'center'* and *'end'*.  
@@ -359,7 +377,8 @@ where:
 The slider element as a form field.
 
 <center>![slider](/img/slider.jpg)</center>
-```
+
+``` json
 {
   "fields": [
     {
@@ -374,6 +393,7 @@ The slider element as a form field.
   ]
 }
 ```
+
 where:   
 
 - `min` - minimum slider value  
@@ -386,7 +406,8 @@ where:
 The account environments list expanded within a drop-down element.  
 
 <center>![envlist](/img/envlist.jpg)</center>  
-```
+
+``` json
 {
   "fields": [
     {
@@ -399,6 +420,7 @@ The account environments list expanded within a drop-down element.
   ]
 }
 ```
+
 where:  
 
 - `caption` *[optional]* - field label    
@@ -417,7 +439,8 @@ where:
 Opens a pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.  
 
 <center>![popupselector](/img/popupselector.jpg)</center>  
-```
+
+``` json
 {
   "fields": [
     {
@@ -437,6 +460,7 @@ Opens a pop-up window via the POST request to any external service. It provides 
   ]
 }
 ```
+
 where:  
 
 - `caption` *[optional]* - field label                      
@@ -454,7 +478,8 @@ where:
 The text field intended only for display, which is not validated and not submitted.  
 
 <center>![displayfield](/img/displayfield.jpg)</center>  
-```
+
+``` json
 {
   "fields": [
     {
@@ -466,6 +491,7 @@ The text field intended only for display, which is not validated and not submitt
   ]
 }
 ```
+
 where:  
 
 - `caption` *[optional]* - field label                   
@@ -476,7 +502,8 @@ where:
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
 
 <center>![spinner](/img/spinner.jpg)</center>  
-```
+
+``` json
 {
   "fields": [
     {
@@ -491,6 +518,7 @@ Enhanced input field for entering numeric values, with up/down buttons and arrow
   ]
 }
 ```
+
 where:  
 
 - `name` *[optional]* - name of the field  
@@ -506,7 +534,8 @@ where:
 The text field with a number validation within a range.   
 
 <center>![numberpicker](/img/numberpicker.jpg)</center>  
-```
+
+``` json
 {
   "fields": [
     {
@@ -520,6 +549,7 @@ The text field with a number validation within a range.
   ]
 }
 ```
+
 where:  
 
 - `name` *[optional]* - name of the field  
@@ -534,7 +564,8 @@ where:
 The drop-down menu with the environments hosts.  
 
 <center>![hostpicker](/img/hostpicker.jpg)</center>  
-```
+
+``` json
 {
   "fields": [
     {
@@ -547,6 +578,7 @@ The drop-down menu with the environments hosts.
   ]
 }
 ```
+
 where:  
 
 - `name` *[optional]* - name of the field   
@@ -563,7 +595,8 @@ where:
 The toggle element is a switch between two values.
 
 <center>![toggle](/img/toggle.jpg)</center>
-```
+
+``` json
 {
   "fields": [
     {
@@ -585,7 +618,7 @@ where:
 *Target Nodes* is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *type*: <b>*update*</b> action.   
 
 Filtering for `targetNodes` can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
-```
+``` json
 {
   "type": "update",
   "name": "targetNodes",
@@ -628,7 +661,7 @@ Let’s suppose you have three environments with different topology:
 <center>![targetNodes](/img/targetNodes.jpg)</center>  
 
 Within these environments, the `targetNodes` filtering for JPS installation can be performed with the next example:
-```
+``` json
 {
   "type": "update",
   "name": "targetNodes",
@@ -657,7 +690,7 @@ By default, this menu contains the <b>Uninstall</b> option. The rest of listed a
 The used properties for custom menus are the same as for custom buttons. Herewith, the appropriate `menu` field (instead of `buttons`) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
 
 Sample to set custom buttons within the menu list of the Add-ons plank:
-```
+``` json
 {
   "type": "update",
   "name": "Custom buttons",
@@ -698,7 +731,7 @@ Such buttons execute operations that are predefined within a JPS manifest.
 <b>Templates</b>   
 
 Sample to set buttons within the **Add-ons** plank:
-```
+``` json
 {
   "type": "update",
   "name": "Custom buttons",
@@ -745,7 +778,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 - `href` *[optional]* - external link that is opened in a new browser tab; is executed only if the `settings` field is absent. In case of `href` execution, `action` will not be carried out.     
 
 Another sample with additional configurations: the next parameters can be enabled only if the [*settings*](/creating-templates/user-input-parameters/#custom-settings) field is present:     
-```
+``` json
 {
   "type": "update",
   "name": "Custom buttons",
@@ -789,7 +822,7 @@ where:
 The settings section can include a few custom forms. The default settings form ID is *'main'*.    
 
 For instance:  
-```
+``` json
 {
   "type": "update",
   "name": "Custom buttons",
@@ -856,7 +889,7 @@ There is a number of predefined pop-up windows, which emerge while custom errors
 
 The result message text can be localized according to the languages, available within the Jelastic Platform:
 
-```example
+``` json
 {
   "type": "warning",
   "message": {
@@ -872,7 +905,7 @@ The result message text can be localized according to the languages, available w
 
 The example below describes a creation of the same file twice and handling an error, which occurs as a result of such action execution. Consequently, the result code of this error will be defined as *4036*.           
 
-```
+``` json
 {
   "type": "update",
   "name": "Handling File Creation",
@@ -903,7 +936,7 @@ Thus, the example above sets all the actions with *4036* result to be displayed 
 
 The additional functionality is provided to display action errors using <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">*return*</a> action.                         
 
-```
+``` json
 {
   "type": "update",
   "name": "Custom Error Handlers",
@@ -926,7 +959,7 @@ where:
 
 If the result code is delivered via *string*, then the default result code is *11039*. Therefore, `errorHandlers` can be handled by the following outcoming *string* text:            
 
-```
+``` json
 {
 	"type": "update",
 	"name": "Custom Error Handlers",
@@ -950,7 +983,7 @@ In all the other cases, i.e. when a custom error is not predefined within the `e
 It is possible to customize (in confines of a manifest) the *success* text, which is displayed upon successful application installation either at the dashboard or via email notification.         
 
 - Setting a relative to `baseUrl` link, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                    
-```
+``` json
 {
     "type" : "update",
     "name" : "Success Text first example",
@@ -963,7 +996,7 @@ It is possible to customize (in confines of a manifest) the *success* text, whic
 ```
 
 - Customizing the *success* return text by means of the external link.                    
-```
+``` json
 {
   "type": "update",
   "name": "Success Text Second Example",
@@ -978,7 +1011,7 @@ As it was mentioned above, the success response is distinguished between two val
 
  - text displayed at the dashboard after application installation is successfully conducted                       
  
-```
+``` json
 {
   "type": "update",
   "name": "Success Text Second Example",
@@ -993,7 +1026,7 @@ As it was mentioned above, the success response is distinguished between two val
  
  - message delivered via email notifying about the successful application setup                             
  
-```
+``` json
 {
   "type": "update",
   "name": "Success Text Test 4",

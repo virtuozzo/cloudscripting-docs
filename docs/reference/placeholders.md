@@ -137,7 +137,7 @@ Learn more about the event placeholders within the above-linked *Events* page.
 - `${settings.key}` - (where *key* is a name of the application setting). The placeholder is defined in case user input parameters are specified within a manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.     
 
 For example:
-```example
+``` json
 {
   "jpsType": "update",
   "settings": {
@@ -158,7 +158,7 @@ The placeholder's name here is `${settings.customName}`. Check the list of <a hr
 - `${this.param}` - where *param* is a name of the action parameter
 
 For example:
-```
+``` json
 {
   "script": "return greeting;",
   "params": {
@@ -167,7 +167,7 @@ For example:
 }
 ```
 Passing custom params to the action is performed in the following way:
-```
+``` json
 {
 	"jpsType": "update",
 	"name": "example",
@@ -194,7 +194,7 @@ As a result, console will display the *first* (1) custom parameter from `${this.
 
 For instance: 
 
-```example
+``` json
 {
   "jpsType": "update",
   "settings": {
@@ -214,7 +214,7 @@ For instance:
 Placeholders managed by users can be predefined via <b>*globals declaration*</b>. The corresponding declaration is performed in advance of the manifest installation.  
 
 For example:
-```
+``` json
 {
   "jpsType": "update",
   "name": "Global declaration",
@@ -226,7 +226,7 @@ For example:
 ```
 
 As a result, the new placeholders are created:
-```
+``` json
 {
   "globals.value1": 1,
   "globals.value2": 2
@@ -265,7 +265,7 @@ Function parameter can be passed from existing placeholders. For example:
 You can easily define function placeholders within the [cutom global placeholders](#custom-global-placeholders).  
 
 For example:
-```
+``` json
 {
   "globals": {
     "pass": "${fn.password}"

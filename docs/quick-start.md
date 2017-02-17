@@ -7,7 +7,7 @@ Below you can see two simple examples of how to:
 
 - Create a new environment and deploy a simple HelloWorld application to it:  
 
-```
+``` json
 {
   "type": "install",
   "name": "Hello World!",
@@ -28,7 +28,7 @@ Below you can see two simple examples of how to:
 
 - Deploy a simple HelloWorld application into the already existing environment: 
 
-```
+``` json
 {
   "type": "update",
   "name": "Hello World!",

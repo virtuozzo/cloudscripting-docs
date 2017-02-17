@@ -8,7 +8,7 @@ Also, there are three alternative approaches to set containers filtering:
 * **Node Selectors** - specifying a target node within a name of an action     
 
 For example:  
-```
+``` json
 {
     "createFile [cp]" : {
           "path" : "/tmp/test.txt"
@@ -24,7 +24,7 @@ In the example above, a new file will be created in the compute node (*[cp]*) an
 * setting a target node next to the performed action     
 
 For example:     
-```
+``` json
 {
   "createFile": {
     "path": "/tmp/test.txt"
@@ -54,7 +54,7 @@ The `nodeId` parameter is used to set a particular container for the action to b
   
 For example:     
 
-```
+``` json
 {
   "writeFile": [
     {
@@ -70,7 +70,7 @@ If you don't know the ID or a container hasn't been created yet, you can set a d
 
 For example:    
 
-```
+``` json
 {
   "writeFile": [
     {
@@ -106,7 +106,7 @@ For example:
 
 Using the nodeType field while performing the writeFile action:
 
-```
+``` json
 {
   "writeFile": {
     "nodeType": "apache2",
@@ -125,7 +125,7 @@ where:
 
 Creating an environment with topology specifics, set by the engine and nodeType values:
 
-```
+``` json
 {
   "type": "install",
   "name": "install Tomcat7 node",

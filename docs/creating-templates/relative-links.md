@@ -6,7 +6,7 @@ The relative links functionality is intended to specify the JPS file’s base UR
     > The *baseUrl* value declared within the manifest has higher priority than installation via URL (i.e. <a href="https://docs.jelastic.com/environment-export-import" target="_blank">Import</a>).                
 
 **Example**
-```
+``` json
 {
     "type" : "update",
     "name" : "Base URL test",
@@ -44,7 +44,7 @@ The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be u
 
 For example:
 
-```
+``` json
 {
   "type" : "update",
   "name" : "Test Base URL",
@@ -63,7 +63,7 @@ For example:
 It is possible to customize (in confines of a manifest) the *success* text, which is displayed upon successful application installation either at the dashboard or via email notification.         
 
 - Setting a relative to `baseUrl` link, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                    
-```
+``` json
 {
     "type" : "update",
     "name" : "Success Text first example",
@@ -76,7 +76,7 @@ It is possible to customize (in confines of a manifest) the *success* text, whic
 ```
 
 - Customizing the *success* return text by means of the external link.                    
-```
+``` json
 {
   "type": "update",
   "name": "Success Text Second Example",
@@ -91,7 +91,7 @@ As it was mentioned above, the success response is distinguished between two val
 
  - text displayed at the dashboard after application installation is successfully conducted                       
  
-```
+``` json
 {
   "type": "update",
   "name": "Success Text Second Example",
@@ -106,7 +106,7 @@ As it was mentioned above, the success response is distinguished between two val
  
  - message delivered via email notifying about the successful application setup                             
  
-```
+``` json
 {
   "type": "update",
   "name": "Success Text Test 4",

@@ -3,7 +3,7 @@
 ## Automatic Vertical Scaling
 
 Adjust Nginx Balancer workers count depending on CPU cores amount:
-```example
+``` json
 {
   "type": "update",
   "name": "Nginx Balancer Vertical Scaling",
@@ -24,7 +24,7 @@ Create two Nginx PHP nodes with Nginx balancer and automatic horizontal scaling 
 - add 1 node if CPU > 70% up to 10 nodes
 - remove 1 node if CPU < 5% down to 1 nodes
    
-```example
+``` json
 {
   "type": "install",
   "name": "Nginx PHP Auto Scaling",
@@ -118,7 +118,7 @@ return oRespTurnOff;
 
 Create and link WordPress Web and WordPress DB containers: 
 
-```
+``` json
 {
   "type": "install",
   "name": "Wordpress",
@@ -150,7 +150,7 @@ Create and link WordPress Web and WordPress DB containers:
 ```
 
 ## Wordpress Cluster
-```
+``` json
 {
   "type": "install",
   "name": "WordPress Cluster",
@@ -810,7 +810,7 @@ return {
 
 
 ## Automated Environment Migration after Cloning
-```
+``` json
 {
   "type": "install",
   "name": "cloneEnv",
@@ -1022,7 +1022,7 @@ return processEnvironment();
 
 ##Create two environments from one JPS in different regions
 
-```
+``` json
 {
   "type": "install",
   "name": "2Envs",
@@ -1069,7 +1069,7 @@ return jelastic.env.control.CreateEnvironment(sAppid, sSession, sActionkey, oEnv
 ##Install Add-on inside Manifest
 
 This manifest provides an environment, that is handled with the help of **Apache PHP** aplication server, is powered by **PHP 7** engine version and has external IP address attached. Subsequently, Public IP address can be detached with the help of the **Add-on** button.
-```
+``` json
 {
   "type": "install",
   "name": "example",
@@ -1114,7 +1114,7 @@ As a result, environment with the above-specified topology is successfully creat
 
 Mount `data` directory from `storage` node to application server node:
 
-```
+``` json
 {
   "type": "install",
   "name": "mount Data Storage",
