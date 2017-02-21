@@ -73,7 +73,7 @@ While preparing your own manifest file, we recommend to:
 <p dir="ltr" style="text-align: justify;">Visit the <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> page to find a set of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions.</p>                      
 
 <h3>Learn Template Basics</h3> 
-<p dir="ltr" style="text-align: justify;">See the <a href="http://docs.cloudscripting.com/creating-templates/template-basics/" target="_blank">Template Basics </a> section to learn the required basis of any JSON manifest and find out the differences between *Application* and *Extension*.</p>     
+<p dir="ltr" style="text-align: justify;">See the <a href="http://docs.cloudscripting.com/creating-templates/template-basics/" target="_blank">Template Basics </a> section to learn the required basis of any JSON manifest and find out the differences between <em>Application</em> and <em>Extension</em>.</p>     
 
 <h3>Write Cloud Scripts</h3>  
 <p dir="ltr" style="text-align: justify;">Cloud Scripting comes with several generic actions out of the box - see the <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a> section to find out the list of them.</p>      
@@ -92,7 +92,7 @@ See the <a href="http://docs.cloudscripting.com/creating-templates/writing-scrip
 
 <h3>Use Placeholders</h3> 
 <p dir="ltr" style="text-align: justify;">Learn how to use <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for:</p>                   
-<ul><li>options / parameters which are user-defined or are often changed</li>     
+<ul><li>options and parameters which are user-defined or are often changed</li>     
 <li>filtering events</li>   
 <li>selecting containers for your actions</li></ul>     
 
