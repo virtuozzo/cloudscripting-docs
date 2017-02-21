@@ -29,6 +29,6 @@
 
 !!! note
     > The Cloud Scripting version can be choosen at the bottom of the page within the present documentation.     
-      <center><p>![csversion](/img/csversion.jpg)</p></center>    
+      <center>![csversion](/img/csversion.jpg)</center>    
       The Jelastic Platform version can be checked either at your dashboard, or within the <a href="https://jelastic.cloud/" target="_blank">Jelastic Cloud Union</a> page based on your hosting provider.      
     
