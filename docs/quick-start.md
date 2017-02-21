@@ -43,7 +43,7 @@ Below you can see two simple examples of how to:
   }
 }
 ```
-
+<br>
 <h2>Running Examples</h2>
 
 <p dir="ltr" style="text-align: justify;">In order to test the manifest examples presented above, you need to register at any Jelastic hosting provider from the <a href="https://jelastic.cloud" target="_blank">Jelastic Cloud Union</a> first.</p>       
@@ -58,14 +58,13 @@ Then, log in to your Jelastic account and perform the following operations:
 <li>Depending on the `type` stated at the beginning of the manifest, in the opened <b>Confirm installation</b> window, you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click <b>Install</b>.</li>
 <li>The process of installation will be started. Wait a minute for Preparing, Deploying and Configuring to be finished.</li>
 <li>Once these operations are finished, you will see a message about the successful installation completion. It can also contain <a href="http://docs.cloudscripting.com/creating-templates/relative-links/#success-text-customization" target="blank">custom text</a> from the `success` manifest section (if it's declared).</li></ul>
-
+<br>
 <h2>Best Practices</h2>
 <br>
 While preparing your own manifest file, we recommend to:
 <ul><li>use JSON formatter and validator (such as <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a>)</li>         
 <li>use <a href="https://github.com/" target="_blank">GitHub</a> to store your manifest, scripts and files together</li></ul>  
-   
-
+<br>
 <h2>What's next?</h2>
 <br>
 <h3>Explore More Complex Examples:</h3>    
