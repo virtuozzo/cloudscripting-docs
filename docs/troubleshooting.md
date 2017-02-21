@@ -39,7 +39,7 @@ Output all the placeholders:
 }
 ```                                                                                      
 
-Output from the script:
+Output from a script:
 ```
 {
   "type": "update",
