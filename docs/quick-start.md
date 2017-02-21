@@ -50,7 +50,7 @@ Below you can see two simple examples of how to:
 
 Then, log in to your Jelastic account and perform the following operations: 
 
-<ul><li>Copy an appropriate example and save it as a file with <b>*.json*</b> extension.</li>   
+<ul><li>Copy an appropriate example and save it as a file with <b>.json</b> extension.</li>   
 <li>Click the </b>Import</b> button at the top of your dashboard and select one of the options it contains.</li>        
 
 <center>![import](img/import.jpg)</center>          
