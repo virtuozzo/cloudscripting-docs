@@ -1,12 +1,12 @@
 <h1>Troubleshooting</h1>
 Run into trouble with Cloud Scripting? Here are some helpful tips and specific suggestions for troubleshooting as follows:      
-<ul><li>Log in to your Jelastic dashboard and open the link of the following type in a new browser tab:</li> 
+<ul><li><p dir="ltr" style="text-align: justify;">Log in to your Jelastic dashboard and open the link of the following type in a new browser tab:</p></li>          
 
-    http://appstore.{HOSTER_URL}/console/ 
+    http://appstore.{HOSTER_URL}/console/                   
 
-    Here, substitute *{HOSTER_URL}* with the platform domain of your hosting provider (see the last column of the table within the <a href="https://docs.jelastic.com/jelastic-hoster-info" target="_blank">Hosters Info</a> page).          
+    <p dir="ltr" style="text-align: justify;">Here, substitute *{HOSTER_URL}* with the platform domain of your hosting provider (see the last column of the table within the <a href="https://docs.jelastic.com/jelastic-hoster-info" target="_blank">Hosters Info</a> page).</p>               
 
-<li><p dir="ltr" style="text-align: justify;">In the opened browser tab, you will see the Cloud Scripting execution log.</p></li></ul>                         
+<li><p dir="ltr" style="text-align: justify;">In the opened browser tab, you will see the Cloud Scripting execution log.</p></li></ul>                                 
 
 <center>![troubleshooting](img/troubleshooting.jpg)</center>      
 
