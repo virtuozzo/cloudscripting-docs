@@ -1,10 +1,10 @@
-# Template Basics
+<h1>Template Basics</h1>
 
-The above two units display the outer side of a JPS usage and now let’s have a closer look at the inner side - a code of a package with all required configurations.
+<p dir="ltr" style="text-align: justify;">The above two units display the outer side of a JPS usage and now let’s have a closer look at the inner side - a code of a package with all required configurations.</p>
 
-The JPS manifest is a file with <b>*.json*</b> extension, which contains an appropriate code written in JSON format. This manifest file includes the links to the web only dependencies. This file can be named as you require. 
+<p dir="ltr" style="text-align: justify;">The JPS manifest is a file with <b>.json</b> extension, which contains an appropriate code written in JSON format. This manifest file includes the links to the web only dependencies. This file can be named as you require.</p> 
 
-The code should contain a set of strings needed for a successful installation of an application. The basis of the code is represented by the following string:
+<p dir="ltr" style="text-align: justify;">The code should contain a set of strings needed for a successful installation of an application. The basis of the code is represented by the following string:</p>
 
 ```
 {
@@ -13,13 +13,13 @@ The code should contain a set of strings needed for a successful installation of
 }
 ```
 
-- *type*
-    - `install` - application    
-    - `update` - extension    
-- *name* - JPS custom name           
+- `type`
+    - <em>install</em> - application    
+    - <em>update</em> - extension    
+- `name` - JPS custom name           
 
-This is a mandatory body part of the application package, which includes the information about JPS name and the type of the application installation (the <b>*'install'*</b> mode initiates a new environment creation required for a deployment, the <b>*'update'*</b> mode performs actions on the existing environment).
-This basic string should be extended with the settings required by the application you are packing. The following configuration details are included beside the <b>*'type': { }*</b> parameter:
+<p dir="ltr" style="text-align: justify;">This is a mandatory body part of the application package, which includes the information about JPS name and the type of the application installation (the <b>*'install'*</b> mode initiates a new environment creation required for a deployment, the <b>*'update'*</b> mode performs actions on the existing environment).
+This basic string should be extended with the settings required by the application you are packing. The following configuration details are included beside the <b>*'type': { }*</b> parameter:</p>
 
 # Application Workflow
 
@@ -65,7 +65,7 @@ This basic string should be extended with the settings required by the applicati
 - `description` - text string that describes a template. This section should always follow the template format version section.            
 - `categories` - categories available for manifests filtering                                        
 - `logo` *[optional]* - JPS image that will be displayed within custom add-ons                    
-- `homepage` *[optional]* - link to any external aplication source            
+- `homepage` *[optional]* - link to any external application source            
 - `type` *[optional]* - language type of an application                
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation          
 - `startPage` *[optional]* - path to be opened via the **Open in browser** button through a successful installation message                                        
