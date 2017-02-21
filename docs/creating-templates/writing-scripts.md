@@ -1,20 +1,20 @@
-# Writing Scripts
+<h1>Writing Scripts</h1>
 
-Custom users scripts can be written in Java or JavaScript. Inside these scripts, the set of client libraries for <a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> methods calling is available. 
-A script can be subscribed to the <b>*onAfterReturn*</b> event on its outlet for an execution of any <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a>.          
+<p dir="ltr" style="text-align: justify;">Custom users scripts can be written in Java or JavaScript. Inside these scripts, a set of client libraries for <a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> methods calling is available. 
+A script can also be subscribed to the <b>*onAfterReturn*</b> event to execute any <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> on its outlet.                    
 
 
-## Intercontainer Scripts
-In order to execute a shell script inside a container, the <a href="http://docs.cloudscripting.com/reference/actions/#cmd" target="_blank">ExecuteShellCommands</a> action is used.                
+<h2>Intercontainer Scripts</h2>
+<p dir="ltr" style="text-align: justify;">In order to execute a shell script in confines of a container, the <a href="http://docs.cloudscripting.com/reference/actions/#cmd" target="_blank">ExecuteShellCommands</a> action is used.</p>                
 
-**Example #1 Execute bash script from URL**
+**Example of executing bash script from URL**
 ```example
 {
   "cmd [cp]": "curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2"
 }
 ```
 
-**Example #2 Restore MySQL database**
+**Example of restoring MySQL database**         
 
 ```
 {
@@ -49,12 +49,14 @@ mysql -u${USER} -p${PASSWORD} << END
 END
 ```
 
-`${nodes.sqldb.password}` - available only for *type* `install`, when a SQL node is created               
+`${nodes.sqldb.password}` - available only for <b>*'install'*</b> type, when a SQL node is created               
 
-## Top Level Scripts  
-Using `script` action              
+
+<h2>Top Level Scripts</h2>
+
+**Examples of using a <em>script</em> action**              
               
-### Java   
+<h3>Java</h3>   
 ```example
 {
   "executeScript": [
@@ -73,12 +75,13 @@ Using `script` action
 **Example #1 Generate random password**
 -->
 
-### JavaScript    
+<h3>JavaScript</h3>     
 ```example
 {
   "script ["Hello World!"]": "return getParam('greeting');"
 }
 ```
+<br>
+<h2>What's next?</h2>
+<ul><li>Learn more about using <a href="http://docs.jelastic.com/api/" target="_blank">Jelastic Cloud API</a></li></ul>
 
-## What's next?
-Learn more about using <a href="http://docs.jelastic.com/api/" target="_blank">Jelastic Cloud API</a>.                                    
