@@ -7,12 +7,35 @@ use_absolute_urls: true
 include_search: true
 theme_center_lead: false
 
-#theme: readthedocs
+
+#theme: material
 theme_dir: './theme/readthedocs'
+#theme_dir: './theme/material'
 #theme: slate
 #theme: highlight.js
 
-markdown_extensions: [admonition, toc, tables]
+# Extensions
+markdown_extensions:
+  - markdown.extensions.admonition
+  - markdown.extensions.codehilite(guess_lang=false)
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+  - markdown.extensions.toc(permalink=true)
+  - pymdownx.arithmatex
+  - pymdownx.betterem(smart_enable=all)
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist(custom_checkbox=true)
+  - pymdownx.tilde
+
+#markdown_extensions: [admonition, toc, tables]
                       #attention
                       #caution
                       #danger

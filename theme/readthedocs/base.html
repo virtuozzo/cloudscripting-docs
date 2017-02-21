@@ -51,17 +51,21 @@
   <div class="wy-grid-for-nav">
 
     {# SIDE NAV, TOGGLES ON MOBILE #}
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-      <div class="wy-side-nav-search">
-        <a href="{{ homepage_url }}" class="homelogo"></a>
-        {% include "searchbox.html" %}
-      </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-      {% include "toc.html" %}
-      </div>
-      &nbsp;
-    </nav>
+      <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+        <div class="side-scroll">
+        <div class="wy-side-nav-search">
+          <a href="{{ homepage_url }}" class="homelogo"></a>
+          {% include "searchbox.html" %}
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        {% include "toc.html" %}
+        </div>
+        &nbsp;
+        </div>
+      </nav>
+
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 

@@ -20,16 +20,16 @@
 
                                     {% if toc_item.children %}
 
-                                    <label onclick="showChildren('toctree-l4-incl')" for="for-label" class="toctree-l4">{{ toc_item.title }}
-
+                                    <label class="toctree-l4">{{ toc_item.title }}
+                                        <!--for="for-label"-->
                                         <i class="fa fa-angle-down" aria-hidden="true"></i>
                                         <i class="fa fa-angle-up" aria-hidden="true"></i>
                                     </label>
                                     <!--<i class="fa fa-sort-desc" aria-hidden="true"></i>-->
                                     <!--<i class="fa fa-sort-asc" aria-hidden="true"></i>-->
 
-
-                                <input id="for-label" class="toctree-l4-inp" type="checkbox" style="display:none">
+<!--/onclick="showChildren(this)"-->
+                                <!--<input id="for-label" class="toctree-l4-inp" type="checkbox" style="display:none">-->
 
 
                                     <div id="hidden_toctree-l4-incl">

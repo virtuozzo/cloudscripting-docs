@@ -22,21 +22,29 @@ $( document ).ready(function() {
     hljs.initHighlightingOnLoad();
 
     $('table').addClass('docutils');
+
+    $(".toctree-l4").click(function( ) {
+        var that = $(this),
+            sDivClass = 'hidden_toctree-l4-incl',
+            sDesc = '.fa-angle-down',
+            sAsc = '.fa-angle-up';
+
+        if (that.next() && that.next()[0].id == sDivClass) {
+            if ($(that.next()[0]).is(':visible')) {
+                $(that).children(sDesc).show();
+                $(that).children(sAsc).hide();
+                $(that.next()[0]).hide(); //.css(sDisplayValue, 'none');
+
+            } else {
+                $(that).children(sDesc).hide();
+                $(that).children(sAsc).show();
+                $(that.next()[0]).show(); //.css(sDisplayValue, 'block');
+            }
+        }
+    });
+
+
 });
-
-function showChildren(hiddenId) {
-    var sDesc = '.fa-angle-down',
-        sAsc = '.fa-angle-up';
-
-    //if ($('.toctree-l4 ' + sDesc).is(':visible')) {
-        $(sAsc).toggle();
-        $(sDesc).toggle();
-        console.log(true);
-    //}
-
-    $('#hidden_' + hiddenId).toggle();
-
-}
 
 window.SphinxRtdTheme = (function (jquery) {
     var stickyNav = (function () {

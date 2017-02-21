@@ -181,7 +181,7 @@ The event will be executed after adding new Docker container(s) to the existing 
     - `nodeId` - node identifier, where event is executed       
 - `${event.response.}` result code. The successful action result is *'0'*.           
 
-###onAlert###
+###onAlert
 This event provides a possibility to boud actions to Jelastic <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a> and <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">Automatic Horizontal Scaling Alerts</a>. These features are configured through the Jelastic triggers.   
 
 There are five available types of the monitoring triggers, which are based on the usage of a particular resource type:
@@ -191,6 +191,12 @@ There are five available types of the monitoring triggers, which are based on th
 - *Network*
 - *Disk I/O*
 - *Disk IOPS*
+
+Subscribtion example to `onAlert` event:
+ 
+``` json
+
+```
 
 The following example shows how a **new trigger creation** is performed:
 ``` json
