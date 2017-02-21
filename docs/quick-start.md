@@ -55,7 +55,7 @@ Then, log in to your Jelastic account and perform the following operations:
 
 <center>![import](img/import.jpg)</center>          
 
-<li>Depending on the `type` stated at the beginning of the manifest, in the opened <b>Confirm installation</b> window you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click <b>Install</b>.</li>
+<li>Depending on the `type` stated at the beginning of the manifest, in the opened <b>Confirm installation</b> window, you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click <b>Install</b>.</li>
 <li>The process of installation will be started. Wait a minute for Preparing, Deploying and Configuring to be finished.</li>
 <li>Once these operations are finished, you will see a message about the successful installation completion. It can also contain <a href="http://docs.cloudscripting.com/creating-templates/relative-links/#success-text-customization" target="blank">custom text</a> from the `success` manifest section (if it's declared).</li></ul>
 
