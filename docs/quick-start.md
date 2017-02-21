@@ -59,44 +59,42 @@ Then, log in to your Jelastic account and perform the following operations:
 <li>The process of installation will be started. Wait a minute for Preparing, Deploying and Configuring to be finished.</li>
 <li>Once these operations are finished, you will see a message about the successful installation completion. It can also contain the text from the `success` manifest section (if it's declared).</li></ul>
 
-## Best Practices
+<h2>Best Practices</h2>
 
 While preparing your own manifest file, we recommend to:
-
-- use JSON formatter and validator (such as <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a>)       
-- use <a href="https://github.com/" target="_blank">GitHub</a> to store your manifest, scripts and files together
+<ul><li>use JSON formatter and validator (such as <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a>)</li>         
+<li>use <a href="https://github.com/" target="_blank">GitHub</a> to store your manifest, scripts and files together</li></ul>  
    
 
-## What's next?
+<h2>What's next?</h2>
 
-### Explore more complex examples:    
+<h3>Explore More Complex Examples:</h3>    
 
-Visit the <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> page to find a set of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions.                  
+<p dir="ltr" style="text-align: justify;">Visit the <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> page to find a set of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions.</p>                      
 
-### Learn Template Basics 
-See the <a href="http://docs.cloudscripting.com/creating-templates/template-basics/" target="_blank">Template Basics </a> section to learn the required basis of any JSON manifest and find out the differences between *Application* and *Extension*.     
+<h3>Learn Template Basics</h3> 
+<p dir="ltr" style="text-align: justify;">See the <a href="http://docs.cloudscripting.com/creating-templates/template-basics/" target="_blank">Template Basics </a> section to learn the required basis of any JSON manifest and find out the differences between *Application* and *Extension*.</p>     
 
-### Write Cloud Scripts  
-Cloud Scripting comes with several generic actions out of the box - see the <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a> section to find out the list of them.      
+<h3>Write Cloud Scripts</h3>  
+<p dir="ltr" style="text-align: justify;">Cloud Scripting comes with several generic actions out of the box - see the <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a> section to find out the list of them.</p>      
 
-In addition, you have the possibility to prepare and use your own actions within manifest. Such Custom Actions can be scripted either using Java, Javascript or PHP if you need to manage your whole environment or using any intercontainer language, if you need to script something inside of a container.
-See the <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">Writing Scripts</a> section.                                 
+<p dir="ltr" style="text-align: justify;">In addition, you have the possibility to prepare and use your own actions within manifest. Such Custom Actions can be scripted either using Java, Javascript or PHP if you need to manage your whole environment or using any intercontainer language, if you need to script something inside of a container.
+See the <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">Writing Scripts</a> section.</p>                                 
  
-### Build Actions Chain and reuse your code    
-Reuse your code and the chain of actions using <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a>                                 
+<h3>Build Actions Chain and Reuse Code</h3>    
+<p dir="ltr" style="text-align: justify;">Reuse your code and the chain of actions using <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a></p>                                
 
-### Automate workflows
-Automate workflows using <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">Events</a>
+<h3>Automate Workflows</h3>
+<p dir="ltr" style="text-align: justify;">Automate workflows using <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">Events</a></p>
 
-### Define user input parameters 
-Customize your app's input parameters that should be specified by a user before the installation. For that, see the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Getting User Input</a> documentation page.       
+<h3>Define User Input Parameters</h3> 
+<p dir="ltr" style="text-align: justify;">Customize your app's input parameters that should be specified by a user before the installation. For that, see the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Getting User Input</a> documentation page.</p>            
 
-### Use Placeholders 
-Learn how to use <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for:                   
+<h3>Use Placeholders</h3> 
+<p dir="ltr" style="text-align: justify;">Learn how to use <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for:</p>                   
+<ul><li>options / parameters which are user-defined or are often changed</li>     
+<li>filtering events</li>   
+<li>selecting containers for your actions</li></ul>     
 
-- options / parameters which are user-defined or are often changed     
-- filtering events   
-- selecting containers for your actions     
-
-### Explore Troubleshooting  
-Follow the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> guide if you experience any issues.              
+<h3>Explore Troubleshooting</h3>   
+<p dir="ltr" style="text-align: justify;">Follow the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> guide if you experience any issues.</p>              
