@@ -50,6 +50,7 @@ This basic string should be extended with the settings required by the applicati
   "onInstall": "object/array"
 }
 ```
+where
 
 - `name` *[required]* - JPS custom name      
 - `baseUrl` *[optional]* - custom <a href="http://docs.cloudscripting.com/creating-templates/relative-links/" target="_blank">relative links</a>                                       
