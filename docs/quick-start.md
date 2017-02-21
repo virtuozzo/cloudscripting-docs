@@ -60,14 +60,14 @@ Then, log in to your Jelastic account and perform the following operations:
 <li>Once these operations are finished, you will see a message about the successful installation completion. It can also contain <a href="http://docs.cloudscripting.com/creating-templates/relative-links/#success-text-customization" target="blank">custom text</a> from the `success` manifest section (if it's declared).</li></ul>
 
 <h2>Best Practices</h2>
-
+<br>
 While preparing your own manifest file, we recommend to:
 <ul><li>use JSON formatter and validator (such as <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a>)</li>         
 <li>use <a href="https://github.com/" target="_blank">GitHub</a> to store your manifest, scripts and files together</li></ul>  
    
 
 <h2>What's next?</h2>
-
+<br>
 <h3>Explore More Complex Examples:</h3>    
 
 <p dir="ltr" style="text-align: justify;">Visit the <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> page to find a set of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions.</p>                      
