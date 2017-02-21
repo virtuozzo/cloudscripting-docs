@@ -1,10 +1,11 @@
 <h1>Quick Start</h1> 
 <p dir="ltr" style="text-align: justify;">This guide will walk you through the Cloud Scripting basics and will help you to build and run such simple automation processes like creating new environments and deploying applications.</p>
+
 <p dir="ltr" style="text-align: justify;">The required operations should be declared within the appropriate Cloud Scripting manifest, written in <a href="http://www.json.org/" target="_blank">JSON</a> format. You can name this file with manifest as you need. The only requirement is that it should have the <b>.json</b> extension. The manifest file can be composed via any text editor, using a modern code editor with the support of JSON syntax highlighting is recommended (e.g. <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a>).</p>        
 
 Below you can see two simple examples of how to: 
 
-<ul><li><p>Create a new environment and deploy a simple HelloWorld application to it:</p></li>  
+- Create a new environment and deploy a simple HelloWorld application to it: 
 
 ```
 {
@@ -27,7 +28,7 @@ Below you can see two simple examples of how to:
 }
 ```
 
-<li><p>Deploy a simple HelloWorld application into the already existing environment:</p></li></ul> 
+- Deploy a simple HelloWorld application into the already existing environment:
 
 ```
 {
@@ -49,17 +50,14 @@ Below you can see two simple examples of how to:
 
 Then, log in to your Jelastic account and perform the following operations: 
 
-- Copy an appropriate example and save it as a file with <b>*.json*</b> extension.   
-
-- Click the ***Import*** button at the top of your dashboard and select one of the options it contains.        
+<ul><li>Copy an appropriate example and save it as a file with <b>*.json*</b> extension.</li>   
+<li>Click the ***Import*** button at the top of your dashboard and select one of the options it contains.</li>        
 
 <center>![import](img/import.jpg)</center>          
 
-- Depending on the `type` stated at the beginning of the manifest, in the opened **Confirm installation** window you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click **Install**.
-
-- The process of installation will be started. Wait a minute for Preparing, Deploying and Configuring to be finished.
-
-- Once these operations are finished, you will see a message about the successful installation completion. It can also contain the text from the `success` manifest section (if it's declared).
+<li>Depending on the `type` stated at the beginning of the manifest, in the opened **Confirm installation** window you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click **Install**.</li>
+<li>The process of installation will be started. Wait a minute for Preparing, Deploying and Configuring to be finished.</li>
+<li>Once these operations are finished, you will see a message about the successful installation completion. It can also contain the text from the `success` manifest section (if it's declared).</li></ul>
 
 ## Best Practices
 
