@@ -51,11 +51,11 @@ Below you can see two simple examples of how to:
 Then, log in to your Jelastic account and perform the following operations: 
 
 <ul><li>Copy an appropriate example and save it as a file with <b>*.json*</b> extension.</li>   
-<li>Click the ***Import*** button at the top of your dashboard and select one of the options it contains.</li>        
+<li>Click the </b>Import</b> button at the top of your dashboard and select one of the options it contains.</li>        
 
 <center>![import](img/import.jpg)</center>          
 
-<li>Depending on the `type` stated at the beginning of the manifest, in the opened **Confirm installation** window you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click **Install**.</li>
+<li>Depending on the `type` stated at the beginning of the manifest, in the opened <b>Confirm installation</b> window you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click </b>Install</b>.</li>
 <li>The process of installation will be started. Wait a minute for Preparing, Deploying and Configuring to be finished.</li>
 <li>Once these operations are finished, you will see a message about the successful installation completion. It can also contain the text from the `success` manifest section (if it's declared).</li></ul>
 
