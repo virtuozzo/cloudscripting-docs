@@ -226,6 +226,7 @@ pre code.example {
 
 .wy-menu-vertical .toctree-l1 a {
     color: #f6f8f7;
+    padding-left: 22px;
 }
 
 #jel {
