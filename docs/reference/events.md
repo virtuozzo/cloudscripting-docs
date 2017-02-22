@@ -188,7 +188,7 @@ There are available types of the monitoring triggers, which are based on the usa
  
 - **CLOUDLETS** (Memory, CPU) - type is available only for action type *NOTIFY*
 - **CPU**
-- **MEM** (Memory)*
+- **MEM** (Memory)
 - **NET_EXT** - external output and input traffic - type is available only for action type *NOTIFY*
 - **NET_EXT_OUT** - external output traffic
 - **DISK** - disk space amount - type is available only for action type *NOTIFY*
