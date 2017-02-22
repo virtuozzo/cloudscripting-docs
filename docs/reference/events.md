@@ -184,20 +184,33 @@ The event will be executed after adding new Docker container(s) to the existing 
 ###onAlert
 This event provides a possibility to boud actions to Jelastic <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a> and <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">Automatic Horizontal Scaling Alerts</a>. These features are configured through the Jelastic triggers.   
 
-There are five available types of the monitoring triggers, which are based on the usage of a particular resource type:
+There are available types of the monitoring triggers, which are based on the usage of a particular resource type:
  
-- *CPU*
-- *Memory (RAM)*
-- *Network*
-- *Disk I/O*
-- *Disk IOPS*
+- **CLOUDLETS** (Memory, CPU) - type is available only for action type *NOTIFY*
+- **CPU**
+- **MEM** (Memory)*
+- **NET_EXT** - external output and input traffic - type is available only for action type *NOTIFY*
+- **NET_EXT_OUT** - external output traffic
+- **DISK** - disk space amount - type is available only for action type *NOTIFY*
+- **INODES** - type is available only for action type *NOTIFY*
+- **Disk I/O**
+- **Disk IOPS**
+
+**Measuring values** are *PERCENTAGE* and *SPECIFIC*. The second one value is availabe only for **NET_EXT** and **NET_EXT_OUT** types.
 
 Subscribtion example to `onAlert` event:
  
 ``` json
-
+{
+    "type": "update",
+    "name": "AddTrigger",
+    "onAlert [cp]": {
+        "log": "onAlert event has subscribed"
+    }
+}
 ```
 
+Therefore, in the example above `log` action will be executed if one of the environment triggers will execute.
 The following example shows how a **new trigger creation** is performed:
 ``` json
 {
