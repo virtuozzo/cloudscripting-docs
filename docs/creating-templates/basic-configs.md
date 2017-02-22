@@ -14,8 +14,8 @@ The code should contain a set of strings needed for a successful installation of
 ```
 
 - *type*
-    - `install` - application    
-    - `update` - extension    
+    - `install` - creating at least one environment     
+    - `update` - extension, installing in one of existing environments    
 - *name* - JPS custom name           
 
 This is a mandatory body part of the application package, which includes the information about JPS name and the type of the application installation (the <b>*'install'*</b> mode initiates a new environment creation required for a deployment, the <b>*'update'*</b> mode performs actions on the existing environment).
@@ -29,51 +29,52 @@ There is a set of available parameters to define a manifest installation behavio
 ``` json
 {
   "type": "string",
+  "version": "string",
   "name": "string",
+  "logo": "string",
+  "description": "object/string",
+  "homepage": "string",
+  "categories": "array",
   "baseUrl": "string",
   "settings": "object",
-  "version": "string",
-  "appVersion": "string",
   "nodes": "array",
   "engine": "string",
   "region": "string",
-  "displayName": "string",
   "ssl": "boolean",
   "ha": "boolean",
-  "description": "object/string",
-  "categories": "array",
-  "logo": "string",
-  "homepage": "string",
-  "type": "string",
-  "success": "object/string",
+  "displayName": "string",
+  "appVersion": "string",
+  "onInstall": "object/array",
   "startPage": "string",
   "actions": "array",
   "addons": "array",
-  "onInstall": "object/array"
+  "success": "object/string",
+  "...": "object"
 }
 ``` 
 
-- `name` *[required]* - JPS custom name      
+- `type` *[optional]* - type of the application installation. Available values are **install** and **update**. More details described above. 
+- `version` - *[optional]* - JPS type supported by the Jelastic Platform. See the <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">correspondence between version</a> page.
+- `name` *[required]* - JPS custom name
+- `logo` *[optional]* - JPS image that will be displayed within custom add-ons
+- `description` - text string that describes a template. This section should always follow the template format version section.
+- `homepage` *[optional]* - link to any external aplication source
+- `categories` - categories available for manifests filtering                                                                        
 - `baseUrl` *[optional]* - custom <a href="http://docs.cloudscripting.com/creating-templates/relative-links/" target="_blank">relative links</a>                                       
 - `settings` *[optional]* - custom form with <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">predefined user input elements</a>                        
-- `version` - *[optional]* - JPS type supported by the Jelastic Platform. See the <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">correspondence between version</a> page.
-- `appVersion` *[optional]* - custom version of an application            
-- `nodes` - an array to describe information about nodes for an installation. Required option for JPS with **type** `install`.               
-- `engine` *[optional]* - engine <a href="http://docs.cloudscripting.com/reference/container-types/#engine-versions-engine" target="_blank">version</a>, by **default** `java6`            
-- `region` *[optional]* - region, where an environment will be installed. Required option for **type** `install`.             
-- `displayName` *[optional]* - display name for an environment. Required option for **type** `install`.          
+- `nodes` - an array to describe information about nodes for an installation. Required option for JPS with **type** `install`.
+- `engine` *[optional]* - engine <a href="http://docs.cloudscripting.com/reference/container-types/#engine-versions-engine" target="_blank">version</a>, by **default** `java6`
+- `region` *[optional]* - region, where an environment will be installed. Required option for **type** `install`.
 - `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with `type` *install* mode.            
-- `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with `type` *install* mode.                                
-- `description` - text string that describes a template. This section should always follow the template format version section.            
-- `categories` - categories available for manifests filtering                                        
-- `logo` *[optional]* - JPS image that will be displayed within custom add-ons                    
-- `homepage` *[optional]* - link to any external aplication source            
-- `type` *[optional]* - language type of an application                
-- `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation          
-- `startPage` *[optional]* - path to be opened via the **Open in browser** button through a successful installation message                                        
-- `actions` *[optional]* - objects to describe all <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank">custom actions</a>             
-- `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation      
-- `onInstall` *[optional]* - <a href="http://docs.cloudscripting.com/reference/events/#oninstall" target="_blank">event</a> that is an entry point for actions execution                               
+- `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with `type` *install* mode.
+- `displayName` *[optional]* - display name for an environment. Required option for **type** `install`.
+- `appVersion` *[optional]* - custom version of an application
+- `onInstall` *[optional]* - <a href="http://docs.cloudscripting.com/reference/events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
+- `startPage` *[optional]* - path to be opened via the **Open in browser** button through a successful installation message
+- `actions` *[optional]* - objects to describe all <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank">custom actions</a>
+- `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation
+- `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation
+- "..." - the list of event can be predefined before manifest is installed. More details [here](/reference/events/)
 
 ##Environment Installation
 
@@ -381,7 +382,7 @@ The relative links functionality is intended to specify the JPS file’s base UR
     "onInstall" : {
         "log" : "Base URL test"
     },
-    "onAfterRestartNode[nodeGroup:cp]" : {
+    "onAfterRestartNode [cp]" : {
         "script" : "build-cluster.js"
     },
     "success" : "README.md"

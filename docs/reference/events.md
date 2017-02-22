@@ -86,7 +86,7 @@ The event will be executed before changing environment topology via the Jelastic
 - `${event.params.}`:
     - `session` - current user session   
     - `appid` - environment unique appid   
-    - `nodes` - nodes description for a topology change       
+    - `nodes` - nodes array with detailed information for a topology change       
     - `env` - environment settings, e.g. `engine`, `ssl`, `ha`, etc 
 - `${event.response.}` parameters are absent        
 
