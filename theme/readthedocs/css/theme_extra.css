@@ -50,7 +50,7 @@ h3, h4, h5, h6 {
     overflow-y: auto;
     overflow-x: hidden;
     height: 100%;
-    width: 272px;
+    width: 283px;
 }
 
 .wy-side-nav-search>a {
@@ -85,6 +85,10 @@ h3, h4, h5, h6 {
 .toctree-l4-incl:hover {
     color: #fff !important;
     background-color: #00acff !important;
+}
+
+#hidden_toctree-l4-incl {
+    width: 300px;
 }
 
 #hidden_toctree-l4-incl .toctree-l4-incl {
