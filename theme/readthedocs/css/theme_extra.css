@@ -53,6 +53,14 @@ h3, h4, h5, h6 {
     width: 283px;
 }
 
+.rst-versions.rst-badge.shift-up {
+    max-width: 268px;
+}
+
+.rst-versions.shift-up .rst-other-versions {
+    width: 268px;
+}
+
 .wy-side-nav-search>a {
     background-repeat: no-repeat;
     width: 258px;
