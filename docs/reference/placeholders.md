@@ -323,7 +323,8 @@ where:
 
 ## File Path Placeholders
 
-The values below can vary depending on the chosen <a href="http://docs.cloudscripting.com/reference/container-types/#nodetype-values" target="_blank">nodeType</a>:    
+The values below can vary depending on the chosen <a href="http://docs.cloudscripting.com/reference/container-types/#nodetype-values" target="_blank">nodeType</a>:
+
 - `${HOME}` - for *couchdb*, *glassfish3*, *jetty6*, *nginx-ruby*, *nginx*, *nginxphp*, *tomcat6*,*tomcat7*, *tomee*    
 - `${WEBAPPS}` - for *apache2-ruby*, *apache2*, *jetty6*, *nginx-ruby*, *nginxphp*, *nodejs*, *tomcat6*, *tomcat7*, *tomee*    
 - `${JAVA_HOME}` - for *glassfish3*, *jetty6*, *maven3*, *tomcat6*, *tomcat7*, *tomee*   
