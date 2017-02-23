@@ -3,7 +3,6 @@
 <p dir="ltr" style="text-align: justify;">Jelastic <b>Cloud Scripting (CS)</b> is a tool, designed to program the cloud platform behaviour related to your application lifecycle for automating frequent tasks, complex CI/CD flows and clustering configurations.</p>                                                                             
 
 <br><center>![newoverview](/img/newoverview.png)</center>                                            
-
 There are three main pillars of cloud scripting:                                       
 
 - <b>Actions</b> - scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS and Java scripts                                     
@@ -43,10 +42,9 @@ There are three main pillars of cloud scripting:
   }
 }
 ```
-
 <br>
 <h2>What’s next?</h2>
-
+<br>
 - Build a simple automation with <a href="http://docs.cloudscripting.com/quick-start/" target="_blank">Quick Start</a> Guide                               
 - Learn how to <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/" target="_blank">Create Manifest</a>   
 - Explore the list of available <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a>    
