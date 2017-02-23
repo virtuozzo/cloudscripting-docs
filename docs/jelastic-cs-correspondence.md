@@ -1,6 +1,6 @@
-<h1>Jelastic & CS Correspondence</h1>
+# Jelastic & CS Correspondence
 
-<p dir="ltr" style="text-align: justify;">The table below displays dependencies between the Cloud Scripting and Jelastic Platform versions within the same <a href="https://jelastic.cloud/" target="_blank">hosting provider</a> platform.</p>            
+The table below displays dependencies between the Cloud Scripting and Jelastic Platform versions within the same <a href="https://jelastic.cloud/" target="_blank">hosting provider</a> platform.                            
 
 <table class="corresp" style="width:100%">
     <tr id="cs">
