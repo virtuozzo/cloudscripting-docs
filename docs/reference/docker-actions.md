@@ -4,7 +4,8 @@ Specific Cloud Scripting actions for Docker containers include operations of *vo
 <br>
 ##Volumes
 
-There are three available parameters to set Docker volumes:  
+There are three available parameters to set Docker volumes:
+
 - *volumes* - list of volume paths   
 - *volumeMounts* - mount configurations  
 - *volumesFrom* - list of nodes the volumes are imported from    
@@ -251,6 +252,7 @@ where:
 As a result, all the environment variables within *db* and *memcached* nodes will be also available at *cp* container.  
  
 Here, environment variables of linked nodes will have the names, predefined within the `links` array.     
-For example:  
+For example:
+
 - variable *MYSQL_ROOT_PASSWORD* from *sql* node is *DB_MYSQL_ROOT_PASSWORD* in *cp* node   
 - variable *IP_ADDRESS* from *memcached* node is *MEMCACHED_IP_ADDRESS* in *cp* node
