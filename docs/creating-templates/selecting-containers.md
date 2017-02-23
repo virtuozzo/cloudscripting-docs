@@ -1,7 +1,8 @@
 # Specifying Target Container
 
-##Selector Types
-Running a specific <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> requires to set a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">*nodeGroup*</a> value (e.g. *sql*) or all containers of the same type by their <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-types-nodetype"target="_blank">*nodeType*</a> value (e.g. *MySQL*).          
+## Selector Types
+
+<p dir="ltr" style="text-align: justify;">Running a specific <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> requires to set a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">*nodeGroup*</a> value (e.g. *sql*) or all containers of the same type by their <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-types-nodetype"target="_blank">*nodeType*</a> value (e.g. *MySQL*).</p>              
 
 Also, there are three alternative approaches to set containers filtering:       
 
