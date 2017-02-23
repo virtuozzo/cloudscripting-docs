@@ -319,3 +319,6 @@ pre code.example {
 .stickynav {
     /*width: 280px;*/
 }
+.wy-menu-vertical a:active {
+    background-color: transparent;
+}
