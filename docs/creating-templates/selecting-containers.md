@@ -8,7 +8,8 @@
 
 <p dir="ltr" style="text-align: justify;">The <em>nodeId</em> parameter is used to set a particular container for an action to be executed at it. If you know the Node ID of a container (displayed at the Jelastic dashboard next to the required node), you can set it statically.</p>            
   
-For example:     
+For example:
+
 ``` json
 {
   "writeFile": [
@@ -20,9 +21,11 @@ For example:
   ]
 }
 ```
+
 If you don't know the Node ID or a container hasn't been created yet, you can set a dynamic value using special placeholders.       
 
-For example:    
+For example:  
+
 ``` json
 {
   "writeFile": [
@@ -34,6 +37,7 @@ For example:
   ]
 }
 ```
+
 Visit the <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> documentation page for more information.      
 
 ### All Containers By Group        
@@ -63,6 +67,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 For example:
 
 Using the *nodeType* field while performing the <a href="http://docs.cloudscripting.com/reference/actions/#writefile" target="blank">*writeFile*</a> action.
+
 ``` json
 {
   "writeFile": {
@@ -81,6 +86,7 @@ where:
 * `body` - data that is being written to a file  
 
 Creating an environment with topology specifics, set by the *engine* and *nodeType* values:
+
 ``` json
 {
   "type": "install",
@@ -101,7 +107,8 @@ Also, there are three alternative approaches provided to set containers filterin
 
 * specifying a target node within a name of an action (**node selectors**)     
 
-For example:  
+For example: 
+
 ``` json
 {
     "createFile [cp]" : {
@@ -113,11 +120,13 @@ For example:
     }
 }
 ```
+
 <p dir="ltr" style="text-align: justify;">In the example above, a new file will be created in the compute node (*[cp]*) and a new directory will be created in the compute node (*[cp]*) and balancer (*[bl]*) layers and container with Node ID *123*. Actions for the specified nodes are executed in the declared order.</p>       
 
 * setting a target node next to the performed action     
 
-For example:     
+For example:   
+
 ``` json
 {
   "createFile": {
@@ -129,6 +138,7 @@ For example:
   "nodeGroup": "cp"
 }
 ``` 
+
 Here, the *createFile* and *createDirectory* actions are applied to the specified *nodeGroup*, namely the compute node (*[cp]*) layer.         
  
 * setting a required node as a parameter in the action object     
