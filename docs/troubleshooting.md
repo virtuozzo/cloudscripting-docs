@@ -1,21 +1,21 @@
-# Troubleshooting
+<h1>Troubleshooting</h1>
+Run into trouble with Cloud Scripting? Here are some helpful tips and specific suggestions for troubleshooting as follows:      
+<ul><li><p dir="ltr" style="text-align: justify;">Log in to your Jelastic dashboard and open the link of the following type in a new browser tab:</p></li>          
 
-- Choose a hosting provider from the <a href="https://jelastic.cloud" target="_blank">Jelastic Cloud Union</a>, log in to your Jelastic account and open the link of the following type in a new browser tab: 
+    <p dir="ltr" style="text-align: justify;">http://appstore.{HOSTER_URL}/console/</p>                   
 
-    <http://appstore.{HOSTER_URL}/console/> 
+    <p dir="ltr" style="text-align: justify;">Here, substitute *{HOSTER_URL}* with the platform domain of your hosting provider (see the last column of the table within the <a href="https://docs.jelastic.com/jelastic-hoster-info" target="_blank">Hosters Info</a> page).</p>                
+<li><p dir="ltr" style="text-align: justify;">In the opened browser tab, you will see the Cloud Scripting execution log.</p></li></ul>                                 
 
+<center>![troubleshooting](img/troubleshooting.jpg)</center>      
     Here, substitute a *{HOSTER_URL}* with the platform domain of the chosen hosting provider (see the last column of the table within the <a href="https://docs.jelastic.com/jelastic-hoster-info" target="_blank">Hosters Info</a> page).     
 
-- In the opened browser tab you will see the Cloud Scripting execution log.              
-
-<center>![Console](https://download.jelastic.com/public.php?service=files&t=a662aacb111575cf3d37b1d94fe59af9&download)</center>   
-
 !!! note
-    The maximum log size is 1 MB. The log will be truncated or overwritten, if this limit exceeded.
+> The maximum log size is 1 MB. The log will be truncated or overwritten, if this limit is exceeded.
 
-Below, some examples are provided on how to edit custom information to the log.        
+Below, some tips are provided on how to edit custom information to the log.        
 
-Output single placeholder value:
+Output a single placeholder value:
 ``` json
 {
   "type": "update",
@@ -29,7 +29,7 @@ Output single placeholder value:
 }
 ```
 
-Output all placeholders:
+Output all the placeholders:
 ``` json
 {
   "type": "update",
@@ -40,7 +40,7 @@ Output all placeholders:
 }
 ```                                                                                      
 
-Output from the script:
+Output from a script:
 ``` json
 {
   "type": "update",
