@@ -4,11 +4,11 @@ Jelastic <b>Cloud Scripting (CS)</b> is a tool, designed to program the cloud pl
 <center>![newoverview](/img/newoverview.png)</center>                                 
 There are three main pillars of cloud scripting:
 
-<ul><li><b>Actions</b> - scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS and Java scripts</li>                
+- <b>Actions</b> - scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS and Java scripts               
 
-<li><b>Events</b> - specific <a href="http://docs.cloudscripting.com/reference/events/">triggers</a> for executing actions on a required application lifecycle stage</li>                              
+- <b>Events</b> - specific <a href="http://docs.cloudscripting.com/reference/events/">triggers</a> for executing actions on a required application lifecycle stage                              
 
-<li><b>Injection</b> - supplying default actions, <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">placeholders</a>, platform API methods, environment variables, request parameters and input settings in custom scripts by default</li></ul>                                  
+- <b>Injection</b> - supplying default actions, <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">placeholders</a>, platform API methods, environment variables, request parameters and input settings in custom scripts by default                                 
 
 The developed Cloud Scripting solutions are wrapped into packages and distributed with Jelastic Packaging Standard (<a href="https://docs.jelastic.com/jps" target="_blank">JPS</a>). This is accomplished through preparing a manifest file in JSON format. Such packaged solutions can be effortlessly deployed to the platform via <a href="https://docs.jelastic.com/environment-import" target="_blank">import</a> functionality.         
 
