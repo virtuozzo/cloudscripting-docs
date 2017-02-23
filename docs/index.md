@@ -36,7 +36,7 @@ There are three main pillars of cloud scripting:
   },
   "actions": {
     "myAction": {
-      "forEach(nodes)"...
+      "forEach(nodes)": "..."
     }
   }
 }
