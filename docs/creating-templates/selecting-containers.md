@@ -20,8 +20,7 @@ For example:
   ]
 }
 ```
-
-If you don't know the **ID** or a container hasn't been created yet, you can set a dynamic value using special placeholders.       
+If you don't know the Node ID or a container hasn't been created yet, you can set a dynamic value using special placeholders.       
 
 For example:    
 ``` json
@@ -35,7 +34,6 @@ For example:
   ]
 }
 ```
-
 Visit the <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> documentation page for more information.      
 
 ### All Containers By Group        
