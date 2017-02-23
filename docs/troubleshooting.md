@@ -1,17 +1,16 @@
 # Troubleshooting
+
 Run into trouble with Cloud Scripting? Here are some helpful tips and specific suggestions for troubleshooting as follows:      
-<ul><li><p dir="ltr" style="text-align: justify;">Log in to your Jelastic dashboard and open the link of the following type in a new browser tab:</p></li>          
 
-    <p dir="ltr" style="text-align: justify;">http://appstore.{HOSTER_URL}/console/</p>                   
+- Log in to your Jelastic dashboard and open the link of the following type in a new browser tab:       
+    http://appstore.{HOSTER_URL}/console/                         
+    Here, substitute *{HOSTER_URL}* with the platform domain of your hosting provider (see the last column of the table within the <a href="https://docs.jelastic.com/jelastic-hoster-info" target="_blank">Hosters Info</a> page).                               
+- In the opened browser tab, you will see the Cloud Scripting execution log.                                
 
-    <p dir="ltr" style="text-align: justify;">Here, substitute *{HOSTER_URL}* with the platform domain of your hosting provider (see the last column of the table within the <a href="https://docs.jelastic.com/jelastic-hoster-info" target="_blank">Hosters Info</a> page).</p>                
-<li><p dir="ltr" style="text-align: justify;">In the opened browser tab, you will see the Cloud Scripting execution log.</p></li></ul>                                 
-
-<center>![troubleshooting](img/troubleshooting.jpg)</center>      
-    Here, substitute a *{HOSTER_URL}* with the platform domain of the chosen hosting provider (see the last column of the table within the <a href="https://docs.jelastic.com/jelastic-hoster-info" target="_blank">Hosters Info</a> page).     
+<center>![troubleshooting](img/troubleshooting.jpg)</center>       
 
 !!! note
-> The maximum log size is 1 MB. The log will be truncated or overwritten, if this limit is exceeded.
+    > The maximum log size is 1 MB. The log will be truncated or overwritten, if this limit is exceeded.
 
 Below, some tips are provided on how to edit custom information to the log.        
 

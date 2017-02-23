@@ -1,6 +1,6 @@
 # Jelastic & CS Correspondence
 
-The table below displays dependencies between the Cloud Scripting and Jelastic Platform versions within the same <a href="https://jelastic.cloud/" target="_blank">hosting provider</a> platform.                            
+<p dir="ltr" style="text-align: justify;">The table below displays dependencies between the Cloud Scripting and Jelastic Platform versions within the same <a href="https://jelastic.cloud/" target="_blank">hosting provider</a> platform.</p>                            
 
 <table class="corresp" style="width:100%">
     <tr id="cs">
@@ -29,6 +29,6 @@ The table below displays dependencies between the Cloud Scripting and Jelastic P
 
 !!! note
     > The Cloud Scripting version can be chosen at the bottom of the page within the present documentation.         
-    <br><center>![version](/img/version.png)</center><br> 
+    <center><p>![version](/img/version.png)</p></center> 
     The Jelastic Platform version can be checked either at your dashboard, or within the <a href="https://jelastic.cloud/" target="_blank">Jelastic Cloud Union</a> page, depending on your hosting provider.        
     
