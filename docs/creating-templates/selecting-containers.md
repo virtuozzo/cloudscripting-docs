@@ -36,7 +36,7 @@ For example:
   "nodeGroup": "cp"
 }
 ``` 
-Here, the `createFile` and `createDirectory` actions are applied to the specified *nodeGroup*, namely compute node (*[cp]*) layer.         
+Here, the *createFile* and *createDirectory* actions are applied to the specified *nodeGroup*, namely the compute node (*[cp]*) layer.         
  
 * setting a required node as a parameter in the action object     
 
