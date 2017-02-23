@@ -21,9 +21,9 @@ There are three main pillars of cloud scripting:
     {
       "cmd [cp]": "echo 'test' >> /var/log/run.log"
     },
-    "restartNodes [cp]",,
+    "restartNodes [cp]",
    {
-"createFile [cp]": "/tmp/example.txt"
+    "createFile [cp]": "/tmp/example.txt"
     },
     "myAction"
   ],
