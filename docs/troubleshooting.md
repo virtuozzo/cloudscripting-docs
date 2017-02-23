@@ -10,7 +10,7 @@ Run into trouble with Cloud Scripting? Here are some helpful tips and specific s
 
 * In the opened browser tab, you will see the Cloud Scripting execution log.                                                               
     
-<center><p>![troubleshooting](img/troubleshooting.jpg)</p></center>          
+<center>![troubleshooting](img/troubleshooting.jpg)</center>          
 
 !!! note
     The maximum log size is 1 MB. The log will be truncated or overwritten, if this limit is exceeded.
