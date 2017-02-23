@@ -4,7 +4,7 @@ Run into trouble with Cloud Scripting? Here are some helpful tips and specific s
 
 * Log in to your Jelastic dashboard and open the link of the following type in a new browser tab:              
 
-    http://appstore.{HOSTER_URL}/console/                       
+    *http://appstore.{HOSTER_URL}/console/*                       
     
     Here, substitute *{HOSTER_URL}* with the platform domain of your hosting provider (see the last column of the table within the <a href="https://docs.jelastic.com/jelastic-hoster-info" target="_blank">Hosters Info</a> page).                                           
 
@@ -13,7 +13,7 @@ Run into trouble with Cloud Scripting? Here are some helpful tips and specific s
 <center><p>![troubleshooting](img/troubleshooting.jpg)</p></center>          
 
 !!! note
-    > <p style="padding-top: 10px;">The maximum log size is 1 MB. The log will be truncated or overwritten, if this limit is exceeded.</p>
+    The maximum log size is 1 MB. The log will be truncated or overwritten, if this limit is exceeded.
 
 Below, some tips are provided on how to edit custom information to the log.        
 
