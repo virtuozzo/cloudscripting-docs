@@ -46,10 +46,10 @@ The developed Cloud Scripting solutions are wrapped into packages and distribute
 <br>
 ## What’s next?
 <br>
-<ul><li>Build a simple automation with <a href="/quick-start/" target="_blank">Quick Start</a> Guide</li>                               
-<li>Learn how to <a href="/creating-templates/basic-configs/" target="_blank">Create Manifest</a></li>   
-<li>Explore the list of available <a href="/reference/actions/" target="_blank">Actions</a></li>     
-<li>See the <a href="/reference/events/" target="_blank">Events</a> list the actions can be bound to</li>     
-<li>Find out the list of <a href="/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching</li>    
-<li>Read how to integrate your <a href="/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a></li>           
-<li>Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples</li></ul>                                                    
+<ul><li>Build a simple automation with <a href="http://docs.cloudscripting.com/quick-start/" target="_blank">Quick Start</a> Guide</li>                               
+<li>Learn how to <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/" target="_blank">Create Manifest</a></li>   
+<li>Explore the list of available <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a></li>     
+<li>See the <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">Events</a> list the actions can be bound to</li>     
+<li>Find out the list of <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching</li>    
+<li>Read how to integrate your <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a></li>           
+<li>Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples</li></ul>                                                    
