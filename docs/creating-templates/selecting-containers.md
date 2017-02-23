@@ -2,11 +2,11 @@
 
 ## Selector Types
 
-<p dir="ltr" style="text-align: justify;">Running a specific <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> requires to set a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their *nodeGroup* value (e.g. *sql*) or all containers of the same type by their *nodeType* value (e.g. *MySQL*).</p>                
+<p dir="ltr" style="text-align: justify;">Running a specific <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> requires to set a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their <em>nodeGroup</em> value (e.g. <em>sql</em>) or all containers of the same type by their <em>nodeType</em> value (e.g. <em>MySQL</em>).</p>                
 
 Also, there are three alternative approaches to set containers filtering:       
 
-* **Node Selectors** - specifying a target node within a name of an action     
+* specifying a target node within a name of an action     
 
 For example:  
 ``` json
@@ -20,7 +20,7 @@ For example:
     }
 }
 ```
-In the example above, a new file will be created in the compute node (*[cp]*) and a new directory will be created in the compute node (*[cp]*) and balancer (*[bl]*) [layers](http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group) and container with [Node ID](http://docs.cloudscripting.com/creating-templates/selecting-containers/#particular-container) *123*. Actions for the specified nodes are executed in the declared order.       
+<p dir="ltr" style="text-align: justify;">In the example above, a new file will be created in the compute node (*[cp]*) and a new directory will be created in the compute node (*[cp]*) and balancer (*[bl]*) layers and container with Node ID *123*. Actions for the specified nodes are executed in the declared order.       
 
 * setting a target node next to the performed action     
 
