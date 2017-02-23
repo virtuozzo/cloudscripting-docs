@@ -13,7 +13,7 @@ Run into trouble with Cloud Scripting? Here are some helpful tips and specific s
 <center><p>![troubleshooting](img/troubleshooting.jpg)</p></center>          
 
 !!! note
-    > The maximum log size is 1 MB. The log will be truncated or overwritten, if this limit is exceeded.
+    > <p style="padding-top: 10px;">The maximum log size is 1 MB. The log will be truncated or overwritten, if this limit is exceeded.</p>
 
 Below, some tips are provided on how to edit custom information to the log.        
 
