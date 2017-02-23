@@ -22,7 +22,7 @@ For example:
 }
 ```
 
-If you don't know the Node ID or a container hasn't been created yet, you can set a dynamic value using special placeholders.       
+If you don't know the Node ID or a container hasn't been created yet, you can set a dynamic value, using special placeholders.       
 
 For example:  
 
