@@ -4,8 +4,6 @@
 
 <p dir="ltr" style="text-align: justify;">Running a specific <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> requires to set a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their <em>nodeGroup</em> value (e.g. <em>sql</em>) or all containers of the same type by their <em>nodeType</em> value (e.g. <em>MySQL</em>).</p>                   
 
-<p dir="ltr" style="text-align: justify;">In the next section, you can have a closer look at approaches available to specify a target container.</p>                      
-
 ### Particular Container
 
 <p dir="ltr" style="text-align: justify;">The *nodeId* parameter is used to set a particular container for an action to be executed at it. If you know the **Node ID** of a container (displayed at the Jelastic dashboard next to the required node), you can set it statically.</p>            
