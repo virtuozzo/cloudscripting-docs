@@ -13,7 +13,7 @@ There are three main pillars of cloud scripting:
   
 The developed Cloud Scripting solutions are wrapped into packages and distributed with Jelastic Packaging Standard (<a href="https://docs.jelastic.com/jps" target="_blank">JPS</a>). This is accomplished through preparing a manifest file in JSON format. Such packaged solutions can be effortlessly deployed to the platform via <a href="https://docs.jelastic.com/environment-import" target="_blank">import</a> functionality.         
     
-```
+```json
 {
   "type": "update",
   "name": "overview",
@@ -41,7 +41,6 @@ The developed Cloud Scripting solutions are wrapped into packages and distribute
     }
   }
 }
-
 ```
 <br>
 ## What’s next?
