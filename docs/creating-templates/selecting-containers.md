@@ -55,8 +55,7 @@ Actions for a specified <em>nodeGroup</em> are executed successively one by one.
 
 !!! note
     Upon stating non-predefined (i.e. custom) <em>nodeGroup</em> value for Docker containers, the corresponding container will be placed to the <em>Extra</em> layer.                                   
-   <center><p>![extra](/img/extra_layer.jpg)</p></center>     
-   Subsequently, this <em>nodeGroup</em> value can be used within the same-named <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> field to point to a particular <em>Extra</em> layer.       
+   <center><p>![extra](/img/extra_layer.jpg)</p></center> Subsequently, this <em>nodeGroup</em> value can be used within the same-named <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> field to point to a particular <em>Extra</em> layer.       
     
 ### All Containers By Type
 
