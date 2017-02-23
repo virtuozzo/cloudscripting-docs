@@ -60,21 +60,21 @@ Then, log in to your Jelastic account and perform the following operations:
 - Depending on the `type` stated at the beginning of the manifest, in the opened <b>Confirm installation</b> window, you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click <b>Install</b>.
 - The process of installation will be started. Wait a minute for Preparing, Deploying and Configuring to be finished.
 - Once these operations are finished, you will see a message about the successful installation completion. It can also contain <a href="http://docs.cloudscripting.com/creating-templates/relative-links/#success-text-customization" target="blank">custom text</a> from the `success` manifest section (if it's declared).
-<br>
-<h2>Best Practices</h2>
 
+<h2>Best Practices</h2>
 While preparing your own manifest file, we recommend to:
+
 - use JSON formatter and validator (such as <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a>)         
 - use <a href="https://github.com/" target="_blank">GitHub</a> to store your manifest, scripts and files together  
-<br>
+
 <h2>What's next?</h2>
-<br>
-<h3>Explore More Complex Examples:</h3>    
+
+<h3>Explore More Complex Examples:</h3>
 
 - use JSON formatter and validator (such as <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a>)
 - use YAML parser (such as <a href="http://www.yaml.org/" target="_blank">YAML</a>)
 
-Visit the <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> page to find a set of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions.                      
+Visit the <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> page to find a set of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions.
 
 <h3>Learn Template Basics</h3> 
 See the <a href="http://docs.cloudscripting.com/creating-templates/template-basics/" target="_blank">Template Basics </a> section to learn the required basis of any JSON manifest and find out the differences between <em>Application</em> and <em>Extension</em>.<br>     

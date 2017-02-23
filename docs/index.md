@@ -24,9 +24,7 @@ The developed Cloud Scripting solutions are wrapped into packages and distribute
     {
       "cmd [cp]": "echo 'test' >> /var/log/run.log"
     },
-    {
-      "api[bl]": "jelastic.environment.control.RestartNodesByGroup"
-    },
+    "restartNodes [cp]",,
    {
 "createFile [cp]": "/tmp/example.txt"
     },
