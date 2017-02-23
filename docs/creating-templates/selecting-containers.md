@@ -62,7 +62,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
     
 ### All Containers By Type
 
-<p dir="ltr" style="text-align: justify;">The *nodeType* parameter is applied to specify all containers built upon the same software <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#supported-stacks" target="blank">stacks</a>.</p>                        	  
+<p dir="ltr" style="text-align: justify;">The <em>nodeType</em> parameter is applied to specify all containers built upon the same software <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#supported-stacks" target="blank">stacks</a>.</p>                        	  
 
 For example:
 
