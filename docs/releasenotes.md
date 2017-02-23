@@ -1,13 +1,9 @@
-Release Notes
+# Release Notes
 =============
 
 #1.0
 
-##New
-
 #0.9
-
-##New
 
 - Added new elements for [user input form](/creating-templates/user-input-parameters/):  
     - `displayfield`
@@ -23,7 +19,7 @@ Release Notes
     - *width*
     - *height*
 
-##Change
+<h3>Change</h3>
 
 - Changes in [user input](/creating-templates/user-input-parameters/) page.   
 Added new CS elements for custom form.

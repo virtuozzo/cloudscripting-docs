@@ -2,7 +2,7 @@
 
 Mount `data` directory from `storage` node to application server node:
 
-```
+``` json
 {
   "type": "install",
   "name": "mount Data Storage",

@@ -47,6 +47,8 @@ The following specific groups of placeholders are singled out:
     - `contexts.type` *[string]* - env context type
     - `contexts.context` *[string]* - context name
     - `contexts.archivename` *[string]* - context display name
+    - `contexts.length` *[number]* - count of contexts which are deployed in environment
+    - `extdomains.length` *[number]* - count of external domains which are binded to environment
     
 ## Node Placeholders    
 - `${nodes.}`
@@ -63,6 +65,7 @@ The following specific groups of placeholders are singled out:
         - `bandwidthLimit` - node's bandwidth limit   
         - `contextValidatorRegex` - validation for context names    
         - `diskIopsLimit` - IOPS limitation quota   
+        - `addons.length` - a count of available addons at selected node
         - `diskLimit` - hardware node disk space quota  
         - `endpoints` [*array indexes*] - <a href="https://docs.jelastic.com/endpoints" target="_blank">endpoints</a> functionality                              
             - `domain` - full domain name of the node the endpoint is being set for                  
@@ -70,7 +73,8 @@ The following specific groups of placeholders are singled out:
             - `name` - title for a new endpoint (can be either custom or <a href="https://docs.jelastic.com/endpoints#preconfigured" target="_blank">predefined</a>)                         
             - `privatePort` - preferred local node’s port              
             - `publicPort` - private (dynamic) port used for mapping                                         
-            - `protocol` - protocol type (currently, only TCP is provided)                     
+            - `protocol` - protocol type (currently, only TCP is provided)             
+            - `length` - a count of available endpoints related to selected node
         - `fixedCloudlets` - fixed cloudlets amount     
         - `flexibleCloudlets` - flexible cloudlets amount      
         - `id` - node ID   
@@ -82,6 +86,7 @@ The following specific groups of placeholders are singled out:
         - `isWebAccess`   
         - `ismaster` - master node's status in the <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">nodeGroup</a> (i.e. layer)   
         - `maxchanks`   
+        - `length` - a count of available nodes in environment
         - `name` - stack name   
         - `nodeGroup` - node's layer, e.g. *lb*, *cp*, *sqldb*, *nosqldb*, *cache*, *storage*, *extra* (for *Docker* containers)   
         - `nodeType` -  stacks <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-types-nodetype" target="_blank">nodeType</a> list     
@@ -99,6 +104,7 @@ The following specific groups of placeholders are singled out:
             - `type` - engine's type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
             - `vcsSupport` - supporting VCS in container  
             - `version` - engine's version  
+            - `length` - a count of available engines for selected compute stack
         - `activeEngine`(current engine in a container):  
             - `id` - engine's ID at the platform   
             - `keyword` - engine's keyword (e.g. *java7*, *php7.0*)  
@@ -110,7 +116,8 @@ The following specific groups of placeholders are singled out:
             - `description` - package's description                                       
             - `documentationurl` - redirect to page(s) with more info on the particular add-on                          
             - `iconurl` - add-on's logo                                               
-            - `id` - ID of the installed package                       
+            - `id` - ID of the installed package
+            - `length` - a count of installed packages into node
             - `isInstalled` - installation status, the possible values are *'true'* & *'false'*                      
     
 In case a few nodes are available within `nodeGroup`, you can execute actions in one of them.
@@ -137,7 +144,7 @@ Learn more about the event placeholders within the above-linked *Events* page.
 - `${settings.key}` - (where *key* is a name of the application setting). The placeholder is defined in case user input parameters are specified within a manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.     
 
 For example:
-```example
+``` json
 {
   "jpsType": "update",
   "settings": {
@@ -158,7 +165,7 @@ The placeholder's name here is `${settings.customName}`. Check the list of <a hr
 - `${this.param}` - where *param* is a name of the action parameter
 
 For example:
-```
+``` json
 {
   "script": "return greeting;",
   "params": {
@@ -167,7 +174,7 @@ For example:
 }
 ```
 Passing custom params to the action is performed in the following way:
-```
+``` json
 {
 	"jpsType": "update",
 	"name": "example",
@@ -194,7 +201,7 @@ As a result, console will display the *first* (1) custom parameter from `${this.
 
 For instance: 
 
-```example
+``` json
 {
   "jpsType": "update",
   "settings": {
@@ -214,7 +221,7 @@ For instance:
 Placeholders managed by users can be predefined via <b>*globals declaration*</b>. The corresponding declaration is performed in advance of the manifest installation.  
 
 For example:
-```
+``` json
 {
   "jpsType": "update",
   "name": "Global declaration",
@@ -226,7 +233,7 @@ For example:
 ```
 
 As a result, the new placeholders are created:
-```
+``` json
 {
   "globals.value1": 1,
   "globals.value2": 2
@@ -265,7 +272,7 @@ Function parameter can be passed from existing placeholders. For example:
 You can easily define function placeholders within the [cutom global placeholders](#custom-global-placeholders).  
 
 For example:
-```
+``` json
 {
   "globals": {
     "pass": "${fn.password}"

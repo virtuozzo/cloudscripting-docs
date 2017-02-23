@@ -1,7 +1,7 @@
 #Install Add-on inside Manifest
 
 This manifest provides an environment, that is handled with the help of **Apache PHP** aplication server, is powered by **PHP 7** engine version and has external IP address attached. Subsequently, Public IP address can be detached with the help of the **Add-on** button.
-```example
+``` json
 {
   "type": "install",
   "name": "example",

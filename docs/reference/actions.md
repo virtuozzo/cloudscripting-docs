@@ -36,14 +36,14 @@ Any container operation can be performed using a [cmd](#cmd) action. Herewith, t
 !!! note 
     To process any container operation (except for [cmd](#cmd)), the Cloud Scripting executor will use a default system user with restricted permissions.                   
    
-### cmd   
+###cmd
 
 The *cmd* action executes <a href="https://docs.jelastic.com/ssh-overview" target="_blank">SSH</a> commands.             
 <!--Available for all nodes.-->      
 
 **Example**                  
 
-```json
+``` json
 {
   "cmd [nodeId,nodeType,nodeGroup]": [
     "cmd1",
@@ -62,7 +62,7 @@ where:
 - `sayYes` *[optional]* - parameter that enables or disables using **yes** utility. The default value is *'true'*.                  
 
 A single SSH command can be passed in a string. For example, executing a bash script from *URL* for all *Tomcat 6* nodes:                 
-```example 
+``` json 
 {
   "cmd [tomcat6]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
 }
@@ -84,7 +84,7 @@ sudo /etc/init.d/httpd help;
 **Examples**  
 
 Setting SSH commands in an array:                    
-```
+``` json
 {
   "cmd [tomcat6]": [
     "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
@@ -93,7 +93,7 @@ Setting SSH commands in an array:
 ```
                              
 Downloading and unzipping a *WordPress* plugin on all compute nodes:                
-```
+``` json
 {
   "cmd [cp]": [
     "cd /var/www/webroot/ROOT/wp-content/plugins/",
@@ -108,7 +108,7 @@ The same can be performed with the help of the [unpack](/reference/actions/#unpa
 
 Using **sudo** to reload *Nginx* balancer:
 
-```example
+``` json
 {
   "cmd [nginx]": [
     "sudo /etc/init.d/nginx reload"
@@ -116,7 +116,7 @@ Using **sudo** to reload *Nginx* balancer:
 }
 ```
    
-### api 
+###api 
 Executing actions available by means of the <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a> methods.     
 
 There are a number parameters required by Jelastic API, which are defined automatically:
@@ -130,7 +130,7 @@ Target nodes selected for the API methods execution can be passed by the node ke
 **Examples:**
 
 Restarting all compute nodes in an environment:                      
-```
+``` json
 {
     "api [cp]" : "jelastic.environment.control.RestartNodesByGroup"
 }
@@ -139,14 +139,14 @@ where:
        
 - `[cp]` - specifying a target node group for API method to be executed at (e.g. *cp*). Learn more details about <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank">setting target containers</a> within the linked page.                                        
 - *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group. This parameter can be simplified like shown in the example below:
-```
+``` json
 {
     "api [cp]" : "environment.control.RestartNodesByGroup"
 }
 ```
  
 Below you can find one more approach to specify a target node group for API method to be executed at:                               
-```
+``` json
 {
     "api" : "jelastic.environment.control.RestartNodesByGroup",
     "nodeGroup" : "cp"
@@ -154,9 +154,9 @@ Below you can find one more approach to specify a target node group for API meth
 ```
 Learn more about <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank">setting a target containers</a> for your API actions within the linked guide.                                        
         
-### deploy
+###deploy
 Available for compute nodes (except for *Docker* containers)
-```
+``` json
 {
   "deploy": [
     {
@@ -173,10 +173,10 @@ where:
 - `name` - application's name, that will be displayed at the dashboard
 - `context`- desired context for a deployed app
 
-### upload
+###upload
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)-->
-```
+``` json
 {
   "upload": [
     {
@@ -196,10 +196,10 @@ where:
 - `sourcePath` - URL to download an external file                    
 - `destPath` - container path, where the uploaded file is to be saved                         
 
-### unpack
+###unpack
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
-```
+``` json
 {
   "unpack": [
     {
@@ -219,10 +219,10 @@ where:
 - `sourcePath` - URL to download an external archive   
 - `destPath` - container path, where the uploaded archive is to be unpacked                               
 
-### createFile
+###createFile
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
-```
+``` json
 {
   "createFile [nodeId, nodeGroup, nodeType]": "string"
 }
@@ -232,10 +232,10 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                          
 - `string` - container path, where a file is to be created                              
 
-### createDirectory
+###createDirectory
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
-```
+``` json
 {
   "createDirectory [nodeId, nodeGroup, nodeType]": "string"
 }
@@ -245,10 +245,10 @@ where:
 - `nodeId`, `nodGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                       
 - `string` - container path, where a directory is to be created                         
 
-### writeFile
+###writeFile
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
-```
+``` json
 {
   "writeFile": [
     {
@@ -268,10 +268,10 @@ where:
 - `path` - container path, where a file is to be written                
 - `body` - content saved to the file                                         
 
-### appendFile
+###appendFile
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
-```
+``` json
 {
   "appendFile": [
     {
@@ -291,10 +291,10 @@ where:
 - `path` - container path, where a file is to be appended                                 
 - `body` - content saved to the file                               
 
-### replaceInFile
+###replaceInFile
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
-```
+``` json
 {
   "replaceInFile": [
     {
@@ -324,8 +324,8 @@ where:
 
 ## Topology Nodes Management
 
-### addNodes
-```
+###addNodes
+``` json
 {
   "addNodes": [
     {
@@ -364,9 +364,9 @@ where:
 - `entrypoint` *[optional]* - Docker entry points                                          
 
 <!-- SetCloudletsCount -->
-### setNodeDisplayName
+###setNodeDisplayName
 Available for all nodes
-```
+``` json
 {
   "setNodeDisplayName [nodeId, nodeGroup, nodeType]": "string"
 }
@@ -377,9 +377,9 @@ where:
 - `string` - node’s display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                                                        
 
 
-### setNodeCount
+###setNodeCount
 Available for all nodes (except for *Docker* containers and *Elastic VPS*)
-```
+``` json
 {
   "setNodeCount [nodeId, nodeGroup, nodeType]": "number"
 }
@@ -389,9 +389,9 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                
 - `number` - nodes’ total amount after action is finished                                          
 
-### setExtIpEnabled
+###setExtIpEnabled
 Available for all nodes
-```
+``` json
 {
   "setExtIpEnabled [nodeId, nodeGroup, nodeType]": true or false
 }
@@ -401,9 +401,9 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                   
 - `true` or `false` - parameter that allows to attach or detach external IP address                              
 
-### restartNodes
+###restartNodes
 Available for all nodes (except for *Elastic VPS*)
-```
+``` json
 {
   "restartNodes": [
     {
@@ -418,9 +418,9 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                   
 
-### restartContainers
+###restartContainers
 Available for all nodes
-```
+``` json
 {
   "restartContainers": [
     {
@@ -435,9 +435,9 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                       
  
-### addContext
+###addContext
 Available for compute nodes (except for *Docker* containers)
-```
+``` json
 {
   "addContext": [
     {
@@ -459,9 +459,9 @@ where:
 
 ## Database Operations
 
-### prepareSqlDatabase
+###prepareSqlDatabase
 Available for *SQL* databases (except for *Docker* containers)
-```
+``` json
 {
   "prepareSqlDatabase": [
     {
@@ -495,9 +495,9 @@ where:
 !!! note
     The function is executed only for `mysql5`, `mariadb` and `mariadb10` containers.                          
 
-### restoreSqlDump
+###restoreSqlDump
 Available for *SQL* databases (except for *Docker* container)
-```
+``` json
 {
   "restoreSqlDump": [
     {
@@ -520,9 +520,9 @@ where:
 - `password` - password in the database, on behalf of which the application will be used                         
 - `dump` - URL to the application's database dump                                
 
-### applySqlPatch
+###applySqlPatch
 Available for *SQL* databases (except for *Docker* containers)                                 
-```
+``` json
 {
   "applySqlPatch": [
     {
@@ -550,9 +550,9 @@ where:
 
 ## User-Defined Operations
 
-### script
+###script
 
-```
+``` json
 {
   "script": "string or URL",
   "type": "string",
@@ -568,7 +568,7 @@ where:
 - `params` *[optional]* - script parameters                               
 
 <b>For example:</b>
-```example
+``` json
 {
   "executeScript": [
     {
@@ -583,21 +583,21 @@ where:
 !!! note
     Learn more about using <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a>).    
 
-### sleep
+###sleep
 Setting a delay that is measured in milliseconds. The below example shows how to create the delay for one second:                                    
-```
+``` json
 {
   "sleep": "1000"
 }
 ```
 
-### install
+###install
 Nesting a JPS manifest inside the current manifest file. The nested JPS manifest will be installed subsequently after the current one. The action is available for **install** and **update** *type* modes.                              
 
 **Examples**
 
 Installing add-on via the external link (with **update** *type*):
-```
+``` json
 {
   "install" : {
     "jps" : "http://example.com/manifest.jps",
@@ -613,7 +613,7 @@ where:
 - `settings` - user <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">custom form</a>           
 
 Installing add-on from the local manifest:
-```
+``` json
 {
   "install" : {
     "type" : "update",
@@ -629,7 +629,7 @@ where:
 - `onInstall` - entry point for performed actions                                 
 
 Installing a new environment via the external link (with **install** *type*):
-```
+``` json
 {
   "install" : {
     "jps" : "http://example.com/manifest.jps",
@@ -647,7 +647,7 @@ where:
 - `settings` - user <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">custom form</a>                                               
 
 Installing a new environment from the local manifest:
-```
+``` json
 {
   "install" : {
     "type" : "install",
@@ -673,7 +673,7 @@ where:
 - `onInstall` - entry point for performed actions               
 
 
-### installAddon
+###installAddon
 
 The possibility to install few custom add-ons within a single manifest. It can be installed to:
 
@@ -683,7 +683,7 @@ The possibility to install few custom add-ons within a single manifest. It can b
 All the add-ons will have `type` *update* by default.   
 
 The example below shows how to pass an add-on identifier into `installAddon` action. This add-on should be described in the `addons` section. The custom add-on with the *firstAddon* identifier will create a new file in a compute node in the *tmp* directory.
-```
+``` json
 {
 	"type": "update",
 	"name": "Install Add-on example",
@@ -711,7 +711,7 @@ Installed add-ons can be displayed within the **Add-ons** tab at the Jelastic da
 
 In the following example into the `installAddon` action is passed the `nodeGroup` parameter, targeting an add-on to the particular *nodeGroup* (i.e. `bl`).             
 
-```
+``` json
 {
   "installAddon": {
     "id": "firstAddon",
@@ -724,11 +724,11 @@ Consequently, the installed add-on will be marked as set up to the *balancer* la
 
 <!-- add example -->
 
-### Custom Actions
+<h3>Custom Actions</h3>
 The declarative code inside a manifest can be divided into separate blocks, named **actions**. Subsequently, the particular actions can be run by means of appealing to call actions with different parameters.             
 
 The example below shows how to create a new file (e.g. the <b>*example.txt*</b> file in the <b>*tmp*</b> directory) by executing a *createFile* action at the compute node:                
-```
+``` json
 {
   "type": "update",
   "name": "execution actions",
@@ -743,7 +743,7 @@ where:
 
 The next example illustrates how to create a new custom action (i.e. *customAction*), which can be called for several times:                                      
 
-```
+``` json
 {
 	"type": "update",
     "name": "execution actions",
@@ -759,14 +759,14 @@ where:
 
 - `actions` - object, where custom actions can be predefined                                    
 
-#### Action Placeholders
+<h4>Action Placeholders</h4>
 
 In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. Parameters sent to a call method are transformed into a separate kit of placeholders, which can be received inside the appropriate action with the help of *${this}* namespace. Access to a node inside environment can be performed according to its type, as well as according to its role in the environment.                           
 
-#### Code Reuse
+<h4>Code Reuse</h4>
 
 Outputting *Hello World!* twice in the <b>*greeting.txt*</b>:  
-```
+``` json
 {
   "type": "update",
   "name": "Actions Example",
@@ -790,13 +790,13 @@ Outputting *Hello World!* twice in the <b>*greeting.txt*</b>:
 }
 ```
 
-#### Call action with parameters 
+<h4>Call action with parameters</h4> 
 
 The following example shows how to pass additional parameters to the custom action, where it can be used in action.                     
 
 Parameters should be passed as an object into custom action:                                  
 
-```
+``` json
 {
 	"type": "update",
     "name": "execution actions",
@@ -817,7 +817,7 @@ where:
 - `fileName` - additional parameter
 
 Writing *Hello World!* and outputting first and second compute node's IP address:                                    
-```
+``` json
 {
   "type": "update",
   "name": "Action Example",

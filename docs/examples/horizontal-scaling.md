@@ -5,7 +5,7 @@ Create two Nginx PHP nodes with Nginx balancer and automatic horizontal scaling 
 - add 1 node if CPU > 70% up to 10 nodes
 - remove 1 node if CPU < 5% down to 1 nodes
    
-```example
+``` json
 {
   "type": "install",
   "name": "Nginx PHP Auto Scaling",
@@ -32,7 +32,7 @@ Create two Nginx PHP nodes with Nginx balancer and automatic horizontal scaling 
 
 **Enable Auto Scaling Triggers script:**
       
-```
+``` json
 import com.hivext.api.environment.Trigger;
 
 var APPID = hivext.local.getParam("TARGET_APPID");

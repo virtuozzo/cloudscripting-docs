@@ -18,7 +18,7 @@ There is a number of predefined pop-up windows, which emerge while custom errors
 
 The result message text can be localized according to the languages, available within the Jelastic Platform:
 
-```example
+``` json
 {
   "type": "warning",
   "message": {
@@ -34,7 +34,7 @@ The result message text can be localized according to the languages, available w
 
 The example below describes a creation of the same file twice and handling an error, which occurs as a result of such action execution. Consequently, the result code of this error will be defined as *4036*.           
 
-```
+``` json
 {
   "type": "update",
   "name": "Handling File Creation",
@@ -65,7 +65,7 @@ Thus, the example above sets all the actions with *4036* result to be displayed 
 
 The additional functionality is provided to display action errors using <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">*return*</a> action.                         
 
-```
+``` json
 {
   "type": "update",
   "name": "Custom Error Handlers",
@@ -88,7 +88,7 @@ where:
 
 If the result code is delivered via *string*, then the default result code is *11039*. Therefore, `errorHandlers` can be handled by the following outcoming *string* text:            
 
-```
+``` json
 {
 	"type": "update",
 	"name": "Custom Error Handlers",
