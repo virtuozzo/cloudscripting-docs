@@ -6,7 +6,8 @@ If it's not possible, the placeholder will be unresolved and displayed in the te
 !!! note
     To output all available placeholders, use a special `${placeholders}` placeholder. See <a href="http://docs.cloudscripting.com/troubleshooting/" target ="_blank">Troubleshooting</a> for more info.                                                                                                
 
-The following specific groups of placeholders are singled out:                       
+The following specific groups of placeholders are singled out: 
+
 - [Environment Placeholders](http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders)           
 - [Node Placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders)                 
 - [Event Placeholders](http://docs.cloudscripting.com/reference/placeholders/#event-placeholders)                    
@@ -121,13 +122,15 @@ The following specific groups of placeholders are singled out:
             - `isInstalled` - installation status, the possible values are *'true'* & *'false'*                      
     
 In case a few nodes are available within `nodeGroup`, you can execute actions in one of them.
-For example:    
+For example: 
+
 - `{nodes.cp[1].address}` - IP address of the second compute node  
 - `{nodes.bl.first.address}` - first IP address of a balancer node in the `nodeGroup` array  
 - `{nodes.db.last.address}` - last IP address of a batabase node     
 
 ## Event Placeholders
-Event placeholders represent a set of dynamic parameters, which are executed as a result of a certain <a href="http://docs.cloudscripting.com/reference/events" target="_blank">event</a> occurrence. Herewith, all event placeholders have their custom set of parameters and begin with the default keywords:                         
+Event placeholders represent a set of dynamic parameters, which are executed as a result of a certain <a href="http://docs.cloudscripting.com/reference/events" target="_blank">event</a> occurrence. Herewith, all event placeholders have their custom set of parameters and begin with the default keywords:
+                         
 - `${event.params.(key)}` - where *key* is a name of event parameter                     
 - `${event.response.(key)}` -where *key* is a name of event response parameter             
 
@@ -304,7 +307,8 @@ For example:
 
 `{nodes.cp[(i)].(key)}`   
 
-where:   
+where:
+
 - `(i)` - array's index. Indexes of array start from 0..   
 - `(key)` - node's parameter. See the details on setting <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node parameters</a>.       
 
@@ -313,10 +317,12 @@ where:
 `{nodes.cp.first.(key)}` - array element with the the *'0'* index  
 `{nodes.sqldb.last.(key)}` - array element with the last ID in the array   
 
-where:  
+where:
+
 - `key` - node's parameter  
 
 ## File Path Placeholders
+
 The values below can vary depending on the chosen <a href="http://docs.cloudscripting.com/reference/container-types/#nodetype-values" target="_blank">nodeType</a>:    
 - `${HOME}` - for *couchdb*, *glassfish3*, *jetty6*, *nginx-ruby*, *nginx*, *nginxphp*, *tomcat6*,*tomcat7*, *tomee*    
 - `${WEBAPPS}` - for *apache2-ruby*, *apache2*, *jetty6*, *nginx-ruby*, *nginxphp*, *nodejs*, *tomcat6*, *tomcat7*, *tomee*    
@@ -334,7 +340,8 @@ The values below can vary depending on the chosen <a href="http://docs.cloudscri
 - `${SERVER_LIBS}` - for *apache2*, *glassfish3*, *jetty6*, *nginxphp*, *tomcat6*, *tomcat7*, *tomee*    
 - `${SERVER_DATA}` - for *postgres8*, *postgres9*         
 
-You can use the following placeholders, as well, with the definite `nodeType`. For example:   
+You can use the following placeholders, as well, with the definite `nodeType`. For example:
+
 - `${glassfish3.HOME}` - */opt/glassfish3/temp*  
 - `${jetty6.JAVA_HOME}` - */usr/java/latest*  
 - `${mariadb10.SERVER_BACKUP}` - */var/lib/jelastic/backup*  
@@ -348,7 +355,8 @@ You can use the following placeholders, as well, with the definite `nodeType`. F
 
 Explore the full list of <a href="http://docs.cloudscripting.com/reference/container-types/#jelastic-native-container-types" target="_blank">Jelastic native containers</a>.                       
 
-The list of single placeholders:   
+The list of single placeholders:
+
 - `${nginxphp.NGINX_CONF}` - */etc/nginx/nginx.conf*   
 - `${postgresql.POSTGRES_CONF}` - */var/lib/pgsql/data*   
 - `${mysql5.MYSQL_CONF}` - */etc*   

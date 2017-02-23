@@ -324,7 +324,8 @@ The event will be called after the *deleteEnvironment* action.
 
 The event will be triggered before adding a new node to an environment. The *onBeforeAddNode* event will be executed for each newly added node.   
 
-There are the following available node groups:   
+There are the following available node groups:
+
 - *compute*   
 - *database*   
 - *balancer*  
@@ -349,7 +350,8 @@ There are the following available node groups:
 
 The event will be triggered after adding a new node to an environment. The *onAfterAddNode* event will be executed for each newly added node.     
 
-There are the following available node groups:  
+There are the following available node groups:
+
 - *compute*  
 - *database*  
 - *balancer*   
@@ -375,7 +377,8 @@ There are the following available node groups:
 
 The event will be performed before cloning node in the environment. The process of cloning nodes presupposes that new nodes are cloned from the existing ones. 
 
-The *onBeforeCloneNodes* event is applicable only for the next node groups (excluding Docker-based nodes):      
+The *onBeforeCloneNodes* event is applicable only for the next node groups (excluding Docker-based nodes):
+
 - *compute*   
 - *balancer*  
 - *VPS*    
@@ -395,7 +398,8 @@ The *onBeforeCloneNodes* event is applicable only for the next node groups (excl
 
 The event will be performed after cloning node in the environment. 
 
-The *onAfterCloneNodes* event is applicable only for the next node groups (excluding Docker-based nodes):                               
+The *onAfterCloneNodes* event is applicable only for the next node groups (excluding Docker-based nodes):
+
 - *compute*              
 - *balancer*                 
 - *VPS*                 
