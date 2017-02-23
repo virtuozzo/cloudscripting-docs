@@ -6,7 +6,7 @@
 
 ### Particular Container
 
-<p dir="ltr" style="text-align: justify;">The **nodeId** parameter is used to set a particular container for an action to be executed at it. If you know the **Node ID** of a container (displayed at the Jelastic dashboard next to the required node), you can set it statically.</p>            
+<p dir="ltr" style="text-align: justify;">The <em>nodeId</em> parameter is used to set a particular container for an action to be executed at it. If you know the **Node ID** of a container (displayed at the Jelastic dashboard next to the required node), you can set it statically.</p>            
   
 For example:     
 ``` json
