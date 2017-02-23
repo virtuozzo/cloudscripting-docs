@@ -146,8 +146,8 @@ For example:
 <p dir="ltr" style="text-align: justify;">Learn more on this parameter within the custom<a href="http://docs.cloudscripting.com/reference/actions" target="_blank">actions</a> documentation page.</p>                
 
 !!! note 
-    > * <p style="padding-top: 10px;"><b>Node selectors</b> have higher priority than nodes, specified next to the action but lower than parameters set in the action object.</p>    
-    * If you set all three parameters, actions for indicated containers would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.  
+    > <p style="padding-top: 10px;"><b>Node selectors</b> have higher priority than nodes, specified next to the action but lower than parameters set in the action object.   
+    If you set all three parameters, actions for indicated containers would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.</p>   
 
 Below you can find data on supported software stacks in confines of the *nodeGroup*, *nodeType* and *engine* values.
 
