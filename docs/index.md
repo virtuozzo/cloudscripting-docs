@@ -36,7 +36,7 @@ The developed Cloud Scripting solutions are wrapped into packages and distribute
   },
   "actions": {
     "myAction": {
-      "forEach(nodes)"...
+      "forEach(nodes)"
     }
   }
 }
