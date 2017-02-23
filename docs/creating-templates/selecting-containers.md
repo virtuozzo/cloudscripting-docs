@@ -85,7 +85,7 @@ where:
 * `path` - parameter specifying path to a file
 * `body` - data that is being written to a file  
 
-Creating an environment with topology specifics, set by the *engine* and *nodeType* values:
+Creating an environment with topology specifics, set by the *engine* and *nodeType* values.   
 
 ``` json
 {
