@@ -121,7 +121,7 @@ For example:
 }
 ```
 
-<p dir="ltr" style="text-align: justify;">In the example above, a new file will be created in the compute node (*[cp]*) and a new directory will be created in the compute node (*[cp]*) and balancer (*[bl]*) layers and container with Node ID *123*. Actions for the specified nodes are executed in the declared order.</p>       
+<p dir="ltr" style="text-align: justify;">In the example above, a new file will be created in the compute node (<em>[cp]</em>) and a new directory will be created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers and container with Node ID <em>123</em>. Actions for the specified nodes are executed in the declared order.</p>         
 
 * setting a target node next to the performed action     
 
@@ -139,15 +139,15 @@ For example:
 }
 ``` 
 
-Here, the *createFile* and *createDirectory* actions are applied to the specified *nodeGroup*, namely the compute node (*[cp]*) layer.         
+<p dir="ltr" style="text-align: justify;">Here, the <em>createFile</em> and <em>createDirectory</em> actions are applied to the specified <em>nodeGroup</em>, namely the compute (<em>[cp]</em>) layer.</p>         
  
 * setting a required node as a parameter in the action object     
 
-Learn more on this parameter within the custom<a href="http://docs.cloudscripting.com/reference/actions" target="_blank">actions</a> documentation page.             
+<p dir="ltr" style="text-align: justify;">Learn more on this parameter within the custom<a href="http://docs.cloudscripting.com/reference/actions" target="_blank">actions</a> documentation page.</p>                
 
 !!! note 
-    > <p style="padding-top: 10px;">**Node selectors** have higher priority than nodes, specified next to the action but lower than parameters set in the action object.</p>    
-    If you set all three parameters, actions for indicated containers would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.  
+    > * <p style="padding-top: 10px;"><b>Node selectors</b> have higher priority than nodes, specified next to the action but lower than parameters set in the action object.</p>    
+    * If you set all three parameters, actions for indicated containers would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.  
 
 Below you can find data on supported software stacks in confines of the *nodeGroup*, *nodeType* and *engine* values.
 
