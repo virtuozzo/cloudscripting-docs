@@ -46,13 +46,14 @@ The *nodeGroup* value is used to point out all containers within a specific laye
 
 The Jelastic Platform supports the following predefined *nodeGroup* values:                 
  
-* *bl*    
-* *cp*    
-* *sqldb*     
-* *nosqldb*     
-* *cache*    
-* *build*     
-* *vps*            
+* *bl*             
+* *cp*                 
+* *cache*                 
+* *sqldb*            
+* *nosqldb*            
+* *storage*                  
+* *vps*                
+* *build*        
 
 <p dir="ltr" style="text-align: justify;">Actions for a specified <em>nodeGroup</em> are executed successively one by one. For Docker containers the <em>nodeGroup</em> value is not predefined, therefore, it can be stated to any value above or your custom one.</p>               
 
@@ -155,20 +156,20 @@ Below you can find data on supported software stacks in confines of the *nodeGro
 
 ## Supported Stacks
 
-<b>Predefined *nodeGroup* values</b>                 
+### Predefined *nodeGroup* values                   
 
 The Jelastic Platform supports the following predefined *nodeGroup* values:                         
 
-* **lb** (for load balancers) - *nginx, varnish, haproxy*                     
+* **lb** (for load balancers) - *nginx, varnish, haproxy*                       
 * **cp** (for compute nodes) - *tomcat6, tomcat7, tomcat8, tomee, glassfish3, glassfish4, jetty6, jetty8, jetty9, jboss7, smartfox-server, powerdns, railo4, wildfly, wildfly9, wildfly10, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs*                     
-* **sql** (for *sql* databases) - *mysql5, mariadb, mariadb10, postgres8, postgres9*                          
-* **nosql** (for *nosql* databases) - *mongodb, couchdb, redis, redis3, cassandra2*                   
-* **vps** (for virtual private servers) - *centos6, centos7*                        
-* **cache** (for a cache server) - *memcached*                       
-* **build** (for a build node) - *maven3*                     
-* **storage** (for a storage container) - *storage*                        
+* **cache** (for a cache server) - *memcached*                    
+* **sql** (for *sql* databases) - *mysql5, mariadb, mariadb10, postgres8, postgres9*                                
+* **nosql** (for *nosql* databases) - *mongodb, couchdb, redis, redis3, cassandra2*        
+* **storage** (for a storage container) - *storage*           
+* **vps** (for virtual private servers) - *centos6, centos7*                                    
+* **build** (for a build node) - *maven3*                                
 
-**Containers by Types** (<b>*nodeType*</b>)
+### Predefined *nodeType* values   
 
 The Jelastic Platform supports the following software stacks:         
 
@@ -228,7 +229,8 @@ The Jelastic Platform supports the following software stacks:
 - **Docker containers:**                               
      - `docker`                 
          
-**Engine Versions** (<b>*engine*</b>)
+
+### Engine Versions
 
 The following section deals with the supported engine versions and their availability for a corresponding *nodeType* (in confines of the compute nodes).                                  
 
