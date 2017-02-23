@@ -2,9 +2,9 @@
 
 ## Selector Types
 
-<p dir="ltr" style="text-align: justify;">Running a specific <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> requires to set a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their <em>nodeGroup</em> value (e.g. <em>sql</em>) or all containers of the same type by their <em>nodeType</em> value (e.g. <em>MySQL</em>).</p>                
+<p dir="ltr" style="text-align: justify;">Running a specific <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> requires to set a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their <em>nodeGroup</em> value (e.g. <em>sql</em>) or all containers of the same type by their <em>nodeType</em> value (e.g. <em>MySQL</em>).</p>                   
 
-<p dir="ltr" style="text-align: justify;">In the next section, you can have a look at more detailed descriptions on approaches available to set a target container, namely a particular container, all containers by group or by type.</p>              
+<p dir="ltr" style="text-align: justify;">In the next section, you can have a closer look at approaches available to specify a target container.</p>                      
 
 ### Particular Container
 
