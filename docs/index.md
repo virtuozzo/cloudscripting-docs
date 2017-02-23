@@ -1,5 +1,6 @@
-# Cloud Scripting Overview
-Jelastic <b>Cloud Scripting (CS)</b> is a tool, designed to program the cloud platform behaviour related to your application lifecycle for automating frequent tasks, complex CI/CD flows and clustering configurations.                                                                           
+<h1>Cloud Scripting Overview</h1>
+
+<p dir="ltr" style="text-align: justify;">Jelastic <b>Cloud Scripting (CS)</b> is a tool, designed to program the cloud platform behaviour related to your application lifecycle for automating frequent tasks, complex CI/CD flows and clustering configurations.</p>                                                                             
 
 <center>![newoverview](/img/newoverview.png)</center>                                            
 
@@ -11,7 +12,7 @@ There are three main pillars of cloud scripting:
 
 - <b>Injection</b> - supplying default actions, <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">placeholders</a>, platform API methods, environment variables, request parameters and input settings in custom scripts by default                                                               
 
-The developed Cloud Scripting solutions are wrapped into packages and distributed with Jelastic Packaging Standard (<a href="https://docs.jelastic.com/jps" target="_blank">JPS</a>). This is accomplished through preparing a manifest file in JSON format. Such packaged solutions can be effortlessly deployed to the platform via <a href="https://docs.jelastic.com/environment-import" target="_blank">import</a> functionality.                
+<p dir="ltr" style="text-align: justify;">The developed Cloud Scripting solutions are wrapped into packages and distributed with Jelastic Packaging Standard (<a href="https://docs.jelastic.com/jps" target="_blank">JPS</a>). This is accomplished through preparing a manifest file in JSON format. Such packaged solutions can be effortlessly deployed to the platform via <a href="https://docs.jelastic.com/environment-import" target="_blank">import</a> functionality.</p>                        
 
 ```json
 {
@@ -43,7 +44,7 @@ The developed Cloud Scripting solutions are wrapped into packages and distribute
 }
 ```
 
-## What’s next?
+<h2>What’s next?</h2>
 
 - Build a simple automation with <a href="http://docs.cloudscripting.com/quick-start/" target="_blank">Quick Start</a> Guide                               
 - Learn how to <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/" target="_blank">Create Manifest</a>   
