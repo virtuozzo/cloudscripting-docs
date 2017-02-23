@@ -50,7 +50,7 @@ h3, h4, h5, h6 {
     overflow-y: auto;
     overflow-x: hidden;
     height: 100%;
-    width: 283px;
+    width: 272px;
 }
 .rst-versions {
     height: 32px;
@@ -151,9 +151,10 @@ h3, h4, h5, h6 {
  *
  * https://github.com/mkdocs/mkdocs/pull/202
  */
-.wy-nav-side {
+.wy-nav-side.stickynav {
     height: 100%;
-    overflow-y: auto;
+    width: 272px;
+    /*overflow-y: auto;*/
 }
 
 /*
@@ -314,4 +315,10 @@ pre code.example {
 }
 .rst-versions .next-arrows:hover {
     background-image:url(../img/arrows-next-active.png);
+}
+.stickynav {
+    /*width: 280px;*/
+}
+.wy-menu-vertical a:active {
+    background-color: transparent;
 }

@@ -57,7 +57,7 @@ Below are provided the graphs that show the actions with the adjoining events. E
  
 The `changeTopology` actions are considered quite laborious to be performed via the Jelastic dashboard, therefore, the graph below provides a sequence of a possible actions and related events:     
 
-<center><img style="height: 900px; padding-right: 65px"  src="/img/changeTopologySequence.png" alt="change topology sequence icon" /></center>
+<center><img style="height: 900px; padding-right: 69px"  src="/img/changeTopologySequence.png" alt="change topology sequence icon" /></center>
 
 One more demanded action is scaling nodes in an environment within a single *nodeGroup* (layer). The following graph provides a list of possible actions and adjoining events:
 

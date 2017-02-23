@@ -41,7 +41,6 @@
   color:#00acff;
 }
 .wy-menu-vertical .toctree-l2.current > a:hover {
-  background-color: #00acff;
   color:#fff;
 }
 
@@ -63,4 +62,8 @@
 }
 .toctree-l3 a:hover {
   background-color: #00acff !important;
+}
+.wy-menu-vertical li.toctree-l2.current>a {
+  padding: 0.6em 1.618em;
+  background-color: #6c769a;
 }
