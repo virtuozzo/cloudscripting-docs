@@ -103,7 +103,9 @@ where:
 * `engine` - value that specifies engine version (*java7* in our example)
 * `nodeType` - value that specifies compute node type (*tomcat7* in our example)
 
-Also, there are three alternative approaches provided to set containers filtering:       
+### Types of Selectors 
+
+There are three alternative approaches, provided to specify target container(s) in a manifest:       
 
 * specifying a target node within a name of an action (**node selectors**)     
 
