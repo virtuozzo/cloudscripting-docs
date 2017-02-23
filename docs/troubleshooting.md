@@ -1,4 +1,4 @@
-<h1>Troubleshooting</h1>
+# Troubleshooting
 Run into trouble with Cloud Scripting? Here are some helpful tips and specific suggestions for troubleshooting as follows:      
 <ul><li><p dir="ltr" style="text-align: justify;">Log in to your Jelastic dashboard and open the link of the following type in a new browser tab:</p></li>          
 
