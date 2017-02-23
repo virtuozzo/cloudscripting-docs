@@ -41,7 +41,7 @@ There are three main pillars of cloud scripting:
   }
 }
 ```
-<br> 
+ 
 <h2>What’s next?</h2>
 <br>
 - Build a simple automation with <a href="http://docs.cloudscripting.com/quick-start/" target="_blank">Quick Start</a> Guide                               
