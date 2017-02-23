@@ -2,14 +2,13 @@
 
 ## Selector Types
 
-<p dir="ltr" style="text-align: justify;">Running a specific <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> requires to set a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their <em>nodeGroup</em> value (e.g. <em>sql</em>) or all containers of the same type by their <em>nodeType</em> value (e.g. <em>MySQL</em>).</p>                   
+Running a specific <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> requires to set a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their <em>nodeGroup</em> value (e.g. <em>sql</em>) or all containers of the same type by their <em>nodeType</em> value (e.g. <em>MySQL</em>).                                 
 
 ### Particular Container
 
-<p dir="ltr" style="text-align: justify;">The <em>nodeId</em> parameter is used to set a particular container for an action to be executed at it. If you know the Node ID of a container (displayed at the Jelastic dashboard next to the required node), you can set it statically.</p>            
+The <em>nodeId</em> parameter is used to set a particular container for an action to be executed at it. If you know the Node ID of a container (displayed at the Jelastic dashboard next to the required node), you can set it statically.                     
   
 For example:
-
 ``` json
 {
   "writeFile": [
@@ -21,11 +20,9 @@ For example:
   ]
 }
 ```
-
-If you don't know the Node ID or a container hasn't been created yet, you can set a dynamic value, using special placeholders.       
+If you don't know the Node ID or a container is not created yet, you can set a dynamic value, using special placeholders.       
 
 For example:  
-
 ``` json
 {
   "writeFile": [
@@ -37,7 +34,6 @@ For example:
   ]
 }
 ```
-
 Visit the <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> documentation page for more information.      
 
 ### All Containers By Group        
@@ -55,20 +51,20 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 * *vps*                
 * *build*        
 
-<p dir="ltr" style="text-align: justify;">Actions for a specified <em>nodeGroup</em> are executed successively one by one. For Docker containers the <em>nodeGroup</em> value is not predefined, therefore, it can be stated to any value above or your custom one.</p>               
+Actions for a specified <em>nodeGroup</em> are executed successively one by one. For Docker containers the <em>nodeGroup</em> value is not predefined, therefore, it can be stated to any value above or your custom one.                              
 
 !!! note
-    > <p dir="ltr" style="text-align: justify;">Upon stating non-predefined (i.e. custom) <em>nodeGroup</em> value for Docker containers, the corresponding container will be placed to the <em>Extra</em> layer. Subsequently, this <em>nodeGroup</em> value can be used within the same-named <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> field to point to a particular <em>Extra</em> layer.</p>                         
-   <center>![extra](/img/extra_layer.jpg)</center>  
+    Upon stating non-predefined (i.e. custom) <em>nodeGroup</em> value for Docker containers, the corresponding container will be placed to the <em>Extra</em> layer.                                   
+   <center><p>![extra](/img/extra_layer.jpg)</p></center>     
+   Subsequently, this <em>nodeGroup</em> value can be used within the same-named <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> field to point to a particular <em>Extra</em> layer.       
     
 ### All Containers By Type
 
-<p dir="ltr" style="text-align: justify;">The <em>nodeType</em> parameter is applied to specify all containers built upon the same software <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#supported-stacks" target="blank">stacks</a>.</p>                        	  
+The <em>nodeType</em> parameter is applied to specify all containers built upon the same software <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#supported-stacks" target="blank">stacks</a>.                                	  
 
 For example:
 
 Using the *nodeType* field while performing the <a href="http://docs.cloudscripting.com/reference/actions/#writefile" target="blank">*writeFile*</a> action.
-
 ``` json
 {
   "writeFile": {
@@ -78,7 +74,6 @@ Using the *nodeType* field while performing the <a href="http://docs.cloudscript
   }
 } 
 ```
-
 where:
 
 * `writeFile` - action to write data to a file
@@ -87,7 +82,6 @@ where:
 * `body` - data that is being written to a file  
 
 Creating an environment with topology specifics, set by the *engine* and *nodeType* values.   
-
 ``` json
 {
   "type": "install",
@@ -98,7 +92,6 @@ Creating an environment with topology specifics, set by the *engine* and *nodeTy
   }
 }
 ```
-
 where:
 
 * `engine` - value that specifies engine version (*java7* in our example)
@@ -111,7 +104,6 @@ There are three alternative approaches, provided to specify target container(s) 
 * specifying a target node within a name of an action (**node selectors**)     
 
 For example: 
-
 ``` json
 {
     "createFile [cp]" : {
@@ -123,13 +115,11 @@ For example:
     }
 }
 ```
-
-<p dir="ltr" style="text-align: justify;">In the example above, a new file will be created in the compute node (<em>[cp]</em>) and a new directory will be created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers and container with Node ID <em>123</em>. Actions for the specified nodes are executed in the declared order.</p>         
+In the example above, a new file will be created in the compute node (<em>[cp]</em>) and a new directory will be created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers and container with Node ID <em>123</em>. Actions for the specified nodes are executed in the declared order.                 
 
 * setting a target node next to the performed action     
 
 For example:   
-
 ``` json
 {
   "createFile": {
@@ -141,16 +131,15 @@ For example:
   "nodeGroup": "cp"
 }
 ``` 
-
-<p dir="ltr" style="text-align: justify;">Here, the <em>createFile</em> and <em>createDirectory</em> actions are applied to the specified <em>nodeGroup</em>, namely the compute (<em>[cp]</em>) layer.</p>         
+Here, the <em>createFile</em> and <em>createDirectory</em> actions are applied to the specified <em>nodeGroup</em>, namely the compute (<em>[cp]</em>) layer.                      
  
 * setting a required node as a parameter in the action object     
 
-<p dir="ltr" style="text-align: justify;">Learn more on this parameter within the custom<a href="http://docs.cloudscripting.com/reference/actions" target="_blank">actions</a> documentation page.</p>                
+Learn more on this parameter within the custom<a href="http://docs.cloudscripting.com/reference/actions" target="_blank">actions</a> documentation page.                                      
 
 !!! note 
-    > <p style="padding-top: 10px;"><b>Node selectors</b> have higher priority than nodes, specified next to the action but lower than parameters set in the action object.   
-    If you set all three parameters, actions for indicated containers would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.</p>   
+    <b>Node selectors</b> have higher priority than nodes, specified next to the action but lower than parameters set in the action object.   
+    If you set all three parameters, actions for indicated containers would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.   
 
 Below you can find data on supported software stacks in confines of the *nodeGroup*, *nodeType* and *engine* values.
 
