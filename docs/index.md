@@ -8,7 +8,7 @@ There are three main pillars of cloud scripting:
 
 * **Actions** - scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS and Java scripts   
 
-* **Events** - specific <a href="http://docs.cloudscripting.com/reference/events/">triggers</a> for executing actions on a required application lifecycle stage   
+* **Events** - specific <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">>triggers</a> for executing actions on a required application lifecycle stage   
   
 * **Injection** - supplying default actions, <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">placeholders</a>, platform API methods, environment variables, request parameters and input settings in custom scripts by default
 
@@ -41,6 +41,7 @@ There are three main pillars of cloud scripting:
   }
 }
 ```
+
 
 <h2>What’s next?</h2>
 
