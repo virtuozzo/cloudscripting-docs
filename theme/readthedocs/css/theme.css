@@ -64,19 +64,3 @@
 .toctree-l3 a:hover {
   background-color: #00acff !important;
 }
-.rst-versions .prew-arrows {
-  width:23px; height:28px; display:block;background-image:url(../img/arrows-prew-inactive.png); display: inline-block; margin-right:15px;
-
-}
-.rst-versions .next-arrows {
-  width:23px; height:28px; display:block;background-image:url(../img/arrows-next-inactive.png);  display: inline-block;
-}
-.rst-versions .next-arrows a, .rst-versions .prew-arrows a {
-  display: block; width:23px; height:28px;
-}
-.rst-versions .prew-arrows:hover {
-  background-image:url(../img/arrows-prew-active.png);
-}
-.rst-versions .next-arrows:hover {
-  background-image:url(../img/arrows-next-active.png);
-}

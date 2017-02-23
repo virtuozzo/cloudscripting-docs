@@ -52,9 +52,15 @@ h3, h4, h5, h6 {
     height: 100%;
     width: 283px;
 }
-
+.rst-versions {
+    height: 38px;
+    padding-top: 4px;
+}
 .rst-versions.rst-badge.shift-up {
     max-width: 268px;
+}
+.rst-versions.rst-badge .rst-current-version {
+    line-height: 25px;
 }
 
 .rst-versions.shift-up .rst-other-versions {
@@ -290,4 +296,19 @@ pre code.example {
 
 .wy-menu-vertical li ul.subnav ul.subnav{
     padding-left: 1em;
+}
+.rst-versions .prew-arrows {
+    width:17px; height:21px; display:block;background-image:url(../img/arrows-prew-inactive.png); display: inline-block; margin-right:15px;
+}
+.rst-versions .next-arrows {
+    width:17px; height:21px; display:block;background-image:url(../img/arrows-next-inactive.png);  display: inline-block;
+}
+.rst-versions .next-arrows a, .rst-versions .prew-arrows a {
+    display: block; width:17px; height:21px;
+}
+.rst-versions .prew-arrows:hover {
+    background-image:url(../img/arrows-prew-active.png);
+}
+.rst-versions .next-arrows:hover {
+    background-image:url(../img/arrows-next-active.png);
 }
