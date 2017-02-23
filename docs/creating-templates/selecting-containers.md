@@ -258,4 +258,4 @@ The following section deals with the supported engine versions and their availab
 |engine  |*nodejs0.10*<br>*nodejs0.12*<br>*nodejs4.3*<br>*nodejs5.6*|
 
 !!! note
-    > <p style="padding-top: 10px;">The list of supported <a href="https://docs.jelastic.com/software-stacks-versions" target="_blank">software stacks</a> can vary depending on your Jelastic platform version - it can be checked at your dashboard.</p>      
+    The list of supported <a href="https://docs.jelastic.com/software-stacks-versions" target="_blank">software stacks</a> can vary depending on your Jelastic platform version - it can be checked at your dashboard.              
