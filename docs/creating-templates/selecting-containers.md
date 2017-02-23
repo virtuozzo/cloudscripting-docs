@@ -58,7 +58,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 
 !!! note
     > <p dir="ltr" style="text-align: justify;">Upon stating non-predefined (i.e. custom) *nodeGroup* value for *Docker* containers, the corresponding container will be placed to the *Extra* layer. Subsequently, this *nodeGroup* value can be used within the same-named <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> field to point to a particular *Extra* layer.</p>                         
-   <center><p>![extra](/img/extra_layer.jpg)</p></center>  
+   <center>![extra](/img/extra_layer.jpg)</center>  
     
 ### All Containers By Type
 
