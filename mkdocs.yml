@@ -16,8 +16,11 @@ theme_dir: './theme/readthedocs'
 
 # Extensions
 markdown_extensions:
+  - admonition
+  - toc
+  - tables
   - markdown.extensions.admonition
-  - markdown.extensions.codehilite(guess_lang=false)
+  #- markdown.extensions.codehilite(guess_lang=false)
   - markdown.extensions.footnotes
   - markdown.extensions.meta
   - markdown.extensions.toc(permalink=true)
@@ -31,7 +34,7 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.superfences
+  #- pymdownx.superfences
   - pymdownx.tasklist(custom_checkbox=true)
   - pymdownx.tilde
 
