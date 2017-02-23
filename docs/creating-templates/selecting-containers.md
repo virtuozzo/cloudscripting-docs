@@ -57,7 +57,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 <p dir="ltr" style="text-align: justify;">Actions for a specified <em>nodeGroup</em> are executed successively one by one. For Docker containers the <em>nodeGroup</em> value is not predefined, therefore, it can be stated to any value above or your custom one.</p>               
 
 !!! note
-    > <p dir="ltr" style="text-align: justify;">Upon stating non-predefined (i.e. custom) <em>nodeGroup<em> value for Docker containers, the corresponding container will be placed to the <em>Extra<em> layer. Subsequently, this <em>nodeGroup<em> value can be used within the same-named <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> field to point to a particular <em>Extra<em> layer.</p>                         
+    > <p dir="ltr" style="text-align: justify;">Upon stating non-predefined (i.e. custom) <em>nodeGroup</em> value for Docker containers, the corresponding container will be placed to the <em>Extra</em> layer. Subsequently, this <em>nodeGroup</em> value can be used within the same-named <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> field to point to a particular <em>Extra</em> layer.</p>                         
    <center>![extra](/img/extra_layer.jpg)</center>  
     
 ### All Containers By Type
