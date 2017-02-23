@@ -44,8 +44,8 @@ Visit the <a href="http://docs.cloudscripting.com/reference/placeholders/" targe
  
 The *nodeGroup* value is used to point out all containers within a specific layer.            
 
-The Jelastic Platform supports the following predefined *nodeGroup* values:                
-
+The Jelastic Platform supports the following predefined *nodeGroup* values:                 
+ 
 * *bl*    
 * *cp*    
 * *sqldb*     
@@ -62,7 +62,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
     
 ### All Containers By Type
 
-<p dir="ltr" style="text-align: justify;">The *nodeType* parameter is applied to specify all containers built upon the same software <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#supported-stacks" target="blank">stacks</a>.                        	  
+<p dir="ltr" style="text-align: justify;">The *nodeType* parameter is applied to specify all containers built upon the same software <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#supported-stacks" target="blank">stacks</a>.</p>                        	  
 
 For example:
 
