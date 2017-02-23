@@ -144,9 +144,8 @@ where:
 Below you can find data on supported software stacks in confines of the nodeGroup, nodeType and engine values.
 
 !!! note
-    > Upon stating non-predefined (i.e. custom) *nodeGroup* value for *Docker* containers, the corresponding container will be placed to the *Extra* layer:               
+    > Upon stating non-predefined (i.e. custom) *nodeGroup* value for *Docker* containers, the corresponding container will be placed to the *Extra* layer. Subsequently, this *nodeGroup* value can be used within the same-named <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> field to point to a particular *Extra* layer.                   
     <br><center>![extra](/img/extra_layer.jpg)</center>            
-    Subsequently, this *nodeGroup* value can be used within the same-named <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> field to point to a particular *Extra* layer.                 
 
 !!! note
     > If you set all three parameters, actions for indicated containers would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>. 
