@@ -92,8 +92,8 @@ Creating an environment with topology specifics, set by the *engine* and *nodeTy
 ```
 where:
 
-* `engine` - value that specifies engine version (*java7* in our example)
-* `nodeType` - value that specifies compute node type (*tomcat7* in our example)
+* `engine` - value that specifies engine version (*java7*  in our example)
+* `nodeType` - value that specifies compute node type (*tomcat7*  in our example)
 
 ### Types of Selectors 
 
@@ -133,7 +133,7 @@ Here, the <em>createFile</em> and <em>createDirectory</em> actions are applied t
  
 * setting a required node as a parameter in the action object     
 
-Learn more on this parameter within the custom<a href="http://docs.cloudscripting.com/reference/actions" target="_blank">actions</a> documentation page.                                      
+Learn more on this parameter within the custom <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">actions</a> documentation page.                                      
 
 !!! note 
     <b>Node selectors</b> have higher priority than nodes, specified next to the action but lower than parameters set in the action object.   
@@ -143,7 +143,7 @@ Below you can find data on supported software stacks in confines of the *nodeGro
 
 ## Supported Stacks
 
-### Predefined *nodeGroup* values                   
+### Predefined *nodeGroup* Values                   
 
 The Jelastic Platform supports the following predefined *nodeGroup* values:                         
 
@@ -156,7 +156,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 * **vps** (for virtual private servers) - *centos6, centos7*                                    
 * **build** (for a build node) - *maven3*                                
 
-### Predefined *nodeType* values   
+### Predefined *nodeType* Values   
 
 The Jelastic Platform supports the following software stacks:         
 
