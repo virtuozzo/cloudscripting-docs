@@ -23,7 +23,7 @@ Thus, the following specific groups of actions are singled out:
 - [Container Operations](#container-operations)                  
 - [Topology Nodes Management](#topology-nodes-management)            
 - [Database Operations](#database-operations)                 
-- [user-defined operations](#user-defined-operations)                       
+- [User-Defined Operations](#user-defined-operations)                       
 
 ## Container Operations
 
@@ -31,9 +31,9 @@ There are actions that perform operations inside of a container. For a detailed 
 
 Any container operation can be performed using a [cmd](#cmd) action. Herewith, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:
 
-- SSH commands (e.g. [cmd](#cmd))                        
-- predefined modules (e.g. [deploy](#deploy), [upload](#upload), [unpack](#unpack))          
-- operations with files (e.g. [createFile](#createfile), [createDirectory](#createdirectory), [writeFile](#writefile), [appendFile](#appendfile), [replaceInFile](#replaceinfile))                    
+- SSH commands ([cmd](#cmd))                        
+- predefined modules ([deploy](#deploy), [upload](#upload), [unpack](#unpack))          
+- operations with files ([createFile](#createfile), [createDirectory](#createdirectory), [writeFile](#writefile), [appendFile](#appendfile), [replaceInFile](#replaceinfile))                    
 
 !!! note 
     To process any container operation (except for [cmd](#cmd)), the Cloud Scripting executor will use a default system user with restricted permissions.                   
@@ -58,7 +58,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required). For a detailed guidance, see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank">Specifying Target Containers</a> section.                   
 - `cmd1` and `cmd2` - set of commands that are being executed. Their values are wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**.     
     Where:    
-    - **cmd** - is equal to a Base64 encoded string: **yes | (cmd1;cmd2)**. In case your commands require the interactive input, by default the Cloud Scripting executor will always try to give a positive answer using **yes** utility.        
+    - **cmd** - is equal to a Base64 encoded string: **yes | (cmd1;cmd2)**. In case your commands require the interactive input, by default the Cloud Scripting executor will always try to give a positive answer, using **yes** utility.        
     - **user** - default system user with restricted permissions    
 - `sayYes` *[optional]* - parameter that enables or disables using **yes** utility. The default value is *'true'*.                  
 
@@ -101,7 +101,7 @@ Downloading and unzipping a *WordPress* plugin on all compute nodes:
   ]
 }
 ```
-Herewith, the commands' array is executed through a single SSH command. The same can be performed with the help of the [unpack](/reference/actions/#unpack) method.                       
+Herewith, the commands array is executed through a single SSH command. The same can be performed with the help of the [unpack](/reference/actions/#unpack) method.                       
 
 
 Using **sudo** to reload *Nginx* balancer:
@@ -120,7 +120,7 @@ Executing actions available by means of the <a href="http://docs.jelastic.com/ap
 There are a number of parameters required by Jelastic API, which are defined automatically:
 
 - *envName* - environment domain name, where the API method is executed     
-- *appid* - unique environment identifier, that can be passed into API instead of the *envName*     
+- *appid* - unique environment identifier that can be passed into API instead of the *envName*     
 - *session* - unique session of a current user            
 
 Target nodes, selected for the API methods execution can be passed by the node keywords. API methods can be executed at all nodes within a single *nodeGroup* (i.e. layer) or *nodeType*. Also, API methods can be applied to a separate node. In this case, the Node ID is required, which is available either through the <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a> or a set of [custom action parameters](#custom-actions) (*this*).
@@ -136,7 +136,7 @@ Restarting all compute nodes in an environment:
 where:        
        
 - `api [cp]` - specifying a target node group for API method to be executed at (e.g. *cp*). Learn more details about <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank">specifying target containers</a> within the linked page.                                        
-- *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group. 
+- *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group              
 
 This parameter (*jelastic.environment.control.RestartNodesByGroup*) can be simplified like shown in the example below:    
 ``` json
@@ -171,7 +171,7 @@ Available for compute nodes (except for *Docker* containers)
 where:
 
 - `archive` - URL to the archive with a compressed application
-- `name` - application's name, that will be displayed at the dashboard
+- `name` - application's name that will be displayed at the dashboard
 - `context`- desired context for the deployed app
 
 ### upload
@@ -196,7 +196,7 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at                      
 - `sourcePath` - URL to download an external file                    
-- `destPath` - container path, where the uploaded file is to be saved                         
+- `destPath` - container path where the uploaded file is to be saved                         
 
 ### unpack
 
@@ -220,7 +220,7 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                    
 - `sourcePath` - URL to download an external archive   
-- `destPath` - container path, where the uploaded archive is to be unpacked                               
+- `destPath` - container path where the uploaded archive is to be unpacked                               
 
 ### createFile
 
@@ -234,7 +234,7 @@ Available for all nodes
 where:   
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                          
-- `string` - container path, where a file is to be created                              
+- `string` - container path where a file is to be created                              
 
 ### createDirectory
 
@@ -248,7 +248,7 @@ Available for all nodes
 where:  
 
 - `nodeId`, `nodGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                       
-- `string` - container path, where a directory is to be created                         
+- `string` - container path where a directory is to be created                         
 
 ### writeFile
 
@@ -271,8 +271,8 @@ Available for all nodes
 where:  
   
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                                      
-- `path` - container path, where a file is to be written                
-- `body` - content saved to the file                                         
+- `path` - container path where a file is to be written                
+- `body` - content that is saved to the file                                         
 
 ### appendFile
 
@@ -295,7 +295,7 @@ Available for all nodes
 where:      
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                            
-- `path` - container path, where a file is to be appended                                 
+- `path` - container path where a file is to be appended                                 
 - `body` - content saved to the file                               
 
 ### replaceInFile
@@ -322,7 +322,7 @@ Available for all nodes
 where:   
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                       
-- `path` - path, where a file is available               
+- `path` - path where a file is available               
 - `replacements` - list of replacements within the node's configuration files                        
     - `pattern` - regular expressions to find a string (e.g. *app\\.host\\.url\\s*=\\s*.**)                   
     - `replacement` - string to replace. Herewith, you can use as replacement any string value, including any combination of <a href="http://docs.cloudscripting.com/reference/placeholders" target="_blank">placeholders</a>.                                    
@@ -397,7 +397,7 @@ Available for all nodes (except for *Docker* containers and *Elastic VPS*)
 where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                
-- `number` - total number of nodes after an action is finished                                          
+- `number` - total number of nodes after the action is finished                                          
 
 ### setExtIpEnabled
 Available for all nodes
@@ -583,7 +583,7 @@ where:
     - `java`      
 - `params` *[optional]* - script parameters                               
 
-<b>Eexample</b>
+<b>Example</b>
 ``` json
 {
   "executeScript": [
@@ -609,11 +609,11 @@ Setting a delay that is measured in milliseconds. The below example shows how to
 ```
 
 ### install
-Nesting a JPS manifest inside the current manifest file. The nested JPS manifest will be installed subsequently after the current one. The action is available for **install** and **update** installation types.                              
+Nesting a JPS manifest inside the current manifest file. The nested JPS manifest will be installed subsequently after the current one. The action is available for *install* and *update* installation types.                              
 
 **Examples**
 
-Installing add-on via the external link (with **update** type):
+Installing add-on via the external link (with *update* type):
 ``` json
 {
   "install" : {
@@ -645,7 +645,7 @@ where:
 
 - `onInstall` - entry point for performed actions                                 
 
-Installing a new environment via the external link (with **install** type):
+Installing a new environment via the external link (with *install* type):
 ``` json
 {
   "install" : {
@@ -692,10 +692,10 @@ where:
 
 ### installAddon
 
-The possibility to install a few custom add-ons within a single manifest, therefore, add-on can be installed to:
+You can install a few custom add-ons within a single manifest, therefore, add-ons can be installed to:
 
-- an existing environment if installation type is *update*  
-- a new environment if installation type is *install*. Add-ons will be installed sequentially one by one right after a new environment set up. 
+- an existing environment, if installation type is *update*  
+- a new environment, if installation type is *install*. In this case, add-ons will be installed sequentially one by one right after a new environment set up.     
 
 All the add-ons will have installation type *update* by default.   
 
@@ -726,7 +726,7 @@ The installed add-ons can be located within the **Add-ons** tab at the Jelastic 
 
 <center>![new-addon](/img/new-addon.png)</center>
 
-The following example describes the *installAddon* action that is run on the specified *nodeGroup*, targeting an add-on at the *bl* *nodeGroup*.                  
+The following example describes the *installAddon* action that is run on the specified *nodeGroup*, targeting an add-on at the *bl* node group.                    
 ``` json
 {
   "installAddon": {
@@ -759,7 +759,6 @@ where:
  - `createFile` - corresponding [*createFile*](#createfile) action                     
 
 The next example illustrates how to create a new custom action (i.e. *customAction*), which can be called for several times:                                      
-
 ``` json
 {
 	"type": "update",
@@ -778,7 +777,7 @@ where:
 
 #### Action Placeholders
 
-In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. Parameters sent to a call method are transformed into a separate kit of placeholders, which can be received inside the appropriate action with the help of *${this}*  namespace. Access to a node inside environment can be performed according to its type, as well as according to its role in the environment.                           
+In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. The parameters, sent to a call method are transformed into a separate kit of placeholders, which can be received inside the appropriate action with the help of *${this}*  namespace. Access to a node inside environment can be performed according to its type, as well as according to its role in the environment.                           
 
 #### Code Reuse
 
@@ -811,8 +810,7 @@ Outputting *Hello World!* twice in the <b>*greeting.txt*</b>:
 
 The following example shows how to pass additional parameters to the custom action, so that it can be used in the action.                     
 
-Parameters should be passed as an object into custom action:                                  
-
+The parameters should be passed as an object to a custom action:                                  
 ``` json
 {
 	"type": "update",
