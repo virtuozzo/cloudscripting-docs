@@ -17,7 +17,7 @@ Run into trouble with Cloud Scripting? Here are some helpful tips and specific s
 
 Below, some tips are provided on how to edit custom information to the log.        
 
-Output a single placeholder value:
+Output a single <a href="http://docs.cloudscripting.com/reference/placeholders/" target="blank">placeholder</a> value:
 ``` json
 {
   "type": "update",
