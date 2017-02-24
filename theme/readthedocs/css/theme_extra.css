@@ -87,10 +87,9 @@ h3, h4, h5, h6 {
 /*#for-label:checked ~ #hidden_toctree-l4-incl {*/
     /*display: block;*/
 /*}*/
-
-.toctree-l4-incl:hover {
+.toctree-l4:hover, .toctree-l4-incl:hover {
     color: #fff !important;
-    background-color: #00acff !important;
+    background-color: #708bb6 !important;
 }
 
 #hidden_toctree-l4-incl {
