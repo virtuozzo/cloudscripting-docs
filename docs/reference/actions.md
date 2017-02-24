@@ -808,7 +808,7 @@ Outputting *Hello World!* twice in the <b>*greeting.txt*</b>:
 
 #### Call Action with Parameters
 
-The following example shows how to pass additional parameters to the custom action, so that it can be used in the action.                     
+The following example shows how to pass additional parameters to the custom action.                             
 
 The parameters should be passed as an object to a custom action:                                  
 ``` json
