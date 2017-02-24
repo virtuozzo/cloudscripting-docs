@@ -59,10 +59,6 @@ h3, h4, h5, h6 {
     top: 46px;
 }
 
-.rst-versions.shift-up .rst-other-versions {
-    width: 268px;
-}
-
 .wy-side-nav-search>a {
     background-repeat: no-repeat;
     width: 258px;
@@ -149,7 +145,11 @@ h3, h4, h5, h6 {
     overflow-y: auto;
 }
 
-.wy-nav-side, .rst-versions, .wy-nav-side.stickynav, .wy-side-nav-search {
+.wy-nav-side,
+.rst-versions,
+.wy-nav-side.stickynav,
+.wy-side-nav-search,
+.rst-versions.shift-up .rst-other-versions {
     width: 280px;
 }
 
@@ -317,4 +317,7 @@ pre code.example {
 }
 .wy-menu-vertical a:active {
     background-color: transparent;
+}
+.rst-versions.rst-badge.shift-up .rst-current-version {
+    top: 73px;
 }
