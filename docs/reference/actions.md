@@ -6,7 +6,7 @@ With the help of actions you can achieve automation of the tasks related to:
 
 - increasing or decreasing CPU or RAM amount     
 - adjusting configs according to specific environment's settings             
-- restarting a service or container                
+- restarting a service or a container                
 - applying a database patch according to specific environment's settings                                 
 
 The default workflow for any action execution is the following:
@@ -29,7 +29,7 @@ Thus, the following specific groups of actions are singled out:
 
 There are actions that perform operations inside of a container. For a detailed guidance on how to define a target container, visit the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank">Specifying Target Containers</a> page.                        
 
-Any container operation can be performed using a [cmd](#cmd) action. Herewith, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:
+Any container operation can be performed using a [cmd](#cmd) action. There are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:
 
 - SSH commands ([cmd](#cmd))                        
 - predefined modules ([deploy](#deploy), [upload](#upload), [unpack](#unpack))          
@@ -101,8 +101,7 @@ Downloading and unzipping a *WordPress* plugin on all compute nodes:
   ]
 }
 ```
-Herewith, the commands array is executed through a single SSH command. The same can be performed with the help of the [unpack](/reference/actions/#unpack) method.                       
-
+In the example above, the commands array is executed through a single SSH command. The same can be performed with the help of the [unpack](#unpack) method.                        
 
 Using **sudo** to reload *Nginx* balancer:
 ``` json
@@ -119,7 +118,7 @@ Executing actions available by means of the <a href="http://docs.jelastic.com/ap
 
 There are a number of parameters required by Jelastic API, which are defined automatically:
 
-- *envName* - environment domain name, where the API method is executed     
+- *envName* - environment domain name where the API method is executed     
 - *appid* - unique environment identifier that can be passed into API instead of the *envName*     
 - *session* - unique session of a current user            
 
@@ -135,7 +134,7 @@ Restarting all compute nodes in an environment:
 ``` 
 where:        
        
-- `api [cp]` - specifying a target node group for API method to be executed at (e.g. *cp*). Learn more details about <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank">specifying target containers</a> within the linked page.                                        
+- `api [cp]` - specifying a target node group for the API method to be executed at (e.g. *cp*). Learn more details about <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank">specifying target containers</a> within the linked page.                                        
 - *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group              
 
 This parameter (*jelastic.environment.control.RestartNodesByGroup*) can be simplified like shown in the example below:    
@@ -145,7 +144,7 @@ This parameter (*jelastic.environment.control.RestartNodesByGroup*) can be simpl
 }
 ```
 
-Below you can find one more approach to specify a target node group for API method to be executed at:                               
+Below you can find one more approach to specify a target node group for the API method to be executed at:                               
 ``` json
 {
     "api" : "jelastic.environment.control.RestartNodesByGroup",
@@ -325,7 +324,7 @@ where:
 - `path` - path where a file is available               
 - `replacements` - list of replacements within the node's configuration files                        
     - `pattern` - regular expressions to find a string (e.g. *app\\.host\\.url\\s*=\\s*.**)                   
-    - `replacement` - string to replace. Herewith, you can use as replacement any string value, including any combination of <a href="http://docs.cloudscripting.com/reference/placeholders" target="_blank">placeholders</a>.                                    
+    - `replacement` - you can use as replacement any string value, including any combination of <a href="http://docs.cloudscripting.com/reference/placeholders" target="_blank">placeholders</a>                                            
 
 <!-- DeletePath -->
 <!-- RenamePath --> 
@@ -355,7 +354,7 @@ where:
 ```
 where:
 
-- `nodeType` - parameter thet defines software stack within a node. For a detailed guidance see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#predefined-nodetype-values" target="_blank">Container Types</a> page.                        
+- `nodeType` - parameter thet defines software stack. For a detailed guidance, see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#predefined-nodetype-values" target="_blank">Container Types</a> page.                        
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.                     
 - `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.                             
 - `flexibleCloudlets` *[optional]* - number of dynamic cloudlets. The default value is *'1'*.                           
@@ -498,7 +497,7 @@ Available for *SQL* databases (except for *Docker* containers)
 where:          
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default the *nodeGroup* value is equal to *sqldb*.                            
-- `loginCredentials` - root creadentials for a new node                    
+- `loginCredentials` - root creadentials to a new node                    
     - `user` - username                    
     - `password` - password                 
 - `newDatabaseName` - your custom database name              
@@ -726,7 +725,7 @@ The installed add-ons can be located within the **Add-ons** tab at the Jelastic 
 
 <center>![new-addon](/img/new-addon.png)</center>
 
-The following example describes the *installAddon* action that is run on the specified *nodeGroup*, targeting an add-on at the *bl* node group.                    
+In the following example, the *nodeGroup* parameter is passed to the *installAddon* action, targeting an add-on at the *bl* node group.                    
 ``` json
 {
   "installAddon": {
@@ -777,7 +776,7 @@ where:
 
 #### Action Placeholders
 
-In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. The parameters, sent to a call method are transformed into a separate kit of placeholders, which can be received inside the appropriate action with the help of *${this}*  namespace. Access to a node inside environment can be performed according to its type, as well as according to its role in the environment.                           
+In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. The parameters, sent to a call method, are transformed into a separate kit of placeholders, which can be further used within the appropriate actions by means of *${this}*  namespace. Access to a node inside environment can be gained according to its type, as well as according to its role in the environment.                           
 
 #### Code Reuse
 
