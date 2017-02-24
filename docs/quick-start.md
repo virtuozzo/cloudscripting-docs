@@ -67,29 +67,29 @@ While preparing your own manifest file, we recommend to:
 
 <h3>Learn Template Basics</h3> 
 
-See the <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/" target="_blank">Basic Configs</a> section to learn the required basis of any JSON manifest and find out the differences between <em>Application</em> and <em>Extension</em>.<br>     
+See the <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/" target="_blank">Basic Configs</a> section to learn the required basis of any JSON manifest and find out the differences between <em>Application</em> and <em>Extension</em>.             
 Use <a href="https://github.com/jelastic-jps" target="_blank">Jelastic Samples</a> for creating your custom manifests, scripts etc.                      
 
 <h3>Build Actions Chain and Reuse Code</h3>
 
-Reuse your code and the chain of actions using <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a>.<br>
+Reuse your code and the chain of actions using <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a>.
 
 <h3>Write Cloud Scripts</h3>  
 
-<p dir="ltr" style="text-align: justify;">In addition, you have the possibility to prepare and use your own actions within manifest. Such Custom Actions can be scripted either using Java, Javascript or PHP if you need to manage your whole environment or using any intercontainer language, if you need to script something inside of a container.
-See the <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">Writing Scripts</a> section.</p>
+In addition, you have the possibility to prepare and use your own actions within manifest. Such Custom Actions can be scripted either using Java, Javascript or PHP if you need to manage your whole environment or using any intercontainer language, if you need to script something inside of a container.
+See the <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">Writing Scripts</a> section.        
 
 <h3>Automate Workflows</h3>
 
-Automate workflows using <a href="/reference/events/" target="_blank">Events</a> 
+Automate workflows using <a href="/reference/events/" target="_blank">Events</a>.         
 
 <h3>Define User Input Parameters</h3> 
 
-<p dir="ltr" style="text-align: justify;">Customize your app's input parameters that should be specified by a user before the installation. For that, see the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Getting User Input</a> documentation page.</p>            
+Customize your app's input parameters that should be specified by a user before the installation. For that, see the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Getting User Input</a> documentation page.            
 
 <h3>Use Placeholders</h3> 
 
-<p dir="ltr" style="text-align: justify;">Learn how to use <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for:</p>
+Learn how to use <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for:
 
 - options and parameters which are user-defined or are often changed</li>     
 - filtering events</li>   
@@ -97,13 +97,10 @@ Automate workflows using <a href="/reference/events/" target="_blank">Events</a>
 
 <h3>Use Actions</h3>
 
-<p dir="ltr" style="text-align: justify;">Cloud Scripting comes with several generic actions out of the box - see the <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a> section to find out the list of them.</p>      
-
-<h3>Define user input parameters</h3>
-
-Customize your app's input parameters that should be specified by a user before the installation. For that, see the <a href="/creating-templates/user-input-parameters/" target="_blank">Getting User Input</a> documentation page.       
+Cloud Scripting comes with several generic actions out of the box - see the <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a> section to find out the list of them.      
 
 <h3>Rely On Troubleshooting</h3>   
+
 Follow the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> guide if you experience any issues. See the <a href="/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a> section.                                   
 
 <h3>Explore More Complex Examples:</h3>
