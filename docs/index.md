@@ -41,7 +41,7 @@ The developed Cloud Scripting solutions are wrapped into packages and distribute
   }
 }
 ```
-<p></p>
+
 
 <h2>What’s next?</h2>
 
