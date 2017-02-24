@@ -17,4 +17,4 @@
 
 <h3>Improvements</h3>
 
-The major improvements were applied to the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="blank">visual settings page</a>. The new CS elements were added for a custom user-defined form.                     
+The major improvements were applied to the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="blank">Visual Settings</a> page. The new CS elements were added for a custom user-defined form.                     
