@@ -71,7 +71,7 @@ The *onInstall* event is the entry point for executing any action. In case insta
 
 The *onUninstall* event can be called from the **Add-ons** tab at the Jelastic dashboard. This event is aimed at removing data, which was accumulated as a result of actions triggered by the *onInstall* event.                     
   
-<center>![onUninstall](/img/addon-install.jpg)</center>    
+<center>![uninstall](/img/uninstall.png)</center>    
 
 ### onBeforeChangeTopology
 
