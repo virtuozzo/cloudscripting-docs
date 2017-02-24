@@ -65,7 +65,7 @@ While preparing your own manifest file, we recommend to:
 
 <h2>What's next?</h2>
 
-<h3>Learn Template Basics</h3> 
+<h3>Learn Basic Configs</h3> 
 
 See the <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/" target="_blank">Basic Configs</a> section to learn the required basis of any JSON manifest and find out the differences between <em>Application</em> and <em>Extension</em>.             
 Use <a href="https://github.com/jelastic-jps" target="_blank">Jelastic Samples</a> for creating your custom manifests, scripts etc.                      
@@ -77,11 +77,11 @@ Reuse your code and the chain of actions using <a href="http://docs.cloudscripti
 <h3>Write Cloud Scripts</h3>  
 
 In addition, you have the possibility to prepare and use your own actions within manifest. Such Custom Actions can be scripted either using Java, Javascript or PHP if you need to manage your whole environment or using any intercontainer language, if you need to script something inside of a container.
-See the <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">Writing Scripts</a> section.        
+See the <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="_blank">Writing Scripts</a> section.        
 
 <h3>Automate Workflows</h3>
 
-Automate workflows using <a href="/reference/events/" target="_blank">Events</a>.         
+Automate workflows using <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">Events</a>.         
 
 <h3>Define User Input Parameters</h3> 
 
@@ -101,7 +101,7 @@ Cloud Scripting comes with several generic actions out of the box - see the <a h
 
 <h3>Rely On Troubleshooting</h3>   
 
-Follow the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> guide if you experience any issues. See the <a href="/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a> section.                                   
+Follow the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> guide if you experience any issues.                                      
 
 <h3>Explore More Complex Examples:</h3>
 
