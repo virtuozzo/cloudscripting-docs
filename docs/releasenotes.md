@@ -1,24 +1,20 @@
 # Release Notes
 
-#1.0
+# Release Notes 1.0
 
-#0.9
+# Release Notes 0.9
 
-- Added new elements for [user input form](/creating-templates/user-input-parameters/):  
-    - `displayfield`
-    - `spinner`
-    - `numberpicker`
-    - `number-picker`
-    - `host-picher`
-    - `hostpicker`
-    - `toggle`
-    - `spacer`
-- added new general configs for [user input fields](/creating-templates/user-input-parameters/):
+- The new elements were added for the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="blank">user input form</a>:               
+    - <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/#displayfield" target="blank">displayfield</a> (*spacer* is an alias)                   
+    - <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/#spinner" target="blank">spinner</a>               
+    - <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/#numberpicker" target="blank">numberpicker</a> (*number-picker* is an alias)                    
+    - <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/#hostpicker" target="blank">hostpicker</a> (*host-picker* is an alias)                
+    - <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/#toggle" target="blank">toggle</a>                      
+- The new general configs were added for the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="blank">user input form</a>:                                   
     - *margins*
     - *width*
     - *height*
 
-<h3>Change</h3>
+<h3>Improvements</h3>
 
-- Changes in [user input](/creating-templates/user-input-parameters/) page.   
-Added new CS elements for custom form.
+The major improvements were applied to the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="blank">visual settings page</a>. The new CS elements were added for a custom user-defined form.                     
