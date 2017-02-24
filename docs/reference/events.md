@@ -447,7 +447,7 @@ The event will be executed after linking nodes to apply configurations to IP add
 
 ### onBeforeAttachExtIp
 
-The event can handle custom action before the *attache Ext IP address* action execution. The *onBeforeAttachExtIp* event is triggered each time before the external IP address attachment.
+The event can handle custom action before attaching External IP address. The *onBeforeAttachExtIp* event is triggered each time before the external IP address attachment.
 
 **Event Placeholders:**   
 
@@ -460,7 +460,7 @@ The event can handle custom action before the *attache Ext IP address* action ex
 
 ### onAfterAttachExtIp
 
-The event can handle custom action after the *attache Ext IP address* action execution. The *onBeforeAttachExtIp* event is triggered each time upon the external IP address attachment.
+The event can handle custom action after attaching External IP address action execution. The *onBeforeAttachExtIp* event is triggered each time upon the external IP address attachment.
 
 **Event Placeholders:**  
   
@@ -475,7 +475,7 @@ The event can handle custom action after the *attache Ext IP address* action exe
 
 ### onBeforeDetachExtIp
 
-The event can handle custom action before the *detach Ext Ip address* action execution. The *onBeforeDetachExtIp* event is triggered each time before the external IP address detachment.    
+The event can handle custom action before detaching External IP address. The *onBeforeDetachExtIp* event is triggered each time before the external IP address detachment.    
 
 **Event placeholders:**   
 
@@ -489,7 +489,7 @@ The event can handle custom action before the *detach Ext Ip address* action exe
 
 ### onAfterDetachExtIp
 
-The event can handle custom action after the *detach Ext Ip address* action execution. The *onAfterDetachExtIp* event is triggered each time upon the external IP address detachment.
+The event can handle custom action after detaching External IP address. The *onAfterDetachExtIp* event is triggered each time upon the external IP address detachment.
 
 **Event Placeholders:**   
 
@@ -503,7 +503,7 @@ The event can handle custom action after the *detach Ext Ip address* action exec
 
 ### onBeforeUpdateVcsProject
 
-The event will be carried out before the *update vcs project* action. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a> refer to the linked page. 
+The event will be carried out before updating VCS project. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a> refer to the linked page. 
 
 **Event Placeholders:**   
 
@@ -516,7 +516,7 @@ The event will be carried out before the *update vcs project* action. For a deta
 
 ### onAfterUpdateVcsProject
 
-The event will be carried out after the *update vcs project* action. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a> refer to the linked page.      
+The event will be carried out after updating VCS project. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a> refer to the linked page.      
 
 **Event Placeholders:**   
 
@@ -529,7 +529,7 @@ The event will be carried out after the *update vcs project* action. For a detai
 
 ### onBeforeSetCloudletCount
 
-The event will be executed before the *set cloudlet count* action, which implies changing the amount of allocated cloudlets per any layer in the environment.       
+The event will be executed before setting cloudlet count, which implies changing the number of allocated cloudlets per any layer in the environment.                    
 
 **Event Placeholders:**   
 
@@ -544,7 +544,7 @@ The event will be executed before the *set cloudlet count* action, which implies
 
 ### onAfterSetCloudletCount
 
-The event will be executed after the *set cloudlet count* action, which implies changing the amount of allocated cloudlets per any layer in the environment.          
+The event will be executed after setting cloudlet count, which implies changing the number of allocated cloudlets per any layer in the environment.                       
 
 **Event Placeholders:**   
 
@@ -585,7 +585,7 @@ The event will be performed after changing the engine's version (e.g. from *php 
 
 ### onBeforeStart
 
-The event is related to the *start environment* action (executed from the Jelastic dashboard) and is triggered before it. 
+The event is related to starting environment (executed from the Jelastic dashboard) and is triggered before it. 
 
 **Event Placeholders:**   
 
@@ -597,7 +597,7 @@ The event is related to the *start environment* action (executed from the Jelast
 
 ### onAfterStart
 
-The event is related to the *start environment* action (executed from the Jelastic dashboard) and is triggered after it.     
+The event is related to starting environment (executed from the Jelastic dashboard) and is triggered after it.                        
 
 **Event Placeholders:**    
 
@@ -609,7 +609,7 @@ The event is related to the *start environment* action (executed from the Jelast
 
 ### onBeforeStop
 
-The event is related to the *stop environment* action (executed from the Jelastic dashboard) and is triggered before it.
+The event is related to stopping environment (executed from the Jelastic dashboard) and is triggered before it.
 
 **Event Placeholders:**    
 
@@ -621,7 +621,7 @@ The event is related to the *stop environment* action (executed from the Jelasti
 
 ### onAfterStop
 
-The event is related to the *stop environment* action (executed from the Jelastic dashboard) and is triggered after it. 
+The event is related to stopping environment (executed from the Jelastic dashboard) and is triggered after it. 
 
 **Event Placeholders:**   
 
@@ -633,7 +633,7 @@ The event is related to the *stop environment* action (executed from the Jelasti
 
 ### onBeforeClone
 
-The event is related to the *clone environment* action (performed via the Jelastic dashboard by means of the same-named button) and is triggered before it.
+The event is related to cloning environment (performed via the Jelastic dashboard by means of the same-named button) and is triggered before it.
 
 **Event Placeholders:**     
 
@@ -646,7 +646,7 @@ The event is related to the *clone environment* action (performed via the Jelast
 
 ### onAfterClone
 
-The event is related to the *clone environment* action (performed via the Jelastic dashboard by means of the same-named button) and is triggered after it.     
+The event is related to cloning environment (performed via the Jelastic dashboard by means of the same-named button) and is triggered after it.     
 
 **Event Placeholders:**     
 
@@ -703,7 +703,7 @@ The event is bound to the *deploy* action, which is executed at the Jelastic das
 
 ### onBeforeResetNodePassword
 
-The event is bound to the *reset node password* action (executed at the Jelastic dashboard via the **Reset password** button) and is triggered before it.
+The event is bound to resetting node password (executed at the Jelastic dashboard via the **Reset password** button) and is triggered before it.
 
 **Event Placeholders:**     
 
@@ -716,7 +716,7 @@ The event is bound to the *reset node password* action (executed at the Jelastic
 
 ### onAfterResetNodePassword
 
-The event is bound to the *reset node password* action (executed at the Jelastic dashboard via the **Reset password** button) and is triggered after it.      
+The event is bound to resetting node password (executed at the Jelastic dashboard via the **Reset password** button) and is triggered after it.      
 
 **Event Placeholders:**    
     
@@ -783,7 +783,7 @@ This event will be carried out after restarting container. The *onBeforeRestartC
 
 ### onBeforeMigrate
 
-The event is related to the <a href="https://docs.jelastic.com/environment-regions-migration" target="_blank">*migrate environment*</a> action and is called before it.        
+The event is related to the <a href="https://docs.jelastic.com/environment-regions-migration" target="_blank">*migrating environment*</a> action and is called before it.        
 
 **Event Placeholders:**          
 
@@ -797,7 +797,7 @@ The event is related to the <a href="https://docs.jelastic.com/environment-regio
 
 ### onAfterMigrate
 
-The event is related to the <a href="https://docs.jelastic.com/environment-regions-migration" target="_blank">*migrate environment*</a> action and is called after it.   
+The event is related to <a href="https://docs.jelastic.com/environment-regions-migration" target="_blank">*migrating environment*</a> and is called after it.   
 
 **Event Placeholders:**   
 
@@ -906,7 +906,7 @@ This event is executed after the *unLinkNodes* action and is run for each unlink
 
 ### onBeforeSetEnvVars
 
-The event will be triggered before the *setEnvVars* action. It is executed for every docker container upon setting environment variables. The *onBeforeSetEnvVars* event is applied for Docker containers only.     
+The event will be triggered before the *setEnvVars* action. It is executed for every Docker container upon setting environment variables. The *onBeforeSetEnvVars* event is applied for Docker containers only.     
 
 **Event Placeholders:**   
 
@@ -920,7 +920,7 @@ The event will be triggered before the *setEnvVars* action. It is executed for e
 
 ### onAfterSetEnvVars
 
-The event will be triggered before the *setEnvVars* action. It is executed for every docker container upon setting environment variables. The *onAfterSetEnvVars* event is applied for Docker containers only.
+The event will be triggered before the *setEnvVars* action. It is executed for every Docker container upon setting environment variables. The *onAfterSetEnvVars* event is applied for Docker containers only.
 
 **Event Placeholders:**    
 
@@ -934,7 +934,7 @@ The event will be triggered before the *setEnvVars* action. It is executed for e
 
 ### onBeforeSetEntryPoint
 
-This event will be called before the *setEntryPoint* action. It is executed for every docker container upon setting the entry point. The *onBeforeSetEntryPoint* event is applied for Docker containers only.   
+This event will be called before the *setEntryPoint* action. It is executed for every Docker container upon setting the entry point. The *onBeforeSetEntryPoint* event is applied for Docker containers only.   
 
 **Event Placeholders:**   
 
@@ -948,7 +948,7 @@ This event will be called before the *setEntryPoint* action. It is executed for 
 
 ### onAfterSetEntryPoint
 
-This event will be called after the *setEntryPoint* action. It is executed for every docker container upon setting the entry point. The *onAfterSetEntryPoint* event is applied for Docker containers only.    
+This event will be called after the *setEntryPoint* action. It is executed for every Docker container upon setting the entry point. The *onAfterSetEntryPoint* event is applied for Docker containers only.    
 
 **Event Placeholders:**   
 
@@ -962,7 +962,7 @@ This event will be called after the *setEntryPoint* action. It is executed for e
 
 ### onBeforeSetRunCmd
 
-The event will be executed before the *setRunCmd* action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
+The event will be executed before the *setRunCmd* action. It is triggered for every Docker container, upon setting run configs. This event is compatible with Docker containers only.
 
 **Event Placeholders:**   
 
@@ -976,7 +976,7 @@ The event will be executed before the *setRunCmd* action. It is triggered for ev
     
 ### onAfterSetRunCmd
 
-The event will be executed after the *setRunCmd* action. It is triggered for every docker container, upon setting run configs. This event is compatible with Docker containers only.
+The event will be executed after the *setRunCmd* action. It is triggered for every Docker container, upon setting run configs. This event is compatible with Docker containers only.
 
 **Event Placeholders:**    
 
@@ -990,7 +990,7 @@ The event will be executed after the *setRunCmd* action. It is triggered for eve
 
 ### onBeforeStartService
 
-This event will be executed each time before running the Docker *RunCmd* commands. Thus, it will be always carried out for each docker container action, e.g. before starting/restarting container and starting environment.
+This event will be executed each time before running the Docker *RunCmd* commands. Thus, it will be always carried out for each Docker container action, e.g. before starting/restarting container and starting environment.
 
 **Event Placeholders:**   
 
