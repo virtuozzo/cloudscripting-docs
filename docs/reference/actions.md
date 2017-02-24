@@ -6,8 +6,7 @@ With the help of actions you can achieve automation of the tasks related to:
 
 - increasing or decreasing CPU or RAM amount     
 - adjusting configs according to specific environment's settings             
-- restarting a service           
-- restarting a container                  
+- restarting a service or container                
 - applying a database patch according to specific environment's settings                                 
 
 The default workflow for any action execution is the following:
