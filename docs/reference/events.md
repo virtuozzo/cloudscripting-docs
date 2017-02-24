@@ -184,8 +184,8 @@ This event provides a possibility to boud actions to <a href="https://docs.jelas
 These are the monitoring triggers that are based on the usage of a particular resource type:        
  
 - **CLOUDLETS** (CPU, Memory) - available only for action type *NOTIFY*
-    - **CPU**
-    - **MEM** (Memory)
+- **CPU**
+- **MEM** (Memory)
 - **NET_EXT** - external output and input traffic that is available only for action type *NOTIFY*
 - **NET_EXT_OUT** - external output traffic
 - **DISK** - disk space amount that is available only for action type *NOTIFY*
@@ -195,7 +195,7 @@ These are the monitoring triggers that are based on the usage of a particular re
 
 The measuring values are *PERCENTAGE* and *SPECIFIC*. The second value is availabe only for **NET_EXT** and **NET_EXT_OUT** resource types.
 
-Below, the example of subscription to the *onAlert* event is provided. Here, the *log* action will be executed, if one of the environment triggers are invoked.                
+Below, the example of subscription to the *onAlert* event is provided. Here, the *log* action will be executed, if one of the environment triggers is invoked.                
 ``` json
 {
     "type": "update",
