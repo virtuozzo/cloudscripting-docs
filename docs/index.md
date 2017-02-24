@@ -42,7 +42,7 @@ The developed Cloud Scripting solutions are wrapped into packages and distribute
 }
 ```
 
-<h2>What’s next?</h2>
+<p><h2>What’s next?</h2></p>
 
 - Build a simple automation with <a href="http://docs.cloudscripting.com/quick-start/" target="_blank">Quick Start</a> Guide                               
 - Learn how to <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/" target="_blank">Create Manifest</a>   
