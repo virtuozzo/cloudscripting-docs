@@ -45,13 +45,6 @@ h3, h4, h5, h6 {
     /*color: #838383;*/
     color: #fff;
 }
-
-.side-scroll {
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 100%;
-    width: 272px;
-}
 .rst-versions {
     height: 32px;
     padding-top: 4px;
@@ -153,8 +146,11 @@ h3, h4, h5, h6 {
  */
 .wy-nav-side.stickynav {
     height: 100%;
-    width: 272px;
-    /*overflow-y: auto;*/
+    overflow-y: auto;
+}
+
+.wy-nav-side, .rst-versions, .wy-nav-side.stickynav, .wy-side-nav-search {
+    width: 280px;
 }
 
 /*
