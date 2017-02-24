@@ -4,7 +4,7 @@ Actions represent a scripted logic for executing a set of commands to automate t
 
 With the help of actions you can achieve automation of the tasks related to:                                             
 
-- increasing/decreasing CPU or RAM amount     
+- increasing or decreasing CPU or RAM amount     
 - adjusting configs according to specific environment's settings             
 - restarting a service           
 - restarting a container                  
@@ -35,17 +35,16 @@ Any container operation can be performed using a [cmd](#cmd) action. Herewith, t
 - SSH commands (e.g. [cmd](#cmd))                        
 - predefined modules (e.g. [deploy](#deploy), [upload](#upload), [unpack](#unpack))          
 - operations with files (e.g. [createFile](#createfile), [createDirectory](#createdirectory), [writeFile](#writefile), [appendFile](#appendfile), [replaceInFile](#replaceinfile))                    
- 
+
 !!! note 
     To process any container operation (except for [cmd](#cmd)), the Cloud Scripting executor will use a default system user with restricted permissions.                   
-   
-###cmd
+
+### cmd
 
 The *cmd* action executes <a href="https://docs.jelastic.com/ssh-overview" target="_blank">SSH</a> commands.             
 <!--Available for all nodes.-->      
 
 **Example**                  
-
 ``` json
 {
   "cmd [nodeId,nodeType,nodeGroup]": [
@@ -73,7 +72,6 @@ A single SSH command can be passed in a string. For example, executing a bash sc
 Learn more about <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank">specifying a target container</a> for your actions within the pointed guide.                      
 
 While accessing containers via *cmd*, a user receives all the required permissions and additionally can manage the main services with **sudo** commands of the following types (and others):       
-
 ```no-highlight
 sudo /etc/init.d/jetty start  
 sudo /etc/init.d/mysql stop
@@ -83,7 +81,6 @@ sudo /etc/init.d/mongod reload
 sudo /etc/init.d/nginx upgrade  
 sudo /etc/init.d/httpd help;  
 ```                                                        
-     
 **Examples**  
 
 Setting SSH commands in an array:                    
@@ -109,7 +106,6 @@ Herewith, the commands' array is executed through a single SSH command. The same
 
 
 Using **sudo** to reload *Nginx* balancer:
-
 ``` json
 {
   "cmd [nginx]": [
@@ -118,7 +114,7 @@ Using **sudo** to reload *Nginx* balancer:
 }
 ```
    
-###api
+### api
 
 Executing actions available by means of the <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a> methods.     
 
@@ -141,13 +137,15 @@ Restarting all compute nodes in an environment:
 where:        
        
 - `api [cp]` - specifying a target node group for API method to be executed at (e.g. *cp*). Learn more details about <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank">specifying target containers</a> within the linked page.                                        
-- *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group. This parameter can be simplified like shown in the example below:
+- *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group. 
+
+This parameter (*jelastic.environment.control.RestartNodesByGroup*) can be simplified like shown in the example below:    
 ``` json
 {
     "api [cp]" : "environment.control.RestartNodesByGroup"
 }
 ```
- 
+
 Below you can find one more approach to specify a target node group for API method to be executed at:                               
 ``` json
 {
@@ -157,7 +155,7 @@ Below you can find one more approach to specify a target node group for API meth
 ```
 Learn more about <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank">specifying target container</a> for your API actions within the linked guide.                                        
         
-###deploy
+### deploy
 
 Available for compute nodes (except for *Docker* containers)
 ``` json
@@ -177,7 +175,7 @@ where:
 - `name` - application's name, that will be displayed at the dashboard
 - `context`- desired context for the deployed app
 
-###upload
+### upload
 
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)-->
@@ -201,7 +199,7 @@ where:
 - `sourcePath` - URL to download an external file                    
 - `destPath` - container path, where the uploaded file is to be saved                         
 
-###unpack
+### unpack
 
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
@@ -225,7 +223,7 @@ where:
 - `sourcePath` - URL to download an external archive   
 - `destPath` - container path, where the uploaded archive is to be unpacked                               
 
-###createFile
+### createFile
 
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
@@ -239,7 +237,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                          
 - `string` - container path, where a file is to be created                              
 
-###createDirectory
+### createDirectory
 
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
@@ -253,7 +251,7 @@ where:
 - `nodeId`, `nodGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                       
 - `string` - container path, where a directory is to be created                         
 
-###writeFile
+### writeFile
 
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
@@ -277,7 +275,7 @@ where:
 - `path` - container path, where a file is to be written                
 - `body` - content saved to the file                                         
 
-###appendFile
+### appendFile
 
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
@@ -301,7 +299,7 @@ where:
 - `path` - container path, where a file is to be appended                                 
 - `body` - content saved to the file                               
 
-###replaceInFile
+### replaceInFile
 
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
@@ -335,7 +333,7 @@ where:
 
 ## Topology Nodes Management
 
-###addNodes
+### addNodes
 ``` json
 {
   "addNodes": [
@@ -375,7 +373,7 @@ where:
 - `entrypoint` *[optional]* - Docker entry points                                          
 
 <!-- SetCloudletsCount -->
-###setNodeDisplayName
+### setNodeDisplayName
 
 Available for all nodes
 ``` json
@@ -389,7 +387,7 @@ where:
 - `string` - node’s display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                                                        
 
 
-###setNodeCount
+### setNodeCount
 
 Available for all nodes (except for *Docker* containers and *Elastic VPS*)
 ``` json
@@ -402,7 +400,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                
 - `number` - total number of nodes after an action is finished                                          
 
-###setExtIpEnabled
+### setExtIpEnabled
 Available for all nodes
 ``` json
 {
@@ -414,7 +412,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                   
 - `true` or `false` - parameter that allows to attach or detach external IP address                              
 
-###restartNodes
+### restartNodes
 
 Available for all nodes (except for *Elastic VPS*)
 ``` json
@@ -432,7 +430,7 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                   
 
-###restartContainers
+### restartContainers
 
 Available for all nodes
 ``` json
@@ -449,8 +447,9 @@ Available for all nodes
 where:         
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                       
- 
-###addContext
+
+### addContext
+
 Available for compute nodes (except for *Docker* containers)
 ``` json
 {
@@ -474,7 +473,7 @@ where:
 
 ## Database Operations
 
-###prepareSqlDatabase
+### prepareSqlDatabase
 
 Available for *SQL* databases (except for *Docker* containers)
 ``` json
@@ -511,7 +510,7 @@ where:
 !!! note
     The function is executed only for *mysql5*, *mariadb* and *mariadb10* containers.                          
 
-###restoreSqlDump
+### restoreSqlDump
 
 Available for *SQL* databases (except for *Docker* container)
 ``` json
@@ -537,7 +536,7 @@ where:
 - `password` - password in the database, on behalf of which the application will be used                         
 - `dump` - URL to the application's database dump                                
 
-###applySqlPatch
+### applySqlPatch
 
 Available for *SQL* databases (except for *Docker* containers)                                 
 ``` json
@@ -568,7 +567,7 @@ where:
 
 ## User-Defined Operations
 
-###script
+### script
 
 ``` json
 {
@@ -585,7 +584,7 @@ where:
     - `java`      
 - `params` *[optional]* - script parameters                               
 
-<b>For example:</b>
+<b>Eexample</b>
 ``` json
 {
   "executeScript": [
@@ -602,7 +601,7 @@ where:
 !!! note
     Learn more about using <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a>.    
 
-###sleep
+### sleep
 Setting a delay that is measured in milliseconds. The below example shows how to create the delay for one second:                                    
 ``` json
 {
@@ -610,7 +609,7 @@ Setting a delay that is measured in milliseconds. The below example shows how to
 }
 ```
 
-###install
+### install
 Nesting a JPS manifest inside the current manifest file. The nested JPS manifest will be installed subsequently after the current one. The action is available for **install** and **update** installation types.                              
 
 **Examples**
@@ -692,7 +691,7 @@ where:
 - `onInstall` - entry point for performed actions               
 
 
-###installAddon
+### installAddon
 
 The possibility to install a few custom add-ons within a single manifest, therefore, add-on can be installed to:
 
@@ -726,7 +725,7 @@ where:
 
 The installed add-ons can be located within the **Add-ons** tab at the Jelastic dashboard. 
 
-<center>![Add-ons tab](/img/add-on_tab.jpg)</center>
+<center>![new-addon](/img/new-addon.png)</center>
 
 The following example describes the *installAddon* action that is run on the specified *nodeGroup*, targeting an add-on at the *bl* *nodeGroup*.                  
 ``` json
