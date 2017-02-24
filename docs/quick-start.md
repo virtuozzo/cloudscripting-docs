@@ -2,7 +2,6 @@
 <p dir="ltr" style="text-align: justify;">This guide will walk you through the Cloud Scripting basics and will help you to build and run such simple automation processes like creating new environments and deploying applications.</p>
 
 <p dir="ltr" style="text-align: justify;">The required operations should be declared within the appropriate Cloud Scripting manifest, written in <a href="http://www.json.org/" target="_blank">JSON</a> format. You can name this file with manifest as you need. The only requirement is that it should have the <b>.json</b> extension. The manifest file can be composed via any text editor, using a modern code editor with the support of JSON syntax highlighting is recommended (e.g. <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a>).</p>
-The required operations should be declared within the appropriate Cloud Scripting manifest, written in <a href="http://www.json.org/" target="_blank">JSON</a> or <a href="http://www.yaml.org/" target="_blank">YAML</a> format. You can name this file with manifest as you need. The only requirement is that it should have the <b>*.jps*</b> extension. The manifest file can be composed via any text editor, using a modern code editor with the support of JSON or YAML syntax highlighting are recommended (e.g. <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a> or <a href="http://yaml-online-parser.appspot.com/" target="_blank">YAML</a>).        
 
 Below you can see two simple examples of how to: 
 
@@ -45,9 +44,7 @@ Below you can see two simple examples of how to:
 
 <h2>Running Examples</h2>
 
-<p dir="ltr" style="text-align: justify;">In order to test the manifest examples presented above, you need to register at any Jelastic hosting provider from the <a href="https://jelastic.cloud" target="_blank">Jelastic Cloud Union</a> first.</p>
-
-In order to test the manifest examples presented above, you need to register at any Jelastic hosting provider from the <a href="https://jelastic.cloud" target="_blank">Jelastic Cloud Union</a> first.       
+<p dir="ltr" style="text-align: justify;">In order to test the manifest examples presented above, you need to register at any Jelastic hosting provider from the <a href="https://jelastic.cloud" target="_blank">Jelastic Cloud Union</a> first.</p>              
 
 Then, log in to your Jelastic account and perform the following operations: 
 
