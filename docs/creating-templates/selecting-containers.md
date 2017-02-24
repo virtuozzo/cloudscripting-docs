@@ -54,12 +54,11 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 Actions for a specified <em>nodeGroup</em> are executed successively one by one. For Docker containers the <em>nodeGroup</em> value is not predefined, therefore, it can be stated to any value above or your custom one.                              
 
 !!! note
-    Upon stating non-predefined (i.e. custom) <em>nodeGroup</em> value for Docker containers, the corresponding container will be placed to the <em>Extra</em> layer.                                   
-   <center><p>![extra](/img/extra_layer.jpg)</p></center> Subsequently, this <em>nodeGroup</em> value can be used within the same-named <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> field to point to a particular <em>Extra</em> layer.       
-    
+    Upon stating non-predefined (i.e. custom) <em>nodeGroup</em> value for Docker containers, the corresponding container will be placed to the <em>Extra</em> layer. Subsequently, this <em>nodeGroup</em> value can be used within the same-named <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> field to point to a particular <em>Extra</em> layer.<center>![dockerextra](/img/dockerextra.png)</center> 
+
 ### All Containers By Type
 
-The <em>nodeType</em> parameter is applied to specify all containers built upon the same software <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#supported-stacks" target="blank">stacks</a>.                                	  
+The <em>nodeType</em> parameter is applied to specify all containers built upon the same software [stacks](#supported-stacks ).                                   	  
 
 For example:
 
@@ -93,8 +92,8 @@ Creating an environment with topology specifics, set by the *engine* and *nodeTy
 ```
 where:
 
-* `engine` - value that specifies engine version (*java7* in our example)
-* `nodeType` - value that specifies compute node type (*tomcat7* in our example)
+* `engine` - value that specifies engine version (*java7*  in our example)
+* `nodeType` - value that specifies compute node type (*tomcat7*  in our example)
 
 ### Types of Selectors 
 
@@ -134,7 +133,7 @@ Here, the <em>createFile</em> and <em>createDirectory</em> actions are applied t
  
 * setting a required node as a parameter in the action object     
 
-Learn more on this parameter within the custom<a href="http://docs.cloudscripting.com/reference/actions" target="_blank">actions</a> documentation page.                                      
+Learn more on this parameter within the custom <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">actions</a> documentation page.                                      
 
 !!! note 
     <b>Node selectors</b> have higher priority than nodes, specified next to the action but lower than parameters set in the action object.   
@@ -144,7 +143,7 @@ Below you can find data on supported software stacks in confines of the *nodeGro
 
 ## Supported Stacks
 
-### Predefined *nodeGroup* values                   
+### Predefined *nodeGroup* Values                   
 
 The Jelastic Platform supports the following predefined *nodeGroup* values:                         
 
@@ -157,7 +156,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 * **vps** (for virtual private servers) - *centos6, centos7*                                    
 * **build** (for a build node) - *maven3*                                
 
-### Predefined *nodeType* values   
+### Predefined *nodeType* Values   
 
 The Jelastic Platform supports the following software stacks:         
 

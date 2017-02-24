@@ -60,10 +60,10 @@ There is a set of available parameters to define a manifest installation behavio
 - `description` - text string that describes a template. This section should always follow the template format version section.
 - `homepage` *[optional]* - link to any external aplication source
 - `categories` - categories available for manifests filtering                                                                        
-- `baseUrl` *[optional]* - custom <a href="http://docs.cloudscripting.com/creating-templates/relative-links/" target="_blank">relative links</a>                                       
+- `baseUrl` *[optional]* - custom <a href="#relative-links" target="_blank">relative links</a>                                       
 - `settings` *[optional]* - custom form with <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">predefined user input elements</a>                        
 - `nodes` - an array to describe information about nodes for an installation. Required option for JPS with **type** `install`.
-- `engine` *[optional]* - engine <a href="http://docs.cloudscripting.com/reference/container-types/#engine-versions-engine" target="_blank">version</a>, by **default** `java6`
+- `engine` *[optional]* - engine <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
 - `region` *[optional]* - region, where an environment will be installed. Required option for **type** `install`.
 - `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with `type` *install* mode.            
 - `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with `type` *install* mode.
@@ -74,7 +74,7 @@ There is a set of available parameters to define a manifest installation behavio
 - `actions` *[optional]* - objects to describe all <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank">custom actions</a>
 - `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation
-- "..." - the list of event can be predefined before manifest is installed. More details [here](/reference/events/)
+- "..." - the list of <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">events</a> can be predefined before manifest is installed. More details 
 
 ##Environment Installation
 
@@ -172,7 +172,7 @@ Here:
 - `sourceNodeId` -  node identifier the volume should be mounted from (optional, in case of the `sourceNodeGroup` parameter using)       
 - `sourceHost [optional]` - parameter for <a href="https://docs.jelastic.com/configure-external-nfs-server" target="_blank">external mounts</a> usage    
 - `readOnly` - defines write data permissions at source node, the default value is `false`   
-- `sourceNodeGroup` - any available <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">*nodeGroup*</a> within a source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.    
+- `sourceNodeGroup` - any available *nodeGroup* within a source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.    
 
 In case not all source node volumes are required to be mounted, the particular ones can be specified:
 ``` json
