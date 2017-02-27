@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Run into trouble with Cloud Scripting? Here are some helpful tips and specific suggestions for troubleshooting as follows:                
+Run into trouble with Cloud Scripting? Here are some helpful tips and specific suggestions for troubleshooting as follows.                     
 
 * Log in to your Jelastic dashboard and open the link of the following type in a new browser tab:              
 
@@ -17,7 +17,7 @@ Run into trouble with Cloud Scripting? Here are some helpful tips and specific s
 
 Below, some tips are provided on how to edit custom information to the log.        
 
-Output a single <a href="http://docs.cloudscripting.com/reference/placeholders/" target="blank">placeholder</a> value:
+* Output a single <a href="http://docs.cloudscripting.com/reference/placeholders/" target="blank">placeholder</a> value
 ``` json
 {
   "type": "update",
@@ -31,7 +31,7 @@ Output a single <a href="http://docs.cloudscripting.com/reference/placeholders/"
 }
 ```
 
-Output all the placeholders:
+* Output all the placeholders
 ``` json
 {
   "type": "update",
@@ -42,7 +42,7 @@ Output all the placeholders:
 }
 ```                                                                                      
 
-Output from a script:
+* Output from a script
 ``` json
 {
   "type": "update",
