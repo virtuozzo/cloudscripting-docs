@@ -91,7 +91,7 @@ The main iterable object is <b>*'ForEach'*</b>. Both <b>*'if'*</b> and <b>*'ForE
 }
 ```
 
-## Nested Conditions   
+### Nested Conditions   
   
 Nesting of two *if* condition statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and logging the correspondent messages.
 ``` json
