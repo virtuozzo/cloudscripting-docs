@@ -14,12 +14,15 @@ There are three main pillars of cloud scripting:
 
 <p dir="ltr" style="text-align: justify;">The developed Cloud Scripting solutions are wrapped into packages and distributed with Jelastic Packaging Standard (<a href="https://docs.jelastic.com/jps" target="_blank">JPS</a>). This is accomplished through preparing a manifest file in JSON format. Such packaged solutions can be effortlessly deployed to the platform via <a href="https://docs.jelastic.com/environment-import" target="_blank">import</a> functionality.</p>
 
-The example below describes Cloud Scripting simple use case. A manifest suggests creating new environment with Jelastic sertified payara micro cluster image and ability to configure new cluster members while node scaling. It shows a list of executing predefined actions:
+<p dir="ltr" style="text-align: justify;">The example below represents the Cloud Scripting basic use case. This manifest declares the creation of a new environment with the Jelastic-certified Payara Micro cluster image and provides possibility to configure new cluster members while scaling nodes. Within the manifest, the following <a href="http://docs.cloudscripting.com/reference/actions/" target="blank">actions</a> execution is predefined:</p>         
  
-- `cmd` - an ability to execute [shell commands](/reference/actions/#cmd)
-- `forEach` - Cloud Scripting [iteration](/creating-templates/conditions-and-iterations/#by-all-nodes)
-- `addClusterMembers` - user [custom action](/reference/actions/#custom-actions)
-- `onAfterScaleIn, onBeforeServiceScaleOut` - Jelastic node scaling [events](/reference/events/) 
+* `cmd` - action to execute <a href="/reference/actions/#cmd" target="blank">shell commands</a>               
+
+* `forEach` - iteration <a href="/creating-templates/conditions-and-iterations/#by-all-nodes" target="blank">object</a>     
+
+* `addClusterMembers` - user-defined <a href="/reference/actions/#custom-actions" target="blank">custom action</a>      
+
+* `onAfterScaleIn, onBeforeServiceScaleOut` - scaling <a href="/reference/events/#onafterscalein" target="blank">events</a>        
 
 ```json
 {
