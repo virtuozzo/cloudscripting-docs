@@ -13,9 +13,10 @@ or
 if (env.protocol == 'http')
 ```
 
-The main iterable object is <b>*'ForEach'*</b>. Both <b>*'if'*</b> and <b>*'ForEach'*</b> can be of any nesting level.
-* If condition is specified incorrectly, the actions inside *if* statement won't be executed. Herewith, the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Cloud Scripting Console</a> will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.
-* If condition is valid, but is not executed, the <b>*'condition is not met'*</b> message will be logged.
+The main iterable object is <b>*'ForEach'*</b>. Both <b>*'if'*</b> and <b>*'ForEach'*</b> can be of any nesting level.                            
+
+- If condition is specified incorrectly, the actions inside <b>*if*</b> statement won't be executed. Herewith, the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Cloud Scripting Console</a> will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.
+- If condition is valid, but is not executed, the <b>*'condition is not met'*</b> message will be logged.
 
 <b>Examples</b>    
 
@@ -93,7 +94,7 @@ The main iterable object is <b>*'ForEach'*</b>. Both <b>*'if'*</b> and <b>*'ForE
 
 ### Nested Conditions   
   
-Nesting of two *if* condition statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and logging the correspondent messages.
+Nesting of two <b>*if*</b> condition statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and logging the correspondent messages.
 ``` json
 {
   "type": "update",
@@ -113,7 +114,7 @@ Nesting of two *if* condition statements - the first one is checking an environm
 }
 ```
 
-The operation result can be located within a <b>*result.txt*</b> file that is automatically created in the master node (i.e. the first *cp* node) *<b>tmp</b>* directory.
+The operation result can be located within a <b>*result.txt*</b>  file that is automatically created in the master node (i.e. the first *cp* node) *<b>tmp</b>* directory.
 ```
 Environment consists of two compute nodes
 Balancer node with external IP address!
@@ -163,9 +164,9 @@ where:
 - `event [optional]` - object entity with <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">events</a> parameters; can be of two types that allow initiation of a particular <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank"> action</a> *before* and *after* event execution       
 - `this [optional]` - parameters object to be transmitted within the procedure body. See the full list of available<a href="http://docs.cloudscripting.com/reference/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
 
-Iteration can be executed by *env.nodes*, *nodes*, *env.contexts*, and *env.extdomains* objects.                    
+Iteration can be executed by <b>*env.nodes*</b>, <b>*nodes*</b>, <b>*env.contexts*</b>, and <b>*env.extdomains*</b> objects.                    
 
-* Iteration set by *env.extdomains*                  
+* Iteration set by <b>*env.extdomains*</b>                  
 ``` json
 {
   "forEach(env.extdomains)": [
@@ -184,7 +185,7 @@ where:
 - `@i` - default iterator name 
 - `env.extdomains` - bound external domains 
 
-* Iteration set by *env.contexts*                         
+* Iteration set by <b>*env.contexts*</b>                         
 ``` json
 {
   "forEach(env.contexts)": {
@@ -197,9 +198,10 @@ where:
 ```
 where:  
 
-- `env.contexts` -  list of contexts (applications) deployed to an environment    
+- `env.contexts` -  list of contexts (applications) deployed to an environment                         
 
-* Scaling nodes example           
+* Scaling nodes example   
+
 ``` json
 {
   "type": "update",
