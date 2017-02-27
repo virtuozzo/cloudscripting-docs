@@ -84,6 +84,6 @@ Using *script* action
 }
 ```
 
-## What's next?
+<h2>What's next?</h2>
 
 Learn more about using <a href="http://docs.jelastic.com/api/" target="_blank">Jelastic Cloud API</a>.                                      
