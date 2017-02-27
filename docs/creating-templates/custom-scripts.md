@@ -55,7 +55,7 @@ END
 
 Using *script* action
 
-### Java
+<h3>Java</h3>
 
 ``` json
 {
@@ -75,7 +75,7 @@ Using *script* action
 **Example #1 Generate random password**
 -->
 
-### JavaScript
+<h3>JavaScript</h3>
 
 ``` json
 {
