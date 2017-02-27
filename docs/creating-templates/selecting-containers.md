@@ -2,7 +2,7 @@
 
 ## Selector Types
 
-Running a specific <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> requires to set a target container, in confines of which this action will be executed. Thus, it is possible to specify a particular container, all containers within a layer by their <em>nodeGroup</em> value (e.g. <em>sql</em>) or all containers of the same type by their <em>nodeType</em> value (e.g. <em>MySQL</em>).                                 
+Running a specific <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> requires to specify a target container, in confines of which this action will be executed. Thus, it is possible to specify a [particular container](#particular-container), all containers within a layer by their [*nodeGroup*](#all-containers-by-group) value (e.g. <em>sql</em>) or all containers of the same type by their [*nodeType*](#all-containers-by-type) value (e.g. <em>MySQL</em>).                                 
 
 ### Particular Container
 
@@ -34,14 +34,13 @@ For example:
   ]
 }
 ```
-Visit the <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> documentation page for more information.      
+Visit the <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank"><em>Placeholders</em></a> documentation page for more information.      
 
 ### All Containers By Group        
  
 The *nodeGroup* value is used to point out all containers within a specific layer.            
 
-The Jelastic Platform supports the following predefined *nodeGroup* values:                 
- 
+The Jelastic Platform supports the following predefined *nodeGroup* values:                    
 * *bl*             
 * *cp*                 
 * *cache*                 
@@ -54,13 +53,14 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 Actions for a specified <em>nodeGroup</em> are executed successively one by one. For Docker containers the <em>nodeGroup</em> value is not predefined, therefore, it can be stated to any value above or your custom one.                              
 
 !!! note
-    Upon stating non-predefined (i.e. custom) <em>nodeGroup</em> value for Docker containers, the corresponding container will be placed to the <em>Extra</em> layer. Subsequently, this <em>nodeGroup</em> value can be used within the same-named <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> field to point to a particular <em>Extra</em> layer.<center>![dockerextra](/img/dockerextra.png)</center> 
+    Upon stating non-predefined (i.e. custom) <em>nodeGroup</em> value for Docker containers, the corresponding container will be placed to the <em>Extra</em> layer. Subsequently, this <em>nodeGroup</em> value can be used within the same-named <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> field to point to a particular <em>Extra</em> layer.
+    <center>![dockerextra](/img/dockerextra.png)</center>         
 
 ### All Containers By Type
 
 The <em>nodeType</em> parameter is applied to specify all containers built upon the same software [stacks](#supported-stacks ).                                   	  
 
-For example:
+<b>Examples</b>     
 
 Using the *nodeType* field while performing the <a href="http://docs.cloudscripting.com/reference/actions/#writefile" target="blank">*writeFile*</a> action.
 ``` json
@@ -72,12 +72,12 @@ Using the *nodeType* field while performing the <a href="http://docs.cloudscript
   }
 } 
 ```
-where:
+where:                
 
-* `writeFile` - action to write data to a file
-* `nodeType` - value to define a particular node, where file is located
-* `path` - parameter specifying path to a file
-* `body` - data that is being written to a file  
+* `writeFile` - action to write data to a file    
+* `nodeType` - parameter to specify node(s) by type    
+* `path` - parameter specifying path to a file    
+* `body` - data that is being written to a file     
 
 Creating an environment with topology specifics, set by the *engine* and *nodeType* values.   
 ``` json
@@ -90,14 +90,14 @@ Creating an environment with topology specifics, set by the *engine* and *nodeTy
   }
 }
 ```
-where:
+where:          
 
-* `engine` - value that specifies engine version (*java7*  in our example)
-* `nodeType` - value that specifies compute node type (*tomcat7*  in our example)
+* `engine` - parameter that specifies engine version (*java7* in our example)        
+* `nodeType` - parameter that specifies node type (*tomcat7*  in our example)       
 
 ### Types of Selectors 
 
-There are three alternative approaches, provided to specify target container(s) in a manifest:       
+There are three alternative approaches, provided to specify target container(s) in a manifest.                          
 
 * specifying a target node within a name of an action (**node selectors**)     
 
@@ -133,11 +133,11 @@ Here, the <em>createFile</em> and <em>createDirectory</em> actions are applied t
  
 * setting a required node as a parameter in the action object     
 
-Learn more on this parameter within the custom <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">actions</a> documentation page.                                      
+Learn more on this parameter within the custom <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank"><em>Custom Actions</em></a> documentation page.                                      
 
 !!! note 
-    <b>Node selectors</b> have higher priority than nodes, specified next to the action but lower than parameters set in the action object.   
-    If you set all three parameters, actions for indicated containers would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.   
+    <b>Node selectors</b> have higher priority than nodes, specified next to the action, but lower than parameters set in the action object.   
+    If you set all three parameters (i.e *nodeId, nodeGroup, nodeType*), actions for indicated containers would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.   
 
 Below you can find data on supported software stacks in confines of the *nodeGroup*, *nodeType* and *engine* values.
 
@@ -145,8 +145,7 @@ Below you can find data on supported software stacks in confines of the *nodeGro
 
 ### Predefined *nodeGroup* Values                   
 
-The Jelastic Platform supports the following predefined *nodeGroup* values:                         
-
+The Jelastic Platform supports the following predefined *nodeGroup* values:                           
 * **lb** (for load balancers) - *nginx, varnish, haproxy*                       
 * **cp** (for compute nodes) - *tomcat6, tomcat7, tomcat8, tomee, glassfish3, glassfish4, jetty6, jetty8, jetty9, jboss7, smartfox-server, powerdns, railo4, wildfly, wildfly9, wildfly10, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs*                     
 * **cache** (for a cache server) - *memcached*                    
@@ -160,7 +159,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 
 The Jelastic Platform supports the following software stacks:         
 
-- **Compute nodes:**                  
+- **Compute Nodes:**                  
     - *Java*                
         - `tomcat6` - *Tomcat 6*                
         - `tomcat7` - *Tomcat 7*               
@@ -204,16 +203,16 @@ The Jelastic Platform supports the following software stacks:
      - `nginx` - *Nginx* balancer                        
      - `haproxy` - *HAProxy* balancer                     
      - `varnish` - *Varnish 4*                    
-- **Build node:**   
+- **Build Node:**   
      - `maven3` - *Мaven*                  
-- **Cache node:**                    
+- **Cache Node:**                    
      - `memcached` - *Мemcached*                     
 - **Virtual Private Server nodes:**                         
      - `centos6` - *CentOS 6*                  
      - `centos7` - *CentOS 7*               
 - **Storage:**                 
      - `storage` - *Shared storage*                 
-- **Docker containers:**                               
+- **Docker Containers:**                               
      - `docker`                 
          
 
