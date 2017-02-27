@@ -14,7 +14,7 @@ There are three main pillars of cloud scripting:
 
 <p dir="ltr" style="text-align: justify;">The developed Cloud Scripting solutions are wrapped into packages and distributed with Jelastic Packaging Standard (<a href="https://docs.jelastic.com/jps" target="_blank">JPS</a>). This is accomplished through preparing a manifest file in JSON format. Such packaged solutions can be effortlessly deployed to the platform via <a href="https://docs.jelastic.com/environment-import" target="_blank">import</a> functionality.</p>
 
-The example below describes Cloud Scripting simple example. A manifest suggests creating new environment with Jelastic sertified payara micro cluster image and ability to configure new cluster members while node scaling. It shows a list of executing predefined actions:
+The example below describes Cloud Scripting simple use case. A manifest suggests creating new environment with Jelastic sertified payara micro cluster image and ability to configure new cluster members while node scaling. It shows a list of executing predefined actions:
  
 - `cmd` - an ability to execute [shell commands](/reference/actions/#cmd)
 - `forEach` - Cloud Scripting [iteration](/creating-templates/conditions-and-iterations/#by-all-nodes)
