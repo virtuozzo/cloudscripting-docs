@@ -1,9 +1,10 @@
-#Control Flows: Conditions and Iterations
+# Control Flows: Conditions and Iterations
 
-##Conditions
-The main condition statement is *'if'*. Within this parameter, all available <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
+## Conditions    
 
-For example:
+The main condition statement is <b>*'if'*</b>. Within this parameter, all available <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
+
+For example
 ```
 if ('${env.protocol}' == 'http')
 ```
@@ -12,14 +13,13 @@ or
 if (env.protocol == 'http')
 ```
 
-Both *If* and *ForEach* can be of any nesting level.
-
-- In case a condition is specified incorrectly, the actions inside *if* statement won't be executed. Herewith, the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Cloud Scripting Console</a> will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.
-- If condition is valid but hasn’t being executed, the <b>*'condition is not met'*</b> message will be logged.
+The main iterable object is <b>*'ForEach'*</b>. Both <b>*if*</b> and <b>*ForEach*</b> can be of any nesting level.
+* If condition is specified incorrectly, the actions inside *if* statement won't be executed. Herewith, the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Cloud Scripting Console</a> will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.
+* If condition is valid, but is not executed, the <b>*'condition is not met'*</b> message will be logged.
 
 <b>Examples</b>    
 
-Comparing global variables:
+* Comparing global variables
 ``` json
 {
   "type": "update",
@@ -40,7 +40,7 @@ Comparing global variables:
 }
 ```
 
-Checking environment status:
+* Checking environment status
 ``` json
 {
   "onInstall": {
@@ -51,7 +51,7 @@ Checking environment status:
 }
 ```
      
-Checking Jelastic SSL status: 
+* Checking Jelastic SSL status 
 ``` json
 {
   "onInstall": {
@@ -62,7 +62,7 @@ Checking Jelastic SSL status:
 }
 ```
 
-Environment domain validation:
+* Environment domain validation
 ``` json
 {
   "onInstall": {
@@ -73,8 +73,7 @@ Environment domain validation:
 }
 ```
 
-
-Checking compute node OS type and balancer presence: 
+* Checking compute node OS type and balancer presence 
 ``` json
 {
   "onInstall": {
@@ -92,9 +91,9 @@ Checking compute node OS type and balancer presence:
 }
 ```
 
-Nested conditions:   
+## Nested Conditions   
   
-Nesting of two *If* condition statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and logging the correspondent messages.
+Nesting of two *if* condition statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and logging the correspondent messages.
 ``` json
 {
   "type": "update",
@@ -114,13 +113,13 @@ Nesting of two *If* condition statements - the first one is checking an environm
 }
 ```
 
-The operation result can be located within a *result.txt* file automatically created in the master node (i.e. the first *cp* node) *<b>tmp</b>* directory:
+The operation result can be located within a <b>*result.txt*</b> file that is automatically created in the master node (i.e. the first *cp* node) *<b>tmp</b>* directory.
 ```
 Environment consists of two compute nodes
 Balancer node with external IP address!
 ```
 
-Checking balancer stack type:
+* Checking balancer stack type   
 ``` json
 {
   "type": "update",
@@ -135,11 +134,11 @@ Checking balancer stack type:
 }
 ```
 
-##Iterations
-<b>ForEach</b>
+## Iterations
 
-The main iterable object is *ForEach*. Its map:
+### ForEach
 
+The main iterable object is *ForEach* with the following map. 
 ``` json
 {
   "env": {
@@ -161,11 +160,12 @@ where:
 
 - `settings` *[optional]* - fields values predefined within a <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">user setting form</a>          
 - `license [optional]` - link to fetch parameters specified within <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">placeholders</a> `$(license.{any_name}` within a manifest.    
-- `event [optional]` - object entity with <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">events</a> parameters; can be of two types that allow initiation of a particular <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank"> action</a>before and after event execution       
-- `this [optional]` - parameters object to be transmitted within the procedure body. See the <a href="http://docs.cloudscripting.com/reference/placeholders/#procedure-placeholders" target="_blank">full list of available placeholders</a> on this parameter.     
+- `event [optional]` - object entity with <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">events</a> parameters; can be of two types that allow initiation of a particular <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank"> action</a> *before* and *after* event execution       
+- `this [optional]` - parameters object to be transmitted within the procedure body. See the full list of available<a href="http://docs.cloudscripting.com/reference/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
 
-Iteration can be executed by `env.nodes`, `nodes`, `env.contexts` and `env.extdomains` objects:
+Iteration can be executed by *env.nodes*, *nodes*, *env.contexts*, and *env.extdomains* objects.                    
 
+* Iteration set by *env.extdomains*                  
 ``` json
 {
   "forEach(env.extdomains)": [
@@ -184,6 +184,7 @@ where:
 - `@i` - default iterator name 
 - `env.extdomains` - bound external domains 
 
+* Iteration set by *env.contexts*                         
 ``` json
 {
   "forEach(env.contexts)": {
@@ -198,9 +199,7 @@ where:
 
 - `env.contexts` -  list of contexts (applications) deployed to an environment    
 
-See the <a href="http://docs.cloudscripting.com/reference/placeholders/#procedure-placeholders" target="_blank">full list of available placeholders</a>.             
-
-Scaling nodes example:
+* Scaling nodes example           
 ``` json
 {
   "type": "update",
@@ -219,11 +218,13 @@ Scaling nodes example:
   }
 }
 ```
-As a result of *cmd*, compute nodes internal IP addresses are rewritten within balancer configs and *NGINX* balancer node is reloaded. <b>*onAfterScaleIn*</b> and <b>*onAfterScaleOut*</b> events are executed immediately after adding or removing a compute node.   
+As a result of *cmd*, compute nodes internal IP addresses are rewritten within balancer configs and NGINX balancer node is reloaded. The <b>*onAfterScaleIn*</b> and <b>*onAfterScaleOut*</b> events are executed immediately after adding or removing a compute node.   
 
-###By all nodes
+### By All Nodes
 
-Iteration by all nodes in an environment:
+Iteration by all nodes in an environment.
+
+* Iteration set by *env.nodes*
 ``` json
 {
   "forEach(env.nodes)": {
@@ -232,9 +233,9 @@ Iteration by all nodes in an environment:
 }
 ```
 
-###By compute nodes 
+### By Compute Nodes 
 
-Iteration by compute nodes with a custom iterator name:
+Iteration by compute nodes with a custom iterator name.
 ``` json
 {
   "forEach(cp:nodes.cp)": {
@@ -242,10 +243,11 @@ Iteration by compute nodes with a custom iterator name:
   }
 }
 ```
-where:   
-- `@cp [optional]` - custom iterator name. Target nodes also can be set by type -`${@cp.nodeType}` or group - `${@cp.nodeGroup}` 
 
-Custom iterator name can be used for nesting cycles one into another:
+where:   
+- `@cp [optional]` - custom iterator name. Target nodes can also be set by type -`${@cp.nodeType}` or group - `${@cp.nodeGroup}`.                                   
+
+Custom iterator name can be used for nesting cycles one into another.            
 ``` json
 {
   "type": "update",
@@ -267,6 +269,6 @@ where:
 
 In this case, every environment node will have only one conjunction by <b>Node ID</b>.
 
-**ForEach count** execution is printed in a <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">user console log</a> for usefull debugging code execution.     
+The **ForEach count** execution is printed in a <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">user console log</a> for usefull debugging code execution.     
 
 <center>![forEachCount](/img/forEachCount.jpg)</center>
