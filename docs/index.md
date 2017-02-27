@@ -45,10 +45,10 @@ There are three main pillars of cloud scripting:
 
 <h2>What’s next?</h2>
 
-- Build a simple automation with <a href="http://docs.cloudscripting.com/quick-start/" target="_blank">Quick Start</a> Guide                               
-- Learn how to <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/" target="_blank">Create Manifest</a>   
-- Explore the list of available <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a>    
-- See the <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">Events</a> list the actions can be bound to    
-- Find out the list of <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching  
-- Read how to integrate your <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>         
-- Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples                                                   
+* Build a simple automation with <a href="http://docs.cloudscripting.com/quick-start/" target="_blank">Quick Start</a> Guide                               
+* Learn how to <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/" target="_blank">Create Manifest</a>   
+* Explore the list of available <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a>    
+* See the <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">Events</a> list the actions can be bound to    
+* Find out the list of <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching  
+* Read how to integrate your <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>         
+* Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples                                                   
