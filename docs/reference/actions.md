@@ -2,34 +2,38 @@
 
 Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS, and Java scripts.                 
 
-With the help of actions you can achieve automation of the tasks related to:                                              
-* increasing or decreasing CPU or RAM amount      
-* adjusting configs according to specific environment's settings              
-* restarting a service or a container                 
-* applying a database patch according to specific environment's settings                                  
+With the help of actions you can achieve automation of the tasks related to:                
+
+- increasing or decreasing CPU or RAM amount      
+- adjusting configs according to specific environment's settings              
+- restarting a service or a container                 
+- applying a database patch according to specific environment's settings                                  
 
 The default workflow for any action execution is the following:                  
-* replacing <a href="http://docs.cloudscripting.com/reference/placeholders" target="_blank">placeholders</a>                                     
-* getting a list of target containers (for a detailed guidance, see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> page)                
-* checking permissions        
-* executing the action itself         
+
+- replacing <a href="http://docs.cloudscripting.com/reference/placeholders" target="_blank">placeholders</a>                                     
+- getting a list of target containers (for a detailed guidance, see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> page)                
+- checking permissions        
+- executing the action itself         
 
 Actions are executed when the called <a href="http://docs.cloudscripting.com/reference/events" target="_blank">event</a> matches specified filtering rules.               
 
-Thus, the following specific groups of actions are singled out:               
-* [Container Operations](#container-operations)                   
-* [Topology Nodes Management](#topology-nodes-management)             
-* [Database Operations](#database-operations)                  
-* [User-Defined Operations](#user-defined-operations)                        
+Thus, the following specific groups of actions are singled out:           
+
+- [Container Operations](#container-operations)                   
+- [Topology Nodes Management](#topology-nodes-management)             
+- [Database Operations](#database-operations)                  
+- [User-Defined Operations](#user-defined-operations)                        
 
 ## Container Operations
 
-There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Containers</e</a> page.                        
+There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Containers</em></a> page.                        
 
-Any container operation can be performed using a [*cmd*](#cmd) action. Moreover, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:                  
-* SSH commands ([*cmd*](#cmd))                          
-* predefined modules ([*deploy*](#deploy), [*upload*](#upload), [*unpack*](#unpack))           
-* operations with files ([*createFile*](#createfile), [*createDirectory*](#createdirectory), [*writeFile*](#writefile), [*appendFile*](#appendfile), [*replaceInFile*](#replaceinfile))                     
+Any container operation can be performed using a [*cmd*](#cmd) action. Moreover, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:       
+
+- SSH commands ([*cmd*](#cmd))                          
+- predefined modules ([*deploy*](#deploy), [*upload*](#upload), [*unpack*](#unpack))           
+- operations with files ([*createFile*](#createfile), [*createDirectory*](#createdirectory), [*writeFile*](#writefile), [*appendFile*](#appendfile), [*replaceInFile*](#replaceinfile))                     
 
 !!! note 
     To process any container operation (except for [cmd](#cmd)), the Cloud Scripting executor will use a default system user with restricted permissions.                   
