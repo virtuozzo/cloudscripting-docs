@@ -6,7 +6,7 @@ Jelastic <b>Cloud Scripting (CS)</b> is a tool, designed to program the cloud pl
 
 There are three main pillars of cloud scripting:
 
-* **Actions** - scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS and Java scripts   
+* **Actions** - scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash <a href="/reference/actions/#cmd" target="_blank">shell command</a>, JS and Java scripts   
 
 * **Events** - specific <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">triggers</a> for executing actions on a required application lifecycle stage   
   
@@ -14,29 +14,46 @@ There are three main pillars of cloud scripting:
 
 <p dir="ltr" style="text-align: justify;">The developed Cloud Scripting solutions are wrapped into packages and distributed with Jelastic Packaging Standard (<a href="https://docs.jelastic.com/jps" target="_blank">JPS</a>). This is accomplished through preparing a manifest file in JSON format. Such packaged solutions can be effortlessly deployed to the platform via <a href="https://docs.jelastic.com/environment-import" target="_blank">import</a> functionality.</p>
 
+The example below describes Cloud Scripting simple example. A manifest suggests creating new environment with Jelastic sertified payara micro cluster image and ability to configure new cluster members while node scaling. It shows a list of executing predefined actions:
+ 
+- `cmd` - an ability to execute [shell commands](/reference/actions/#cmd)
+- `forEach` - Cloud Scripting [iteration](/creating-templates/conditions-and-iterations/#by-all-nodes)
+- `addClusterMembers` - user [custom action](/reference/actions/#custom-actions)
+- `onAfterScaleIn, onBeforeServiceScaleOut` - Jelastic node scaling [events](/reference/events/) 
+
 ```json
 {
-  "type": "update",
-  "name": "overview",
-  "onInstall": [
+  "type": "install",
+  "name": "Simple Payara Micro Cluster",
+  "nodes": [
     {
-      "script": "return {result: 0, response: 'test'}"
-    },
-    {
-      "cmd [cp]": "echo 'test' >> /var/log/run.log"
-    },
-    "restartNodes [cp]",
-   {
-    "createFile [cp]": "/tmp/example.txt"
-    },
-    "myAction"
+      "cloudlets": 16,
+      "nodeGroup": "cp",
+      "image": "jelastic/payara-micro-cluster",
+      "env": {
+        "HAZELCAST_GROUP": "CHANGE_ME",
+        "HAZELCAST_PASSWORD": "CHANGE_ME",
+        "VERT_SCALING": "true"
+      },
+      "volumes": [
+        "/opt/payara/deployments",
+        "/opt/payara/config",
+        "/var/log"
+      ]
+    }
   ],
-  "onAfterScaleOut [cp]": {
-    "myAction": "/tmp/firstFile.txt"
+  "onBeforeServiceScaleOut[nodeGroup:cp]": "addClusterMembers",
+  "onAfterScaleIn[nodeGroup:cp]": {
+    "forEach(event.response.nodes)": {
+      "cmd [cp]": "$PAYARA_PATH/bin/clusterManager.sh --removehost ${@i.intIP}"
+    }
   },
+  "onInstall": "addClusterMembers",
   "actions": {
-    "myAction": {
-      "forEach(nodes)": "..."
+    "addClusterMembers": {
+      "forEach(nodes.cp)": {
+        "cmd [cp]": "$PAYARA_PATH/bin/clusterManager.sh --addhost ${@i.intIP}"
+      }
     }
   }
 }

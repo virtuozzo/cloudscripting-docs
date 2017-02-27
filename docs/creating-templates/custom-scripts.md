@@ -57,7 +57,7 @@ Using `script` action
 <h3>Java</h3>
 ``` json
 {
-  "executeScript": [
+  "script": [
     {
         "type" : "java",        
         "params" : {
@@ -76,7 +76,8 @@ Using `script` action
 <h3>JavaScript</h3>
 ``` json
 {
-  "script ["Hello World!"]": "return getParam('greeting');"
+  "script": "return getParam('greeting');",
+  "greeting": "Hello World!"
 }
 ```
 

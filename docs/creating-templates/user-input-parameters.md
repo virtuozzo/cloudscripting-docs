@@ -72,7 +72,7 @@ where:
     - `vtypeText` *[optional]* - custom error message to be displayed instead of the default one, provided by *vtype* for this field. The default value is *' '* (blank space).     
     
 !!! note
-    > `vtypeText` is applied only in case the *vtype* value is set; otherwise, it is ignored.  
+    `vtypeText` is applied only in case the *vtype* value is set; otherwise, it is ignored.
 
 ### string
 The basic text field.  

@@ -224,7 +224,7 @@ code.cs, code.c {
 pre code {
     font-size: 90%;
     /*background-color: #ecf0f1;*/
-    background-color: #ecf0f1;
+    background-color: rgb(243, 243, 243); /*#ecf0f1;*/
     /*border: 1px solid #ccc;*/
 }
 
@@ -235,6 +235,14 @@ pre code.example {
 .wy-menu-vertical .toctree-l1 a {
     color: #f6f8f7;
     padding-left: 22px;
+}
+
+.wy-nav-top {
+    background-color: #868A9C;
+}
+
+.rst-content .note .admonition-title {
+    background-color: #7792ac;
 }
 
 #jel {
