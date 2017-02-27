@@ -40,15 +40,16 @@ Visit the <a href="http://docs.cloudscripting.com/reference/placeholders/" targe
  
 The *nodeGroup* value is used to point out all containers within a specific layer.            
 
-The Jelastic Platform supports the following predefined *nodeGroup* values:                    
-* *bl*             
-* *cp*                 
-* *cache*                 
-* *sqldb*            
-* *nosqldb*            
-* *storage*                  
-* *vps*                
-* *build*        
+The Jelastic Platform supports the following predefined *nodeGroup* values: 
+
+- *bl*             
+- *cp*                 
+- *cache*                 
+- *sqldb*            
+- *nosqldb*            
+- *storage*                  
+- *vps*                
+- *build*        
 
 Actions for a specified <em>nodeGroup</em> are executed successively one by one. For Docker containers the <em>nodeGroup</em> value is not predefined, therefore, it can be stated to any value above or your custom one.                              
 
@@ -133,11 +134,11 @@ Here, the <em>createFile</em> and <em>createDirectory</em> actions are applied t
  
 * setting a required node as a parameter in the action object     
 
-Learn more on this parameter within the custom <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank"><em>Custom Actions</em></a> documentation page.                                      
+Learn more on this parameter within the <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank"><em>Custom Actions</em></a> documentation page.                                      
 
 !!! note 
     <b>Node selectors</b> have higher priority than nodes, specified next to the action, but lower than parameters set in the action object.   
-    If you set all three parameters (i.e *nodeId, nodeGroup, nodeType*), actions for indicated containers would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.   
+    If you set all three parameters (i.e *nodeId*, *nodeGroup* and *nodeType*), actions for indicated containers would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.   
 
 Below you can find data on supported software stacks in confines of the *nodeGroup*, *nodeType* and *engine* values.
 
@@ -145,15 +146,16 @@ Below you can find data on supported software stacks in confines of the *nodeGro
 
 ### Predefined *nodeGroup* Values                   
 
-The Jelastic Platform supports the following predefined *nodeGroup* values:                           
-* **lb** (for load balancers) - *nginx, varnish, haproxy*                       
-* **cp** (for compute nodes) - *tomcat6, tomcat7, tomcat8, tomee, glassfish3, glassfish4, jetty6, jetty8, jetty9, jboss7, smartfox-server, powerdns, railo4, wildfly, wildfly9, wildfly10, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs*                     
-* **cache** (for a cache server) - *memcached*                    
-* **sql** (for *sql* databases) - *mysql5, mariadb, mariadb10, postgres8, postgres9*                                
-* **nosql** (for *nosql* databases) - *mongodb, couchdb, redis, redis3, cassandra2*        
-* **storage** (for a storage container) - *storage*           
-* **vps** (for virtual private servers) - *centos6, centos7*                                    
-* **build** (for a build node) - *maven3*                                
+The Jelastic Platform supports the following predefined *nodeGroup* values:  
+
+- **lb** (for load balancers) - *nginx, varnish, haproxy*                       
+- **cp** (for compute nodes) - *tomcat6, tomcat7, tomcat8, tomee, glassfish3, glassfish4, jetty6, jetty8, jetty9, jboss7, smartfox-server, powerdns, railo4, wildfly, wildfly9, wildfly10, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs*                     
+- **cache** (for a cache server) - *memcached*                    
+- **sql** (for *sql* databases) - *mysql5, mariadb, mariadb10, postgres8, postgres9*                                
+- **nosql** (for *nosql* databases) - *mongodb, couchdb, redis, redis3, cassandra2*        
+- **storage** (for a storage container) - *storage*   
+- **vps** (for virtual private servers) - *centos6, centos7*                            
+- **build** (for a build node) - *maven3*                                
 
 ### Predefined *nodeType* Values   
 
