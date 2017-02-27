@@ -7,14 +7,14 @@ A script can be subscribed to the <b>*onAfterReturn*</b> event on its outlet for
 ## Intercontainer Scripts
 In order to execute a shell script inside a container, the <a href="http://docs.cloudscripting.com/reference/actions/#cmd" target="_blank">ExecuteShellCommands</a> action is used.                
 
-**Example #1 Execute bash script from URL**
+Executing bash script from URL
 ``` json
 {
   "cmd [cp]": "curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2"
 }
 ```
 
-**Example #2 Restore MySQL database**
+Restoring MySQL database
 
 ``` json
 {
@@ -52,9 +52,11 @@ END
 `${nodes.sqldb.password}` - available only for *type* `install`, when a SQL node is created               
 
 ## Top Level Scripts  
-Using `script` action
 
-<h3>Java</h3>
+Using *script* action
+
+### Java
+
 ``` json
 {
   "executeScript": [
@@ -73,12 +75,14 @@ Using `script` action
 **Example #1 Generate random password**
 -->
 
-<h3>JavaScript</h3>
+### JavaScript
+
 ``` json
 {
   "script ["Hello World!"]": "return getParam('greeting');"
 }
 ```
 
-<h3>What's next?</h3>
-Learn more about using <a href="http://docs.jelastic.com/api/" target="_blank">Jelastic Cloud API</a>.                                    
+## What's next?
+
+Learn more about using <a href="http://docs.jelastic.com/api/" target="_blank">Jelastic Cloud API</a>.                                      
