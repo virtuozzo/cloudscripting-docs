@@ -59,10 +59,6 @@ h3, h4, h5, h6 {
     top: 46px;
 }
 
-.rst-versions.shift-up .rst-other-versions {
-    width: 268px;
-}
-
 .wy-side-nav-search>a {
     background-repeat: no-repeat;
     width: 258px;
@@ -91,10 +87,12 @@ h3, h4, h5, h6 {
 /*#for-label:checked ~ #hidden_toctree-l4-incl {*/
     /*display: block;*/
 /*}*/
-
-.toctree-l4-incl:hover {
+.toctree-l4:hover, .toctree-l4-incl:hover,
+.wy-menu-vertical li.toctree-l1 > a:hover,
+.toctree-l1:hover,
+ul.current span:hover{
     color: #fff !important;
-    background-color: #00acff !important;
+    background-color: #708bb6 !important;
 }
 
 #hidden_toctree-l4-incl {
@@ -149,7 +147,11 @@ h3, h4, h5, h6 {
     overflow-y: auto;
 }
 
-.wy-nav-side, .rst-versions, .wy-nav-side.stickynav, .wy-side-nav-search {
+.wy-nav-side,
+.rst-versions,
+.wy-nav-side.stickynav,
+.wy-side-nav-search,
+.rst-versions.shift-up .rst-other-versions {
     width: 280px;
 }
 
@@ -222,7 +224,7 @@ code.cs, code.c {
 pre code {
     font-size: 90%;
     /*background-color: #ecf0f1;*/
-    background-color: #ecf0f1;
+    background-color: rgb(243, 243, 243); /*#ecf0f1;*/
     /*border: 1px solid #ccc;*/
 }
 
@@ -233,6 +235,14 @@ pre code.example {
 .wy-menu-vertical .toctree-l1 a {
     color: #f6f8f7;
     padding-left: 22px;
+}
+
+.wy-nav-top {
+    background-color: #868A9C;
+}
+
+.rst-content .note .admonition-title {
+    background-color: #7792ac;
 }
 
 #jel {
@@ -317,4 +327,7 @@ pre code.example {
 }
 .wy-menu-vertical a:active {
     background-color: transparent;
+}
+.rst-versions.rst-badge.shift-up .rst-current-version {
+    top: 73px;
 }

@@ -59,7 +59,7 @@ Using *script* action
 
 ``` json
 {
-  "executeScript": [
+  "script": [
     {
         "type" : "java",        
         "params" : {
@@ -79,7 +79,8 @@ Using *script* action
 
 ``` json
 {
-  "script ["Hello World!"]": "return getParam('greeting');"
+  "script": "return getParam('greeting');",
+  "greeting": "Hello World!"
 }
 ```
 

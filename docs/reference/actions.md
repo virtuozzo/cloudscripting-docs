@@ -97,6 +97,7 @@ Downloading and unzipping a WordPress plugin on all the compute nodes. Here, the
   ]
 }
 ```
+Herewith, the commands array is executed through a single SSH command. The same can be performed with the help of the [unpack](/reference/actions/#unpack) method.                       
 
 Using **sudo** to reload Nginx balancer.       
 ``` json

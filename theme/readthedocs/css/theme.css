@@ -46,10 +46,6 @@
 .wy-menu-vertical .toctree-l1 ul li a.activecurrent {
       background-color: #555a70;
 }
-.toctree-l4:hover {
-  color: #fff !important;
-  background-color: #00acff !important;
-}
 .toctree-l4 {
   padding-left:3.3em !important;
 }

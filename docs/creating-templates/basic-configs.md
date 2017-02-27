@@ -9,7 +9,7 @@ The code should contain a set of strings needed for a successful installation of
 ``` json
 {
     "type": "string",
-    "name": "any require name"
+    "name": "any required name"
 }
 ```
 

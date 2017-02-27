@@ -45,8 +45,6 @@ Below you can see two simple examples of how to:
 
 <h2>Running Examples</h2>
 
-<p dir="ltr" style="text-align: justify;">In order to test the manifest examples presented above, you need to register at any Jelastic hosting provider from the <a href="https://jelastic.cloud" target="_blank">Jelastic Cloud Union</a> first.</p>              
-
 In order to test the manifest examples presented above, you need to register at any Jelastic hosting provider from the <a href="https://jelastic.cloud" target="_blank">Jelastic Cloud Union</a> first.       
 
 Then, log in to your Jelastic account and perform the following operations: 
