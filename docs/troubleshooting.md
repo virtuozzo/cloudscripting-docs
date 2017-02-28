@@ -60,7 +60,9 @@ Below, you can find some samples of editing custom information to the log:
   ]
 }
 ```
-`script.js` body:                         
+
+`script.js` body:   
+
 ``` javascript                                               
 var message = 'Hello';
 
@@ -81,6 +83,7 @@ return {
     } 
 };
 ```
+
 <!--## Logging-->
 <!--Work in progress...-->
 <!--
