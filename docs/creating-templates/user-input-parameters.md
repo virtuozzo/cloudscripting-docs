@@ -10,6 +10,7 @@ Cloud Scripting enables you to create a personalized solution by customizing the
 
 ## Getting User Input                               
 
+You can use the parameters from the following example to fetch your input data.                        
 ``` json
 {
   "type": "update",
