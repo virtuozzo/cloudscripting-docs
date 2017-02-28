@@ -85,6 +85,73 @@ where:
 !!! note
     The *vtypeText* validation is applied only if the *vtype* value is set, otherwise, it is ignored.
 
+## Target Nodes
+
+Target Nodes is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *update* installation type.      
+
+Filtering for **targetNodes** can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
+``` json
+{
+  "type": "update",
+  "name": "targetNodes",
+  "targetNodes": {
+    "nodeType": [
+      "..."
+    ],
+    "nodeGroup": [
+      "..."
+    ],
+    "dockerOs": [
+      "..."
+    ],
+    "dockerName": [
+      "..."
+    ],
+    "dockerTag": [
+      "..."
+    ]
+  },
+  "onInstall": {
+    "createFile": {
+      "nodeGroup": "cp",
+      "path": "/tmp/newFile"
+    }
+  }
+}
+```
+There are two possible ways to define a *nodeType*:  
+```
+"nodeType": ["..."] - to set the required nodeTypes in array
+
+"nodeType": "..., ..." - to set the required nodeTypes being separated with commas
+```
+  
+<b>Example</b>   
+ 
+Let’s suppose you have three environments with different topology:     
+
+<center>![target-nodes](/img/target-nodes.png )</center>  
+
+Within these environments, the *targetNodes* filtering for JPS installation can be performed with the next example:
+``` json
+{
+  "type": "update",
+  "name": "targetNodes",
+  "targetNodes": {
+    "nodeType": "nginx, mysql5"
+  },
+  "onInstall": {
+    "createFile": {
+      "nodeGroup": "cp",
+      "path": "/tmp/newFile"
+    }
+  }
+}
+```
+In this case, the filtering result will be the following:   
+
+<center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
+
 ## Custom Menus    
 
 Th menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
@@ -277,113 +344,7 @@ The *config settings* form appears after clicking the <b>Configure</b> button wi
 
 <center>![settingCustom](/img/SettingsCustom.jpg)</center>     
 
-<!--
-## Handling Custom Errors
-
-The Cloud Scripting engine provides functionality to handle custom errors. These possible errors should be described within a separate *errorHandlers* block. The errors handling is related to the action result codes that can be located within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
-
-There are a number of predefined pop-up windows that emerge while custom errors are being handled:  
-
-- `info` - *information* pop-up window                
-
-<center>![SuccessText](/img/SuccessText.jpg)</center>          
-
-- `warning` - *warning* pop-up window with a custom message                
- 
-<center>![new-warning](/img/new-warning.png)</center>        
-
-- `error` - *error* pop-up window          
-
-<center>![new-error](/img/new-error.png)</center>          
-
-The result message text can be localized according to the languages that are available within the Jelastic Platform:
-
-``` json
-{
-  "type": "warning",
-  "message": {
-    "en": "Localized text",
-    "es": "Texto localizado"
-  }
-}
-```
-
-<h3>Examples</h3>
-
-**File creation error**
-
-The example below describes a creation of the same file twice and handling an error, which occurs as a result of such action execution. Consequently, the result code of this error will be defined as *4036*. The example presupposes that all the actions with *4036* result will be displayed via *error* pop-up window with a custom error message text. 
-``` json
-{
-  "type": "update",
-  "name": "Handling File Creation",
-  "onInstall": [
-    {
-      "createFile [cp]": "/tmp/customDirectory"
-    },
-    {
-      "createFile [cp]": "/tmp/customDirectory"
-    }
-  ],
-  "errorHandlers": {
-    "4036": {
-      "type": "error",
-      "message": "file path already exists"
-    }
-  }
-}
-```
-
-where: 
-
-- `createFile` - predefined within the Cloud Scripting <a href="http://docs.cloudscripting.com/reference/actions/#createfile" target="_blank">action</a>              
-- `errorHandlers` - object (array) to describe custom errors     
-- `type` - type of a pop-up window, emerging upon the error occurrence. The available values are: *error*, *warning*, *info*.       
-
-The additional functionality is provided to display action errors using return <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">action</a>.                         
-
-``` json
-{
-  "type": "update",
-  "name": "Custom Error Handlers",
-  "onInstall": {
-    "script": "return {result : 1000};"
-  },
-  "errorHandlers": {
-    "1000": {
-      "type": "warning",
-      "message": "Custom Warning message!"
-    }
-  }
-}
-```
-
-where:
-
-- `script` - Cloud Scripting <a href= "/reference/actions/#script" target="__blank">action</a> for executing *Javascript* or *Java* code (*Javascript* is set by default)                     
-- `1000` - custom predefined result code for error handling. It will be returned from the *script* action in the *onInstall* block.        
-
-If the result code is delivered via *string*, then the default result code is *11039*. Therefore, *errorHandlers* can be handled by the following outcoming *string* text:            
-
-``` json
-{
-	"type": "update",
-	"name": "Custom Error Handlers",
-	"onInstall": {
-		"script": "return 'error'"
-	},
-	"errorHandlers": {
-		"error": {
-			"type": "info",
-			"message": "Custom Warning message!"
-		}
-	}
-}
-```
-
-In all the other cases, i.e. when a custom error is not predefined within the *errorHandler* block, the default pop-up window type is *error* with an output message.-->        
-
-# Success Text Customization
+## Success Text Customization
  
 It is possible to customize the *success* message that is displayed upon successful application installation either at the dashboard or in the email notification.            
 
@@ -1004,69 +965,108 @@ where:
 - Find out the correspondence between <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>      
 
 <!--
-<h3>Target Nodes</h3>
-Target Nodes is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *update* installation type.      
+## Handling Custom Errors
 
-Filtering for **targetNodes** can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
-``` json
-{
-  "type": "update",
-  "name": "targetNodes",
-  "targetNodes": {
-    "nodeType": [
-      "..."
-    ],
-    "nodeGroup": [
-      "..."
-    ],
-    "dockerOs": [
-      "..."
-    ],
-    "dockerName": [
-      "..."
-    ],
-    "dockerTag": [
-      "..."
-    ]
-  },
-  "onInstall": {
-    "createFile": {
-      "nodeGroup": "cp",
-      "path": "/tmp/newFile"
-    }
-  }
-}
-```
-There are two possible ways to define a *nodeType*:  
-```
-"nodeType": ["..."] - to set the required nodeTypes in array
+The Cloud Scripting engine provides functionality to handle custom errors. These possible errors should be described within a separate *errorHandlers* block. The errors handling is related to the action result codes that can be located within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
 
-"nodeType": "..., ..." - to set the required nodeTypes being separated with commas
-```
-  
-<b>Example</b>   
+There are a number of predefined pop-up windows that emerge while custom errors are being handled:  
+
+- `info` - *information* pop-up window                
+
+<center>![SuccessText](/img/SuccessText.jpg)</center>          
+
+- `warning` - *warning* pop-up window with a custom message                
  
-Let’s suppose you have three environments with different topology:     
+<center>![new-warning](/img/new-warning.png)</center>        
 
-<center>![target-nodes](/img/target-nodes.png )</center>  
+- `error` - *error* pop-up window          
 
-Within these environments, the *targetNodes* filtering for JPS installation can be performed with the next example:
+<center>![new-error](/img/new-error.png)</center>          
+
+The result message text can be localized according to the languages that are available within the Jelastic Platform:
+
+``` json
+{
+  "type": "warning",
+  "message": {
+    "en": "Localized text",
+    "es": "Texto localizado"
+  }
+}
+```
+
+<h3>Examples</h3>
+
+**File creation error**
+
+The example below describes a creation of the same file twice and handling an error, which occurs as a result of such action execution. Consequently, the result code of this error will be defined as *4036*. The example presupposes that all the actions with *4036* result will be displayed via *error* pop-up window with a custom error message text. 
 ``` json
 {
   "type": "update",
-  "name": "targetNodes",
-  "targetNodes": {
-    "nodeType": "nginx, mysql5"
-  },
-  "onInstall": {
-    "createFile": {
-      "nodeGroup": "cp",
-      "path": "/tmp/newFile"
+  "name": "Handling File Creation",
+  "onInstall": [
+    {
+      "createFile [cp]": "/tmp/customDirectory"
+    },
+    {
+      "createFile [cp]": "/tmp/customDirectory"
+    }
+  ],
+  "errorHandlers": {
+    "4036": {
+      "type": "error",
+      "message": "file path already exists"
     }
   }
 }
 ```
-In this case, the filtering result will be the following:   
 
-<center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>-->
+where: 
+
+- `createFile` - predefined within the Cloud Scripting <a href="http://docs.cloudscripting.com/reference/actions/#createfile" target="_blank">action</a>              
+- `errorHandlers` - object (array) to describe custom errors     
+- `type` - type of a pop-up window, emerging upon the error occurrence. The available values are: *error*, *warning*, *info*.       
+
+The additional functionality is provided to display action errors using return <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">action</a>.                         
+
+``` json
+{
+  "type": "update",
+  "name": "Custom Error Handlers",
+  "onInstall": {
+    "script": "return {result : 1000};"
+  },
+  "errorHandlers": {
+    "1000": {
+      "type": "warning",
+      "message": "Custom Warning message!"
+    }
+  }
+}
+```
+
+where:
+
+- `script` - Cloud Scripting <a href= "/reference/actions/#script" target="__blank">action</a> for executing *Javascript* or *Java* code (*Javascript* is set by default)                     
+- `1000` - custom predefined result code for error handling. It will be returned from the *script* action in the *onInstall* block.        
+
+If the result code is delivered via *string*, then the default result code is *11039*. Therefore, *errorHandlers* can be handled by the following outcoming *string* text:            
+
+``` json
+{
+	"type": "update",
+	"name": "Custom Error Handlers",
+	"onInstall": {
+		"script": "return 'error'"
+	},
+	"errorHandlers": {
+		"error": {
+			"type": "info",
+			"message": "Custom Warning message!"
+		}
+	}
+}
+```
+
+In all the other cases, i.e. when a custom error is not predefined within the *errorHandler* block, the default pop-up window type is *error* with an output message.-->       
   
