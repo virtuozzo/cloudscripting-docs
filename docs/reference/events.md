@@ -15,7 +15,7 @@ Each event refers to a particular entity. For example, the entry point for execu
 
 Events can be filtered by <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> and <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the defined actions will be executed only when the called event matches specified filtering rules. Otherwise (i.e. if no filtering rules are specified), every event is listened by all environment entities.         
 
-The example below describes events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event) and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event).         
+The example below describes events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event).         
 
 Here, the *nodeGroup* filtering, namely by the compute node (*[cp]*) layer, is set so that the *cmd* action is executed only after the compute nodes are scaled out. The *nodeType* filtering is set for <b>apache2</b> nodes, so that the *cmd* action is executed upon these particular nodes restart. The *nodeID* filtering is implemented in such a way that the <b>*onAfterResetNodePassword*</b> event is subscribed only for the first compute node in a layer.
 
