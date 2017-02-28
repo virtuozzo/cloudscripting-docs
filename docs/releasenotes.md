@@ -18,3 +18,7 @@
 <h3>Improvements</h3>
 
 The major improvements were applied to the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="blank"><em>Visual Settings</em></a> documentation. The new CS elements were added for a custom user-defined form.                     
+<br>
+## What's next?    
+
+- Find out the correspondence between <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>             
