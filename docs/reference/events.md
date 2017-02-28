@@ -182,16 +182,17 @@ The event will be executed after adding new Docker container(s) to the existing 
 ### onAlert
 This event provides a possibility to boud actions to <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a> and <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">Automatic Horizontal Scaling Alerts</a>. These features are configured through the Jelastic triggers.   
 
-These are the monitoring triggers that are based on the usage of a particular resource type:        
-* **CLOUDLETS** (CPU, Memory) - available only for action type *NOTIFY*
-* **CPU**
-* **MEM** (Memory)
-* **NET_EXT** - external output and input traffic that is available only for action type *NOTIFY*
-* **NET_EXT_OUT** - external output traffic
-* **DISK** - disk space amount that is available only for action type *NOTIFY*
-* **INODES** - available only for action type *NOTIFY*
-* **Disk I/O**
-* **Disk IOPS**
+These are the monitoring triggers that are based on the usage of a particular resource type:            
+
+- **CLOUDLETS** (CPU, Memory) - available only for action type *NOTIFY*              
+- **CPU**                  
+- **MEM** (Memory)                      
+- **NET_EXT** - external output and input traffic that are available only for action type *NOTIFY*                       
+- **NET_EXT_OUT** - external output traffic                         
+- **DISK** - disk space amount that is available only for action type *NOTIFY*                    
+- **INODES** - available only for action type *NOTIFY*                       
+- **Disk I/O**                         
+- **Disk IOPS**                        
 
 The measuring values are *PERCENTAGE* and *SPECIFIC*. The second value is availabe only for **NET_EXT** and **NET_EXT_OUT** resource types.
 
@@ -206,7 +207,7 @@ Below, the example of subscription to the *onAlert* event is provided. Here, the
 }
 ```
 
-The following example shows how a new trigger is being created:                 
+The following example shows how a new trigger is being created.                                            
 ``` json
 {
   "type": "update",
@@ -246,14 +247,14 @@ This example involves execution of the Jelastic API *addTrigger* method with a s
     - `type` - comparison sign, the available values are *GREATER* and *LESS*
     - `value` - stated percentage of a monitoring resource
     - `resourceType` - types of resources that will be monitored by a trigger, namely *CPU, Memory (RAM), Network, Disk I/O* and *Disk IOPS*
-    - `valueType` - measurement value. Here, *PERCENTAGES*  is the only possible measurement value. The available range is from *0** up to *100**.
+    - `valueType` - measurement value. Here, *PERCENTAGES*  is the only possible measurement value. The available range is from <b>*0*</b> up to <b>*100*</b>.
 - `actions` - object to describe a trigger action
     - `type` - trigger action, the available values are *NOTIFY*, *ADD_NODE* and *REMOVE_NODE*
     - `customData`:
         - `notify`- alert notification sent to a user via email 
         - `reminderPeriod` - reminder period in days to send a notification again       
 
-Jelastic will send an alert to the Cloud Scripting system, when the appropriate trigger is invoked. Therefore, the *onAlert* event provides a possibility to bound actions to alert notifications and execute custom actions.
+Jelastic will send an alert to the Cloud Scripting system when the appropriate trigger is invoked. Therefore, the *onAlert* event provides a possibility to bound actions to alert notifications and execute custom actions.
 
 **Event Placeholders:**     
 
@@ -320,15 +321,16 @@ The event will be called after the *deleteEnvironment* action.
 
 The event will be triggered before adding a new node to an environment. The *onBeforeAddNode* event will be executed for each newly added node.   
 
-There are the following available node groups:       
-* *balancer*               
-* *compute*                 
-* *cache*                   
-* *database*            
-* *storage*             
-* *VPS*                   
-* *build*                
-* *docker*              
+There are the following available node groups:         
+
+- *balancer*                
+- *compute*                  
+- *cache*                    
+- *database*             
+- *storage*              
+- *VPS*                    
+- *build*                 
+- *docker*               
 
 **Event Placeholders:**   
 
@@ -338,7 +340,7 @@ There are the following available node groups:
     - `appid` - environment unique appid        
     - `fixedCloudlets` - reserved cloudlets         
     - `flexibleCloudlets` - dynamic cloudlets          
-    - `ismaster` *[boolean]* - if true, then a new node will be treated as the first (i.e. master) one in the current layer     
+    - `ismaster` *[boolean]* - if *true*, then a new node will be treated as the first (i.e. master) one in the current layer     
     - `nodeType` - predefined node type       
 - `${event.response.}` parameters are absent        
 
@@ -346,15 +348,16 @@ There are the following available node groups:
 
 The event will be triggered after adding a new node to an environment. The *onAfterAddNode* event will be executed for each newly added node.     
 
-There are the following available node groups:          
-* *balancer*              
-* *compute*                 
-* *cache*                  
-* *database*            
-* *storage*             
-* *VPS*                    
-* *build*                 
-* *docker*               
+There are the following available node groups:                   
+
+- *balancer*              
+- *compute*                 
+- *cache*                  
+- *database*            
+- *storage*             
+- *VPS*                    
+- *build*                 
+- *docker*               
  
 **Event Placeholders:**   
 
@@ -364,7 +367,7 @@ There are the following available node groups:
     - `appid` - environment unique appid
      - `fixedCloudlet`- reserved cloudlets     
      - `flexibleCloudlets` - dynamic cloudlets        
-    - `ismaster` *[boolean]* - if true, then a new node will be treated as the first (i.e. master) one in the current layer          
+    - `ismaster` *[boolean]* - if *true*, then a new node will be treated as the first (i.e. master) one in the current layer          
     - `nodeType` - predefined node type         
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.        
@@ -373,10 +376,11 @@ There are the following available node groups:
 
 The event will be performed before cloning node in the environment. The process of cloning nodes presupposes that new nodes are cloned from the existing ones. 
 
-The *onBeforeCloneNodes* event is applicable only for the next node groups (excluding Docker nodes):     
-* *compute*   
-* *balancer*  
-* *VPS*    
+The *onBeforeCloneNodes* event is applicable only for the next node groups (excluding Docker nodes):                   
+
+- *compute*   
+- *balancer*  
+- *VPS*    
  
 **Event Placeholders:**   
 
@@ -393,10 +397,11 @@ The *onBeforeCloneNodes* event is applicable only for the next node groups (excl
 
 The event will be performed after cloning node in the environment. 
 
-The *onAfterCloneNodes* event is applicable only for the next node groups (excluding Docker nodes):
-* *compute*              
-* *balancer*                 
-* *VPS*                 
+The *onAfterCloneNodes* event is applicable only for the next node groups (excluding Docker nodes):                             
+
+- *compute*              
+- *balancer*                 
+- *VPS*                 
 
 **Event Placeholders:**   
 
