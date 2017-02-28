@@ -144,7 +144,7 @@ Below you can find data on supported software stacks in confines of the *nodeGro
 
 ## Supported Stacks
 
-### Predefined *nodeGroup* Values                   
+### Predefined nodeGroup Values                   
 
 The Jelastic Platform supports the following predefined *nodeGroup* values:  
 
@@ -157,7 +157,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 - **vps** (for virtual private servers) - *centos6, centos7*                            
 - **build** (for a build node) - *maven3*                                
 
-### Predefined *nodeType* Values   
+### Predefined nodeType Values   
 
 The Jelastic Platform supports the following software stacks:         
 
