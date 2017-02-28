@@ -1,7 +1,17 @@
 # Visual Settings
 
+Cloud Scripting enables you to create a personalized solution by customizing the visual appearance and textual content of such elements as:              
+
+- [Fields](#string)                  
+- [Menus](#custom-menus)                   
+- [Buttons](#custom-buttons)               
+- [Forms](#custom-settings)               
+- [Errors](#handling-custom-errors)                  
+- [Messages](#success-text-customization)                   
+
 ## Supported Fields
 
+The following example includes the fields that can be customized with your manifest.                   
 ``` json
 {
   "type": "update",
@@ -30,6 +40,7 @@
   }
 }
 ```   
+
 where:
 
 - `prepopulate` *[optional]* - link to the script, that will fetch the default fields values  
@@ -978,7 +989,7 @@ In all the other cases, i.e. when a custom error is not predefined within the *e
 
 # Success Text Customization
  
-It is possible to customize the *success* text that is displayed upon successful application installation either at the dashboard or in the email notification.            
+It is possible to customize the *success* message that is displayed upon successful application installation either at the dashboard or in the email notification.            
 
 <b>Examples</b>             
 
