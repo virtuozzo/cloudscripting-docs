@@ -84,7 +84,10 @@ Using *script* action
   "greeting": "Hello World!"
 }
 ```
+<br>
+## What's next?         
 
-<h2>What's next?</h2>
-
-Learn more about using <a href="http://docs.jelastic.com/api/" target="_blank">Jelastic Cloud API</a>.                                      
+- Explore how to customize the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
+- Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples  
+- See the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions       
+- Learn more about using <a href="http://docs.jelastic.com/api/" target="_blank">Jelastic Cloud API</a>                                                     
