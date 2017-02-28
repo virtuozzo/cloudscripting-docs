@@ -40,7 +40,7 @@ Visit the <a href="http://docs.cloudscripting.com/reference/placeholders/" targe
  
 The *nodeGroup* value is used to point out all containers within a specific layer.            
 
-The Jelastic Platform supports the following predefined *nodeGroup* values: 
+The Jelastic Platform supports the following predefined *nodeGroup* values:     
 
 - *bl*             
 - *cp*                 
@@ -59,11 +59,11 @@ Actions for a specified <em>nodeGroup</em> are executed successively one by one.
 
 ### All Containers By Type
 
-The <em>nodeType</em> parameter is applied to specify all containers built upon the same software [stacks](#supported-stacks ).                                   	  
+The <em>nodeType</em> parameter is applied to specify all containers that are built upon the same software [stacks](#supported-stacks ).                                   	  
 
 <b>Examples</b>     
 
-Using the *nodeType* field while performing the <a href="http://docs.cloudscripting.com/reference/actions/#writefile" target="blank">*writeFile*</a> action.
+Using the *nodeType* field while performing the <a href="http://docs.cloudscripting.com/reference/actions/#writefile" target="blank">**writeFile**</a> action.
 ``` json
 {
   "writeFile": {
@@ -132,7 +132,7 @@ For example:
 ``` 
 Here, the <em>createFile</em> and <em>createDirectory</em> actions are applied to the specified <em>nodeGroup</em>, namely the compute (<em>[cp]</em>) layer.                      
  
-* setting a required node as a parameter in the action object     
+* specifying a required node as a parameter in the action object     
 
 Learn more on this parameter within the <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank"><em>Custom Actions</em></a> documentation page.                                      
 
@@ -257,4 +257,4 @@ The following section deals with the supported engine versions and their availab
 |engine  |*nodejs0.10*<br>*nodejs0.12*<br>*nodejs4.3*<br>*nodejs5.6*|
 
 !!! note
-    The list of supported <a href="https://docs.jelastic.com/software-stacks-versions" target="_blank">software stacks</a> can vary depending on your Jelastic platform version - it can be checked at your dashboard.              
+    The list of supported <a href="https://docs.jelastic.com/software-stacks-versions" target="_blank">software stacks</a> can vary depending on your Jelastic Platform version - it can be checked at your dashboard.              
