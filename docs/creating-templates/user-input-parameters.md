@@ -999,7 +999,7 @@ where:
 - Read the <a href="http://docs.cloudscripting.com/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                         
 - Find out the correspondence between <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>      
 
-<!--##uncomment if needed> 
+<!--##uncomment if needed--> 
 <h3>Target Nodes</h3>
 Target Nodes is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *update* installation type.      
 
