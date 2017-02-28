@@ -226,3 +226,9 @@
 </table>
 
 <p dir="ltr" style="text-align: justify;">Сheck out even more awesome open source solutions within our <a href="https://github.com/jelastic-jps" target="_blank">JPS Collection</a> at GitHub (continuously updating). All the given packages are completely free to use and, simultaneously, represent a good basis to learn about the Cloud Scripting possibilities.</p>
+<br>
+## What's next?    
+
+- See the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions              
+- Read the <a href="http://docs.cloudscripting.com/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                                     
+- Find out the correspondence between <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>      
