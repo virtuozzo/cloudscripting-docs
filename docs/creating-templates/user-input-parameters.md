@@ -147,7 +147,7 @@ where:
 - `caption` *[optional]* - field label         
 - `values` - objects values (*"key"*:*"value"*)                            
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.
-- `editable` [optional][boolean] - allows to input custom values. The default value is 'false'.
+- `editable` [optional][boolean] - allows to input custom values. The default value is *'false'*.
 
 ###checkbox
 The single checkbox field.
@@ -467,7 +467,7 @@ where:
 - `caption` *[optional]* - field label                      
 - `name` *[optional]* - name of the field                  
 - `buttonText` *[optional]* - button label              
-- `url` *[optional]* - external source *URL*. The default link is to the Jelastic Platform.         
+- `url` *[optional]* - external source URL. The default link is to the Jelastic Platform.         
 - `popupWidth` *[optional]* - width in pixels          
 - `popupHeight` *[optional]* - height in pixels   
 - `popupCallbackEvent` - event handler   
@@ -616,7 +616,7 @@ where:
 - `value` *[boolean]* - enables/disables toggle value. The default value is *'false'*.   
 
 <h3>Target Nodes</h3>
-**Target Nodes** is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *update* installation type.      
+Target Nodes is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *update* installation type.      
 
 Filtering for **targetNodes** can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
 ``` json
@@ -659,7 +659,7 @@ There are two possible ways to define a *nodeType*:
  
 Let’s suppose you have three environments with different topology:     
 
-<center>![targetNodes](/img/targetNodes.jpg)</center>  
+<center>![target-nodes](/img/target-nodes.png )</center>  
 
 Within these environments, the *targetNodes* filtering for JPS installation can be performed with the next example:
 ``` json
@@ -686,9 +686,9 @@ Menu is an expandable list within the <b>Add-ons</b> section, comprising operati
 
 <center>![menu](/img/menu.jpg)</center>     
 
-By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the <a href="http://docs.cloudscripting.com/reference/events/#application-level-events" target="_blank">application level events</a> settings.          
+By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">events</a> settings.          
 
-The used properties for custom menus are the same as for custom buttons. Herewith, the appropriate `menu` field (instead of `buttons`) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
+The used properties for custom menus are the same as for custom buttons. However, the appropriate *menu* field (instead of *buttons*) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
 
 Sample to set custom buttons within the menu list of the Add-ons plank:
 ``` json
@@ -715,23 +715,23 @@ Sample to set custom buttons within the menu list of the Add-ons plank:
   }
 }
 ```
-Refer to the *Custom Buttons* section above for a detailed description on the parameters set with the current sample.
+Refer to the *Custom Buttons* section below for a detailed description on the parameters that are set with the current sample.
 
 ## Custom Buttons
 The custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:      
 
-<center>![Addontab](/img/Addontab.jpg)</center>       
+<center>![new-addon](/img/new-addon.png)</center>       
 
 Such buttons execute operations that are predefined within a JPS manifest.   
 
 <center>![TrafficManager](/img/TrafficManager.jpg)</center>    
 
 !!! note
-    > The JPS manifest should include the [*targetNodes*](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
+    The JPS manifest should include the [*targetNodes*](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
 
 <b>Templates</b>   
 
-Sample to set buttons within the **Add-ons** plank:
+Sample to set buttons within the Add-ons plank:
 ``` json
 {
   "type": "update",
@@ -754,12 +754,12 @@ Sample to set buttons within the **Add-ons** plank:
   ]
 }
 ```
-Here: 
+
+where: 
 
 - `buttons` - button parameters array   
-- `confirmText` *[optional]* - custom confirmation text for users. The default value is *'Are you sure?'*.   
-
-It will be displayed after clicking on the appropriate button for an add-on. According to the code above, the text will be:  
+- `confirmText` *[optional]* - custom confirmation text for users. The default value is *'Are you sure?'*.             
+    It will be displayed after clicking on the appropriate button for an add-on. According to the code above, the text will be:          
 
 <center>![Confirm](/img/Confirm.jpg)</center>      
 
@@ -776,9 +776,9 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 <center>![SuccessText](/img/SuccessText.jpg)</center>     
 
-- `href` *[optional]* - external link that is opened in a new browser tab; is executed only if the `settings` field is absent. In case of `href` execution, `action` will not be carried out.     
+- `href` *[optional]* - external link that is opened in a new browser tab that is executed only if the *settings* field is absent. In case of *href* execution, *action* will not be carried out.     
 
-Another sample with additional configurations: the next parameters can be enabled only if the [*settings*](/creating-templates/user-input-parameters/#custom-settings) field is present:     
+Another sample with additional configurations - the next parameters can be enabled only if the [*settings*](/creating-templates/user-input-parameters/#custom-settings) field is present:     
 ``` json
 {
   "type": "update",
@@ -808,7 +808,7 @@ Another sample with additional configurations: the next parameters can be enable
 where:
 
 - `settings` - custom form ID. The default is *'main'*.
-- `title` - custom dialog title. If absent, then `caption` will be applied.    
+- `title` - custom dialog title. If absent, then *caption* will be applied.    
 - `submitButtonText` - text for submission button in the opened dialog. The default value is *'Apply'*.   
 
 <center>![SubmitButtonText](/img/SubmitButtonText.jpg)</center>  
@@ -817,12 +817,12 @@ where:
 
 <center>![LogsPath](/img/LogsPath.jpg)</center>  
 
-- `logsNodeGroup` - <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">nodeGroup</a> layer the logging path should be opened for                     
+- `logsNodeGroup` - <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> layer the logging path should be opened for                     
 
 ## Custom Settings
 The settings section can include a few custom forms. The default settings form ID is *'main'*.    
 
-For instance:  
+For example:  
 ``` json
 {
   "type": "update",
@@ -872,9 +872,9 @@ The *config settings* form appears after clicking the <b>Configure</b> button wi
 
 ##Handling Custom Errors
 
-The Cloud Scripting engine provides functionality to handle custom errors. These possible errors should be described within a separate `errorHandlers` block. The errors handling is related to the action result codes. You can locate these codes within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
+The Cloud Scripting engine provides functionality to handle custom errors. These possible errors should be described within a separate *errorHandlers* block. The errors handling is related to the action result codes that can be located within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
 
-There is a number of predefined pop-up windows, which emerge while custom errors are being handled:  
+There are a number of predefined pop-up windows that emerge while custom errors are being handled:  
 
 - `info` - *information* pop-up window                
 
@@ -888,7 +888,7 @@ There is a number of predefined pop-up windows, which emerge while custom errors
 
 <center>![errorType](/img/errorType.jpg)</center>          
 
-The result message text can be localized according to the languages, available within the Jelastic Platform:
+The result message text can be localized according to the languages that are available within the Jelastic Platform:
 
 ``` json
 {
@@ -904,8 +904,7 @@ The result message text can be localized according to the languages, available w
 
 **File creation error**
 
-The example below describes a creation of the same file twice and handling an error, which occurs as a result of such action execution. Consequently, the result code of this error will be defined as *4036*.           
-
+The example below describes a creation of the same file twice and handling an error, which occurs as a result of such action execution. Consequently, the result code of this error will be defined as *4036*. The example presupposes that all the actions with *4036* result will be displayed via *error* pop-up window with a custom error message text. 
 ``` json
 {
   "type": "update",
@@ -933,9 +932,7 @@ where:
 - `errorHandlers` - object (array) to describe custom errors     
 - `type` - type of a pop-up window, emerging upon the error occurrence. The available values are: *error*, *warning*, *info*.       
 
-Thus, the example above sets all the actions with *4036* result to be displayed via *error* pop-up window with a custom error message text.      
-
-The additional functionality is provided to display action errors using <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">*return*</a> action.                         
+The additional functionality is provided to display action errors using return <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">action</a>.                         
 
 ``` json
 {
@@ -956,9 +953,9 @@ The additional functionality is provided to display action errors using <a href=
 where:
 
 - `script` - Cloud Scripting <a href= "/reference/actions/#script" target="__blank">action</a> for executing *Javascript* or *Java* code (*Javascript* is set by default)                     
-- `1000` - custom predefined result code for error handling. It will be returned from the `script` action in the `onInstall` block.        
+- `1000` - custom predefined result code for error handling. It will be returned from the *script* action in the *onInstall* block.        
 
-If the result code is delivered via *string*, then the default result code is *11039*. Therefore, `errorHandlers` can be handled by the following outcoming *string* text:            
+If the result code is delivered via *string*, then the default result code is *11039*. Therefore, *errorHandlers* can be handled by the following outcoming *string* text:            
 
 ``` json
 {
@@ -976,14 +973,16 @@ If the result code is delivered via *string*, then the default result code is *1
 }
 ```
 
-In all the other cases, i.e. when a custom error is not predefined within the `errorHandler` block, the default pop-up window type is *error* with an output message.          
+In all the other cases, i.e. when a custom error is not predefined within the *errorHandler* block, the default pop-up window type is *error* with an output message.          
 
 
-#Success Text Customization
+# Success Text Customization
+ 
+It is possible to customize the *success* text that is displayed upon successful application installation either at the dashboard or in the email notification.            
 
-It is possible to customize (in confines of a manifest) the *success* text, which is displayed upon successful application installation either at the dashboard or via email notification.         
+<b>Examples</b>             
 
-- Setting a relative to `baseUrl` link, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                    
+- Setting a <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/#relative-links" target="blank">relative link</a> to *baseUrl*, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                    
 ``` json
 {
     "type" : "update",
@@ -1043,4 +1042,4 @@ As it was mentioned above, the success response is distinguished between two val
 }
 ```
 
-In the last example above, the localization functionality is applied, which depends upon the Jelastic Platform selected language.
+In the last example above, the localization functionality is applied that depends upon the Jelastic Platform selected language.
