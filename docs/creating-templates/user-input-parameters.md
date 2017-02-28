@@ -87,7 +87,7 @@ where:
 
 ## Custom Menus    
 
-Menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
+Th menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
 
 <center>![new-menu](/img/new-menu.png)</center>          
 
