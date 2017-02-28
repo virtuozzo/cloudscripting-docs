@@ -198,9 +198,9 @@ where:
 ```
 where:  
 
-- `env.contexts` -  list of contexts (applications) deployed to an environment                         
+- `env.contexts` -  list of contexts (applications) deployed to an environment                           
 
-- Scaling nodes example   
+- Scaling nodes example              
 
 ``` json
 {
