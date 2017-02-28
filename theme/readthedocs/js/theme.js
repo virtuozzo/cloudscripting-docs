@@ -25,7 +25,12 @@ $( document ).ready(function() {
 });
 
 $(function () {
-    $(document).on("click", ".toctree-l4", function () {
+    var oDoc = $(document),
+        sTocTree = ".toctree-l4",
+        sClickEvent = "click",
+        sTurboLinks = "turbolinks:";
+
+    function myFunc() {
         var that = $(this),
             sDivClass = 'hidden_toctree-l4-incl',
             sDesc = '.fa-angle-down',
@@ -43,7 +48,17 @@ $(function () {
                 $(that.next()[0]).show(); //.css(sDisplayValue, 'block');
             }
         }
+    }
+
+    oDoc.on(sTurboLinks + "before-visit", function() {
+        oDoc.off(sClickEvent, sTocTree, myFunc);
     });
+
+    oDoc.on(sTurboLinks + "render", function() {
+        oDoc.on(sClickEvent, sTocTree, myFunc);
+    });
+
+    oDoc.on(sClickEvent, sTocTree, myFunc);
 });
 
 window.SphinxRtdTheme = (function (jquery) {
