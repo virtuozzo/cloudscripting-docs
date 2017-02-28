@@ -85,6 +85,7 @@ where:
     The *vtypeText* validation is applied only if the *vtype* value is set, otherwise, it is ignored.
 
 ## Custom Menus    
+
 Menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
 
 <center>![new-menu](/img/new-menu.png)</center>          
@@ -121,6 +122,7 @@ Sample to set custom buttons within the menu list of the Add-ons plank:
 Refer to the *Custom Buttons* section below for a detailed description on the parameters that are set with the current sample.
 
 ## Custom Buttons
+
 The custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:      
 
 <center>![custom-addon](/img/custom-addon.png )</center>       
@@ -223,6 +225,7 @@ where:
 - `logsNodeGroup` - <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> layer the logging path should be opened for                     
 
 ## Custom Settings
+
 The settings section can include a few custom forms. The default settings form ID is *'main'*.    
 
 For example:  
@@ -273,7 +276,8 @@ The *config settings* form appears after clicking the <b>Configure</b> button wi
 
 <center>![settingCustom](/img/SettingsCustom.jpg)</center>     
 
-##Handling Custom Errors
+<!--
+## Handling Custom Errors
 
 The Cloud Scripting engine provides functionality to handle custom errors. These possible errors should be described within a separate *errorHandlers* block. The errors handling is related to the action result codes that can be located within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
 
@@ -376,8 +380,7 @@ If the result code is delivered via *string*, then the default result code is *1
 }
 ```
 
-In all the other cases, i.e. when a custom error is not predefined within the *errorHandler* block, the default pop-up window type is *error* with an output message.          
-
+In all the other cases, i.e. when a custom error is not predefined within the *errorHandler* block, the default pop-up window type is *error* with an output message.-->        
 
 # Success Text Customization
  
