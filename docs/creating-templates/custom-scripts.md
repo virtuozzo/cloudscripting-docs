@@ -1,11 +1,13 @@
 # Custom Scripts
 
-Custom users scripts can be written in Java or JavaScript. Inside these scripts, the set of client libraries for <a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> methods calling is available. 
-A script can be subscribed to the <b>*onAfterReturn*</b> event on its outlet for an execution of any <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a>.          
+Custom users scripts can be written in Java or JavaScript. Inside these scripts, a set of client libraries for <a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> methods calling is available. 
+The script can be subscribed to the <b>*onAfterReturn*</b> event for executing any <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> on its outlet.              
 
 
 ## Intercontainer Scripts
-In order to execute a shell script inside a container, the <a href="http://docs.cloudscripting.com/reference/actions/#cmd" target="_blank">ExecuteShellCommands</a> action is used.                
+In order to execute a shell script inside of a container, the <a href="http://docs.cloudscripting.com/reference/actions/#cmd" target="_blank">ExecuteShellCommands</a> action is used.                
+
+<b>Examples</b>
 
 Executing bash script from URL
 ``` json
@@ -15,7 +17,6 @@ Executing bash script from URL
 ```
 
 Restoring MySQL database
-
 ``` json
 {
   "cmd [mysql5]": "curl -fsS http://example.com/script.sh | /bin/bash -s '${nodes.sqldb.password}' 'http://example.com/dump.sql' '${user.appPassword}'"
@@ -49,7 +50,7 @@ mysql -u${USER} -p${PASSWORD} << END
 END
 ```
 
-`${nodes.sqldb.password}` - available only for *type* `install`, when a SQL node is created               
+`${nodes.sqldb.password}` - available only for *install* type when a SQL node is created               
 
 ## Top Level Scripts  
 
