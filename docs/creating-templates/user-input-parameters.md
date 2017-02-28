@@ -2,16 +2,14 @@
 
 Cloud Scripting enables you to create a personalized solution by customizing the visual appearance and textual content of such elements as:              
 
-- [Fields](#string)                  
-- [Menus](#custom-menus)                   
-- [Buttons](#custom-buttons)               
-- [Forms](#custom-settings)               
-- [Errors](#handling-custom-errors)                  
-- [Messages](#success-text-customization)                   
+- [Menus](#custom-menus)                            
+- [Buttons](#custom-buttons)                 
+- [Forms](#custom-settings)                  
+- [Messages](#success-text-customization)                  
+- [Fields](#string)      
 
-## Supported Fields
+## Getting User Input                               
 
-The following example includes the fields that can be customized with your manifest.                   
 ``` json
 {
   "type": "update",
@@ -85,6 +83,439 @@ where:
     
 !!! note
     The *vtypeText* validation is applied only if the *vtype* value is set, otherwise, it is ignored.
+
+<h3>Target Nodes</h3>
+Target Nodes is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *update* installation type.      
+
+Filtering for **targetNodes** can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
+``` json
+{
+  "type": "update",
+  "name": "targetNodes",
+  "targetNodes": {
+    "nodeType": [
+      "..."
+    ],
+    "nodeGroup": [
+      "..."
+    ],
+    "dockerOs": [
+      "..."
+    ],
+    "dockerName": [
+      "..."
+    ],
+    "dockerTag": [
+      "..."
+    ]
+  },
+  "onInstall": {
+    "createFile": {
+      "nodeGroup": "cp",
+      "path": "/tmp/newFile"
+    }
+  }
+}
+```
+There are two possible ways to define a *nodeType*:  
+```
+"nodeType": ["..."] - to set the required nodeTypes in array
+
+"nodeType": "..., ..." - to set the required nodeTypes being separated with commas
+```
+  
+<b>Example</b>   
+ 
+Let’s suppose you have three environments with different topology:     
+
+<center>![target-nodes](/img/target-nodes.png )</center>  
+
+Within these environments, the *targetNodes* filtering for JPS installation can be performed with the next example:
+``` json
+{
+  "type": "update",
+  "name": "targetNodes",
+  "targetNodes": {
+    "nodeType": "nginx, mysql5"
+  },
+  "onInstall": {
+    "createFile": {
+      "nodeGroup": "cp",
+      "path": "/tmp/newFile"
+    }
+  }
+}
+```
+In this case, the filtering result will be the following:   
+
+<center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
+  
+## Custom Menus    
+Menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
+
+<center>![new-menu](/img/new-menu.png)</center>          
+
+By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">events</a> settings.          
+
+The used properties for custom menus are the same as for custom buttons. However, the appropriate *menu* field (instead of *buttons*) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
+
+Sample to set custom buttons within the menu list of the Add-ons plank:
+``` json
+{
+  "type": "update",
+  "name": "Custom buttons",
+  "targetNodes": {
+    "nodeGroup": "bl"
+  },
+  "actions": [
+    "..."
+  ],
+  "menu": {
+    "confirmText": "Custom confirm text",
+    "loadingText": "Load text while waiting",
+    "action": "{String}",
+    "caption": "Configure",
+    "successText": "Configuration saved successfully!",
+    "settings": "config",
+    "title": "Title",
+    "submitButtonText": "Button Text",
+    "logsPath": "/var/log/add-on-action.log",
+    "logsNodeGroup": "cp"
+  }
+}
+```
+Refer to the *Custom Buttons* section below for a detailed description on the parameters that are set with the current sample.
+
+## Custom Buttons
+The custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:      
+
+<center>![custom-addon](/img/custom-addon.png )</center>       
+
+Such buttons execute operations that are predefined within a JPS manifest.   
+
+<center>![traffic-distributor](/img/traffic-distributor.png)</center>    
+
+!!! note
+    The JPS manifest should include the [*targetNodes*](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
+
+<b>Templates</b>   
+
+Sample to set buttons within the Add-ons plank:
+``` json
+{
+  "type": "update",
+  "name": "Custom buttons",
+  "targetNodes": {
+    "nodeGroup": "bl"
+  },
+  "actions": [
+    "..."
+  ],
+  "buttons": [
+    {
+      "confirmText": "Custom confirm text",
+      "loadingText": "Load text while waiting",
+      "action": "{String}",
+      "caption": "Configure",
+      "successText": "Configuration saved successfully!",
+      "href": "http://google.com"
+    }
+  ]
+}
+```
+
+where: 
+
+- `buttons` - button parameters array   
+- `confirmText` *[optional]* - custom confirmation text for users. The default value is *'Are you sure?'*.             
+    It will be displayed after clicking on the appropriate button for an add-on. According to the code above, the text will be:          
+
+<center>![Confirm](/img/Confirm.jpg)</center>      
+
+- `loadingText` *[optional]* - UI text to be displayed during loading and applying changes. The default value is *'Applying...'*.    
+
+<center>![LoadingText](/img/LoadingText.jpg)</center>      
+
+- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank">*actions*</a> section.          
+- `caption` - title of the button  
+
+<center>![Caption](/img/Caption.jpg)</center>   
+
+- `successText` -  message, that appears once action is successfully performed  
+
+<center>![SuccessText](/img/SuccessText.jpg)</center>     
+
+- `href` *[optional]* - external link that is opened in a new browser tab that is executed only if the *settings* field is absent. In case of *href* execution, *action* will not be carried out.     
+
+Another sample with additional configurations - the next parameters can be enabled only if the [*settings*](/creating-templates/user-input-parameters/#custom-settings) field is present:     
+``` json
+{
+  "type": "update",
+  "name": "Custom buttons",
+  "targetNodes": {
+    "nodeGroup": "bl"
+  },
+  "actions": [
+    "..."
+  ],
+  "buttons": [
+    {
+      "confirmText": "Custom confirm text",
+      "loadingText": "Load text while waiting",
+      "action": "{String}",
+      "caption": "Configure",
+      "successText": "Configuration saved successfully!",
+      "settings": "config",
+      "title": "Title",
+      "submitButtonText": "Button Text",
+      "logsPath": "/var/log/add-on-action.log",
+      "logsNodeGroup": "cp"
+    }
+  ]
+}
+```
+where:
+
+- `settings` - custom form ID. The default is *'main'*.
+- `title` - custom dialog title. If absent, then *caption* will be applied.    
+- `submitButtonText` - text for submission button in the opened dialog. The default value is *'Apply'*.   
+
+<center>![SubmitButtonText](/img/SubmitButtonText.jpg)</center>  
+
+- `logsPath` - specifying path to a definite log file for it to be accessible via the **Show Logs** button                          
+
+<center>![LogsPath](/img/LogsPath.jpg)</center>  
+
+- `logsNodeGroup` - <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> layer the logging path should be opened for                     
+
+## Custom Settings
+The settings section can include a few custom forms. The default settings form ID is *'main'*.    
+
+For example:  
+``` json
+{
+  "type": "update",
+  "name": "Custom buttons",
+  "targetNodes": {
+    "nodeGroup": "bl"
+  },
+  "actions": [
+    "..."
+  ],
+  "settings": {
+    "main": {
+      "fields": [
+        {
+          "type": "text",
+          "caption": "Main form"
+        }
+      ]
+    },
+    "config": {
+      "fields": [
+        {
+          "type": "text",
+          "caption": "Custom form from button action"
+        }
+      ]
+    }
+  },
+  "buttons": [
+    {
+      "settings": "config",
+      "action": "customAction",
+      "caption": "Configure",
+      "submitButtonText": "Button Text",
+      "logsPath": "/var/lib/jelastic/keys/111"
+    }
+  ]
+}
+```
+Here, the *main settings* form appears during installation process.   
+
+<center>![settingMain](/img/SettingsMain.jpg)</center>   
+
+The *config settings* form appears after clicking the <b>Configure</b> button within the Add-ons section.   
+
+<center>![settingCustom](/img/SettingsCustom.jpg)</center>     
+
+##Handling Custom Errors
+
+The Cloud Scripting engine provides functionality to handle custom errors. These possible errors should be described within a separate *errorHandlers* block. The errors handling is related to the action result codes that can be located within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
+
+There are a number of predefined pop-up windows that emerge while custom errors are being handled:  
+
+- `info` - *information* pop-up window                
+
+<center>![SuccessText](/img/SuccessText.jpg)</center>          
+
+- `warning` - *warning* pop-up window with a custom message                
+ 
+<center>![new-warning](/img/new-warning.png)</center>        
+
+- `error` - *error* pop-up window          
+
+<center>![new-error](/img/new-error.png)</center>          
+
+The result message text can be localized according to the languages that are available within the Jelastic Platform:
+
+``` json
+{
+  "type": "warning",
+  "message": {
+    "en": "Localized text",
+    "es": "Texto localizado"
+  }
+}
+```
+
+<h3>Examples</h3>
+
+**File creation error**
+
+The example below describes a creation of the same file twice and handling an error, which occurs as a result of such action execution. Consequently, the result code of this error will be defined as *4036*. The example presupposes that all the actions with *4036* result will be displayed via *error* pop-up window with a custom error message text. 
+``` json
+{
+  "type": "update",
+  "name": "Handling File Creation",
+  "onInstall": [
+    {
+      "createFile [cp]": "/tmp/customDirectory"
+    },
+    {
+      "createFile [cp]": "/tmp/customDirectory"
+    }
+  ],
+  "errorHandlers": {
+    "4036": {
+      "type": "error",
+      "message": "file path already exists"
+    }
+  }
+}
+```
+
+where: 
+
+- `createFile` - predefined within the Cloud Scripting <a href="http://docs.cloudscripting.com/reference/actions/#createfile" target="_blank">action</a>              
+- `errorHandlers` - object (array) to describe custom errors     
+- `type` - type of a pop-up window, emerging upon the error occurrence. The available values are: *error*, *warning*, *info*.       
+
+The additional functionality is provided to display action errors using return <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">action</a>.                         
+
+``` json
+{
+  "type": "update",
+  "name": "Custom Error Handlers",
+  "onInstall": {
+    "script": "return {result : 1000};"
+  },
+  "errorHandlers": {
+    "1000": {
+      "type": "warning",
+      "message": "Custom Warning message!"
+    }
+  }
+}
+```
+
+where:
+
+- `script` - Cloud Scripting <a href= "/reference/actions/#script" target="__blank">action</a> for executing *Javascript* or *Java* code (*Javascript* is set by default)                     
+- `1000` - custom predefined result code for error handling. It will be returned from the *script* action in the *onInstall* block.        
+
+If the result code is delivered via *string*, then the default result code is *11039*. Therefore, *errorHandlers* can be handled by the following outcoming *string* text:            
+
+``` json
+{
+	"type": "update",
+	"name": "Custom Error Handlers",
+	"onInstall": {
+		"script": "return 'error'"
+	},
+	"errorHandlers": {
+		"error": {
+			"type": "info",
+			"message": "Custom Warning message!"
+		}
+	}
+}
+```
+
+In all the other cases, i.e. when a custom error is not predefined within the *errorHandler* block, the default pop-up window type is *error* with an output message.          
+
+
+# Success Text Customization
+ 
+It is possible to customize the *success* message that is displayed upon successful application installation either at the dashboard or in the email notification.            
+
+<b>Examples</b>             
+
+- Setting a <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/#relative-links" target="blank">relative link</a> to *baseUrl*, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                    
+``` json
+{
+    "type" : "update",
+    "name" : "Success Text first example",
+    "baseUrl" : "https://github.com/jelastic-jps/minio",
+    "onInstall" : {
+        "log" : "success text first example"
+    },
+    "success" : "README.md"
+}
+```
+
+- Customizing the *success* return text by means of the external link.                    
+``` json
+{
+  "type": "update",
+  "name": "Success Text Second Example",
+  "onInstall": {
+    "log": "success Text Second Example"
+  },
+  "success": "https://github.com/jelastic-jps/lets-encrypt/raw/master/README.md"
+}
+```
+
+As it was mentioned above, the success response is distinguished between two values:                        
+
+ - text displayed at the dashboard after application installation is successfully conducted                       
+ 
+``` json
+{
+  "type": "update",
+  "name": "Success Text Second Example",
+  "onInstall": {
+    "log": "success Text Second Example"
+  },
+  "success": {
+    "text": "https://github.com/jelastic-jps/lets-encrypt/raw/master/README.md"
+  }
+}
+```
+ 
+ - message delivered via email notifying about the successful application setup                             
+ 
+``` json
+{
+  "type": "update",
+  "name": "Success Text Test 4",
+  "baseUrl": "https://github.com/jelastic-jps/lets-encrypt",
+  "onInstall": {
+    "log": "success text test 4"
+  },
+  "success": {
+    "email": "README.md",
+    "en": "README.md",
+    "ru": "https://github.com/jelastic-jps/lets-encrypt/blob/master/README.md"
+  }
+}
+```
+
+In the last example above, the localization functionality is applied that depends upon the Jelastic Platform selected language.    
+
+## Supported Fields
+
+The following section includes the fields that can be customized with your manifest.                     
 
 ### string
 The basic text field.  
@@ -626,434 +1057,6 @@ where:
 - `caption` *[optional]* - field label    
 - `value` *[boolean]* - enables/disables toggle value. The default value is *'false'*.   
 
-<h3>Target Nodes</h3>
-Target Nodes is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *update* installation type.      
-
-Filtering for **targetNodes** can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
-``` json
-{
-  "type": "update",
-  "name": "targetNodes",
-  "targetNodes": {
-    "nodeType": [
-      "..."
-    ],
-    "nodeGroup": [
-      "..."
-    ],
-    "dockerOs": [
-      "..."
-    ],
-    "dockerName": [
-      "..."
-    ],
-    "dockerTag": [
-      "..."
-    ]
-  },
-  "onInstall": {
-    "createFile": {
-      "nodeGroup": "cp",
-      "path": "/tmp/newFile"
-    }
-  }
-}
-```
-There are two possible ways to define a *nodeType*:  
-```
-"nodeType": ["..."] - to set the required nodeTypes in array
-
-"nodeType": "..., ..." - to set the required nodeTypes being separated with commas
-```
-  
-<b>Example</b>   
- 
-Let’s suppose you have three environments with different topology:     
-
-<center>![target-nodes](/img/target-nodes.png )</center>  
-
-Within these environments, the *targetNodes* filtering for JPS installation can be performed with the next example:
-``` json
-{
-  "type": "update",
-  "name": "targetNodes",
-  "targetNodes": {
-    "nodeType": "nginx, mysql5"
-  },
-  "onInstall": {
-    "createFile": {
-      "nodeGroup": "cp",
-      "path": "/tmp/newFile"
-    }
-  }
-}
-```
-In this case, the filtering result will be the following:   
-
-<center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
-  
-## Custom Menus    
-Menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
-
-<center>![new-menu](/img/new-menu.png)</center>          
-
-By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">events</a> settings.          
-
-The used properties for custom menus are the same as for custom buttons. However, the appropriate *menu* field (instead of *buttons*) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
-
-Sample to set custom buttons within the menu list of the Add-ons plank:
-``` json
-{
-  "type": "update",
-  "name": "Custom buttons",
-  "targetNodes": {
-    "nodeGroup": "bl"
-  },
-  "actions": [
-    "..."
-  ],
-  "menu": {
-    "confirmText": "Custom confirm text",
-    "loadingText": "Load text while waiting",
-    "action": "{String}",
-    "caption": "Configure",
-    "successText": "Configuration saved successfully!",
-    "settings": "config",
-    "title": "Title",
-    "submitButtonText": "Button Text",
-    "logsPath": "/var/log/add-on-action.log",
-    "logsNodeGroup": "cp"
-  }
-}
-```
-Refer to the *Custom Buttons* section below for a detailed description on the parameters that are set with the current sample.
-
-## Custom Buttons
-The custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:      
-
-<center>![custom-addon](/img/custom-addon.png )</center>       
-
-Such buttons execute operations that are predefined within a JPS manifest.   
-
-<center>![traffic-distributor](/img/traffic-distributor.png)</center>    
-
-!!! note
-    The JPS manifest should include the [*targetNodes*](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
-
-<b>Templates</b>   
-
-Sample to set buttons within the Add-ons plank:
-``` json
-{
-  "type": "update",
-  "name": "Custom buttons",
-  "targetNodes": {
-    "nodeGroup": "bl"
-  },
-  "actions": [
-    "..."
-  ],
-  "buttons": [
-    {
-      "confirmText": "Custom confirm text",
-      "loadingText": "Load text while waiting",
-      "action": "{String}",
-      "caption": "Configure",
-      "successText": "Configuration saved successfully!",
-      "href": "http://google.com"
-    }
-  ]
-}
-```
-
-where: 
-
-- `buttons` - button parameters array   
-- `confirmText` *[optional]* - custom confirmation text for users. The default value is *'Are you sure?'*.             
-    It will be displayed after clicking on the appropriate button for an add-on. According to the code above, the text will be:          
-
-<center>![Confirm](/img/Confirm.jpg)</center>      
-
-- `loadingText` *[optional]* - UI text to be displayed during loading and applying changes. The default value is *'Applying...'*.    
-
-<center>![LoadingText](/img/LoadingText.jpg)</center>      
-
-- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank">*actions*</a> section.          
-- `caption` - title of the button  
-
-<center>![Caption](/img/Caption.jpg)</center>   
-
-- `successText` -  message, that appears once action is successfully performed  
-
-<center>![SuccessText](/img/SuccessText.jpg)</center>     
-
-- `href` *[optional]* - external link that is opened in a new browser tab that is executed only if the *settings* field is absent. In case of *href* execution, *action* will not be carried out.     
-
-Another sample with additional configurations - the next parameters can be enabled only if the [*settings*](/creating-templates/user-input-parameters/#custom-settings) field is present:     
-``` json
-{
-  "type": "update",
-  "name": "Custom buttons",
-  "targetNodes": {
-    "nodeGroup": "bl"
-  },
-  "actions": [
-    "..."
-  ],
-  "buttons": [
-    {
-      "confirmText": "Custom confirm text",
-      "loadingText": "Load text while waiting",
-      "action": "{String}",
-      "caption": "Configure",
-      "successText": "Configuration saved successfully!",
-      "settings": "config",
-      "title": "Title",
-      "submitButtonText": "Button Text",
-      "logsPath": "/var/log/add-on-action.log",
-      "logsNodeGroup": "cp"
-    }
-  ]
-}
-```
-where:
-
-- `settings` - custom form ID. The default is *'main'*.
-- `title` - custom dialog title. If absent, then *caption* will be applied.    
-- `submitButtonText` - text for submission button in the opened dialog. The default value is *'Apply'*.   
-
-<center>![SubmitButtonText](/img/SubmitButtonText.jpg)</center>  
-
-- `logsPath` - specifying path to a definite log file for it to be accessible via the **Show Logs** button                          
-
-<center>![LogsPath](/img/LogsPath.jpg)</center>  
-
-- `logsNodeGroup` - <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> layer the logging path should be opened for                     
-
-## Custom Settings
-The settings section can include a few custom forms. The default settings form ID is *'main'*.    
-
-For example:  
-``` json
-{
-  "type": "update",
-  "name": "Custom buttons",
-  "targetNodes": {
-    "nodeGroup": "bl"
-  },
-  "actions": [
-    "..."
-  ],
-  "settings": {
-    "main": {
-      "fields": [
-        {
-          "type": "text",
-          "caption": "Main form"
-        }
-      ]
-    },
-    "config": {
-      "fields": [
-        {
-          "type": "text",
-          "caption": "Custom form from button action"
-        }
-      ]
-    }
-  },
-  "buttons": [
-    {
-      "settings": "config",
-      "action": "customAction",
-      "caption": "Configure",
-      "submitButtonText": "Button Text",
-      "logsPath": "/var/lib/jelastic/keys/111"
-    }
-  ]
-}
-```
-Here, the *main settings* form appears during installation process.   
-
-<center>![settingMain](/img/SettingsMain.jpg)</center>   
-
-The *config settings* form appears after clicking the <b>Configure</b> button within the Add-ons section.   
-
-<center>![settingCustom](/img/SettingsCustom.jpg)</center>     
-
-##Handling Custom Errors
-
-The Cloud Scripting engine provides functionality to handle custom errors. These possible errors should be described within a separate *errorHandlers* block. The errors handling is related to the action result codes that can be located within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
-
-There are a number of predefined pop-up windows that emerge while custom errors are being handled:  
-
-- `info` - *information* pop-up window                
-
-<center>![SuccessText](/img/SuccessText.jpg)</center>          
-
-- `warning` - *warning* pop-up window with a custom message                
- 
-<center>![new-warning](/img/new-warning.png)</center>        
-
-- `error` - *error* pop-up window          
-
-<center>![new-error](/img/new-error.png)</center>          
-
-The result message text can be localized according to the languages that are available within the Jelastic Platform:
-
-``` json
-{
-  "type": "warning",
-  "message": {
-    "en": "Localized text",
-    "es": "Texto localizado"
-  }
-}
-```
-
-<h3>Examples</h3>
-
-**File creation error**
-
-The example below describes a creation of the same file twice and handling an error, which occurs as a result of such action execution. Consequently, the result code of this error will be defined as *4036*. The example presupposes that all the actions with *4036* result will be displayed via *error* pop-up window with a custom error message text. 
-``` json
-{
-  "type": "update",
-  "name": "Handling File Creation",
-  "onInstall": [
-    {
-      "createFile [cp]": "/tmp/customDirectory"
-    },
-    {
-      "createFile [cp]": "/tmp/customDirectory"
-    }
-  ],
-  "errorHandlers": {
-    "4036": {
-      "type": "error",
-      "message": "file path already exists"
-    }
-  }
-}
-```
-
-where: 
-
-- `createFile` - predefined within the Cloud Scripting <a href="http://docs.cloudscripting.com/reference/actions/#createfile" target="_blank">action</a>              
-- `errorHandlers` - object (array) to describe custom errors     
-- `type` - type of a pop-up window, emerging upon the error occurrence. The available values are: *error*, *warning*, *info*.       
-
-The additional functionality is provided to display action errors using return <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">action</a>.                         
-
-``` json
-{
-  "type": "update",
-  "name": "Custom Error Handlers",
-  "onInstall": {
-    "script": "return {result : 1000};"
-  },
-  "errorHandlers": {
-    "1000": {
-      "type": "warning",
-      "message": "Custom Warning message!"
-    }
-  }
-}
-```
-
-where:
-
-- `script` - Cloud Scripting <a href= "/reference/actions/#script" target="__blank">action</a> for executing *Javascript* or *Java* code (*Javascript* is set by default)                     
-- `1000` - custom predefined result code for error handling. It will be returned from the *script* action in the *onInstall* block.        
-
-If the result code is delivered via *string*, then the default result code is *11039*. Therefore, *errorHandlers* can be handled by the following outcoming *string* text:            
-
-``` json
-{
-	"type": "update",
-	"name": "Custom Error Handlers",
-	"onInstall": {
-		"script": "return 'error'"
-	},
-	"errorHandlers": {
-		"error": {
-			"type": "info",
-			"message": "Custom Warning message!"
-		}
-	}
-}
-```
-
-In all the other cases, i.e. when a custom error is not predefined within the *errorHandler* block, the default pop-up window type is *error* with an output message.          
-
-
-# Success Text Customization
- 
-It is possible to customize the *success* message that is displayed upon successful application installation either at the dashboard or in the email notification.            
-
-<b>Examples</b>             
-
-- Setting a <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/#relative-links" target="blank">relative link</a> to *baseUrl*, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                    
-``` json
-{
-    "type" : "update",
-    "name" : "Success Text first example",
-    "baseUrl" : "https://github.com/jelastic-jps/minio",
-    "onInstall" : {
-        "log" : "success text first example"
-    },
-    "success" : "README.md"
-}
-```
-
-- Customizing the *success* return text by means of the external link.                    
-``` json
-{
-  "type": "update",
-  "name": "Success Text Second Example",
-  "onInstall": {
-    "log": "success Text Second Example"
-  },
-  "success": "https://github.com/jelastic-jps/lets-encrypt/raw/master/README.md"
-}
-```
-
-As it was mentioned above, the success response is distinguished between two values:                        
-
- - text displayed at the dashboard after application installation is successfully conducted                       
- 
-``` json
-{
-  "type": "update",
-  "name": "Success Text Second Example",
-  "onInstall": {
-    "log": "success Text Second Example"
-  },
-  "success": {
-    "text": "https://github.com/jelastic-jps/lets-encrypt/raw/master/README.md"
-  }
-}
-```
- 
- - message delivered via email notifying about the successful application setup                             
- 
-``` json
-{
-  "type": "update",
-  "name": "Success Text Test 4",
-  "baseUrl": "https://github.com/jelastic-jps/lets-encrypt",
-  "onInstall": {
-    "log": "success text test 4"
-  },
-  "success": {
-    "email": "README.md",
-    "en": "README.md",
-    "ru": "https://github.com/jelastic-jps/lets-encrypt/blob/master/README.md"
-  }
-}
-```
-
-In the last example above, the localization functionality is applied that depends upon the Jelastic Platform selected language.               
 <br>
 ## What's next?    
 
