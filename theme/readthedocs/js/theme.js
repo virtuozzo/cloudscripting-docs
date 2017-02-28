@@ -22,8 +22,10 @@ $( document ).ready(function() {
     hljs.initHighlightingOnLoad();
 
     $('table').addClass('docutils');
+});
 
-    $(".toctree-l4").click(function( ) {
+$(function () {
+    $(document).on("click", ".toctree-l4", function () {
         var that = $(this),
             sDivClass = 'hidden_toctree-l4-incl',
             sDesc = '.fa-angle-down',
@@ -42,8 +44,6 @@ $( document ).ready(function() {
             }
         }
     });
-
-
 });
 
 window.SphinxRtdTheme = (function (jquery) {
