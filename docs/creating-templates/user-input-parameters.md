@@ -84,72 +84,6 @@ where:
 !!! note
     The *vtypeText* validation is applied only if the *vtype* value is set, otherwise, it is ignored.
 
-<h3>Target Nodes</h3>
-Target Nodes is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *update* installation type.      
-
-Filtering for **targetNodes** can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
-``` json
-{
-  "type": "update",
-  "name": "targetNodes",
-  "targetNodes": {
-    "nodeType": [
-      "..."
-    ],
-    "nodeGroup": [
-      "..."
-    ],
-    "dockerOs": [
-      "..."
-    ],
-    "dockerName": [
-      "..."
-    ],
-    "dockerTag": [
-      "..."
-    ]
-  },
-  "onInstall": {
-    "createFile": {
-      "nodeGroup": "cp",
-      "path": "/tmp/newFile"
-    }
-  }
-}
-```
-There are two possible ways to define a *nodeType*:  
-```
-"nodeType": ["..."] - to set the required nodeTypes in array
-
-"nodeType": "..., ..." - to set the required nodeTypes being separated with commas
-```
-  
-<b>Example</b>   
- 
-Let’s suppose you have three environments with different topology:     
-
-<center>![target-nodes](/img/target-nodes.png )</center>  
-
-Within these environments, the *targetNodes* filtering for JPS installation can be performed with the next example:
-``` json
-{
-  "type": "update",
-  "name": "targetNodes",
-  "targetNodes": {
-    "nodeType": "nginx, mysql5"
-  },
-  "onInstall": {
-    "createFile": {
-      "nodeGroup": "cp",
-      "path": "/tmp/newFile"
-    }
-  }
-}
-```
-In this case, the filtering result will be the following:   
-
-<center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
-  
 ## Custom Menus    
 Menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
 
@@ -1063,4 +997,72 @@ where:
 - Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples      
 - See the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions            
 - Read the <a href="http://docs.cloudscripting.com/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                         
-- Find out the correspondence between <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>             
+- Find out the correspondence between <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>      
+
+<!--##uncomment if needed> 
+<h3>Target Nodes</h3>
+Target Nodes is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *update* installation type.      
+
+Filtering for **targetNodes** can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
+``` json
+{
+  "type": "update",
+  "name": "targetNodes",
+  "targetNodes": {
+    "nodeType": [
+      "..."
+    ],
+    "nodeGroup": [
+      "..."
+    ],
+    "dockerOs": [
+      "..."
+    ],
+    "dockerName": [
+      "..."
+    ],
+    "dockerTag": [
+      "..."
+    ]
+  },
+  "onInstall": {
+    "createFile": {
+      "nodeGroup": "cp",
+      "path": "/tmp/newFile"
+    }
+  }
+}
+```
+There are two possible ways to define a *nodeType*:  
+```
+"nodeType": ["..."] - to set the required nodeTypes in array
+
+"nodeType": "..., ..." - to set the required nodeTypes being separated with commas
+```
+  
+<b>Example</b>   
+ 
+Let’s suppose you have three environments with different topology:     
+
+<center>![target-nodes](/img/target-nodes.png )</center>  
+
+Within these environments, the *targetNodes* filtering for JPS installation can be performed with the next example:
+``` json
+{
+  "type": "update",
+  "name": "targetNodes",
+  "targetNodes": {
+    "nodeType": "nginx, mysql5"
+  },
+  "onInstall": {
+    "createFile": {
+      "nodeGroup": "cp",
+      "path": "/tmp/newFile"
+    }
+  }
+}
+```
+In this case, the filtering result will be the following:   
+
+<center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
+  
