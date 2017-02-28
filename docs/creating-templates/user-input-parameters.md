@@ -98,7 +98,7 @@ where:
 - `caption` *[optional]* - field label   
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 
-###text
+### text
 The multiline text field.
 
 <center>![text](/img/text.jpg)</center>  
@@ -120,7 +120,7 @@ where:
 - `caption` *[optional]* - field label  
 - `hideLabel`*[optional] [boolean]* - hides field Label. The default value is *'false'*. 
 
-###list   
+### list   
 The drop-down list and a single-line textbox.  
 
 <center>![list](/img/list.jpg)</center>  
@@ -149,7 +149,7 @@ where:
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.
 - `editable` [optional][boolean] - allows to input custom values. The default value is *'false'*.
 
-###checkbox
+### checkbox
 The single checkbox field.
 
 <center>![text](/img/checkbox.jpg)</center>  
@@ -173,7 +173,7 @@ where:
 - `value` - enables or disables checkbox                         
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*. 
 
-###checkboxlist
+### checkboxlist
 The checkbox grouping.  
 
 <center>![text](/img/checkboxlist.jpg)</center>  
@@ -200,7 +200,7 @@ where:
 - `values` - checkboxes (*"key"*:*"value"*)  
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 
-###radiolist
+### radiolist
 The radio elements grouping.  
 
 <center>![text](/img/radiolist.jpg)</center>  
@@ -227,7 +227,7 @@ where:
 - `values` - checkboxes (*"key"*:*"value"*)  
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.  
 
-###radio-fieldset
+### radio-fieldset
 The grouping of the radio elements with the <b>*showIf*</b> function.     
 
 !!! note
@@ -278,7 +278,7 @@ where:
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 - `caption` *[optional]* - field label
 
-###dockertag
+### dockertag
 Displaying Docker tags within the list element.  
 
 <center>![text](/img/dockertag.jpg)</center>  
@@ -321,7 +321,7 @@ where:
    - `registry`, `username`, `password` [*optional*]   
 - `env` - required object (can be empty) 
 
-###compositefield
+### compositefield
 The compositefield is a container with specific functionality and structural components that constitute it as a block for application-oriented custom user interfaces.  
 
 <center>![compositefield](/img/compositefield.jpg)</center>  
@@ -374,7 +374,7 @@ where:
 - `defaultFlex` *[optional]* - horizontal flex for items 
 - `items` - elements  
 
-###slider
+### slider
 The slider element as a form field.
 
 <center>![slider](/img/slider.jpg)</center>
@@ -403,7 +403,7 @@ where:
 - `caption` *[optional]* - field label  
 - `name` *[optional]* - name of the field 
 
-###envlist
+### envlist
 The account environments list expanded within a drop-down element.  
 
 <center>![envlist](/img/envlist.jpg)</center>  
@@ -434,7 +434,7 @@ where:
     - *displayName* - environment *displayName*  
     - *appid* - unique environment ID       
 
-###popupselector
+### popupselector
 (*popup-selector* is an alias)     
 
 Opens a pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.  
@@ -473,7 +473,7 @@ where:
 - `popupCallbackEvent` - event handler   
 - `params` - parameters for sending in POST request to URL source     
 
-###displayfield
+### displayfield
 (*spacer* is an alias)    
 
 The text field intended only for display, which is not validated and not submitted.  
@@ -499,7 +499,7 @@ where:
 - `name` *[optional]* - name of the field                
 - `markup` - value to initialize the field's display. The default value is "*'undefined'*".      
 
-###spinner
+### spinner
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
 
 <center>![spinner](/img/spinner.jpg)</center>  
@@ -529,7 +529,7 @@ where:
 - `increment` - increment value  
 - `decimanPrecision` - precision value  
 
-###numberpicker
+### numberpicker
 (*number-picker* is an alias)  
 
 The text field with a number validation within a range.   
@@ -559,7 +559,7 @@ where:
 - `max` - maximum spinner value  
 - `editable` *[optional] [boolean]* - enables/disables editing the *numberpicker* field. The default value is *'false'*.  
 
-###hostpicker
+### hostpicker
 (*host-picker* is an alias)  
 
 The drop-down menu with the environments hosts.  
@@ -592,7 +592,7 @@ where:
     - *displayName* - environment *displayName*  
     - *appid* - unique environment ID        
 
-###toggle
+### toggle
 The toggle element is a switch between two values.
 
 <center>![toggle](/img/toggle.jpg)</center>
@@ -684,7 +684,7 @@ In this case, the filtering result will be the following:
 ## Custom Menus    
 Menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
 
-<center>![menu](/img/menu.jpg)</center>     
+<center>![new-menu](/img/new-menu.png)</center>          
 
 By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">events</a> settings.          
 
@@ -720,11 +720,11 @@ Refer to the *Custom Buttons* section below for a detailed description on the pa
 ## Custom Buttons
 The custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:      
 
-<center>![new-addon](/img/new-addon.png)</center>       
+<center>![custom-addon](/img/custom-addon.png )</center>       
 
 Such buttons execute operations that are predefined within a JPS manifest.   
 
-<center>![TrafficManager](/img/TrafficManager.jpg)</center>    
+<center>![traffic-distributor](/img/traffic-distributor.png)</center>    
 
 !!! note
     The JPS manifest should include the [*targetNodes*](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
@@ -882,11 +882,11 @@ There are a number of predefined pop-up windows that emerge while custom errors 
 
 - `warning` - *warning* pop-up window with a custom message                
  
-<center>![warningType](/img/warningType.jpg)</center>        
+<center>![new-warning](/img/new-warning.png)</center>        
 
 - `error` - *error* pop-up window          
 
-<center>![errorType](/img/errorType.jpg)</center>          
+<center>![new-error](/img/new-error.png)</center>          
 
 The result message text can be localized according to the languages that are available within the Jelastic Platform:
 
