@@ -58,76 +58,49 @@ Then, log in to your Jelastic account and perform the following operations:
 - The process of installation will be started. Wait a minute for Preparing, Deploying and Configuring to be finished.
 - Once these operations are finished, you will see a message about the successful installation completion. It can also contain <a href="http://docs.cloudscripting.com/creating-templates/relative-links/#success-text-customization" target="blank">custom text</a> from the `success` manifest section (if it's declared).
 
-<h2>Best Practices</h2>
+## Best Practices</h2>
 While preparing your own manifest file, we recommend to:
 
 - use JSON formatter and validator (such as <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a>)         
 - use <a href="https://github.com/" target="_blank">GitHub</a> to store your manifest, scripts and files together  
 
-<h2>What's next?</h2>
+## What's next?
 
-<h3>Explore More Complex Examples:</h3>
+### Learn Template Basics
 
-- use JSON formatter and validator (such as <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a>)
-- use YAML parser (such as <a href="http://www.yaml.org/" target="_blank">YAML</a>)
+See the <a href="http://docs.cloudscripting.com/creating-templates/template-basics/" target="_blank">Basic Configs </a> section to learn the required basis of any JSON manifest and find out the differences between <em>Application</em> and <em>Extension</em>.    
 
-Visit the <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> page to find a set of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions.
+### Write Cloud Scripts  
 
-<h3>Learn Template Basics</h3> 
-See the <a href="http://docs.cloudscripting.com/creating-templates/template-basics/" target="_blank">Template Basics </a> section to learn the required basis of any JSON manifest and find out the differences between <em>Application</em> and <em>Extension</em>.<br>     
-Use <a href="https://github.com/jelastic-jps" target="_blank">Jelastic Samples</a> for creating your custom manifests, scripts etc.
-   
+In addition, you have the possibility to prepare and use your own actions within manifest. Such Custom Actions can be scripted either using Java, Javascript or PHP if you need to manage your whole environment or using any intercontainer language, if you need to script something inside of a container.
+See the <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">Writing Scripts</a> section.
 
-<h3>Write Cloud Scripts</h3>  
-<p dir="ltr" style="text-align: justify;">Cloud Scripting comes with several generic actions out of the box - see the <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a> section to find out the list of them.</p>
+### Build Actions Chain and Reuse Code        
 
-<h3>Explore more complex examples:</h3>
-<p dir="ltr" style="text-align: justify;">In addition, you have the possibility to prepare and use your own actions within manifest. Such Custom Actions can be scripted either using Java, Javascript or PHP if you need to manage your whole environment or using any intercontainer language, if you need to script something inside of a container.
-See the <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">Writing Scripts</a> section.</p>
- 
-<h3>Build Actions Chain and Reuse Code</h3>
-Reuse your code and the chain of actions using <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a>.<br>
-Visit the <a href="/samples/" target="_blank">Samples</a> page to find a set of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions.                  
+Reuse your code and the chain of actions using <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a>.
 
-<h3>Learn Template Basics</h3>
+### Automate Workflows
 
-See the <a href="/creating-templates/basic-configs/" target="_blank">Template Basics </a> section to learn the required basis of any JSON manifest and find out the differences between *Application* and *Extension*.     
+Automate workflows using <a href="/reference/events/" target="_blank">Events</a>                
 
-<h3>Write Cloud Scripts</h3>
+### Define User Input Parameters
 
-<h3>Define User Input Parameters</h3> 
-<p dir="ltr" style="text-align: justify;">Customize your app's input parameters that should be specified by a user before the installation. For that, see the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Getting User Input</a> documentation page.</p>            
+Customize your app's input parameters that should be specified by a user before the installation. For that, see the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Getting User Input</a> documentation page.            
 
-<h3>Use Placeholders</h3> 
-<p dir="ltr" style="text-align: justify;">Learn how to use <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for:</p>
+### Use Placeholders
+
+Learn how to use <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for:                         
 
 - options and parameters which are user-defined or are often changed</li>     
 - filtering events</li>   
 - selecting containers for your actions</li></ul>     
 
-<h3>Explore Troubleshooting</h3>   
+### Explore Complex Examples
+
+Visit the <a href="/samples/" target="_blank">Samples</a> page to find a set of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions.                    
+
+### Explore Troubleshooting   
+
 Follow the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> guide if you experience any issues. See the <a href="/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a> section.                                 
  
-<h3>Build Actions Chain and reuse your code</h3>
-
-Reuse your code and the chain of actions using <a href="/reference/actions/" target="_blank">Actions</a>                                 
-
-<h3>Automate workflows</h3>
-
-Automate workflows using <a href="/reference/events/" target="_blank">Events</a>
-
-<h3>Define user input parameters</h3>
-
-Customize your app's input parameters that should be specified by a user before the installation. For that, see the <a href="/creating-templates/user-input-parameters/" target="_blank">Getting User Input</a> documentation page.       
-
-<h3>Use Placeholders</h3>
-
-Learn how to use <a href="/reference/placeholders/" target="_blank">Placeholders</a> for:                   
-
-- options / parameters which are user-defined or are often changed     
-- filtering events   
-- selecting containers for your actions     
-
-<h3>Explore Troubleshooting</h3>
-
-Follow the <a href="/troubleshooting/" target="_blank">Troubleshooting</a> guide if you experience any issues.              
+     
