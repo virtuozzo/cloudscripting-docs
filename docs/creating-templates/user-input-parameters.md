@@ -999,7 +999,7 @@ where:
 - Read the <a href="http://docs.cloudscripting.com/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                         
 - Find out the correspondence between <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>      
 
-<!--##uncomment if needed--> 
+<!--
 <h3>Target Nodes</h3>
 Target Nodes is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *update* installation type.      
 
@@ -1064,5 +1064,5 @@ Within these environments, the *targetNodes* filtering for JPS installation can 
 ```
 In this case, the filtering result will be the following:   
 
-<center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
+<center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>-->
   
