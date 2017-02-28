@@ -17,7 +17,7 @@ Run into trouble with Cloud Scripting? Here are some helpful tips and specific s
 
 Below, you can find some samples of editing custom information to the log:                      
 
-* outputting a single <a href="http://docs.cloudscripting.com/reference/placeholders/" target="blank">placeholder</a> value                     
+- outputting a single <a href="http://docs.cloudscripting.com/reference/placeholders/" target="blank">placeholder</a> value                     
 
 ``` json
 {
@@ -32,7 +32,7 @@ Below, you can find some samples of editing custom information to the log:
 }
 ```
 
-* outputting all the placeholders              
+- outputting all the placeholders              
 
 ``` json
 {
@@ -44,7 +44,7 @@ Below, you can find some samples of editing custom information to the log:
 }
 ```  
 
-* outputting from a script             
+- outputting from a script             
 
 ``` json  
 {
