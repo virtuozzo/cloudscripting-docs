@@ -280,4 +280,4 @@ The **ForEach count** execution is printed in a <a href="http://docs.cloudscript
 - Read how to integrate your <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>       
 - Learn how to customize the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
 - Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples  
-- See the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions
+- See the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions             
