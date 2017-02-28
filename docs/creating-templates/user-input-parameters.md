@@ -1,5 +1,6 @@
-#Visual Settings
-##Supported Fields
+# Visual Settings
+
+## Supported Fields
 
 ``` json
 {
@@ -32,17 +33,17 @@
 where:
 
 - `prepopulate` *[optional]* - link to the script, that will fetch the default fields values  
-- `fields` - array of fields, which will be displayed in a custom form     
+- `fields` - array of fields that will be displayed in a custom form     
     - `showIf` - shows/hides field by condition (is applicable only to the *radio-fieldset* field)   
     - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:   
         * `string` - [basic](/creating-templates/user-input-parameters/#string) text field                                  
         * `text`  - [multiline](/creating-templates/user-input-parameters/#text) text field                                                                                                         
-        * `list` - drop-down menu with textboxes (see more details with example [here](/creating-templates/user-input-parameters/#list))                                           
+        * `list` - drop-down menu with [textboxes](/creating-templates/user-input-parameters/#list))                                           
         * `checkbox` - single [checkbox field](/creating-templates/user-input-parameters/#checkbox)                     
         * `checkboxlist` - [checkbox](/creating-templates/user-input-parameters/#checkboxlist) grouping                             
         * `radiolist` - [radio field](/creating-templates/user-input-parameters/#radiolist) grouping                       
         * `radio-fieldset` - alias to `radiolist`              
-        * `dockertags` - drop-down menu with a list of docker tags (see more details with example [here](/creating-templates/user-input-parameters/#dockertag))                   
+        * `dockertags` - drop-down menu with a list of [docker tags](/creating-templates/user-input-parameters/#dockertag))                   
         * `compositefield` - [component](/creating-templates/user-input-parameters/#compositefield) that comprises any available field    
         * `slider` - [slider element](/creating-templates/user-input-parameters/#slider) as a form field
         * `envlist` - [list of environments](/creating-templates/user-input-parameters/#envlist) available for a corresponding account                  
@@ -60,7 +61,7 @@ where:
     - `name` - input field name, that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests   
     - `default` *[optional]* - default value for the input field  
     - `caption` *[optional]* - field label  
-    - `placeholder` *[optional]* -  text, that describes the expected value of the input field  
+    - `placeholder` *[optional]* - used <a href="http://docs.cloudscripting.com/reference/placeholders/" target="blank">placeholders</a>                         
     - `required` *[optional]* - possible values are *'true'* & *'false'*. If left empty, the default value is *'true'*.  
     - `regex` *[optional]* - constructor for testing the JavaScript RegExp object, that refers to the stated the field value, during validation. If test fails, the field will be marked invalid using *regexText*. The default value is *'null'*.                                                        
     - `regexText` *[optional]* - displays error message in case of the *regex* test failure during validation. The default value is *' '* (blank space).     
@@ -68,11 +69,11 @@ where:
         - `alpha` - keystroke filter mask applied to alpha input. The default value is *'/[a-z_]/i'*.  
         - `alphanum` - keystroke filter mask applied to alphanumeric input. The default value is *'/[a-z0-9_]/i'*.  
         - `email` - keystroke filter mask applied to email input. The default value is *'/[a-z0-9_.-+\'@]/i'*. See the <a href="http://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.VTypes-method-email" target="_blank">appropriate method</a> for more information about complex email validation.      
-        - `URL` - keystroke filter mask applied to *URL* input                        
+        - `URL` - keystroke filter mask applied to URL input                        
     - `vtypeText` *[optional]* - custom error message to be displayed instead of the default one, provided by *vtype* for this field. The default value is *' '* (blank space).     
     
 !!! note
-    `vtypeText` is applied only in case the *vtype* value is set; otherwise, it is ignored.
+    *vtypeText* is applied only in case the *vtype* value is set, otherwise, it is ignored.
 
 ### string
 The basic text field.  
@@ -144,7 +145,7 @@ The drop-down list and a single-line textbox.
 where:      
 
 - `caption` *[optional]* - field label         
-- `values` - objects' values (*"key"*:*"value"*)                            
+- `values` - objects values (*"key"*:*"value"*)                            
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.
 - `editable` [optional][boolean] - allows to input custom values. The default value is 'false'.
 
@@ -227,7 +228,7 @@ where:
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.  
 
 ###radio-fieldset
-The grouping of the radio elements with the `showIf` function.     
+The grouping of the radio elements with the <b>*showIf*</b> function.     
 
 !!! note
     The *hideLabel* boolean value is always *true* for this field.   
@@ -270,10 +271,10 @@ The grouping of the radio elements with the `showIf` function.
 
 where:   
 
-- `name` *[required]* - name of the `radio-fieldset` element (for other elements it’s not required)                       
+- `name` *[required]* - name of the *radio-fieldset* element (for other elements it’s not required)                       
 - `default` *[optional]* - selected field upon opening the form  
 - `values` - checkboxes (*"key"*:*"value"*)  
-- `showIf` - conditional object that shows predefined elements by clicking on the `radio-fieldset` elements. Predefined elements can vary.  
+- `showIf` - conditional object that shows predefined elements by clicking on the *radio-fieldset* elements. Predefined elements can vary.  
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 - `caption` *[optional]* - field label
 
@@ -425,7 +426,7 @@ where:
 
 - `caption` *[optional]* - field label    
 - `name` *[optional]* - name of the field  
-- `editable` *[optional][boolean]* - enables/disables the `envlist` field editing. The default value is *'false'*.    
+- `editable` *[optional][boolean]* - enables/disables the *envlist* field editing. The default value is *'false'*.    
 - `valueField` *[optional][string]* - value from environment information, which will be sent to a server. The default value is *'domain'*. Available values are:      
     - *iconCls* - CSS class     
     - *isRunning* - checking whether environment status is *running*    
@@ -470,7 +471,7 @@ where:
 - `popupWidth` *[optional]* - width in pixels          
 - `popupHeight` *[optional]* - height in pixels   
 - `popupCallbackEvent` - event handler   
-- `params` - parameters for sending in POST request to `url` source     
+- `params` - parameters for sending in POST request to URL source     
 
 ###displayfield
 (*spacer* is an alias)    
@@ -556,7 +557,7 @@ where:
 - `caption` *[optional]* - field label    
 - `min` - minimum spinner value  
 - `max` - maximum spinner value  
-- `editable` *[optional] [boolean]* - enables/disables editing the `numberpicker` field. The default value is *'false'*.  
+- `editable` *[optional] [boolean]* - enables/disables editing the *numberpicker* field. The default value is *'false'*.  
 
 ###hostpicker
 (*host-picker* is an alias)  
@@ -583,7 +584,7 @@ where:
 
 - `name` *[optional]* - name of the field   
 - `caption` *[optional]* - field label   
-- `editable` *[optional] [boolean]* - enables/disables editing the `envlist` field. The default value is *'false'*.  
+- `editable` *[optional] [boolean]* - enables/disables editing the *envlist* field. The default value is *'false'*.  
 - `valueField` *[optional][string]* - value from environment information, which will be sent to a server. The default value is *'domain'*. Available values are:    
     - *iconCls* - CSS class     
     - *isRunning* - checking whether environment status is *running*    
@@ -615,9 +616,9 @@ where:
 - `value` *[boolean]* - enables/disables toggle value. The default value is *'false'*.   
 
 <h3>Target Nodes</h3>
-*Target Nodes* is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *type*: <b>*update*</b> action.   
+**Target Nodes** is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *update* installation type.      
 
-Filtering for `targetNodes` can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
+Filtering for **targetNodes** can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
 ``` json
 {
   "type": "update",
@@ -647,7 +648,7 @@ Filtering for `targetNodes` can be performed by *nodeType*, *nodeGroup*, *docker
   }
 }
 ```
-There are two possible ways to define a `nodeType`:  
+There are two possible ways to define a *nodeType*:  
 ```
 "nodeType": ["..."] - to set the required nodeTypes in array
 
@@ -660,7 +661,7 @@ Let’s suppose you have three environments with different topology:
 
 <center>![targetNodes](/img/targetNodes.jpg)</center>  
 
-Within these environments, the `targetNodes` filtering for JPS installation can be performed with the next example:
+Within these environments, the *targetNodes* filtering for JPS installation can be performed with the next example:
 ``` json
 {
   "type": "update",
@@ -681,7 +682,7 @@ In this case, the filtering result will be the following:
 <center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
   
 ## Custom Menus    
-Menu is an expandable list within the <b>Add-ons</b> section comprising operations, that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
+Menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
 
 <center>![menu](/img/menu.jpg)</center>     
 
