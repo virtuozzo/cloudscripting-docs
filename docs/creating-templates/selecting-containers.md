@@ -258,3 +258,12 @@ The following section deals with the supported engine versions and their availab
 
 !!! note
     The list of supported <a href="https://docs.jelastic.com/software-stacks-versions" target="_blank">software stacks</a> can vary depending on your Jelastic Platform version - it can be checked at your dashboard.              
+<br>       
+## What’s next?                    
+
+- Explore the list of available <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a>             
+- See the <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">Events</a> list the actions can be bound to            
+- Find out the list of <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching        
+- Read how to integrate your <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>   
+- Learn how to customize the <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="_blank">Visual Settings</a>              
+- Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples    
