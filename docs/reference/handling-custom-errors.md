@@ -16,6 +16,10 @@ There is a number of predefined pop-up windows, which emerge while custom errors
 
 <center>![errorType](/img/errorType.jpg)</center>          
 
+- `success` - *success* window when the action will be executed with expected result code. This code can be described in `responses` block
+
+<center>![success](/img/successResponse.jpg)</center>
+
 The result message text can be localized according to the languages, available within the Jelastic Platform:
 
 ``` json

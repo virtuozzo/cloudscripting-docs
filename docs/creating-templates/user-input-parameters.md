@@ -869,11 +869,11 @@ The *config settings* form appears after clicking the <b>Configure</b> button wi
 
 <center>![settingCustom](/img/SettingsCustom.jpg)</center>     
 
-##Handling Custom Errors
+##Handling Custom Responses
 
-The Cloud Scripting engine provides functionality to handle custom errors. These possible errors should be described within a separate `errorHandlers` block. The errors handling is related to the action result codes. You can locate these codes within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
+The Cloud Scripting engine provides functionality to handle custom responses. These possible responses should be described within a separate `responses` block. The responses handling is related to the action result codes. You can locate these codes within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
 
-There is a number of predefined pop-up windows, which emerge while custom errors are being handled:  
+There is a number of predefined pop-up windows, which emerge while custom responses are being handled:  
 
 - `info` - *information* pop-up window                
 
@@ -886,6 +886,10 @@ There is a number of predefined pop-up windows, which emerge while custom errors
 - `error` - *error* pop-up window          
 
 <center>![errorType](/img/errorType.jpg)</center>          
+
+- `success` - *success* window when the action will be executed with expected result code. This code can be described in `responses` block. The manifest installation will be finished immediately if an any action will return the result code which is predefined in `responses` block.
+
+<center>![success](/img/successResponse.jpg)</center>
 
 The result message text can be localized according to the languages, available within the Jelastic Platform:
 
@@ -903,7 +907,7 @@ The result message text can be localized according to the languages, available w
 
 **File creation error**
 
-The example below describes a creation of the same file twice and handling an error, which occurs as a result of such action execution. Consequently, the result code of this error will be defined as *4036*.           
+The example below describes a creation of the same file twice and handling an response, which occurs as a result of such action execution. Consequently, the result code of this response will be defined as *4036*.           
 
 ``` json
 {
@@ -917,7 +921,7 @@ The example below describes a creation of the same file twice and handling an er
       "createFile [cp]": "/tmp/customDirectory"
     }
   ],
-  "errorHandlers": {
+  "responses": {
     "4036": {
       "type": "error",
       "message": "file path already exists"
@@ -929,12 +933,12 @@ The example below describes a creation of the same file twice and handling an er
 where: 
 
 - `createFile` - predefined within the Cloud Scripting <a href="http://docs.cloudscripting.com/reference/actions/#createfile" target="_blank">action</a>              
-- `errorHandlers` - object (array) to describe custom errors     
-- `type` - type of a pop-up window, emerging upon the error occurrence. The available values are: *error*, *warning*, *info*.       
+- `responses` - object (array) to describe custom responses     
+- `type` - type of a pop-up window, emerging upon the response occurrence. The available values are: *error*, *warning*, *info*, *success*.       
 
-Thus, the example above sets all the actions with *4036* result to be displayed via *error* pop-up window with a custom error message text.      
+Thus, the example above sets all the actions with *4036* result to be displayed via *error* pop-up window with a custom response message text.      
 
-The additional functionality is provided to display action errors using <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">*return*</a> action.                         
+The additional functionality is provided to display action responses using <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">*return*</a> action.                         
 
 ``` json
 {
@@ -943,7 +947,7 @@ The additional functionality is provided to display action errors using <a href=
   "onInstall": {
     "script": "return {result : 1000};"
   },
-  "errorHandlers": {
+  "responses": {
     "1000": {
       "type": "warning",
       "message": "Custom Warning message!"
@@ -955,9 +959,9 @@ The additional functionality is provided to display action errors using <a href=
 where:
 
 - `script` - Cloud Scripting <a href= "/reference/actions/#script" target="__blank">action</a> for executing *Javascript* or *Java* code (*Javascript* is set by default)                     
-- `1000` - custom predefined result code for error handling. It will be returned from the `script` action in the `onInstall` block.        
+- `1000` - custom predefined result code for responses handling. It will be returned from the `script` action in the `onInstall` block.        
 
-If the result code is delivered via *string*, then the default result code is *11039*. Therefore, `errorHandlers` can be handled by the following outcoming *string* text:            
+If the result code is delivered via *string*, then the default result code is *11039*. Therefore, `responses` can be handled by the following outcoming *string* text:            
 
 ``` json
 {
@@ -966,7 +970,7 @@ If the result code is delivered via *string*, then the default result code is *1
 	"onInstall": {
 		"script": "return 'error'"
 	},
-	"errorHandlers": {
+	"responses": {
 		"error": {
 			"type": "info",
 			"message": "Custom Warning message!"
@@ -975,8 +979,7 @@ If the result code is delivered via *string*, then the default result code is *1
 }
 ```
 
-In all the other cases, i.e. when a custom error is not predefined within the `errorHandler` block, the default pop-up window type is *error* with an output message.          
-
+In all the other cases, i.e. when a custom response is not predefined within the `responses` block, the default pop-up window type is *error* with an output message.          
 
 #Success Text Customization
 
