@@ -160,7 +160,7 @@ Thе menu is an expandable list within the <b>Add-ons</b> section, comprising op
 
 By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">events</a> settings.          
 
-The used properties for custom menus are the same as for custom buttons. However, the appropriate *menu* field (instead of *buttons*) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
+The properties used for custom menus are the same as for custom buttons. However, the appropriate *menu* field (instead of *buttons*) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
 
 Sample to set custom buttons within the menu list of the Add-ons plank:
 ``` json
@@ -245,11 +245,11 @@ where:
 
 <center>![Caption](/img/Caption.jpg)</center>   
 
-- `successText` -  message, that appears once action is successfully performed  
+- `successText` -  message that appears once action is successfully performed  
 
 <center>![SuccessText](/img/SuccessText.jpg)</center>     
 
-- `href` *[optional]* - external link that is opened in a new browser tab that is executed only if the *settings* field is absent. In case of *href* execution, *action* will not be carried out.     
+- `href` *[optional]* - external link that is opened in a new browser tab and is executed only if the *settings* field is absent. In case of *href* execution, *action* will not be carried out.     
 
 Another sample with additional configurations - the next parameters can be enabled only if the [*settings*](/creating-templates/user-input-parameters/#custom-settings) field is present:     
 ``` json
@@ -286,7 +286,7 @@ where:
 
 <center>![SubmitButtonText](/img/SubmitButtonText.jpg)</center>  
 
-- `logsPath` - specifying path to a definite log file for it to be accessible via the **Show Logs** button                          
+- `logsPath` - path to a particular log file for it to be accessible via the **Show Logs** button                          
 
 <center>![LogsPath](/img/LogsPath.jpg)</center>  
 
@@ -346,11 +346,10 @@ The *config settings* form appears after clicking the <b>Configure</b> button wi
 
 ## Custom Success Text      
  
-It is possible to customize the *success* message that is displayed upon successful application installation either at the dashboard or in the email notification.            
-
+It is possible to customize the *success* message that is displayed upon successful either at the dashboard, or in the email notification.                 
 <b>Examples</b>             
 
-- Setting a <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/#relative-links" target="blank">relative link</a> to *baseUrl*, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                    
+- Setting a <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/#relative-links" target="blank">relative link</a> to *baseUrl*, which points path to the <b>README.md</b> file for its content to be displayed within the *success* response.                    
 ``` json
 {
     "type" : "update",
@@ -377,7 +376,7 @@ It is possible to customize the *success* message that is displayed upon success
 
 As it was mentioned above, the success response is distinguished between two values:                        
 
- - text displayed at the dashboard after application installation is successfully conducted                       
+ - text displayed at the dashboard after installation is successfully conducted                               
  
 ``` json
 {
@@ -392,7 +391,7 @@ As it was mentioned above, the success response is distinguished between two val
 }
 ```
  
- - message delivered via email notifying about the successful application setup                             
+ - message delivered via email, notifying about the successful installation                                                 
  
 ``` json
 {
@@ -572,7 +571,7 @@ where:
 The grouping of the radio elements with the <b>*showIf*</b> function.     
 
 !!! note
-    The *hideLabel* boolean value is always *true* for this field.   
+    The *hideLabel* boolean is always *true* for this field.   
 
 <center>![text](/img/radio-fieldset.jpg)</center>   
 
@@ -613,7 +612,7 @@ The grouping of the radio elements with the <b>*showIf*</b> function.
 where:   
 
 - `name` *[required]* - name of the *radio-fieldset* element (for other elements it’s not required)                       
-- `default` *[optional]* - selected field upon opening the form  
+- `default` *[optional]* - field selected upon opening the form  
 - `values` - checkboxes (*"key"*:*"value"*)  
 - `showIf` - conditional object that shows predefined elements by clicking on the *radio-fieldset* elements. Predefined elements can vary.  
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
@@ -656,7 +655,7 @@ Displaying Docker tags within the list element.
 where:   
 
 - `name` *[required]* - should have the *'tag'* value  
-- `values` *[required]* - Docker tag values (*name*: *"tag_name"* is required). By default Docker image is pulled from Docker Hub registry.  
+- `values` *[required]* - Docker tag values (*name*: *"tag_name"* is required). By default Docker image is pulled from the Docker Hub registry.  
 - `dockerImage` - Docker image details   
    - `name` - *repository* is required   
    - `registry`, `username`, `password` [*optional*]   
@@ -817,7 +816,7 @@ where:
 ### displayfield
 (*spacer* is an alias)    
 
-The text field intended only for display, which is not validated and not submitted.  
+The text field intended only for display that is not validated, and not submitted.  
 
 <center>![displayfield](/img/displayfield.jpg)</center>  
 
@@ -841,7 +840,7 @@ where:
 - `markup` - value to initialize the field's display. The default value is "*'undefined'*".      
 
 ### spinner
-Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
+The enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
 
 <center>![spinner](/img/spinner.jpg)</center>  
 
