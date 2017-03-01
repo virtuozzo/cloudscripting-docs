@@ -271,7 +271,8 @@ As a result, the new placeholders are created:
 
 The integrated functions inside Cloud Scripting are listed below:   
 
-- `${fn.password}` - random value within the upper and lower cases. The default length value is *'10'*. The length can be passed as `${fn.password(max value)}`.   
+- `${fn.password}` - random value within the upper and lower cases. The default length value is *'10'*. 
+    The length can be passed as `${fn.password(max value)}`.   
 - `${fn.base64}` - *base64* encoding passed value  
 ```
 ${fn.base64(value)}
@@ -364,8 +365,7 @@ The values below can vary depending on a particular *nodeType*:
 - `${SERVER_LIBS}` - for *apache2*, *glassfish3*, *jetty6*, *nginxphp*, *tomcat6*, *tomcat7*, *tomee*    
 - `${SERVER_DATA}` - for *postgres8*, *postgres9*         
 
-You can use the following placeholders, as well, with the definite *nodeType*.                
-For example:     
+You can use the following placeholders, as well, with the definite *nodeType*:                               
 
 - `${glassfish3.HOME}` - */opt/glassfish3/temp*  
 - `${jetty6.JAVA_HOME}` - */usr/java/latest*  
