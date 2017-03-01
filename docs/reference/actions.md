@@ -330,6 +330,8 @@ where:
 
 ## Topology Nodes Management
 
+The present section introduces actions that are provided for managing the topology.                 
+
 ### addNodes
 ``` json
 {
@@ -470,6 +472,8 @@ where:
 
 ## Database Operations
 
+Within this section, you can find actions that are intended for managing databases.
+
 ### prepareSqlDatabase
 
 Available for *SQL* databases (except for *Docker* containers)
@@ -564,7 +568,11 @@ where:
 
 ## User-Defined Operations
 
+The current section provides data on the user-defined actions.                        
+
 ### script
+
+Using Java or JavaScript object in your manifest. 
 
 ``` json
 {
@@ -599,6 +607,7 @@ where:
     Learn more about using <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a>.    
 
 ### sleep
+
 Setting a delay that is measured in milliseconds. The below example shows how to create a delay for one second.                                               
 ``` json
 {
@@ -607,6 +616,7 @@ Setting a delay that is measured in milliseconds. The below example shows how to
 ```
 
 ### install
+
 Nesting a JPS manifest inside the current manifest file. The nested JPS manifest will be installed subsequently after the current one. The action is available for *install* and *update* installation types.                              
 
 **Examples**
