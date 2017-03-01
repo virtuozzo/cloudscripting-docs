@@ -75,10 +75,10 @@ Using the *nodeType* field while performing the <a href="http://docs.cloudscript
 ```
 where:                
 
-* `writeFile` - action to write data to a file    
-* `nodeType` - parameter to specify node(s) by type    
-* `path` - parameter specifying path to a file    
-* `body` - data that is being written to a file     
+- `writeFile` - action to write data to a file    
+- `nodeType` - parameter to specify node(s) by type    
+- `path` - parameter specifying path to a file    
+- `body` - data that is being written to a file     
 
 Creating an environment with topology specifics, set by the *engine* and *nodeType* values.   
 ``` json
@@ -93,14 +93,14 @@ Creating an environment with topology specifics, set by the *engine* and *nodeTy
 ```
 where:          
 
-* `engine` - parameter that specifies engine version (*java7* in our example)        
-* `nodeType` - parameter that specifies node type (*tomcat7*  in our example)       
+- `engine` - parameter that specifies engine version (*java7* in our example)        
+- `nodeType` - parameter that specifies node type (*tomcat7*  in our example)       
 
 ### Types of Selectors 
 
 There are three alternative approaches, provided to specify target container(s) in a manifest.                          
 
-* specifying a target node within a name of an action (**node selectors**)     
+- specifying a target node within a name of an action (**node selectors**)     
 
 For example: 
 ``` json
@@ -116,7 +116,7 @@ For example:
 ```
 In the example above, a new file will be created in the compute node (<em>[cp]</em>) and a new directory will be created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers and container with Node ID <em>123</em>. Actions for the specified nodes are executed in the declared order.                 
 
-* setting a target node next to the performed action     
+- setting a target node next to the performed action     
 
 For example:   
 ``` json
@@ -132,7 +132,7 @@ For example:
 ``` 
 Here, the <em>createFile</em> and <em>createDirectory</em> actions are applied to the specified <em>nodeGroup</em>, namely the compute (<em>[cp]</em>) layer.                      
  
-* specifying a required node as a parameter in the action object     
+- specifying a required node as a parameter in the action object     
 
 Learn more on this parameter within the <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank"><em>Custom Actions</em></a> documentation page.                                      
 
@@ -265,5 +265,5 @@ The following section deals with the supported engine versions and their availab
 - See the <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">Events</a> list the actions can be bound to            
 - Find out the list of <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching        
 - Read how to integrate your <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>   
-- Learn how to customize the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
+- Learn how to customize <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
 - Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples    
