@@ -789,7 +789,9 @@ In order to access any required data or parameters of allocated resources inside
 
 #### Code Reuse
 
-Outputting Hello World! twice in the <b>*greeting.txt*</b>:  
+Using already-existing code to perform a new action.     
+
+For example, outputting Hello World! twice in the <b>*greeting.txt*</b>:            
 ``` json
 {
   "type": "update",
