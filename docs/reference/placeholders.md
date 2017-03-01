@@ -22,6 +22,8 @@ The following specific groups of placeholders are singled out:
 
 ## Environment Placeholders
 
+This is the list of placeholders that you can use within the environment section of your manifest.          
+
 - `{env.}`
     - `appid` *[string]* - application appid 
     - `domain` *[string]* - application domain
@@ -57,8 +59,11 @@ The following specific groups of placeholders are singled out:
     - `contexts.archivename` *[string]* - context display name
     - `contexts.length` *[number]* - number of contexts which are deployed to environment
     - `extdomains.length` *[number]* - number of external domains which are binded to environment
-    
+
 ## Node Placeholders    
+
+This is the list of placeholders that you can use within the nodes section of your manifest.                        
+
 - `${nodes.}`
     - `{nodes.(group)[(i)].(key)}`
     - `{nodes.(group).first.(key)}`
@@ -135,6 +140,7 @@ In case a few nodes are available within a single *nodeGroup*, you can execute a
 - `{nodes.db.last.address}` - last IP address of a batabase node     
 
 ## Event Placeholders
+
 Event placeholders represent a set of dynamic parameters that are executed as a result of a certain event occurrence. The event placeholders have their custom set of parameters and begin with the default keywords:
                          
 - `${event.params.(key)}` - where *key* is a name of event parameter                     
@@ -142,13 +148,19 @@ Event placeholders represent a set of dynamic parameters that are executed as a 
 
 Learn more about the event placeholders within the <a href="http://docs.cloudscripting.com/reference/events" target="_blank">*Events*</a> page.         
 
-## Account Information                                                                                                                                       
-- `${user.uid}` - user ID at the Jelastic Platform              
+## Account Information  
+
+This is the list of placeholders that you can use while specifying account information.                                                                       
+
+- `${user.uid}` - user ID at the Jelastic Platform               
 - `${user.email}` - user email address      
 - `${user.appPassword}` - random value that can be used to set application passwords       
 - `${user.name}` - email address value (same as `${user.email}`)       
 
 ## Input Parameters
+
+This is the list of placeholders that you can use for input parameters.                        
+
 - `${settings.jelastic_email}` - user email that is always predefined       
 - `${settings.key}` - (where *key* is a name of the application setting) 
     The placeholder is defined in case user input parameters are specified within a manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.     
@@ -170,10 +182,9 @@ For example:
 ```
 The name of the placeholder here is `${settings.customName}`. Check the list of <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">fields defined by users</a>.       
 
- 
 ## Action Placeholders
 
-Action placeholders are a set of placeholders that can be used within the appropriate actions by means of `${this}` namespace.                            
+Action placeholders are a set of placeholders that can be used within the appropriate actions by means of `${this}` namespace.                                
 
 - `${this.param}` - where *param* is a name of the action parameter                         
 
@@ -207,6 +218,9 @@ Passing custom parameters to the action is performed in the following way:
 As a result, console will display the *first* (1) custom parameter from `${this.first}` placeholder.
 
 ## UI Placeholders
+
+This is the list of placeholders that you can use while specifying UI parameters.                              
+
 - `${user.uid}` - user ID at the Jelastic Platform
 - `${user.email}` - user email address
 - `${env.domain}` - full domain name without protocol
@@ -230,6 +244,7 @@ For example:
 ```
 
 ## Custom Global Placeholders
+
 Placeholders managed by users can be predefined via <b>*globals declaration*</b>. The corresponding declaration is performed in advance of the manifest installation.  
 
 For example:
@@ -253,6 +268,7 @@ As a result, the new placeholders are created:
 ```  
 
 ## Function Placeholders
+
 The integrated functions inside Cloud Scripting are listed below:   
 
 - `${fn.password}` - random value within the upper and lower cases. The default length value is *'10'*. The length can be passed as `${fn.password(max value)}`.   
