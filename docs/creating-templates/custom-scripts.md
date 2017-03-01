@@ -9,14 +9,14 @@ In order to execute a shell script inside of a container, the <a href="http://do
 
 <b>Examples</b>
 
-Executing bash script from URL
+Executing bash script from URL:
 ``` json
 {
   "cmd [cp]": "curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2"
 }
 ```
 
-Restoring MySQL database
+Restoring MySQL database:
 ``` json
 {
   "cmd [mysql5]": "curl -fsS http://example.com/script.sh | /bin/bash -s '${nodes.sqldb.password}' 'http://example.com/dump.sql' '${user.appPassword}'"
