@@ -2,7 +2,7 @@
 
 ## Conditions    
 
-The main conditional statement is <b>*if*</b>. Within this parameter, all available <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
+The main conditional statement is <b>*if*</b>. Within this parameter, all the available <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
 
 For example
 ```
@@ -94,7 +94,7 @@ The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*<
 
 ### Nested Conditions   
   
-Nesting of two <b>*if*</b> condition statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and is logging the correspondent messages.          
+Nesting of two <b>*if*</b> conditional statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and is logging the correspondent messages.          
 ``` json
 {
   "type": "update",
@@ -166,7 +166,7 @@ where:
 
 Iteration can be executed by <b>*env.nodes*</b>, <b>*nodes*</b>, <b>*env.contexts*</b>, and <b>*env.extdomains*</b> objects.                    
 
-- Iteration set by <b>*env.extdomains*</b>                    
+Iteration set by <b>*env.extdomains*</b>                       
 ``` json
 {
   "forEach(env.extdomains)": [
@@ -185,7 +185,7 @@ where:
 - `@i` - default iterator name 
 - `env.extdomains` - bound external domains 
 
-- Iteration set by <b>*env.contexts*</b>                           
+Iteration set by <b>*env.contexts*</b>                             
 ``` json
 {
   "forEach(env.contexts)": {
@@ -200,7 +200,7 @@ where:
 
 - `env.contexts` -  list of contexts (applications) deployed to an environment                           
 
-- Scaling nodes example              
+Scaling nodes example                
 
 ``` json
 {
