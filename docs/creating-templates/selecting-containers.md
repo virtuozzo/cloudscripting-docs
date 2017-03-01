@@ -47,7 +47,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 * *sqldb*            
 * *nosqldb*            
 * *storage*                  
-* *vps*                
+* *vds*                
 * *build*        
 
 Actions for a specified <em>nodeGroup</em> are executed successively one by one. For Docker containers the <em>nodeGroup</em> value is not predefined, therefore, it can be stated to any value above or your custom one.                              
@@ -152,7 +152,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 * **sql** (for *sql* databases) - *mysql5, mariadb, mariadb10, postgres8, postgres9*                                
 * **nosql** (for *nosql* databases) - *mongodb, couchdb, redis, redis3, cassandra2*        
 * **storage** (for a storage container) - *storage*           
-* **vps** (for virtual private servers) - *centos6, centos7*                                    
+* **vds** (for virtual private servers) - *centos6, centos7*                                    
 * **build** (for a build node) - *maven3*                                
 
 ### Predefined *nodeType* Values   

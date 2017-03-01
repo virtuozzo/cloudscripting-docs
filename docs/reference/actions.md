@@ -172,7 +172,7 @@ where:
 ### upload
 
 Available for all nodes
-<!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)-->
+<!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)-->
 ``` json
 {
   "upload": [
@@ -196,7 +196,7 @@ where:
 ### unpack
 
 Available for all nodes
-<!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
+<!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 ``` json
 {
   "unpack": [
@@ -220,7 +220,7 @@ where:
 ### createFile
 
 Available for all nodes
-<!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
+<!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 ``` json
 {
   "createFile [nodeId, nodeGroup, nodeType]": "string"
@@ -234,7 +234,7 @@ where:
 ### createDirectory
 
 Available for all nodes
-<!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
+<!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 ``` json
 {
   "createDirectory [nodeId, nodeGroup, nodeType]": "string"
@@ -248,7 +248,7 @@ where:
 ### writeFile
 
 Available for all nodes
-<!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
+<!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 ``` json
 {
   "writeFile": [
@@ -272,7 +272,7 @@ where:
 ### appendFile
 
 Available for all nodes
-<!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
+<!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 ``` json
 {
   "appendFile": [
@@ -296,7 +296,7 @@ where:
 ### replaceInFile
 
 Available for all nodes
-<!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
+<!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 ``` json
 {
   "replaceInFile": [
@@ -383,7 +383,7 @@ where:
 
 ### setNodeCount
 
-Available for all nodes (except for *Docker* containers and *Elastic VPS*)
+Available for all nodes (except for *Docker* containers and *Elastic VDS*)
 ``` json
 {
   "setNodeCount [nodeId, nodeGroup, nodeType]": "number"
@@ -408,7 +408,7 @@ where:
 
 ### restartNodes
 
-Available for all nodes (except for *Elastic VPS*)
+Available for all nodes (except for *Elastic VDS*)
 ``` json
 {
   "restartNodes": [
