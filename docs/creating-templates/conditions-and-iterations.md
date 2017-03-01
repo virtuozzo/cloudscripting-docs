@@ -271,7 +271,7 @@ where:
 
 In this case, every environment node will have only one conjunction by <b>Node ID</b>.
 
-The **ForEach count** execution is printed in a <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">user console log</a> for convenient code debugging.           
+The **ForEach** execution is recorded in a <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">user console logfile</a> for convenient code debugging.           
 
 <center>![forEachCount](/img/forEachCount.jpg)</center>
 <br>
