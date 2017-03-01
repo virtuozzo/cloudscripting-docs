@@ -1077,5 +1077,5 @@ The *onAfterRemoveVolume* event will be triggered after removing volumes from Do
 - Find out the list of <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching   
 - See how to use <a href="http://docs.cloudscripting.com/creating-templates/conditions-and-iterations/">Conditions and Iterations</a>                              
 - Read how to integrate your <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>   
-- Learn how to customize the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
+- Learn how to customize <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
 - Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples   
