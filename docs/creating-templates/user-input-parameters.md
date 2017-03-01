@@ -154,7 +154,7 @@ In this case, the filtering result will be the following:
 
 ## Custom Menus    
 
-Th menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
+Thе menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
 
 <center>![new-menu](/img/new-menu.png)</center>          
 
