@@ -958,17 +958,18 @@ where:
 <br>
 ## What's next?    
 
+- Learn how to handle <a href="http://docs.cloudscripting.com/creating-templates/handling-custom-errors" target="_blank">Custom Errors</a>                                  
 - Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples      
 - See <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions            
 - Read <a href="http://docs.cloudscripting.com/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                         
 - Find out the correspondence between <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>      
 
 <!--
-## Handling Custom Errors
+# Handling Custom Errors
 
-The Cloud Scripting engine provides functionality to handle custom errors. These possible errors should be described within a separate *errorHandlers* block. The errors handling is related to the action result codes that can be located within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
+The Cloud Scripting engine provides functionality to handle custom errors. These possible errors should be described within a separate *errorHandlers* block. The errors handling is related to the action result codes that can be located within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. In such a way, you can determine a content of a message that will be displayed in case of an error occurrence.         
 
-There are a number of predefined pop-up windows that emerge while custom errors are being handled:  
+There are a number of predefined pop-up windows that emerge while custom errors are being handled:            
 
 - `info` - *information* pop-up window                
 
@@ -982,7 +983,7 @@ There are a number of predefined pop-up windows that emerge while custom errors 
 
 <center>![new-error](/img/new-error.png)</center>          
 
-The result message text can be localized according to the languages that are available within the Jelastic Platform:
+The text of the messages in these windows can be localized according to the languages that are available within the Jelastic Platform:                
 
 ``` json
 {
@@ -998,7 +999,7 @@ The result message text can be localized according to the languages that are ava
 
 **File creation error**
 
-The example below describes a creation of the same file twice and handling an error, which occurs as a result of such action execution. Consequently, the result code of this error will be defined as *4036*. The example presupposes that all the actions with *4036* result will be displayed via *error* pop-up window with a custom error message text. 
+The example below describes a creation of the same file twice and handling an error, which occurs as a result of such action execution. Consequently, the result code of this error will be defined as *4036*. The example presupposes that all the actions with *4036* result code will be displayed via the *error* pop-up window with a custom error message text. 
 ``` json
 {
   "type": "update",
@@ -1046,7 +1047,7 @@ The additional functionality is provided to display action errors using return <
 
 where:
 
-- `script` - Cloud Scripting <a href= "/reference/actions/#script" target="__blank">action</a> for executing *Javascript* or *Java* code (*Javascript* is set by default)                     
+- `script` - <a href= "/reference/actions/#script" target="__blank">action</a> for executing *Javascript* or *Java* code (*Javascript* is set by default)                     
 - `1000` - custom predefined result code for error handling. It will be returned from the *script* action in the *onInstall* block.        
 
 If the result code is delivered via *string*, then the default result code is *11039*. Therefore, *errorHandlers* can be handled by the following outcoming *string* text:            
@@ -1067,5 +1068,13 @@ If the result code is delivered via *string*, then the default result code is *1
 }
 ```
 
-In all the other cases, i.e. when a custom error is not predefined within the *errorHandler* block, the default pop-up window type is *error* with an output message.-->       
+In all the other cases, i.e. when a custom error is not predefined within the *errorHandler* block, the default pop-up window type is *error* with an output message.
+<br>
+## What's next?    
+
+- Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples      
+- See <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions            
+- Read <a href="http://docs.cloudscripting.com/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                         
+- Find out the correspondence between <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>
+-->       
   
