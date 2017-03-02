@@ -873,7 +873,7 @@ The *config settings* form appears after clicking the <b>Configure</b> button wi
 
 The Cloud Scripting engine provides functionality to handle custom responses. These possible responses should be described within a separate `responses` block. The responses handling is related to the action result codes. You can locate these codes within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
 
-There is a number of predefined pop-up windows, which emerge while custom responses are being handled:  
+There are a types of predefined pop-up windows, which emerge while custom responses are being handled:  
 
 - `info` - *information* pop-up window                
 
@@ -890,6 +890,59 @@ There is a number of predefined pop-up windows, which emerge while custom respon
 - `success` - *success* window when the action will be executed with expected result code. This code can be described in `responses` block. The manifest installation will be finished immediately if an any action will return the result code which is predefined in `responses` block.
 
 <center>![success](/img/successResponse.jpg)</center>
+
+The types `info`, `error` and `warning` are unsuccessful installation results. Therefore, the install process will be marked by red cross like on the screen below:
+
+<center>![success](/img/redCross.jpg)</center>
+
+The simplest custom response message can be returned in one string via actions `return` or `script`. The examples below provide this ability:
+ 
+```json
+{
+  "type": "update",
+  "name": "response handlers",
+  "onInstall": {
+    "return": "Warning!"
+  }
+}
+```
+
+```json
+{
+  "type": "update",
+  "name": "response handlers",
+  "onInstall": {
+    "script": "return 'Warning!'"
+  }
+}
+```
+There is an ability to return a response with a defined result type and with a custom message via `script` or `return` actions. 
+`Return` action: 
+
+```json
+{
+    "type": "update",
+    "name": "response handlers",
+    "onInstall": {
+        "return": {
+          "result": "warning",
+          "message": "Warning!"
+        }
+    }
+}
+```
+
+`Script` action:
+
+```json
+{
+    "type": "update",
+    "name": "response handlers",
+    "onInstall": {
+        "script": "return {result: 'warning', message: 'Warning!'}"
+    }
+}
+```
 
 The result message text can be localized according to the languages, available within the Jelastic Platform:
 
