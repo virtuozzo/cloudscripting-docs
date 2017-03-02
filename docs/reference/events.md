@@ -62,7 +62,7 @@ One more demanded action is related to scaling nodes in an environment within a 
 
 <center><img style="height: 626px"  src="/img/scalingEventSequence.png" alt="scaling sequence icon" /></center>
 
-## Events List
+## Event List
 
 ### onInstall
 
