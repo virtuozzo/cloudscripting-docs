@@ -958,7 +958,7 @@ where:
 <br>
 ## What's next?    
 
-- Learn how to handle <a href="http://docs.cloudscripting.com/creating-templates/handling-custom-errors" target="_blank">Custom Errors</a>                                  
+- Learn how <a href="http://docs.cloudscripting.com/creating-templates/handling-custom-errors" target="_blank">Custom Errors</a> can be handled                                                    
 - Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples      
 - See <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions            
 - Read <a href="http://docs.cloudscripting.com/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                         
