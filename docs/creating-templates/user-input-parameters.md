@@ -62,7 +62,7 @@ where:
         * `displayfield` - [text field](/creating-templates/user-input-parameters/#displayfield) intended for displaying text                            
         * `spacer` - alias to `displayfield`                     
         * `spinner` - [input field](/creating-templates/user-input-parameters/#spinner) for entering numeric values                       
-        * `numberpicker` - [text field within number validation](/creating-templates/user-input-parameters/#numberpicker) within a range                            
+        * `numberpicker` - [field to select a number](/creating-templates/user-input-parameters/#numberpicker) within a range                            
         * `number-picker` - alias to `numberpicker`  
         * `hostpicker` - drop-down menu with [environment hosts](/creating-templates/user-input-parameters/#hostpicker)                             
         * `host-picher` - alias to `hostpicker`                                      
@@ -870,10 +870,9 @@ where:
 - `decimanPrecision` - precision value  
 
 ### numberpicker
-(*number-picker* is an alias)  
-
-The text field with a number validation within a range.   
-
+(*number-picker* is an alias)                         
+The field that enables to select a number from a predefined range.                  
+ 
 <center>![numberpicker](/img/numberpicker.jpg)</center>  
 
 ``` json
