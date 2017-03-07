@@ -871,7 +871,7 @@ The *config settings* form appears after clicking the <b>Configure</b> button wi
 
 ##Handling Custom Responses
 
-The Cloud Scripting engine provides functionality to handle custom responses. These possible responses should be described within a separate `responses` block. The responses handling is related to the action result codes. You can locate these codes within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
+The Cloud Scripting engine provides functionality to handle custom responses. The responses handling is related to the action result codes. You can locate these codes within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
 
 There are a types of predefined pop-up windows, which emerge while custom responses are being handled:  
 
@@ -887,7 +887,7 @@ There are a types of predefined pop-up windows, which emerge while custom respon
 
 <center>![errorType](/img/errorType.jpg)</center>          
 
-- `success` - *success* window when the action will be executed with expected result code. This code can be described in `responses` block. The manifest installation will be finished immediately if an any action will return the result code which is predefined in `responses` block.
+- `success` - *success* window when the action will be executed with expected result code. The manifest installation will be finished immediately if an any action will return the result code from `script` or `return` actions or which is predefined in `responses` block.
 
 <center>![success](/img/successResponse.jpg)</center>
 
