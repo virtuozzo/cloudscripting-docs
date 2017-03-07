@@ -1094,7 +1094,7 @@ For example:
 
 The final success form will be same as on screen below:
 
-<center>![redefinedSuccessResponseHandler](/img/redefinedSuccessResponseHandler.jpg)
+<center>![redefinedSuccessResponseHandler](/img/redefinedSuccessResponseHandler.jpg)</center>
 
 #Success Text Customization
 
