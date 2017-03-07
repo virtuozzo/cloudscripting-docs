@@ -916,6 +916,9 @@ The simplest custom response message can be returned in one string via actions `
   }
 }
 ```
+
+In this case the default response `type` is `error` and response `message` is returned string.
+
 There is an ability to return a response with a defined result type and with a custom message via `script` or `return` actions. 
 `Return` action: 
 
@@ -926,11 +929,14 @@ There is an ability to return a response with a defined result type and with a c
     "onInstall": {
         "return": {
           "result": "warning",
-          "message": "Warning!"
+          "message": "Warning!",
+          "email": "string"
         }
     }
 }
 ```
+!!! note
+    `email` parameter is available only for `success` response type. This text will be sent after an any action will be finished with **success** response code.
 
 `Script` action:
 
@@ -939,10 +945,42 @@ There is an ability to return a response with a defined result type and with a c
     "type": "update",
     "name": "response handlers",
     "onInstall": {
-        "script": "return {result: 'warning', message: 'Warning!'}"
+        "script": "return {result: 'warning', message: 'Warning!','email': 'string'}"
     }
 }
 ```
+
+Parameters `message` and `email` support all <a href="/reference/placeholders/" target="_blank">available placeholders</a>. Either, they could be uploaded from an any external source via direct link or according to <a href="/creating-templates/basic-configs/#relative-links">baseUrl ability</a>.  
+
+In case, when is returned a response code with a type `success` two response objects impose one to another. 
+But the `success` text from response object has a higher priority than a <a href="/creating-templates/user-input-parameters/#success-text-customization" target="_blank">**success**</a> text from main manifest block.    
+A examples below display the difference:
+
+```json
+{
+    "type": "update",
+    "name": "response handlers",
+    "onInstall": {
+        "script": "return {'result': 'success','message': 'Hello!!'}"
+    },
+    "success": "success!!"
+}
+```
+
+The result code with `success` type, message - '*Hello!!*' and sent email text - '*success!!*'
+
+```json
+{
+    "type": "update",
+    "name": "response handlers",
+    "onInstall": {
+        "script": "return {'result': 'success','message': 'Hello!!', 'email': 'Hello!!'}"
+    },
+    "success": "success!!"
+}
+```
+
+The result code with `success` type, message - '*Hello!!*' and sent email text - '*Hello!!*'
 
 The result message text can be localized according to the languages, available within the Jelastic Platform:
 
@@ -955,6 +993,8 @@ The result message text can be localized according to the languages, available w
   }
 }
 ```
+
+In necessity to display the same response codes a `response` object can be added where a custom responses can be defined. The examples below show how to use it.
 
 <h3>Examples</h3>
 
@@ -996,7 +1036,7 @@ The additional functionality is provided to display action responses using <a hr
 ``` json
 {
   "type": "update",
-  "name": "Custom Error Handlers",
+  "name": "Custom Response Handlers",
   "onInstall": {
     "script": "return {result : 1000};"
   },
@@ -1019,7 +1059,7 @@ If the result code is delivered via *string*, then the default result code is *1
 ``` json
 {
 	"type": "update",
-	"name": "Custom Error Handlers",
+	"name": "Custom Response Handlers",
 	"onInstall": {
 		"script": "return 'error'"
 	},
@@ -1033,6 +1073,28 @@ If the result code is delivered via *string*, then the default result code is *1
 ```
 
 In all the other cases, i.e. when a custom response is not predefined within the `responses` block, the default pop-up window type is *error* with an output message.          
+
+A response objects which are returned from custom scripts and predefined in `response` block are emposed one to another. A response object from custom scripts has a higher priority than responses in `response` object.  
+For example:
+```json
+{
+  "type": "update",
+  "name": "Custom Response Handlers",
+  "onInstall": {
+    "script": "return {'result': '2308', 'message': 'Success from script with result 2308'}"
+  },
+  "responses": {
+    "2308": {
+      "type": "success",
+      "message": "Custom Success message!"
+    }
+  }
+}
+```
+
+The final success form will be same as on screen below:
+
+<center>![redefinedSuccessResponseHandler](/img/redefinedSuccessResponseHandler.jpg)
 
 #Success Text Customization
 
