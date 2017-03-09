@@ -11,16 +11,10 @@ $(function () {
             sAsc = '.fa-angle-up';
 
         if (that.next() && that.next()[0].id == sDivClass) {
-            if ($(that.next()[0]).is(':visible')) {
-                $(that).children(sDesc).show();
-                $(that).children(sAsc).hide();
-                $(that.next()[0]).hide(); //.css(sDisplayValue, 'none');
+            that.children(sDesc).toggle();
+            that.children(sAsc).toggle();
+            $(that.next()[0]).toggle(); //.css(sDisplayValue, 'none');
 
-            } else {
-                $(that).children(sDesc).hide();
-                $(that).children(sAsc).show();
-                $(that.next()[0]).show(); //.css(sDisplayValue, 'block');
-            }
         }
     }
 
