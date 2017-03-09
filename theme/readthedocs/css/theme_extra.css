@@ -342,3 +342,6 @@ pre code.example {
 .rst-versions.rst-badge.shift-up .rst-current-version {
     top: 73px;
 }
+.wy-nav-content {
+    min-height: 100vh;
+}
