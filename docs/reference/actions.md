@@ -337,34 +337,42 @@ where:
       "fixedCloudlets": "number",
       "flexibleCloudlets": "number",
       "displayName": "string",
-      "image": "jelastic/wordpress-web:latest",
+      "dockerName": "jelastic/wordpress-web:latest",
+      "registryUrl": "string",
+      "registryUser": "string",
+      "registryPassword": "string",
+      "dockerTag": "string",
       "links": "sourceNodeGroup:alias",
-      "env": "object",
-      "volumes": "array",
+      "dockerEnvVars": "object",
+      "dockerVolumes": "array",
       "volumeMounts": "object",
-      "cmd": "array",
-      "entrypoint": "object"
+      "dockerRunCmd": "array",
+      "dockerEntryPoint": "object"
     }
   ]
 }
 ```
 where:
 
-- `nodeType` - parameter thet defines software stack. For a detailed guidance, see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#predefined-nodetype-values" target="_blank">Container Types</a> page.                        
+- `nodeType` *[required]* - parameter thet defines software stack. For a detailed guidance, see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#predefined-nodetype-values" target="_blank">Container Types</a> page. For docker containers `nodeType` value is **docker**.                        
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.                     
 - `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.                             
 - `flexibleCloudlets` *[optional]* - number of dynamic cloudlets. The default value is *'1'*.                           
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
     The following parameters are required for Docker nodes only:                          
-- `image` *[optional]* - name and tag of Docker image                            
+- `dockerName` *[optional]* - name and tag of Docker image
+- `registryUrl` *[optional]* - custom docker regitry
+- `registryUser` *[optional]* - docker registry username
+- `registryPassword` *[optional]* - docker registry password
+- `dockerTag` - docker tag to installing
 - `links` *[optional]* - Docker links                         
     - `sourceNodeGroup` - source node to be linked with a current node                                
     - `alias` - prefix alias for linked variables                         
-- `env` *[optional]* - Docker environment variables                        
-- `volumes` *[optional]* - Docker node volumes               
+- `dockerEnvVars` *[optional]* - Docker environment variables                        
+- `dockerVolumes` *[optional]* - Docker node volumes               
 - `volumeMounts` *[optional]* - Docker external volumes mounts                             
-- `cmd` *[optional]* - Docker run configs                            
-- `entrypoint` *[optional]* - Docker entry points                                          
+- `dockerRunCmd` *[optional]* - Docker run configs                            
+- `dockerEntryPoint` *[optional]* - Docker entry points                                          
 
 <!-- SetCloudletsCount -->
 ### setNodeDisplayName
