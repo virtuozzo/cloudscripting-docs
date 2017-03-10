@@ -345,3 +345,6 @@ pre code.example {
 .wy-nav-content {
     min-height: 100vh;
 }
+.fa-angle-down:before,a .fa-angle-up:before {
+    vertical-align: text-bottom;
+}
