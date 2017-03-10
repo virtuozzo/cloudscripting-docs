@@ -24,7 +24,7 @@ Thus, the following specific groups of actions are singled out:
 
 ## Container Operations
 
-There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Containers</e</a> page.                        
+There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Containers</em></a> page.                        
 
 Any container operation can be performed using a [*cmd*](#cmd) action. Moreover, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:                  
 * SSH commands ([*cmd*](#cmd))                          
@@ -391,6 +391,7 @@ where:
 
 ### setNodeCount
 
+Add/remove nodes grouped by the same `nodeGroup` (the same node layer) according to `setNodeCount` value. A node selector is available by **nodeId, nodeGroup or nodeType**.  
 Available for all nodes
 ``` json
 {
@@ -403,6 +404,8 @@ where:
 - `number` - total number of nodes after the action is finished                                          
 
 ### setExtIpEnabled
+
+Enable/disable external IP address in one node or node group.  
 Available for all nodes
 ``` json
 {
