@@ -782,7 +782,31 @@ where:
 
 ### Action Placeholders
 
-In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. The parameters, sent to a call method, are transformed into a separate kit of placeholders, which can be further used within the appropriate actions by means of *${this}*  namespace. Access to a node inside environment can be gained according to its type, as well as according to its role in the environment.                           
+In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. The parameters, sent to a call method, are transformed into a separate kit of placeholders, which can be further used within the appropriate actions by means of *${this}*  namespace. Access to a node inside environment can be gained according to its type, as well as according to its role in the environment.                             
+
+The example below describe how to pass a  dynamic parameters in action for executing.   
+Here a parameter **name** is being sent into custom action **customAction** where a `createFile` action is executed.
+```json
+{
+    "type": "update",
+    "name": "$this in Custom Actions",
+    "onInstall": {
+        "customAction": {
+            "name": "simpleTxtFile"
+        }
+    },
+    "actions": {
+        "customAction": {
+            "createFile [cp]": "/tmp/${this.name}.txt"
+        }
+    }
+}
+```
+
+Therefore, the same `custom actions` can be reused many times with different parameters.
+
+Any `actions` can be filtered for specific node by id, by `nodeType` or by `nodeGroup`. 
+More details about <a href="/creating-templates/selecting-containers/#types-of-selectors">Node Selectors here</a>.
 
 ### Code Reuse
 

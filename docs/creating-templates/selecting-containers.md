@@ -103,15 +103,18 @@ There are three alternative approaches, provided to specify target container(s) 
 
 For example: 
 ``` json
-{
-    "createFile [cp]" : {
-          "path" : "/tmp/test.txt"
+[
+  {
+    "createFile [cp]": {
+      "path": "/tmp/test.txt"
     }
-}, {
-    "createDirectory [cp,bl,123]" : {
-          "path" : "/tmp/test.txt"
+  },
+  {
+    "createDirectory [cp,bl,123]": {
+      "path": "/tmp/test.txt"
     }
-}
+  }
+]
 ```
 In the example above, a new file will be created in the compute node (<em>[cp]</em>) and a new directory will be created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers and container with Node ID <em>123</em>. Actions for the specified nodes are executed in the declared order.                 
 
@@ -119,21 +122,23 @@ In the example above, a new file will be created in the compute node (<em>[cp]</
 
 For example:   
 ``` json
-{
-  "createFile": {
-    "path": "/tmp/test.txt"
-  },
-  "createDirectory": {
-    "path": "/tmp/test"
-  },
-  "nodeGroup": "cp"
-}
+[
+  {
+    "createFile": {
+      "path": "/tmp/test.txt"
+    },
+    "createDirectory": {
+      "path": "/tmp/test"
+    },
+    "nodeGroup": "cp"
+  }
+]
 ``` 
 Here, the <em>createFile</em> and <em>createDirectory</em> actions are applied to the specified <em>nodeGroup</em>, namely the compute (<em>[cp]</em>) layer.                      
  
 * setting a required node as a parameter in the action object     
 
-Learn more on this parameter within the custom <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank"><em>Custom Actions</em></a> documentation page.                                      
+Learn more on this parameter within the custom <a href="/reference/actions/#action-placeholders" target="_blank"><em>Custom Actions</em></a> documentation page.                                      
 
 !!! note 
     <b>Node selectors</b> have higher priority than nodes, specified next to the action, but lower than parameters set in the action object.   
