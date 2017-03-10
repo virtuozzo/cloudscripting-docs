@@ -251,7 +251,6 @@ This example involves execution of the Jelastic API *addTrigger* method with a s
     - `type` - trigger action, the available values are *NOTIFY*, *ADD_NODE* and *REMOVE_NODE*
     - `customData`:
         - `notify`- alert notification sent to a user via email 
-        - `reminderPeriod` - reminder period in days to send a notification again       
 
 Jelastic will send an alert to the Cloud Scripting system, when the appropriate trigger is invoked. Therefore, the *onAlert* event provides a possibility to bound actions to alert notifications and execute custom actions.
 
