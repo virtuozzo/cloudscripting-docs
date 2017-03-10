@@ -391,7 +391,7 @@ where:
 
 ### setNodeCount
 
-Available for all nodes (except for *Docker* containers and *Elastic VDS*)
+Available for all nodes
 ``` json
 {
   "setNodeCount [nodeId, nodeGroup, nodeType]": "number"
