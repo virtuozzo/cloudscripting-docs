@@ -182,7 +182,8 @@ The event will be executed after adding new Docker container(s) to the existing 
 ### onAlert
 This event provides a possibility to boud actions to <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a> and <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">Automatic Horizontal Scaling Alerts</a>. These features are configured through the Jelastic triggers.   
 
-These are the monitoring triggers that are based on the usage of a particular resource type:        
+These are the monitoring triggers that are based on the usage of a particular resource type:
+
 * **CLOUDLETS** (CPU, Memory) - available only for action type *NOTIFY*
 * **CPU**
 * **MEM** (Memory)
