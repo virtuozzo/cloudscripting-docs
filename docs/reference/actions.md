@@ -745,7 +745,7 @@ Consequently, the installed add-on will be marked as set up at the balancer (*bl
 
 <!-- add example -->
 
-### Custom Actions
+## Custom Actions
 
 The declarative code inside a manifest can be divided into separate blocks, named **actions**. Subsequently, particular actions can be run by means of calling actions with different parameters.             
 
@@ -780,11 +780,11 @@ where:
 
 - `actions` - object where custom actions can be predefined                                    
 
-#### Action Placeholders
+### Action Placeholders
 
 In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. The parameters, sent to a call method, are transformed into a separate kit of placeholders, which can be further used within the appropriate actions by means of *${this}*  namespace. Access to a node inside environment can be gained according to its type, as well as according to its role in the environment.                           
 
-#### Code Reuse
+### Code Reuse
 
 Outputting Hello World! twice in the <b>*greeting.txt*</b>:  
 ``` json
@@ -811,7 +811,7 @@ Outputting Hello World! twice in the <b>*greeting.txt*</b>:
 }
 ```
 
-#### Call Action with Parameters
+### Call Action with Parameters
 
 The following example shows how to pass additional parameters to the custom action. The parameters should be passed as an object to the custom action.                 
 
