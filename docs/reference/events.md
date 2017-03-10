@@ -228,8 +228,7 @@ The following example shows how a new trigger is being created:
           {
             "type": "NOTIFY",
             "customData": {
-              "notify": false,
-              "reminderPeriod": 60
+              "notify": false
             }
           }
         ]
