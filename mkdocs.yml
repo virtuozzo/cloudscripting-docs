@@ -57,14 +57,14 @@ pages:
 
 # Creating Templates
 - Creating Manifest:
-   - Basic Configs: creating-templates/basic-configs.md
-   - Specifying Target Container: creating-templates/selecting-containers.md
+   - Basic Configs: creating-manifest/basic-configs.md
+   - Specifying Target Container: creating-manifest/selecting-containers.md
    - Actions: reference/actions.md
    - Events: reference/events.md
    - Placeholders: reference/placeholders.md
-   - Conditions and Iterations: creating-templates/conditions-and-iterations.md
-   - Custom Scripts: creating-templates/custom-scripts.md
-   - Visual Settings: creating-templates/visual-settings.md
+   - Conditions and Iterations: creating-manifest/conditions-and-iterations.md
+   - Custom Scripts: creating-manifest/custom-scripts.md
+   - Visual Settings: creating-manifest/visual-settings.md
 #   - Custom Errors: reference/handling-custom-errors.md
 
 #Samples
