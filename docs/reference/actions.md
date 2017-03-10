@@ -342,7 +342,7 @@ where:
       "registryUser": "string",
       "registryPassword": "string",
       "dockerTag": "string",
-      "links": "sourceNodeGroup:alias",
+      "dockerLinks": "sourceNodeGroup:alias",
       "dockerEnvVars": "object",
       "dockerVolumes": "array",
       "volumeMounts": "object",
@@ -365,7 +365,7 @@ where:
 - `registryUser` *[optional]* - docker registry username
 - `registryPassword` *[optional]* - docker registry password
 - `dockerTag` - docker tag to installing
-- `links` *[optional]* - Docker links                         
+- `dockerLinks` *[optional]* - Docker links                         
     - `sourceNodeGroup` - source node to be linked with a current node                                
     - `alias` - prefix alias for linked variables                         
 - `dockerEnvVars` *[optional]* - Docker environment variables                        
