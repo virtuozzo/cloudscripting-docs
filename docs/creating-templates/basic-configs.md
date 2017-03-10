@@ -408,6 +408,12 @@ There are the following Cloud Scripting rules applied while parsing file's relat
 
 If installation is being run from <a href="https://github.com/jelastic-jps" target="_blank">*GitHub*</a> and URL includes <b>*‘/blob/’*</b>, it will be replaced with <b>*‘/raw/’*</b>. In case the `baseUrl` parameter is defined without a slash at the end, it will be added automatically.              
 
+There are a list of JPS blocks which can use resources from **related** links:
+
+- `logo` - JPS application image is shown while jps installation
+- `script` - <a href="/reference/actions/#script" target="_blank">action</a>,= for executing javascript and java scripts
+- `description` - information about JPS which is shown before install process
+- `success` - message after successfull application installation
  
 The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="http://docs.cloudscripting.com/reference/actions/#cmd" target="_blank">*cmd*</a> and <a href="http://docs.cloudscripting.com/reference/actions/#script" target="_blank">*script*</a> actions).                 
 
