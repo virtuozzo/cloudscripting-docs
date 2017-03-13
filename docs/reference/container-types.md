@@ -2,11 +2,11 @@
 
 <b>Containers by Types (*NodeType*)</b>
 
-The *nodeType* parameter defines software stacks (among the supported ones) to be implemented within an environment. The node type value is specified within the *nodeType* field while performing an appropriate <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a>.                         
+The *nodeType* parameter defines software stacks (among the supported ones) to be implemented within an environment. The node type value is specified within the *nodeType* field while performing an appropriate <a href="/reference/actions/" target="_blank">action</a>.                         
 
 **For example:**   
 
-Using the *nodeType* field while performing the <a href="http://docs.cloudscripting.com/reference/actions/#writefile" target="_blank">*writeFile*</a> action:                              
+Using the *nodeType* field while performing the <a href="/reference/actions/#writefile" target="_blank">*writeFile*</a> action:                              
 ``` json
 {
   "writeFile": {
@@ -46,7 +46,7 @@ Below you can find data on supported software stacks in confines of the [*nodeGr
 
 ##Containers by Groups (*nodeGroup*)
 
-The *nodeGroup* parameter is applied to set a paradigm for *nodeType* division into groups, i.e. it determines environment layer for container(s) to be placed to. The *nodeGroup* value can be used within *nodeType* field while executing the appropriate <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a>.        
+The *nodeGroup* parameter is applied to set a paradigm for *nodeType* division into groups, i.e. it determines environment layer for container(s) to be placed to. The *nodeGroup* value can be used within *nodeType* field while executing the appropriate <a href="/reference/actions/" target="_blank">actions</a>.        
 
 For *Docker* containers, *nodeGroup* can be stated to any value - either predefined (listed below) or your custom one.       
 
@@ -66,12 +66,12 @@ For example:
 ```
 where:
                    
-- `customGroup` - name of your custom *nodeGroup* value, that is called via `nodeGroup:customGroup` field, while performing an appropriate <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a>                                        
+- `customGroup` - name of your custom *nodeGroup* value, that is called via `nodeGroup:customGroup` field, while performing an appropriate <a href="/reference/actions/" target="_blank">action</a>                                        
 
 !!! note
     > Upon stating non-predefined (i.e. custom) *nodeGroup* value for *Docker* containers, the corresponding container will be placed to the *Extra* layer:               
   <br><center>![extra](/img/extra_layer.jpg)</center><br>
-    Subsequently, this *nodeGroup* value can be used within the same-named <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">actions</a> field to point to a particular *Extra* layer.                 
+    Subsequently, this *nodeGroup* value can be used within the same-named <a href="/reference/actions/" target="_blank">actions</a> field to point to a particular *Extra* layer.                 
 
 <b>Predefined *nodeGroup* values</b>                 
 

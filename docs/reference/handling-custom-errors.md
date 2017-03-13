@@ -1,6 +1,6 @@
 #Handling Custom Errors
 
-The Cloud Scripting engine provides functionality to handle custom errors. These possible errors should be described within a separate `errorHandlers` block. The errors handling is related to the action result codes. You can locate these codes within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
+The Cloud Scripting engine provides functionality to handle custom errors. These possible errors should be described within a separate `errorHandlers` block. The errors handling is related to the action result codes. You can locate these codes within the <a href="/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
 
 There is a number of predefined pop-up windows, which emerge while custom errors are being handled:  
 
@@ -61,13 +61,13 @@ The example below describes a creation of the same file twice and handling an er
 
 where: 
 
-- `createFile` - predefined within the Cloud Scripting <a href="http://docs.cloudscripting.com/reference/actions/#createfile" target="_blank">action</a>              
+- `createFile` - predefined within the Cloud Scripting <a href="/reference/actions/#createfile" target="_blank">action</a>              
 - `errorHandlers` - object (array) to describe custom errors     
 - `type` - type of a pop-up window, emerging upon the error occurrence. The available values are: *error*, *warning*, *info*.       
 
 Thus, the example above sets all the actions with *4036* result to be displayed via *error* pop-up window with a custom error message text.      
 
-The additional functionality is provided to display action errors using <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">*return*</a> action.                         
+The additional functionality is provided to display action errors using <a href="/reference/actions" target="_blank">*return*</a> action.                         
 
 ``` json
 {

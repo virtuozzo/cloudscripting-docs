@@ -87,7 +87,7 @@ Using *script* action
 <br>
 <h2> What's next?</h2>         
 
-- Explore how to customize <a href="/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
+- Explore how to customize <a href="/creating-manifest/user-input-parameters/" target="_blank">Visual Settings</a>              
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples  
 - See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions       
 - Learn more about using <a href="http://docs.jelastic.com/api/" target="_blank">Jelastic Cloud API</a>                                                     

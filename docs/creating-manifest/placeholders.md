@@ -4,21 +4,21 @@ The executor makes an attempt to resolve all placeholders on the package install
 If it's not possible, the placeholder will be unresolved and displayed in the text as is (e.g. *${placeholder}*).
 
 !!! note
-    To output all available placeholders, use a special <b>${placeholders}</b> placeholder. For more information, see the <a href="http://docs.cloudscripting.com/troubleshooting/" target ="_blank">Troubleshooting</a> guide.                                                                                                   
+    To output all available placeholders, use a special <b>${placeholders}</b> placeholder. For more information, see the <a href="/troubleshooting/" target ="_blank">Troubleshooting</a> guide.                                                                                                   
 
 The following specific groups of placeholders are singled out: 
 
-- [Environment Placeholders](http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders)           
-- [Node Placeholders](http://docs.cloudscripting.com/reference/placeholders/#node-placeholders)                 
-- [Event Placeholders](http://docs.cloudscripting.com/reference/placeholders/#event-placeholders)                    
-- [Account Information](http://docs.cloudscripting.com/reference/placeholders/#account-information)                 
-- [Input Parameters](http://docs.cloudscripting.com/reference/placeholders/#input-parameters)                          
-- [Action Placeholders](http://docs.cloudscripting.com/reference/placeholders/#action-placeholders)                  
-- [UI Placeholders](http://docs.cloudscripting.com/reference/placeholders/#ui-placeholders)                     
-- [Custom Global Placeholders](http://docs.cloudscripting.com/reference/placeholders/#custom-global-placeholders)                                
-- [Function Placeholders](http://docs.cloudscripting.com/reference/placeholders/#function-placeholders)                             
-- [Array Placeholders](http://docs.cloudscripting.com/reference/placeholders/#array-placeholders)                                       
-- [File Path Placeholders](http://docs.cloudscripting.com/reference/placeholders/#file-path-placeholders)                                 
+- [Environment Placeholders](/reference/placeholders/#environment-placeholders)           
+- [Node Placeholders](/reference/placeholders/#node-placeholders)                 
+- [Event Placeholders](/reference/placeholders/#event-placeholders)                    
+- [Account Information](/reference/placeholders/#account-information)                 
+- [Input Parameters](/reference/placeholders/#input-parameters)                          
+- [Action Placeholders](/reference/placeholders/#action-placeholders)                  
+- [UI Placeholders](/reference/placeholders/#ui-placeholders)                     
+- [Custom Global Placeholders](/reference/placeholders/#custom-global-placeholders)                                
+- [Function Placeholders](/reference/placeholders/#function-placeholders)                             
+- [Array Placeholders](/reference/placeholders/#array-placeholders)                                       
+- [File Path Placeholders](/reference/placeholders/#file-path-placeholders)                                 
 
 ## Environment Placeholders
 
@@ -69,7 +69,7 @@ This is the list of placeholders that you can use within the nodes section of yo
     - `{nodes.(group).first.(key)}`
     - `{nodes.(group).last.(key)}`   
     where:
-    - `(group)` - node group (<a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> or <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-type" target="_blank">nodeType</a>)           
+    - `(group)` - node group (<a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">nodeType</a>)           
     - `(i)` - node index, starting from *'0'*
     - `(key)` - name of the applied parameter, according to the following list:
         - `address` - internal or external IP address                               
@@ -146,7 +146,7 @@ Event placeholders represent a set of dynamic parameters that are executed as a 
 - `${event.params.(key)}` - where *key* is a name of event parameter                     
 - `${event.response.(key)}` -where *key* is a name of event response parameter             
 
-Learn more about the event placeholders within the <a href="http://docs.cloudscripting.com/reference/events" target="_blank">*Events*</a> page.         
+Learn more about the event placeholders within the <a href="/reference/events" target="_blank">*Events*</a> page.         
 
 ## Account Information  
 
@@ -180,7 +180,7 @@ For example:
   }
 }
 ```
-The name of the placeholder here is `${settings.customName}`. Check the list of <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">fields defined by users</a>.       
+The name of the placeholder here is `${settings.customName}`. Check the list of <a href="/creating-manifest/user-input-parameters/" target="_blank">fields defined by users</a>.       
 
 ## Action Placeholders
 
@@ -336,7 +336,7 @@ For example:
 where:
 
 - `(i)` - array index. Indexes of array start from *'0'*                     
-- `(key)` - node <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">parameters</a>                            
+- `(key)` - node <a href="/reference/placeholders/#node-placeholders" target="_blank">parameters</a>                            
 
 **The First and the Last Array Elements** 
 
@@ -378,7 +378,7 @@ You can use the following placeholders, as well, with the definite *nodeType*:
 - `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*  
 - `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*      
 
-Explore the full list of available <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-type" target="_blank">nodeType</a>.                                              
+Explore the full list of available <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">nodeType</a>.                                              
 
 The list of single placeholders:
 
@@ -394,7 +394,7 @@ The list of single placeholders:
 <br>       
 <h2> What’s next?</h2>                    
 
-- See how to use <a href="http://docs.cloudscripting.com/creating-templates/conditions-and-iterations/">Conditions and Iterations</a>                               
-- Read how to integrate your <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>       
-- Learn how to customize <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>                
-- Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples           
+- See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                               
+- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>       
+- Learn how to customize <a href="/creating-manifest/user-input-parameters/" target="_blank">Visual Settings</a>                
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples           

@@ -46,27 +46,27 @@ where:
 - `fields` - array of fields that will be displayed in a custom form     
     - `showIf` - shows/hides field by condition (is applicable only to the *radio-fieldset* field)   
     - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:   
-        * `string` - [basic](/creating-templates/user-input-parameters/#string) text field                                  
-        * `text`  - [multiline](/creating-templates/user-input-parameters/#text) text field                                                                                                         
-        * `list` - drop-down menu with [textboxes](/creating-templates/user-input-parameters/#list))                                           
-        * `checkbox` - single [checkbox field](/creating-templates/user-input-parameters/#checkbox)                     
-        * `checkboxlist` - [checkbox](/creating-templates/user-input-parameters/#checkboxlist) grouping                             
-        * `radiolist` - [radio field](/creating-templates/user-input-parameters/#radiolist) grouping                       
+        * `string` - [basic](/creating-manifest/user-input-parameters/#string) text field                                  
+        * `text`  - [multiline](/creating-manifest/user-input-parameters/#text) text field                                                                                                         
+        * `list` - drop-down menu with [textboxes](/creating-manifest/user-input-parameters/#list))                                           
+        * `checkbox` - single [checkbox field](/creating-manifest/user-input-parameters/#checkbox)                     
+        * `checkboxlist` - [checkbox](/creating-manifest/user-input-parameters/#checkboxlist) grouping                             
+        * `radiolist` - [radio field](/creating-manifest/user-input-parameters/#radiolist) grouping                       
         * `radio-fieldset` - alias to `radiolist`              
-        * `dockertags` - drop-down menu with a list of [docker tags](/creating-templates/user-input-parameters/#dockertag))                   
-        * `compositefield` - [component](/creating-templates/user-input-parameters/#compositefield) that comprises any available field    
-        * `slider` - [slider element](/creating-templates/user-input-parameters/#slider) as a form field
-        * `envlist` - [list of environments](/creating-templates/user-input-parameters/#envlist) available for a corresponding account                  
-        * `popupselector` - new [pop-up window](/creating-templates/user-input-parameters/#popupselector) via POST request with posibility to pass additional parameters
+        * `dockertags` - drop-down menu with a list of [docker tags](/creating-manifest/user-input-parameters/#dockertag))                   
+        * `compositefield` - [component](/creating-manifest/user-input-parameters/#compositefield) that comprises any available field    
+        * `slider` - [slider element](/creating-manifest/user-input-parameters/#slider) as a form field
+        * `envlist` - [list of environments](/creating-manifest/user-input-parameters/#envlist) available for a corresponding account                  
+        * `popupselector` - new [pop-up window](/creating-manifest/user-input-parameters/#popupselector) via POST request with posibility to pass additional parameters
         * `popup-selector` - alias to `popupselector`                               
-        * `displayfield` - [text field](/creating-templates/user-input-parameters/#displayfield) intended for displaying text                            
+        * `displayfield` - [text field](/creating-manifest/user-input-parameters/#displayfield) intended for displaying text                            
         * `spacer` - alias to `displayfield`                     
-        * `spinner` - [input field](/creating-templates/user-input-parameters/#spinner) for entering numeric values                       
-        * `numberpicker` - [field to select a number](/creating-templates/user-input-parameters/#numberpicker) within a range                            
+        * `spinner` - [input field](/creating-manifest/user-input-parameters/#spinner) for entering numeric values                       
+        * `numberpicker` - [field to select a number](/creating-manifest/user-input-parameters/#numberpicker) within a range                            
         * `number-picker` - alias to `numberpicker`  
-        * `hostpicker` - drop-down menu with [environment hosts](/creating-templates/user-input-parameters/#hostpicker)                             
+        * `hostpicker` - drop-down menu with [environment hosts](/creating-manifest/user-input-parameters/#hostpicker)                             
         * `host-picher` - alias to `hostpicker`                                      
-        * `toggle` - [switcher](/creating-templates/user-input-parameters/#toggle) between two values                        
+        * `toggle` - [switcher](/creating-manifest/user-input-parameters/#toggle) between two values                        
     - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. See more info on the <a href="https://www.w3.org/wiki/HTML/Elements/input#Point" target="_blank">type attribute</a>.                         
     - `name` - input field name, that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests   
     - `default` *[optional]* - default value for the input field  
@@ -690,7 +690,7 @@ In this case, the filtering result will be the following:
 <center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
   
 ## Custom Menus    
-Menu is an expandable list within the <b>Add-ons</b> section comprising operations, that can be extended and adjusted by means of [custom buttons](/creating-templates/user-input-parameters/#custom-buttons).                 
+Menu is an expandable list within the <b>Add-ons</b> section comprising operations, that can be extended and adjusted by means of [custom buttons](/creating-manifest/user-input-parameters/#custom-buttons).                 
 
 <center>![menu](/img/menu.jpg)</center>     
 
@@ -735,7 +735,7 @@ Such buttons execute operations that are predefined within a JPS manifest.
 <center>![TrafficManager](/img/TrafficManager.jpg)</center>    
 
 !!! note
-    > The JPS manifest should include the [*targetNodes*](/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
+    > The JPS manifest should include the [*targetNodes*](/creating-manifest/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
 
 <b>Templates</b>   
 
@@ -786,7 +786,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 - `href` *[optional]* - external link that is opened in a new browser tab; is executed only if the `settings` field is absent. In case of `href` execution, `action` will not be carried out.     
 
-Another sample with additional configurations: the next parameters can be enabled only if the [*settings*](/creating-templates/user-input-parameters/#custom-settings) field is present:     
+Another sample with additional configurations: the next parameters can be enabled only if the [*settings*](/creating-manifest/user-input-parameters/#custom-settings) field is present:     
 ``` json
 {
   "type": "update",
@@ -960,10 +960,10 @@ There is an ability to return a response with a defined result type and with a c
 }
 ```
 
-Parameters `message` and `email` support all <a href="/reference/placeholders/" target="_blank">available placeholders</a>. Either, they could be uploaded from an any external source via direct link or according to <a href="/creating-templates/basic-configs/#relative-links">baseUrl ability</a>.  
+Parameters `message` and `email` support all <a href="/reference/placeholders/" target="_blank">available placeholders</a>. Either, they could be uploaded from an any external source via direct link or according to <a href="/creating-manifest/basic-configs/#relative-links">baseUrl ability</a>.  
 
 In case, when is returned a response code with a type `success` two response objects impose one to another. 
-But the `success` text from response object has a higher priority than a <a href="/creating-templates/user-input-parameters/#success-text-customization" target="_blank">**success**</a> text from main manifest block.    
+But the `success` text from response object has a higher priority than a <a href="/creating-manifest/user-input-parameters/#success-text-customization" target="_blank">**success**</a> text from main manifest block.    
 A examples below display the difference:
 
 ```json
