@@ -42,11 +42,11 @@ The current manifest states to create a new environment, handled with **Apache 2
 
 In order to give a try to *Hello World* sample from above (or deploy your own application), enter your <a href="https://jelastic.cloud/" target="blank">Jelastic Platform</a> account and perform the following steps.                    
 
-1. Click the **Import** button at the top pane of the dashboard.                                             
+1.Click the **Import** button at the top pane of the dashboard.                                             
 
 <center>![import-button.png](img/import-button.png)</center>                        
 
-2. Within the opened frame, switch to the **JPS** tab and paste the code provided above (for Hello World app).                      
+2.Within the opened frame, switch to the **JPS** tab and paste the code provided above (for Hello World app).                      
 
 <center>![import-manifest.png](img/import-manifest.png)</center>               
 
@@ -58,11 +58,11 @@ Clicking on the **Examples** string nearby will redirect you to <a href="https:/
 
 To proceed, click on **Import** in the bottom-right corner.                   
 
-3. Within the installation confirmation window, specify domain name for a new **Environment**, set **Display Name** (i.e. <a href="https://docs.jelastic.com/environment-aliases">alias</a>) for it and select the preferred <a href="https://docs.jelastic.com/environment-regions">region</a> (if available).                  
+3.Within the installation confirmation window, specify domain name for a new **Environment**, set **Display Name** (i.e. <a href="https://docs.jelastic.com/environment-aliases">alias</a>) for it and select the preferred <a href="https://docs.jelastic.com/environment-regions">region</a> (if available).                  
 
 <center>![hello-world.png](img/hello-world.png)</center>                                        
 
-4. Once the import is completed, you’ll be shown the successful installation window.                                      
+4.Once the import is completed, you’ll be shown the successful installation window.                                      
 
 <center>![open-in-browser.png](img/open-in-browser.png)</center>               
 
