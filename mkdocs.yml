@@ -59,9 +59,9 @@ pages:
 - Creating Manifest:
    - Basic Configs: creating-manifest/basic-configs.md
    - Specifying Target Container: creating-manifest/selecting-containers.md
-   - Actions: reference/actions.md
-   - Events: reference/events.md
-   - Placeholders: reference/placeholders.md
+   - Actions: creating-manifest/actions.md
+   - Events: creating-manifest/events.md
+   - Placeholders: creating-manifest/placeholders.md
    - Conditions and Iterations: creating-manifest/conditions-and-iterations.md
    - Custom Scripts: creating-manifest/custom-scripts.md
    - Addons: creating-manifest/addons.md
