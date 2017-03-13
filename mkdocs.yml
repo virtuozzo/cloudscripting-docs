@@ -64,6 +64,7 @@ pages:
    - Placeholders: reference/placeholders.md
    - Conditions and Iterations: creating-manifest/conditions-and-iterations.md
    - Custom Scripts: creating-manifest/custom-scripts.md
+   - Addons: creating-manifest/addons.md
    - Visual Settings: creating-manifest/visual-settings.md
 #   - Custom Errors: reference/handling-custom-errors.md
 

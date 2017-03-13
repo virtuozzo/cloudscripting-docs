@@ -741,7 +741,8 @@ In the following example, the *nodeGroup* parameter is passed to the *installAdd
 }
 ```
 
-Consequently, the installed add-on will be marked as set up at the balancer (*bl*) layer. 
+Consequently, the installed add-on will be marked as set up at the balancer (*bl*) layer.  
+More details about add-ons installations [here](/creating-manifest/addons/).
 
 <!-- add example -->
 
