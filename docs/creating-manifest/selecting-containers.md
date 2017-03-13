@@ -192,34 +192,51 @@ The Jelastic Platform supports the following software stacks:
         - `apache2-ruby` - *Apache 2 + Ruby*                    
         - `nginx-ruby` - *Nginx Ruby*                    
     - *Node.js*                  
-        - `nodejs` - *Node.js*                             
-- **SQL Databases:**                     
-     - `mysql5` - *MySQL*                       
-     - `mariadb` - *MariaDB 5*                    
-     - `mariadb10` - *MariaDB 10*                    
-     - `postgres8` - *PostgreSQL 8*                  
-     - `postgres9` - *PostgreSQL 9*                    
+        - `nodejs` - *Node.js*       
+    - *Web Server (IIS)*
+        - `iis8` - *Web Server (IIS)*
+- **SQL Databases:**
+     - `mysql5` - *MySQL*
+     - `mariadb` - *MariaDB 5*
+     - `mariadb10` - *MariaDB 10*
+     - `postgres8` - *PostgreSQL 8*
+     - `postgres9` - *PostgreSQL 9*
+     - `mssql` - *MSSQL 2012*
+     - `mssqlweb` - *MSSQL Web*
+     - `mssqlstd` - *MSSQL std*
 - **NoSQL Databases:**   
-     - `mongodb` - *MongoDB*           
-     - `couchdb` - *CouchDB*             
-     - `redis` - *Redis 2.8*                 
-     - `redis3` - *Redis 3.2*                
-     - `cassandra2` - *Cassandra 2*             
-- **Balancers:**   
-     - `nginx` - *Nginx* balancer                        
-     - `haproxy` - *HAProxy* balancer                     
-     - `varnish` - *Varnish 4*                    
-- **Build Node:**   
-     - `maven3` - *Мaven*                  
-- **Cache Node:**                    
-     - `memcached` - *Мemcached*                     
-- **Virtual Private Server nodes:**                         
-     - `centos6` - *CentOS 6*                  
-     - `centos7` - *CentOS 7*               
-- **Storage:**                 
-     - `storage` - *Shared storage*                 
-- **Docker Containers:**                               
-     - `docker`                 
+     - `mongodb` - *MongoDB*
+     - `mongodb2` - *MongoDB 2*
+     - `couchdb` - *CouchDB*
+     - `redis` - *Redis 2.8*
+     - `redis3` - *Redis 3.2*
+     - `cassandra2` - *Cassandra 2*
+     - `cassandra3` - *Cassandra 3*
+     - `neo4j` - *Neo4j*
+     - `neo4j2-1` - *Neo4j2-1*
+     - `neo4j3` - *Neo4j3*
+     - `orientDB` - *OrientDB*
+     - `orientDB2` - *OrientDB 2*
+     - `Percona` - *Percona 5*
+- **Balancers:**
+     - `nginx` - *Nginx* balancer
+     - `haproxy` - *HAProxy* balancer
+     - `apache-lb` - *Apache* balancer
+     - `varnish` - *Varnish 4*
+- **Build Node:**
+     - `maven3` - *Мaven*
+- **Cache Node:**
+     - `memcached` - *Мemcached*
+- **Virtual Private Server nodes:**
+     - `centos6` - *CentOS 6*
+     - `centos7` - *CentOS 7*
+     - `ubuntu16-04` - *Ubuntu16-04*
+     - `windows2008` - *Windows2008*
+     - `windows2012` - *Windows2012*
+- **Storage:**
+     - `storage` - *Shared storage*
+- **Docker Containers:**
+     - `docker`
          
 
 ### Engine Versions
@@ -259,6 +276,12 @@ The following section deals with the supported engine versions and their availab
 |nodeType|`nodejs`            |
 |--------|--------------------|
 |engine  |*nodejs0.10*<br>*nodejs0.12*<br>*nodejs4.3*<br>*nodejs5.6*|
+
+**.Net**
+
+|nodeType|`iis8`            |
+|--------|--------------------|
+|engine  |*.NET 4*|
 
 !!! note
     The list of supported <a href="https://docs.jelastic.com/software-stacks-versions" target="_blank">software stacks</a> can vary depending on your Jelastic platform version - it can be checked at your dashboard.              
