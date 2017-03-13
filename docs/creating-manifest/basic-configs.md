@@ -61,9 +61,9 @@ There is a set of available parameters to define a manifest installation behavio
 - `homepage` *[optional]* - link to any external aplication source
 - `categories` - categories available for manifests filtering                                                                        
 - `baseUrl` *[optional]* - custom <a href="#relative-links" target="_blank">relative links</a>                                       
-- `settings` *[optional]* - custom form with <a href="/creating-templates/user-input-parameters/" target="_blank">predefined user input elements</a>                        
+- `settings` *[optional]* - custom form with <a href="/creating-manifest/user-input-parameters/" target="_blank">predefined user input elements</a>                        
 - `nodes` - an array to describe information about nodes for an installation. Required option for JPS with **type** `install`.
-- `engine` *[optional]* - engine <a href="/creating-templates/selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
+- `engine` *[optional]* - engine <a href="/creating-manifest/selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
 - `region` *[optional]* - region, where an environment will be installed. Required option for **type** `install`.
 - `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with `type` *install* mode.            
 - `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with `type` *install* mode.
@@ -84,7 +84,7 @@ The environment can be installed in case when the `type` parameter is set to **i
 
 The list of available parameters are:
 
-- `nodeType` *[required]* - the defined node type. The list of available stacks are <a href="/creating-templates/selecting-containers/#supported-stacks" target="_blank">here</a>. 
+- `nodeType` *[required]* - the defined node type. The list of available stacks are <a href="/creating-manifest/selecting-containers/#supported-stacks" target="_blank">here</a>. 
 - `cloudlets` *[optional]* - a number of dynamic cloudlets. The default value is 0. `flexible` is an alias. 
 - `fixedCloudlets` *[optional]* - a mount of fixed cloudlets. The default value is 1.
 - `count` *[optional]* - a mount of nodes in one group. The default value is 1.

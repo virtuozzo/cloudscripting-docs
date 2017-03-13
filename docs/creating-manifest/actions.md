@@ -1,6 +1,6 @@
 # Actions
 
-Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS, and Java scripts.                 
+Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="/creating-manifest/writing-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS, and Java scripts.                 
 
 With the help of actions you can achieve automation of the tasks related to:                
 
@@ -11,12 +11,12 @@ With the help of actions you can achieve automation of the tasks related to:
 
 The default workflow for any action execution is the following:                  
 
-- replacing <a href="http://docs.cloudscripting.com/reference/placeholders" target="_blank">placeholders</a>                                     
-- getting a list of target containers (for a detailed guidance, see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> page)                
+- replacing <a href="/reference/placeholders" target="_blank">placeholders</a>                                     
+- getting a list of target containers (for a detailed guidance, see the <a href="/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> page)                
 - checking permissions        
 - executing the action itself         
 
-Actions are executed when the called <a href="http://docs.cloudscripting.com/reference/events" target="_blank">event</a> matches specified filtering rules.               
+Actions are executed when the called <a href="/reference/events" target="_blank">event</a> matches specified filtering rules.               
 
 Thus, the following specific groups of actions are singled out:           
 
@@ -27,7 +27,7 @@ Thus, the following specific groups of actions are singled out:
 
 ## Container Operations
 
-There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Containers</em></a> page.                        
+There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the <a href="/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Containers</em></a> page.                        
 
 Any container operation can be performed using a [*cmd*](#cmd) action. Moreover, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:       
 
@@ -55,7 +55,7 @@ The *cmd* action executes <a href="https://docs.jelastic.com/ssh-overview" targe
 ```
 where:       
      
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required). For a detailed guidance, see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> section.                             
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required). For a detailed guidance, see the <a href="/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> section.                             
 - `cmd1` and `cmd2` - set of commands that are being executed. Their values are wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**.     
     Where:    
     - **cmd** - is equal to a Base64 encoded string: **yes | (cmd1;cmd2)**. In case your commands require the interactive input, by default the Cloud Scripting executor will always try to give a positive answer, using **yes** utility.        
@@ -68,7 +68,7 @@ A single SSH command can be passed in a string. For example, executing a bash sc
   "cmd [tomcat6]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
 }
 ```
-Learn more about <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> for your actions within the pointed guide.                      
+Learn more about <a href="/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> for your actions within the pointed guide.                      
 
 While accessing containers via *cmd*, a user receives all the required permissions and additionally can manage the main services with **sudo** commands of the following types (and others).            
 ```no-highlight
@@ -123,7 +123,7 @@ There are a number of parameters required by Jelastic API, which are defined aut
 - *appid* - unique environment identifier that can be passed into API instead of the *envName*         
 - *session* - unique session of a current user              
 
-Target containers, selected for API methods execution can be passed by the node keywords. API methods can be executed at all nodes within a single <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-type" target="blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required, which is available either through the <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a> or a set of [custom action parameters](#custom-actions) (*this*).
+Target containers, selected for API methods execution can be passed by the node keywords. API methods can be executed at all nodes within a single <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required, which is available either through the <a href="/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a> or a set of [custom action parameters](#custom-actions) (*this*).
 
 **Examples**
 
@@ -135,7 +135,7 @@ Restarting all compute nodes in an environment.
 ``` 
 where:        
        
-- `api [cp]` - specifying a target node group for the API method to be executed at (e.g. *cp*). Learn more details about <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> within the linked page.                                        
+- `api [cp]` - specifying a target node group for the API method to be executed at (e.g. *cp*). Learn more details about <a href="/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> within the linked page.                                        
 - *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group              
 
 This parameter (*jelastic.environment.control.RestartNodesByGroup*) can be simplified like shown in the example below.    
@@ -152,7 +152,7 @@ Below, you can find one more approach to specify a target node group for the API
     "nodeGroup" : "cp"
 }
 ```
-Learn more about <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> for your API actions within the linked guide.                                        
+Learn more about <a href="/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> for your API actions within the linked guide.                                        
         
 ### deploy
 
@@ -325,7 +325,7 @@ where:
 - `path` - path where a file is available               
 - `replacements` - list of replacements within the node's configuration files                        
     - `pattern` - regular expressions to find a string (e.g. *app\\.host\\.url\\s*=\\s*.**)                   
-    - `replacement` - you can use as a replacement any string value, including any combination of <a href="http://docs.cloudscripting.com/reference/placeholders" target="_blank">placeholders</a>                                            
+    - `replacement` - you can use as a replacement any string value, including any combination of <a href="/reference/placeholders" target="_blank">placeholders</a>                                            
 
 <!-- DeletePath -->
 <!-- RenamePath --> 
@@ -361,7 +361,7 @@ The present section introduces actions that are provided for managing the topolo
 ```
 where:
 
-- `nodeType` *[required]* - parameter thet defines software stack. For a detailed guidance, see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#predefined-nodetype-values" target="_blank">Container Types</a> page. For docker containers `nodeType` value is **docker**.                        
+- `nodeType` *[required]* - parameter thet defines software stack. For a detailed guidance, see the <a href="/creating-manifest/selecting-containers/#predefined-nodetype-values" target="_blank">Container Types</a> page. For docker containers `nodeType` value is **docker**.                        
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.                     
 - `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.                             
 - `flexibleCloudlets` *[optional]* - number of dynamic cloudlets. The default value is *'1'*.                           
@@ -574,7 +574,7 @@ where:
 - `databaseName` - name of a database for a patch to be applied                    
 - `user` - username in the database, on behalf of which the application will be used                                          
 - `password` - password in the database, on behalf of which the application will be used                              
-- `patch` - *SQL* query or a link to it. It is used only for *SQL* databases. Here, the <a href="http://docs.cloudscripting.com/reference/placeholders" target="_blank">placeholders</a> support is available.                    
+- `patch` - *SQL* query or a link to it. It is used only for *SQL* databases. Here, the <a href="/reference/placeholders" target="_blank">placeholders</a> support is available.                    
 
 !!! note
     The function is executed only for *mysql5*, *mariadb* and *mariadb10* containers.                         
@@ -648,7 +648,7 @@ Installing add-on via the external link (with *update* type).
 where:
 
 - `jps` - URL to your custom JPS manifest  
-- `settings` - user <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">custom form</a>           
+- `settings` - user <a href="/creating-manifest/user-input-parameters/" target="_blank">custom form</a>           
 
 Installing add-on from the local manifest.         
 ``` json
@@ -682,7 +682,7 @@ where:
 
 - `jps` - URL to your custom JPS manifest                    
 - `envName` - short domain name of a new environment                                   
-- `settings` - user <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">custom form</a>                                               
+- `settings` - user <a href="/creating-manifest/user-input-parameters/" target="_blank">custom form</a>                                               
 
 Installing a new environment from the local manifest.             
 ``` json
@@ -823,7 +823,7 @@ Here a parameter **name** is being sent into custom action **customAction** wher
 Therefore, the same `custom actions` can be reused many times with different parameters.
 
 Any `actions` can be filtered for specific node by id, by `nodeType` or by `nodeGroup`. 
-More details about <a href="/creating-templates/selecting-containers/#types-of-selectors">Node Selectors here</a>.
+More details about <a href="/creating-manifest/selecting-containers/#types-of-selectors">Node Selectors here</a>.
 
 ### Code Reuse
 
@@ -919,8 +919,8 @@ Writing Hello World! and outputting the first and the second compute nodes IP ad
 <br>       
 <h2> What’s next?</h2>                    
 
-- See the <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">Events</a> list the actions can be bound to            
-- Find out the list of <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching        
-- Read how to integrate your <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>   
-- Learn how to customize <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
-- Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples   
+- See the <a href="/reference/events/" target="_blank">Events</a> list the actions can be bound to            
+- Find out the list of <a href="/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching        
+- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>   
+- Learn how to customize <a href="/creating-manifest/user-input-parameters/" target="_blank">Visual Settings</a>              
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples   

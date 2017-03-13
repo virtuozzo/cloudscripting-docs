@@ -62,7 +62,7 @@ In this example, a new file *test.log* will be created during `onInstall` action
 <h2> What’s next?</h2>                    
 
 - Find out the list of <a href="/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching   
-- See how to use <a href="/creating-templates/conditions-and-iterations/">Conditions and Iterations</a>                              
-- Read how to integrate your <a href="/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>   
-- Learn how to customize <a href="/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
+- See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                              
+- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>   
+- Learn how to customize <a href="/creating-manifest/user-input-parameters/" target="_blank">Visual Settings</a>              
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples   

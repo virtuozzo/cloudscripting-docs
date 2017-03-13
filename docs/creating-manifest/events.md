@@ -1,6 +1,6 @@
 # Events
 
-Any <a href="/reference/actions/" target="blank">action</a>, available to be performed by means of <a href="https://docs.jelastic.com/api/" target="blank">API</a> (including <a href="/creating-templates/custom-scripts/" target="blank">custom scripts</a> running), should be bound to some event, i.e. executed as a result of this event occurrence.
+Any <a href="/reference/actions/" target="blank">action</a>, available to be performed by means of <a href="https://docs.jelastic.com/api/" target="blank">API</a> (including <a href="/creating-manifest/custom-scripts/" target="blank">custom scripts</a> running), should be bound to some event, i.e. executed as a result of this event occurrence.
 Each event refers to a particular entity. For example, the entry point for executing any action is the [*onInstall*](#oninstall) event.                     
 
 ## Events Execution Rules    
@@ -13,7 +13,7 @@ Each event refers to a particular entity. For example, the entry point for execu
 
 ## Events Filtering
 
-Events can be filtered by <a href="/creating-templates/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="/creating-templates/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> and <a href="/creating-templates/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the defined actions will be executed only when the called event matches specified filtering rules. Otherwise (i.e. if no filtering rules are specified), every event is listened by all environment entities.         
+Events can be filtered by <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> and <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the defined actions will be executed only when the called event matches specified filtering rules. Otherwise (i.e. if no filtering rules are specified), every event is listened by all environment entities.         
 
 The example below describes events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event).         
 
@@ -1073,7 +1073,7 @@ The *onAfterRemoveVolume* event will be triggered after removing volumes from Do
 <h2> What’s next?</h2>                    
 
 - Find out the list of <a href="m/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching   
-- See how to use <a href="/creating-templates/conditions-and-iterations/">Conditions and Iterations</a>                              
-- Read how to integrate your <a href="/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>   
-- Learn how to customize <a href="/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
+- See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                              
+- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>   
+- Learn how to customize <a href="/creating-manifest/user-input-parameters/" target="_blank">Visual Settings</a>              
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples   

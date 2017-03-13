@@ -56,7 +56,7 @@ Then, log in to your Jelastic account and perform the following operations:
 
 - Depending on the `type` stated at the beginning of the manifest, in the opened <b>Confirm installation</b> window, you should either select the existing environment or type the preferable name (or leave the default one) for a new one you'd like to create for your application deployment. After that click <b>Install</b>.
 - The process of installation will be started. Wait a minute for Preparing, Deploying and Configuring to be finished.
-- Once these operations are finished, you will see a message about the successful installation completion. It can also contain <a href="/creating-templates/relative-links/#success-text-customization" target="blank">custom text</a> from the `success` manifest section (if it's declared).
+- Once these operations are finished, you will see a message about the successful installation completion. It can also contain <a href="/creating-manifest/relative-links/#success-text-customization" target="blank">custom text</a> from the `success` manifest section (if it's declared).
 
 ## Best Practices
 While preparing your own manifest file, we recommend to:
@@ -68,16 +68,16 @@ While preparing your own manifest file, we recommend to:
 
 ### Learn Template Basics
 
-See the <a href="/creating-templates/template-basics/" target="_blank">Basic Configs </a> section to learn the required basis of any JSON manifest and find out the differences between <em>Application</em> and <em>Extension</em>.    
+See the <a href="/creating-manifest/template-basics/" target="_blank">Basic Configs </a> section to learn the required basis of any JSON manifest and find out the differences between <em>Application</em> and <em>Extension</em>.    
 
 ### Write Cloud Scripts  
 
 In addition, you have the possibility to prepare and use your own actions within manifest. Such Custom Actions can be scripted either using Java, Javascript or PHP if you need to manage your whole environment or using any intercontainer language, if you need to script something inside of a container.
-See the <a href="/creating-templates/writing-scripts/" target="_blank">Writing Scripts</a> section.
+See the <a href="/creating-manifest/writing-scripts/" target="_blank">Writing Scripts</a> section.
 
 ### Build Actions        
 
-Reuse your code and the chain of actions using <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">Actions</a>.
+Reuse your code and the chain of actions using <a href="/reference/actions/" target="_blank">Actions</a>.
 
 ### Automate Workflows
 
@@ -85,7 +85,7 @@ Automate workflows using <a href="/reference/events/" target="_blank">Events</a>
 
 ### Define Supported Fields
 
-Customize your app's supported fields that should be specified by a user before the installation. For that, see the <a href="/creating-templates/user-input-parameters/" target="_blank">Getting User Input</a> documentation page.            
+Customize your app's supported fields that should be specified by a user before the installation. For that, see the <a href="/creating-manifest/user-input-parameters/" target="_blank">Getting User Input</a> documentation page.            
 
 ### Use Placeholders
 
@@ -101,6 +101,6 @@ Visit the <a href="/samples/" target="_blank">Samples</a> page to find a set of 
 
 ### Explore Troubleshooting   
 
-Follow the <a href="/troubleshooting/" target="_blank">Troubleshooting</a> guide if you experience any issues. See the <a href="/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a> section.                                 
+Follow the <a href="/troubleshooting/" target="_blank">Troubleshooting</a> guide if you experience any issues. See the <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a> section.                                 
  
      
