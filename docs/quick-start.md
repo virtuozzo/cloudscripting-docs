@@ -7,7 +7,7 @@ To give a try to Cloud Scripting right away, use a basic [Hello World](#hello-wo
 And to get up and ready with your own project, fulfill the following requirements:                                   
 
 - decide upon a <a href="http://docs.cloudscripting.com/samples/" target="blank">scenario</a> that will be delivered by means of CS                      
-- define a set of <a href="http://docs.cloudscripting.com/creating-templates/template-basics/" target="blank">properties</a> essential for the proper application workflow                     
+- define a set of <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/" target="blank">properties</a> essential for the proper application workflow                     
 - declare the required properties within a <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/" target="blank">JPS manifest</a> file                     
 - deploy the prepared manifest to a Platform via [import](#how-to-deploy-cs-solution-to-jelastic ) functionality               
 
