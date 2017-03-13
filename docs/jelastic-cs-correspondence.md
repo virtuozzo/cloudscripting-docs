@@ -15,7 +15,7 @@ The table below displays dependencies between Cloud Scripting and the Jelastic P
     </tr>
     <tr id="jel">
         <th id="table-head">Jelastic</th>
-        <td>4.10</td>
+        <td>5.0.5, 4.10</td>
         <td>4.9.5</td>
         <td>4.8</td>
         <td>4.6, 4.7</td>

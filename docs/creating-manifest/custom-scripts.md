@@ -1,11 +1,11 @@
 # Custom Scripts
 
 Custom users scripts can be written in Java or JavaScript. Inside these scripts, a set of client libraries for <a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> methods calling is available. 
-The script can be subscribed to the <b>*onAfterReturn*</b> event for executing any <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank">action</a> on its outlet.              
+The script can be subscribed to the <b>*onAfterReturn*</b> event for executing any <a href="/reference/actions/" target="_blank">action</a> on its outlet.              
 
 
 ## Intercontainer Scripts
-In order to execute a shell script inside of a container, the <a href="http://docs.cloudscripting.com/reference/actions/#cmd" target="_blank">ExecuteShellCommands</a> action is used.                
+In order to execute a shell script inside of a container, the <a href="/reference/actions/#cmd" target="_blank">ExecuteShellCommands</a> action is used.                
 
 <b>Examples</b>
 
@@ -85,9 +85,9 @@ Using *script* action
 }
 ```
 <br>
-## What's next?         
+<h2> What's next?</h2>         
 
-- Explore how to customize <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
-- Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples  
-- See <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions       
+- Explore how to customize <a href="/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples  
+- See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions       
 - Learn more about using <a href="http://docs.jelastic.com/api/" target="_blank">Jelastic Cloud API</a>                                                     

@@ -20,6 +20,6 @@ The major improvements were applied to the <a href="http://docs.cloudscripting.c
     - *height*
 
 <br>
-## What's next?    
+<h2> What's next?</h2>    
 
 - Find out the correspondence between <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>             

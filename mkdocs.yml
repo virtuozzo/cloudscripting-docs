@@ -57,14 +57,15 @@ pages:
 
 # Creating Templates
 - Creating Manifest:
-   - Basic Configs: creating-templates/basic-configs.md
-   - Specifying Target Container: creating-templates/selecting-containers.md
-   - Actions: reference/actions.md
-   - Events: reference/events.md
-   - Placeholders: reference/placeholders.md
-   - Conditions and Iterations: creating-templates/conditions-and-iterations.md
-   - Custom Scripts: creating-templates/custom-scripts.md
-   - Visual Settings: creating-templates/user-input-parameters.md
+   - Basic Configs: creating-manifest/basic-configs.md
+   - Specifying Target Container: creating-manifest/selecting-containers.md
+   - Actions: creating-manifest/actions.md
+   - Events: creating-manifest/events.md
+   - Placeholders: creating-manifest/placeholders.md
+   - Conditions and Iterations: creating-manifest/conditions-and-iterations.md
+   - Custom Scripts: creating-manifest/custom-scripts.md
+   - Addons: creating-manifest/addons.md
+   - Visual Settings: creating-manifest/visual-settings.md
 #   - Custom Errors: reference/handling-custom-errors.md
 
 #Samples
@@ -83,7 +84,7 @@ pages:
 #- Specifting Target Container:
    #- Writing Scripts: creating-templates/custom-scripts.md
  #  - Selecting Containers For Your Actions: creating-templates/selecting-containers.md
-   #- Getting User Input: creating-templates/user-input-parameters.md
+   #- Getting User Input: creating-templates/visual-settings.md
    #- Conditions and Iterations: creating-templates/conditions-and-iterations.md
    #- Actions: reference/actions.md
    #- Events: reference/events.md

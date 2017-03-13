@@ -27,7 +27,7 @@ Thus, the following specific groups of actions are singled out:
 
 ## Container Operations
 
-There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> page.                        
+There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Containers</em></a> page.                        
 
 Any container operation can be performed using a [*cmd*](#cmd) action. Moreover, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:       
 
@@ -102,7 +102,9 @@ Downloading and unzipping the **WordPress** plugin on all the compute nodes. Her
 }
 ```
 
-Using **sudo** to reload **Nginx** balancer.       
+Herewith, the commands array is executed through a single SSH command. The same can be performed with the help of the [unpack](/reference/actions/#unpack) method.                       
+
+Using **sudo** to reload Nginx balancer.       
 ``` json
 {
   "cmd [nginx]": [
@@ -175,7 +177,7 @@ where:
 ### upload
 
 Available for all nodes
-<!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)-->
+<!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)-->
 ``` json
 {
   "upload": [
@@ -199,7 +201,7 @@ where:
 ### unpack
 
 Available for all nodes
-<!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
+<!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 ``` json
 {
   "unpack": [
@@ -223,7 +225,7 @@ where:
 ### createFile
 
 Available for all nodes
-<!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
+<!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 ``` json
 {
   "createFile [nodeId, nodeGroup, nodeType]": "string"
@@ -237,7 +239,7 @@ where:
 ### createDirectory
 
 Available for all nodes
-<!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
+<!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 ``` json
 {
   "createDirectory [nodeId, nodeGroup, nodeType]": "string"
@@ -251,7 +253,7 @@ where:
 ### writeFile
 
 Available for all nodes
-<!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
+<!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 ``` json
 {
   "writeFile": [
@@ -275,7 +277,7 @@ where:
 ### appendFile
 
 Available for all nodes
-<!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
+<!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 ``` json
 {
   "appendFile": [
@@ -299,7 +301,7 @@ where:
 ### replaceInFile
 
 Available for all nodes
-<!--Available for all nodes (except for *Docker* containers and *Elastic VPS*)--> 
+<!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 ``` json
 {
   "replaceInFile": [
@@ -342,34 +344,42 @@ The present section introduces actions that are provided for managing the topolo
       "fixedCloudlets": "number",
       "flexibleCloudlets": "number",
       "displayName": "string",
-      "image": "jelastic/wordpress-web:latest",
-      "links": "sourceNodeGroup:alias",
-      "env": "object",
-      "volumes": "array",
+      "dockerName": "jelastic/wordpress-web:latest",
+      "registryUrl": "string",
+      "registryUser": "string",
+      "registryPassword": "string",
+      "dockerTag": "string",
+      "dockerLinks": "sourceNodeGroup:alias",
+      "dockerEnvVars": "object",
+      "dockerVolumes": "array",
       "volumeMounts": "object",
-      "cmd": "array",
-      "entrypoint": "object"
+      "dockerRunCmd": "array",
+      "dockerEntryPoint": "object"
     }
   ]
 }
 ```
 where:
 
-- `nodeType` - parameter thet defines software stack. For a detailed guidance, see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#predefined-nodetype-values" target="_blank">Container Types</a> page.                        
+- `nodeType` *[required]* - parameter thet defines software stack. For a detailed guidance, see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#predefined-nodetype-values" target="_blank">Container Types</a> page. For docker containers `nodeType` value is **docker**.                        
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.                     
 - `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.                             
 - `flexibleCloudlets` *[optional]* - number of dynamic cloudlets. The default value is *'1'*.                           
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
     The following parameters are required for Docker nodes only:                          
-- `image` *[optional]* - name and tag of Docker image                            
-- `links` *[optional]* - Docker links                         
+- `dockerName` *[optional]* - name and tag of Docker image
+- `registryUrl` *[optional]* - custom docker regitry
+- `registryUser` *[optional]* - docker registry username
+- `registryPassword` *[optional]* - docker registry password
+- `dockerTag` - docker tag to installing
+- `dockerLinks` *[optional]* - Docker links                         
     - `sourceNodeGroup` - source node to be linked with a current node                                
     - `alias` - prefix alias for linked variables                         
-- `env` *[optional]* - Docker environment variables                        
-- `volumes` *[optional]* - Docker node volumes               
+- `dockerEnvVars` *[optional]* - Docker environment variables                        
+- `dockerVolumes` *[optional]* - Docker node volumes               
 - `volumeMounts` *[optional]* - Docker external volumes mounts                             
-- `cmd` *[optional]* - Docker run configs                            
-- `entrypoint` *[optional]* - Docker entry points                                          
+- `dockerRunCmd` *[optional]* - Docker run configs                            
+- `dockerEntryPoint` *[optional]* - Docker entry points                                          
 
 <!-- SetCloudletsCount -->
 ### setNodeDisplayName
@@ -388,7 +398,8 @@ where:
 
 ### setNodeCount
 
-Available for all nodes (except for *Docker* containers and *Elastic VPS*)
+Add/remove nodes grouped by the same `nodeGroup` (the same node layer) according to `setNodeCount` value. A node selector is available by **nodeId, nodeGroup or nodeType**.  
+Available for all nodes
 ``` json
 {
   "setNodeCount [nodeId, nodeGroup, nodeType]": "number"
@@ -400,6 +411,8 @@ where:
 - `number` - total number of nodes after the action is finished                                          
 
 ### setExtIpEnabled
+
+Enable/disable external IP address in one node or node group.  
 Available for all nodes
 ``` json
 {
@@ -413,7 +426,7 @@ where:
 
 ### restartNodes
 
-Available for all nodes (except for *Elastic VPS*)
+Available for all nodes (except for *Elastic VDS*)
 ``` json
 {
   "restartNodes": [
@@ -744,11 +757,12 @@ In the following example, the *nodeGroup* parameter is passed to the *installAdd
 }
 ```
 
-Consequently, the installed add-on will be marked as set up at the balancer (*bl*) layer. 
+Consequently, the installed add-on will be marked as set up at the balancer (*bl*) layer.  
+More details about add-ons installations [here](/creating-manifest/addons/).
 
 <!-- add example -->
 
-### Custom Actions
+## Custom Actions
 
 The declarative code inside a manifest can be divided into separate blocks, named **actions**. Subsequently, particular actions can be run by means of calling actions with different parameters.             
 
@@ -783,11 +797,35 @@ where:
 
 - `actions` - object where custom actions can be predefined                                    
 
-#### Action Placeholders
+### Action Placeholders
 
-In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. The parameters, sent to a call method, are transformed into a separate kit of placeholders, which can be further used within the appropriate actions by means of *${this}*  namespace. Access to a node inside environment can be gained according to its type, as well as according to its role in the environment.                           
+In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. The parameters, sent to a call method, are transformed into a separate kit of placeholders, which can be further used within the appropriate actions by means of *${this}*  namespace. Access to a node inside environment can be gained according to its type, as well as according to its role in the environment.                             
 
-#### Code Reuse
+The example below describe how to pass a  dynamic parameters in action for executing.   
+Here a parameter **name** is being sent into custom action **customAction** where a `createFile` action is executed.
+```json
+{
+    "type": "update",
+    "name": "$this in Custom Actions",
+    "onInstall": {
+        "customAction": {
+            "name": "simpleTxtFile"
+        }
+    },
+    "actions": {
+        "customAction": {
+            "createFile [cp]": "/tmp/${this.name}.txt"
+        }
+    }
+}
+```
+
+Therefore, the same `custom actions` can be reused many times with different parameters.
+
+Any `actions` can be filtered for specific node by id, by `nodeType` or by `nodeGroup`. 
+More details about <a href="/creating-templates/selecting-containers/#types-of-selectors">Node Selectors here</a>.
+
+### Code Reuse
 
 Using already-existing code to perform a new action.     
 
@@ -816,7 +854,7 @@ For example, outputting Hello World! twice in the <b>*greeting.txt*</b>:
 }
 ```
 
-#### Call Action with Parameters
+### Call Action with Parameters
 
 The following example shows how to pass additional parameters to the custom action. The parameters should be passed as an object to the custom action.                 
 
@@ -879,7 +917,7 @@ Writing Hello World! and outputting the first and the second compute nodes IP ad
 }
 ```
 <br>       
-## What’s next?                    
+<h2> What’s next?</h2>                    
 
 - See the <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">Events</a> list the actions can be bound to            
 - Find out the list of <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching        

@@ -89,7 +89,7 @@ return {
 };
 ```
 <br>
-## What's next?    
+<h2> What's next?</h2>    
 
 - Read <a href="http://docs.cloudscripting.com/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                                      
 - Find out the correspondence between <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>          

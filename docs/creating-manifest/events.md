@@ -1,19 +1,19 @@
 # Events
 
-Any <a href="http://docs.cloudscripting.com/reference/actions/" target="blank">action</a>, available to be performed by means of <a href="https://docs.jelastic.com/api/" target="blank">API</a> (including <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="blank">custom scripts</a> running), should be bound to some event, i.e. executed as a result of this event occurrence.
+Any <a href="/reference/actions/" target="blank">action</a>, available to be performed by means of <a href="https://docs.jelastic.com/api/" target="blank">API</a> (including <a href="/creating-templates/custom-scripts/" target="blank">custom scripts</a> running), should be bound to some event, i.e. executed as a result of this event occurrence.
 Each event refers to a particular entity. For example, the entry point for executing any action is the [*onInstall*](#oninstall) event.                     
 
 ## Events Execution Rules    
 
 * Such events as *Install* & *Uninstall* application, as well as *BeforeDelete* and *AfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.
 * The *ScaleIn*, *ScaleOut* and *ServiceScaleOut* events are called once upon any node count change. Herewith, count of the *addNode* or *removeNode* actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.
-* For application server, load balancer and VPS node layers, the *cloneNodes* event is executed each time the node group is scaled out.     
+* For application server, load balancer and VDS node layers, the *cloneNodes* event is executed each time the node group is scaled out.     
 * *UnlinkNodes*, *LinkNodes*, *SetEnvVars*, *SetEntryPoint*, *SetRunCmd*, *AddVolume* and *RemoveVolume* events can be executed only once per a single *changeTopology* action.     
 * The *StartService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.
 
 ## Events Filtering
 
-Events can be filtered by <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> and <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the defined actions will be executed only when the called event matches specified filtering rules. Otherwise (i.e. if no filtering rules are specified), every event is listened by all environment entities.         
+Events can be filtered by <a href="/creating-templates/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="/creating-templates/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> and <a href="/creating-templates/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the defined actions will be executed only when the called event matches specified filtering rules. Otherwise (i.e. if no filtering rules are specified), every event is listened by all environment entities.         
 
 The example below describes events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event).         
 
@@ -105,8 +105,8 @@ The event will be executed once the *changeTopology* action is finished.
         - `redeployContainerDelay` - delay for container redeployment        
         - `redeployContextDelay` - delay for context redeployment          
         - `restartContainerDelay` - delay for container restart         
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.         
-    - `env` - environment information. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.        
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.         
+    - `env` - environment information. Explore the full list of available <a href="/reference/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.        
 
 ### onBeforeScaleOut
 
@@ -129,7 +129,7 @@ The event will be executed after adding new node(s) to the existing node group. 
     - `count` - number of nodes that are added      
     - `nodeGroup` - node group that is scaled out     
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                                
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                                
 
 ### onBeforeScaleIn
 
@@ -141,7 +141,7 @@ The event will be executed before removing node(s) (i.e. scaling *in*) from the 
     - `count` - number of nodes that are removed    
     - `nodeGroup` - node group that is scaled in   
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                              
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                              
 
 ### onAfterScaleIn
 
@@ -153,7 +153,7 @@ The event will be executed after scaling *in* the corresponding node group. The 
     - `count` - number of nodes that are removed       
     - `nodeGroup` - node group that is scaled in      
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                                
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                                
 
 ### onBeforeServiceScaleOut
 
@@ -228,8 +228,7 @@ The following example shows how a new trigger is being created.
           {
             "type": "NOTIFY",
             "customData": {
-              "notify": false,
-              "reminderPeriod": 60
+              "notify": false
             }
           }
         ]
@@ -252,7 +251,6 @@ This example involves execution of the Jelastic API *addTrigger* method with a s
     - `type` - trigger action, the available values are *NOTIFY*, *ADD_NODE* and *REMOVE_NODE*
     - `customData`:
         - `notify`- alert notification sent to a user via email 
-        - `reminderPeriod` - reminder period in days to send a notification again       
 
 Jelastic will send an alert to the Cloud Scripting system when the appropriate trigger is invoked. Therefore, the *onAlert* event provides a possibility to bound actions to alert notifications and execute custom actions.
 
@@ -663,8 +661,8 @@ The event is related to cloning environment (performed via the Jelastic dashboar
         - `redeployContainerDelay` - delay for container redeployment     
         - `redeployContextDelay` - delay for context redeployment     
         - `restartContainerDelay` - delay for container restart    
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.       
-    - `env` - environment information. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.       
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.       
+    - `env` - environment information. Explore the full list of available <a href="/reference/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.       
 
 ### onBeforeDeploy
 
@@ -1072,10 +1070,10 @@ The *onAfterRemoveVolume* event will be triggered after removing volumes from Do
     - `result` - result code. The successful action result is *'0'*.      
 
 <br>       
-## What’s next?                    
+<h2> What’s next?</h2>                    
 
-- Find out the list of <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching   
-- See how to use <a href="http://docs.cloudscripting.com/creating-templates/conditions-and-iterations/">Conditions and Iterations</a>                              
-- Read how to integrate your <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>   
-- Learn how to customize <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
-- Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples   
+- Find out the list of <a href="m/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching   
+- See how to use <a href="/creating-templates/conditions-and-iterations/">Conditions and Iterations</a>                              
+- Read how to integrate your <a href="/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>   
+- Learn how to customize <a href="/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples   

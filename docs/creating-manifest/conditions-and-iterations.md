@@ -2,7 +2,7 @@
 
 ## Conditions    
 
-The main conditional statement is <b>*if*</b>. Within this parameter, all the available <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
+The main conditional statement is <b>*if*</b>. Within this parameter, all the available <a href="/reference/placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
 
 For example
 ```
@@ -15,7 +15,7 @@ if (env.protocol == 'http')
 
 The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*</b> can be of any nesting level.                                             
 
-- If condition is specified incorrectly, the actions inside <b>*if*</b> statement won't be executed. Herewith, the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Cloud Scripting Console</a> will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.               
+- If condition is specified incorrectly, the actions inside <b>*if*</b> statement won't be executed. Herewith, the <a href="/troubleshooting/" target="_blank">Cloud Scripting Console</a> will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.               
 - If condition is valid, but is not executed, the <b>*'condition is not met'*</b> message will be logged.                     
 
 <b>Examples</b>    
@@ -159,10 +159,10 @@ The main iterable object is <b>*ForEach*</b> with the following map.
 ```
 where:    
 
-- `settings` *[optional]* - fields values predefined within a <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">user settings form</a>          
-- `license [optional]` - link to fetch parameters specified within the <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">placeholders</a> `$(license.{any_name}` within a manifest.    
-- `event [optional]` - object entity with <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">events</a> parameters that can be of two types, allowing initiation of a particular <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank"> action</a> *before* and *after* event execution       
-- `this [optional]` - parameters object to be transmitted within the procedure body. See the full list of available<a href="http://docs.cloudscripting.com/reference/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
+- `settings` *[optional]* - fields values predefined within a <a href="/creating-templates/user-input-parameters/" target="_blank">user settings form</a>          
+- `license [optional]` - link to fetch parameters specified within the <a href="/creating-templates/user-input-parameters/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through <a href="/reference/placeholders/" target="_blank">placeholders</a> `$(license.{any_name}` within a manifest.    
+- `event [optional]` - object entity with <a href="/reference/events/" target="_blank">events</a> parameters that can be of two types, allowing initiation of a particular <a href="/reference/actions/" target="_blank"> action</a> *before* and *after* event execution       
+- `this [optional]` - parameters object to be transmitted within the procedure body. See the full list of available<a href="/reference/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
 
 Iteration can be executed by <b>*env.nodes*</b>, <b>*nodes*</b>, <b>*env.contexts*</b>, and <b>*env.extdomains*</b> objects.                    
 
@@ -271,13 +271,13 @@ where:
 
 In this case, every environment node will have only one conjunction by <b>Node ID</b>.
 
-The **ForEach** execution is recorded in a <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">user console logfile</a> for convenient code debugging.           
+The **ForEach** execution is recorded in a <a href="/troubleshooting/" target="_blank">user console logfile</a> for convenient code debugging.           
 
 <center>![forEachCount](/img/forEachCount.jpg)</center>
 <br>
-## What's next?         
+<h2> What's next?</h2>         
 
-- Read how to integrate your <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>       
-- Learn how to customize <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
-- Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples  
-- See the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions             
+- Read how to integrate your <a href="/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>       
+- Learn how to customize <a href="/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples  
+- See the <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions             

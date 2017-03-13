@@ -392,7 +392,7 @@ The list of single placeholders:
 - `${nginxphp.WEBROOT}` - */var/www/webroot*   
 
 <br>       
-## What’s next?                    
+<h2> What’s next?</h2>                    
 
 - See how to use <a href="http://docs.cloudscripting.com/creating-templates/conditions-and-iterations/">Conditions and Iterations</a>                               
 - Read how to integrate your <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>       
