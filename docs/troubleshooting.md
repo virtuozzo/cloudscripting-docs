@@ -17,7 +17,7 @@ Run into trouble with Cloud Scripting? Here are some helpful tips and specific s
 
 Below, you can find some samples of editing custom information to the log:                      
 
-- outputting a single <a href="http://docs.cloudscripting.com/reference/placeholders/" target="blank">placeholder</a> value                     
+- outputting a single <a href="/reference/placeholders/" target="blank">placeholder</a> value                     
 
 ``` json
 {
@@ -91,8 +91,8 @@ return {
 <br>
 <h2> What's next?</h2>    
 
-- Read <a href="http://docs.cloudscripting.com/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                                      
-- Find out the correspondence between <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>          
+- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                                      
+- Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>          
 
 
 <!--## Logging-->
