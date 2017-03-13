@@ -2,7 +2,7 @@
 
 ## Conditions    
 
-The main condition statement is <b>*'if'*</b>. Within this parameter, all available <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
+The main conditional statement is <b>*if*</b>. Within this parameter, all the available <a href="/reference/placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
 
 For example
 ```
@@ -13,9 +13,10 @@ or
 if (env.protocol == 'http')
 ```
 
-The main iterable object is <b>*'ForEach'*</b>. Both <b>*'if'*</b> and <b>*'ForEach'*</b> can be of any nesting level.
-* If condition is specified incorrectly, the actions inside *if* statement won't be executed. Herewith, the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Cloud Scripting Console</a> will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.
-* If condition is valid, but is not executed, the <b>*'condition is not met'*</b> message will be logged.
+The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*</b> can be of any nesting level.                                             
+
+- If condition is specified incorrectly, the actions inside <b>*if*</b> statement won't be executed. Herewith, the <a href="/troubleshooting/" target="_blank">Cloud Scripting Console</a> will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.               
+- If condition is valid, but is not executed, the <b>*'condition is not met'*</b> message will be logged.                     
 
 <b>Examples</b>    
 
@@ -93,7 +94,7 @@ The main iterable object is <b>*'ForEach'*</b>. Both <b>*'if'*</b> and <b>*'ForE
 
 ### Nested Conditions   
   
-Nesting of two *if* condition statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and logging the correspondent messages.
+Nesting of two <b>*if*</b> conditional statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and is logging the correspondent messages.          
 ``` json
 {
   "type": "update",
@@ -113,7 +114,7 @@ Nesting of two *if* condition statements - the first one is checking an environm
 }
 ```
 
-The operation result can be located within a <b>*result.txt*</b> file that is automatically created in the master node (i.e. the first *cp* node) *<b>tmp</b>* directory.
+The operation result can be located within a <b>*result.txt*</b>  file that is automatically created in the master node (i.e. the first *cp* node) *<b>tmp</b>* directory.
 ```
 Environment consists of two compute nodes
 Balancer node with external IP address!
@@ -138,7 +139,7 @@ Balancer node with external IP address!
 
 ### ForEach
 
-The main iterable object is *ForEach* with the following map. 
+The main iterable object is <b>*ForEach*</b> with the following map. 
 ``` json
 {
   "env": {
@@ -158,14 +159,14 @@ The main iterable object is *ForEach* with the following map.
 ```
 where:    
 
-- `settings` *[optional]* - fields values predefined within a <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">user setting form</a>          
-- `license [optional]` - link to fetch parameters specified within <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">placeholders</a> `$(license.{any_name}` within a manifest.    
-- `event [optional]` - object entity with <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">events</a> parameters; can be of two types that allow initiation of a particular <a href="http://docs.cloudscripting.com/reference/actions/" target="_blank"> action</a> *before* and *after* event execution       
-- `this [optional]` - parameters object to be transmitted within the procedure body. See the full list of available<a href="http://docs.cloudscripting.com/reference/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
+- `settings` *[optional]* - fields values predefined within a <a href="/creating-templates/user-input-parameters/" target="_blank">user settings form</a>          
+- `license [optional]` - link to fetch parameters specified within the <a href="/creating-templates/user-input-parameters/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through <a href="/reference/placeholders/" target="_blank">placeholders</a> `$(license.{any_name}` within a manifest.    
+- `event [optional]` - object entity with <a href="/reference/events/" target="_blank">events</a> parameters that can be of two types, allowing initiation of a particular <a href="/reference/actions/" target="_blank"> action</a> *before* and *after* event execution       
+- `this [optional]` - parameters object to be transmitted within the procedure body. See the full list of available<a href="/reference/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
 
-Iteration can be executed by *env.nodes*, *nodes*, *env.contexts*, and *env.extdomains* objects.                    
+Iteration can be executed by <b>*env.nodes*</b>, <b>*nodes*</b>, <b>*env.contexts*</b>, and <b>*env.extdomains*</b> objects.                    
 
-* Iteration set by *env.extdomains*                  
+Iteration set by <b>*env.extdomains*</b>                       
 ``` json
 {
   "forEach(env.extdomains)": [
@@ -184,7 +185,7 @@ where:
 - `@i` - default iterator name 
 - `env.extdomains` - bound external domains 
 
-* Iteration set by *env.contexts*                         
+Iteration set by <b>*env.contexts*</b>                             
 ``` json
 {
   "forEach(env.contexts)": {
@@ -197,9 +198,10 @@ where:
 ```
 where:  
 
-- `env.contexts` -  list of contexts (applications) deployed to an environment    
+- `env.contexts` -  list of contexts (applications) deployed to an environment                           
 
-* Scaling nodes example           
+Scaling nodes example                
+
 ``` json
 {
   "type": "update",
@@ -222,9 +224,9 @@ As a result of *cmd*, compute nodes internal IP addresses are rewritten within b
 
 ### By All Nodes
 
-Iteration by all nodes in an environment.
+Iteration by all nodes in an environment.    
 
-* Iteration set by *env.nodes*
+- Iteration set by <b>*env.nodes*</b>                            
 ``` json
 {
   "forEach(env.nodes)": {
@@ -269,6 +271,13 @@ where:
 
 In this case, every environment node will have only one conjunction by <b>Node ID</b>.
 
-The **ForEach count** execution is printed in a <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">user console log</a> for usefull debugging code execution.     
+The **ForEach** execution is recorded in a <a href="/troubleshooting/" target="_blank">user console logfile</a> for convenient code debugging.           
 
 <center>![forEachCount](/img/forEachCount.jpg)</center>
+<br>
+<h2> What's next?</h2>         
+
+- Read how to integrate your <a href="/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>       
+- Learn how to customize <a href="/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples  
+- See the <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions             

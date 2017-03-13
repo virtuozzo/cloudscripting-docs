@@ -6,18 +6,19 @@ Run into trouble with Cloud Scripting? Here are some helpful tips and specific s
 
     *http://appstore.{HOSTER_URL}/console/*                       
     
-    Here, substitute *{HOSTER_URL}*  with the platform domain of your hosting provider (see the last column of the table within the <a href="https://docs.jelastic.com/jelastic-hoster-info" target="_blank">Hosters Info</a> page).                                           
+    Here, substitute <b>*{HOSTER_URL}*</b>  with the platform domain of your hosting provider (see the last column of the table within the <a href="https://docs.jelastic.com/jelastic-hoster-info" target="_blank">Hosters Info</a> page).                                           
 
 * In the opened browser tab, you will see the Cloud Scripting execution log.                                                               
     
 <center>![troubleshooting](img/troubleshooting.jpg)</center>          
 
 !!! note
-    The maximum log size is 1 MB. The log will be truncated or overwritten, if this limit is exceeded.
+    The maximum size of the log is 1 MB. The log will be truncated or overwritten, if this limit is exceeded.
 
-Below, some tips are provided on how to edit custom information to the log.        
+Below, you can find some samples of editing custom information to the log:                      
 
-* Output a single <a href="http://docs.cloudscripting.com/reference/placeholders/" target="blank">placeholder</a> value
+- outputting a single <a href="http://docs.cloudscripting.com/reference/placeholders/" target="blank">placeholder</a> value                     
+
 ``` json
 {
   "type": "update",
@@ -31,7 +32,8 @@ Below, some tips are provided on how to edit custom information to the log.
 }
 ```
 
-* Output all the placeholders
+- outputting all the placeholders              
+
 ``` json
 {
   "type": "update",
@@ -40,10 +42,11 @@ Below, some tips are provided on how to edit custom information to the log.
     "log": "${placeholders}"
   }
 }
-```                                                                                      
+```  
 
-* Output from a script
-``` json
+- outputting from a script             
+
+``` json  
 {
   "type": "update",
   "name": "LogTest",
@@ -63,7 +66,7 @@ Below, some tips are provided on how to edit custom information to the log.
 }
 ```
 
-`script.js` body:
+`script.js` body:      
 
 ``` javascript                                               
 var message = 'Hello';
@@ -85,6 +88,13 @@ return {
     } 
 };
 ```
+<br>
+<h2> What's next?</h2>    
+
+- Read <a href="http://docs.cloudscripting.com/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                                      
+- Find out the correspondence between <a href="http://docs.cloudscripting.com/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>          
+
+
 <!--## Logging-->
 <!--Work in progress...-->
 <!--

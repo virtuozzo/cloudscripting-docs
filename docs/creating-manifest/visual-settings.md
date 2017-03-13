@@ -1,6 +1,16 @@
 #Visual Settings
-##Supported Fields
 
+Cloud Scripting enables you to create a personalized solution by customizing the visual appearance and textual content of such elements as:              
+
+- [Menus](#custom-menus)                            
+- [Buttons](#custom-buttons)                 
+- [Forms](#custom-settings)                  
+- [Messages](#success-text-customization)                  
+- [Fields](#string)      
+
+##Supported Fields                               
+
+You can use the parameters from the following example to fetch your input data.                        
 ``` json
 {
   "type": "update",
@@ -29,20 +39,21 @@
   }
 }
 ```   
+
 where:
 
 - `prepopulate` *[optional]* - link to the script, that will fetch the default fields values  
-- `fields` - array of fields, which will be displayed in a custom form     
+- `fields` - array of fields that will be displayed in a custom form     
     - `showIf` - shows/hides field by condition (is applicable only to the *radio-fieldset* field)   
     - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:   
         * `string` - [basic](/creating-templates/user-input-parameters/#string) text field                                  
         * `text`  - [multiline](/creating-templates/user-input-parameters/#text) text field                                                                                                         
-        * `list` - drop-down menu with textboxes (see more details with example [here](/creating-templates/user-input-parameters/#list))                                           
+        * `list` - drop-down menu with [textboxes](/creating-templates/user-input-parameters/#list))                                           
         * `checkbox` - single [checkbox field](/creating-templates/user-input-parameters/#checkbox)                     
         * `checkboxlist` - [checkbox](/creating-templates/user-input-parameters/#checkboxlist) grouping                             
         * `radiolist` - [radio field](/creating-templates/user-input-parameters/#radiolist) grouping                       
         * `radio-fieldset` - alias to `radiolist`              
-        * `dockertags` - drop-down menu with a list of docker tags (see more details with example [here](/creating-templates/user-input-parameters/#dockertag))                   
+        * `dockertags` - drop-down menu with a list of [docker tags](/creating-templates/user-input-parameters/#dockertag))                   
         * `compositefield` - [component](/creating-templates/user-input-parameters/#compositefield) that comprises any available field    
         * `slider` - [slider element](/creating-templates/user-input-parameters/#slider) as a form field
         * `envlist` - [list of environments](/creating-templates/user-input-parameters/#envlist) available for a corresponding account                  
@@ -51,7 +62,7 @@ where:
         * `displayfield` - [text field](/creating-templates/user-input-parameters/#displayfield) intended for displaying text                            
         * `spacer` - alias to `displayfield`                     
         * `spinner` - [input field](/creating-templates/user-input-parameters/#spinner) for entering numeric values                       
-        * `numberpicker` - [text field within number validation](/creating-templates/user-input-parameters/#numberpicker) within a range                            
+        * `numberpicker` - [field to select a number](/creating-templates/user-input-parameters/#numberpicker) within a range                            
         * `number-picker` - alias to `numberpicker`  
         * `hostpicker` - drop-down menu with [environment hosts](/creating-templates/user-input-parameters/#hostpicker)                             
         * `host-picher` - alias to `hostpicker`                                      
@@ -60,7 +71,7 @@ where:
     - `name` - input field name, that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests   
     - `default` *[optional]* - default value for the input field  
     - `caption` *[optional]* - field label  
-    - `placeholder` *[optional]* -  text, that describes the expected value of the input field  
+    - `placeholder` *[optional]* - used <a href="/reference/placeholders/" target="blank">placeholders</a>                         
     - `required` *[optional]* - possible values are *'true'* & *'false'*. If left empty, the default value is *'true'*.  
     - `regex` *[optional]* - constructor for testing the JavaScript RegExp object, that refers to the stated the field value, during validation. If test fails, the field will be marked invalid using *regexText*. The default value is *'null'*.                                                        
     - `regexText` *[optional]* - displays error message in case of the *regex* test failure during validation. The default value is *' '* (blank space).     
@@ -68,7 +79,7 @@ where:
         - `alpha` - keystroke filter mask applied to alpha input. The default value is *'/[a-z_]/i'*.  
         - `alphanum` - keystroke filter mask applied to alphanumeric input. The default value is *'/[a-z0-9_]/i'*.  
         - `email` - keystroke filter mask applied to email input. The default value is *'/[a-z0-9_.-+\'@]/i'*. See the <a href="http://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.VTypes-method-email" target="_blank">appropriate method</a> for more information about complex email validation.      
-        - `URL` - keystroke filter mask applied to *URL* input                        
+        - `URL` - keystroke filter mask applied to URL input                        
     - `vtypeText` *[optional]* - custom error message to be displayed instead of the default one, provided by *vtype* for this field. The default value is *' '* (blank space).     
     
 !!! note
@@ -97,7 +108,7 @@ where:
 - `caption` *[optional]* - field label   
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 
-###text
+### text
 The multiline text field.
 
 <center>![text](/img/text.jpg)</center>  
@@ -119,7 +130,7 @@ where:
 - `caption` *[optional]* - field label  
 - `hideLabel`*[optional] [boolean]* - hides field Label. The default value is *'false'*. 
 
-###list   
+### list   
 The drop-down list and a single-line textbox.  
 
 <center>![list](/img/list.jpg)</center>  
@@ -144,11 +155,11 @@ The drop-down list and a single-line textbox.
 where:      
 
 - `caption` *[optional]* - field label         
-- `values` - objects' values (*"key"*:*"value"*)                            
+- `values` - objects values (*"key"*:*"value"*)                            
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.
-- `editable` [optional][boolean] - allows to input custom values. The default value is 'false'.
+- `editable` [optional][boolean] - allows to input custom values. The default value is *'false'*.
 
-###checkbox
+### checkbox
 The single checkbox field.
 
 <center>![text](/img/checkbox.jpg)</center>  
@@ -172,7 +183,7 @@ where:
 - `value` - enables or disables checkbox                         
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*. 
 
-###checkboxlist
+### checkboxlist
 The checkbox grouping.  
 
 <center>![text](/img/checkboxlist.jpg)</center>  
@@ -199,7 +210,7 @@ where:
 - `values` - checkboxes (*"key"*:*"value"*)  
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 
-###radiolist
+### radiolist
 The radio elements grouping.  
 
 <center>![text](/img/radiolist.jpg)</center>  
@@ -226,11 +237,11 @@ where:
 - `values` - checkboxes (*"key"*:*"value"*)  
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.  
 
-###radio-fieldset
-The grouping of the radio elements with the `showIf` function.     
+### radio-fieldset
+The grouping of the radio elements with the <b>*showIf*</b> function.     
 
 !!! note
-    The *hideLabel* boolean value is always *true* for this field.   
+    The *hideLabel* boolean is always *true* for this field.   
 
 <center>![text](/img/radio-fieldset.jpg)</center>   
 
@@ -270,14 +281,14 @@ The grouping of the radio elements with the `showIf` function.
 
 where:   
 
-- `name` *[required]* - name of the `radio-fieldset` element (for other elements it’s not required)                       
-- `default` *[optional]* - selected field upon opening the form  
+- `name` *[required]* - name of the *radio-fieldset* element (for other elements it’s not required)                       
+- `default` *[optional]* - field selected upon opening the form  
 - `values` - checkboxes (*"key"*:*"value"*)  
-- `showIf` - conditional object that shows predefined elements by clicking on the `radio-fieldset` elements. Predefined elements can vary.  
+- `showIf` - conditional object that shows predefined elements by clicking on the *radio-fieldset* elements. Predefined elements can vary.  
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 - `caption` *[optional]* - field label
 
-###dockertag
+### dockertag
 Displaying Docker tags within the list element.  
 
 <center>![text](/img/dockertag.jpg)</center>  
@@ -314,13 +325,13 @@ Displaying Docker tags within the list element.
 where:   
 
 - `name` *[required]* - should have the *'tag'* value  
-- `values` *[required]* - Docker tag values (*name*: *"tag_name"* is required). By default Docker image is pulled from Docker Hub registry.  
+- `values` *[required]* - Docker tag values (*name*: *"tag_name"* is required). By default Docker image is pulled from the Docker Hub registry.  
 - `dockerImage` - Docker image details   
    - `name` - *repository* is required   
    - `registry`, `username`, `password` [*optional*]   
 - `env` - required object (can be empty) 
 
-###compositefield
+### compositefield
 The compositefield is a container with specific functionality and structural components that constitute it as a block for application-oriented custom user interfaces.  
 
 <center>![compositefield](/img/compositefield.jpg)</center>  
@@ -373,7 +384,7 @@ where:
 - `defaultFlex` *[optional]* - horizontal flex for items 
 - `items` - elements  
 
-###slider
+### slider
 The slider element as a form field.
 
 <center>![slider](/img/slider.jpg)</center>
@@ -402,7 +413,7 @@ where:
 - `caption` *[optional]* - field label  
 - `name` *[optional]* - name of the field 
 
-###envlist
+### envlist
 The account environments list expanded within a drop-down element.  
 
 <center>![envlist](/img/envlist.jpg)</center>  
@@ -425,7 +436,7 @@ where:
 
 - `caption` *[optional]* - field label    
 - `name` *[optional]* - name of the field  
-- `editable` *[optional][boolean]* - enables/disables the `envlist` field editing. The default value is *'false'*.    
+- `editable` *[optional][boolean]* - enables/disables the *envlist* field editing. The default value is *'false'*.    
 - `valueField` *[optional][string]* - value from environment information, which will be sent to a server. The default value is *'domain'*. Available values are:      
     - *iconCls* - CSS class     
     - *isRunning* - checking whether environment status is *running*    
@@ -433,7 +444,7 @@ where:
     - *displayName* - environment *displayName*  
     - *appid* - unique environment ID       
 
-###popupselector
+### popupselector
 (*popup-selector* is an alias)     
 
 Opens a pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.  
@@ -466,16 +477,16 @@ where:
 - `caption` *[optional]* - field label                      
 - `name` *[optional]* - name of the field                  
 - `buttonText` *[optional]* - button label              
-- `url` *[optional]* - external source *URL*. The default link is to the Jelastic Platform.         
+- `url` *[optional]* - external source URL. The default link is to the Jelastic Platform.         
 - `popupWidth` *[optional]* - width in pixels          
 - `popupHeight` *[optional]* - height in pixels   
 - `popupCallbackEvent` - event handler   
-- `params` - parameters for sending in POST request to `url` source     
+- `params` - parameters for sending in POST request to URL source     
 
-###displayfield
+### displayfield
 (*spacer* is an alias)    
 
-The text field intended only for display, which is not validated and not submitted.  
+The text field intended only for display that is not validated, and not submitted.  
 
 <center>![displayfield](/img/displayfield.jpg)</center>  
 
@@ -498,8 +509,8 @@ where:
 - `name` *[optional]* - name of the field                
 - `markup` - value to initialize the field's display. The default value is "*'undefined'*".      
 
-###spinner
-Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
+### spinner
+The enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
 
 <center>![spinner](/img/spinner.jpg)</center>  
 
@@ -528,11 +539,10 @@ where:
 - `increment` - increment value  
 - `decimanPrecision` - precision value  
 
-###numberpicker
-(*number-picker* is an alias)  
-
-The text field with a number validation within a range.   
-
+### numberpicker
+(*number-picker* is an alias)                         
+The field that enables to select a number from a predefined range.                  
+ 
 <center>![numberpicker](/img/numberpicker.jpg)</center>  
 
 ``` json
@@ -556,11 +566,10 @@ where:
 - `caption` *[optional]* - field label    
 - `min` - minimum spinner value  
 - `max` - maximum spinner value  
-- `editable` *[optional] [boolean]* - enables/disables editing the `numberpicker` field. The default value is *'false'*.  
+- `editable` *[optional] [boolean]* - enables/disables editing the *numberpicker* field. The default value is *'false'*.  
 
-###hostpicker
+### hostpicker
 (*host-picker* is an alias)  
-
 The drop-down menu with the environments hosts.  
 
 <center>![hostpicker](/img/hostpicker.jpg)</center>  
@@ -583,7 +592,7 @@ where:
 
 - `name` *[optional]* - name of the field   
 - `caption` *[optional]* - field label   
-- `editable` *[optional] [boolean]* - enables/disables editing the `envlist` field. The default value is *'false'*.  
+- `editable` *[optional] [boolean]* - enables/disables editing the *envlist* field. The default value is *'false'*.  
 - `valueField` *[optional][string]* - value from environment information, which will be sent to a server. The default value is *'domain'*. Available values are:    
     - *iconCls* - CSS class     
     - *isRunning* - checking whether environment status is *running*    
@@ -591,7 +600,7 @@ where:
     - *displayName* - environment *displayName*  
     - *appid* - unique environment ID        
 
-###toggle
+### toggle
 The toggle element is a switch between two values.
 
 <center>![toggle](/img/toggle.jpg)</center>
@@ -614,7 +623,7 @@ where:
 - `caption` *[optional]* - field label    
 - `value` *[boolean]* - enables/disables toggle value. The default value is *'false'*.   
 
-<h3>Target Nodes</h3>
+##Target Nodes
 *Target Nodes* is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *type*: <b>*update*</b> action.   
 
 Filtering for `targetNodes` can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
@@ -685,7 +694,7 @@ Menu is an expandable list within the <b>Add-ons</b> section comprising operatio
 
 <center>![menu](/img/menu.jpg)</center>     
 
-By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the <a href="http://docs.cloudscripting.com/reference/events/#application-level-events" target="_blank">application level events</a> settings.          
+By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the <a href="/reference/events/#application-level-events" target="_blank">application level events</a> settings.          
 
 The used properties for custom menus are the same as for custom buttons. Herewith, the appropriate `menu` field (instead of `buttons`) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
 
@@ -726,7 +735,7 @@ Such buttons execute operations that are predefined within a JPS manifest.
 <center>![TrafficManager](/img/TrafficManager.jpg)</center>    
 
 !!! note
-    > The JPS manifest should include the [*targetNodes*](http://docs.cloudscripting.com/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
+    > The JPS manifest should include the [*targetNodes*](/creating-templates/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
 
 <b>Templates</b>   
 
@@ -766,7 +775,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 <center>![LoadingText](/img/LoadingText.jpg)</center>      
 
-- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the <a href="http://docs.cloudscripting.com/reference/actions/#custom-actions" target="_blank">*actions*</a> section.          
+- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the <a href="/reference/actions/#custom-actions" target="_blank">*actions*</a> section.          
 - `caption` - title of the button  
 
 <center>![Caption](/img/Caption.jpg)</center>   
@@ -816,7 +825,7 @@ where:
 
 <center>![LogsPath](/img/LogsPath.jpg)</center>  
 
-- `logsNodeGroup` - <a href="http://docs.cloudscripting.com/reference/container-types/#containers-by-groups-nodegroup" target="_blank">nodeGroup</a> layer the logging path should be opened for                     
+- `logsNodeGroup` - <a href="/reference/container-types/#containers-by-groups-nodegroup" target="_blank">nodeGroup</a> layer the logging path should be opened for                     
 
 ## Custom Settings
 The settings section can include a few custom forms. The default settings form ID is *'main'*.    
@@ -871,7 +880,7 @@ The *config settings* form appears after clicking the <b>Configure</b> button wi
 
 ##Handling Custom Responses
 
-The Cloud Scripting engine provides functionality to handle custom responses. The responses handling is related to the action result codes. You can locate these codes within the <a href="http://docs.cloudscripting.com/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
+The Cloud Scripting engine provides functionality to handle custom responses. The responses handling is related to the action result codes. You can locate these codes within the <a href="/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
 
 There are a types of predefined pop-up windows, which emerge while custom responses are being handled:  
 
@@ -881,12 +890,13 @@ There are a types of predefined pop-up windows, which emerge while custom respon
 
 - `warning` - *warning* pop-up window with a custom message                
  
-<center>![warningType](/img/warningType.jpg)</center>        
+<center>![new-warning](/img/new-warning.png)</center>        
 
 - `error` - *error* pop-up window          
 
-<center>![errorType](/img/errorType.jpg)</center>          
+<center>![new-error](/img/new-error.png)</center>          
 
+The text of the messages in these windows can be localized according to the languages that are available within the Jelastic Platform.                
 - `success` - *success* window when the action will be executed with expected result code. The manifest installation will be finished immediately if an any action will return the result code from `script` or `return` actions or which is predefined in `responses` block.
 
 <center>![success](/img/successResponse.jpg)</center>
@@ -1025,13 +1035,13 @@ The example below describes a creation of the same file twice and handling an re
 
 where: 
 
-- `createFile` - predefined within the Cloud Scripting <a href="http://docs.cloudscripting.com/reference/actions/#createfile" target="_blank">action</a>              
+- `createFile` - predefined within the Cloud Scripting <a href="/reference/actions/#createfile" target="_blank">action</a>              
 - `responses` - object (array) to describe custom responses     
 - `type` - type of a pop-up window, emerging upon the response occurrence. The available values are: *error*, *warning*, *info*, *success*.       
 
 Thus, the example above sets all the actions with *4036* result to be displayed via *error* pop-up window with a custom response message text.      
 
-The additional functionality is provided to display action responses using <a href="http://docs.cloudscripting.com/reference/actions" target="_blank">*return*</a> action.                         
+The additional functionality is provided to display action responses using <a href="/reference/actions" target="_blank">*return*</a> action.                         
 
 ``` json
 {
@@ -1072,6 +1082,7 @@ If the result code is delivered via *string*, then the default result code is *1
 }
 ```
 
+   
 In all the other cases, i.e. when a custom response is not predefined within the `responses` block, the default pop-up window type is *error* with an output message.          
 
 A response objects which are returned from custom scripts and predefined in `response` block are emposed one to another. A response object from custom scripts has a higher priority than responses in `response` object.  
@@ -1096,7 +1107,7 @@ The final success form will be same as on screen below:
 
 <center>![redefinedSuccessResponseHandler](/img/redefinedSuccessResponseHandler.jpg)</center>
 
-#Success Text Customization
+##Success Text Customization
 
 It is possible to customize (in confines of a manifest) the *success* text, which is displayed upon successful application installation either at the dashboard or via email notification.         
 
@@ -1161,3 +1172,12 @@ As it was mentioned above, the success response is distinguished between two val
 ```
 
 In the last example above, the localization functionality is applied, which depends upon the Jelastic Platform selected language.
+<br>
+<h2> What's next?</h2>
+
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples      
+- See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions            
+- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                         
+- Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>
+-->       
+  

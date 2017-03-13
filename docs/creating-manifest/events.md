@@ -1,6 +1,6 @@
 # Events
 
-Any <a href="http://docs.cloudscripting.com/reference/actions/" target="blank">action</a>, available to be performed by means of <a href="https://docs.jelastic.com/api/" target="blank">API</a> (including <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="blank">custom scripts</a> running), should be bound to some event, i.e. executed as a result of this event occurrence.
+Any <a href="/reference/actions/" target="blank">action</a>, available to be performed by means of <a href="https://docs.jelastic.com/api/" target="blank">API</a> (including <a href="/creating-templates/custom-scripts/" target="blank">custom scripts</a> running), should be bound to some event, i.e. executed as a result of this event occurrence.
 Each event refers to a particular entity. For example, the entry point for executing any action is the [*onInstall*](#oninstall) event.                     
 
 ## Events Execution Rules    
@@ -13,11 +13,11 @@ Each event refers to a particular entity. For example, the entry point for execu
 
 ## Events Filtering
 
-Events can be filtered by <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> and <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the defined actions will be executed only when the called event matches specified filtering rules. Otherwise (i.e. if no filtering rules are specified), every event is listened by all environment entities.         
+Events can be filtered by <a href="/creating-templates/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="/creating-templates/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> and <a href="/creating-templates/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the defined actions will be executed only when the called event matches specified filtering rules. Otherwise (i.e. if no filtering rules are specified), every event is listened by all environment entities.         
 
-The example below describes events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event) and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event).         
+The example below describes events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event).         
 
-Here, the *nodeGroup* filtering, namely by the compute node (*[cp]*) layer, is set so that the *cmd* action is executed only after the compute nodes are scaled out. The *nodeType* filtering is set for <b>apache2</b> nodes, so that the *cmd* action is executed upon these particular nodes restart. The *nodeID* filtering is implemented in such a way that the <b>*onAfterResetNodePassword*</b> event is subscribed only for the first compute node in a layer.
+Here, the *nodeGroup* filtering, namely by the compute node (*[cp]*) layer, is set so that the *cmd* action is executed only after the compute nodes are scaled out. The *nodeType* filtering is set for <b>apache2</b> nodes so that the *cmd* action is executed upon these particular nodes restart. The *nodeID* filtering is implemented so that the <b>*onAfterResetNodePassword*</b> event is subscribed only for the first compute node in a layer.
 
 ``` json
 {
@@ -62,7 +62,7 @@ One more demanded action is related to scaling nodes in an environment within a 
 
 <center><img style="height: 626px"  src="/img/scalingEventSequence.png" alt="scaling sequence icon" /></center>
 
-## Events List
+## Event List
 
 ### onInstall
 
@@ -105,8 +105,8 @@ The event will be executed once the *changeTopology* action is finished.
         - `redeployContainerDelay` - delay for container redeployment        
         - `redeployContextDelay` - delay for context redeployment          
         - `restartContainerDelay` - delay for container restart         
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.         
-    - `env` - environment information. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.        
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.         
+    - `env` - environment information. Explore the full list of available <a href="/reference/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.        
 
 ### onBeforeScaleOut
 
@@ -129,7 +129,7 @@ The event will be executed after adding new node(s) to the existing node group. 
     - `count` - number of nodes that are added      
     - `nodeGroup` - node group that is scaled out     
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                                
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                                
 
 ### onBeforeScaleIn
 
@@ -141,7 +141,7 @@ The event will be executed before removing node(s) (i.e. scaling *in*) from the 
     - `count` - number of nodes that are removed    
     - `nodeGroup` - node group that is scaled in   
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                              
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                              
 
 ### onAfterScaleIn
 
@@ -153,7 +153,7 @@ The event will be executed after scaling *in* the corresponding node group. The 
     - `count` - number of nodes that are removed       
     - `nodeGroup` - node group that is scaled in      
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                                
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                                
 
 ### onBeforeServiceScaleOut
 
@@ -182,17 +182,17 @@ The event will be executed after adding new Docker container(s) to the existing 
 ### onAlert
 This event provides a possibility to boud actions to <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a> and <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">Automatic Horizontal Scaling Alerts</a>. These features are configured through the Jelastic triggers.   
 
-These are the monitoring triggers that are based on the usage of a particular resource type:
+These are the monitoring triggers that are based on the usage of a particular resource type:            
 
-* **CLOUDLETS** (CPU, Memory) - available only for action type *NOTIFY*
-* **CPU**
-* **MEM** (Memory)
-* **NET_EXT** - external output and input traffic that is available only for action type *NOTIFY*
-* **NET_EXT_OUT** - external output traffic
-* **DISK** - disk space amount that is available only for action type *NOTIFY*
-* **INODES** - available only for action type *NOTIFY*
-* **Disk I/O**
-* **Disk IOPS**
+- **CLOUDLETS** (CPU, Memory) - available only for action type *NOTIFY*              
+- **CPU**                  
+- **MEM** (Memory)                      
+- **NET_EXT** - external output and input traffic that are available only for action type *NOTIFY*                       
+- **NET_EXT_OUT** - external output traffic                         
+- **DISK** - disk space amount that is available only for action type *NOTIFY*                    
+- **INODES** - available only for action type *NOTIFY*                       
+- **Disk I/O**                         
+- **Disk IOPS**                        
 
 The measuring values are *PERCENTAGE* and *SPECIFIC*. The second value is availabe only for **NET_EXT** and **NET_EXT_OUT** resource types.
 
@@ -207,7 +207,7 @@ Below, the example of subscription to the *onAlert* event is provided. Here, the
 }
 ```
 
-The following example shows how a new trigger is being created:                 
+The following example shows how a new trigger is being created.                                            
 ``` json
 {
   "type": "update",
@@ -246,13 +246,13 @@ This example involves execution of the Jelastic API *addTrigger* method with a s
     - `type` - comparison sign, the available values are *GREATER* and *LESS*
     - `value` - stated percentage of a monitoring resource
     - `resourceType` - types of resources that will be monitored by a trigger, namely *CPU, Memory (RAM), Network, Disk I/O* and *Disk IOPS*
-    - `valueType` - measurement value. Here, *PERCENTAGES*  is the only possible measurement value. The available range is from *0** up to *100**.
+    - `valueType` - measurement value. Here, *PERCENTAGES*  is the only possible measurement value. The available range is from <b>*0*</b> up to <b>*100*</b>.
 - `actions` - object to describe a trigger action
     - `type` - trigger action, the available values are *NOTIFY*, *ADD_NODE* and *REMOVE_NODE*
     - `customData`:
         - `notify`- alert notification sent to a user via email 
 
-Jelastic will send an alert to the Cloud Scripting system, when the appropriate trigger is invoked. Therefore, the *onAlert* event provides a possibility to bound actions to alert notifications and execute custom actions.
+Jelastic will send an alert to the Cloud Scripting system when the appropriate trigger is invoked. Therefore, the *onAlert* event provides a possibility to bound actions to alert notifications and execute custom actions.
 
 **Event Placeholders:**     
 
@@ -319,15 +319,16 @@ The event will be called after the *deleteEnvironment* action.
 
 The event will be triggered before adding a new node to an environment. The *onBeforeAddNode* event will be executed for each newly added node.   
 
-There are the following available node groups:       
-* *balancer*               
-* *compute*                 
-* *cache*                   
-* *database*            
-* *storage*             
-* *VDS*                   
-* *build*                
-* *docker*              
+There are the following available node groups:         
+
+- *balancer*                
+- *compute*                  
+- *cache*                    
+- *database*             
+- *storage*              
+- *VPS*                    
+- *build*                 
+- *docker*               
 
 **Event Placeholders:**   
 
@@ -337,7 +338,7 @@ There are the following available node groups:
     - `appid` - environment unique appid        
     - `fixedCloudlets` - reserved cloudlets         
     - `flexibleCloudlets` - dynamic cloudlets          
-    - `ismaster` *[boolean]* - if true, then a new node will be treated as the first (i.e. master) one in the current layer     
+    - `ismaster` *[boolean]* - if *true*, then a new node will be treated as the first (i.e. master) one in the current layer     
     - `nodeType` - predefined node type       
 - `${event.response.}` parameters are absent        
 
@@ -345,15 +346,16 @@ There are the following available node groups:
 
 The event will be triggered after adding a new node to an environment. The *onAfterAddNode* event will be executed for each newly added node.     
 
-There are the following available node groups:          
-* *balancer*              
-* *compute*                 
-* *cache*                  
-* *database*            
-* *storage*             
-* *VDS*                    
-* *build*                 
-* *docker*               
+There are the following available node groups:                   
+
+- *balancer*              
+- *compute*                 
+- *cache*                  
+- *database*            
+- *storage*             
+- *VPS*                    
+- *build*                 
+- *docker*               
  
 **Event Placeholders:**   
 
@@ -363,7 +365,7 @@ There are the following available node groups:
     - `appid` - environment unique appid
      - `fixedCloudlet`- reserved cloudlets     
      - `flexibleCloudlets` - dynamic cloudlets        
-    - `ismaster` *[boolean]* - if true, then a new node will be treated as the first (i.e. master) one in the current layer          
+    - `ismaster` *[boolean]* - if *true*, then a new node will be treated as the first (i.e. master) one in the current layer          
     - `nodeType` - predefined node type         
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.        
@@ -372,10 +374,11 @@ There are the following available node groups:
 
 The event will be performed before cloning node in the environment. The process of cloning nodes presupposes that new nodes are cloned from the existing ones. 
 
-The *onBeforeCloneNodes* event is applicable only for the next node groups (excluding Docker nodes):     
-* *compute*   
-* *balancer*  
-* *VDS*    
+The *onBeforeCloneNodes* event is applicable only for the next node groups (excluding Docker nodes):                   
+
+- *compute*   
+- *balancer*  
+- *VPS*    
  
 **Event Placeholders:**   
 
@@ -392,10 +395,11 @@ The *onBeforeCloneNodes* event is applicable only for the next node groups (excl
 
 The event will be performed after cloning node in the environment. 
 
-The *onAfterCloneNodes* event is applicable only for the next node groups (excluding Docker nodes):
-* *compute*              
-* *balancer*                 
-* *VDS*                 
+The *onAfterCloneNodes* event is applicable only for the next node groups (excluding Docker nodes):                             
+
+- *compute*              
+- *balancer*                 
+- *VPS*                 
 
 **Event Placeholders:**   
 
@@ -657,8 +661,8 @@ The event is related to cloning environment (performed via the Jelastic dashboar
         - `redeployContainerDelay` - delay for container redeployment     
         - `redeployContextDelay` - delay for context redeployment     
         - `restartContainerDelay` - delay for container restart    
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.       
-    - `env` - environment information. Explore the full list of available <a href="http://docs.cloudscripting.com/reference/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.       
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.       
+    - `env` - environment information. Explore the full list of available <a href="/reference/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.       
 
 ### onBeforeDeploy
 
@@ -1064,3 +1068,12 @@ The *onAfterRemoveVolume* event will be triggered after removing volumes from Do
     - `path` - volume path        
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.      
+
+<br>       
+<h2> What’s next?</h2>                    
+
+- Find out the list of <a href="m/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching   
+- See how to use <a href="/creating-templates/conditions-and-iterations/">Conditions and Iterations</a>                              
+- Read how to integrate your <a href="/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>   
+- Learn how to customize <a href="/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples   

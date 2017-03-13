@@ -2,34 +2,38 @@
 
 Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="http://docs.cloudscripting.com/creating-templates/writing-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS, and Java scripts.                 
 
-With the help of actions you can achieve automation of the tasks related to:                                              
-* increasing or decreasing CPU or RAM amount      
-* adjusting configs according to specific environment's settings              
-* restarting a service or a container                 
-* applying a database patch according to specific environment's settings                                  
+With the help of actions you can achieve automation of the tasks related to:                
+
+- increasing or decreasing CPU or RAM amount      
+- adjusting configs according to specific environment's settings              
+- restarting a service or a container                 
+- applying a database patch according to specific environment's settings                                  
 
 The default workflow for any action execution is the following:                  
-* replacing <a href="http://docs.cloudscripting.com/reference/placeholders" target="_blank">placeholders</a>                                     
-* getting a list of target containers (for a detailed guidance, see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> page)                
-* checking permissions        
-* executing the action itself         
+
+- replacing <a href="http://docs.cloudscripting.com/reference/placeholders" target="_blank">placeholders</a>                                     
+- getting a list of target containers (for a detailed guidance, see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> page)                
+- checking permissions        
+- executing the action itself         
 
 Actions are executed when the called <a href="http://docs.cloudscripting.com/reference/events" target="_blank">event</a> matches specified filtering rules.               
 
-Thus, the following specific groups of actions are singled out:               
-* [Container Operations](#container-operations)                   
-* [Topology Nodes Management](#topology-nodes-management)             
-* [Database Operations](#database-operations)                  
-* [User-Defined Operations](#user-defined-operations)                        
+Thus, the following specific groups of actions are singled out:           
+
+- [Container Operations](#container-operations)                   
+- [Topology Nodes Management](#topology-nodes-management)             
+- [Database Operations](#database-operations)                  
+- [User-Defined Operations](#user-defined-operations)                        
 
 ## Container Operations
 
 There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Containers</em></a> page.                        
 
-Any container operation can be performed using a [*cmd*](#cmd) action. Moreover, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:                  
-* SSH commands ([*cmd*](#cmd))                          
-* predefined modules ([*deploy*](#deploy), [*upload*](#upload), [*unpack*](#unpack))           
-* operations with files ([*createFile*](#createfile), [*createDirectory*](#createdirectory), [*writeFile*](#writefile), [*appendFile*](#appendfile), [*replaceInFile*](#replaceinfile))                     
+Any container operation can be performed using a [*cmd*](#cmd) action. Moreover, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:       
+
+- SSH commands ([*cmd*](#cmd))                          
+- predefined modules ([*deploy*](#deploy), [*upload*](#upload), [*unpack*](#unpack))           
+- operations with files ([*createFile*](#createfile), [*createDirectory*](#createdirectory), [*writeFile*](#writefile), [*appendFile*](#appendfile), [*replaceInFile*](#replaceinfile))                     
 
 !!! note 
     To process any container operation (except for [cmd](#cmd)), the Cloud Scripting executor will use a default system user with restricted permissions.                   
@@ -51,14 +55,14 @@ The *cmd* action executes <a href="https://docs.jelastic.com/ssh-overview" targe
 ```
 where:       
      
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required). For a detailed guidance, see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Containers</em></a> section.                   
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required). For a detailed guidance, see the <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> section.                             
 - `cmd1` and `cmd2` - set of commands that are being executed. Their values are wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**.     
     Where:    
     - **cmd** - is equal to a Base64 encoded string: **yes | (cmd1;cmd2)**. In case your commands require the interactive input, by default the Cloud Scripting executor will always try to give a positive answer, using **yes** utility.        
     - **user** - default system user with restricted permissions    
 - `sayYes` *[optional]* - parameter that enables or disables using **yes** utility. The default value is *'true'*.                  
 
-A single SSH command can be passed in a string. For example, executing a bash script from URL for all *Tomcat 6* nodes.                    
+A single SSH command can be passed in a string. For example, executing a bash script from URL for all **Tomcat 6** nodes.                    
 ``` json 
 {
   "cmd [tomcat6]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
@@ -87,7 +91,7 @@ Setting SSH commands in an array.
 }
 ```
                              
-Downloading and unzipping a WordPress plugin on all the compute nodes. Here, the commands array is executed through a single SSH command. The same can be performed with the help of the [unpack](#unpack) method.                              
+Downloading and unzipping the **WordPress** plugin on all the compute nodes. Here, the commands array is executed through a single SSH command. The same can be performed with the help of the [unpack](#unpack) method.                              
 ``` json
 {
   "cmd [cp]": [
@@ -113,10 +117,11 @@ Using **sudo** to reload Nginx balancer.
 
 Executing actions available by means of the <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a> methods.     
 
-There are a number of parameters required by Jelastic API, which are defined automatically:
-* *envName* - environment domain name where the API method is executed     
-* *appid* - unique environment identifier that can be passed into API instead of the *envName*     
-* *session* - unique session of a current user            
+There are a number of parameters required by Jelastic API, which are defined automatically:                            
+
+- *envName* - environment domain name where the API method is executed            
+- *appid* - unique environment identifier that can be passed into API instead of the *envName*         
+- *session* - unique session of a current user              
 
 Target containers, selected for API methods execution can be passed by the node keywords. API methods can be executed at all nodes within a single <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#all-containers-by-type" target="blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="http://docs.cloudscripting.com/creating-templates/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required, which is available either through the <a href="http://docs.cloudscripting.com/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a> or a set of [custom action parameters](#custom-actions) (*this*).
 
@@ -327,6 +332,8 @@ where:
 
 ## Topology Nodes Management
 
+The present section introduces actions that are provided for managing the topology.                 
+
 ### addNodes
 ``` json
 {
@@ -478,6 +485,8 @@ where:
 
 ## Database Operations
 
+Within this section, you can find actions that are intended for managing databases.
+
 ### prepareSqlDatabase
 
 Available for *SQL* databases (except for *Docker* containers)
@@ -572,7 +581,11 @@ where:
 
 ## User-Defined Operations
 
+The current section provides data on the user-defined actions.                        
+
 ### script
+
+Using Java or JavaScript object in your manifest. 
 
 ``` json
 {
@@ -607,6 +620,7 @@ where:
     Learn more about using <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a>.    
 
 ### sleep
+
 Setting a delay that is measured in milliseconds. The below example shows how to create a delay for one second.                                               
 ``` json
 {
@@ -615,6 +629,7 @@ Setting a delay that is measured in milliseconds. The below example shows how to
 ```
 
 ### install
+
 Nesting a JPS manifest inside the current manifest file. The nested JPS manifest will be installed subsequently after the current one. The action is available for *install* and *update* installation types.                              
 
 **Examples**
@@ -698,9 +713,10 @@ where:
 
 ### installAddon
 
-You can install a few custom add-ons within a single manifest, therefore, add-ons can be installed to:             
-* an existing environment, if installation type is *update*  
-* a new environment, if installation type is *install*. In this case, add-ons will be installed sequentially one by one right after a new environment set up.     
+You can install a few custom add-ons within a single manifest, therefore, add-ons can be installed to:                       
+
+- an existing environment, if installation type is *update*          
+- a new environment, if installation type is *install*. In this case, add-ons will be installed sequentially one by one right after a new environment set up.             
 
 All the add-ons will have installation type *update* by default.   
 
@@ -811,7 +827,9 @@ More details about <a href="/creating-templates/selecting-containers/#types-of-s
 
 ### Code Reuse
 
-Outputting Hello World! twice in the <b>*greeting.txt*</b>:  
+Using already-existing code to perform a new action.     
+
+For example, outputting Hello World! twice in the <b>*greeting.txt*</b>:            
 ``` json
 {
   "type": "update",
@@ -898,3 +916,11 @@ Writing Hello World! and outputting the first and the second compute nodes IP ad
   }
 }
 ```
+<br>       
+<h2> What’s next?</h2>                    
+
+- See the <a href="http://docs.cloudscripting.com/reference/events/" target="_blank">Events</a> list the actions can be bound to            
+- Find out the list of <a href="http://docs.cloudscripting.com/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching        
+- Read how to integrate your <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="_blank">Custom Scripts</a>   
+- Learn how to customize <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="_blank">Visual Settings</a>              
+- Examine a bunch of <a href="http://docs.cloudscripting.com/samples/" target="_blank">Samples</a> with operation and package examples   
