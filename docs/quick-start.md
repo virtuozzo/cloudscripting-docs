@@ -86,10 +86,17 @@ Just in the same way, you can build and run the solution you need - from frequen
 ## What’s next?              
 
 - <a href="http://docs.cloudscripting.com/creating-templates/basic-configs/" target="blank">Template Basics</a> - learn the required basis of any JSP manifest and find out about differences between *Install* and *Update* installation types.                             
+
 - <a href="http://docs.cloudscripting.com/reference/actions/" target="blank">Actions</a> - define the required configuration properties and declare expected application behavior with the help of appropriate actions that Cloud Scripting offers out of the box.                     
+
 - <a href="http://docs.cloudscripting.com/creating-templates/custom-scripts/" target="blank">Custom Scripts</a> - prepare and use your own custom actions within a manifest. Such actions can be scripted either using *Java*, *Javascript* or *PHP* in order to manage the whole environment. To execute scripts inside of a container, use any intercontainer language.                         
+
 - <a href="http://docs.cloudscripting.com/reference/events/" target="blank">Events</a> - automate application workflow by bounding actions to a particular application lifecycle event.                        
+
 - <a href="http://docs.cloudscripting.com/creating-templates/user-input-parameters/" target="blank">Visual Settings</a> - customize your application visual layout before the installation.                     
+
 - <a href="http://docs.cloudscripting.com/reference/placeholders/" target="blank">Placeholders</a> - specify automatically substituted parameters within your manifest that are fetched during installation.                          
+
 - <a href="http://docs.cloudscripting.com/samples/" target="blank">Samples</a> - find a set of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions.                        
+
 - <a href="http://docs.cloudscripting.com/troubleshooting/" target="blank">Troubleshooting</a> - appeal to this guide, if you face any issue, while working with Cloud Scripting.                                     
