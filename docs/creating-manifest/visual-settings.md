@@ -2,11 +2,18 @@
 
 Cloud Scripting enables you to create a personalized solution by customizing the visual appearance and textual content of such elements as:              
 
-- [Menus](#custom-menus)                            
-- [Buttons](#custom-buttons)                 
-- [Forms](#custom-settings)                  
-- [Messages](#success-text-customization)                  
-- [Fields](#string)      
+* [Fields](#string)                                      
+ 
+* [Menus](#custom-menus)                            
+
+* [Buttons](#custom-buttons)                   
+
+* [Forms](#custom-settings)                   
+
+* [Responces](#handling-custom-responses)                                     
+
+* [Messages](#success-text-customization)                           
+      
 
 ##Supported Fields                               
 
@@ -1179,5 +1186,5 @@ In the last example above, the localization functionality is applied, which depe
 - See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions            
 - Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                         
 - Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>
--->       
+       
   
