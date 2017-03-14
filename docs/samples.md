@@ -1,10 +1,10 @@
-#Samples
+# Samples
 
 <p dir="ltr" style="text-align: justify;">Cloud Scripting provides almost unlimited possibilities for environment management, allowing to automatically tune its settings, adjust topology, implement events handling and a lot of more. Having a pool of scripts with such basic actions prescribed can speed up the new projects development and become a basis for more complex automation solutions.</p>
 
 <p dir="ltr" style="text-align: justify;">Below we provide a bunch of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions. You can use them independently or examine and adjust scripts to create your own packages.</p>
 
-###Operation Examples
+### Operation Examples
 
 <p dir="ltr" style="text-align: justify;">The following list contains examples of some basic environment management procedures, which can be subsequently combined to implement more complex solutions and application lifecycle pipelines.</p>
 
@@ -83,7 +83,7 @@
     </tr>
 </table>
 
-###Add-ons Examples
+### Add-ons Examples
 
 <p dir="ltr" style="text-align: justify;">Use pluggable add-ons to easily extend functionality of the already existing environments without the necessity to reconfigure each of them manually.</p>
 
@@ -130,7 +130,7 @@
     </tr>
     </table>
     
-###Complex Ready-to-Go Solutions
+### Complex Ready-to-Go Solutions
 
 <p dir="ltr" style="text-align: justify;">Jelastic also provides you with a set of ready-to-go preconfigured CS packages for some of the most popular solutions’ deployment and CI/CD integration. All of them can be used without any additional changes and provide all of the options for being properly tuned according to your needs.</p>
 
