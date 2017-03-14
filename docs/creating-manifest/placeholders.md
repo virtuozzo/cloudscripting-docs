@@ -4,20 +4,30 @@ The executor makes an attempt to resolve all placeholders on the package install
 If it's not possible, the placeholder will be unresolved and displayed in the text as is (e.g. *${placeholder}*).
 
 !!! note
-    To output all available placeholders, use a special <b>${placeholders}</b> placeholder. For more information, see the <a href="/troubleshooting/" target ="_blank">Troubleshooting</a> guide.                                                                                                   
+    To output all available placeholders, use a special <b>${placeholders}</b> placeholder. For more information, see the <a href="/troubleshooting/" target ="_blank">*Troubleshooting*</a> guide.                                                                                                   
 
 The following specific groups of placeholders are singled out: 
 
 - [Environment Placeholders](/creating-manifest/placeholders/#environment-placeholders)           
+
 - [Node Placeholders](/creating-manifest/placeholders/#node-placeholders)                 
+
 - [Event Placeholders](/creating-manifest/placeholders/#event-placeholders)                    
+
 - [Account Information](/creating-manifest/placeholders/#account-information)                 
+
 - [Input Parameters](/creating-manifest/placeholders/#input-parameters)                          
+
 - [Action Placeholders](/creating-manifest/placeholders/#action-placeholders)                  
+
 - [UI Placeholders](/creating-manifest/placeholders/#ui-placeholders)                     
-- [Custom Global Placeholders](/creating-manifest/placeholders/#custom-global-placeholders)                                
+
+- [Custom Global Placeholders](/creating-manifest/placeholders/#custom-global-placeholders)                               
+
 - [Function Placeholders](/creating-manifest/placeholders/#function-placeholders)                             
+
 - [Array Placeholders](/creating-manifest/placeholders/#array-placeholders)                                       
+
 - [File Path Placeholders](/creating-manifest/placeholders/#file-path-placeholders)                                 
 
 ## Environment Placeholders
@@ -394,7 +404,14 @@ The list of single placeholders:
 <br>       
 <h2> What’s next?</h2>                    
 
-- See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                               
-- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>       
-- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                
+- See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                                
+
+- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                      
+
+- Create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                         
+
+- Find out how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>      
+
+- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>
+
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples           
