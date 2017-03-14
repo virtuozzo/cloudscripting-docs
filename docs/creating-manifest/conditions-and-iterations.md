@@ -2,7 +2,7 @@
 
 ## Conditions    
 
-The main conditional statement is <b>*if*</b>. Within this parameter, all the available <a href="/reference/placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
+The main conditional statement is <b>*if*</b>. Within this parameter, all the available <a href="/creating-manifest/placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
 
 For example
 ```
@@ -159,10 +159,10 @@ The main iterable object is <b>*ForEach*</b> with the following map.
 ```
 where:    
 
-- `settings` *[optional]* - fields values predefined within a <a href="/creating-manifest/user-input-parameters/" target="_blank">user settings form</a>          
-- `license [optional]` - link to fetch parameters specified within the <a href="/creating-manifest/user-input-parameters/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through <a href="/reference/placeholders/" target="_blank">placeholders</a> `$(license.{any_name}` within a manifest.    
-- `event [optional]` - object entity with <a href="/reference/events/" target="_blank">events</a> parameters that can be of two types, allowing initiation of a particular <a href="/reference/actions/" target="_blank"> action</a> *before* and *after* event execution       
-- `this [optional]` - parameters object to be transmitted within the procedure body. See the full list of available<a href="/reference/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
+- `settings` *[optional]* - fields values predefined within a <a href="/creating-manifest/visual-settings/" target="_blank">user settings form</a>          
+- `license [optional]` - link to fetch parameters specified within the <a href="/creating-manifest/visual-settings/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through <a href="/creating-manifest/placeholders/" target="_blank">placeholders</a> `$(license.{any_name}` within a manifest.    
+- `event [optional]` - object entity with <a href="/creating-manifest/events/" target="_blank">events</a> parameters that can be of two types, allowing initiation of a particular <a href="/creating-manifest/actions/" target="_blank"> action</a> *before* and *after* event execution       
+- `this [optional]` - parameters object to be transmitted within the procedure body. See the full list of available<a href="/creating-manifest/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
 
 Iteration can be executed by <b>*env.nodes*</b>, <b>*nodes*</b>, <b>*env.contexts*</b>, and <b>*env.extdomains*</b> objects.                    
 
@@ -278,6 +278,6 @@ The **ForEach** execution is recorded in a <a href="/troubleshooting/" target="_
 <h2> What's next?</h2>         
 
 - Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>       
-- Learn how to customize <a href="/creating-manifest/user-input-parameters/" target="_blank">Visual Settings</a>              
+- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>              
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples  
 - See the <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions             
