@@ -230,6 +230,6 @@
 <br>
 <h2> What's next?</h2>
 
-- See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions  
-- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements  
-- Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>  
+- See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions                               
+- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                                      
+- Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>                                              
