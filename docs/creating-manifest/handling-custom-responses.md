@@ -20,7 +20,7 @@ When the action is executed with the expected result code, the *success* window 
 
 <center>![success](/img/successResponse.jpg)</center>                               
 
-The *info*, *error* and *warning* pop-up windows emerge as a result of failed installation. The manifest installation is finished immediately when any action returns the negative result code or code predefined in the *responses* block. Therefore, the installation process is marked by the red cross like in the picture below.                        
+The *info*, *error* and *warning* pop-up windows emerge as a result of failed installation. The manifest installation is finished immediately, if any action returns the negative result code or code predefined in the *responses* block. Thus, the installation process is marked by the red cross like in the picture below.                        
 
 <center>![success](/img/redCross.jpg)</center>
 
