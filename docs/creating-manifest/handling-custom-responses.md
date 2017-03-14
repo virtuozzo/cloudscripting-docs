@@ -224,8 +224,12 @@ The final *success* form is similar to the following one.
 <center>![redefinedSuccessResponseHandler](/img/redefinedSuccessResponseHandler.jpg)</center>                         
 ## What's next?
 
-- Explore how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                                       
+- Explore how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                                
+
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples        
+
 - See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions                 
+
 - Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                                  
-- Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>      
+
+- Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>                 
