@@ -83,7 +83,7 @@ Using the *nodeType* field while performing the <a href="/creating-manifest/acti
 where:                
 
 - `writeFile` - action to write data to a file    
-- `nodeType` - parameter to specify node(s) by type    
+- `nodeType` - parameter specifying node(s) by type    
 - `path` - parameter specifying path to a file    
 - `body` - data that is being written to a file     
 
@@ -124,7 +124,7 @@ For example:
   }
 ]
 ```
-In the example above, a new file will be created in the compute node (<em>[cp]</em>) and a new directory will be created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers and container with Node ID <em>123</em>. Actions for the specified nodes are executed in the declared order.                 
+Through the example above, a new file is created in the compute node (<em>[cp]</em>) and a new directory is created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers, and container with Node ID <em>123</em>. Actions for the specified nodes are executed in the declared order.                 
 
 - setting a target node next to the performed action     
 
