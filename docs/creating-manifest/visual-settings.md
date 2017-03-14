@@ -53,32 +53,32 @@ where:
 - `fields` - array of fields that will be displayed in a custom form     
     - `showIf` - shows/hides field by condition (is applicable only to the *radio-fieldset* field)   
     - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:   
-        * `string` - [basic](/creating-manifest/visual-settings/#string) text field                                  
-        * `text`  - [multiline](/creating-manifest/visual-settings/#text) text field                                                                                                         
-        * `list` - drop-down menu with [textboxes](/creating-manifest/visual-settings/#list))                                           
-        * `checkbox` - single [checkbox field](/creating-manifest/visual-settings/#checkbox)                     
-        * `checkboxlist` - [checkbox](/creating-manifest/visual-settings/#checkboxlist) grouping                             
-        * `radiolist` - [radio field](/creating-manifest/visual-settings/#radiolist) grouping                       
+        * `string` - [basic](#string) text field                                  
+        * `text`  - [multiline](#text) text field                                                                                                         
+        * `list` - drop-down menu with [textboxes](#list)                                                         
+        * `checkbox` - [single checkbox](#checkbox) field                                                 
+        * `checkboxlist` - [checkbox](#checkboxlist) grouping                             
+        * `radiolist` - [radio field](#radiolist) grouping                       
         * `radio-fieldset` - alias to `radiolist`              
-        * `dockertags` - drop-down menu with a list of [docker tags](/creating-manifest/visual-settings/#dockertag))                   
-        * `compositefield` - [component](/creating-manifest/visual-settings/#compositefield) that comprises any available field    
-        * `slider` - [slider element](/creating-manifest/visual-settings/#slider) as a form field
-        * `envlist` - [list of environments](/creating-manifest/visual-settings/#envlist) available for a corresponding account                  
-        * `popupselector` - new [pop-up window](/creating-manifest/visual-settings/#popupselector) via POST request with posibility to pass additional parameters
+        * `dockertags` - drop-down menu with a list of [docker tags](#dockertag)                                         
+        * `compositefield` - [component](#compositefield) that comprises any available field    
+        * `slider` - [slider element](#slider) as a form field
+        * `envlist` - [list of environments](#envlist) available for a corresponding account                  
+        * `popupselector` - new [pop-up window](#popupselector) via POST request with posibility to pass additional parameters
         * `popup-selector` - alias to `popupselector`                               
-        * `displayfield` - [text field](/creating-manifest/visual-settings/#displayfield) intended for displaying text                            
+        * `displayfield` - [text field](#displayfield) intended for displaying text                            
         * `spacer` - alias to `displayfield`                     
-        * `spinner` - [input field](/creating-manifest/visual-settings/#spinner) for entering numeric values                       
-        * `numberpicker` - [field to select a number](/creating-manifest/visual-settings/#numberpicker) within a range                            
+        * `spinner` - [input field](#spinner) for entering numeric values                       
+        * `numberpicker` - [field to select a number](#numberpicker) within a range                            
         * `number-picker` - alias to `numberpicker`  
-        * `hostpicker` - drop-down menu with [environment hosts](/creating-manifest/visual-settings/#hostpicker)                             
+        * `hostpicker` - drop-down menu with [environment hosts](#hostpicker)                             
         * `host-picher` - alias to `hostpicker`                                      
-        * `toggle` - [switcher](/creating-manifest/visual-settings/#toggle) between two values                        
+        * `toggle` - [switcher](#toggle) between two values                        
     - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. See more info on the <a href="https://www.w3.org/wiki/HTML/Elements/input#Point" target="_blank">type attribute</a>.                         
     - `name` - input field name, that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests   
     - `default` *[optional]* - default value for the input field  
     - `caption` *[optional]* - field label  
-    - `placeholder` *[optional]* - used <a href="/creating-manifest/placeholders/" target="blank">placeholders</a>                         
+    - `placeholder` *[optional]* - used <a href="/reference/placeholders/" target="blank">placeholders</a>                         
     - `required` *[optional]* - possible values are *'true'* & *'false'*. If left empty, the default value is *'true'*.  
     - `regex` *[optional]* - constructor for testing the JavaScript RegExp object, that refers to the stated the field value, during validation. If test fails, the field will be marked invalid using *regexText*. The default value is *'null'*.                                                        
     - `regexText` *[optional]* - displays error message in case of the *regex* test failure during validation. The default value is *' '* (blank space).     
@@ -90,7 +90,7 @@ where:
     - `vtypeText` *[optional]* - custom error message to be displayed instead of the default one, provided by *vtype* for this field. The default value is *' '* (blank space).     
     
 !!! note
-    `vtypeText` is applied only in case the *vtype* value is set; otherwise, it is ignored.
+    The *vtypeText* parameter is applied only in case the *vtype* value is set, otherwise, it is ignored.                                       
 
 ### string
 The basic text field.  
@@ -135,7 +135,7 @@ The multiline text field.
 where:   
 
 - `caption` *[optional]* - field label  
-- `hideLabel`*[optional] [boolean]* - hides field Label. The default value is *'false'*. 
+- `hideLabel`*[optional] [boolean]* - hides field label. The default value is *'false'*. 
 
 ### list   
 The drop-down list and a single-line textbox.  
@@ -296,7 +296,7 @@ where:
 - `caption` *[optional]* - field label
 
 ### dockertag
-Displaying Docker tags within the list element.  
+The field for displaying Docker tags within the list element.                             
 
 <center>![text](/img/dockertag.jpg)</center>  
 
@@ -332,7 +332,7 @@ Displaying Docker tags within the list element.
 where:   
 
 - `name` *[required]* - should have the *'tag'* value  
-- `values` *[required]* - Docker tag values (*name*: *"tag_name"* is required). By default Docker image is pulled from the Docker Hub registry.  
+- `values` *[required]* - Docker tag values (*name*: *"tag_name"* is required). By default, Docker image is pulled from the Docker Hub registry.  
 - `dockerImage` - Docker image details   
    - `name` - *repository* is required   
    - `registry`, `username`, `password` [*optional*]   
@@ -454,7 +454,7 @@ where:
 ### popupselector
 (*popup-selector* is an alias)     
 
-Opens a pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.  
+The field for opening a pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.                      
 
 <center>![popupselector](/img/popupselector.jpg)</center>  
 
@@ -493,7 +493,7 @@ where:
 ### displayfield
 (*spacer* is an alias)    
 
-The text field intended only for display that is not validated, and not submitted.  
+The text field intended only for display that is not validated and not submitted.  
 
 <center>![displayfield](/img/displayfield.jpg)</center>  
 
@@ -514,7 +514,7 @@ where:
 
 - `caption` *[optional]* - field label                   
 - `name` *[optional]* - name of the field                
-- `markup` - value to initialize the field's display. The default value is "*'undefined'*".      
+- `markup` - value to initialize the field's display. The default value is *'undefined'*.                                
 
 ### spinner
 The enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
@@ -547,8 +547,9 @@ where:
 - `decimanPrecision` - precision value  
 
 ### numberpicker
-(*number-picker* is an alias)                         
-The field that enables to select a number from a predefined range.                  
+(*number-picker* is an alias)                                  
+
+The field that enables to select a number from a predefined range.                    
  
 <center>![numberpicker](/img/numberpicker.jpg)</center>  
 
@@ -576,8 +577,9 @@ where:
 - `editable` *[optional] [boolean]* - enables/disables editing the *numberpicker* field. The default value is *'false'*.  
 
 ### hostpicker
-(*host-picker* is an alias)  
-The drop-down menu with the environments hosts.  
+(*host-picker* is an alias)                      
+
+The drop-down menu with the environments hosts.                      
 
 <center>![hostpicker](/img/hostpicker.jpg)</center>  
 
@@ -631,9 +633,9 @@ where:
 - `value` *[boolean]* - enables/disables toggle value. The default value is *'false'*.   
 
 ##Target Nodes
-*Target Nodes* is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *type*: <b>*update*</b> action.   
+Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.                                
 
-Filtering for `targetNodes` can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
+Filtering for *targetNodes* can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
 ``` json
 {
   "type": "update",
@@ -663,20 +665,20 @@ Filtering for `targetNodes` can be performed by *nodeType*, *nodeGroup*, *docker
   }
 }
 ```
-There are two possible ways to define a `nodeType`:  
+There are two possible ways to define *targetNodes*.                                  
 ```
-"nodeType": ["..."] - to set the required nodeTypes in array
+"nodeType": ["..."] - to set the required nodeTypes in an array
 
 "nodeType": "..., ..." - to set the required nodeTypes being separated with commas
 ```
   
 <b>Example</b>   
  
-Let’s suppose you have three environments with different topology:     
+Let’s suppose you have three environments with different topology.                              
 
-<center>![targetNodes](/img/targetNodes.jpg)</center>  
+<center>![target-nodes](/img/target-nodes.png)</center>                                       
 
-Within these environments, the `targetNodes` filtering for JPS installation can be performed with the next example:
+Within these environments, the *targetNodes* filtering for JPS installation can be performed with the next example.                           
 ``` json
 {
   "type": "update",
@@ -692,20 +694,20 @@ Within these environments, the `targetNodes` filtering for JPS installation can 
   }
 }
 ```
-In this case, the filtering result will be the following:   
+In this case, the filtering result will be the following.                                                 
 
 <center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
   
 ## Custom Menus    
-Menu is an expandable list within the <b>Add-ons</b> section comprising operations, that can be extended and adjusted by means of [custom buttons](/creating-manifest/visual-settings/#custom-buttons).                 
+Menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](#custom-buttons).                                         
 
-<center>![menu](/img/menu.jpg)</center>     
+<center>![new-menu](/img/new-menu.png)</center>         
 
-By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the <a href="/creating-manifest/events/#application-level-events" target="_blank">application level events</a> settings.          
+By default, this menu contains the <b>Uninstall</b> button. The rest of listed actions, if there are any, execute operations from the <a href="/reference/events/" target="_blank">events</a> settings.           
 
-The used properties for custom menus are the same as for custom buttons. Herewith, the appropriate `menu` field (instead of `buttons`) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
+The properties used for custom menus are the same as for custom buttons. However, the appropriate *menu* field (instead of *buttons*) should be specified to adjust functionality exactly within the menu list of the Add-ons plank.           
 
-Sample to set custom buttons within the menu list of the Add-ons plank:
+The sample to set custom buttons within the menu list of the Add-ons plank.                       
 ``` json
 {
   "type": "update",
@@ -730,23 +732,23 @@ Sample to set custom buttons within the menu list of the Add-ons plank:
   }
 }
 ```
-Refer to the *Custom Buttons* section above for a detailed description on the parameters set with the current sample.
+Refer to the *Custom Buttons* section below for a detailed description on the parameters set with the current sample.                          
 
 ## Custom Buttons
-The custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:      
+The custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node.                                      
 
-<center>![Addontab](/img/Addontab.jpg)</center>       
+<center>![custom-addon](/img/custom-addon.png)</center>       
 
 Such buttons execute operations that are predefined within a JPS manifest.   
 
-<center>![TrafficManager](/img/TrafficManager.jpg)</center>    
+<center>![traffic-distributor](/img/traffic-distributor.png)</center>    
 
 !!! note
-    > The JPS manifest should include the [*targetNodes*](/creating-manifest/visual-settings/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
+    > The JPS manifest should include the [*targetNodes*](#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
 
 <b>Templates</b>   
 
-Sample to set buttons within the **Add-ons** plank:
+The sample to set buttons within the Add-ons plank.                      
 ``` json
 {
   "type": "update",
@@ -769,12 +771,12 @@ Sample to set buttons within the **Add-ons** plank:
   ]
 }
 ```
-Here: 
+where: 
 
 - `buttons` - button parameters array   
 - `confirmText` *[optional]* - custom confirmation text for users. The default value is *'Are you sure?'*.   
 
-It will be displayed after clicking on the appropriate button for an add-on. According to the code above, the text will be:  
+It will be displayed after clicking on the appropriate button for an add-on. According to the code above, the text will be the following.              
 
 <center>![Confirm](/img/Confirm.jpg)</center>      
 
@@ -782,18 +784,18 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 <center>![LoadingText](/img/LoadingText.jpg)</center>      
 
-- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the <a href="/reference/actions/#custom-actions" target="_blank">*actions*</a> section.          
+- `action` *[required] [string]* - name of the custom action that will be executed. The custom action body structure is described in the <a href="/reference/actions/#custom-actions" target="_blank">*actions*</a> section.          
 - `caption` - title of the button  
 
 <center>![Caption](/img/Caption.jpg)</center>   
 
-- `successText` -  message, that appears once action is successfully performed  
+- `successText` -  message that appears once action is successfully performed  
 
 <center>![SuccessText](/img/SuccessText.jpg)</center>     
 
-- `href` *[optional]* - external link that is opened in a new browser tab; is executed only if the `settings` field is absent. In case of `href` execution, `action` will not be carried out.     
+- `href` *[optional]* - external link that is opened in a new browser tab and is executed only if the *settings* field is absent. In case of *href* execution, an *action* will not be carried out.                      
 
-Another sample with additional configurations: the next parameters can be enabled only if the [*settings*](/creating-manifest/visual-settings/#custom-settings) field is present:     
+Another sample with additional configurations where parameters can be enabled only if the [*settings*](/creating-manifest/user-input-parameters/#custom-settings) field is present.                           
 ``` json
 {
   "type": "update",
@@ -823,21 +825,21 @@ Another sample with additional configurations: the next parameters can be enable
 where:
 
 - `settings` - custom form ID. The default is *'main'*.
-- `title` - custom dialog title. If absent, then `caption` will be applied.    
+- `title` - custom dialog title. If absent, then *caption* will be applied.    
 - `submitButtonText` - text for submission button in the opened dialog. The default value is *'Apply'*.   
 
 <center>![SubmitButtonText](/img/SubmitButtonText.jpg)</center>  
 
-- `logsPath` - specifying path to a definite log file for it to be accessible via the **Show Logs** button                          
+- `logsPath` - path to a log file that is accessible via the **Show Logs** button                          
 
 <center>![LogsPath](/img/LogsPath.jpg)</center>  
 
-- `logsNodeGroup` - <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> layer the logging path should be opened for                     
+- `logsNodeGroup` - nodeGroup <a href="/creating-templates/selecting-containers/#predefined-nodegroup-values" target="_blank">layer</a> the logging path should be opened for                           
 
 ## Custom Settings
 The settings section can include a few custom forms. The default settings form ID is *'main'*.    
 
-For instance:  
+**Example**  
 ``` json
 {
   "type": "update",
@@ -884,6 +886,234 @@ Here, the *main settings* form appears during installation process.
 The *config settings* form appears after clicking the <b>Configure</b> button within the Add-ons section.   
 
 <center>![settingCustom](/img/SettingsCustom.jpg)</center>     
+
+## Handling Custom Responses
+
+The Cloud Scripting engine provides functionality to handle custom responses. The responses handling is related to the action result codes that can be located within the <a href="/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a response text that will be displayed in case of an error occurrence.           
+
+There are the following types of pop-up windows that emerge while custom responses are being handled:                    
+
+- `info` - *information* pop-up window                
+
+<center>![SuccessText](/img/SuccessText.jpg)</center>          
+
+- `warning` - *warning* pop-up window with a custom message                
+ 
+<center>![new-warning](/img/new-warning.png)</center>        
+
+- `error` - *error* pop-up window          
+
+<center>![new-error](/img/new-error.png)</center>          
+
+When the action is executed with the expected result code, the *success* window is displayed. The manifest installation is finished immediately after the result code is returned from the *script* or *return* actions or which is predefined in *responses* block.
+
+<center>![success](/img/successResponse.jpg)</center>                               
+
+The types `info`, `error` and `warning` are unsuccessful installation results. Therefore, the install process will be marked by red cross like on the screen below:
+
+<center>![success](/img/redCross.jpg)</center>
+
+The simplest custom response message can be returned in one string via actions `return` or `script`. The examples below provide this ability:
+ 
+```json
+{
+  "type": "update",
+  "name": "response handlers",
+  "onInstall": {
+    "return": "Warning!"
+  }
+}
+```
+
+```json
+{
+  "type": "update",
+  "name": "response handlers",
+  "onInstall": {
+    "script": "return 'Warning!'"
+  }
+}
+```
+
+In this case the default response `type` is `error` and response `message` is returned string.
+
+There is an ability to return a response with a defined result type and with a custom message via `script` or `return` actions. 
+`Return` action: 
+
+```json
+{
+    "type": "update",
+    "name": "response handlers",
+    "onInstall": {
+        "return": {
+          "result": "warning",
+          "message": "Warning!",
+          "email": "string"
+        }
+    }
+}
+```
+!!! note
+    `email` parameter is available only for `success` response type. This text will be sent after an any action will be finished with **success** response code.
+
+`Script` action:
+
+```json
+{
+    "type": "update",
+    "name": "response handlers",
+    "onInstall": {
+        "script": "return {result: 'warning', message: 'Warning!','email': 'string'}"
+    }
+}
+```
+
+Parameters `message` and `email` support all <a href="/reference/placeholders/" target="_blank">available placeholders</a>. Either, they could be uploaded from an any external source via direct link or according to <a href="/creating-manifest/basic-configs/#relative-links">baseUrl ability</a>.  
+
+In case, when is returned a response code with a type `success` two response objects impose one to another. 
+But the `success` text from response object has a higher priority than a <a href="/creating-manifest/user-input-parameters/#success-text-customization" target="_blank">**success**</a> text from main manifest block.    
+A examples below display the difference:
+
+```json
+{
+    "type": "update",
+    "name": "response handlers",
+    "onInstall": {
+        "script": "return {'result': 'success','message': 'Hello!!'}"
+    },
+    "success": "success!!"
+}
+```
+
+The result code with `success` type, message - '*Hello!!*' and sent email text - '*success!!*'
+
+```json
+{
+    "type": "update",
+    "name": "response handlers",
+    "onInstall": {
+        "script": "return {'result': 'success','message': 'Hello!!', 'email': 'Hello!!'}"
+    },
+    "success": "success!!"
+}
+```
+
+The result code with `success` type, message - '*Hello!!*' and sent email text - '*Hello!!*'
+
+The result message text can be localized according to the languages, available within the Jelastic Platform:
+
+``` json
+{
+  "type": "warning",
+  "message": {
+    "en": "Localized text",
+    "es": "Texto localizado"
+  }
+}
+```
+
+In necessity to display the same response codes a `response` object can be added where a custom responses can be defined. The examples below show how to use it.
+
+<h3>Examples</h3>
+
+**File creation error**
+
+The example below describes a creation of the same file twice and handling an response, which occurs as a result of such action execution. Consequently, the result code of this response will be defined as *4036*.           
+
+``` json
+{
+  "type": "update",
+  "name": "Handling File Creation",
+  "onInstall": [
+    {
+      "createFile [cp]": "/tmp/customDirectory"
+    },
+    {
+      "createFile [cp]": "/tmp/customDirectory"
+    }
+  ],
+  "responses": {
+    "4036": {
+      "type": "error",
+      "message": "file path already exists"
+    }
+  }
+}
+```
+
+where: 
+
+- `createFile` - predefined within the Cloud Scripting <a href="/reference/actions/#createfile" target="_blank">action</a>              
+- `responses` - object (array) to describe custom responses     
+- `type` - type of a pop-up window, emerging upon the response occurrence. The available values are: *error*, *warning*, *info*, *success*.       
+
+Thus, the example above sets all the actions with *4036* result to be displayed via *error* pop-up window with a custom response message text.      
+
+The additional functionality is provided to display action responses using <a href="/reference/actions" target="_blank">*return*</a> action.                         
+
+``` json
+{
+  "type": "update",
+  "name": "Custom Response Handlers",
+  "onInstall": {
+    "script": "return {result : 1000};"
+  },
+  "responses": {
+    "1000": {
+      "type": "warning",
+      "message": "Custom Warning message!"
+    }
+  }
+}
+```
+
+where:
+
+- `script` - Cloud Scripting <a href= "/reference/actions/#script" target="__blank">action</a> for executing *Javascript* or *Java* code (*Javascript* is set by default)                     
+- `1000` - custom predefined result code for responses handling. It will be returned from the `script` action in the `onInstall` block.        
+
+If the result code is delivered via *string*, then the default result code is *11039*. Therefore, `responses` can be handled by the following outcoming *string* text:            
+
+``` json
+{
+	"type": "update",
+	"name": "Custom Response Handlers",
+	"onInstall": {
+		"script": "return 'error'"
+	},
+	"responses": {
+		"error": {
+			"type": "info",
+			"message": "Custom Warning message!"
+		}
+	}
+}
+```
+
+   
+In all the other cases, i.e. when a custom response is not predefined within the `responses` block, the default pop-up window type is *error* with an output message.          
+
+A response objects which are returned from custom scripts and predefined in `response` block are emposed one to another. A response object from custom scripts has a higher priority than responses in `response` object.  
+For example:
+```json
+{
+  "type": "update",
+  "name": "Custom Response Handlers",
+  "onInstall": {
+    "script": "return {'result': '2308', 'message': 'Success from script with result 2308'}"
+  },
+  "responses": {
+    "2308": {
+      "type": "success",
+      "message": "Custom Success message!"
+    }
+  }
+}
+```
+
+The final success form will be same as on screen below:
+
+<center>![redefinedSuccessResponseHandler](/img/redefinedSuccessResponseHandler.jpg)</center>
 
 ##Success Text Customization
 
