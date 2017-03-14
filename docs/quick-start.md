@@ -6,13 +6,13 @@ To give a try to Cloud Scripting right away, use a basic [Hello World](#hello-wo
 
 And to get up and ready with your own project, fulfill the following requirements:                                    
 
-* decide upon a <a href="/samples/" target="blank">scenario</a> that will be delivered by means of CS                       
+- decide upon a <a href="/samples/" target="blank">scenario</a> that will be delivered by means of CS                       
 
-* define a set of <a href="/creating-manifest/basic-configs/" target="blank">properties</a> essential for the proper application workflow                  
+- define a set of <a href="/creating-manifest/basic-configs/" target="blank">properties</a> essential for the proper application workflow                  
 
-* declare the required properties within a <a href="/creating-manifest/basic-configs/" target="blank">JPS manifest</a> file                      
+- declare the required properties within a <a href="/creating-manifest/basic-configs/" target="blank">JPS manifest</a> file                      
 
-* deploy the prepared manifest to a Platform via [import](#how-to-deploy-cs-solution-to-jelastic ) functionality                 
+- deploy the prepared manifest to a Platform via [import](#how-to-deploy-cs-solution-to-jelastic ) functionality                 
 
 ## Hello World Manifest Example                      
 
@@ -77,10 +77,13 @@ Just in the same way, you can build and run the solution you need - from frequen
 <br>    
 ## Best Practises               
 
-- Use <a href="http://jsoneditoronline.org/" target="blank">JSON Editor Online</a> with the automatic formatting and syntax highlighting                    
-- Use <a href="http://www.yaml.org/" target="blank">YAML</a> parser to edit manifest code in YAML format                         
-- Use <a href="https://github.com/" target="blank">GitHub</a> to store and manage your projects, manifests and scripts all together                           
-- Use <a href="/samples/" target="blank">Jelastic Samples</a> to explore operation and package examples                       
+- Use <a href="http://jsoneditoronline.org/" target="blank">JSON Editor Online</a> with the automatic formatting and syntax highlighting                       
+
+- Use <a href="http://www.yaml.org/" target="blank">YAML</a> parser to edit manifest code in YAML format                                    
+
+- Use <a href="https://github.com/" target="blank">GitHub</a> to store and manage your projects, manifests and scripts all together                            
+
+- Use <a href="/samples/" target="blank">Jelastic Samples</a> to explore operation and package examples                          
 
 <br> 
 <h2> What’s next?</h2>              
@@ -99,4 +102,4 @@ Just in the same way, you can build and run the solution you need - from frequen
 
 - <a href="/samples/" target="blank">Samples</a> - find a set of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions.                        
 
-- <a href="/troubleshooting/" target="blank">Troubleshooting</a> - appeal to this guide, if you face any issue, while working with Cloud Scripting.                                     
+- <a href="/troubleshooting/" target="blank">Troubleshooting</a> - appeal to this guide, if you face any issue while working with Cloud Scripting.                                     
