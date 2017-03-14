@@ -15,8 +15,9 @@ if (env.protocol == 'http')
 
 The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*</b> can be of any nesting level.                                             
 
-- If condition is specified incorrectly, the actions inside <b>*if*</b> statement won't be executed. Herewith, the <a href="/troubleshooting/" target="_blank">Cloud Scripting Console</a> will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.               
-- If condition is valid, but is not executed, the <b>*'condition is not met'*</b> message will be logged.                     
+- If condition is specified incorrectly, the actions inside <b>*if*</b> statement won't be executed. Herewith, the <a href="/troubleshooting/" target="_blank">Cloud Scripting Console</a> will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.                            
+
+- If condition is valid, but is not executed, the <b>*'condition is not met'*</b> message will be logged.                                        
 
 <b>Examples</b>    
 
@@ -94,7 +95,7 @@ The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*<
 
 ### Nested Conditions   
   
-Nesting of two <b>*if*</b> conditional statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and is logging the correspondent messages.          
+Nesting of two <b>*if*</b> conditional statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of the external IP address on the first balancer node and is logging the correspondent messages.          
 ``` json
 {
   "type": "update",
@@ -166,7 +167,7 @@ where:
 
 Iteration can be executed by <b>*env.nodes*</b>, <b>*nodes*</b>, <b>*env.contexts*</b>, and <b>*env.extdomains*</b> objects.                    
 
-Iteration set by <b>*env.extdomains*</b>                       
+Iteration set by <b>*env.extdomains*</b>.                                       
 ``` json
 {
   "forEach(env.extdomains)": [
@@ -185,7 +186,7 @@ where:
 - `@i` - default iterator name 
 - `env.extdomains` - bound external domains 
 
-Iteration set by <b>*env.contexts*</b>                             
+Iteration set by <b>*env.contexts*</b>.                                                         
 ``` json
 {
   "forEach(env.contexts)": {
@@ -200,7 +201,7 @@ where:
 
 - `env.contexts` -  list of contexts (applications) deployed to an environment                           
 
-Scaling nodes example                
+Scaling nodes example.                             
 
 ``` json
 {
@@ -226,7 +227,7 @@ As a result of *cmd*, compute nodes internal IP addresses are rewritten within b
 
 Iteration by all nodes in an environment.    
 
-- Iteration set by <b>*env.nodes*</b>                            
+Iteration set by <b>*env.nodes*</b>.                                              
 ``` json
 {
   "forEach(env.nodes)": {
@@ -247,7 +248,7 @@ Iteration by compute nodes with a custom iterator name.
 ```
 
 where:   
-- `@cp [optional]` - custom iterator name. Target nodes can also be set by type -`${@cp.nodeType}` or group - `${@cp.nodeGroup}`.                                   
+- `@cp [optional]` - custom iterator name. Target nodes can be also set by type -*${@cp.nodeType}* or group - *${@cp.nodeGroup}*.                                    
 
 Custom iterator name can be used for nesting cycles one into another.            
 ``` json
@@ -271,13 +272,20 @@ where:
 
 In this case, every environment node will have only one conjunction by <b>Node ID</b>.
 
-The **ForEach** execution is recorded in a <a href="/troubleshooting/" target="_blank">user console logfile</a> for convenient code debugging.           
+The **ForEach** execution is recorded in the user console <a href="/troubleshooting/" target="_blank">log file</a> for convenient code debugging.           
 
 <center>![forEachCount](/img/forEachCount.jpg)</center>
 <br>
 <h2> What's next?</h2>         
 
-- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>       
-- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>              
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples  
-- See the <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions             
+- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                         
+
+- Learn how to сreate your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                         
+
+- Find out how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>                       
+
+- See how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                   
+
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                           
+
+- See the <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions                       
