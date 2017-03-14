@@ -67,8 +67,8 @@ This is the list of placeholders that you can use within the environment section
     - `contexts.type` *[string]* - environment context type
     - `contexts.context` *[string]* - context name
     - `contexts.archivename` *[string]* - context display name
-    - `contexts.length` *[number]* - number of contexts which are deployed to environment
-    - `extdomains.length` *[number]* - number of external domains which are binded to environment
+    - `contexts.length` *[number]* - number of contexts that are deployed to an environment
+    - `extdomains.length` *[number]* - number of external domains that are bound to an environment
 
 ## Node Placeholders    
 
@@ -88,7 +88,7 @@ This is the list of placeholders that you can use within the nodes section of yo
         - `bandwidthLimit` - node bandwidth limit   
         - `contextValidatorRegex` - validation for context names    
         - `diskIopsLimit` - IOPS limitation quota   
-        - `addons.length` - number of available addons at the selected node
+        - `addons.length` - number of available add-ons at the selected node
         - `diskLimit` - hardware node disk space quota  
         - `endpoints` [*array indexes*] - <a href="https://docs.jelastic.com/endpoints" target="_blank">endpoints</a> functionality                              
             - `domain` - full domain name of the node the endpoint is being set for                  
@@ -96,7 +96,7 @@ This is the list of placeholders that you can use within the nodes section of yo
             - `name` - title for the new endpoint (can be either custom or <a href="https://docs.jelastic.com/endpoints#preconfigured" target="_blank">predefined</a>)                         
             - `privatePort` - preferred local node port              
             - `publicPort` - private (dynamic) port used for mapping                                         
-            - `protocol` - protocol type (currently, only **TCP** is provided)             
+            - `protocol` - protocol type (currently, only TCP is provided)             
             - `length` - number of available endpoints within the selected node               
         - `fixedCloudlets` - fixed cloudlets number                        
         - `flexibleCloudlets` - flexible cloudlets number                                   
@@ -125,9 +125,9 @@ This is the list of placeholders that you can use within the nodes section of yo
             - `keyword` - engine keyword (e.g. *java7*, *php7.0*)  
             - `name` - full engine name (e.g. *Java 8*, *PHP 7*)  
             - `type` - engine type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
-            - `vcsSupport` - supporting VCS in container  
+            - `vcsSupport` - supporting VCS in a container  
             - `version` - engine version  
-            - `length` - number of available engines for selected compute layer     
+            - `length` - number of available engines for the selected compute layer     
         - `activeEngine`(current engine in a container):  
             - `id` - engine ID at the platform   
             - `keyword` - engine keyword (e.g. *java7*, *php7.0*)  
@@ -153,8 +153,8 @@ In case a few nodes are available within a single *nodeGroup*, you can execute a
 
 Event placeholders represent a set of dynamic parameters that are executed as a result of a certain event occurrence. The event placeholders have their custom set of parameters and begin with the default keywords:
                          
-- `${event.params.(key)}` - where *key* is a name of event parameter                     
-- `${event.response.(key)}` -where *key* is a name of event response parameter             
+- `${event.params.(key)}` - where *key* is a name of the event parameter                     
+- `${event.response.(key)}` -where *key* is a name of the event response parameter             
 
 Learn more about the event placeholders within the <a href="/creating-manifest/events" target="_blank">*Events*</a> page.         
 
@@ -172,8 +172,7 @@ This is the list of placeholders that you can use while specifying account infor
 This is the list of placeholders that you can use for input parameters.                        
 
 - `${settings.jelastic_email}` - user email that is always predefined       
-- `${settings.key}` - (where *key* is a name of the application setting) 
-    The placeholder is defined in case user input parameters are specified within a manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.     
+- `${settings.key}` - where *key* is a name of the application setting. The placeholder is defined, if user input parameters are specified within a manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.              
 
 For example:
 ``` json
@@ -190,13 +189,11 @@ For example:
   }
 }
 ```
-The name of the placeholder here is `${settings.customName}`. Check the list of <a href="/creating-manifest/visual-settings/" target="_blank">fields defined by users</a>.       
+The name of the placeholder here is `${settings.customName}`. Check the list of <a href="/creating-manifest/visual-settings/" target="_blank">fields</a> defined by users.       
 
 ## Action Placeholders
 
-Action placeholders are a set of placeholders that can be used within the appropriate actions by means of `${this}` namespace.                                
-
-- `${this.param}` - where *param* is a name of the action parameter                         
+Action placeholders form a set of placeholders that can be used within the actions by means of <b>*${this}*</b> namespace. So, in <b>*${this.param}*</b> the *param* is a name of the action parameter.                                          
 
 For example:
 ``` json
@@ -207,7 +204,8 @@ For example:
   }
 }
 ```
-Passing custom parameters to the action is performed in the following way:                       
+Passing custom parameters to the action is performed in the following way.                  
+
 ``` json
 {
 	"jpsType": "update",
@@ -225,7 +223,7 @@ Passing custom parameters to the action is performed in the following way:
 	}
 }
 ```
-As a result, console will display the *first* (1) custom parameter from `${this.first}` placeholder.
+As a result, console will display the *first* (1) custom parameter from <b>*${this.first}*</b> placeholder.             
 
 ## UI Placeholders
 
@@ -269,7 +267,7 @@ For example:
 }
 ```
 
-As a result, the new placeholders are created:
+As a result, the new placeholders are created.                       
 ``` json
 {
   "globals.value1": 1,
@@ -303,7 +301,7 @@ Functions without required parameters have two input forms:
 - `${fn.random}` or `${fn.random()}`
 
 
-Function parameter can be passed from existing placeholders. For example:   
+Function parameter can be passed from existing placeholders, for example:                         
 
 - `${fn.md5([fn.random])}` - *md5* encoding random password   
 - `${fn.base64([user.email])}` - *base64* encoding user email address  
@@ -318,7 +316,7 @@ For example:
   }
 }
 ```
-Now, you can use `${global.pass}` within the entire manifest.
+Now, you can use <b>*${global.pass}*</b> within the entire manifest.
 
 ## Array Placeholders
 
@@ -353,7 +351,7 @@ where:
 - `{nodes.cp.first.(key)}` - array element with the the *'0'* index              
 - `{nodes.sqldb.last.(key)}` - array element with the last ID in the array                      
 
-Here, `key` is the node parameter.                         
+Here, <b>*key*</b> is the node parameter.                         
 
 ## File Path Placeholders
 
@@ -388,7 +386,7 @@ You can use the following placeholders, as well, with the definite *nodeType*:
 - `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*  
 - `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*      
 
-Explore the full list of available <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">nodeType</a>.                                              
+Explore the full list of available <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> within the linked page.                                                         
 
 The list of single placeholders:
 
