@@ -153,10 +153,10 @@ Below you can find data on supported software stacks in confines of the *nodeGro
 
 The Jelastic Platform supports the following predefined *nodeGroup* values:                           
 
-- **lb** (for load balancers) - *nginx, varnish, haproxy, apache-lb*                     
+- **bl** (for load balancers) - *nginx, varnish, haproxy, apache-lb*                     
 - **cp** (for compute nodes) - *tomcat6, tomcat7, tomcat8, tomee, glassfish3, glassfish4, jetty6, jetty8, jetty9, jboss7, smartfox-server, powerdns, railo4, wildfly, wildfly9, wildfly10, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs, iis8*                     
-- **sql** (for *sql* databases) - *mysql5, mysql5-6, mariadb, mariadb10, postgres8, postgres9, mssql, mssqlweb, mssqlstd*                          
-- **nosql** (for *nosql* databases) - *mongodb, mongodb2, couchdb, redis, redis3, cassandra, cassandra2, cassandra3, neo4j, neo4j2-1, neo4j3, orientDB, orientDB2, Percona*                   
+- **sqldb** (for *sql* databases) - *mysql5, mysql5-6, mariadb, mariadb10, postgres8, postgres9, mssql, mssqlweb, mssqlstd*                          
+- **nosqldb** (for *nosql* databases) - *mongodb, mongodb2, couchdb, redis, redis3, cassandra, cassandra2, cassandra3, neo4j, neo4j2-1, neo4j3, orientDB, orientDB2, Percona*                   
 - **vds** (for virtual private servers) - *centos6, centos7, ubuntu16-04, windows2008, windows2012*                        
 - **cache** (for a cache server) - *memcached*                       
 - **build** (for a build node) - *maven3*                     
@@ -166,7 +166,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 
 The Jelastic Platform supports the following software stacks:         
 
-- **Compute Nodes:**                  
+- **Compute Nodes (cp):**                  
     - *Java*                
         - `tomcat6` - *Tomcat 6*                
         - `tomcat7` - *Tomcat 7*               
@@ -196,7 +196,7 @@ The Jelastic Platform supports the following software stacks:
         - `nodejs` - *Node.js*       
     - *Web Server (IIS)*
         - `iis8` - *Web Server (IIS)*
-- **SQL Databases:**
+- **SQL Databases (sqldb):**
      - `mysql5` - *MySQL*
      - `mariadb` - *MariaDB 5*
      - `mariadb10` - *MariaDB 10*
@@ -205,7 +205,7 @@ The Jelastic Platform supports the following software stacks:
      - `mssql` - *MSSQL 2012*
      - `mssqlweb` - *MSSQL Web*
      - `mssqlstd` - *MSSQL std*
-- **NoSQL Databases:**   
+- **NoSQL Databases (nosqldb):**   
      - `mongodb` - *MongoDB*
      - `mongodb2` - *MongoDB 2*
      - `couchdb` - *CouchDB*
@@ -219,24 +219,24 @@ The Jelastic Platform supports the following software stacks:
      - `orientDB` - *OrientDB*
      - `orientDB2` - *OrientDB 2*
      - `Percona` - *Percona 5*
-- **Balancers:**
+- **Balancers (bl):**
      - `nginx` - *Nginx* balancer
      - `haproxy` - *HAProxy* balancer
      - `apache-lb` - *Apache* balancer
      - `varnish` - *Varnish 4*
-- **Build Node:**
+- **Build Node (build):**
      - `maven3` - *Мaven*
-- **Cache Node:**
+- **Cache Node (cache):**
      - `memcached` - *Мemcached*
-- **Virtual Private Server nodes:**
+- **Virtual Private Server nodes (vds):**
      - `centos6` - *CentOS 6*
      - `centos7` - *CentOS 7*
      - `ubuntu16-04` - *Ubuntu16-04*
      - `windows2008` - *Windows2008*
      - `windows2012` - *Windows2012*
-- **Storage:**
+- **Storage (storage):**
      - `storage` - *Shared storage*
-- **Docker Containers:**
+- **Docker Containers (docker):**
      - `docker`
          
 
