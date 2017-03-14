@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Run into trouble with Cloud Scripting? Here are some helpful tips and specific suggestions for troubleshooting as follows.                     
+Run into trouble with Cloud Scripting? Here are some helpful tips and specific suggestions for troubleshooting as follows:                             
 
 * Log in to your Jelastic dashboard and open the link of the following type in a new browser tab:              
 
