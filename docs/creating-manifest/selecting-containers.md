@@ -2,7 +2,7 @@
 
 ## Selector Types
 
-Running a specific <a href="/reference/actions/" target="_blank">action</a> requires to specify a target container, in confines of which this action will be executed. Thus, it is possible to specify a [particular container](#particular-container), all containers within a layer by their [*nodeGroup*](#all-containers-by-group) value (e.g. <em>sql</em>) or all containers of the same type by their [*nodeType*](#all-containers-by-type) value (e.g. <em>MySQL</em>).                                 
+Running a specific <a href="/creating-manifest/actions/" target="_blank">action</a> requires to specify a target container, in confines of which this action will be executed. Thus, it is possible to specify a [particular container](#particular-container), all containers within a layer by their [*nodeGroup*](#all-containers-by-group) value (e.g. <em>sql</em>) or all containers of the same type by their [*nodeType*](#all-containers-by-type) value (e.g. <em>MySQL</em>).                                 
 
 ### Particular Container
 
@@ -34,7 +34,7 @@ For example:
   ]
 }
 ```
-Visit the <a href="/reference/placeholders/" target="_blank"><em>Placeholders</em></a> documentation page for more information.      
+Visit the <a href="/creating-manifest/placeholders/" target="_blank"><em>Placeholders</em></a> documentation page for more information.      
 
 ### All Containers By Group        
  
@@ -63,7 +63,7 @@ The <em>nodeType</em> parameter is applied to specify all containers that are bu
 
 <b>Examples</b>     
 
-Using the *nodeType* field while performing the <a href="/reference/actions/#writefile" target="blank">**writeFile**</a> action.
+Using the *nodeType* field while performing the <a href="/creating-manifest/actions/#writefile" target="blank">**writeFile**</a> action.
 ``` json
 {
   "writeFile": {
@@ -139,7 +139,7 @@ Here, the <em>createFile</em> and <em>createDirectory</em> actions are applied t
  
 - specifying a required node as a parameter in the action object     
 
-Learn more on this parameter within the <a href="/reference/actions/#custom-actions" target="_blank"><em>Custom Actions</em></a> documentation page.                                      
+Learn more on this parameter within the <a href="/creating-manifest/actions/#custom-actions" target="_blank"><em>Custom Actions</em></a> documentation page.                                      
 
 !!! note 
     <b>Node selectors</b> have higher priority than nodes, specified next to the action, but lower than parameters set in the action object.   
@@ -289,9 +289,9 @@ The following section deals with the supported engine versions and their availab
 <br>       
 <h3> What’s next?</h3>                    
 
-- Explore the list of available <a href="/reference/actions/" target="_blank">Actions</a>             
-- See the <a href="/reference/events/" target="_blank">Events</a> list the actions can be bound to            
-- Find out the list of <a href="/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching        
+- Explore the list of available <a href="/creating-manifest/actions/" target="_blank">Actions</a>             
+- See the <a href="/creating-manifest/events/" target="_blank">Events</a> list the actions can be bound to            
+- Find out the list of <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching        
 - Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>   
-- Learn how to customize <a href="/creating-manifest/user-input-parameters/" target="_blank">Visual Settings</a>              
+- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>              
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples    

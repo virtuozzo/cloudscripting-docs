@@ -8,17 +8,17 @@ If it's not possible, the placeholder will be unresolved and displayed in the te
 
 The following specific groups of placeholders are singled out: 
 
-- [Environment Placeholders](/reference/placeholders/#environment-placeholders)           
-- [Node Placeholders](/reference/placeholders/#node-placeholders)                 
-- [Event Placeholders](/reference/placeholders/#event-placeholders)                    
-- [Account Information](/reference/placeholders/#account-information)                 
-- [Input Parameters](/reference/placeholders/#input-parameters)                          
-- [Action Placeholders](/reference/placeholders/#action-placeholders)                  
-- [UI Placeholders](/reference/placeholders/#ui-placeholders)                     
-- [Custom Global Placeholders](/reference/placeholders/#custom-global-placeholders)                                
-- [Function Placeholders](/reference/placeholders/#function-placeholders)                             
-- [Array Placeholders](/reference/placeholders/#array-placeholders)                                       
-- [File Path Placeholders](/reference/placeholders/#file-path-placeholders)                                 
+- [Environment Placeholders](/creating-manifest/placeholders/#environment-placeholders)           
+- [Node Placeholders](/creating-manifest/placeholders/#node-placeholders)                 
+- [Event Placeholders](/creating-manifest/placeholders/#event-placeholders)                    
+- [Account Information](/creating-manifest/placeholders/#account-information)                 
+- [Input Parameters](/creating-manifest/placeholders/#input-parameters)                          
+- [Action Placeholders](/creating-manifest/placeholders/#action-placeholders)                  
+- [UI Placeholders](/creating-manifest/placeholders/#ui-placeholders)                     
+- [Custom Global Placeholders](/creating-manifest/placeholders/#custom-global-placeholders)                                
+- [Function Placeholders](/creating-manifest/placeholders/#function-placeholders)                             
+- [Array Placeholders](/creating-manifest/placeholders/#array-placeholders)                                       
+- [File Path Placeholders](/creating-manifest/placeholders/#file-path-placeholders)                                 
 
 ## Environment Placeholders
 
@@ -146,7 +146,7 @@ Event placeholders represent a set of dynamic parameters that are executed as a 
 - `${event.params.(key)}` - where *key* is a name of event parameter                     
 - `${event.response.(key)}` -where *key* is a name of event response parameter             
 
-Learn more about the event placeholders within the <a href="/reference/events" target="_blank">*Events*</a> page.         
+Learn more about the event placeholders within the <a href="/creating-manifest/events" target="_blank">*Events*</a> page.         
 
 ## Account Information  
 
@@ -180,7 +180,7 @@ For example:
   }
 }
 ```
-The name of the placeholder here is `${settings.customName}`. Check the list of <a href="/creating-manifest/user-input-parameters/" target="_blank">fields defined by users</a>.       
+The name of the placeholder here is `${settings.customName}`. Check the list of <a href="/creating-manifest/visual-settings/" target="_blank">fields defined by users</a>.       
 
 ## Action Placeholders
 
@@ -336,7 +336,7 @@ For example:
 where:
 
 - `(i)` - array index. Indexes of array start from *'0'*                     
-- `(key)` - node <a href="/reference/placeholders/#node-placeholders" target="_blank">parameters</a>                            
+- `(key)` - node <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">parameters</a>                            
 
 **The First and the Last Array Elements** 
 
@@ -396,5 +396,5 @@ The list of single placeholders:
 
 - See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                               
 - Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>       
-- Learn how to customize <a href="/creating-manifest/user-input-parameters/" target="_blank">Visual Settings</a>                
+- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples           

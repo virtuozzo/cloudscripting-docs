@@ -46,32 +46,32 @@ where:
 - `fields` - array of fields that will be displayed in a custom form     
     - `showIf` - shows/hides field by condition (is applicable only to the *radio-fieldset* field)   
     - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:   
-        * `string` - [basic](/creating-manifest/user-input-parameters/#string) text field                                  
-        * `text`  - [multiline](/creating-manifest/user-input-parameters/#text) text field                                                                                                         
-        * `list` - drop-down menu with [textboxes](/creating-manifest/user-input-parameters/#list))                                           
-        * `checkbox` - single [checkbox field](/creating-manifest/user-input-parameters/#checkbox)                     
-        * `checkboxlist` - [checkbox](/creating-manifest/user-input-parameters/#checkboxlist) grouping                             
-        * `radiolist` - [radio field](/creating-manifest/user-input-parameters/#radiolist) grouping                       
+        * `string` - [basic](/creating-manifest/visual-settings/#string) text field                                  
+        * `text`  - [multiline](/creating-manifest/visual-settings/#text) text field                                                                                                         
+        * `list` - drop-down menu with [textboxes](/creating-manifest/visual-settings/#list))                                           
+        * `checkbox` - single [checkbox field](/creating-manifest/visual-settings/#checkbox)                     
+        * `checkboxlist` - [checkbox](/creating-manifest/visual-settings/#checkboxlist) grouping                             
+        * `radiolist` - [radio field](/creating-manifest/visual-settings/#radiolist) grouping                       
         * `radio-fieldset` - alias to `radiolist`              
-        * `dockertags` - drop-down menu with a list of [docker tags](/creating-manifest/user-input-parameters/#dockertag))                   
-        * `compositefield` - [component](/creating-manifest/user-input-parameters/#compositefield) that comprises any available field    
-        * `slider` - [slider element](/creating-manifest/user-input-parameters/#slider) as a form field
-        * `envlist` - [list of environments](/creating-manifest/user-input-parameters/#envlist) available for a corresponding account                  
-        * `popupselector` - new [pop-up window](/creating-manifest/user-input-parameters/#popupselector) via POST request with posibility to pass additional parameters
+        * `dockertags` - drop-down menu with a list of [docker tags](/creating-manifest/visual-settings/#dockertag))                   
+        * `compositefield` - [component](/creating-manifest/visual-settings/#compositefield) that comprises any available field    
+        * `slider` - [slider element](/creating-manifest/visual-settings/#slider) as a form field
+        * `envlist` - [list of environments](/creating-manifest/visual-settings/#envlist) available for a corresponding account                  
+        * `popupselector` - new [pop-up window](/creating-manifest/visual-settings/#popupselector) via POST request with posibility to pass additional parameters
         * `popup-selector` - alias to `popupselector`                               
-        * `displayfield` - [text field](/creating-manifest/user-input-parameters/#displayfield) intended for displaying text                            
+        * `displayfield` - [text field](/creating-manifest/visual-settings/#displayfield) intended for displaying text                            
         * `spacer` - alias to `displayfield`                     
-        * `spinner` - [input field](/creating-manifest/user-input-parameters/#spinner) for entering numeric values                       
-        * `numberpicker` - [field to select a number](/creating-manifest/user-input-parameters/#numberpicker) within a range                            
+        * `spinner` - [input field](/creating-manifest/visual-settings/#spinner) for entering numeric values                       
+        * `numberpicker` - [field to select a number](/creating-manifest/visual-settings/#numberpicker) within a range                            
         * `number-picker` - alias to `numberpicker`  
-        * `hostpicker` - drop-down menu with [environment hosts](/creating-manifest/user-input-parameters/#hostpicker)                             
+        * `hostpicker` - drop-down menu with [environment hosts](/creating-manifest/visual-settings/#hostpicker)                             
         * `host-picher` - alias to `hostpicker`                                      
-        * `toggle` - [switcher](/creating-manifest/user-input-parameters/#toggle) between two values                        
+        * `toggle` - [switcher](/creating-manifest/visual-settings/#toggle) between two values                        
     - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. See more info on the <a href="https://www.w3.org/wiki/HTML/Elements/input#Point" target="_blank">type attribute</a>.                         
     - `name` - input field name, that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests   
     - `default` *[optional]* - default value for the input field  
     - `caption` *[optional]* - field label  
-    - `placeholder` *[optional]* - used <a href="/reference/placeholders/" target="blank">placeholders</a>                         
+    - `placeholder` *[optional]* - used <a href="/creating-manifest/placeholders/" target="blank">placeholders</a>                         
     - `required` *[optional]* - possible values are *'true'* & *'false'*. If left empty, the default value is *'true'*.  
     - `regex` *[optional]* - constructor for testing the JavaScript RegExp object, that refers to the stated the field value, during validation. If test fails, the field will be marked invalid using *regexText*. The default value is *'null'*.                                                        
     - `regexText` *[optional]* - displays error message in case of the *regex* test failure during validation. The default value is *' '* (blank space).     
@@ -690,11 +690,11 @@ In this case, the filtering result will be the following:
 <center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
   
 ## Custom Menus    
-Menu is an expandable list within the <b>Add-ons</b> section comprising operations, that can be extended and adjusted by means of [custom buttons](/creating-manifest/user-input-parameters/#custom-buttons).                 
+Menu is an expandable list within the <b>Add-ons</b> section comprising operations, that can be extended and adjusted by means of [custom buttons](/creating-manifest/visual-settings/#custom-buttons).                 
 
 <center>![menu](/img/menu.jpg)</center>     
 
-By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the <a href="/reference/events/#application-level-events" target="_blank">application level events</a> settings.          
+By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the <a href="/creating-manifest/events/#application-level-events" target="_blank">application level events</a> settings.          
 
 The used properties for custom menus are the same as for custom buttons. Herewith, the appropriate `menu` field (instead of `buttons`) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
 
@@ -735,7 +735,7 @@ Such buttons execute operations that are predefined within a JPS manifest.
 <center>![TrafficManager](/img/TrafficManager.jpg)</center>    
 
 !!! note
-    > The JPS manifest should include the [*targetNodes*](/creating-manifest/user-input-parameters/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
+    > The JPS manifest should include the [*targetNodes*](/creating-manifest/visual-settings/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
 
 <b>Templates</b>   
 
@@ -786,7 +786,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 - `href` *[optional]* - external link that is opened in a new browser tab; is executed only if the `settings` field is absent. In case of `href` execution, `action` will not be carried out.     
 
-Another sample with additional configurations: the next parameters can be enabled only if the [*settings*](/creating-manifest/user-input-parameters/#custom-settings) field is present:     
+Another sample with additional configurations: the next parameters can be enabled only if the [*settings*](/creating-manifest/visual-settings/#custom-settings) field is present:     
 ``` json
 {
   "type": "update",
@@ -825,7 +825,7 @@ where:
 
 <center>![LogsPath](/img/LogsPath.jpg)</center>  
 
-- `logsNodeGroup` - <a href="/reference/container-types/#containers-by-groups-nodegroup" target="_blank">nodeGroup</a> layer the logging path should be opened for                     
+- `logsNodeGroup` - <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> layer the logging path should be opened for                     
 
 ## Custom Settings
 The settings section can include a few custom forms. The default settings form ID is *'main'*.    
@@ -877,235 +877,6 @@ Here, the *main settings* form appears during installation process.
 The *config settings* form appears after clicking the <b>Configure</b> button within the Add-ons section.   
 
 <center>![settingCustom](/img/SettingsCustom.jpg)</center>     
-
-##Handling Custom Responses
-
-The Cloud Scripting engine provides functionality to handle custom responses. The responses handling is related to the action result codes. You can locate these codes within the <a href="/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a message text that will be displayed in case of an error occurrence.         
-
-There are a types of predefined pop-up windows, which emerge while custom responses are being handled:  
-
-- `info` - *information* pop-up window                
-
-<center>![SuccessText](/img/SuccessText.jpg)</center>          
-
-- `warning` - *warning* pop-up window with a custom message                
- 
-<center>![new-warning](/img/new-warning.png)</center>        
-
-- `error` - *error* pop-up window          
-
-<center>![new-error](/img/new-error.png)</center>          
-
-The text of the messages in these windows can be localized according to the languages that are available within the Jelastic Platform.                
-- `success` - *success* window when the action will be executed with expected result code. The manifest installation will be finished immediately if an any action will return the result code from `script` or `return` actions or which is predefined in `responses` block.
-
-<center>![success](/img/successResponse.jpg)</center>
-
-The types `info`, `error` and `warning` are unsuccessful installation results. Therefore, the install process will be marked by red cross like on the screen below:
-
-<center>![success](/img/redCross.jpg)</center>
-
-The simplest custom response message can be returned in one string via actions `return` or `script`. The examples below provide this ability:
- 
-```json
-{
-  "type": "update",
-  "name": "response handlers",
-  "onInstall": {
-    "return": "Warning!"
-  }
-}
-```
-
-```json
-{
-  "type": "update",
-  "name": "response handlers",
-  "onInstall": {
-    "script": "return 'Warning!'"
-  }
-}
-```
-
-In this case the default response `type` is `error` and response `message` is returned string.
-
-There is an ability to return a response with a defined result type and with a custom message via `script` or `return` actions. 
-`Return` action: 
-
-```json
-{
-    "type": "update",
-    "name": "response handlers",
-    "onInstall": {
-        "return": {
-          "result": "warning",
-          "message": "Warning!",
-          "email": "string"
-        }
-    }
-}
-```
-!!! note
-    `email` parameter is available only for `success` response type. This text will be sent after an any action will be finished with **success** response code.
-
-`Script` action:
-
-```json
-{
-    "type": "update",
-    "name": "response handlers",
-    "onInstall": {
-        "script": "return {result: 'warning', message: 'Warning!','email': 'string'}"
-    }
-}
-```
-
-Parameters `message` and `email` support all <a href="/reference/placeholders/" target="_blank">available placeholders</a>. Either, they could be uploaded from an any external source via direct link or according to <a href="/creating-manifest/basic-configs/#relative-links">baseUrl ability</a>.  
-
-In case, when is returned a response code with a type `success` two response objects impose one to another. 
-But the `success` text from response object has a higher priority than a <a href="/creating-manifest/user-input-parameters/#success-text-customization" target="_blank">**success**</a> text from main manifest block.    
-A examples below display the difference:
-
-```json
-{
-    "type": "update",
-    "name": "response handlers",
-    "onInstall": {
-        "script": "return {'result': 'success','message': 'Hello!!'}"
-    },
-    "success": "success!!"
-}
-```
-
-The result code with `success` type, message - '*Hello!!*' and sent email text - '*success!!*'
-
-```json
-{
-    "type": "update",
-    "name": "response handlers",
-    "onInstall": {
-        "script": "return {'result': 'success','message': 'Hello!!', 'email': 'Hello!!'}"
-    },
-    "success": "success!!"
-}
-```
-
-The result code with `success` type, message - '*Hello!!*' and sent email text - '*Hello!!*'
-
-The result message text can be localized according to the languages, available within the Jelastic Platform:
-
-``` json
-{
-  "type": "warning",
-  "message": {
-    "en": "Localized text",
-    "es": "Texto localizado"
-  }
-}
-```
-
-In necessity to display the same response codes a `response` object can be added where a custom responses can be defined. The examples below show how to use it.
-
-<h3>Examples</h3>
-
-**File creation error**
-
-The example below describes a creation of the same file twice and handling an response, which occurs as a result of such action execution. Consequently, the result code of this response will be defined as *4036*.           
-
-``` json
-{
-  "type": "update",
-  "name": "Handling File Creation",
-  "onInstall": [
-    {
-      "createFile [cp]": "/tmp/customDirectory"
-    },
-    {
-      "createFile [cp]": "/tmp/customDirectory"
-    }
-  ],
-  "responses": {
-    "4036": {
-      "type": "error",
-      "message": "file path already exists"
-    }
-  }
-}
-```
-
-where: 
-
-- `createFile` - predefined within the Cloud Scripting <a href="/reference/actions/#createfile" target="_blank">action</a>              
-- `responses` - object (array) to describe custom responses     
-- `type` - type of a pop-up window, emerging upon the response occurrence. The available values are: *error*, *warning*, *info*, *success*.       
-
-Thus, the example above sets all the actions with *4036* result to be displayed via *error* pop-up window with a custom response message text.      
-
-The additional functionality is provided to display action responses using <a href="/reference/actions" target="_blank">*return*</a> action.                         
-
-``` json
-{
-  "type": "update",
-  "name": "Custom Response Handlers",
-  "onInstall": {
-    "script": "return {result : 1000};"
-  },
-  "responses": {
-    "1000": {
-      "type": "warning",
-      "message": "Custom Warning message!"
-    }
-  }
-}
-```
-
-where:
-
-- `script` - Cloud Scripting <a href= "/reference/actions/#script" target="__blank">action</a> for executing *Javascript* or *Java* code (*Javascript* is set by default)                     
-- `1000` - custom predefined result code for responses handling. It will be returned from the `script` action in the `onInstall` block.        
-
-If the result code is delivered via *string*, then the default result code is *11039*. Therefore, `responses` can be handled by the following outcoming *string* text:            
-
-``` json
-{
-	"type": "update",
-	"name": "Custom Response Handlers",
-	"onInstall": {
-		"script": "return 'error'"
-	},
-	"responses": {
-		"error": {
-			"type": "info",
-			"message": "Custom Warning message!"
-		}
-	}
-}
-```
-
-   
-In all the other cases, i.e. when a custom response is not predefined within the `responses` block, the default pop-up window type is *error* with an output message.          
-
-A response objects which are returned from custom scripts and predefined in `response` block are emposed one to another. A response object from custom scripts has a higher priority than responses in `response` object.  
-For example:
-```json
-{
-  "type": "update",
-  "name": "Custom Response Handlers",
-  "onInstall": {
-    "script": "return {'result': '2308', 'message': 'Success from script with result 2308'}"
-  },
-  "responses": {
-    "2308": {
-      "type": "success",
-      "message": "Custom Success message!"
-    }
-  }
-}
-```
-
-The final success form will be same as on screen below:
-
-<center>![redefinedSuccessResponseHandler](/img/redefinedSuccessResponseHandler.jpg)</center>
 
 ##Success Text Customization
 

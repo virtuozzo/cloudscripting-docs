@@ -7,8 +7,8 @@ To give a try to Cloud Scripting right away, use a basic [Hello World](#hello-wo
 And to get up and ready with your own project, fulfill the following requirements:                                   
 
 - decide upon a <a href="/samples/" target="blank">scenario</a> that will be delivered by means of CS                      
-- define a set of <a href="/creating-templates/basic-configs/" target="blank">properties</a> essential for the proper application workflow                     
-- declare the required properties within a <a href="/creating-templates/basic-configs/" target="blank">JPS manifest</a> file                     
+- define a set of <a href="/creating-manifest/basic-configs/" target="blank">properties</a> essential for the proper application workflow                     
+- declare the required properties within a <a href="/creating-manifest/basic-configs/" target="blank">JPS manifest</a> file                     
 - deploy the prepared manifest to a Platform via [import](#how-to-deploy-cs-solution-to-jelastic ) functionality               
 
 ## Hello World Manifest Example                      
@@ -85,17 +85,17 @@ Just in the same way, you can build and run the solution you need - from frequen
 <br> 
 <h2> What’s next?</h2>              
 
-- <a href="/creating-templates/basic-configs/" target="blank">Template Basics</a> - learn the required basis of any JSP manifest and find out about differences between *Install* and *Update* installation types.                             
+- <a href="/creating-manifest/basic-configs/" target="blank">Template Basics</a> - learn the required basis of any JSP manifest and find out about differences between *Install* and *Update* installation types.                             
 
-- <a href="/reference/actions/" target="blank">Actions</a> - define the required configuration properties and declare expected application behavior with the help of appropriate actions that Cloud Scripting offers out of the box.                     
+- <a href="/creating-manifest/actions/" target="blank">Actions</a> - define the required configuration properties and declare expected application behavior with the help of appropriate actions that Cloud Scripting offers out of the box.                     
 
-- <a href="/creating-templates/custom-scripts/" target="blank">Custom Scripts</a> - prepare and use your own custom actions within a manifest. Such actions can be scripted either using *Java*, *Javascript* or *PHP* in order to manage the whole environment. To execute scripts inside of a container, use any intercontainer language.                         
+- <a href="/creating-manifest/custom-scripts/" target="blank">Custom Scripts</a> - prepare and use your own custom actions within a manifest. Such actions can be scripted either using *Java*, *Javascript* or *PHP* in order to manage the whole environment. To execute scripts inside of a container, use any intercontainer language.                         
 
-- <a href="/reference/events/" target="blank">Events</a> - automate application workflow by bounding actions to a particular application lifecycle event.                        
+- <a href="/creating-manifest/events/" target="blank">Events</a> - automate application workflow by bounding actions to a particular application lifecycle event.                        
 
-- <a href="/creating-templates/user-input-parameters/" target="blank">Visual Settings</a> - customize your application visual layout before the installation.                     
+- <a href="/creating-manifest/visual-settings/" target="blank">Visual Settings</a> - customize your application visual layout before the installation.                     
 
-- <a href="/reference/placeholders/" target="blank">Placeholders</a> - specify automatically substituted parameters within your manifest that are fetched during installation.                          
+- <a href="/creating-manifest/placeholders/" target="blank">Placeholders</a> - specify automatically substituted parameters within your manifest that are fetched during installation.                          
 
 - <a href="/samples/" target="blank">Samples</a> - find a set of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions.                        
 

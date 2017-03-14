@@ -1,6 +1,6 @@
 # Events
 
-Any <a href="/reference/actions/" target="blank">action</a>, available to be performed by means of <a href="https://docs.jelastic.com/api/" target="blank">API</a> (including <a href="/creating-manifest/custom-scripts/" target="blank">custom scripts</a> running), should be bound to some event, i.e. executed as a result of this event occurrence.
+Any <a href="/creating-manifest/actions/" target="blank">action</a>, available to be performed by means of <a href="https://docs.jelastic.com/api/" target="blank">API</a> (including <a href="/creating-manifest/custom-scripts/" target="blank">custom scripts</a> running), should be bound to some event, i.e. executed as a result of this event occurrence.
 Each event refers to a particular entity. For example, the entry point for executing any action is the [*onInstall*](#oninstall) event.                     
 
 ## Events Execution Rules    
@@ -105,8 +105,8 @@ The event will be executed once the *changeTopology* action is finished.
         - `redeployContainerDelay` - delay for container redeployment        
         - `redeployContextDelay` - delay for context redeployment          
         - `restartContainerDelay` - delay for container restart         
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.         
-    - `env` - environment information. Explore the full list of available <a href="/reference/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.        
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.         
+    - `env` - environment information. Explore the full list of available <a href="/creating-manifest/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.        
 
 ### onBeforeScaleOut
 
@@ -129,7 +129,7 @@ The event will be executed after adding new node(s) to the existing node group. 
     - `count` - number of nodes that are added      
     - `nodeGroup` - node group that is scaled out     
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                                
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                                
 
 ### onBeforeScaleIn
 
@@ -141,7 +141,7 @@ The event will be executed before removing node(s) (i.e. scaling *in*) from the 
     - `count` - number of nodes that are removed    
     - `nodeGroup` - node group that is scaled in   
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                              
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                              
 
 ### onAfterScaleIn
 
@@ -153,7 +153,7 @@ The event will be executed after scaling *in* the corresponding node group. The 
     - `count` - number of nodes that are removed       
     - `nodeGroup` - node group that is scaled in      
 - `${event.response.}`:  
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                                
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.                                
 
 ### onBeforeServiceScaleOut
 
@@ -661,8 +661,8 @@ The event is related to cloning environment (performed via the Jelastic dashboar
         - `redeployContainerDelay` - delay for container redeployment     
         - `redeployContextDelay` - delay for context redeployment     
         - `restartContainerDelay` - delay for container restart    
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a>.       
-    - `env` - environment information. Explore the full list of available <a href="/reference/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.       
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.       
+    - `env` - environment information. Explore the full list of available <a href="/creating-manifest/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.       
 
 ### onBeforeDeploy
 
@@ -1072,8 +1072,8 @@ The *onAfterRemoveVolume* event will be triggered after removing volumes from Do
 <br>       
 <h2> What’s next?</h2>                    
 
-- Find out the list of <a href="m/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching   
+- Find out the list of <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching   
 - See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                              
 - Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>   
-- Learn how to customize <a href="/creating-manifest/user-input-parameters/" target="_blank">Visual Settings</a>              
+- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>              
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples   

@@ -1,6 +1,6 @@
 # Actions
 
-Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="/creating-manifest/writing-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS, and Java scripts.                 
+Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="/creating-manifest/custom-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS, and Java scripts.                 
 
 With the help of actions you can achieve automation of the tasks related to:                
 
@@ -11,12 +11,12 @@ With the help of actions you can achieve automation of the tasks related to:
 
 The default workflow for any action execution is the following:                  
 
-- replacing <a href="/reference/placeholders" target="_blank">placeholders</a>                                     
+- replacing <a href="/creating-manifest/placeholders" target="_blank">placeholders</a>                                     
 - getting a list of target containers (for a detailed guidance, see the <a href="/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> page)                
 - checking permissions        
 - executing the action itself         
 
-Actions are executed when the called <a href="/reference/events" target="_blank">event</a> matches specified filtering rules.               
+Actions are executed when the called <a href="/creating-manifest/events" target="_blank">event</a> matches specified filtering rules.               
 
 Thus, the following specific groups of actions are singled out:           
 
@@ -102,7 +102,7 @@ Downloading and unzipping the **WordPress** plugin on all the compute nodes. Her
 }
 ```
 
-Herewith, the commands array is executed through a single SSH command. The same can be performed with the help of the [unpack](/reference/actions/#unpack) method.                       
+Herewith, the commands array is executed through a single SSH command. The same can be performed with the help of the [unpack](/creating-manifest/actions/#unpack) method.                       
 
 Using **sudo** to reload Nginx balancer.       
 ``` json
@@ -123,7 +123,7 @@ There are a number of parameters required by Jelastic API, which are defined aut
 - *appid* - unique environment identifier that can be passed into API instead of the *envName*         
 - *session* - unique session of a current user              
 
-Target containers, selected for API methods execution can be passed by the node keywords. API methods can be executed at all nodes within a single <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required, which is available either through the <a href="/reference/placeholders/#node-placeholders" target="_blank">node placeholders</a> or a set of [custom action parameters](#custom-actions) (*this*).
+Target containers, selected for API methods execution can be passed by the node keywords. API methods can be executed at all nodes within a single <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required, which is available either through the <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a> or a set of [custom action parameters](#custom-actions) (*this*).
 
 **Examples**
 
@@ -325,7 +325,7 @@ where:
 - `path` - path where a file is available               
 - `replacements` - list of replacements within the node's configuration files                        
     - `pattern` - regular expressions to find a string (e.g. *app\\.host\\.url\\s*=\\s*.**)                   
-    - `replacement` - you can use as a replacement any string value, including any combination of <a href="/reference/placeholders" target="_blank">placeholders</a>                                            
+    - `replacement` - you can use as a replacement any string value, including any combination of <a href="/creating-manifest/placeholders" target="_blank">placeholders</a>                                            
 
 <!-- DeletePath -->
 <!-- RenamePath --> 
@@ -574,7 +574,7 @@ where:
 - `databaseName` - name of a database for a patch to be applied                    
 - `user` - username in the database, on behalf of which the application will be used                                          
 - `password` - password in the database, on behalf of which the application will be used                              
-- `patch` - *SQL* query or a link to it. It is used only for *SQL* databases. Here, the <a href="/reference/placeholders" target="_blank">placeholders</a> support is available.                    
+- `patch` - *SQL* query or a link to it. It is used only for *SQL* databases. Here, the <a href="/creating-manifest/placeholders" target="_blank">placeholders</a> support is available.                    
 
 !!! note
     The function is executed only for *mysql5*, *mariadb* and *mariadb10* containers.                         
@@ -648,7 +648,7 @@ Installing add-on via the external link (with *update* type).
 where:
 
 - `jps` - URL to your custom JPS manifest  
-- `settings` - user <a href="/creating-manifest/user-input-parameters/" target="_blank">custom form</a>           
+- `settings` - user <a href="/creating-manifest/visual-settings/" target="_blank">custom form</a>           
 
 Installing add-on from the local manifest.         
 ``` json
@@ -682,7 +682,7 @@ where:
 
 - `jps` - URL to your custom JPS manifest                    
 - `envName` - short domain name of a new environment                                   
-- `settings` - user <a href="/creating-manifest/user-input-parameters/" target="_blank">custom form</a>                                               
+- `settings` - user <a href="/creating-manifest/visual-settings/" target="_blank">custom form</a>                                               
 
 Installing a new environment from the local manifest.             
 ``` json
@@ -919,8 +919,8 @@ Writing Hello World! and outputting the first and the second compute nodes IP ad
 <br>       
 <h2> What’s next?</h2>                    
 
-- See the <a href="/reference/events/" target="_blank">Events</a> list the actions can be bound to            
-- Find out the list of <a href="/reference/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching        
+- See the <a href="/creating-manifest/events/" target="_blank">Events</a> list the actions can be bound to            
+- Find out the list of <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching        
 - Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>   
-- Learn how to customize <a href="/creating-manifest/user-input-parameters/" target="_blank">Visual Settings</a>              
+- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>              
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples   
