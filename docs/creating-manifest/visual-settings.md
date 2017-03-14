@@ -1,4 +1,4 @@
-#Visual Settings
+# Visual Settings
 
 Cloud Scripting enables you to create a personalized solution by customizing the visual appearance and textual content of such elements as:              
 
@@ -15,7 +15,7 @@ Cloud Scripting enables you to create a personalized solution by customizing the
 * [Messages](#success-text-customization)                           
       
 
-##Supported Fields                               
+## Supported Fields                               
 
 You can use the parameters from the following example to fetch your input data.                        
 ``` json
