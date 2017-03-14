@@ -1,7 +1,6 @@
 #Addons
 
-A Cloud Scripting technology provides an ability to install a custom addons within new environment or in an existing environment. A custom addon is an insertion with manifest `type` *update* within a parent JPS.  
-It is described in `addons` section.
+Cloud Scripting allows you to install a custom add-on either to a new environment, or to the existing one. You can develop your custom add-on in confines of another - *parent* manifest. Therefore, you need to state the add-on's installation type to *update* and declare essential properties within the *addons* section.  
    
 These addons can be called in two options - an install addon within one `nodeGroup` or to call `installAddon` action.
 
