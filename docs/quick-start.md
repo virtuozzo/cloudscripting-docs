@@ -83,7 +83,7 @@ Just in the same way, you can build and run the solution you need - from frequen
 - Use <a href="/samples/" target="blank">Jelastic Samples</a> to explore operation and package examples                       
 
 <br> 
-## What’s next?              
+<h2> What’s next?</h2>              
 
 - <a href="/creating-templates/basic-configs/" target="blank">Template Basics</a> - learn the required basis of any JSP manifest and find out about differences between *Install* and *Update* installation types.                             
 
