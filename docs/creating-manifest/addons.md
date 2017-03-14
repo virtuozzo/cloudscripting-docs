@@ -4,7 +4,7 @@ Cloud Scripting allows you to install a custom add-on either to a new environmen
    
 You can install the developed add-on either by specifying a target <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank">*nodeGroup*</a>, or by calling the <a href="/creating-manifest/actions/#installaddon" target="blank">*installAddon*</a> action.             
 
-The following example illustrates the add-on's installation to the specific *nodeGroup* (layer).                          
+The following example illustrates the add-on's installation to a specific *nodeGroup* (layer).                          
 
 ```json
 {
