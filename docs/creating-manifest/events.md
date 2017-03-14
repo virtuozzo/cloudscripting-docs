@@ -1097,7 +1097,8 @@ The *onAfterRemoveVolume* event will be triggered after removing volumes from Do
     - `nodeGroup` - current node group  
     - `path` - volume path        
 - `${event.response.}`:  
-    - `result` - result code. The successful action result is *'0'*.      
+    - `result` - result code. The successful action result is *'0'*.                 
+
 <br>       
 ## What’s next?                 
 
