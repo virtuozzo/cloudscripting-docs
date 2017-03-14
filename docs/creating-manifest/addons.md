@@ -1,8 +1,8 @@
-#Addons
+# Add-Ons
 
 Cloud Scripting allows you to install a custom add-on either to a new environment, or to the existing one. You can develop your custom add-on in confines of another - *parent* manifest. Therefore, you need to state the add-on's installation type to *update* and declare essential properties within the *addons* section.  
    
-These addons can be called in two options - an install addon within one `nodeGroup` or to call `installAddon` action.
+The developed addo-n can be subsequently called in two options - an install addon within one `nodeGroup` or to call `installAddon` action.
 
 The first one case is a installation in `nodeGroup` layer:
 
