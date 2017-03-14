@@ -91,7 +91,8 @@ return {
 <br>
 <h2> What's next?</h2>    
 
-- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                                      
+- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                    
+
 - Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>          
 
 
