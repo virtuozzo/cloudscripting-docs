@@ -73,7 +73,7 @@ Here, **Open** your new environmental **in browser** to check the result.
 Just in the same way, you can build and run the solution you need - from frequent tasks automation to implementing complex CI/CD flows and clustering configurations.                               
 
 !!! note
-    **Tip:** Consider using a repository hosting service (for example, <a href="https://github.com/" target="blank">GitHub</a>) to comfortably store and manage your projects, manifests and scripts all together.                               
+    **Tip:** Consider using a repository hosting service (for example, <a href="https://github.com/" target="blank">GitHub</a>) to comfortably store and manage your projects, manifests, and scripts all together.                               
 <br>    
 ## Best Practises               
 
