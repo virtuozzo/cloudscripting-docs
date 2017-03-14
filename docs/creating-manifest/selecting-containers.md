@@ -42,14 +42,21 @@ The *nodeGroup* value is used to point out all containers within a specific laye
 
 The Jelastic Platform supports the following predefined *nodeGroup* values:     
 
-- *bl*             
-- *cp*                 
-- *cache*                 
-- *sqldb*            
-- *nosqldb*            
-- *storage*                  
-- *vps*                
-- *build*        
+- *bl*                   
+ 
+- *cp*                  
+
+- *cache*                   
+
+- *sqldb*                   
+
+- *nosqldb*                       
+
+- *storage*                   
+
+- *vps*                 
+
+- *build*                           
 
 Actions for the specified <em>nodeGroup</em> are executed successively one by one. For Docker containers the <em>nodeGroup</em> value is not predefined, therefore, it can be stated to any value above or your custom one.                              
 
