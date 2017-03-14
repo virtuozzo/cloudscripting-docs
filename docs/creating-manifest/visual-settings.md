@@ -885,7 +885,7 @@ The *config settings* form appears after clicking the <b>Configure</b> button wi
 
 <center>![settingCustom](/img/SettingsCustom.jpg)</center>     
 
-##Success Text Customization
+## Success Text Customization
 
 It is possible to customize the *success* text that is displayed upon successful installation either at the dashboard, or via email notification.          
 
