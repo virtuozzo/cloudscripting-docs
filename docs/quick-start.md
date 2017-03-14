@@ -58,7 +58,7 @@ In order to give a try to *Hello World* sample from above (or deploy your own ap
 
 To proceed, click on **Import** in the bottom-right corner.                   
 
-3.&nbsp;Within the installation confirmation window, specify domain name for a new **Environment**, set **Display Name** (i.e. <a href="https://docs.jelastic.com/environment-aliases">alias</a>) for it and select the preferred <a href="https://docs.jelastic.com/environment-regions">region</a> (if available).                  
+3.&nbsp;Within the installation confirmation window, specify domain name for a new **Environment**, set **Display Name** (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="blank">alias</a>) for it and select the preferred <a href="https://docs.jelastic.com/environment-regions" target="blank">region</a> (if available).                  
 
 <center>![hello-world.png](img/hello-world.png)</center>                                        
 
