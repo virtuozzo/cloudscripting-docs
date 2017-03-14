@@ -469,7 +469,7 @@ Opens a pop-up window via the POST request to any external service. It provides 
       "url": "http://{external url}",
       "popupWidth": "300px",
       "popupHeight": "300px",
-      "popupCallbackEvent": "handler",
+      "popupcallbackEvent": "handler",
       "params": {
         "first": 1,
         "second": 2
