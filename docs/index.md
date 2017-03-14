@@ -18,9 +18,9 @@ There are three main pillars of cloud scripting:
  
 * `cmd` - action to execute <a href="/reference/actions/#cmd" target="blank">shell commands</a>               
 
-* `forEach` - iteration <a href="/creating-manifest/conditions-and-iterations/#by-all-nodes" target="blank">object</a>        
+* `forEach` - iteration <a href="/creating-manifest/conditions-and-iterations/#foreach" target="blank">object</a>          
 
-* `addClusterMembers` - user-defined <a href="/reference/actions/#custom-actions" target="blank">custom action</a>         
+* `addClusterMembers` - custom <a href="/reference/actions/#custom-actions" target="blank">action</a>         
 
 * `onAfterScaleIn, onBeforeServiceScaleOut` - scaling <a href="/reference/events/#onafterscalein" target="blank">events</a>            
 
