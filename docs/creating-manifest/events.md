@@ -5,15 +5,19 @@ Each event refers to a particular entity. For example, the entry point for execu
 
 ## Events Execution Rules    
 
-* Such events as *Install* & *Uninstall* application, as well as *BeforeDelete* and *AfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.
-* The *ScaleIn*, *ScaleOut* and *ServiceScaleOut* events are called once upon any node count change. Herewith, count of the *addNode* or *removeNode* actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.
-* For application server, load balancer and VDS node layers, the *cloneNodes* event is executed each time the node group is scaled out.     
-* *UnlinkNodes*, *LinkNodes*, *SetEnvVars*, *SetEntryPoint*, *SetRunCmd*, *AddVolume* and *RemoveVolume* events can be executed only once per a single *changeTopology* action.     
-* The *StartService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.
+- Such events as *Install* & *Uninstall* application, as well as *BeforeDelete* and *AfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.                              
+
+- The *ScaleIn*, *ScaleOut* and *ServiceScaleOut* events are called once upon any node count change. Herewith, count of the *addNode* or *removeNode* actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.                                       
+
+- For application server, load balancer and VDS node layers, the *cloneNodes* event is executed each time the node group is scaled out.                             
+
+- *UnlinkNodes*, *LinkNodes*, *SetEnvVars*, *SetEntryPoint*, *SetRunCmd*, *AddVolume* and *RemoveVolume* events can be executed only once per a single *changeTopology* action.            
+
+- The *StartService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.                                    
 
 ## Events Filtering
 
-Events can be filtered by <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> and <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the defined actions will be executed only when the called event matches specified filtering rules. Otherwise (i.e. if no filtering rules are specified), every event is listened by all environment entities.         
+Events can be filtered by <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> and <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the defined actions are executed only when the called event matches specified filtering rules. Otherwise (i.e. if no filtering rules are specified), every event is listened by all environment entities.         
 
 The example below describes events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event).         
 
@@ -49,7 +53,7 @@ where:
 
 ## Events Execution Sequence
 
-Below you can find the graphs that show the actions with the adjoining events. Every action has a pair of adjoining events - one of them is executed *before* the action and another one is launched *after* the action, that is when the action is finished.  
+Below you can find the graphs that provide a list of the actions with the adjoining events. Every action has a pair of adjoining events - one of them is executed *before* the action and another one is launched *after* the action, that is when the action is finished.  
 
 !!! note
     The <b>*createEnvironment*</b> action does not have any adjoining events, because the events are bound after an environment creation.      
@@ -184,19 +188,27 @@ This event provides a possibility to boud actions to <a href="https://docs.jelas
 
 These are the monitoring triggers that are based on the usage of a particular resource type:            
 
-- **CLOUDLETS** (CPU, Memory) - available only for action type *NOTIFY*              
-- **CPU**                  
+- **CLOUDLETS** (CPU, Memory) - available only for action type *NOTIFY*                             
+
+- **CPU**                    
+
 - **MEM** (Memory)                      
+
 - **NET_EXT** - external output and input traffic that are available only for action type *NOTIFY*                       
+
 - **NET_EXT_OUT** - external output traffic                         
+
 - **DISK** - disk space amount that is available only for action type *NOTIFY*                    
+
 - **INODES** - available only for action type *NOTIFY*                       
+
 - **Disk I/O**                         
-- **Disk IOPS**                        
+
+- **Disk IOPS**                          
 
 The measuring values are *PERCENTAGE* and *SPECIFIC*. The second value is availabe only for **NET_EXT** and **NET_EXT_OUT** resource types.
 
-Below, the example of subscription to the *onAlert* event is provided. Here, the *log* action will be executed, if one of the environment triggers is invoked.                
+The following example illustrates the subscription to the *onAlert* event. Here, the *log* action will be executed, if one of the environment triggers is invoked.                         
 ``` json
 {
     "type": "update",
@@ -252,7 +264,7 @@ This example involves execution of the Jelastic API *addTrigger* method with a s
     - `customData`:
         - `notify`- alert notification sent to a user via email 
 
-Jelastic will send an alert to the Cloud Scripting system when the appropriate trigger is invoked. Therefore, the *onAlert* event provides a possibility to bound actions to alert notifications and execute custom actions.
+The Jelastic engine sends an alert notification to the Cloud Scripting system when the appropriate trigger is invoked. Therefore, the *onAlert* event provides a possibility to bound actions to alert notifications and execute custom actions.
 
 **Event Placeholders:**     
 
@@ -322,12 +334,19 @@ The event will be triggered before adding a new node to an environment. The *onB
 There are the following available node groups:         
 
 - *balancer*                
+
 - *compute*                  
+
 - *cache*                    
+
 - *database*             
+
 - *storage*              
+
 - *VPS*                    
+
 - *build*                 
+
 - *docker*               
 
 **Event Placeholders:**   
@@ -348,14 +367,21 @@ The event will be triggered after adding a new node to an environment. The *onAf
 
 There are the following available node groups:                   
 
-- *balancer*              
-- *compute*                 
-- *cache*                  
-- *database*            
-- *storage*             
+- *balancer*                
+
+- *compute*                  
+
+- *cache*                    
+
+- *database*             
+
+- *storage*              
+
 - *VPS*                    
+
 - *build*                 
-- *docker*               
+
+- *docker*                                     
  
 **Event Placeholders:**   
 
@@ -376,9 +402,11 @@ The event will be performed before cloning node in the environment. The process 
 
 The *onBeforeCloneNodes* event is applicable only for the next node groups (excluding Docker nodes):                   
 
-- *compute*   
-- *balancer*  
-- *VPS*    
+- *compute*             
+
+- *balancer*             
+
+- *VPS*                
  
 **Event Placeholders:**   
 
@@ -397,9 +425,11 @@ The event will be performed after cloning node in the environment.
 
 The *onAfterCloneNodes* event is applicable only for the next node groups (excluding Docker nodes):                             
 
-- *compute*              
-- *balancer*                 
-- *VPS*                 
+- *compute*             
+
+- *balancer*             
+
+- *VPS*                             
 
 **Event Placeholders:**   
 
@@ -1068,12 +1098,15 @@ The *onAfterRemoveVolume* event will be triggered after removing volumes from Do
     - `path` - volume path        
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.      
-
 <br>       
-<h2> What’s next?</h2>                    
+## What’s next?                 
 
-- Find out the list of <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching   
+- Find out the list of <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching                          
+
 - See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                              
-- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>   
+
+- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                            
+
 - Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>              
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples   
+
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                    
