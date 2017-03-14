@@ -889,7 +889,7 @@ The *config settings* form appears after clicking the <b>Configure</b> button wi
 
 ## Handling Custom Responses
 
-The Cloud Scripting engine provides functionality to handle custom responses. The responses handling is related to the action result codes that can be located within the <a href="/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a response text that will be displayed in case of an error occurrence.           
+The Cloud Scripting engine provides functionality to handle custom responses. The responses handling is related to the action result codes that can be located within the <a href="/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a response text that is displayed in case of an error occurrence.           
 
 There are the following types of pop-up windows that emerge while custom responses are being handled:                    
 
@@ -905,15 +905,15 @@ There are the following types of pop-up windows that emerge while custom respons
 
 <center>![new-error](/img/new-error.png)</center>          
 
-When the action is executed with the expected result code, the *success* window is displayed. The manifest installation is finished immediately after the result code is returned from the *script* or *return* actions or which is predefined in *responses* block.
+When the action is executed with the expected result code, the *success* window is displayed.                       
 
 <center>![success](/img/successResponse.jpg)</center>                               
 
-The types `info`, `error` and `warning` are unsuccessful installation results. Therefore, the install process will be marked by red cross like on the screen below:
+The *info*, *error* and *warning* pop-up windows emerge as a result of failed installation. The manifest installation is finished immediately when any action returns the negative result code or code predefined in the *responses* block. Therefore, the installation process is marked by the red cross like in the picture below.                        
 
 <center>![success](/img/redCross.jpg)</center>
 
-The simplest custom response message can be returned in one string via actions `return` or `script`. The examples below provide this ability:
+The basic custom response message can be returned in one string via the *return* or *script* action as follows.                     
  
 ```json
 {
@@ -935,10 +935,11 @@ The simplest custom response message can be returned in one string via actions `
 }
 ```
 
-In this case the default response `type` is `error` and response `message` is returned string.
+In this case, the default response type is *error* and the response *warning* message is returned in a string.
 
-There is an ability to return a response with a defined result type and with a custom message via `script` or `return` actions. 
-`Return` action: 
+It is possible to return a response with a predefined result type and with a custom message text via the *return* or *script* action.                  
+
+The *return* action.                  
 
 ```json
 {
@@ -954,9 +955,9 @@ There is an ability to return a response with a defined result type and with a c
 }
 ```
 !!! note
-    `email` parameter is available only for `success` response type. This text will be sent after an any action will be finished with **success** response code.
+    The *email* parameter is available only for *success* response type. The email is delivered when an action is executed with the *success* response code.                         
 
-`Script` action:
+The *script* action. 
 
 ```json
 {
@@ -968,12 +969,13 @@ There is an ability to return a response with a defined result type and with a c
 }
 ```
 
-Parameters `message` and `email` support all <a href="/reference/placeholders/" target="_blank">available placeholders</a>. Either, they could be uploaded from an any external source via direct link or according to <a href="/creating-manifest/basic-configs/#relative-links">baseUrl ability</a>.  
+The *message* and *email* parameters support all the available<a href="/reference/placeholders/" target="_blank">placeholders</a>. Thus, placeholders can be uploaded from any external source via the direct link or via the <a href="/creating-manifest/basic-configs/#relative-links" target="_blank">baseUrl</a>.                          
 
-In case, when is returned a response code with a type `success` two response objects impose one to another. 
-But the `success` text from response object has a higher priority than a <a href="/creating-manifest/user-input-parameters/#success-text-customization" target="_blank">**success**</a> text from main manifest block.    
-A examples below display the difference:
+When a response code with the *success* installation type is returned, two response objects impose one another. And the *success* text from the *response* object has a higher priority than a <a href="/creating-manifest/user-input-parameters/#success-text-customization" target="_blank">*success*</a> text from the main manifest block.            
 
+**Examples**                           
+
+Here, the result code is with the *success* installation type, the message is '*Hello!!*', and the email message is '*success!!*'.                                        
 ```json
 {
     "type": "update",
@@ -984,9 +986,7 @@ A examples below display the difference:
     "success": "success!!"
 }
 ```
-
-The result code with `success` type, message - '*Hello!!*' and sent email text - '*success!!*'
-
+Here, the result code is with the *success* installation type, the message is '*Hello!!*', and the email message is '*Hello!!*'.                                             
 ```json
 {
     "type": "update",
@@ -998,9 +998,7 @@ The result code with `success` type, message - '*Hello!!*' and sent email text -
 }
 ```
 
-The result code with `success` type, message - '*Hello!!*' and sent email text - '*Hello!!*'
-
-The result message text can be localized according to the languages, available within the Jelastic Platform:
+The result message text can be localized according to the languages, available within the Jelastic Platform.                   
 
 ``` json
 {
@@ -1012,13 +1010,13 @@ The result message text can be localized according to the languages, available w
 }
 ```
 
-In necessity to display the same response codes a `response` object can be added where a custom responses can be defined. The examples below show how to use it.
+If it is necessary to display the same response codes, you can add a *response* object where you define custom responses.                           
 
-<h3>Examples</h3>
+**Examples**
 
 **File creation error**
 
-The example below describes a creation of the same file twice and handling an response, which occurs as a result of such action execution. Consequently, the result code of this response will be defined as *4036*.           
+The example below describes a creation of the same file twice and handling a response that is received as a result of such action execution. Consequently, the result code of this response will be defined as *4036*. Thus, all the actions with *4036* result are displayed via *error* pop-up window with a custom response text.                      
 
 ``` json
 {
@@ -1047,8 +1045,6 @@ where:
 - `responses` - object (array) to describe custom responses     
 - `type` - type of a pop-up window, emerging upon the response occurrence. The available values are: *error*, *warning*, *info*, *success*.       
 
-Thus, the example above sets all the actions with *4036* result to be displayed via *error* pop-up window with a custom response message text.      
-
 The additional functionality is provided to display action responses using <a href="/reference/actions" target="_blank">*return*</a> action.                         
 
 ``` json
@@ -1070,9 +1066,9 @@ The additional functionality is provided to display action responses using <a hr
 where:
 
 - `script` - Cloud Scripting <a href= "/reference/actions/#script" target="__blank">action</a> for executing *Javascript* or *Java* code (*Javascript* is set by default)                     
-- `1000` - custom predefined result code for responses handling. It will be returned from the `script` action in the `onInstall` block.        
+- `1000` - custom predefined result code for responses handling. It is returned from the *script* action in the *onInstall* block.        
 
-If the result code is delivered via *string*, then the default result code is *11039*. Therefore, `responses` can be handled by the following outcoming *string* text:            
+If the result code is delivered via string, then the default result code is *11039*. Therefore, responses can be handled by the following outcoming string text.                                             
 
 ``` json
 {
@@ -1090,11 +1086,12 @@ If the result code is delivered via *string*, then the default result code is *1
 }
 ```
 
-   
-In all the other cases, i.e. when a custom response is not predefined within the `responses` block, the default pop-up window type is *error* with an output message.          
+In all the other cases, when a custom response is not predefined within the *responses* block, the default pop-up window type is *error* with an output message.          
 
-A response objects which are returned from custom scripts and predefined in `response` block are emposed one to another. A response object from custom scripts has a higher priority than responses in `response` object.  
-For example:
+The response objects that are returned from custom scripts and predefined in the *response* block are imposed one to another. Thus, the response object from custom scripts has a higher priority than responses in the *response* object.                    
+
+**Example**
+
 ```json
 {
   "type": "update",
@@ -1111,15 +1108,15 @@ For example:
 }
 ```
 
-The final success form will be same as on screen below:
+The final *success* form is similar to the following one. 
 
 <center>![redefinedSuccessResponseHandler](/img/redefinedSuccessResponseHandler.jpg)</center>
 
 ##Success Text Customization
 
-It is possible to customize (in confines of a manifest) the *success* text, which is displayed upon successful application installation either at the dashboard or via email notification.         
+It is possible to customize the *success* text that is displayed upon successful installation either at the dashboard, or via email notification.          
 
-- Setting a relative to `baseUrl` link, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                    
+- Setting relative to the *baseUrl* link that points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                                               
 ``` json
 {
     "type" : "update",
@@ -1132,7 +1129,7 @@ It is possible to customize (in confines of a manifest) the *success* text, whic
 }
 ```
 
-- Customizing the *success* return text by means of the external link.                    
+- Customizing the *success* response text by means of the external link.                                     
 ``` json
 {
   "type": "update",
@@ -1146,7 +1143,7 @@ It is possible to customize (in confines of a manifest) the *success* text, whic
 
 As it was mentioned above, the success response is distinguished between two values:                        
 
- - text displayed at the dashboard after application installation is successfully conducted                       
+ - text displayed at the dashboard after installation is successfully conducted                         
  
 ``` json
 {
@@ -1161,7 +1158,7 @@ As it was mentioned above, the success response is distinguished between two val
 }
 ```
  
- - message delivered via email notifying about the successful application setup                             
+ - message delivered via email notifying about the successful installation                                                  
  
 ``` json
 {
@@ -1181,7 +1178,7 @@ As it was mentioned above, the success response is distinguished between two val
 
 In the last example above, the localization functionality is applied, which depends upon the Jelastic Platform selected language.
 <br>
-<h2> What's next?</h2>
+## What's next?
 
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples      
 - See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions            
