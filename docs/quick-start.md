@@ -54,10 +54,8 @@ In order to give a try to *Hello World* sample from above (or deploy your own ap
 <center>![import-manifest.png](img/import-manifest.png)</center>               
 
 !!! note
-    **Tip:** Within the **Import** frame, two more options are available for JPS deployment:                    
-- <b>*Local File*</b> - to upload the locally stored manifest                              
-- <b>*URL*</b> - to specify direct link to the required file                                           
-Clicking on the **Examples** string nearby will redirect you to <a href="https://github.com/jelastic-jps" target="blank">Jelastic JPS Collection</a> with numerous ready-to-go solutions (just import the link to the appropriate *manifest.jps* file to fetch the required one).                        
+    **Tip:** Within the **Import** frame, two more options are available for JPS deployment:<ul><li><b>*Local File*</b> - to upload the locally stored manifest</li><li>*URL*</b> - to specify direct link to the required file</li></ul>                                       
+    Clicking on the **Examples** string nearby will redirect you to <a href="https://github.com/jelastic-jps" target="blank">Jelastic JPS Collection</a> with numerous ready-to-go solutions (just import the link to the appropriate *manifest.jps* file to fetch the required one).                                 
 
 To proceed, click on **Import** in the bottom-right corner.                   
 
