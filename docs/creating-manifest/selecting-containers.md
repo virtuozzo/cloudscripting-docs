@@ -300,7 +300,7 @@ The following section deals with the supported engine versions and their availab
 
 !!! note
     The list of supported <a href="https://docs.jelastic.com/software-stacks-versions" target="_blank">software stacks</a> can vary depending on your Jelastic Platform version - it can be checked at your dashboard.              
-<br>       
+      
 <h3> What’s next?</h3>                    
 
 - Explore the list of available <a href="/creating-manifest/actions/" target="_blank">Actions</a>                                   
