@@ -586,7 +586,7 @@ where:
 - `databaseName` - name of a database for a patch to be applied                    
 - `user` - username in the database, on behalf of which the application is used                                          
 - `password` - password in the database, on behalf of which the application is used                              
-- `patch` - *SQL* query or a link to it. It is used only for *SQL* databases. Here, the <a href="/creating-manifest/placeholders" target="_blank">placeholders</a> support is available.                    
+- `patch` - SQL query or a link to it. It is used only for SQL databases. Here, the <a href="/creating-manifest/placeholders" target="_blank">placeholders</a> support is available.                    
 
 !!! note
     The action is executed only for *mysql5*, *mariadb*, and *mariadb10* containers.                         
