@@ -33,7 +33,7 @@ In the example above, the <a href="https://docs.jelastic.com/api/" target="_blan
 
 <center>![new-addon](/img/new-addon.png)</center>                        
   
-The following example illustrates the add-on's installation by calling the *installAddon* action. You can call this action for both *update* and *install* manifest's installation types.              
+The following example illustrates the add-on's installation by calling the *installAddon* action. You can call this action for both *update* and *install* installation types within a *parent* manifest.                     
 
 ```json
 {
@@ -54,7 +54,7 @@ The following example illustrates the add-on's installation by calling the *inst
 }
 ```
 
-Through this example, a new *test.log* file is created during the *onInstall* action execution. You can declare the add-on's expected behaviour within the *addons* section, while the *installAddon* action is needed to specify the appropriate addon's identifier.              
+Through this example, a new *test.log* file is created during the *onInstall* action execution. You can declare the add-on's expected behaviour within the *addons* section, while the *installAddon* action is needed to specify the appropriate add-on's identifier.              
 <br>       
 <h2> What’s next?</h2>                    
 
