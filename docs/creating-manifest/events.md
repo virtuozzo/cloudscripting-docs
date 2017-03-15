@@ -5,15 +5,15 @@ Each event refers to a particular entity. For example, the entry point for execu
 
 ## Events Execution Rules    
 
-- Such events as *Install* & *Uninstall* application, as well as *BeforeDelete* and *AfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.                              
+- Such events as *onBeforeDelete* and *onAfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.                              
 
-- The *ScaleIn*, *ScaleOut* and *ServiceScaleOut* events are called once upon any node count change. Herewith, count of the *addNode* or *removeNode* actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.                                       
+- The scaling events (*onBeforeScaleOut/onAfterScaleOut*, *onBeforeScaleIn/onAfterScaleIn*, *onBeforeServiceScaleOut/onAfterServiceScaleOut*, *onBeforeSetCloudletCount/onAfterSetCloudletCount*) are called once upon any node count change. Herewith, count of the *addNode* or *removeNode* actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.                                         
 
-- For application server, load balancer and VDS node layers, the *cloneNodes* event is executed each time the node group is scaled out.                             
+- For application server, load balancer and VPS node layers, the *onBeforeCloneNodes/onAfterCloneNodes* events are executed each time the node group is scaled out.                             
 
-- *UnlinkNodes*, *LinkNodes*, *SetEnvVars*, *SetEntryPoint*, *SetRunCmd*, *AddVolume* and *RemoveVolume* events can be executed only once per a single *changeTopology* action.            
+- The *onBeforeLinkNodes/onAfterLinkNodes*, *onBeforeUnlinkNodes/onAfterUnlinkNodes*, *onBeforeSetEnvVars/onAfterSetEnvVars*, *onBeforeSetEntryPoint/onAfterSetEntryPoint*, *onBeforeSetRunCmd/onAfterSetRunCmd*, *onBeforeAddVolume/onAfterAddVolume* and *onBeforeRemoveVolume/onAfterRemoveVolume* events can be executed only once per a single *changeTopology* action.                 
 
-- The *StartService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.                                    
+- The *onBeforeStartService/onAfterStartService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.                                      
 
 ## Events Filtering
 
