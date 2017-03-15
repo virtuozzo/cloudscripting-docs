@@ -89,6 +89,8 @@ Using a <a href="/creating-manifest/actions/#script" target="_blank">*script*</a
 
 - See how to create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                
 
+- Find out how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>                                                                           
+
 - Explore how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                
 
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                      
