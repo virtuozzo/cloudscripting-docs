@@ -402,7 +402,7 @@ The list of single placeholders:
 
 - Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                      
 
-- Create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                         
+- Check how to create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                         
 
 - Find out how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>      
 
