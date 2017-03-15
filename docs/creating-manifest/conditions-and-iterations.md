@@ -161,7 +161,7 @@ The main iterable object is <b>*ForEach*</b> with the following map.
 where:    
 
 - `settings` *[optional]* - values of the fields that are predefined within a <a href="/creating-manifest/visual-settings/" target="_blank">user settings form</a>          
-- `license [optional]` - link to fetch parameters that are specified within the <a href="/creating-manifest/visual-settings/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through the $(license.{any_name}` <a href="/creating-manifest/placeholders/" target="_blank">placeholder</a> ` within a manifest.    
+- `license [optional]` - link to fetch parameters that are specified within the <a href="/creating-manifest/visual-settings/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through the `$(license.{any_name}` <a href="/creating-manifest/placeholders/" target="_blank">placeholder</a>  within a manifest.       
 - `event [optional]` - object with <a href="/creating-manifest/events/" target="_blank">events</a> that can be of two types, triggering a particular <a href="/creating-manifest/actions/" target="_blank"> action</a> *before* and *after* the event execution       
 - `this [optional]` - object with parameters that are transmitted within the procedure body. See the full list of available<a href="/creating-manifest/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
 
