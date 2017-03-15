@@ -172,7 +172,7 @@ This is the list of placeholders that you can use to specify input parameters.
 - `${settings.jelastic_email}` - user email that is always predefined       
 - `${settings.key}` - where *key* is a name of the application's setting. The placeholder is defined, if user input parameters are specified within a manifest. So, after preparing a custom user form, the placeholder is defined by the field’s name.              
 
-For example:
+**Example**
 ``` json
 {
   "jpsType": "update",
@@ -193,7 +193,7 @@ The name of the placeholder here is `${settings.customName}`. See the list of <a
 
 Action placeholders form a set of placeholders that can be used within the actions by means of <b>*${this}*</b> namespace. So, in <b>*${this.param}*</b> the *param* is a name of the action parameter.                                          
 
-For example:
+**Example**
 ``` json
 {
   "script": "return greeting;",
@@ -232,7 +232,7 @@ This is the list of placeholders that you can use to specify UI parameters.
 - `${env.domain}` - full domain name without protocol
 - `${env.appid}` - unique environment appid at the Jelastic Platform
 
-For example: 
+**Example** 
 ``` json
 {
   "jpsType": "update",
