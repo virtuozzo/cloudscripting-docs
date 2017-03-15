@@ -32,7 +32,9 @@ Thus, the following specific groups of actions are singled out:
 
 - [Database Operations](#database-operations)                   
 
-- [User-Defined Operations](#user-defined-operations)                           
+- [User-Defined Operations](#user-defined-operations)              
+
+- [Custom Actions](#custom-actions)                                             
 
 ## Container Operations
 
