@@ -33,7 +33,7 @@ In the example above, the <a href="https://docs.jelastic.com/api/" target="_blan
 
 <center>![new-addon](/img/new-addon.png)</center>                        
   
-The following example illustrates the add-on's installation by calling the *installAddon* action. You can call this action for both *update* and *install* installation types within a *parent* manifest.                     
+The following example illustrates the add-on's installation by calling the *installAddon* action. You can call this action for both *update* and *install* installation types of a *parent* manifest.                            
 
 ```json
 {
