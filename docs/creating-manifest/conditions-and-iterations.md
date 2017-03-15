@@ -19,7 +19,7 @@ The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*<
 
 - If condition is valid, but is not executed, the <b>*'condition is not met'*</b> message will be logged.                                        
 
-<b>Examples</b>    
+<b>Examples:</b>    
 
 * Comparing global variables
 ``` json
