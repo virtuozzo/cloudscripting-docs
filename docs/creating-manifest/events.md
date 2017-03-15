@@ -487,7 +487,7 @@ The event is executed before attaching the external IP address. The *onBeforeAtt
 
 ### onAfterAttachExtIp
 
-The event is executed after attaching the external IP address action execution. The *onBeforeAttachExtIp* event is triggered each time upon the external IP address attachment.
+The event is executed after attaching the external IP address. The *onBeforeAttachExtIp* event is triggered each time upon the external IP address attachment.
 
 **Event Placeholders:**  
   
