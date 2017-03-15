@@ -17,7 +17,7 @@ Each event triggers a particular action on the required application's lifecycle 
 
 ## Events Filtering
 
-Events can be filtered by <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> and <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the defined actions are executed only when the called event matches specified filtering rules. Otherwise (i.e. if no filtering rules are specified), every event is listened by all environment entities.         
+Events can be filtered by <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a>, and <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the action is executed only when the called event matches specified filtering rules. Otherwise, if no filtering rules are specified, every event is listened by all environment entities.         
 
 The example below describes events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event).         
 
