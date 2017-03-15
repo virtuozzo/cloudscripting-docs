@@ -186,25 +186,25 @@ This event provides a possibility to bind actions to <a href="https://docs.jelas
 
 These are the monitoring triggers that are based on the usage of a particular resource type:            
 
-- **CLOUDLETS** (CPU, Memory) - available only for action type *NOTIFY*                             
+- **CLOUDLETS** (CPU, Memory) - available only for the *NOTIFY* action type                                                   
 
 - **CPU**                    
 
 - **MEM** (Memory)                      
 
-- **NET_EXT** - external output and input traffic that are available only for action type *NOTIFY*                       
+- **NET_EXT** - external output and input traffic that are available only for the *NOTIFY* action type                                      
 
 - **NET_EXT_OUT** - external output traffic                         
 
-- **DISK** - disk space amount that is available only for action type *NOTIFY*                    
+- **DISK** - disk space amount that is available only for the *NOTIFY* action type                                     
 
-- **INODES** - available only for action type *NOTIFY*                       
+- **INODES** - available only for the *NOTIFY* action type                                                                    
 
 - **Disk I/O**                         
 
 - **Disk IOPS**                          
 
-The measuring values are *PERCENTAGE* and *SPECIFIC*. The second value is availabe only for **NET_EXT** and **NET_EXT_OUT** resource types.
+The units of measurement are *PERCENTAGE* and *SPECIFIC*. The second value is availabe only for **NET_EXT** and **NET_EXT_OUT** resource types.
 
 The following example illustrates the subscription to the *onAlert* event. Here, the *log* action is executed, if one of the environment triggers is invoked.                         
 ``` json
@@ -262,7 +262,7 @@ This example involves execution of the Jelastic API *addTrigger* method with a s
     - `customData`:
         - `notify`- alert notification sent to a user via email 
 
-The Jelastic engine sends an alert notification to the Cloud Scripting system when the appropriate trigger is invoked. Therefore, the *onAlert* event provides a possibility to bound actions to alert notifications and execute custom actions.
+The Jelastic engine sends an alert notification to the Cloud Scripting system when the appropriate trigger is invoked. Therefore, the *onAlert* event provides a possibility to bind actions to alert notifications and execute custom actions.
 
 **Event Placeholders:**     
 
