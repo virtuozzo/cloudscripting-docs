@@ -81,9 +81,9 @@ Using the *nodeType* field while performing the <a href="/creating-manifest/acti
 where:                
 
 - `writeFile` - action to write data to a file    
-- `nodeType` - parameter specifying a node by type    
-- `path` - parameter specifying a path to a file    
-- `body` - data that is being written to a file     
+- `nodeType` - parameter that specifies a node by type    
+- `path` - parameter that specifies a path to a file    
+- `body` - data that is written to a file     
 
 Creating an environment with topology specifics, set by the *engine* and *nodeType* values.   
 ``` json
@@ -98,8 +98,8 @@ Creating an environment with topology specifics, set by the *engine* and *nodeTy
 ```
 where:          
 
-- `engine` - parameter that specifies engine version (*java7* in our example)        
-- `nodeType` - parameter that specifies node type (*tomcat7*  in our example)       
+- `engine` - parameter that specifies an engine version (*java7* in our example)        
+- `nodeType` - parameter that specifies a node type (*tomcat7*  in our example)       
 
 ### Types of Selectors 
 
