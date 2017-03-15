@@ -225,7 +225,7 @@ As a result, console will display the *first* (1) custom parameter from <b>*${th
 
 ## UI Placeholders
 
-This is the list of placeholders that you can use while specifying UI parameters.                              
+This is the list of placeholders that you can use to specify UI parameters.                              
 
 - `${user.uid}` - user ID at the Jelastic Platform
 - `${user.email}` - user email address
