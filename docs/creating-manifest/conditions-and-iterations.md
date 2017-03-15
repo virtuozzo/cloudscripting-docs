@@ -248,7 +248,7 @@ Iteration by compute nodes with a custom iterator name.
 ```
 
 where:   
-- `@cp [optional]` - custom iterator name. Target nodes can be also set by type -*${@cp.nodeType}* or group - *${@cp.nodeGroup}*.                                    
+- `@cp [optional]` - custom iterator name. Also, target nodes can be set by type -*${@cp.nodeType}*, or group - *${@cp.nodeGroup}*.                                                    
 
 Custom iterator name can be used for nesting cycles one into another.            
 ``` json
