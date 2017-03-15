@@ -148,9 +148,9 @@ Learn more on this parameter within the <a href="/creating-manifest/actions/#cus
     <b>Node selectors</b> have higher priority than nodes, specified next to the action, but lower than parameters set in the action object.   
     If you set all three parameters (i.e *nodeId*, *nodeGroup* and *nodeType*), actions for indicated containers would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.   
 
-Below you can find data on supported software stacks in confines of the *nodeGroup*, *nodeType* and *engine* values.
+## Supported Stacks                                  
 
-## Supported Stacks
+Below you can find data about supported software stacks in confines of the *nodeGroup*, *nodeType*, and *engine* values.                             
 
 ### Predefined *nodeGroup* Values                   
 
