@@ -269,7 +269,7 @@ The Jelastic engine sends an alert notification to the Cloud Scripting system wh
 - `${event.params.}`:
     - `name` - alert name
     - `nodeGroup` - *nodeGroup* where an alert is executed 
-    - `resourceType` - monitoring resource type
+    - `resourceType` - resource type that is monitored                  
 - `${event.response.}`:
     - `result` - result code. The successful action result is *'0'*. 
 
