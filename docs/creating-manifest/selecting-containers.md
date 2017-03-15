@@ -2,7 +2,7 @@
 
 ## Selector Types
 
-Running a specific <a href="/creating-manifest/actions/" target="_blank">action</a> requires to specify a target container, in confines of which this action will be executed. Thus, it is possible to specify a [particular container](#particular-container), all containers within a layer by their [*nodeGroup*](#all-containers-by-group) value (e.g. <em>sql</em>) or all containers of the same type by their [*nodeType*](#all-containers-by-type) value (e.g. <em>MySQL</em>).                                 
+Running a specific <a href="/creating-manifest/actions/" target="_blank">action</a> requires to specify a target container, in confines of which this action is executed. Thus, it is possible to specify a [particular container](#particular-container), all containers within a layer by their [*nodeGroup*](#all-containers-by-group) value (e.g. <em>sql</em>) or all containers of the same type by their [*nodeType*](#all-containers-by-type) value (e.g. <em>MySQL</em>).                                 
 
 ### Particular Container
 
