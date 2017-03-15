@@ -250,11 +250,11 @@ The following example shows how a new trigger is being created.
 This example involves execution of the Jelastic API *addTrigger* method with a set of required parameters:     
 
 - `name` - name of a notification trigger
-- `nodeGroup` - target node (you can apply trigger to any node within the chosen environment)
+- `nodeGroup` - target node group (you can apply trigger to any node group within the chosen environment)
 - `period` - load period for nodes
 - `condition` - rules for monitoring resources
     - `type` - comparison sign, the available values are *GREATER* and *LESS*
-    - `value` - stated percentage of a monitoring resource
+    - `value` - percentage of a resource that is monitored                               
     - `resourceType` - types of resources that are monitored by a trigger, namely *CPU, Memory (RAM), Network, Disk I/O* and *Disk IOPS*
     - `valueType` - measurement value. Here, *PERCENTAGES*  is the only possible measurement value. The available range is from <b>*0*</b> up to <b>*100*</b>.
 - `actions` - object to describe a trigger action
@@ -474,7 +474,7 @@ The event is executed after linking nodes to apply configurations to IP addresse
 
 ### onBeforeAttachExtIp
 
-The event can handle action before attaching External IP address. The *onBeforeAttachExtIp* event is triggered each time before the external IP address attachment.
+The event is executed before attaching the external IP address. The *onBeforeAttachExtIp* event is triggered each time before the external IP address attachment.
 
 **Event Placeholders:**   
 
@@ -487,7 +487,7 @@ The event can handle action before attaching External IP address. The *onBeforeA
 
 ### onAfterAttachExtIp
 
-The event can handle action after attaching External IP address action execution. The *onBeforeAttachExtIp* event is triggered each time upon the external IP address attachment.
+The event is executed after attaching the external IP address action execution. The *onBeforeAttachExtIp* event is triggered each time upon the external IP address attachment.
 
 **Event Placeholders:**  
   
@@ -502,7 +502,7 @@ The event can handle action after attaching External IP address action execution
 
 ### onBeforeDetachExtIp
 
-The event can handle action before detaching External IP address. The *onBeforeDetachExtIp* event is triggered each time before the external IP address detachment.    
+The event is executed before detaching the external IP address. The *onBeforeDetachExtIp* event is triggered each time before the external IP address detachment.    
 
 **Event placeholders:**   
 
@@ -516,7 +516,7 @@ The event can handle action before detaching External IP address. The *onBeforeD
 
 ### onAfterDetachExtIp
 
-The event can handle action after detaching External IP address. The *onAfterDetachExtIp* event is triggered each time upon the external IP address detachment.
+The event is executed after detaching the external IP address. The *onAfterDetachExtIp* event is triggered each time upon the external IP address detachment.
 
 **Event Placeholders:**   
 
@@ -530,7 +530,7 @@ The event can handle action after detaching External IP address. The *onAfterDet
 
 ### onBeforeUpdateVcsProject
 
-The event is carried out before updating VCS project. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a> refer to the linked page. 
+The event is carried out before updating the VCS project. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a>, refer to the linked page. 
 
 **Event Placeholders:**   
 
@@ -543,7 +543,7 @@ The event is carried out before updating VCS project. For a detailed guidance on
 
 ### onAfterUpdateVcsProject
 
-The event is carried out after updating VCS project. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a> refer to the linked page.      
+The event is carried out after updating the VCS project. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a>, refer to the linked page.      
 
 **Event Placeholders:**   
 
@@ -730,7 +730,7 @@ The event is bound to the *deploy* action, which is executed at the Jelastic das
 
 ### onBeforeResetNodePassword
 
-The event is bound to resetting node password (executed at the Jelastic dashboard via the **Reset password** button) and is triggered before it.
+The event is bound to resetting a password (executed at the Jelastic dashboard via the **Reset password** button) and is triggered before it.
 
 **Event Placeholders:**     
 
@@ -743,7 +743,7 @@ The event is bound to resetting node password (executed at the Jelastic dashboar
 
 ### onAfterResetNodePassword
 
-The event is bound to resetting node password (executed at the Jelastic dashboard via the **Reset password** button) and is triggered after it.      
+The event is bound to resetting a password (executed at the Jelastic dashboard via the **Reset password** button) and is triggered after it.      
 
 **Event Placeholders:**    
     
@@ -831,7 +831,7 @@ The event is related to <a href="https://docs.jelastic.com/environment-regions-m
 - `${event.params.}`:   
     - `session` - current user session     
     - `appid` - environment unique appid      
-    - `isOnline` *[boolean]* - online migration that causes no downtime, if set value is *'true'*, therefore, setting it as *'false'* leads to the downtime           
+    - `isOnline` *[boolean]* - online migration that causes no downtime, if set to *'true'*, therefore, setting it as *'false'* leads to the downtime           
     - `hardwareNodeGroup` - predefined hard node group     
 - `${event.response.}`:     
     - `result` - result code. The successful action result is *'0'*.     
@@ -933,7 +933,7 @@ This event is executed after the *unLinkNodes* action and is run for each unlink
 
 ### onBeforeSetEnvVars
 
-The event is triggered before the *setEnvVars* action. It is executed for every Docker container upon setting environment variables. The *onBeforeSetEnvVars* event is applied for Docker containers only.     
+The event is triggered before the *setEnvVars* action. It is executed for every Docker container before setting environment variables. The *onBeforeSetEnvVars* event is applied for Docker containers only.     
 
 **Event Placeholders:**   
 
@@ -947,7 +947,7 @@ The event is triggered before the *setEnvVars* action. It is executed for every 
 
 ### onAfterSetEnvVars
 
-The event is triggered before the *setEnvVars* action. It is executed for every Docker container upon setting environment variables. The *onAfterSetEnvVars* event is applied for Docker containers only.
+The event is triggered after the *setEnvVars* action. It is executed for every Docker container upon setting environment variables. The *onAfterSetEnvVars* event is applied for Docker containers only.
 
 **Event Placeholders:**    
 
@@ -961,7 +961,7 @@ The event is triggered before the *setEnvVars* action. It is executed for every 
 
 ### onBeforeSetEntryPoint
 
-This event is called before the *setEntryPoint* action. It is executed for every Docker container upon setting the entry point. The *onBeforeSetEntryPoint* event is applied for Docker containers only.   
+This event is called before the *setEntryPoint* action. It is executed for every Docker container before setting the entry point. The *onBeforeSetEntryPoint* event is applied for Docker containers only.   
 
 **Event Placeholders:**   
 
@@ -989,7 +989,7 @@ This event is called after the *setEntryPoint* action. It is executed for every 
 
 ### onBeforeSetRunCmd
 
-The event is executed before the *setRunCmd* action. It is triggered for every Docker container, upon setting run configs. This event is compatible with Docker containers only.
+The event is executed before the *setRunCmd* action. It is triggered for every Docker container, before setting run configs. This event is compatible with Docker containers only.
 
 **Event Placeholders:**   
 
