@@ -19,7 +19,7 @@ Each event triggers a particular action on the required application's lifecycle 
 
 Events can be filtered by <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a>, and <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the action is executed only when the called event matches specified filtering rules. Otherwise, if no filtering rules are specified, every event is listened by all environment entities.         
 
-The following example describes the events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event). Here, the filtering by the compute node group (*[cp]*) is set so that the event is executed only after the compute nodes are scaled out. The *nodeType* filtering is set for the <b>apache2</b> nodes so that the event is executed after these particular nodes restart. The *nodeID* filtering is implemented so that the <b>*onAfterResetNodePassword*</b> event is bound only to the first compute node in a layer.
+The following example describes the events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event). Here, the filtering by the compute node group (*[cp]*) is set so that the *cmd* action is executed only after the compute nodes are scaled out. The *nodeType* filtering is set for the <b>apache2</b> nodes so that the *cmd* action is executed after these particular nodes restart. The *nodeID* filtering is implemented so that the <b>*onAfterResetNodePassword*</b> event is bound only to the first compute node in the layer.
 
 ``` json
 {
@@ -45,9 +45,9 @@ where:
 - `type` - *update* type presupposes the add-on installation to the existing environment with the predefined listeners for events                                
 - `onInstall` - entry point for executing actions                                                                     
     - `cp` - target node group                                  
-- `onAfterScaleOut` - event that triggers an action after adding a new compute node                                           
-- `onAfterRestartNode` - event that triggers an action after restarting compute nodes     
-- `onAfterResetNodePassword` - event that triggers an action after resetting a password for the first compute node in a layer       
+- `onAfterScaleOut` - event that triggers the action after adding a new compute node                                           
+- `onAfterRestartNode` - event that triggers the action after restarting compute nodes     
+- `onAfterResetNodePassword` - event that triggers the action after resetting a password for the first compute node in the layer       
 
 ## Events Execution Sequence
 
