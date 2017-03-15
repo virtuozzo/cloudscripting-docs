@@ -1,7 +1,7 @@
 # Events
 
 Any <a href="/creating-manifest/actions/" target="blank">action</a>, available to be performed by means of <a href="https://docs.jelastic.com/api/" target="blank">API</a> (including <a href="/creating-manifest/custom-scripts/" target="blank">custom scripts</a> running), should be bound to some event, i.e. executed as a result of this event occurrence.
-Each event refers to a particular entity. For example, the entry point for executing any action is the [*onInstall*](#oninstall) event.                     
+Each event triggers a particular action on the required application's lifecycle stage. The entry point for executing any action is the [*onInstall*](#oninstall) event.                                  
 
 ## Events Execution Rules    
 
