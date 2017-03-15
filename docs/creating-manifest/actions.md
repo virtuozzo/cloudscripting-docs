@@ -132,7 +132,7 @@ There are a number of parameters required by Jelastic API that are defined autom
 
 - *session* - unique session of a current user                                  
 
-Target containers, specified for the API methods execution can be passed by the node's keywords. Therefore, API methods can be executed at all nodes within a single <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required that is available either through the <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>, or a set of [custom action parameters](#custom-actions) (*this*).
+Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be executed at all nodes within a single <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required that is available either through the <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>, or a set of [custom action parameters](#custom-actions) (*this*).
 
 **Examples**
 
