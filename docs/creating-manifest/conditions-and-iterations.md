@@ -95,7 +95,7 @@ The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*<
 
 ### Nested Conditions   
   
-Nesting of two <b>*if*</b> conditional statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of the external IP address on the first balancer node and is logging the correspondent messages.          
+Nesting of two <b>*if*</b> conditional statements - the first one is checking an environment for two compute nodes presence. If the nodes are available, the second one is checking the presence of the external IP address on the first balancer node and is logging the correspondent messages.          
 ``` json
 {
   "type": "update",
@@ -121,7 +121,7 @@ Environment consists of two compute nodes
 Balancer node with external IP address!
 ```
 
-* Checking balancer stack type   
+Through the following example the balancer stack type is checked.                                                                                   
 ``` json
 {
   "type": "update",
@@ -160,10 +160,10 @@ The main iterable object is <b>*ForEach*</b> with the following map.
 ```
 where:    
 
-- `settings` *[optional]* - fields values predefined within a <a href="/creating-manifest/visual-settings/" target="_blank">user settings form</a>          
-- `license [optional]` - link to fetch parameters specified within the <a href="/creating-manifest/visual-settings/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through <a href="/creating-manifest/placeholders/" target="_blank">placeholders</a> `$(license.{any_name}` within a manifest.    
-- `event [optional]` - object entity with <a href="/creating-manifest/events/" target="_blank">events</a> parameters that can be of two types, allowing initiation of a particular <a href="/creating-manifest/actions/" target="_blank"> action</a> *before* and *after* event execution       
-- `this [optional]` - parameters object to be transmitted within the procedure body. See the full list of available<a href="/creating-manifest/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
+- `settings` *[optional]* - values of the fields that are predefined within a <a href="/creating-manifest/visual-settings/" target="_blank">user settings form</a>          
+- `license [optional]` - link to fetch parameters that are specified within the <a href="/creating-manifest/visual-settings/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through the `$(license.{any_name}` <a href="/creating-manifest/placeholders/" target="_blank">placeholder</a> within a manifest.    
+- `event [optional]` - object with <a href="/creating-manifest/events/" target="_blank">events</a> that can be of two types - triggering a particular <a href="/creating-manifest/actions/" target="_blank"> action</a> *before* or *after* the event execution       
+- `this [optional]` - object that is transmitted within the procedure body. See the full list of available<a href="/creating-manifest/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
 
 Iteration can be executed by <b>*env.nodes*</b>, <b>*nodes*</b>, <b>*env.contexts*</b>, and <b>*env.extdomains*</b> objects.                    
 
@@ -201,7 +201,7 @@ where:
 
 - `env.contexts` -  list of contexts (applications) deployed to an environment                           
 
-Scaling nodes example.                             
+The example of Scaling nodes.                             
 
 ``` json
 {
@@ -221,7 +221,7 @@ Scaling nodes example.
   }
 }
 ```
-As a result of *cmd*, compute nodes internal IP addresses are rewritten within balancer configs and NGINX balancer node is reloaded. The <b>*onAfterScaleIn*</b> and <b>*onAfterScaleOut*</b> events are executed immediately after adding or removing a compute node.   
+As a result of the *cmd* action, the compute nodes' internal IP addresses are rewritten within balancer configs and NGINX balancer node is reloaded. The <b>*onAfterScaleIn*</b> and <b>*onAfterScaleOut*</b> events are executed immediately after adding or removing a compute node.   
 
 ### By All Nodes
 
@@ -248,7 +248,7 @@ Iteration by compute nodes with a custom iterator name.
 ```
 
 where:   
-- `@cp [optional]` - custom iterator name. Target nodes can be also set by type -*${@cp.nodeType}* or group - *${@cp.nodeGroup}*.                                    
+- `@cp [optional]` - custom iterator name. Target nodes can also be set by type -*${@cp.nodeType}*, or group - *${@cp.nodeGroup}*.                                    
 
 Custom iterator name can be used for nesting cycles one into another.            
 ``` json
