@@ -102,7 +102,7 @@ This is the list of placeholders that you can use within the nodes section (*${n
         - `intIP` - internal IP address   
         - `extIPs` - external IP address array (`extips` is an alias)                                
         - `isClusterSupport`    
-        - `isExternalIpRequired` - status, indicating that node requires external IP address       
+        - `isExternalIpRequired` - status, indicating that node requires the external IP address       
         - `isResetPassword` - enables to reset a service password    
         - `isWebAccess`   
         - `ismaster` - master node status in the *nodeGroup* (i.e. layer)   
