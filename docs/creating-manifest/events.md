@@ -56,7 +56,7 @@ Below you can find the graphs that list the actions with the adjoining events. E
 !!! note
     The <b>*createEnvironment*</b> action does not have any adjoining events, because the events are bound after an environment creation.      
  
-The <b>*changeTopology*</b> actions are considered quite time-consuming while being performed via the Jelastic dashboard, therefore, the following graph provides a sequence of actions and related events.                                        
+The <b>*changeTopology*</b> actions are considered quite time-consuming while being performed via the Jelastic dashboard, therefore, you can automate their workflow with the following CS actions and related events.                                            
 
 <center><img style="height: 900px; padding-right: 69px"  src="/img/changeTopologySequence.png" alt="change topology sequence icon" /></center>
 
