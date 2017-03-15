@@ -182,7 +182,7 @@ The event is executed after adding new Docker container(s) to the existing node 
 - `${event.response.}` result code. The successful action result is *'0'*.           
 
 ### onAlert
-This event provides a possibility to bind actions to <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a> and <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">Automatic Horizontal Scaling Alerts</a>. These features are configured through the Jelastic triggers.   
+This event provides a possibility to bind actions to <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a> and <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">Automatic Horizontal Scaling Alerts</a> that are configured through the Jelastic triggers.   
 
 These are the monitoring triggers that are based on the usage of a particular resource type:            
 
