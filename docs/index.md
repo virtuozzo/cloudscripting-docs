@@ -22,7 +22,7 @@ There are three main pillars of cloud scripting:
 
 * `addClusterMembers` - custom <a href="/creating-manifest/actions/#custom-actions" target="blank">action</a>         
 
-* `onAfterScaleIn, onBeforeServiceScaleOut` - scaling <a href="/creating-manifest/events/#onafterscalein" target="blank">events</a>            
+* `onAfterScaleIn`, `onBeforeServiceScaleOut` - scaling <a href="/creating-manifest/events/#onafterscalein" target="blank">events</a>            
 
 ```json
 {
