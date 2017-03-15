@@ -66,7 +66,7 @@ The *return* action.
 }
 ```
 !!! note
-    The *email* parameter is available only for *success* response type. The email is delivered when an action is executed with the *success* response code.                         
+    The *email* parameter is available only for the *success* response type. The email is delivered when an action is executed with the *success* response code.                         
 
 The *script* action. 
 
