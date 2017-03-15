@@ -170,7 +170,7 @@ This is the list of placeholders that you can use to specify account information
 This is the list of placeholders that you can use to specify input parameters.                        
 
 - `${settings.jelastic_email}` - user email that is always predefined       
-- `${settings.key}` - where *key* is a name of the application setting. The placeholder is defined, if user input parameters are specified within a manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.              
+- `${settings.key}` - where *key* is a name of the application's setting. The placeholder is defined, if user input parameters are specified within a manifest. So, after preparing a custom user form, the placeholder is defined by the field’s name.              
 
 For example:
 ``` json
@@ -187,7 +187,7 @@ For example:
   }
 }
 ```
-The name of the placeholder here is `${settings.customName}`. Check the list of <a href="/creating-manifest/visual-settings/" target="_blank">fields</a> defined by users.       
+The name of the placeholder here is `${settings.customName}`. See the list of <a href="/creating-manifest/visual-settings/" target="_blank">fields</a> defined by users.       
 
 ## Action Placeholders
 
