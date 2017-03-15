@@ -30,7 +30,7 @@ The following specific groups of placeholders are singled out:
 
 ## Environment Placeholders
 
-This is the list of placeholders that you can use within the environment section of your manifest.          
+This is the list of placeholders that you can use within the environment section (*{env.}*) of your manifest.                               
 
 - `{env.}`
     - `appid` *[string]* - application appid 
@@ -70,7 +70,7 @@ This is the list of placeholders that you can use within the environment section
 
 ## Node Placeholders    
 
-This is the list of placeholders that you can use within the nodes section of your manifest.                        
+This is the list of placeholders that you can use within the nodes section (*${nodes.}*) of your manifest.                                   
 
 - `${nodes.}`
     - `{nodes.(group)[(i)].(key)}`
@@ -187,11 +187,11 @@ This is the list of placeholders that you can use to specify input parameters.
   }
 }
 ```
-The name of the placeholder here is `${settings.customName}`. See the list of <a href="/creating-manifest/visual-settings/" target="_blank">fields</a> that are defined by users.       
+Here, the name of the placeholder is `${settings.customName}`. See the list of <a href="/creating-manifest/visual-settings/" target="_blank">fields</a> that are defined by users.       
 
 ## Action Placeholders
 
-Action placeholders form a set of placeholders that can be used within the actions by means of <b>*${this}*</b> namespace. So, in <b>*${this.param}*</b> the *param* is a name of the action parameter.                                          
+Action placeholders form a set of placeholders that can be used within the actions by means of a <b>*${this}*</b> namespace. So, in <b>*${this.param}*</b> the *param* is a name of the action parameter.                                          
 
 **Example**
 ``` json
@@ -221,7 +221,7 @@ Passing custom parameters to the action is performed in the following way.
 	}
 }
 ```
-As a result, console will display the *first* (1) custom parameter from <b>*${this.first}*</b> placeholder.             
+As a result, console will display the *first* (1) custom parameter from the <b>*${this.first}*</b> placeholder.             
 
 ## UI Placeholders
 
@@ -251,9 +251,9 @@ This is the list of placeholders that you can use to specify UI parameters.
 
 ## Custom Global Placeholders
 
-Placeholders managed by users can be predefined via <b>*globals declaration*</b>. The corresponding declaration is performed in advance of the manifest installation.  
+Placeholders that are managed by users can be predefined via <b>*globals declaration*</b>. The corresponding declaration is performed in advance of the manifest installation.  
 
-For example:
+**Example**
 ``` json
 {
   "jpsType": "update",
@@ -275,15 +275,15 @@ As a result, the new placeholders are created.
 
 ## Function Placeholders
 
-The integrated functions inside Cloud Scripting are listed below:   
+These are the functions integrated inside Cloud Scripting:                               
 
 - `${fn.password}` - random value within the upper and lower cases. The default length value is *'10'*. 
     The length can be passed as `${fn.password(max value)}`.   
-- `${fn.base64}` - *base64* encoding passed value  
+- `${fn.base64}` - *base64* encoding                   
 ```
 ${fn.base64(value)}
 ```
-- `${fn.md5}` - *md5* encoding  
+- `${fn.md5}` - *md5* encoding               
 ```
 ${fn.md5(value)}
 ```
@@ -299,14 +299,12 @@ Functions without required parameters have two input forms:
 - `${fn.random}` or `${fn.random()}`
 
 
-Function parameter can be passed from existing placeholders, for example:                         
+The function parameter can be passed from existing placeholders, for example:                         
 
 - `${fn.md5([fn.random])}` - *md5* encoding random password   
 - `${fn.base64([user.email])}` - *base64* encoding user email address  
 
-You can easily define function placeholders within the [cutom global placeholders](#custom-global-placeholders).  
-
-For example:
+You can easily define function placeholders within the [cutom global placeholders](#custom-global-placeholders), for example:                               
 ``` json
 {
   "globals": {
@@ -324,7 +322,7 @@ Any array has a list of specific placeholders: array *length*, element by *ID*, 
 
 Any array length placeholder can be defined within a manifest. 
 
-For example:
+**Example**
 
 ```
 ${nodes.cp.length},
@@ -335,13 +333,13 @@ ${nodes.bl.extips.length}
 
 Each element has an index in the array. 
 
-For example: 
+**Example**                         
 
 `{nodes.cp[(i)].(key)}`   
 
 where:
 
-- `(i)` - array index. Indexes of array start from *'0'*                     
+- `(i)` - array index, starting from *'0'*                     
 - `(key)` - node <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">parameters</a>                            
 
 **The First and the Last Array Elements** 
@@ -384,7 +382,7 @@ You can use the following placeholders, as well, with the definite *nodeType*:
 - `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*  
 - `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*      
 
-Explore the full list of available <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> within the linked page.                                                         
+Explore the full list of available <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> values within the linked page.                                                         
 
 The list of single placeholders:
 
