@@ -5,7 +5,7 @@ Each event triggers a particular action on the required application's lifecycle 
 
 ## Events Execution Rules    
 
-- Such events as *onBeforeDelete* and *onAfterDelete* ones (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.                              
+- Such events as *onBeforeDelete* and *onAfterDelete* (which refer to an environment deletion) can be executed just once. Other events can be used as much times as required.                              
 
 - The scaling events (*onBeforeScaleOut/onAfterScaleOut*, *onBeforeScaleIn/onAfterScaleIn*, *onBeforeServiceScaleOut/onAfterServiceScaleOut*, *onBeforeSetCloudletCount/onAfterSetCloudletCount*) are called once upon any node count change. Herewith, count of the *addNode* or *removeNode* actions’ execution refer to the number of nodes that should be added/removed per a single scaling event.                                         
 
@@ -13,7 +13,7 @@ Each event triggers a particular action on the required application's lifecycle 
 
 - The *onBeforeLinkNodes/onAfterLinkNodes*, *onBeforeUnlinkNodes/onAfterUnlinkNodes*, *onBeforeSetEnvVars/onAfterSetEnvVars*, *onBeforeSetEntryPoint/onAfterSetEntryPoint*, *onBeforeSetRunCmd/onAfterSetRunCmd*, *onBeforeAddVolume/onAfterAddVolume* and *onBeforeRemoveVolume/onAfterRemoveVolume* events can be executed only once per a single *changeTopology* action.                 
 
-- The *onBeforeStartService/onAfterStartService* event can be called only once while performing the *changeTopology* and *createEnvironment* scaling actions.                                      
+- The *onBeforeStartService/onAfterStartService* event can be called only once while performing the *changeTopology* and *createEnvironment* actions.                                      
 
 ## Events Filtering
 
