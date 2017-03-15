@@ -16,7 +16,7 @@ The default workflow for any action execution is the following:
 
 - replacing <a href="/creating-manifest/placeholders" target="_blank">placeholders</a>                                     
 
-- getting a list of target containers (for a detailed guidance, see the <a href="/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> page)                
+- getting a list of target containers                                   
 
 - checking permissions                                     
 
@@ -49,7 +49,7 @@ Any container operation can be performed using a [*cmd*](#cmd) action. Moreover,
 - operations with files ([*createFile*](#createfile), [*createDirectory*](#createdirectory), [*writeFile*](#writefile), [*appendFile*](#appendfile), [*replaceInFile*](#replaceinfile))                                     
 
 !!! note 
-    To process any container operation (except for [cmd](#cmd)), the Cloud Scripting executor will use a default system user with restricted permissions.                   
+    To process any container operation (except for [cmd](#cmd)), the Cloud Scripting engine uses a default system user with restricted permissions.                   
 
 ### cmd
 
@@ -68,22 +68,20 @@ The *cmd* action executes <a href="https://docs.jelastic.com/ssh-overview" targe
 ```
 where:       
      
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required). For a detailed guidance, see the <a href="/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> section.                             
-- `cmd1` and `cmd2` - set of commands that are being executed. Their values are wrapped by the underlying Cloud Scripting executor via **echo cmd | base64 -d | su user**.     
-    Where:    
-    - **cmd** - is equal to a Base64 encoded string: **yes | (cmd1;cmd2)**. In case your commands require the interactive input, by default the Cloud Scripting executor will always try to give a positive answer, using **yes** utility.        
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                                
+- `cmd1` and `cmd2` - set of commands that are executed. Their values are wrapped by the Cloud Scripting engine via **echo cmd | base64 -d | su user** where:                    
+    - **cmd** - is equal to the Base64 encoded string: **yes | (cmd1;cmd2)**. If your commands require the interactive input, by default, the Cloud Scripting engine always gives a positive answer, using **yes** utility.        
     - **user** - default system user with restricted permissions    
-- `sayYes` *[optional]* - parameter that enables or disables using **yes** utility. The default value is *'true'*.                  
+- `sayYes` *[optional]* - parameter that enables or disables the usage of **yes** utility. The default value is *'true'*.                  
 
-A single SSH command can be passed in a string. For example, executing a bash script from URL for all **Tomcat 6** nodes.                    
+The single SSH command can be passed in a string. For example, executing a bash script from URL for all **Tomcat 6** nodes.                    
 ``` json 
 {
   "cmd [tomcat6]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
 }
 ```
-Learn more about <a href="/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> for your actions within the pointed guide.                      
 
-While accessing containers via *cmd*, a user receives all the required permissions and additionally can manage the main services with **sudo** commands of the following types (and others).            
+While accessing containers via *cmd*, you receive all the required permissions and additionally can manage the main services with **sudo** commands of the following types (and others).            
 ```no-highlight
 sudo /etc/init.d/jetty start  
 sudo /etc/init.d/mysql stop
@@ -128,7 +126,7 @@ Using **sudo** to reload Nginx balancer.
 
 Executing actions available by means of the <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a> methods.     
 
-There are a number of parameters required by Jelastic API, which are defined automatically:                            
+There are a number of parameters required by Jelastic API that are defined automatically:                            
 
 - *envName* - environment domain name where the API method is executed             
 
@@ -136,7 +134,7 @@ There are a number of parameters required by Jelastic API, which are defined aut
 
 - *session* - unique session of a current user                                  
 
-Target containers, selected for API methods execution can be passed by the node keywords. API methods can be executed at all nodes within a single <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required, which is available either through the <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a> or a set of [custom action parameters](#custom-actions) (*this*).
+Target containers, specified for the API methods execution can be passed by the node's keywords. Therefore, API methods can be executed at all nodes within a single <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required, which is available either through the <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a> or a set of [custom action parameters](#custom-actions) (*this*).
 
 **Examples**
 
@@ -165,8 +163,7 @@ Below, you can find one more approach to specify a target node group for the API
     "nodeGroup" : "cp"
 }
 ```
-Learn more about <a href="/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> for your API actions within the linked guide.                                        
-        
+
 ### deploy
 
 Available for compute nodes (except for *Docker* containers)
