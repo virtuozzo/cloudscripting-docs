@@ -152,7 +152,7 @@ Below you can find data on supported software stacks in confines of the *nodeGro
 
 ## Supported Stacks
 
-### Predefined nodeGroup Values                   
+### Predefined *nodeGroup* Values                   
 
 The Jelastic Platform supports the following predefined *nodeGroup* values:                           
 
@@ -164,7 +164,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 
 - **nosqldb** (for NoSQL databases) - *mongodb, mongodb2, couchdb, redis, redis3, cassandra, cassandra2, cassandra3, neo4j, neo4j2-1, neo4j3, orientDB, orientDB2, Percona*                   
 
-- **vds** (for virtual private servers) - *centos6, centos7, ubuntu16-04, windows2008, windows2012*                          
+- **vps** (for virtual private servers) - *centos6, centos7, ubuntu16-04, windows2008, windows2012*                          
 
 - **cache** (for a cache server) - *memcached*                         
 
@@ -238,7 +238,7 @@ The Jelastic Platform supports the following software stacks:
      - `maven3` - *Мaven*
 - **Cache Node (cache):**
      - `memcached` - *Мemcached*
-- **Virtual Private Server nodes (vds):**
+- **Virtual Private Servers (vps):**
      - `centos6` - *CentOS 6*
      - `centos7` - *CentOS 7*
      - `ubuntu16-04` - *Ubuntu16-04*
