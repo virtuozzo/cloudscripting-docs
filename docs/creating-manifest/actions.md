@@ -166,7 +166,7 @@ Below, you can find one more approach to specify a target node group for the API
 
 ### deploy
 
-Available for compute nodes (except for *Docker* containers)
+Available for compute nodes (except for Docker containers)
 ``` json
 {
   "deploy": [
@@ -476,7 +476,7 @@ where:
 
 ### addContext
 
-Available for compute nodes (except for *Docker* containers)
+Available for compute nodes (except for Docker containers)
 ``` json
 {
   "addContext": [
@@ -503,7 +503,7 @@ Within this section, you can find actions that are intended for managing databas
 
 ### prepareSqlDatabase
 
-Available for *SQL* databases (except for *Docker* containers)
+Available for *SQL* databases (except for Docker containers)
 ``` json
 {
   "prepareSqlDatabase": [
@@ -540,7 +540,7 @@ where:
 
 ### restoreSqlDump
 
-Available for *SQL* databases (except for *Docker* container)
+Available for *SQL* databases (except for Docker container)
 ``` json
 {
   "restoreSqlDump": [
@@ -566,7 +566,7 @@ where:
 
 ### applySqlPatch
 
-Available for *SQL* databases (except for *Docker* containers)                                 
+Available for *SQL* databases (except for Docker containers)                                 
 ``` json
 {
   "applySqlPatch": [
