@@ -70,7 +70,7 @@ This is the list of placeholders that you can use within the environment section
 
 ## Node Placeholders    
 
-This is the list of placeholders that you can use within the nodes section (*${nodes.}*) of your manifest.                                   
+This is the list of placeholders that you can use within the nodes section (*{nodes.}*) of your manifest.                                   
 
 - `${nodes.}`
     - `{nodes.(group)[(i)].(key)}`
