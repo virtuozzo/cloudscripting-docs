@@ -646,7 +646,7 @@ The *install* action allows to nest a JPS manifest inside another - *parent* man
 
 **Examples**
 
-Installing add-on via the external link (with the *update* installation type).            
+Installing the add-on via the external link (with the *update* installation type).            
 ``` json
 {
   "install" : {
@@ -662,7 +662,7 @@ where:
 - `jps` - URL to your custom JPS manifest  
 - `settings` - user <a href="/creating-manifest/visual-settings/" target="_blank">custom form</a>           
 
-Installing add-on from the local manifest file.                    
+Installing the add-on from the local manifest file.                    
 ``` json
 {
   "install" : {
@@ -678,7 +678,7 @@ where:
 
 - `onInstall` - entry point for performed actions                                 
 
-Installing a new environment via the external link (with the *install* installation type).                 
+Installing the environment via the external link (with the *install* installation type).                 
 ``` json
 {
   "install" : {
@@ -696,7 +696,7 @@ where:
 - `envName` - short domain name of a new environment                                   
 - `settings` - user <a href="/creating-manifest/visual-settings/" target="_blank">custom form</a>                                               
 
-Installing a new environment from the local manifest file.                      
+Installing the environment from the local manifest file.                      
 ``` json
 {
   "install" : {
