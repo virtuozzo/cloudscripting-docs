@@ -187,7 +187,7 @@ This is the list of placeholders that you can use to specify input parameters.
   }
 }
 ```
-The name of the placeholder here is `${settings.customName}`. See the list of <a href="/creating-manifest/visual-settings/" target="_blank">fields</a> defined by users.       
+The name of the placeholder here is `${settings.customName}`. See the list of <a href="/creating-manifest/visual-settings/" target="_blank">fields</a> that are defined by users.       
 
 ## Action Placeholders
 
