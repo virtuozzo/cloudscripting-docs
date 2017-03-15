@@ -16,7 +16,7 @@ The default workflow for any action execution is the following:
 
 - replacing <a href="/creating-manifest/placeholders" target="_blank">placeholders</a>                                     
 
-- getting a list of target containers                                   
+- getting a list of <a href="/creating-manifest/selecting-containers" target="_blank">target containers</a>                                                 
 
 - checking permissions                                     
 
