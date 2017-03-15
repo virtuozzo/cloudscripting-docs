@@ -158,7 +158,7 @@ Learn more about the event placeholders within the <a href="/creating-manifest/e
 
 ## Account Information  
 
-This is the list of placeholders that you can use while specifying account information.                                                                       
+This is the list of placeholders that you can use to specify account information.                                                                       
 
 - `${user.uid}` - user ID at the Jelastic Platform               
 - `${user.email}` - user email address      
@@ -167,7 +167,7 @@ This is the list of placeholders that you can use while specifying account infor
 
 ## Input Parameters
 
-This is the list of placeholders that you can use for input parameters.                        
+This is the list of placeholders that you can use to specify input parameters.                        
 
 - `${settings.jelastic_email}` - user email that is always predefined       
 - `${settings.key}` - where *key* is a name of the application setting. The placeholder is defined, if user input parameters are specified within a manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.              
