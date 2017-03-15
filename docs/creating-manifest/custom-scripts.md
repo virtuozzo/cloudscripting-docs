@@ -5,7 +5,7 @@ You can bind your scripts to the <b>*onAfterReturn*</b> event to execute the req
 
 
 ## Intercontainer Scripts
-In order to execute a shell script inside of a container, use the <a href="/creating-manifest/actions/#cmd" target="_blank">ExecuteShellCommands</a> (*cmd*) actions.                                              
+In order to execute a shell script inside of a container, use the <a href="/creating-manifest/actions/#cmd" target="_blank">ExecuteShellCommands</a> (*cmd*) action.                                              
 
 <b>Examples:</b>
 
