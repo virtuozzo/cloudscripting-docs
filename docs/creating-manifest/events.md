@@ -51,16 +51,16 @@ where:
 
 ## Events Execution Sequence
 
-Below you can find the graphs that provide a list of the actions with the adjoining events. Every action has a pair of adjoining events - one of them is executed *before* the action and another one is launched *after* the action, that is when the action is finished.  
+Below you can find the graphs that list the actions with the adjoining events. Every action has a pair of adjoining events - one of them is executed *before* the action and another one is launched *after* the action, that is when the action is finished.  
 
 !!! note
     The <b>*createEnvironment*</b> action does not have any adjoining events, because the events are bound after an environment creation.      
  
-The <b>*changeTopology*</b> actions are considered quite laborious to be performed via the Jelastic dashboard, therefore, the graph below provides a sequence of possible actions and related events.         
+The <b>*changeTopology*</b> actions are considered quite time-consuming while being performed via the Jelastic dashboard, therefore, the graph below provides a sequence of related actions and events.                                        
 
 <center><img style="height: 900px; padding-right: 69px"  src="/img/changeTopologySequence.png" alt="change topology sequence icon" /></center>
 
-One more demanded action is related to scaling nodes in an environment within a single layer. The following graph provides a list of possible actions and adjoining events.     
+Another demanded actions are related to scaling procedures. The following graph provides a sequence of scaling actions and adjoining events.                     
 
 <center><img style="height: 626px"  src="/img/scalingEventSequence.png" alt="scaling sequence icon" /></center>
 
