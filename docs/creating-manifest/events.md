@@ -45,9 +45,9 @@ where:
 - `type` - *update* type presupposes the add-on installation to the existing environment with the predefined listeners for events                                
 - `onInstall` - entry point for executing actions                                                                     
     - `cp` - target node group                                  
-- `onAfterScaleOut` - event that triggers the action after adding a new compute node                                           
-- `onAfterRestartNode` - event that triggers the action after restarting compute nodes     
-- `onAfterResetNodePassword` - event that triggers the action after resetting a password for the first compute node in a layer       
+- `onAfterScaleOut` - event that triggers an action after adding a new compute node                                           
+- `onAfterRestartNode` - event that triggers an action after restarting compute nodes     
+- `onAfterResetNodePassword` - event that triggers an action after resetting a password for the first compute node in a layer       
 
 ## Events Execution Sequence
 
