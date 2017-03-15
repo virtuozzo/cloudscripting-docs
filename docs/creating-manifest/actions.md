@@ -47,7 +47,7 @@ Any container operation can be performed using a [*cmd*](#cmd) action. Moreover,
 - operations with files ([*createFile*](#createfile), [*createDirectory*](#createdirectory), [*writeFile*](#writefile), [*appendFile*](#appendfile), [*replaceInFile*](#replaceinfile))                                     
 
 !!! note 
-    To process any container operation (except for [cmd](#cmd)), the Cloud Scripting engine uses a default system user with restricted permissions.                   
+    To process any container operation (except for [cmd](#cmd)), the Cloud Scripting engine applies a default system user with restricted permissions.                       
 
 ### cmd
 
