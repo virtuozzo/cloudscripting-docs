@@ -68,11 +68,11 @@ Another demanded actions are related to scaling procedures. The following graph 
 
 ### onInstall
 
-The <b>*onInstall*</b> event is the entry point for executing any action. In case installation type is *install*, the <b>*onInstall*</b> event will be carried out right after environment creation. If installation type is set as *update*, the <b>*onInstall*</b>  event is the first event to be performed during the manifest installation.           
+The <b>*onInstall*</b> event is the entry point for executing any action. If the installation type is *install*, the <b>*onInstall*</b> event is triggered right after the environment creation. If the installation type is *update*, <b>*onInstall*</b> is the first event that is performed during the manifest installation.                          
  
 ### onUninstall
 
-The <b>*onUninstall*</b> event can be called from the **Add-ons** tab at the Jelastic dashboard. This event is aimed at removing data, which was accumulated as a result of actions triggered by the <b>*onInstall*</b> event.                     
+The <b>*onUninstall*</b> event can be called from the **Add-ons** tab at the Jelastic dashboard. This event is aimed at removing data accumulated through actions that are triggered by the <b>*onInstall*</b> event.                     
   
 <center>![uninstall](/img/uninstall.png)</center>    
 
