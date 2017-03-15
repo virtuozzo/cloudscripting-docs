@@ -79,7 +79,7 @@ The single SSH command can be passed in a string. For example, executing a bash 
 }
 ```
 
-While accessing containers via *cmd*, you receive all the required permissions and additionally can manage the main services with **sudo** commands of the following types (and others).            
+While accessing a container via *cmd*, you receive all the required permissions and additionally can manage the main services with **sudo** commands of the following types (and others).            
 ```no-highlight
 sudo /etc/init.d/jetty start  
 sudo /etc/init.d/mysql stop
