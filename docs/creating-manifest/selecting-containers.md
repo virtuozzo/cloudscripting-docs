@@ -107,7 +107,7 @@ There are three alternative approaches, provided to specify a target container i
 
 - specifying a target node within a name of an action (**node selectors**)     
 
-For example: 
+Through the following example, a new file is created in the compute node (<em>[cp]</em>) and a new directory is created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers, and container with Node ID <em>123</em>. Actions for the specified nodes are executed in the declared order.                    
 ``` json
 [
   {
@@ -122,11 +122,10 @@ For example:
   }
 ]
 ```
-Through the example above, a new file is created in the compute node (<em>[cp]</em>) and a new directory is created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers, and container with Node ID <em>123</em>. Actions for the specified nodes are executed in the declared order.                 
 
 - setting a target node next to the performed action     
 
-For example:   
+Through the following example, the <a href="/creating-manifest/actions/#createfile" target="blank">**createFile**</a> and <a href="/creating-manifest/actions/#createdirectory" target="blank">**createDirectory**</a> actions are applied to the specified <em>nodeGroup</em>, namely the compute (<em>[cp]</em>) layer. 
 ``` json
 [
   {
@@ -140,7 +139,6 @@ For example:
   }
 ]
 ``` 
-Here, the <em>createFile</em> and <em>createDirectory</em> actions are applied to the specified <em>nodeGroup</em>, namely the compute (<em>[cp]</em>) layer.                      
  
 - specifying a required node as a parameter in the action object     
 
