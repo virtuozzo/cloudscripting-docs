@@ -64,11 +64,11 @@ Actions for the specified <em>nodeGroup</em> are executed successively one by on
 
 ### All Containers By Type
 
-The <em>nodeType</em> parameter is applied to specify all containers that are built upon the same software [stacks](#supported-stacks ).                                   	  
+The <em>nodeType</em> value is applied to specify all containers that are built upon the same software [stacks](#supported-stacks ).                                   	  
 
 <b>Examples</b>     
 
-Using the *nodeType* field while performing the <a href="/creating-manifest/actions/#writefile" target="blank">**writeFile**</a> action.
+Using the *nodeType* value while performing the <a href="/creating-manifest/actions/#writefile" target="blank">**writeFile**</a> action.
 ``` json
 {
   "writeFile": {
