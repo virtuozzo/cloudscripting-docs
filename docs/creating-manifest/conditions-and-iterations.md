@@ -15,7 +15,7 @@ if (env.protocol == 'http')
 
 The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*</b> can be of any nesting level.                                             
 
-- If condition is specified incorrectly, the actions inside <b>*if*</b> statement are not executed. Herewith, the <a href="/troubleshooting/" target="_blank">Cloud Scripting Console</a> will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.                            
+- If condition is specified incorrectly, the actions inside <b>*if*</b> statement are not executed. Herewith, the <a href="/troubleshooting/" target="_blank">Cloud Scripting Console</a> returns the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.                            
 
 - If condition is valid, but is not executed, the <b>*'condition is not met'*</b> message is logged.                                        
 
