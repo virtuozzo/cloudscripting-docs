@@ -36,7 +36,7 @@ Visit the <a href="/creating-manifest/placeholders/" target="_blank"><em>Placeho
 
 ### All Containers By Group        
  
-The *nodeGroup* value is used to point out all containers within a specific layer.            
+The *nodeGroup* value is used to point out all containers within a specific [layer](#predefined-nodegroup-values).                              
 
 The Jelastic Platform supports the following predefined *nodeGroup* values:     
 
