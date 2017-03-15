@@ -132,7 +132,7 @@ There are a number of parameters required by Jelastic API that are defined autom
 
 - *session* - unique session of a current user                                  
 
-Target containers, specified for the API methods execution can be passed by the node's keywords. Therefore, API methods can be executed at all nodes within a single <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required, which is available either through the <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a> or a set of [custom action parameters](#custom-actions) (*this*).
+Target containers, specified for the API methods execution can be passed by the node's keywords. Therefore, API methods can be executed at all nodes within a single <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required that is available either through the <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>, or a set of [custom action parameters](#custom-actions) (*this*).
 
 **Examples**
 
@@ -144,7 +144,7 @@ Restarting all compute nodes in an environment.
 ``` 
 where:        
        
-- `api [cp]` - specifying a target node group for the API method to be executed at (e.g. *cp*). Learn more details about <a href="/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Container</em></a> within the linked page.                                        
+- `api [cp]` - specifying a target node group for the API method to be executed at (e.g. *cp*)                                      
 - *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group              
 
 This parameter (*jelastic.environment.control.RestartNodesByGroup*) can be simplified like shown in the next example.    
@@ -369,12 +369,12 @@ The present section introduces actions that are provided for managing the topolo
 ```
 where:
 
-- `nodeType` *[required]* - parameter thet defines software stack. For a detailed guidance, see the <a href="/creating-manifest/selecting-containers/#predefined-nodetype-values" target="_blank">*Container Types*</a> page. For Docker containers the *nodeType* value is **docker**.                                     
-- `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.                     
+- `nodeType` *[required]* - parameter that defines <a href="/creating-manifest/selecting-containers/#predefined-nodetype-values" target="_blank">software stacks</a>. For Docker containers the *nodeType* value is **docker**.                                        
+- `extip` *[optional]* - attaching the Public IP address to a container. The default value is *'false'*.                     
 - `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.                             
 - `flexibleCloudlets` *[optional]* - number of dynamic cloudlets. The default value is *'1'*.                           
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
-    The following parameters are required for Docker nodes only:                          
+    The following parameters are required for <a href="https://docs.jelastic.com/dockers-overview" target="_blank">Docker</a> containers only:                                    
 - `dockerName` *[optional]* - name and tag of Docker image
 - `registryUrl` *[optional]* - custom Docker regitry
 - `registryUser` *[optional]* - Docker registry username
@@ -408,7 +408,7 @@ where:
 
 Available for all nodes                  
 
-The *setNodeCount* action allows to add or remove nodes that are grouped based on the same *nodeGroup* (layer). A node selector is available by *nodeId*, *nodeGroup*, or *nodeType*.             
+The *setNodeCount* action allows to add or remove nodes that are grouped according to the same *nodeGroup* (layer). The node selector is available by *nodeId*, *nodeGroup*, or *nodeType*.             
 
 ``` json
 {
@@ -424,7 +424,7 @@ where:
 
 Available for all nodes                      
 
-The *setExtIpEnabled* action allows to enable or disable the external IP address attachment within a node or node group.                                  
+The *setExtIpEnabled* action allows to enable or disable the external IP address attachment to a particular node or *nodeGroup*.                                  
 
 ``` json
 {
@@ -434,11 +434,11 @@ The *setExtIpEnabled* action allows to enable or disable the external IP address
 where:               
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                   
-- `true` or `false` - parameter that allows to attach or detach public IP address                              
+- `true` or `false` - parameter that allows to attach or detach the public IP address                              
 
 ### restartNodes
 
-Available for all nodes (except for *Elastic VPS*)
+Available for all nodes (except for Elastic VPS)
 ``` json
 {
   "restartNodes": [
@@ -501,7 +501,7 @@ Within this section, you can find actions that are intended for managing databas
 
 ### prepareSqlDatabase
 
-Available for *SQL* databases (except for Docker containers)
+Available for SQL databases (except for Docker containers)
 ``` json
 {
   "prepareSqlDatabase": [
@@ -534,11 +534,11 @@ where:
     - `password` - custom password that is generated for a new database 
 
 !!! note
-    The action is executed only for *mysql5*, *mariadb* and *mariadb10* containers.                          
+    The action is executed only for *mysql5*, *mariadb*, and *mariadb10* containers.                          
 
 ### restoreSqlDump
 
-Available for *SQL* databases (except for Docker container)
+Available for SQL databases (except for Docker container)
 ``` json
 {
   "restoreSqlDump": [
@@ -558,13 +558,13 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default, the *nodeGroup* value is equal to *sqldb*.                                    
 - `databaseName` - name of a database that is created                  
-- `user` - username in the database, on behalf of which the application will be used                
-- `password` - password in the database, on behalf of which the application will be used                         
+- `user` - username in the database, on behalf of which the application is used                
+- `password` - password in the database, on behalf of which the application is used                         
 - `dump` - URL to the application's database dump                                
 
 ### applySqlPatch
 
-Available for *SQL* databases (except for Docker containers)                                 
+Available for SQL databases (except for Docker containers)                                 
 ``` json
 {
   "applySqlPatch": [
@@ -584,12 +584,12 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default, the *nodeGroup* value is equal to *sqldb*.                                   
 - `databaseName` - name of a database for a patch to be applied                    
-- `user` - username in the database, on behalf of which the application will be used                                          
-- `password` - password in the database, on behalf of which the application will be used                              
+- `user` - username in the database, on behalf of which the application is used                                          
+- `password` - password in the database, on behalf of which the application is used                              
 - `patch` - *SQL* query or a link to it. It is used only for *SQL* databases. Here, the <a href="/creating-manifest/placeholders" target="_blank">placeholders</a> support is available.                    
 
 !!! note
-    The action is executed only for *mysql5*, *mariadb* and *mariadb10* containers.                         
+    The action is executed only for *mysql5*, *mariadb*, and *mariadb10* containers.                         
 
 ## User-Defined Operations
 
@@ -642,11 +642,11 @@ Setting a delay that is measured in milliseconds. The below example shows how to
 
 ### install
 
-Nesting a JPS manifest inside the current manifest file. The nested JPS manifest will be installed subsequently after the current one. The action is available for *install* and *update* installation types.                              
+The *install* action allows to nest a JPS manifest inside another - *parent* manifest file. The nested JPS manifest is installed subsequently after the *parent* one. The action is available for the *install* and *update* installation types.                              
 
 **Examples**
 
-Installing add-on via the external link (with *update* type).            
+Installing add-on via the external link (with the *update* installation type).            
 ``` json
 {
   "install" : {
@@ -662,7 +662,7 @@ where:
 - `jps` - URL to your custom JPS manifest  
 - `settings` - user <a href="/creating-manifest/visual-settings/" target="_blank">custom form</a>           
 
-Installing add-on from the local manifest.         
+Installing add-on from the local manifest file.                    
 ``` json
 {
   "install" : {
@@ -678,7 +678,7 @@ where:
 
 - `onInstall` - entry point for performed actions                                 
 
-Installing a new environment via the external link (with *install* type).                 
+Installing a new environment via the external link (with the *install* installation type).                 
 ``` json
 {
   "install" : {
@@ -696,7 +696,7 @@ where:
 - `envName` - short domain name of a new environment                                   
 - `settings` - user <a href="/creating-manifest/visual-settings/" target="_blank">custom form</a>                                               
 
-Installing a new environment from the local manifest.             
+Installing a new environment from the local manifest file.                      
 ``` json
 {
   "install" : {
@@ -716,24 +716,24 @@ Installing a new environment from the local manifest.
 ```
 where:
 
-- `region` - hardware node region                        
+- `region` - hardware node's <a href="https://docs.jelastic.com/environment-regions" target="_blank">region</a>                                               
 - `envName` - short domain name of a new environment                     
 - `name` - JPS name  
-- `nodes` - object of new nodes                   
-- `onInstall` - entry point for performed actions               
+- `nodes` - description of nodes                   
+- `onInstall` - entry point for performed actions                
 
 
 ### installAddon
 
-You can install a few custom add-ons within a single manifest, therefore, add-ons can be installed to:                       
+You can install a <a href="/creating-manifest/add-ons/" target="_blank">custom add-on</a> within another manifest. Thus, the add-on can be installed to:                                         
 
-- an existing environment, if installation type is *update*                     
+- an existing environment, if its installation type is *update*                      
 
-- a new environment, if installation type is *install*. In this case, add-ons are installed sequentially one by one right after a new environment setup.                                              
+- a new environment, if its installation type is *install*. In this case, add-ons are installed sequentially one by one right after a new environment creation.                                                                   
 
-All the add-ons will have installation type *update* by default.   
+All the custom add-ons that are declared within another manifest have the *update* installation type by default.                            
 
-The example below shows how to pass the add-on identifier to *installAddon* action. This add-on should be described in the *addons* section. The custom add-on with the *firstAddon* identifier will create a new file in the *tmp* directory on a compute node.                  
+The example below shows how to pass the add-on identifier to the *installAddon* action. This add-on's parameters are described in the *addons* section. As a result, the custom add-on with the *firstAddon* identifier initiates the creation of a new file in the *tmp* directory on a compute node.                                 
 ``` json
 {
 	"type": "update",
@@ -754,13 +754,13 @@ The example below shows how to pass the add-on identifier to *installAddon* acti
 ```
 where:  
 
-- `id` - identifier for a custom add-on                           
+- `id` - identifier of a custom add-on                           
 
-The installed add-ons can be located within the **Add-ons** tab at the Jelastic dashboard. 
+You can locate the installed add-ons within the **Add-ons** tab at the Jelastic dashboard. 
 
 <center>![new-addon](/img/new-addon.png)</center>
 
-In the following example, the *nodeGroup* parameter is passed to the *installAddon* action, targeting an add-on at the *bl* (balancer) node group.                    
+In the following example, the *nodeGroup* parameter is passed to the *installAddon* action, targeting the add-on at the *bl* (balancer) node group.                    
 ``` json
 {
   "installAddon": {
@@ -770,15 +770,15 @@ In the following example, the *nodeGroup* parameter is passed to the *installAdd
 }
 ```
 
-Consequently, the installed add-on will be marked as set up at the balancer (*bl*) layer.               
+Consequently, this add-on is installed to the balancer (*bl*) layer.                    
 
-For more details about the <a href="/creating-manifest/addons/" target="blank">add-ons</a> installation, visit the linked page.                                            
+For more details about the <a href="/creating-manifest/add-ons/" target="blank">add-ons</a> installation, visit the linked page.                                              
 
 <!-- add example -->
 
 ## Custom Actions
 
-The declarative code inside a manifest can be divided into separate blocks - **actions**. Subsequently, particular actions can be run by means of calling actions with different parameters.             
+Particular actions can be run by means of calling actions with different parameters.             
 
 The example below shows how to create a new file (e.g. the <b>*example.txt*</b> file in the <b>*tmp*</b> directory) by executing a *createFile* action at the compute node.                 
 ``` json
@@ -794,7 +794,7 @@ where:
 
  - `createFile` - corresponding [*createFile*](#createfile) action                     
 
-The next example illustrates how to create a new custom action (i.e. *customAction*), which can be called for several times.                                                        
+The next example illustrates how to create a new custom action (i.e. *customAction*) that can be called for several times.                                                        
 ``` json
 {
 	"type": "update",
