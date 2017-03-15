@@ -50,13 +50,13 @@ mysql -u${USER} -p${PASSWORD} << END
 END
 ```
 
-`${nodes.sqldb.password}` - available only for *install* type when a SQL node is created               
+Here, `${nodes.sqldb.password}` is available only for the *install* installation type when a SQL node is created.                                   
 
 ## Top Level Scripts  
 
-Using <a href="/creating-manifest/actions/#script" target="_blank">*script*</a> action
+Using a <a href="/creating-manifest/actions/#script" target="_blank">*script*</a> action.                  
 
-<h3>Java</h3>
+### Java
 
 ``` json
 {
@@ -76,7 +76,7 @@ Using <a href="/creating-manifest/actions/#script" target="_blank">*script*</a> 
 **Example #1 Generate random password**
 -->
 
-<h3>JavaScript</h3>
+### JavaScript                
 
 ``` json
 {
@@ -85,7 +85,7 @@ Using <a href="/creating-manifest/actions/#script" target="_blank">*script*</a> 
 }
 ```
 <br>
-<h2> What's next?</h2>         
+## What's next?                
 
 - See how to create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                
 
