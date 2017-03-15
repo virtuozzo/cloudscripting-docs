@@ -75,7 +75,7 @@ Just in the same way, you can build and run the solution you need - from frequen
 !!! note
     **Tip:** Consider using a repository hosting service (for example, <a href="https://github.com/" target="blank">GitHub</a>) to comfortably store and manage your projects, manifests, and scripts all together.                               
 <br>    
-## Best Practises               
+## Best Practises                        
 
 - Use <a href="http://jsoneditoronline.org/" target="blank">JSON Editor Online</a> with the automatic formatting and syntax highlighting                       
 
@@ -86,7 +86,7 @@ Just in the same way, you can build and run the solution you need - from frequen
 - Use <a href="/samples/" target="blank">Jelastic Samples</a> to explore operation and package examples                          
 
 <br> 
-<h2> What’s next?</h2>              
+## What’s next?                                     
 
 - <a href="/creating-manifest/basic-configs/" target="blank">Template Basics</a> - learn the required basis of any JSP manifest and find out about differences between *Install* and *Update* installation types.                             
 
