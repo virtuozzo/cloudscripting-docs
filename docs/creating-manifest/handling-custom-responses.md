@@ -82,7 +82,7 @@ The *script* action.
 
 The *message* and *email* parameters support all the available <a href="/reference/placeholders/" target="_blank">placeholders</a>. Thus, placeholders can be uploaded from any external source via the direct link or via the <a href="/creating-manifest/basic-configs/#relative-links" target="_blank">baseUrl</a>.                          
 
-When a response code with the *success* installation type is returned, two response objects impose one another. And the *success* text from the *response* object has a higher priority than a <a href="/creating-manifest/user-input-parameters/#success-text-customization" target="_blank">*success*</a> text from the main manifest block.            
+When a response code with the *success* installation type is returned, two response objects impose one another. And the *success* text from the *response* object has higher priority than a <a href="/creating-manifest/user-input-parameters/#success-text-customization" target="_blank">*success*</a> text from the main manifest block.            
 
 **Examples**                           
 
@@ -199,7 +199,7 @@ If the result code is delivered via string, then the default result code is *110
 
 In all the other cases, when a custom response is not predefined within the *responses* block, the default pop-up window type is *error* with an output message.          
 
-The response objects that are returned from custom scripts and predefined in the *response* block are imposed one to another. Thus, the response object from custom scripts has a higher priority than responses in the *response* object.                    
+The response objects that are returned from custom scripts and predefined in the *response* block are imposed one to another. Thus, the response object from custom scripts has higher priority than responses in the *response* object.                    
 
 **Example**
 
