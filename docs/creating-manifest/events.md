@@ -56,11 +56,11 @@ Below you can find the graphs that list the actions with the adjoining events. E
 !!! note
     The <b>*createEnvironment*</b> action does not have any adjoining events, because the events are bound after an environment creation.      
  
-The <b>*changeTopology*</b> actions are considered quite time-consuming while being performed via the Jelastic dashboard, therefore, the graph below provides a sequence of related actions and events.                                        
+The <b>*changeTopology*</b> actions are considered quite time-consuming while being performed via the Jelastic dashboard, therefore, the graph below provides a sequence of actions and related events.                                        
 
 <center><img style="height: 900px; padding-right: 69px"  src="/img/changeTopologySequence.png" alt="change topology sequence icon" /></center>
 
-Another demanded actions are related to scaling procedures. The following graph provides a sequence of scaling actions and adjoining events.                     
+Another demanded actions are related to scaling procedures. The following graph provides a sequence of scaling actions and related events.                     
 
 <center><img style="height: 626px"  src="/img/scalingEventSequence.png" alt="scaling sequence icon" /></center>
 
