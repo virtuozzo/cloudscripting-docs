@@ -1,6 +1,6 @@
 ## Handling Custom Responses
 
-The Cloud Scripting engine provides functionality to handle custom responses. This functionality is related to the action result codes that can be located within the <a href="/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution. Therefore, you can predefine a response text that is displayed in case of an error occurrence.           
+The Cloud Scripting engine provides functionality to handle custom responses. This functionality is related to the action result codes that can be located within the <a href="/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution.                      
 
 There are the following types of pop-up windows that emerge while custom responses are being handled:                    
 
