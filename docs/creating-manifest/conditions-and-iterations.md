@@ -64,7 +64,7 @@ The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*<
 }
 ```
 
-* Environment domain validation
+* Validating environment domain                           
 ``` json
 {
   "onInstall": {
