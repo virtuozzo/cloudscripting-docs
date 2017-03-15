@@ -81,8 +81,8 @@ Using the *nodeType* field while performing the <a href="/creating-manifest/acti
 where:                
 
 - `writeFile` - action to write data to a file    
-- `nodeType` - parameter specifying node(s) by type    
-- `path` - parameter specifying path to a file    
+- `nodeType` - parameter specifying a node by type    
+- `path` - parameter specifying a path to a file    
 - `body` - data that is being written to a file     
 
 Creating an environment with topology specifics, set by the *engine* and *nodeType* values.   
