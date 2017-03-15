@@ -103,7 +103,7 @@ where:
 
 ### Types of Selectors 
 
-There are three alternative approaches, provided to specify target container(s) in a manifest.                          
+There are three alternative approaches, provided to specify a target container in a manifest:                                        
 
 - specifying a target node within a name of an action (**node selectors**)     
 
