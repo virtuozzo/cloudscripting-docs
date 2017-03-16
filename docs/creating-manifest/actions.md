@@ -47,7 +47,7 @@ Any container operation can be performed using a [*cmd*](#cmd) action. Moreover,
 - operations with files ([*createFile*](#createfile), [*createDirectory*](#createdirectory), [*writeFile*](#writefile), [*appendFile*](#appendfile), [*replaceInFile*](#replaceinfile))                                     
 
 !!! note 
-    To process any container operation (except for [cmd](#cmd)), the Cloud Scripting engine applies a default system user with restricted permissions.                       
+    To process any container operation (except for [*cmd*](#cmd)), the Cloud Scripting engine applies a default system user with restricted permissions.                       
 
 ### cmd
 
@@ -72,7 +72,7 @@ where:
     - **user** - default system user with restricted permissions    
 - `sayYes` *[optional]* - parameter that enables or disables the usage of **yes** utility. The default value is *'true'*.                  
 
-The single SSH command can be passed in a string. For example, executing a bash script from URL for all **Tomcat 6** nodes.                    
+The single SSH command can be passed in a string. For example, running a bash script from URL on all **Tomcat 6** nodes.                    
 ``` json 
 {
   "cmd [tomcat6]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
@@ -87,7 +87,7 @@ sudo /etc/init.d/tomcat restart
 sudo /etc/init.d/memcached status  
 sudo /etc/init.d/mongod reload  
 sudo /etc/init.d/nginx upgrade  
-sudo /etc/init.d/httpd help;  
+sudo /etc/init.d/httpd help                             
 ```                                                        
 **Examples**  
 
@@ -122,13 +122,13 @@ Using **sudo** to reload Nginx balancer.
    
 ### api
 
-Executing actions available by means of the <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a> methods.     
+Executing actions available by means of <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a>.     
 
 There are a number of parameters required by Jelastic API that are defined automatically:                            
 
 - *envName* - environment domain name where the API method is executed             
 
-- *appid* - unique environment identifier that can be passed into API instead of the *envName*                         
+- *appid* - unique environment identifier that can be passed to API instead of *envName*                         
 
 - *session* - unique session of a current user                                  
 
@@ -144,10 +144,10 @@ Restarting all compute nodes in an environment.
 ``` 
 where:        
        
-- `api [cp]` - specifying a target node group for the API method execution (e.g. *cp*)                                      
+- `api [cp]` - target node group for the API method execution (*[cp]*)                                                         
 - *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group              
 
-This parameter (*jelastic.environment.control.RestartNodesByGroup*) can be simplified like shown in the next example.    
+This method (*jelastic.environment.control.RestartNodesByGroup*) can be simplified like shown in the next example.    
 ``` json
 {
     "api [cp]" : "environment.control.RestartNodesByGroup"
@@ -202,7 +202,7 @@ Available for all nodes
 ```
 where:  
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution                                                                                                                            
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                                                                                                            
 - `sourcePath` - URL to download an external file                    
 - `destPath` - container path where the uploaded file is to be saved                         
 
@@ -280,7 +280,7 @@ where:
   
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                      
 - `path` - container path where a file is to be written                
-- `body` - content that is saved to the file                                         
+- `body` - content that is saved to a file                                         
 
 ### appendFile
 
@@ -304,7 +304,7 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                               
 - `path` - container path where a file is to be appended                                 
-- `body` - content saved to the file                               
+- `body` - content saved to a file                               
 
 ### replaceInFile
 
@@ -369,7 +369,7 @@ The present section introduces actions that are provided for managing the topolo
 ```
 where:
 
-- `nodeType` *[required]* - parameter that defines <a href="/creating-manifest/selecting-containers/#predefined-nodetype-values" target="_blank">software stacks</a>. For Docker containers the *nodeType* value is **docker**.                                        
+- `nodeType` *[required]* - parameter to specify <a href="/creating-manifest/selecting-containers/#predefined-nodetype-values" target="_blank">software stacks</a>. For Docker containers the *nodeType* value is **docker**.                                        
 - `extip` *[optional]* - attaching the Public IP address to a container. The default value is *'false'*.                     
 - `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.                             
 - `flexibleCloudlets` *[optional]* - number of dynamic cloudlets. The default value is *'1'*.                           
@@ -434,7 +434,7 @@ The *setExtIpEnabled* action allows to enable or disable the external IP address
 where:               
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                                    
-- `true` or `false` - parameter that allows to attach or detach the public IP address                              
+- `true` or `false` - parameter that allows to attach or detach the external IP address                              
 
 ### restartNodes
 
@@ -489,7 +489,7 @@ Available for compute nodes (except for Docker containers)
 where:       
 
 - `name` - context’s name    
-- `fileName` - name of the file to be displayed at the dashboard                         
+- `fileName` - name of the file that is displayed at the dashboard                         
 - `type` - context type with the following possible values:                             
     - `ARCHIVE`    
     - `GIT`    
@@ -558,9 +558,9 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine target containers for the action execution. By default, the *nodeGroup* value is equal to *sqldb*.                                    
 - `databaseName` - name of a database that is created                  
-- `user` - username in the database, on behalf of which the application is used                
-- `password` - password in the database, on behalf of which the application is used                         
-- `dump` - URL to the application's database dump                                
+- `user` - username in a database, on behalf of which an application is used                
+- `password` - password in a database, on behalf of which an application is used                         
+- `dump` - URL to application's database dump                                
 
 ### applySqlPatch
 
@@ -584,8 +584,8 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine target containers for the action execution. By default, the *nodeGroup* value is equal to *sqldb*.                                   
 - `databaseName` - name of a database for a patch to be applied                    
-- `user` - username in the database, on behalf of which the application is used                                          
-- `password` - password in the database, on behalf of which the application is used                              
+- `user` - username in a database, on behalf of which an application is used                                          
+- `password` - password in a database, on behalf of which an application is used                              
 - `patch` - SQL query or a link to it. It is used only for SQL databases. Here, the <a href="/creating-manifest/placeholders" target="_blank">placeholders</a> support is available.                    
 
 !!! note
@@ -633,7 +633,7 @@ where:
 
 ### sleep
 
-Setting a delay that is measured in milliseconds. The below example shows how to create a delay for one second.                                               
+Setting a delay that is measured in milliseconds. The following example shows how to create a delay for one second.                                               
 ``` json
 {
   "sleep": "1000"
@@ -719,19 +719,19 @@ where:
 - `region` - hardware node's <a href="https://docs.jelastic.com/environment-regions" target="_blank">region</a>                                               
 - `envName` - short domain name of a new environment                     
 - `name` - JPS name  
-- `nodes` - description of nodes                   
+- `nodes` - nodes description                                                           
 - `onInstall` - entry point for performed actions                
 
 
 ### installAddon
 
-You can install a <a href="/creating-manifest/addons/" target="_blank">custom add-on</a> within another manifest. Thus, the add-on can be installed to:                                         
+You can install a <a href="/creating-manifest/addons/" target="_blank">custom add-on</a> within another - *parent* manifest. By default, custom add-ons have the *update* installation type.                                      
+
+Thus, the add-on can be installed to:                                         
 
 - an existing environment, if its installation type is *update*                      
 
-- a new environment, if its installation type is *install*. In this case, add-ons are installed sequentially one by one right after a new environment creation.                                                                   
-
-All the custom add-ons that are declared within another manifest have the *update* installation type by default.                            
+- a new environment, if its installation type is *install*. In this case, add-ons (if there are several ones) are installed sequentially one by one right after a new environment creation.                                                                   
 
 The example below shows how to pass the add-on identifier to the *installAddon* action. This add-on's parameters are described in the *addons* section. As a result, the custom add-on with the *firstAddon* identifier initiates the creation of a new file in the *tmp* directory on a compute node.                                 
 ``` json
@@ -760,7 +760,7 @@ You can locate the installed add-ons within the **Add-ons** tab at the Jelastic 
 
 <center>![new-addon](/img/new-addon.png)</center>
 
-In the following example, the *nodeGroup* parameter is passed to the *installAddon* action, targeting the add-on at the *bl* (balancer) node group.                    
+In the following example, the *nodeGroup* parameter is passed to the *installAddon* action, targeting the add-on at the balancer (*bl*) node group.                          
 ``` json
 {
   "installAddon": {
@@ -770,8 +770,6 @@ In the following example, the *nodeGroup* parameter is passed to the *installAdd
 }
 ```
 
-Consequently, this add-on is installed to the balancer (*bl*) layer.                    
-
 For more details about the <a href="/creating-manifest/add-ons/" target="_blank">add-ons</a> installation, visit the linked page.                                              
 
 <!-- add example -->
@@ -780,7 +778,7 @@ For more details about the <a href="/creating-manifest/add-ons/" target="_blank"
 
 Particular actions can be run by means of calling actions with different parameters.             
 
-The example below shows how to create a new file (e.g. the <b>*example.txt*</b> file in the <b>*tmp*</b> directory) by executing a *createFile* action at the compute node.                 
+The example below shows how to create a new file (e.g. the <b>*example.txt*</b> file in the <b>*tmp*</b> directory) by running a *createFile* action on the compute node.                 
 ``` json
 {
   "type": "update",
@@ -815,7 +813,7 @@ where:
 
 In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. The parameters, sent to a call method, are transformed into a separate kit of placeholders, which can be further used within the appropriate actions by means of *${this}*  namespace. Access to a node inside environment can be gained according to its type, as well as according to its role in the environment.                             
 
-The example below illustrates how to pass the dynamic parameters for executing in the action. Here, the *name* parameter is sent to the <b>*customAction*</b> custom action where the *createFile* action is executed.                   
+The example below illustrates how to pass the dynamic parameters for running in the action. Here, the *name* parameter is sent to <b>*customAction*</b> where the *createFile* action is executed.                   
 
 ```json
 {
