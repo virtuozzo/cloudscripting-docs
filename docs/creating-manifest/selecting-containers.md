@@ -98,8 +98,8 @@ Using the *engine* and *nodeType* parameters while creating a new environment.
 ```
 where:          
 
-- `engine` - parameter that specifies the engine version (*java7* in our example)                               
-- `nodeType` - parameter that specifies the node type (*tomcat7*  in our example)                                       
+- `engine` - parameter that specifies the engine version                               
+- `nodeType` - parameter that specifies the node type                                                    
 
 ### Types of Selectors 
 
