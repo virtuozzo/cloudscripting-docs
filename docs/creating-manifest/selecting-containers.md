@@ -146,7 +146,7 @@ Learn more on this parameter within the <a href="/creating-manifest/actions/#cus
 
 !!! note 
     <b>Node selectors</b> have higher priority than containers, specified next to the action, but lower than parameters set in the action object.   
-    If you set all three parameters (*nodeId*, *nodeGroup*, and *nodeType*), actions for indicated containers are executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.   
+    If you specify all three parameters (*nodeId*, *nodeGroup*, and *nodeType*), actions for indicated containers are executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.   
 
 ## Supported Stacks                                  
 
