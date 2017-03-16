@@ -140,7 +140,7 @@ Through the following example, the <a href="/creating-manifest/actions/#createfi
 ]
 ``` 
  
-- specifying a target container as a parameter in the action object     
+- specifying a target container as a parameter in the *actions* object     
 
 Learn more on this parameter within the <a href="/creating-manifest/actions/#custom-actions" target="_blank"><em>Custom Actions</em></a> documentation page.                                      
 
