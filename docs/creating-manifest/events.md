@@ -47,7 +47,7 @@ where:
     - `cp` - target node group                                  
 - `onAfterScaleOut` - event that triggers the action after adding a new compute node                                           
 - `onAfterRestartNode` - event that triggers the action after restarting *apache2* compute nodes     
-- `onAfterResetNodePassword` - event that triggers the action after resetting a password for the first compute node in the layer       
+- `onAfterResetNodePassword` - event that triggers the action after resetting a password from the first compute node in the layer       
 
 ## Events Execution Sequence
 
