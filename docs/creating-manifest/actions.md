@@ -725,7 +725,7 @@ where:
 
 ### installAddon
 
-You can install a <a href="/creating-manifest/add-ons/" target="_blank">custom add-on</a> within another manifest. Thus, the add-on can be installed to:                                         
+You can install a <a href="/creating-manifest/addons/" target="_blank">custom add-on</a> within another manifest. Thus, the add-on can be installed to:                                         
 
 - an existing environment, if its installation type is *update*                      
 
@@ -928,7 +928,7 @@ Writing Hello World! and outputting the first and the second compute nodes IP ad
 }
 ```
 <br>       
-## What’s next?                   
+<h2>What’s next?</h2>                   
 
 - See the <a href="/creating-manifest/events/" target="_blank">Events</a> list the actions can be bound to            
 

@@ -85,7 +85,7 @@ Using a <a href="/creating-manifest/actions/#script" target="_blank">*script*</a
 }
 ```
 <br>
-## What's next?                
+<h2>What's next?</h2>                
 
 - See how to create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                
 

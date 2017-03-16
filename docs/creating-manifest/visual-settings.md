@@ -951,7 +951,7 @@ As it was mentioned above, the success response is distinguished between two val
 
 In the last example above, the localization functionality is applied, which depends upon the Jelastic Platform selected language.
 <br>
-## What's next?
+<h2>What's next?</h2>
 
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                                
 
