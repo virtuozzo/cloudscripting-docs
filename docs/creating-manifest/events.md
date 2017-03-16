@@ -112,7 +112,7 @@ The event is executed once the *changeTopology* action is finished.
 
 ### onBeforeScaleOut
 
-The event is executed before adding new node(s) (i.e. scaling *out*) to the existing node group (viz. layer). Scaling in/out can be performed either through <a href="https://docs.jelastic.com/jelastic-dashboard-guide#change-topology" target="_blank">changing topology</a> or <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">auto horizontal scaling</a> functionality. The *onBeforeScaleOut* event is run once for each layer upon any node count change.                      
+The event is executed before adding new node(s) (i.e. scaling *out*) to the existing node group (layer). Scaling in/out can be performed either through <a href="https://docs.jelastic.com/jelastic-dashboard-guide#change-topology" target="_blank">changing topology</a> or <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">auto horizontal scaling</a> functionality. The *onBeforeScaleOut* event is run once for each layer upon any node count change.                      
 
 **Event Placeholders:**    
 
