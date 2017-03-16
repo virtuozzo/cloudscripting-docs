@@ -1,12 +1,10 @@
 # Specifying Target Container
 
-## Selector Types
-
 Running a specific <a href="/creating-manifest/actions/" target="_blank">action</a> requires to specify a target container, in confines of which this action is executed. Thus, it is possible to specify a [particular container](#particular-container), all containers within a layer by the [*nodeGroup*](#all-containers-by-group) value, or all containers of the same type by the [*nodeType*](#all-containers-by-type) value.                                 
 
 ### Particular Container
 
-The <em>nodeId</em> parameter is used to specify a particular container for an action execution. If you know the Node ID of your container (displayed at the Jelastic dashboard next to the required node), you can set it statically as follows.                                           
+The <em>nodeId</em> parameter is used to specify a particular container for the action execution. If you know the Node ID of your container (displayed at the Jelastic dashboard next to the required node), you can set it statically as follows.                                           
 
 ``` json
 {
@@ -101,7 +99,7 @@ where:
 - `engine` - parameter that specifies the engine version                               
 - `nodeType` - parameter that specifies the node type                                                    
 
-### Types of Selectors 
+## Selector Types                                    
 
 There are three alternative approaches, provided to specify a target container in a manifest:                                               
 
