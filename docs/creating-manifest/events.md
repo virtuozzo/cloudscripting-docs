@@ -135,7 +135,7 @@ The event is executed after adding new node(s) to the existing node group. The *
 
 ### onBeforeScaleIn
 
-The event is executed before removing node(s) (i.e. scaling *in*) from the target node group. The *onBeforeScaleIn* event is run only once for each layer upon any node count change.          
+The event is executed before removing node(s) (i.e. scaling *in*) from the target node group. The *onBeforeScaleIn* event is run once for each layer upon any node count change.          
 
 **Event Placeholders:**   
  
@@ -147,7 +147,7 @@ The event is executed before removing node(s) (i.e. scaling *in*) from the targe
 
 ### onAfterScaleIn
 
-The event is executed after scaling *in* the corresponding node group. The *onAfterScaleIn* event is run only once for each layer upon any node count change.                            
+The event is executed after scaling *in* the corresponding node group. The *onAfterScaleIn* event is run once for each layer upon any node count change.                            
 
 **Event Placeholders:**     
 
@@ -159,7 +159,7 @@ The event is executed after scaling *in* the corresponding node group. The *onAf
 
 ### onBeforeServiceScaleOut
 
-The event is executed before adding new Docker container(s) to the existing node group. It is run only once for each layer. The *onBeforeServiceScaleOut* event is applicable only for Docker containers.      
+The event is executed before adding new Docker container(s) to the existing node group. It is run once for each layer upon any node count change. The *onBeforeServiceScaleOut* event is applicable only for Docker containers.      
 
 **Event Placeholders:**    
 
@@ -171,7 +171,7 @@ The event is executed before adding new Docker container(s) to the existing node
 
 ### onAfterServiceScaleOut
 
-The event is executed after adding new Docker container(s) to the existing node group. It is run only once for each layer. The *onAfterServiceScaleOut* event is applicable only for Docker containers.     
+The event is executed after adding new Docker container(s) to the existing node group. It is run once for each layer upon any node count change. The *onAfterServiceScaleOut* event is applicable only for Docker containers.     
 
 **Event Placeholders:**    
 
