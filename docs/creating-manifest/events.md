@@ -206,7 +206,7 @@ These monitoring triggers are based on the usage of the following resource types
 
 The units of measurement are *PERCENTAGE* and *SPECIFIC*. The second value is availabe only for **NET_EXT** and **NET_EXT_OUT** resource types.
 
-The following example illustrates the subscription to the *onAlert* event. Here, the *log* action is executed if one of the environment triggers is invoked.                         
+The following example illustrates the subscription to the *onAlert* event. Here, the *log* action is executed if one of the triggers within the compute (*[cp]*) layer is invoked.                         
 ``` json
 {
     "type": "update",
