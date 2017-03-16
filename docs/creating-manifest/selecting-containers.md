@@ -68,7 +68,7 @@ The <em>nodeType</em> parameter is used to specify all containers that are built
 
 <b>Examples</b>     
 
-Using the *nodeType* parameter while performing the <a href="/creating-manifest/actions/#writefile" target="blank">**writeFile**</a> action.                         
+Using the *nodeType* parameter while performing the <a href="/creating-manifest/actions/#writefile" target="_blank">**writeFile**</a> action.                         
 ``` json
 {
   "writeFile": {
@@ -125,7 +125,7 @@ Through the following example, a new file is created in the compute layer (<em>[
 
 - specifying a target container next to the performed action                                       
 
-Through the following example, the <a href="/creating-manifest/actions/#createfile" target="blank">**createFile**</a> and <a href="/creating-manifest/actions/#createdirectory" target="blank">**createDirectory**</a> actions are applied to the specified <em>nodeGroup</em>, namely the compute layer (<em>[cp]</em>).                                                                
+Through the following example, the <a href="/creating-manifest/actions/#createfile" target="_blank">**createFile**</a> and <a href="/creating-manifest/actions/#createdirectory" target="_blank">**createDirectory**</a> actions are applied to the specified <em>nodeGroup</em>, namely the compute layer (<em>[cp]</em>).                                                                
 ``` json
 [
   {
