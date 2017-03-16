@@ -74,7 +74,7 @@ Just in the same way, you can build and run the solution you need - from frequen
 <br>    
 ## Best Practises                        
 
-- For advanced coding possibilities, use either <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a> with automatic formatting and syntax highlighting or <a href="http://www.yaml.org/" target="_blank">YAML</a> parser (depending on the syntax you prefer to work with)
+- For advanced coding possibilities, use either <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a> with automatic formatting and syntax highlighting or <a href="http://www.yaml.org/" target="_blank">YAML</a> parser (depending on the syntax you prefer to work with)                               
 
 - Leverage <a href="https://github.com/" target="_blank">GitHub</a> to store and manage your projects, manifests and scripts all together                              
 
@@ -83,7 +83,7 @@ Just in the same way, you can build and run the solution you need - from frequen
 <br> 
 <h2> What’s next?</h2>                                     
 
-- <a href="/creating-manifest/basic-configs/" target="_blank">Template Basics</a> - learn the minimum basis of any JSP manifest and find out about the differences between *Install* and *Update* package types                                                         
+- <a href="/creating-manifest/basic-configs/" target="_blank">Basic Configs</a> - learn the minimum basis of any JSP manifest and find out about the differences between *Install* and *Update* package types                                                         
 
 - <a href="/creating-manifest/actions/" target="_blank">Actions</a> - define the required configurations and application behavior with a set of prescribed procedures                                                           
 
