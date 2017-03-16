@@ -32,11 +32,11 @@ If you don't know the Node ID or a container is not created yet, you can set a d
   ]
 }
 ```
-Visit the <a href="/creating-manifest/placeholders/" target="_blank"><em>Placeholders</em></a> documentation page for more information.      
+For more information, visit the <a href="/creating-manifest/placeholders/" target="_blank"><em>Placeholders</em></a> documentation page.                               
 
 ### All Containers By Group        
  
-The *nodeGroup* value is used to point out all containers within a specific [layer](#predefined-nodegroup-values).                              
+The *nodeGroup* parameter is used to specify all containers within a specific [layer](#predefined-nodegroup-values).                              
 
 The Jelastic Platform supports the following predefined *nodeGroup* values:     
 
@@ -56,19 +56,19 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 
 - *build*                           
 
-Actions for the specified <em>nodeGroup</em> are executed successively one by one. For Docker containers the <em>nodeGroup</em> value is not predefined, therefore, it can be stated to any value above or your custom one.                              
+Actions for the specified <em>nodeGroup</em> are executed successively one by one. For Docker containers the <em>nodeGroup</em> parameter is not predefined, therefore, you can state it to any value above or your custom one.                              
 
 !!! note
-    If you state a custom <em>nodeGroup</em> value for Docker containers, the corresponding container is placed to the <em>Extra</em> layer. Subsequently, this <em>nodeGroup</em> value can be used within the same-named <a href="/reference/actions/" target="_blank">actions</a> field to point to a particular <em>Extra</em> layer.
+    If you state a custom <em>nodeGroup</em> value for Docker containers, the corresponding container is placed to the <em>Extra</em> layer. Subsequently, this <em>nodeGroup</em> value can be used within the same-named <a href="/creating-manifest/actions/" target="_blank">actions</a> field to point to the particular <em>Extra</em> layer.
     <center>![dockerextra](/img/dockerextra.png)</center>         
 
 ### All Containers By Type
 
-The <em>nodeType</em> value is applied to specify all containers that are built upon the same software [stacks](#supported-stacks ).                                   	  
+The <em>nodeType</em> parameter is used to specify all containers that are built upon the same software [stacks](#supported-stacks ).                                   	  
 
 <b>Examples</b>     
 
-Using the *nodeType* value while performing the <a href="/creating-manifest/actions/#writefile" target="blank">**writeFile**</a> action.
+Using the *nodeType* parameter while performing the <a href="/creating-manifest/actions/#writefile" target="blank">**writeFile**</a> action.                         
 ``` json
 {
   "writeFile": {
@@ -80,12 +80,12 @@ Using the *nodeType* value while performing the <a href="/creating-manifest/acti
 ```
 where:                
 
-- `writeFile` - action to write data to a file    
-- `nodeType` - parameter that specifies a node by type    
-- `path` - parameter that specifies a path to a file    
-- `body` - data that is written to a file     
+- `writeFile` - action to write data to the file                                                         
+- `nodeType` - parameter that specifies the node type                                             
+- `path` - parameter that specifies the path to the file                        
+- `body` - data that is written to the file                                             
 
-Creating an environment with topology specifics, set by the *engine* and *nodeType* values.   
+Using the *engine* and *nodeType* parameters while creating a new environment.                                      
 ``` json
 {
   "type": "install",
@@ -98,16 +98,16 @@ Creating an environment with topology specifics, set by the *engine* and *nodeTy
 ```
 where:          
 
-- `engine` - parameter that specifies an engine version (*java7* in our example)        
-- `nodeType` - parameter that specifies a node type (*tomcat7*  in our example)       
+- `engine` - parameter that specifies the engine version (*java7* in our example)                               
+- `nodeType` - parameter that specifies the node type (*tomcat7*  in our example)                                       
 
 ### Types of Selectors 
 
-There are three alternative approaches, provided to specify a target container in a manifest:                                        
+There are three alternative approaches, provided to specify a target container in a manifest:                                               
 
-- specifying a target node within a name of an action (**node selectors**)     
+- specifying a target container within a name of an action (**node selectors**)     
 
-Through the following example, a new file is created in the compute node (<em>[cp]</em>) and a new directory is created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers, and container with Node ID <em>123</em>. Actions for the specified nodes are executed in the declared order.                    
+Through the following example, a new file is created in the compute layer (<em>[cp]</em>) and a new directory is created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers, and the container with Node ID <em>123</em>. Actions for the specified containers are executed in the declared order.                         
 ``` json
 [
   {
@@ -123,9 +123,9 @@ Through the following example, a new file is created in the compute node (<em>[c
 ]
 ```
 
-- setting a target node next to the performed action     
+- specifying a target container next to the performed action                                       
 
-Through the following example, the <a href="/creating-manifest/actions/#createfile" target="blank">**createFile**</a> and <a href="/creating-manifest/actions/#createdirectory" target="blank">**createDirectory**</a> actions are applied to the specified <em>nodeGroup</em>, namely the compute (<em>[cp]</em>) layer. 
+Through the following example, the <a href="/creating-manifest/actions/#createfile" target="blank">**createFile**</a> and <a href="/creating-manifest/actions/#createdirectory" target="blank">**createDirectory**</a> actions are applied to the specified <em>nodeGroup</em>, namely the compute layer (<em>[cp]</em>).                                                                
 ``` json
 [
   {
@@ -140,13 +140,13 @@ Through the following example, the <a href="/creating-manifest/actions/#createfi
 ]
 ``` 
  
-- specifying a required node as a parameter in the action object     
+- specifying a target container as a parameter in the action object     
 
 Learn more on this parameter within the <a href="/creating-manifest/actions/#custom-actions" target="_blank"><em>Custom Actions</em></a> documentation page.                                      
 
 !!! note 
-    <b>Node selectors</b> have higher priority than nodes, specified next to the action, but lower than parameters set in the action object.   
-    If you set all three parameters (i.e *nodeId*, *nodeGroup* and *nodeType*), actions for indicated containers would be executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.   
+    <b>Node selectors</b> have higher priority than containers, specified next to the action, but lower than parameters set in the action object.   
+    If you set all three parameters (*nodeId*, *nodeGroup* and *nodeType*), actions for indicated containers are executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.   
 
 ## Supported Stacks                                  
 
@@ -308,5 +308,3 @@ The following section deals with the supported engine versions and their availab
 - Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                                 
 
 - Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                            
-
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                        
