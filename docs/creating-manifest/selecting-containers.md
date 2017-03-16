@@ -145,7 +145,7 @@ Through the following example, the <a href="/creating-manifest/actions/#createfi
 Learn more on this parameter within the <a href="/creating-manifest/actions/#custom-actions" target="_blank"><em>Custom Actions</em></a> documentation page.                                      
 
 !!! note 
-    <b>Node selectors</b> have higher priority than containers, specified next to the action, but lower than parameters set in the action object.   
+    <b>Node selectors</b> have higher priority than containers specified next to the action, but lower than parameters set in the action object.   
     If you specify all three parameters (*nodeId*, *nodeGroup*, and *nodeType*), actions for indicated containers are executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.   
 
 ## Supported Stacks                                  
