@@ -255,10 +255,10 @@ This example involves execution of the Jelastic API *addTrigger* method with a s
 - `condition` - rules for monitoring resources
     - `type` - comparison sign, the available values are *GREATER* and *LESS*
     - `value` - percentage of a resource that is monitored                               
-    - `resourceType` - types of resources that are monitored by a trigger, namely *CPU, Memory (RAM), Network, Disk I/O* and *Disk IOPS*
+    - `resourceType` - types of resources that are monitored by a trigger, namely *CPU, Memory (RAM), Network, Disk I/O*, and *Disk IOPS*
     - `valueType` - measurement value. Here, *PERCENTAGES*  is the only possible measurement value. The available range is from <b>*0*</b> up to <b>*100*</b>.
 - `actions` - object to describe a trigger action
-    - `type` - trigger action, the available values are *NOTIFY*, *ADD_NODE* and *REMOVE_NODE*
+    - `type` - trigger action, the available values are *NOTIFY*, *ADD_NODE*, and *REMOVE_NODE*
     - `customData`:
         - `notify`- alert notification sent to a user via email 
 
@@ -412,7 +412,7 @@ The *onBeforeCloneNodes* event is applicable only for the next node groups (excl
     - `count` - number of nodes to be cloned              
     - `session` - current user session       
     - `appid` - environment unique appid      
-    - `nodeGroup` - nodes group     
+    - `nodeGroup` - node group     
     - `flexibleCloudlets` - dynamic cloudlets     
 - `${event.response.}`:  
     - `result` - parameters are absent      
@@ -435,7 +435,7 @@ The *onAfterCloneNodes* event is applicable only for the next node groups (exclu
     - `count` - number of nodes to be cloned          
     - `session` - current user session      
     - `appid` - environment unique appid      
-    - `nodeGroup` - nodes group      
+    - `nodeGroup` - node group      
     - `flexibleCloudlets` - dynamic cloudlets           
 - `${event.response.}`:     
     - `result` - result code. The successful action result is *'0'*.       
@@ -452,7 +452,7 @@ The event is executed before linking nodes to apply configurations to IP address
     - `parentNodes` - node identifiers for linking      
     - `session` - current user session       
     - `appid` - environment unique appid       
-    - `childNodes` - node identifier for linking with parent nodes      
+    - `childNodes` - node identifiers for linking with parent nodes      
 - `${event.response.}`:  
     - `result` - parameters are absent    
 
@@ -466,7 +466,7 @@ The event is executed after linking nodes to apply configurations to IP addresse
     - `parentNodes` - node identifiers for linking     
     - `session` - current user session     
     - `appid` - environment unique appid     
-    - `childNodes` - node identifier for linking with parent nodes          
+    - `childNodes` - node identifiers for linking with parent nodes          
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.      
     - `infos` - info with result codes about all nodes' linkings:      
@@ -1104,8 +1104,10 @@ The *onAfterRemoveVolume* event is triggered after removing volumes from Docker 
 
 - See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                              
 
-- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                            
+- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>            
+
+- See how to create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                
+
+- Find out how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>     
 
 - Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>              
-
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                    
