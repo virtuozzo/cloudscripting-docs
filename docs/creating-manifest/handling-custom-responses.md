@@ -222,7 +222,7 @@ The response objects that are returned from custom scripts and predefined in the
 The final *success* form is similar to the following one. 
 
 <center>![redefinedSuccessResponseHandler](/img/redefinedSuccessResponseHandler.jpg)</center>                         
-## What's next?
+<h2> What's next?
 
 - Explore how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                                
 
