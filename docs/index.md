@@ -16,13 +16,13 @@ There are three main pillars of cloud scripting:
 
 <p dir="ltr" style="text-align: justify;">The example below represents the Cloud Scripting basic use case. This manifest declares the creation of a new environment with the Jelastic-certified Payara Micro cluster image and provides possibility to configure new cluster members while scaling nodes. Within the manifest, the following key parameters are declared:</p>           
  
-* `onAfterScaleIn`, `onBeforeServiceScaleOut` - scaling <a href="/creating-manifest/events/#onafterscalein" target="blank">events</a>                            
+* `cmd` - action to execute <a href="/creating-manifest/actions/#cmd" target="blank">shell commands</a>               
 
-* `addClusterMembers` - custom <a href="/creating-manifest/actions/#custom-actions" target="blank">action</a>                                  
+* `forEach` - iteration <a href="/creating-manifest/conditions-and-iterations/#foreach" target="blank">object</a>          
 
-* `forEach` - iteration <a href="/creating-manifest/conditions-and-iterations/#foreach" target="blank">object</a>                                    
+* `addClusterMembers` - custom <a href="/creating-manifest/actions/#custom-actions" target="blank">action</a>         
 
-* `cmd` - action to execute <a href="/creating-manifest/actions/#cmd" target="blank">shell commands</a>                                  
+* `onAfterScaleIn`, `onBeforeServiceScaleOut` - scaling <a href="/creating-manifest/events/#onafterscalein" target="blank">events</a>            
 
 ```json
 {
