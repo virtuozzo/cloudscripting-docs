@@ -59,7 +59,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 Actions for the specified <em>nodeGroup</em> are executed successively one by one. For Docker containers the <em>nodeGroup</em> parameter is not predefined, therefore, you can state it to any value above or your custom one.                              
 
 !!! note
-    If you state a custom <em>nodeGroup</em> value for Docker containers, the corresponding container is placed to the <em>Extra</em> layer. Subsequently, this <em>nodeGroup</em> value can be used within the same-named <a href="/creating-manifest/actions/" target="_blank">actions</a> field to point to the particular <em>Extra</em> layer.
+    If you state a custom <em>nodeGroup</em> value for Docker containers, the corresponding container is placed to the <em>Extra</em> layer. Subsequently, this <em>nodeGroup</em> value can be used within the same-named actions field to point to the particular <em>Extra</em> layer.
     <center>![dockerextra](/img/dockerextra.png)</center>         
 
 ### All Containers By Type
