@@ -112,7 +112,7 @@ The event is executed once the *changeTopology* action is finished.
 
 ### onBeforeScaleOut
 
-The event is executed before adding new node(s) (i.e. scaling *out*) to the existing node group (viz. layer). Scaling in/out can be performed either through <a href="https://docs.jelastic.com/jelastic-dashboard-guide#change-topology" target="_blank">changing topology</a> or <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">auto horizontal scaling</a> functionality. The *onBeforeScaleOut* event is run only once for each layer.                  
+The event is executed before adding new node(s) (i.e. scaling *out*) to the existing node group (viz. layer). Scaling in/out can be performed either through <a href="https://docs.jelastic.com/jelastic-dashboard-guide#change-topology" target="_blank">changing topology</a> or <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">auto horizontal scaling</a> functionality. The *onBeforeScaleOut* event is run once for each layer upon any node count change.                      
 
 **Event Placeholders:**    
 
@@ -123,7 +123,7 @@ The event is executed before adding new node(s) (i.e. scaling *out*) to the exis
 
 ### onAfterScaleOut
 
-The event is executed after adding new node(s) to the existing node group. The *onAfterScaleOut* event is run only once for each layer.   
+The event is executed after adding new node(s) to the existing node group. The *onAfterScaleOut* event is run only once for each layer upon any node count change.                       
 
 **Event Placeholders:**  
  
@@ -135,7 +135,7 @@ The event is executed after adding new node(s) to the existing node group. The *
 
 ### onBeforeScaleIn
 
-The event is executed before removing node(s) (i.e. scaling *in*) from the target node group. The *onBeforeScaleIn* event is run only once for each layer.
+The event is executed before removing node(s) (i.e. scaling *in*) from the target node group. The *onBeforeScaleIn* event is run only once for each layer upon any node count change.          
 
 **Event Placeholders:**   
  
@@ -147,7 +147,7 @@ The event is executed before removing node(s) (i.e. scaling *in*) from the targe
 
 ### onAfterScaleIn
 
-The event is executed after scaling *in* the corresponding node group. The *onAfterScaleIn* event is run only once for each layer.
+The event is executed after scaling *in* the corresponding node group. The *onAfterScaleIn* event is run only once for each layer upon any node count change.                            
 
 **Event Placeholders:**     
 
