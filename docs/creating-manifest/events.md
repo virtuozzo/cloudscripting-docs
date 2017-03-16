@@ -85,7 +85,7 @@ The event is executed before changing environment topology via the Jelastic dash
 - `${event.params.}`:
     - `session` - current user session   
     - `appid` - environment unique appid   
-    - `nodes` - nodes array with detailed information for a topology change       
+    - `nodes` - nodes array with detailed info about the topology change                                 
     - `env` - environment settings, e.g. *engine, ssl, ha,* etc 
 - `${event.response.}` parameters are absent        
 
@@ -107,7 +107,7 @@ The event is executed once the *changeTopology* action is finished.
         - `redeployContainerDelay` - delay for container redeployment        
         - `redeployContextDelay` - delay for context redeployment          
         - `restartContainerDelay` - delay for container restart         
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.         
+    - `nodes` - nodes array with detailed info about the topology change. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.         
     - `env` - environment information. Explore the full list of available <a href="/creating-manifest/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.        
 
 ### onBeforeScaleOut
