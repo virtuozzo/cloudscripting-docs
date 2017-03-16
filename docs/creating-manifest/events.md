@@ -1098,7 +1098,7 @@ The *onAfterRemoveVolume* event is triggered after removing volumes from Docker 
     - `result` - result code. The successful action result is *'0'*.                 
 
 <br>       
-<h2>What’s next?</h2>                 
+## What’s next?                            
 
 - Find out the list of <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching                          
 
