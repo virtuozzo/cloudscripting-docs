@@ -4,13 +4,13 @@ Actions represent a scripted logic for executing a set of commands to automate t
 
 With the help of actions you can achieve automation of the tasks related to:                
 
-- increasing or decreasing CPU or RAM amount      
+- increasing or decreasing CPU or RAM amount                    
 
-- adjusting configs according to specific environment's settings              
+- adjusting essential configs                                
 
-- restarting a service or a container                 
+- restarting a service or a container                             
 
-- applying a database patch according to specific environment's settings                                  
+- applying a database patch                                                   
 
 The default workflow for any action execution is the following:                  
 
@@ -66,7 +66,7 @@ The *cmd* action executes <a href="https://docs.jelastic.com/ssh-overview" targe
 ```
 where:       
      
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                                
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                
 - `cmd1` and `cmd2` - set of commands that are executed. Their values are wrapped by the Cloud Scripting engine via **echo cmd | base64 -d | su user** where:                    
     - **cmd** - is equal to the Base64 encoded string: **yes | (cmd1;cmd2)**. If your commands require the interactive input, by default, the Cloud Scripting engine always gives a positive answer, using **yes** utility.        
     - **user** - default system user with restricted permissions    
@@ -132,7 +132,7 @@ There are a number of parameters required by Jelastic API that are defined autom
 
 - *session* - unique session of a current user                                  
 
-Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be executed at all nodes within a single <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required that is available either through the <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>, or a set of [custom action parameters](#custom-actions) (*${this}*).                     
+Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be run on all nodes within a single <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required that is available either through the <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>, or a set of [custom action parameters](#custom-actions) (*${this}*).                     
 
 **Examples**
 
@@ -144,7 +144,7 @@ Restarting all compute nodes in an environment.
 ``` 
 where:        
        
-- `api [cp]` - specifying a target node group for the API method to be executed at (e.g. *cp*)                                      
+- `api [cp]` - specifying a target node group for the API method execution (e.g. *cp*)                                      
 - *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group              
 
 This parameter (*jelastic.environment.control.RestartNodesByGroup*) can be simplified like shown in the next example.    
@@ -154,7 +154,7 @@ This parameter (*jelastic.environment.control.RestartNodesByGroup*) can be simpl
 }
 ```
 
-Below, you can find one more approach to specify a target node group for the API method to be executed at.                               
+Below, you can find one more approach to specify a target node group for the API method execution.                                  
 ``` json
 {
     "api" : "jelastic.environment.control.RestartNodesByGroup",
@@ -202,7 +202,7 @@ Available for all nodes
 ```
 where:  
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at                      
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution                                                                                                                            
 - `sourcePath` - URL to download an external file                    
 - `destPath` - container path where the uploaded file is to be saved                         
 
@@ -226,7 +226,7 @@ Available for all nodes
 ```
 where:   
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                    
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                             
 - `sourcePath` - URL to download an external archive   
 - `destPath` - container path where the uploaded archive is to be unpacked                               
 
@@ -772,7 +772,7 @@ In the following example, the *nodeGroup* parameter is passed to the *installAdd
 
 Consequently, this add-on is installed to the balancer (*bl*) layer.                    
 
-For more details about the <a href="/creating-manifest/add-ons/" target="blank">add-ons</a> installation, visit the linked page.                                              
+For more details about the <a href="/creating-manifest/add-ons/" target="_blank">add-ons</a> installation, visit the linked page.                                              
 
 <!-- add example -->
 
@@ -913,7 +913,7 @@ The example below illustrates how to pass the dynamic parameters for executing i
 }
 ```
 
-Therefore, the same custom actions can be reused for several times with different parameters. Moreover, any action can be targeted at a specific node by ID, at a particular layer (*nodeGroup*) or *nodeType*. For more details about <a href="/creating-manifest/selecting-containers/#types-of-selectors" target="blank">*Node Selectors*</a>, visit the linked page.                             
+Therefore, the same custom actions can be reused for several times with different parameters. Moreover, any action can be targeted at a specific node by ID, at a particular layer (*nodeGroup*) or *nodeType*. For more details about <a href="/creating-manifest/selecting-containers/#types-of-selectors" target="_blank">*Node Selectors*</a>, visit the linked page.                             
  
 ### Code Reuse
 
