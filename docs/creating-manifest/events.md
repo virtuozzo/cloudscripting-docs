@@ -51,7 +51,7 @@ where:
 
 ## Events Execution Sequence
 
-Below you can find the graphs that list the actions with the adjoining events. Every action has a pair of adjoining events - one of them is executed *before* the action and another one is launched *after* the action, that is when the action is finished.  
+Below you can find the graphs that list actions with adjoining events. Every action has a pair of adjoining events - one of them is executed *before* the action and another one is launched *after* the action, that is when the action is finished.  
 
 !!! note
     The <b>*createEnvironment*</b> action does not have any adjoining events, because the events are bound after an environment creation.      
