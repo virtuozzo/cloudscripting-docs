@@ -184,7 +184,7 @@ The event is executed after adding new Docker container(s) to the existing node 
 ### onAlert
 This event provides a possibility to bind actions to <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a> and <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">Automatic Horizontal Scaling Alerts</a> that are configured through the Jelastic triggers.   
 
-These are the monitoring triggers that are based on the usage of a particular resource type:            
+These monitoring triggers are based on the usage of the following resource types:            
 
 - **CLOUDLETS** (CPU, Memory) - available only for the *NOTIFY* action type                                                   
 
@@ -200,13 +200,13 @@ These are the monitoring triggers that are based on the usage of a particular re
 
 - **INODES** - available only for the *NOTIFY* action type                                                                    
 
-- **Disk I/O**                         
+- **Disk I/O** - disk input/output rate                                                                                                   
 
-- **Disk IOPS**                          
+- **Disk IOPS** - disk input/output rate (in operations per second)                                                            
 
 The units of measurement are *PERCENTAGE* and *SPECIFIC*. The second value is availabe only for **NET_EXT** and **NET_EXT_OUT** resource types.
 
-The following example illustrates the subscription to the *onAlert* event. Here, the *log* action is executed, if one of the environment triggers is invoked.                         
+The following example illustrates the subscription to the *onAlert* event. Here, the *log* action is executed if one of the environment triggers is invoked.                         
 ``` json
 {
     "type": "update",
