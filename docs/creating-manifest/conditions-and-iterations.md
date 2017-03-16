@@ -276,7 +276,7 @@ The **ForEach** execution is recorded in the user console <a href="/troubleshoot
 
 <center>![forEachCount](/img/forEachCount.jpg)</center>
 <br>
-## What's next?        
+<h2>What's next?</h2>        
 
 - Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                         
 
