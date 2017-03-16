@@ -105,7 +105,7 @@ There are three alternative approaches, provided to specify a target container i
 
 - specifying a target container within a name of an action (**node selectors**)     
 
-Through the following example, a new file is created in the compute layer (<em>[cp]</em>) and a new directory is created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers, and the container with Node ID <em>123</em>. Actions for the specified containers are executed in the declared order.                         
+Through the following example, a new file is created in the compute layer (<em>[cp]</em>) and a new directory is created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers, and container with the Node ID <em>123</em>. Actions for the specified containers are executed in the declared order.                         
 ``` json
 [
   {
