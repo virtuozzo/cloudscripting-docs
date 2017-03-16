@@ -6,7 +6,7 @@ Running a specific <a href="/creating-manifest/actions/" target="_blank">action<
 
 ### Particular Container
 
-The <em>nodeId</em> parameter is used to set a particular container for an action execution. If you know the Node ID of a container (displayed at the Jelastic dashboard next to the required node), you can set it statically as follows.                                           
+The <em>nodeId</em> parameter is used to set a particular container for an action execution. If you know the Node ID of your container (displayed at the Jelastic dashboard next to the required node), you can set it statically as follows.                                           
 
 ``` json
 {
