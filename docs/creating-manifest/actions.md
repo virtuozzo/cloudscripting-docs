@@ -241,7 +241,7 @@ Available for all nodes
 ```
 where:   
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                          
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                   
 - `string` - container path where a file is to be created                              
 
 ### createDirectory
@@ -255,7 +255,7 @@ Available for all nodes
 ```
 where:  
 
-- `nodeId`, `nodGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                       
+- `nodeId`, `nodGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                                 
 - `string` - container path where a directory is to be created                         
 
 ### writeFile
@@ -278,7 +278,7 @@ Available for all nodes
 ```
 where:  
   
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                                      
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                      
 - `path` - container path where a file is to be written                
 - `body` - content that is saved to the file                                         
 
@@ -302,7 +302,7 @@ Available for all nodes
 ```
 where:      
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                            
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                               
 - `path` - container path where a file is to be appended                                 
 - `body` - content saved to the file                               
 
@@ -329,7 +329,7 @@ Available for all nodes
 ```
 where:   
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                       
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                  
 - `path` - path where a file is available               
 - `replacements` - list of replacements within the node's configuration files                        
     - `pattern` - regular expressions to find a string (e.g. *app\\.host\\.url\\s*=\\s*.**)                   
@@ -400,7 +400,7 @@ Available for all nodes
 ```
 where:   
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                        
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                   
 - `string` - node’s display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                                                        
 
 
@@ -417,7 +417,7 @@ The *setNodeCount* action allows to add or remove nodes that are grouped accordi
 ```
 where:
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                              
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                       
 - `number` - total number of nodes after the action is finished                                          
 
 ### setExtIpEnabled
@@ -433,7 +433,7 @@ The *setExtIpEnabled* action allows to enable or disable the external IP address
 ```
 where:               
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                                   
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                                    
 - `true` or `false` - parameter that allows to attach or detach the public IP address                              
 
 ### restartNodes
@@ -452,7 +452,7 @@ Available for all nodes (except for Elastic VPS)
 ```
 where:       
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                   
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                  
 
 ### restartContainers
 
@@ -470,7 +470,7 @@ Available for all nodes
 ```
 where:         
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine containers for the action to be executed at (one of these parameters is required)                       
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                            
 
 ### addContext
 
@@ -524,7 +524,7 @@ Available for SQL databases (except for Docker containers)
 ```
 where:          
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default, the *nodeGroup* value is equal to *sqldb*.                            
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine target containers for the action execution. By default, the *nodeGroup* value is equal to *sqldb*.                            
 - `loginCredentials` - root creadentials to a new node                    
     - `user` - username                    
     - `password` - password                 
@@ -556,7 +556,7 @@ Available for SQL databases (except for Docker container)
 ```
 where:
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default, the *nodeGroup* value is equal to *sqldb*.                                    
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine target containers for the action execution. By default, the *nodeGroup* value is equal to *sqldb*.                                    
 - `databaseName` - name of a database that is created                  
 - `user` - username in the database, on behalf of which the application is used                
 - `password` - password in the database, on behalf of which the application is used                         
@@ -582,7 +582,7 @@ Available for SQL databases (except for Docker containers)
 ```
 where:  
 
-- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine containers for the action to be executed at. By default, the *nodeGroup* value is equal to *sqldb*.                                   
+- `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine target containers for the action execution. By default, the *nodeGroup* value is equal to *sqldb*.                                   
 - `databaseName` - name of a database for a patch to be applied                    
 - `user` - username in the database, on behalf of which the application is used                                          
 - `password` - password in the database, on behalf of which the application is used                              
