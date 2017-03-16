@@ -1,11 +1,10 @@
-#Addons
+# Add-Ons
 
-A Cloud Scripting technology provides an ability to install a custom addons within new environment or in an existing environment. A custom addon is an insertion with manifest `type` *update* within a parent JPS.  
-It is described in `addons` section.
+Cloud Scripting allows you to install a custom add-on either to a new environment, or to the existing one. You can develop your custom add-on in confines of another - *parent* manifest. Therefore, you need to state the add-on's installation type to *update* and declare essential properties within the *addons* section.  
    
-These addons can be called in two options - an install addon within one `nodeGroup` or to call `installAddon` action.
+You can install the developed add-on either by specifying a target <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank">*nodeGroup*</a>, or by calling the <a href="/creating-manifest/actions/#installaddon" target="blank">*installAddon*</a> action.             
 
-The first one case is a installation in `nodeGroup` layer:
+The following example illustrates the add-on's installation to a specific *nodeGroup* (layer).                          
 
 ```json
 {
@@ -30,12 +29,11 @@ The first one case is a installation in `nodeGroup` layer:
 }
 ```
 
-In the example above, Jelastic API method **RestartNodesByGroup** will be executed after the environment creation completion. A compute node will be restarted at the end of manifest installation procedure. 
-In this case, the addons instalation can be executed only if manifest `type` is **install**.  
-The **Add-ons** tab will be available after manifest installation.
-<center>![add-ons-tab.jpg](/img/add-on_tab.jpg)</center>
+In the example above, the <a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> <b>*RestartNodesByGroup*</b> method is executed after the environment creation is completed. The compute node is restarted at the end of the manifest installation procedure. Herewith, the add-on is installed, if the *parent* manifest's installation type is *install*. When the add-on is installed, the **Add-ons** tab for the corresponding compute node becomes available at the dashboard.                                    
+
+<center>![new-addon](/img/new-addon.png)</center>                        
   
-A another case for install addons is to call the `installAddon` action. This action can be called while manifest `type` is **update** or **install**.
+The following example illustrates the add-on's installation by calling the *installAddon* action. You can call this action for both *update* and *install* installation types of a *parent* manifest.                            
 
 ```json
 {
@@ -56,13 +54,14 @@ A another case for install addons is to call the `installAddon` action. This act
 }
 ```
 
-In this example, a new file *test.log* will be created during `onInstall` action. The addon behaviour should be described in `addons` section, `installAddon` action need to take only addon's identifier.
-
+Through this example, a new *test.log* file is created during the *onInstall* action execution. You can declare the add-on's expected behaviour within the *addons* section, while the *installAddon* action is needed to specify the appropriate add-on's identifier.              
 <br>       
 <h2> What’s next?</h2>                    
 
-- Find out the list of <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching   
-- See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                              
-- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>   
-- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>              
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples   
+- Find out how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>                       
+
+- Explore how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                
+
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                      
+
+- See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions                                          

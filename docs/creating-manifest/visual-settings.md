@@ -1,4 +1,4 @@
-#Visual Settings
+# Visual Settings
 
 Cloud Scripting enables you to create a personalized solution by customizing the visual appearance and textual content of such elements as:              
 
@@ -10,12 +10,10 @@ Cloud Scripting enables you to create a personalized solution by customizing the
 
 * [Forms](#custom-settings)                   
 
-* [Responces](#handling-custom-responses)                                     
-
 * [Messages](#success-text-customization)                           
       
 
-##Supported Fields                               
+## Supported Fields                               
 
 You can use the parameters from the following example to fetch your input data.                        
 ``` json
@@ -53,32 +51,32 @@ where:
 - `fields` - array of fields that will be displayed in a custom form     
     - `showIf` - shows/hides field by condition (is applicable only to the *radio-fieldset* field)   
     - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:   
-        * `string` - [basic](/creating-manifest/visual-settings/#string) text field                                  
-        * `text`  - [multiline](/creating-manifest/visual-settings/#text) text field                                                                                                         
-        * `list` - drop-down menu with [textboxes](/creating-manifest/visual-settings/#list))                                           
-        * `checkbox` - single [checkbox field](/creating-manifest/visual-settings/#checkbox)                     
-        * `checkboxlist` - [checkbox](/creating-manifest/visual-settings/#checkboxlist) grouping                             
-        * `radiolist` - [radio field](/creating-manifest/visual-settings/#radiolist) grouping                       
+        * `string` - [basic](#string) text field                                  
+        * `text`  - [multiline](#text) text field                                                                                                         
+        * `list` - drop-down menu with [textboxes](#list)                                                         
+        * `checkbox` - [single checkbox](#checkbox) field                                                 
+        * `checkboxlist` - [checkbox](#checkboxlist) grouping                             
+        * `radiolist` - [radio field](#radiolist) grouping                       
         * `radio-fieldset` - alias to `radiolist`              
-        * `dockertags` - drop-down menu with a list of [docker tags](/creating-manifest/visual-settings/#dockertag))                   
-        * `compositefield` - [component](/creating-manifest/visual-settings/#compositefield) that comprises any available field    
-        * `slider` - [slider element](/creating-manifest/visual-settings/#slider) as a form field
-        * `envlist` - [list of environments](/creating-manifest/visual-settings/#envlist) available for a corresponding account                  
-        * `popupselector` - new [pop-up window](/creating-manifest/visual-settings/#popupselector) via POST request with posibility to pass additional parameters
+        * `dockertags` - drop-down menu with a list of [docker tags](#dockertag)                                         
+        * `compositefield` - [component](#compositefield) that comprises any available field    
+        * `slider` - [slider element](#slider) as a form field
+        * `envlist` - [list of environments](#envlist) available for a corresponding account                  
+        * `popupselector` - new [pop-up window](#popupselector) via POST request with posibility to pass additional parameters
         * `popup-selector` - alias to `popupselector`                               
-        * `displayfield` - [text field](/creating-manifest/visual-settings/#displayfield) intended for displaying text                            
+        * `displayfield` - [text field](#displayfield) intended for displaying text                            
         * `spacer` - alias to `displayfield`                     
-        * `spinner` - [input field](/creating-manifest/visual-settings/#spinner) for entering numeric values                       
-        * `numberpicker` - [field to select a number](/creating-manifest/visual-settings/#numberpicker) within a range                            
+        * `spinner` - [input field](#spinner) for entering numeric values                       
+        * `numberpicker` - [field to select a number](#numberpicker) within a range                            
         * `number-picker` - alias to `numberpicker`  
-        * `hostpicker` - drop-down menu with [environment hosts](/creating-manifest/visual-settings/#hostpicker)                             
+        * `hostpicker` - drop-down menu with [environment hosts](#hostpicker)                             
         * `host-picher` - alias to `hostpicker`                                      
-        * `toggle` - [switcher](/creating-manifest/visual-settings/#toggle) between two values                        
+        * `toggle` - [switcher](#toggle) between two values                        
     - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. See more info on the <a href="https://www.w3.org/wiki/HTML/Elements/input#Point" target="_blank">type attribute</a>.                         
     - `name` - input field name, that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests   
     - `default` *[optional]* - default value for the input field  
     - `caption` *[optional]* - field label  
-    - `placeholder` *[optional]* - used <a href="/creating-manifest/placeholders/" target="blank">placeholders</a>                         
+    - `placeholder` *[optional]* - used <a href="/reference/placeholders/" target="blank">placeholders</a>                         
     - `required` *[optional]* - possible values are *'true'* & *'false'*. If left empty, the default value is *'true'*.  
     - `regex` *[optional]* - constructor for testing the JavaScript RegExp object, that refers to the stated the field value, during validation. If test fails, the field will be marked invalid using *regexText*. The default value is *'null'*.                                                        
     - `regexText` *[optional]* - displays error message in case of the *regex* test failure during validation. The default value is *' '* (blank space).     
@@ -90,7 +88,7 @@ where:
     - `vtypeText` *[optional]* - custom error message to be displayed instead of the default one, provided by *vtype* for this field. The default value is *' '* (blank space).     
     
 !!! note
-    `vtypeText` is applied only in case the *vtype* value is set; otherwise, it is ignored.
+    The *vtypeText* parameter is applied only in case the *vtype* value is set, otherwise, it is ignored.                                       
 
 ### string
 The basic text field.  
@@ -135,7 +133,7 @@ The multiline text field.
 where:   
 
 - `caption` *[optional]* - field label  
-- `hideLabel`*[optional] [boolean]* - hides field Label. The default value is *'false'*. 
+- `hideLabel`*[optional] [boolean]* - hides field label. The default value is *'false'*. 
 
 ### list   
 The drop-down list and a single-line textbox.  
@@ -296,7 +294,7 @@ where:
 - `caption` *[optional]* - field label
 
 ### dockertag
-Displaying Docker tags within the list element.  
+The field for displaying Docker tags within the list element.                             
 
 <center>![text](/img/dockertag.jpg)</center>  
 
@@ -332,7 +330,7 @@ Displaying Docker tags within the list element.
 where:   
 
 - `name` *[required]* - should have the *'tag'* value  
-- `values` *[required]* - Docker tag values (*name*: *"tag_name"* is required). By default Docker image is pulled from the Docker Hub registry.  
+- `values` *[required]* - Docker tag values (*name*: *"tag_name"* is required). By default, Docker image is pulled from the Docker Hub registry.  
 - `dockerImage` - Docker image details   
    - `name` - *repository* is required   
    - `registry`, `username`, `password` [*optional*]   
@@ -454,7 +452,7 @@ where:
 ### popupselector
 (*popup-selector* is an alias)     
 
-Opens a pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.  
+The field for opening a pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.                      
 
 <center>![popupselector](/img/popupselector.jpg)</center>  
 
@@ -469,7 +467,7 @@ Opens a pop-up window via the POST request to any external service. It provides 
       "url": "http://{external url}",
       "popupWidth": "300px",
       "popupHeight": "300px",
-      "popupcallbackEvent": "handler",
+      "popupCallbackEvent": "handler",
       "params": {
         "first": 1,
         "second": 2
@@ -493,7 +491,7 @@ where:
 ### displayfield
 (*spacer* is an alias)    
 
-The text field intended only for display that is not validated, and not submitted.  
+The text field intended only for display that is not validated and not submitted.  
 
 <center>![displayfield](/img/displayfield.jpg)</center>  
 
@@ -514,7 +512,7 @@ where:
 
 - `caption` *[optional]* - field label                   
 - `name` *[optional]* - name of the field                
-- `markup` - value to initialize the field's display. The default value is "*'undefined'*".      
+- `markup` - value to initialize the field's display. The default value is *'undefined'*.                                
 
 ### spinner
 The enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
@@ -547,8 +545,9 @@ where:
 - `decimanPrecision` - precision value  
 
 ### numberpicker
-(*number-picker* is an alias)                         
-The field that enables to select a number from a predefined range.                  
+(*number-picker* is an alias)                                  
+
+The field that enables to select a number from a predefined range.                    
  
 <center>![numberpicker](/img/numberpicker.jpg)</center>  
 
@@ -576,8 +575,9 @@ where:
 - `editable` *[optional] [boolean]* - enables/disables editing the *numberpicker* field. The default value is *'false'*.  
 
 ### hostpicker
-(*host-picker* is an alias)  
-The drop-down menu with the environments hosts.  
+(*host-picker* is an alias)                      
+
+The drop-down menu with the environments hosts.                      
 
 <center>![hostpicker](/img/hostpicker.jpg)</center>  
 
@@ -631,9 +631,9 @@ where:
 - `value` *[boolean]* - enables/disables toggle value. The default value is *'false'*.   
 
 ##Target Nodes
-*Target Nodes* is an optional method that allows to define environments suitable for JPS installation. Herewith, this option is available only for *type*: <b>*update*</b> action.   
+Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.                                
 
-Filtering for `targetNodes` can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
+Filtering for *targetNodes* can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
 ``` json
 {
   "type": "update",
@@ -663,20 +663,20 @@ Filtering for `targetNodes` can be performed by *nodeType*, *nodeGroup*, *docker
   }
 }
 ```
-There are two possible ways to define a `nodeType`:  
+There are two possible ways to define *targetNodes*.                                  
 ```
-"nodeType": ["..."] - to set the required nodeTypes in array
+"nodeType": ["..."] - to set the required nodeTypes in an array
 
 "nodeType": "..., ..." - to set the required nodeTypes being separated with commas
 ```
   
 <b>Example</b>   
  
-Let’s suppose you have three environments with different topology:     
+Let’s suppose you have three environments with different topology.                              
 
-<center>![targetNodes](/img/targetNodes.jpg)</center>  
+<center>![target-nodes](/img/target-nodes.png)</center>                                       
 
-Within these environments, the `targetNodes` filtering for JPS installation can be performed with the next example:
+Within these environments, the *targetNodes* filtering for JPS installation can be performed with the next example.                           
 ``` json
 {
   "type": "update",
@@ -692,20 +692,20 @@ Within these environments, the `targetNodes` filtering for JPS installation can 
   }
 }
 ```
-In this case, the filtering result will be the following:   
+In this case, the filtering result will be the following.                                                 
 
 <center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
   
 ## Custom Menus    
-Menu is an expandable list within the <b>Add-ons</b> section comprising operations, that can be extended and adjusted by means of [custom buttons](/creating-manifest/visual-settings/#custom-buttons).                 
+Menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](#custom-buttons).                                         
 
-<center>![menu](/img/menu.jpg)</center>     
+<center>![new-menu](/img/new-menu.png)</center>         
 
-By default, this menu contains the <b>Uninstall</b> option. The rest of listed actions, if there are any, execute operations from the <a href="/creating-manifest/events/#application-level-events" target="_blank">application level events</a> settings.          
+By default, this menu contains the <b>Uninstall</b> button. The rest of listed actions, if there are any, execute operations from the <a href="/reference/events/" target="_blank">events</a> settings.           
 
-The used properties for custom menus are the same as for custom buttons. Herewith, the appropriate `menu` field (instead of `buttons`) should be specified in order to adjust functionality exactly within the menu list of the Add-ons plank.           
+The properties used for custom menus are the same as for custom buttons. However, the appropriate *menu* field (instead of *buttons*) should be specified to adjust functionality exactly within the menu list of the Add-ons plank.           
 
-Sample to set custom buttons within the menu list of the Add-ons plank:
+The sample to set custom buttons within the menu list of the Add-ons plank.                       
 ``` json
 {
   "type": "update",
@@ -730,23 +730,23 @@ Sample to set custom buttons within the menu list of the Add-ons plank:
   }
 }
 ```
-Refer to the *Custom Buttons* section above for a detailed description on the parameters set with the current sample.
+Refer to the *Custom Buttons* section below for a detailed description on the parameters set with the current sample.                          
 
 ## Custom Buttons
-The custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node:      
+The custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node.                                      
 
-<center>![Addontab](/img/Addontab.jpg)</center>       
+<center>![custom-addon](/img/custom-addon.png)</center>       
 
 Such buttons execute operations that are predefined within a JPS manifest.   
 
-<center>![TrafficManager](/img/TrafficManager.jpg)</center>    
+<center>![traffic-distributor](/img/traffic-distributor.png)</center>    
 
 !!! note
-    > The JPS manifest should include the [*targetNodes*](/creating-manifest/visual-settings/#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
+    > The JPS manifest should include the [*targetNodes*](#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
 
 <b>Templates</b>   
 
-Sample to set buttons within the **Add-ons** plank:
+The sample to set buttons within the Add-ons plank.                      
 ``` json
 {
   "type": "update",
@@ -769,12 +769,12 @@ Sample to set buttons within the **Add-ons** plank:
   ]
 }
 ```
-Here: 
+where: 
 
 - `buttons` - button parameters array   
 - `confirmText` *[optional]* - custom confirmation text for users. The default value is *'Are you sure?'*.   
 
-It will be displayed after clicking on the appropriate button for an add-on. According to the code above, the text will be:  
+It will be displayed after clicking on the appropriate button for an add-on. According to the code above, the text will be the following.              
 
 <center>![Confirm](/img/Confirm.jpg)</center>      
 
@@ -782,18 +782,18 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 <center>![LoadingText](/img/LoadingText.jpg)</center>      
 
-- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the <a href="/reference/actions/#custom-actions" target="_blank">*actions*</a> section.          
+- `action` *[required] [string]* - name of the custom action that will be executed. The custom action body structure is described in the <a href="/reference/actions/#custom-actions" target="_blank">*actions*</a> section.          
 - `caption` - title of the button  
 
 <center>![Caption](/img/Caption.jpg)</center>   
 
-- `successText` -  message, that appears once action is successfully performed  
+- `successText` -  message that appears once action is successfully performed  
 
 <center>![SuccessText](/img/SuccessText.jpg)</center>     
 
-- `href` *[optional]* - external link that is opened in a new browser tab; is executed only if the `settings` field is absent. In case of `href` execution, `action` will not be carried out.     
+- `href` *[optional]* - external link that is opened in a new browser tab and is executed only if the *settings* field is absent. In case of *href* execution, an *action* will not be carried out.                      
 
-Another sample with additional configurations: the next parameters can be enabled only if the [*settings*](/creating-manifest/visual-settings/#custom-settings) field is present:     
+Another sample with additional configurations where parameters can be enabled only if the [*settings*](/creating-manifest/user-input-parameters/#custom-settings) field is present.                           
 ``` json
 {
   "type": "update",
@@ -823,21 +823,21 @@ Another sample with additional configurations: the next parameters can be enable
 where:
 
 - `settings` - custom form ID. The default is *'main'*.
-- `title` - custom dialog title. If absent, then `caption` will be applied.    
+- `title` - custom dialog title. If absent, then *caption* will be applied.    
 - `submitButtonText` - text for submission button in the opened dialog. The default value is *'Apply'*.   
 
 <center>![SubmitButtonText](/img/SubmitButtonText.jpg)</center>  
 
-- `logsPath` - specifying path to a definite log file for it to be accessible via the **Show Logs** button                          
+- `logsPath` - path to a log file that is accessible via the **Show Logs** button                          
 
 <center>![LogsPath](/img/LogsPath.jpg)</center>  
 
-- `logsNodeGroup` - <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> layer the logging path should be opened for                     
+- `logsNodeGroup` - nodeGroup <a href="/creating-templates/selecting-containers/#predefined-nodegroup-values" target="_blank">layer</a> the logging path should be opened for                           
 
 ## Custom Settings
 The settings section can include a few custom forms. The default settings form ID is *'main'*.    
 
-For instance:  
+**Example**  
 ``` json
 {
   "type": "update",
@@ -885,11 +885,11 @@ The *config settings* form appears after clicking the <b>Configure</b> button wi
 
 <center>![settingCustom](/img/SettingsCustom.jpg)</center>     
 
-##Success Text Customization
+## Success Text Customization
 
-It is possible to customize (in confines of a manifest) the *success* text, which is displayed upon successful application installation either at the dashboard or via email notification.         
+It is possible to customize the *success* text that is displayed upon successful installation either at the dashboard, or via email notification.          
 
-- Setting a relative to `baseUrl` link, which points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                    
+- Setting relative to the *baseUrl* link that points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                                               
 ``` json
 {
     "type" : "update",
@@ -902,7 +902,7 @@ It is possible to customize (in confines of a manifest) the *success* text, whic
 }
 ```
 
-- Customizing the *success* return text by means of the external link.                    
+- Customizing the *success* response text by means of the external link.                                     
 ``` json
 {
   "type": "update",
@@ -916,7 +916,7 @@ It is possible to customize (in confines of a manifest) the *success* text, whic
 
 As it was mentioned above, the success response is distinguished between two values:                        
 
- - text displayed at the dashboard after application installation is successfully conducted                       
+ - text displayed at the dashboard after installation is successfully conducted                         
  
 ``` json
 {
@@ -931,7 +931,7 @@ As it was mentioned above, the success response is distinguished between two val
 }
 ```
  
- - message delivered via email notifying about the successful application setup                             
+ - message delivered via email notifying about the successful installation                                                  
  
 ``` json
 {
@@ -951,11 +951,13 @@ As it was mentioned above, the success response is distinguished between two val
 
 In the last example above, the localization functionality is applied, which depends upon the Jelastic Platform selected language.
 <br>
-<h2> What's next?</h2>
+## What's next?
 
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples      
-- See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions            
-- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                         
-- Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>
-       
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                                
+
+- See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions                            
+
+- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                      
+
+- Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>                    
   

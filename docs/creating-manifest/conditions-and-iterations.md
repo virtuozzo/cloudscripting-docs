@@ -15,8 +15,9 @@ if (env.protocol == 'http')
 
 The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*</b> can be of any nesting level.                                             
 
-- If condition is specified incorrectly, the actions inside <b>*if*</b> statement won't be executed. Herewith, the <a href="/troubleshooting/" target="_blank">Cloud Scripting Console</a> will return the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer will proceed to the next action.               
-- If condition is valid, but is not executed, the <b>*'condition is not met'*</b> message will be logged.                     
+- If condition is specified incorrectly, the actions inside <b>*if*</b> statement are not executed. Herewith, the <a href="/troubleshooting/" target="_blank">Cloud Scripting Console</a> returns the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer proceeds to the next action.                            
+
+- If condition is valid, but is not executed, the <b>*'condition is not met'*</b> message is logged.                                        
 
 <b>Examples</b>    
 
@@ -63,7 +64,7 @@ The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*<
 }
 ```
 
-* Environment domain validation
+* Validating environment domain                            
 ``` json
 {
   "onInstall": {
@@ -94,7 +95,7 @@ The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*<
 
 ### Nested Conditions   
   
-Nesting of two <b>*if*</b> conditional statements - the first one is checking an environment for two compute nodes presence. In case the nodes are available, the second one is checking the presence of external IP address on the first balancer node and is logging the correspondent messages.          
+Nesting of two <b>*if*</b> conditional statements - the first one is checking an environment for two compute nodes presence. If the nodes are available, the second one is checking the presence of the external IP address on the first balancer node and is logging the correspondent messages.          
 ``` json
 {
   "type": "update",
@@ -159,14 +160,14 @@ The main iterable object is <b>*ForEach*</b> with the following map.
 ```
 where:    
 
-- `settings` *[optional]* - fields values predefined within a <a href="/creating-manifest/visual-settings/" target="_blank">user settings form</a>          
-- `license [optional]` - link to fetch parameters specified within the <a href="/creating-manifest/visual-settings/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through <a href="/creating-manifest/placeholders/" target="_blank">placeholders</a> `$(license.{any_name}` within a manifest.    
-- `event [optional]` - object entity with <a href="/creating-manifest/events/" target="_blank">events</a> parameters that can be of two types, allowing initiation of a particular <a href="/creating-manifest/actions/" target="_blank"> action</a> *before* and *after* event execution       
-- `this [optional]` - parameters object to be transmitted within the procedure body. See the full list of available<a href="/creating-manifest/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
+- `settings` *[optional]* - values of the fields that are predefined within a <a href="/creating-manifest/visual-settings/" target="_blank">user settings form</a>          
+- `license [optional]` - link to fetch parameters that are specified within the <a href="/creating-manifest/visual-settings/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through the `$(license.{any_name}` <a href="/creating-manifest/placeholders/" target="_blank">placeholder</a>  within a manifest.       
+- `event [optional]` - object with <a href="/creating-manifest/events/" target="_blank">events</a> that can be of two types, triggering a particular <a href="/creating-manifest/actions/" target="_blank"> action</a> *before* or *after* the event execution       
+- `this [optional]` - object with parameters that are transmitted within the procedure body. See the full list of available<a href="/creating-manifest/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
 
-Iteration can be executed by <b>*env.nodes*</b>, <b>*nodes*</b>, <b>*env.contexts*</b>, and <b>*env.extdomains*</b> objects.                    
+Iteration can be executed by <b>*env.nodes*</b>, <b>*nodes*</b>, <b>*env.contexts*</b>, and <b>*env.extdomains*</b> objects.                      
 
-Iteration set by <b>*env.extdomains*</b>                       
+Iteration set by <b>*env.extdomains*</b>.                                       
 ``` json
 {
   "forEach(env.extdomains)": [
@@ -185,7 +186,7 @@ where:
 - `@i` - default iterator name 
 - `env.extdomains` - bound external domains 
 
-Iteration set by <b>*env.contexts*</b>                             
+Iteration set by <b>*env.contexts*</b>.                                                         
 ``` json
 {
   "forEach(env.contexts)": {
@@ -200,7 +201,7 @@ where:
 
 - `env.contexts` -  list of contexts (applications) deployed to an environment                           
 
-Scaling nodes example                
+The example of scaling nodes.                             
 
 ``` json
 {
@@ -220,13 +221,13 @@ Scaling nodes example
   }
 }
 ```
-As a result of *cmd*, compute nodes internal IP addresses are rewritten within balancer configs and NGINX balancer node is reloaded. The <b>*onAfterScaleIn*</b> and <b>*onAfterScaleOut*</b> events are executed immediately after adding or removing a compute node.   
+As a result of the *cmd* action, the compute nodes internal IP addresses are rewritten within balancer configs and NGINX balancer node is reloaded. The <b>*onAfterScaleIn*</b> and <b>*onAfterScaleOut*</b> events are executed immediately after adding or removing a compute node.   
 
 ### By All Nodes
 
 Iteration by all nodes in an environment.    
 
-- Iteration set by <b>*env.nodes*</b>                            
+Iteration set by <b>*env.nodes*</b>.                                              
 ``` json
 {
   "forEach(env.nodes)": {
@@ -247,7 +248,7 @@ Iteration by compute nodes with a custom iterator name.
 ```
 
 where:   
-- `@cp [optional]` - custom iterator name. Target nodes can also be set by type -`${@cp.nodeType}` or group - `${@cp.nodeGroup}`.                                   
+- `@cp [optional]` - custom iterator name. Also, target nodes can be set by type -*${@cp.nodeType}*, or group - *${@cp.nodeGroup}*.                                                    
 
 Custom iterator name can be used for nesting cycles one into another.            
 ``` json
@@ -271,13 +272,20 @@ where:
 
 In this case, every environment node will have only one conjunction by <b>Node ID</b>.
 
-The **ForEach** execution is recorded in a <a href="/troubleshooting/" target="_blank">user console logfile</a> for convenient code debugging.           
+The **ForEach** execution is recorded in the user console <a href="/troubleshooting/" target="_blank">log file</a> for convenient code debugging.           
 
 <center>![forEachCount](/img/forEachCount.jpg)</center>
 <br>
-<h2> What's next?</h2>         
+## What's next?        
 
-- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>       
-- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>              
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples  
-- See the <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions             
+- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                         
+
+- Learn how to сreate your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                         
+
+- Find out how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>                       
+
+- See how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                   
+
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                           
+
+- See the <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions                       

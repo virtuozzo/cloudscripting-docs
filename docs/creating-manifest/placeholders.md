@@ -1,28 +1,36 @@
 # Placeholders
-Cloud Scripting supports a set of placeholders that can be used in any section of a manifest file (if the section isn't strictly limited with its content). 
-The executor makes an attempt to resolve all placeholders on the package installation stage.
-If it's not possible, the placeholder will be unresolved and displayed in the text as is (e.g. *${placeholder}*).
+Cloud Scripting supports a set of placeholders that can be used in any section of a manifest file, if the section isn't strictly limited with its content. The Cloud Scripting executor makes an attempt to resolve all placeholders on the package installation stage. If it's not possible, the placeholder will be unresolved and displayed in the text as is (e.g. *${placeholder}*).                           
 
 !!! note
-    To output all available placeholders, use a special <b>${placeholders}</b> placeholder. For more information, see the <a href="/troubleshooting/" target ="_blank">Troubleshooting</a> guide.                                                                                                   
+    To output all available placeholders, use a special <b>${placeholders}</b> placeholder. For more information, see the <a href="/troubleshooting/" target ="_blank">*Troubleshooting*</a> guide.                                                                                                   
 
 The following specific groups of placeholders are singled out: 
 
 - [Environment Placeholders](/creating-manifest/placeholders/#environment-placeholders)           
+
 - [Node Placeholders](/creating-manifest/placeholders/#node-placeholders)                 
+
 - [Event Placeholders](/creating-manifest/placeholders/#event-placeholders)                    
+
 - [Account Information](/creating-manifest/placeholders/#account-information)                 
+
 - [Input Parameters](/creating-manifest/placeholders/#input-parameters)                          
+
 - [Action Placeholders](/creating-manifest/placeholders/#action-placeholders)                  
+
 - [UI Placeholders](/creating-manifest/placeholders/#ui-placeholders)                     
-- [Custom Global Placeholders](/creating-manifest/placeholders/#custom-global-placeholders)                                
+
+- [Custom Global Placeholders](/creating-manifest/placeholders/#custom-global-placeholders)                               
+
 - [Function Placeholders](/creating-manifest/placeholders/#function-placeholders)                             
+
 - [Array Placeholders](/creating-manifest/placeholders/#array-placeholders)                                       
+
 - [File Path Placeholders](/creating-manifest/placeholders/#file-path-placeholders)                                 
 
 ## Environment Placeholders
 
-This is the list of placeholders that you can use within the environment section of your manifest.          
+This is the list of placeholders that you can use within the environment section (*{env.}*) of your manifest.                               
 
 - `{env.}`
     - `appid` *[string]* - application appid 
@@ -57,12 +65,12 @@ This is the list of placeholders that you can use within the environment section
     - `contexts.type` *[string]* - environment context type
     - `contexts.context` *[string]* - context name
     - `contexts.archivename` *[string]* - context display name
-    - `contexts.length` *[number]* - number of contexts which are deployed to environment
-    - `extdomains.length` *[number]* - number of external domains which are binded to environment
+    - `contexts.length` *[number]* - number of contexts that are deployed to an environment
+    - `extdomains.length` *[number]* - number of external domains that are bound to an environment
 
 ## Node Placeholders    
 
-This is the list of placeholders that you can use within the nodes section of your manifest.                        
+This is the list of placeholders that you can use within the nodes section (*{nodes.}*) of your manifest.                                   
 
 - `${nodes.}`
     - `{nodes.(group)[(i)].(key)}`
@@ -78,7 +86,7 @@ This is the list of placeholders that you can use within the nodes section of yo
         - `bandwidthLimit` - node bandwidth limit   
         - `contextValidatorRegex` - validation for context names    
         - `diskIopsLimit` - IOPS limitation quota   
-        - `addons.length` - number of available addons at the selected node
+        - `addons.length` - number of available add-ons at the selected node
         - `diskLimit` - hardware node disk space quota  
         - `endpoints` [*array indexes*] - <a href="https://docs.jelastic.com/endpoints" target="_blank">endpoints</a> functionality                              
             - `domain` - full domain name of the node the endpoint is being set for                  
@@ -86,7 +94,7 @@ This is the list of placeholders that you can use within the nodes section of yo
             - `name` - title for the new endpoint (can be either custom or <a href="https://docs.jelastic.com/endpoints#preconfigured" target="_blank">predefined</a>)                         
             - `privatePort` - preferred local node port              
             - `publicPort` - private (dynamic) port used for mapping                                         
-            - `protocol` - protocol type (currently, only **TCP** is provided)             
+            - `protocol` - protocol type (currently, only TCP is provided)             
             - `length` - number of available endpoints within the selected node               
         - `fixedCloudlets` - fixed cloudlets number                        
         - `flexibleCloudlets` - flexible cloudlets number                                   
@@ -94,7 +102,7 @@ This is the list of placeholders that you can use within the nodes section of yo
         - `intIP` - internal IP address   
         - `extIPs` - external IP address array (`extips` is an alias)                                
         - `isClusterSupport`    
-        - `isExternalIpRequired` - status, indicating that node requires external IP address       
+        - `isExternalIpRequired` - status, indicating that node requires the external IP address       
         - `isResetPassword` - enables to reset a service password    
         - `isWebAccess`   
         - `ismaster` - master node status in the *nodeGroup* (i.e. layer)   
@@ -115,9 +123,9 @@ This is the list of placeholders that you can use within the nodes section of yo
             - `keyword` - engine keyword (e.g. *java7*, *php7.0*)  
             - `name` - full engine name (e.g. *Java 8*, *PHP 7*)  
             - `type` - engine type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
-            - `vcsSupport` - supporting VCS in container  
+            - `vcsSupport` - supporting VCS in a container  
             - `version` - engine version  
-            - `length` - number of available engines for selected compute layer     
+            - `length` - number of available engines for the selected compute layer     
         - `activeEngine`(current engine in a container):  
             - `id` - engine ID at the platform   
             - `keyword` - engine keyword (e.g. *java7*, *php7.0*)  
@@ -143,14 +151,14 @@ In case a few nodes are available within a single *nodeGroup*, you can execute a
 
 Event placeholders represent a set of dynamic parameters that are executed as a result of a certain event occurrence. The event placeholders have their custom set of parameters and begin with the default keywords:
                          
-- `${event.params.(key)}` - where *key* is a name of event parameter                     
-- `${event.response.(key)}` -where *key* is a name of event response parameter             
+- `${event.params.(key)}` - where *key* is a name of the event parameter                     
+- `${event.response.(key)}` -where *key* is a name of the event response parameter             
 
 Learn more about the event placeholders within the <a href="/creating-manifest/events" target="_blank">*Events*</a> page.         
 
 ## Account Information  
 
-This is the list of placeholders that you can use while specifying account information.                                                                       
+This is the list of placeholders that you can use to specify account information.                                                                       
 
 - `${user.uid}` - user ID at the Jelastic Platform               
 - `${user.email}` - user email address      
@@ -159,13 +167,12 @@ This is the list of placeholders that you can use while specifying account infor
 
 ## Input Parameters
 
-This is the list of placeholders that you can use for input parameters.                        
+This is the list of placeholders that you can use to specify input parameters.                        
 
 - `${settings.jelastic_email}` - user email that is always predefined       
-- `${settings.key}` - (where *key* is a name of the application setting) 
-    The placeholder is defined in case user input parameters are specified within a manifest. So, after preparing custom user form, the placeholder is defined by the field’s name.     
+- `${settings.key}` - where *key* is a name of the application's setting. The placeholder is defined, if user input parameters are specified within a manifest. So, after preparing a custom user form, the placeholder is defined by the field’s name.              
 
-For example:
+**Example**
 ``` json
 {
   "jpsType": "update",
@@ -180,15 +187,13 @@ For example:
   }
 }
 ```
-The name of the placeholder here is `${settings.customName}`. Check the list of <a href="/creating-manifest/visual-settings/" target="_blank">fields defined by users</a>.       
+Here, the name of the placeholder is `${settings.customName}`. See the list of <a href="/creating-manifest/visual-settings/" target="_blank">fields</a> that are defined by users.       
 
 ## Action Placeholders
 
-Action placeholders are a set of placeholders that can be used within the appropriate actions by means of `${this}` namespace.                                
+Action placeholders form a set of placeholders that can be used within the actions by means of a <b>*${this}*</b> namespace. So, in <b>*${this.param}*</b> the *param* is a name of the action parameter.                                          
 
-- `${this.param}` - where *param* is a name of the action parameter                         
-
-For example:
+**Example**
 ``` json
 {
   "script": "return greeting;",
@@ -197,7 +202,8 @@ For example:
   }
 }
 ```
-Passing custom parameters to the action is performed in the following way:                       
+Passing custom parameters to the action is performed in the following way.                  
+
 ``` json
 {
 	"jpsType": "update",
@@ -215,18 +221,18 @@ Passing custom parameters to the action is performed in the following way:
 	}
 }
 ```
-As a result, console will display the *first* (1) custom parameter from `${this.first}` placeholder.
+As a result, console will display the *first* (1) custom parameter from the <b>*${this.first}*</b> placeholder.             
 
 ## UI Placeholders
 
-This is the list of placeholders that you can use while specifying UI parameters.                              
+This is the list of placeholders that you can use to specify UI parameters.                              
 
 - `${user.uid}` - user ID at the Jelastic Platform
 - `${user.email}` - user email address
 - `${env.domain}` - full domain name without protocol
 - `${env.appid}` - unique environment appid at the Jelastic Platform
 
-For example: 
+**Example** 
 ``` json
 {
   "jpsType": "update",
@@ -245,9 +251,9 @@ For example:
 
 ## Custom Global Placeholders
 
-Placeholders managed by users can be predefined via <b>*globals declaration*</b>. The corresponding declaration is performed in advance of the manifest installation.  
+Placeholders that are managed by users can be predefined via <b>*globals declaration*</b>. The corresponding declaration is performed in advance of the manifest installation.  
 
-For example:
+**Example**
 ``` json
 {
   "jpsType": "update",
@@ -259,7 +265,7 @@ For example:
 }
 ```
 
-As a result, the new placeholders are created:
+As a result, the new placeholders are created.                       
 ``` json
 {
   "globals.value1": 1,
@@ -269,15 +275,15 @@ As a result, the new placeholders are created:
 
 ## Function Placeholders
 
-The integrated functions inside Cloud Scripting are listed below:   
+These are the functions integrated inside Cloud Scripting:                               
 
 - `${fn.password}` - random value within the upper and lower cases. The default length value is *'10'*. 
     The length can be passed as `${fn.password(max value)}`.   
-- `${fn.base64}` - *base64* encoding passed value  
+- `${fn.base64}` - *base64* encoding                   
 ```
 ${fn.base64(value)}
 ```
-- `${fn.md5}` - *md5* encoding  
+- `${fn.md5}` - *md5* encoding               
 ```
 ${fn.md5(value)}
 ```
@@ -293,14 +299,12 @@ Functions without required parameters have two input forms:
 - `${fn.random}` or `${fn.random()}`
 
 
-Function parameter can be passed from existing placeholders. For example:   
+The function parameter can be passed from existing placeholders, for example:                         
 
 - `${fn.md5([fn.random])}` - *md5* encoding random password   
 - `${fn.base64([user.email])}` - *base64* encoding user email address  
 
-You can easily define function placeholders within the [cutom global placeholders](#custom-global-placeholders).  
-
-For example:
+You can easily define function placeholders within the [cutom global placeholders](#custom-global-placeholders), for example:                               
 ``` json
 {
   "globals": {
@@ -308,7 +312,7 @@ For example:
   }
 }
 ```
-Now, you can use `${global.pass}` within the entire manifest.
+Now, you can use <b>*${global.pass}*</b> within the entire manifest.
 
 ## Array Placeholders
 
@@ -318,7 +322,7 @@ Any array has a list of specific placeholders: array *length*, element by *ID*, 
 
 Any array length placeholder can be defined within a manifest. 
 
-For example:
+**Example**
 
 ```
 ${nodes.cp.length},
@@ -329,13 +333,13 @@ ${nodes.bl.extips.length}
 
 Each element has an index in the array. 
 
-For example: 
+**Example**                         
 
 `{nodes.cp[(i)].(key)}`   
 
 where:
 
-- `(i)` - array index. Indexes of array start from *'0'*                     
+- `(i)` - array index, starting from *'0'*                     
 - `(key)` - node <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">parameters</a>                            
 
 **The First and the Last Array Elements** 
@@ -343,7 +347,7 @@ where:
 - `{nodes.cp.first.(key)}` - array element with the the *'0'* index              
 - `{nodes.sqldb.last.(key)}` - array element with the last ID in the array                      
 
-Here, `key` is the node parameter.                         
+Here, <b>*key*</b> is the node parameter.                         
 
 ## File Path Placeholders
 
@@ -378,7 +382,7 @@ You can use the following placeholders, as well, with the definite *nodeType*:
 - `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*  
 - `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*      
 
-Explore the full list of available <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">nodeType</a>.                                              
+Explore the full list of available <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> values within the linked page.                                                         
 
 The list of single placeholders:
 
@@ -394,7 +398,14 @@ The list of single placeholders:
 <br>       
 <h2> What’s next?</h2>                    
 
-- See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                               
-- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>       
-- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                
+- See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                                
+
+- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                      
+
+- Check how to create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                         
+
+- Find out how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>      
+
+- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>
+
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples           

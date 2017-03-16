@@ -22,7 +22,7 @@ There are three main pillars of cloud scripting:
 
 * `addClusterMembers` - custom <a href="/creating-manifest/actions/#custom-actions" target="blank">action</a>         
 
-* `onAfterScaleIn, onBeforeServiceScaleOut` - scaling <a href="/creating-manifest/events/#onafterscalein" target="blank">events</a>            
+* `onAfterScaleIn`, `onBeforeServiceScaleOut` - scaling <a href="/creating-manifest/events/#onafterscalein" target="blank">events</a>            
 
 ```json
 {
@@ -65,9 +65,15 @@ There are three main pillars of cloud scripting:
 ## What’s next?
 
 - Build a simple automation with <a href="/quick-start/" target="_blank">Quick Start</a> Guide                               
-- Learn how to <a href="/creating-manifest/basic-configs/" target="_blank">Create Manifest</a>   
-- Explore the list of available <a href="/creating-manifest/actions/" target="_blank">Actions</a>    
-- See the <a href="/creating-manifest/events/" target="_blank">Events</a> list the actions can be bound to    
-- Find out the list of <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching  
-- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>         
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                                                   
+ 
+- Learn how to <a href="/creating-manifest/basic-configs/" target="_blank">Create Manifest</a>               
+ 
+- Explore the list of available <a href="/creating-manifest/actions/" target="_blank">Actions</a>                      
+ 
+- See the <a href="/creating-manifest/events/" target="_blank">Events</a> list the actions can be bound to                       
+  
+- Find out the list of <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching               
+ 
+- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                    
+
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                                                    

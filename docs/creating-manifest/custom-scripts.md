@@ -1,22 +1,22 @@
 # Custom Scripts
 
-Custom users scripts can be written in Java or JavaScript. Inside these scripts, a set of client libraries for <a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> methods calling is available. 
-The script can be subscribed to the <b>*onAfterReturn*</b> event for executing any <a href="/creating-manifest/actions/" target="_blank">action</a> on its outlet.              
+You can write your custom scripts in Java or JavaScript. Inside these scripts, a set of client libraries for <a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> methods calling is available. 
+You can bind your scripts to the <b>*onAfterReturn*</b> event to execute the required <a href="/creating-manifest/actions/" target="_blank">actions</a>.                
 
 
 ## Intercontainer Scripts
-In order to execute a shell script inside of a container, the <a href="/creating-manifest/actions/#cmd" target="_blank">ExecuteShellCommands</a> action is used.                
+In order to execute a shell script inside of a container, use the <a href="/creating-manifest/actions/#cmd" target="_blank">ExecuteShellCommands</a> (*cmd*) action.                                              
 
-<b>Examples</b>
+<b>Examples:</b>
 
-Executing bash script from URL:
+- Executing bash script from URL.                 
 ``` json
 {
   "cmd [cp]": "curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2"
 }
 ```
 
-Restoring MySQL database:
+- Restoring MySQL database.                      
 ``` json
 {
   "cmd [mysql5]": "curl -fsS http://example.com/script.sh | /bin/bash -s '${nodes.sqldb.password}' 'http://example.com/dump.sql' '${user.appPassword}'"
@@ -50,13 +50,13 @@ mysql -u${USER} -p${PASSWORD} << END
 END
 ```
 
-`${nodes.sqldb.password}` - available only for *install* type when a SQL node is created               
+Here, `${nodes.sqldb.password}` is available only for the *install* installation type when a SQL node is created.                                   
 
 ## Top Level Scripts  
 
-Using *script* action
+Using a <a href="/creating-manifest/actions/#script" target="_blank">*script*</a> action.                  
 
-<h3>Java</h3>
+### Java
 
 ``` json
 {
@@ -76,7 +76,7 @@ Using *script* action
 **Example #1 Generate random password**
 -->
 
-<h3>JavaScript</h3>
+### JavaScript                
 
 ``` json
 {
@@ -85,9 +85,14 @@ Using *script* action
 }
 ```
 <br>
-<h2> What's next?</h2>         
+## What's next?                
 
-- Explore how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>              
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples  
-- See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions       
-- Learn more about using <a href="http://docs.jelastic.com/api/" target="_blank">Jelastic Cloud API</a>                                                     
+- See how to create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                
+
+- Find out how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>                                                                           
+
+- Explore how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                
+
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                      
+
+- See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions                             
