@@ -4,6 +4,7 @@ The table below displays dependencies between Cloud Scripting and the Jelastic P
 <table class="corresp" style="width:100%">
     <tr id="cs">
 	<th id="table-head">CS</th>
+	    <td>1.1</td>
 	    <td>1.0</td>
 	    <td>0.99</td>
 	    <td>0.9</td>
@@ -15,7 +16,8 @@ The table below displays dependencies between Cloud Scripting and the Jelastic P
     </tr>
     <tr id="jel">
         <th id="table-head">Jelastic</th>
-        <td>5.0.5, 4.10</td>
+        <td>5.0.5</td>
+        <td>4.10</td>
         <td>4.9.5</td>
         <td>4.8</td>
         <td>4.6, 4.7</td>
