@@ -1,6 +1,6 @@
 # Actions
 
-Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="/creating-manifest/custom-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS, and Java scripts. Actions are executed when the called <a href="/creating-manifest/events" target="_blank">event</a> matches specified filtering rules.                     
+Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="/creating-manifest/custom-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS, and Java scripts. Any action, available to be performed by means of API (including custom scripts running), should be bound to some <a href="/creating-manifest/events" target="_blank">event</a> and executed as a result of this event occurrence.                                                      
 
 With the help of actions you can achieve automation of the tasks related to:                
 
