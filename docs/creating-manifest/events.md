@@ -19,7 +19,7 @@ Each event triggers a particular action on the required application's lifecycle 
 
 Events can be filtered by <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a>, and <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the action is executed only when the called event matches specified filtering rules. Otherwise, if no filtering rules are specified, every event is listened by all environment entities.         
 
-The following example describes the events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event). Here, filtering by the compute node group (*[cp]*) is set so that the *cmd* action is executed only after compute nodes are scaled out. The *nodeType* filtering is set so that the *cmd* action is executed after **Apache2** nodes restart. The *nodeID* filtering is implemented so that the <b>*onAfterResetNodePassword*</b> event is bound only to the first compute node in the layer.
+The following example describes the events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event). Here, filtering by the compute node group (*[cp]*) is set so that the action is executed after compute nodes are scaled out. The *nodeType* filtering is set so that the action is executed after **Apache 2** nodes are restarted. The *nodeID* filtering is set so that the action is executed after a password from the first compute node in the layer is reseted.
 
 ``` json
 {
@@ -47,14 +47,14 @@ where:
     - `cp` - target node group                                  
 - `onAfterScaleOut` - event that triggers the action after adding a new compute node                                           
 - `onAfterRestartNode` - event that triggers the action after restarting *apache2* compute nodes     
-- `onAfterResetNodePassword` - event that triggers the action after resetting a password for the first compute node in the layer       
+- `onAfterResetNodePassword` - event that triggers the action after resetting a password from the first compute node in the layer       
 
 ## Events Execution Sequence
 
-Below you can find the graphs that list the actions with the adjoining events. Every action has a pair of adjoining events - one of them is executed *before* the action and another one is launched *after* the action, that is when the action is finished.  
+Below you can find the graphs that list actions with adjoining events. Every action has a pair of adjoining events - one of them is executed *before* the action and another one is launched *after* the action, that is when the action is finished.  
 
 !!! note
-    The <b>*createEnvironment*</b> action does not have any adjoining events, because the events are bound after an environment creation.      
+    The <b>*createEnvironment*</b> action does not have any adjoining events, because events are bound after the environment creation.      
  
 The <b>*changeTopology*</b> actions are considered quite time-consuming while being performed via the Jelastic dashboard, therefore, you can automate their workflow with the following CS actions and related events.                                            
 
@@ -85,7 +85,7 @@ The event is executed before changing environment topology via the Jelastic dash
 - `${event.params.}`:
     - `session` - current user session   
     - `appid` - environment unique appid   
-    - `nodes` - nodes array with detailed information for a topology change       
+    - `nodes` - nodes array with detailed info about the topology change                                 
     - `env` - environment settings, e.g. *engine, ssl, ha,* etc 
 - `${event.response.}` parameters are absent        
 
@@ -107,12 +107,12 @@ The event is executed once the *changeTopology* action is finished.
         - `redeployContainerDelay` - delay for container redeployment        
         - `redeployContextDelay` - delay for context redeployment          
         - `restartContainerDelay` - delay for container restart         
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.         
+    - `nodes` - nodes array with detailed info about the topology change. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.         
     - `env` - environment information. Explore the full list of available <a href="/creating-manifest/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.        
 
 ### onBeforeScaleOut
 
-The event is executed before adding new node(s) (i.e. scaling *out*) to the existing node group (viz. layer). Scaling in/out can be performed either through <a href="https://docs.jelastic.com/jelastic-dashboard-guide#change-topology" target="_blank">changing topology</a> or <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">auto horizontal scaling</a> functionality. The *onBeforeScaleOut* event is run only once for each layer.                  
+The event is executed before adding new node(s) (i.e. scaling *out*) to the existing node group (layer). Scaling in/out can be performed either through <a href="https://docs.jelastic.com/jelastic-dashboard-guide#change-topology" target="_blank">changing topology</a> or <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">auto horizontal scaling</a> functionality. The *onBeforeScaleOut* event is run once for each layer upon any node count change.                      
 
 **Event Placeholders:**    
 
@@ -123,7 +123,7 @@ The event is executed before adding new node(s) (i.e. scaling *out*) to the exis
 
 ### onAfterScaleOut
 
-The event is executed after adding new node(s) to the existing node group. The *onAfterScaleOut* event is run only once for each layer.   
+The event is executed after adding new node(s) to the existing node group. The *onAfterScaleOut* event is run once for each layer upon any node count change.                       
 
 **Event Placeholders:**  
  
@@ -135,7 +135,7 @@ The event is executed after adding new node(s) to the existing node group. The *
 
 ### onBeforeScaleIn
 
-The event is executed before removing node(s) (i.e. scaling *in*) from the target node group. The *onBeforeScaleIn* event is run only once for each layer.
+The event is executed before removing node(s) (i.e. scaling *in*) from the target node group. The *onBeforeScaleIn* event is run once for each layer upon any node count change.          
 
 **Event Placeholders:**   
  
@@ -147,7 +147,7 @@ The event is executed before removing node(s) (i.e. scaling *in*) from the targe
 
 ### onAfterScaleIn
 
-The event is executed after scaling *in* the corresponding node group. The *onAfterScaleIn* event is run only once for each layer.
+The event is executed after scaling *in* the corresponding node group. The *onAfterScaleIn* event is run once for each layer upon any node count change.                            
 
 **Event Placeholders:**     
 
@@ -159,7 +159,7 @@ The event is executed after scaling *in* the corresponding node group. The *onAf
 
 ### onBeforeServiceScaleOut
 
-The event is executed before adding new Docker container(s) to the existing node group. It is run only once for each layer. The *onBeforeServiceScaleOut* event is applicable only for Docker containers.      
+The event is executed before adding new Docker container(s) to the existing node group. It is run once for each layer upon any node count change. The *onBeforeServiceScaleOut* event is applicable only for Docker containers.      
 
 **Event Placeholders:**    
 
@@ -171,7 +171,7 @@ The event is executed before adding new Docker container(s) to the existing node
 
 ### onAfterServiceScaleOut
 
-The event is executed after adding new Docker container(s) to the existing node group. It is run only once for each layer. The *onAfterServiceScaleOut* event is applicable only for Docker containers.     
+The event is executed after adding new Docker container(s) to the existing node group. It is run once for each layer upon any node count change. The *onAfterServiceScaleOut* event is applicable only for Docker containers.     
 
 **Event Placeholders:**    
 
