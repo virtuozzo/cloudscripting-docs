@@ -1100,14 +1100,12 @@ The *onAfterRemoveVolume* event is triggered after removing volumes from Docker 
 <br>       
 ## What’s next?                            
 
-- Find out the list of <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching                          
+- Find out how to fetch parameters with <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a>                                                     
 
 - See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                              
 
 - Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>            
 
-- See how to create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                
+- Learn how to create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                
 
-- Find out how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>     
-
-- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>              
+- Check how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>     
