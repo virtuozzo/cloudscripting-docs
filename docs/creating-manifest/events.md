@@ -123,7 +123,7 @@ The event is executed before adding new node(s) (i.e. scaling *out*) to the exis
 
 ### onAfterScaleOut
 
-The event is executed after adding new node(s) to the existing node group. The *onAfterScaleOut* event is run only once for each layer upon any node count change.                       
+The event is executed after adding new node(s) to the existing node group. The *onAfterScaleOut* event is run once for each layer upon any node count change.                       
 
 **Event Placeholders:**  
  
