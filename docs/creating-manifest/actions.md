@@ -776,6 +776,85 @@ For more details about the <a href="/creating-manifest/add-ons/" target="blank">
 
 <!-- add example -->
 
+### return
+
+An ability to return an any string or object of values. A response will be displayed in popup window. The default popup window `type` is an `error`.
+
+For example:
+
+```json
+{
+    "type": "update",
+    "name": "Return Action",
+    "onInstall": {
+        "return": "Hello World!"
+    }
+}
+```
+
+The example below will return a popup window with returned text like at the screen below:
+<center>![returnHelloWorld](/img/returnHelloWorld.jpg)</center>
+
+and failed installation window:
+
+<center>![returnHelloWorld](/img/redCross.jpg)</center>
+
+If the `return` action includes a string then it will be in popup window with popup `type` **error** like in example below. Therefore, any returning **string** is response `type` - **error**. 
+
+```json
+{
+    "type": "update",
+    "name": "Return Action",
+    "onInstall": {
+        "return": "{\"data\": \"${nodes.cp.id}\",\"type\": \"success\"}"
+    }
+}
+```
+
+The result window returns a compute node unique identifier at Jelastic platform:
+<center>![returnNodeId](/img/returnNodeId.jpg)</center>
+
+If the action returns an object a response code can be redefined.
+In this case a `message` or `result` code parameters are required in the `return` object.
+A zero **result** code won't pass to response code. 
+
+```json
+{
+  "type": "update",
+  "name": "Return Action",
+  "onInstall": {
+    "return": {
+      "type": "success",
+      "data": "${nodes.cp.id}",
+      "message": "Compute node unique identifer - ${nodes.cp.id}"
+    }
+  }
+}
+```
+
+The example above displays a success message with compute node identifier. 
+More details about [Custom Response are here](/creating-manifest/handling-custom-responses/).
+
+All *actions* in `onInstall` array, like in example below, won't be executed after the `return` action.
+ 
+```json
+{
+    "type": "update",
+    "name": "Return Action",
+    "onInstall": [{
+            "return": {
+                "type": "success",
+                "data": "${nodes.cp.id}",
+                "message": "Compute node unique identifer - ${nodes.cp.id}"
+            }
+        },
+        "restartNodes [cp]"
+    ]
+}
+```
+
+Therefore, the action `restartNodes` won't restart compute node.
+
 ## Custom Actions
 
 Particular actions can be run by means of calling actions with different parameters.             
