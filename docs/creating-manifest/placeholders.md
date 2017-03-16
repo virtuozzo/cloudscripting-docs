@@ -231,6 +231,8 @@ This is the list of placeholders that you can use to specify UI parameters.
 - `${user.email}` - user email address
 - `${env.domain}` - full domain name without protocol
 - `${env.appid}` - unique environment appid at the Jelastic Platform
+- `${baseUrl}` - user custom relative URL. More details about <a href="/creating-manifest/basic-configs/#relative-links">Relative Links here</a>
+- `${platformUrl}` - hoster dashboard URL.
 
 **Example** 
 ``` json
