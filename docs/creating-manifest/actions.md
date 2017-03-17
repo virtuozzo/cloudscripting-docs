@@ -132,11 +132,11 @@ There are a number of parameters required by Jelastic API that are defined autom
 
 - *session* - unique session of a current user                                  
 
-Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be run on all nodes within a single <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required that is available either through the <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>, or a set of [custom action parameters](#custom-actions) (*${this}*).                     
+Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be run on all nodes within a single <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required that is available either through the <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>, or a set of [custom action parameters](#action-placeholders) (*${this}*).                     
 
 **Examples**
 
-Restarting all compute nodes in an environment.                      
+Restarting all compute nodes in the environment.                      
 ``` json
 {
     "api [cp]" : "jelastic.environment.control.RestartNodesByGroup"
@@ -370,7 +370,7 @@ The present section introduces actions that are provided for managing the topolo
 where:
 
 - `nodeType` *[required]* - parameter to specify <a href="/creating-manifest/selecting-containers/#predefined-nodetype-values" target="_blank">software stacks</a>. For Docker containers the *nodeType* value is **docker**.                                        
-- `extip` *[optional]* - attaching the Public IP address to a container. The default value is *'false'*.                     
+- `extip` *[optional]* - attaching the external IP address to a container. The default value is *'false'*.                     
 - `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.                             
 - `flexibleCloudlets` *[optional]* - number of dynamic cloudlets. The default value is *'1'*.                           
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
@@ -381,7 +381,7 @@ where:
 - `registryPassword` *[optional]* - Docker registry password
 - `dockerTag` - Docker tag for installation
 - `dockerLinks` *[optional]* - Docker links                         
-    - `sourceNodeGroup` - source node to be linked with a current node                                
+    - `sourceNodeGroup` - source node to be linked with another node                                
     - `alias` - prefix alias for linked variables                         
 - `dockerEnvVars` *[optional]* - Docker environment variables                        
 - `dockerVolumes` *[optional]* - Docker node volumes               
@@ -525,7 +525,7 @@ Available for SQL databases (except for Docker containers)
 where:          
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine target containers for the action execution. By default, the *nodeGroup* value is equal to *sqldb*.                            
-- `loginCredentials` - root creadentials to a new node                    
+- `loginCredentials` - root creadentials from a new node                    
     - `user` - username                    
     - `password` - password                 
 - `newDatabaseName` - your custom database name              
@@ -727,13 +727,13 @@ where:
 
 You can install a <a href="/creating-manifest/addons/" target="_blank">custom add-on</a> within another - *parent* manifest. By default, custom add-ons have the *update* installation type.                                      
 
-Thus, the add-on can be installed to:                                         
+Thus, the custom add-on can be installed to the:                                         
 
-- an existing environment, if its installation type is *update*                      
+- existing environment with the *update* installation type                         
 
-- a new environment, if its installation type is *install*. In this case, add-ons (if there are several ones) are installed sequentially one by one right after a new environment creation.                                                                   
+- new environment with the *install* installation type. In this case, add-ons (if there are several ones) are installed sequentially one by one right after a new environment creation.                                                                   
 
-The example below shows how to pass the add-on identifier to the *installAddon* action. This add-on's parameters are described in the *addons* section. As a result, the custom add-on with the *firstAddon* identifier initiates the creation of a new file in the *tmp* directory on a compute node.                                 
+The example below shows how to pass the add-on identifier to the *installAddon* action. This add-on's parameters are described in the *addons* section. As a result, the custom add-on with the *firstAddon* identifier initiates the creation of a new file in the *tmp* directory on the compute node layer.                                                 
 ``` json
 {
 	"type": "update",
@@ -770,15 +770,15 @@ In the following example, the *nodeGroup* parameter is passed to the *installAdd
 }
 ```
 
-For more details about the <a href="/creating-manifest/add-ons/" target="_blank">add-ons</a> installation, visit the linked page.                                              
+For more details about the <a href="/creating-manifest/addons/" target="_blank">add-ons</a> installation, visit the linked page.                                              
 
 <!-- add example -->
 
 ### return
 
-An ability to return an any string or object of values. A response will be displayed in popup window. The default popup window `type` is an `error`.
+The action allows to return any string or object of values. As a result, the response is displayed via the pop-up window. By default, the *error* pop-up window is used.                       
 
-For example:
+**Example**      
 
 ```json
 {
@@ -790,14 +790,14 @@ For example:
 }
 ```
 
-The example below will return a popup window with returned text like at the screen below:
+Through the example above, the pop-up window with the following text is returned.                             
 <center>![returnHelloWorld](/img/returnHelloWorld.jpg)</center>
 
-and failed installation window:
+The installation is not completed and the following installation window is displayed.                    
 
 <center>![returnHelloWorld](/img/redCross.jpg)</center>
 
-If the `return` action includes a string then it will be in popup window with popup `type` **error** like in example below. Therefore, any returning **string** is response `type` - **error**. 
+If the *return* action includes a string, then the response is displayed via the *error* pop-up window like in the screen-shot below.                            
 
 ```json
 {
@@ -809,13 +809,12 @@ If the `return` action includes a string then it will be in popup window with po
 }
 ```
 
-The result window returns a compute node unique identifier at Jelastic platform:
+The result window also returns the compute node's unique identifier at Jelastic Platform.                                                
 <center>![returnNodeId](/img/returnNodeId.jpg)</center>
 
-If the action returns an object a response code can be redefined.
-In this case a `message` or `result` code parameters are required in the `return` object.
-A zero **result** code won't pass to response code. 
+If the action returns an object, a response code can be redefined. So the *message* or *result* code parameters are required in the *return* object. Herewith, a zero (0) *result* code is not passed to the response code.        
 
+Through the following example, a success message with a compute node identifier is displayed.                                                                          
 ```json
 {
   "type": "update",
@@ -830,10 +829,9 @@ A zero **result** code won't pass to response code.
 }
 ```
 
-The example above displays a success message with compute node identifier. 
-More details about [Custom Response are here](/creating-manifest/handling-custom-responses/).
+For more details about [Custom Response](/creating-manifest/handling-custom-responses/), visit the linked page.                                    
 
-All *actions* in `onInstall` array, like in example below, won't be executed after the `return` action.
+All the other actions within the *onInstall* array are not executed after the *return* action.                
  
 ```json
 {
@@ -851,7 +849,7 @@ All *actions* in `onInstall` array, like in example below, won't be executed aft
 }
 ```
 
-Therefore, the action `restartNodes` won't restart compute node.
+Therefore, the *restartNodes* action is not run to restart a compute node.                                                            
 
 ## Custom Actions
 

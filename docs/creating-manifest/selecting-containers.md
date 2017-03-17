@@ -1,12 +1,10 @@
 # Specifying Target Container
 
-## Selector Types
-
 Running a specific <a href="/creating-manifest/actions/" target="_blank">action</a> requires to specify a target container, in confines of which this action is executed. Thus, it is possible to specify a [particular container](#particular-container), all containers within a layer by the [*nodeGroup*](#all-containers-by-group) value, or all containers of the same type by the [*nodeType*](#all-containers-by-type) value.                                 
 
 ### Particular Container
 
-The <em>nodeId</em> parameter is used to specify a particular container for an action execution. If you know the Node ID of your container (displayed at the Jelastic dashboard next to the required node), you can set it statically as follows.                                           
+The <em>nodeId</em> parameter is used to specify a particular container for the action execution. If you know the Node ID of your container (displayed at the Jelastic dashboard next to the required node), you can set it statically as follows.                                           
 
 ``` json
 {
@@ -56,7 +54,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 
 - *build*                           
 
-Actions for the specified <em>nodeGroup</em> are executed successively one by one. For Docker containers the <em>nodeGroup</em> parameter is not predefined, therefore, you can state it to any value above or your custom one.                              
+Actions for the specified <em>nodeGroup</em> are executed successively one by one. For Docker containers the <em>nodeGroup</em> value is not predefined, therefore, you can state it to any value above or your custom one.                              
 
 !!! note
     If you state a custom <em>nodeGroup</em> value for Docker containers, the corresponding container is placed to the <em>Extra</em> layer. Subsequently, this <em>nodeGroup</em> value can be used within the same-named actions field to point to the particular <em>Extra</em> layer.
@@ -101,13 +99,13 @@ where:
 - `engine` - parameter that specifies the engine version                               
 - `nodeType` - parameter that specifies the node type                                                    
 
-### Types of Selectors 
+## Selector Types                                    
 
 There are three alternative approaches, provided to specify a target container in a manifest:                                               
 
 - specifying a target container within a name of an action (**node selectors**)     
 
-Through the following example, a new file is created in the compute layer (<em>[cp]</em>) and a new directory is created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers, and the container with Node ID <em>123</em>. Actions for the specified containers are executed in the declared order.                         
+Through the following example, a new file is created in the compute layer (<em>[cp]</em>) and a new directory is created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers, and container with the Node ID <em>123</em>. Actions for the specified containers are executed in the declared order.                         
 ``` json
 [
   {
@@ -145,7 +143,7 @@ Through the following example, the <a href="/creating-manifest/actions/#createfi
 Learn more on this parameter within the <a href="/creating-manifest/actions/#custom-actions" target="_blank"><em>Custom Actions</em></a> documentation page.                                      
 
 !!! note 
-    <b>Node selectors</b> have higher priority than containers specified next to the action, but lower than parameters set in the action object.   
+    <b>Node selectors</b> have higher priority than containers specified next to the action, but lower than parameters set in the *actions* object.   
     If you specify all three parameters (*nodeId*, *nodeGroup*, and *nodeType*), actions for indicated containers are executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.   
 
 ## Supported Stacks                                  
@@ -296,8 +294,8 @@ The following section deals with the supported engine versions and their availab
 
 !!! note
     The list of supported <a href="https://docs.jelastic.com/software-stacks-versions" target="_blank">software stacks</a> can vary depending on your Jelastic Platform version - it can be checked at your dashboard.              
-      
-<h3> What’s next?</h3>                    
+
+<h2>What’s next?</h2>                     
 
 - Explore the list of available <a href="/creating-manifest/actions/" target="_blank">Actions</a>                                   
 
