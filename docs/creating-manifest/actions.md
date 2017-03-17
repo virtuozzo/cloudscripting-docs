@@ -597,36 +597,49 @@ The current section provides data on the user-defined actions.
 
 ### script
 
-Using Java or JavaScript object in your manifest. 
+A `script` is an ability to executing custom Java or Javascript codes. Therefore, this advantage helps to realize a custom logic.  
+`executeScript` is deprecated alias.  
+The simplest way to use Java or JavaScript object in your manifest in example below:
 
 ``` json
 {
-  "script": "string or URL",
-  "type": "string",
-  "params": "object"
+  "type": "update",
+  "name": "Execute scripts",
+  "onInstall": {
+    "script": "return 'Hello World!';"
+  }
+}
+```
+
+A custom scripts can be set via external links instead of a **string**.  
+The example execution result is a <a href="/creating-manifest/handling-custom-responses/" target="_blank">response type</a> `error` with message *"Hello World!"*.
+The default action script type is `javascript`.
+
+There is an ability to define language type or pass custom parameters. In this case the `script` action should be describe like in example below:
+
+```json
+{
+  "type": "update",
+  "name": "Execute scripts",
+  "script": {
+    "script": "return '${this.greeting}';",
+    "params": {
+      "greeting": "Hello World!"
+    },
+    "type": "js"
+  }
 }
 ```
 where:   
 
-- `script` - script body or a link to it                                                
+- `script` - an object where are defined script code, optional parameters and languarge code type                                                
 - `type` *[optional]* - script type with the following possible values (the default value is *'js'*):                                          
-    - `js`    
+    - `js` `(javascript)` an alias    
     - `java`      
-- `params` *[optional]* - script parameters                               
+- `params` *[optional]* - script parameters. Can can be used in scripts like placeholder in example - *${this.greeting}*                               
 
-<b>Example</b>
-``` json
-{
-  "executeScript": [
-    {
-      "script" : "return '${this.greeting}';",
-      "params" : {
-        "greeting" : "Hello World!"
-      }
-    }
-  ]
-}
-```
+A `script` action provides an ability to execute Jelastic API in custom scripts. Therefore, it is easy to manage Jelastic evnvironments by `scripts`.   
+There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certified by Jelastic team.
 
 !!! note
     Learn more about using <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a>.    
