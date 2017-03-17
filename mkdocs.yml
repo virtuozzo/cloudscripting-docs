@@ -64,7 +64,7 @@ pages:
    - Placeholders: creating-manifest/placeholders.md
    - Conditions and Iterations: creating-manifest/conditions-and-iterations.md
    - Custom Scripts: creating-manifest/custom-scripts.md
-   - Add-ons: creating-manifest/addons.md
+   - Add-Ons: creating-manifest/addons.md
    - Custom Responses: creating-manifest/handling-custom-responses.md
    - Visual Settings: creating-manifest/visual-settings.md
 #   - Custom Errors: reference/handling-custom-responses.md
