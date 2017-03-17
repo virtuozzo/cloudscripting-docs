@@ -482,11 +482,50 @@ where:
 - `caption` *[optional]* - field label                      
 - `name` *[optional]* - name of the field                  
 - `buttonText` *[optional]* - button label              
-- `url` *[optional]* - external source URL. The default link is to the Jelastic Platform.         
+- `url` *[optional]* - external source URL. The default link is to the current Jelastic Dashboard. New popup window is opened only via POST request.        
 - `popupWidth` *[optional]* - width in pixels          
 - `popupHeight` *[optional]* - height in pixels   
 - `popupCallbackEvent` - event handler   
 - `params` - parameters for sending in POST request to URL source     
+- `value` - defined value which is filled in text field
+
+The `textfield` value in `popupselector` element can be replaced by parameter from external `url` source. This parameter should be passed with `popupCallbackEvent` value.  
+For example:
+```json
+{
+  "type": "update",
+  "name": "Return Action",
+  "settings": {
+    "fields": {
+      "caption": "Popupselector",
+      "type": "popupselector",
+      "name": "popupselector",
+      "buttonText": "Open",
+      "value": "3",
+      "url": "https://{external_source}/example",
+      "popupWidth": "300px",
+      "popupHeight": "300px",
+      "popupCallbackEvent": "click",
+      "params": {
+        "first": 1,
+        "second": 2
+      }
+    }
+  }
+}
+```
+
+In example above the external source should returns a URL with such parameters as `value` and `event`. The `event` name is the same name as `popupCallbackEvent` in field description in manifest.  
+
+A full external resource link should be like in example below:
+```
+http://{Jelastic_Platform_URL} + "fireevent?event=click&value=hello"
+``` 
+where:
+
+- `Jelastic_Platform_URL` - Jelastic Dashboard URL where manifest is executed
+- `click` - event namewhich is handled in manifest in `popupCallbackEvent` parameter
+- `value` - type is **string**. The `textfield` will be filled by it when button "Open" will be applied.
 
 ### displayfield
 (*spacer* is an alias)    
