@@ -655,7 +655,7 @@ Setting a delay that is measured in milliseconds. The following example shows ho
 
 ### install
 
-The *install* action allows to nest a JPS manifest inside another - *parent* manifest file. The nested JPS manifest is installed subsequently after the *parent* one. The action is available for the *install* and *update* installation types.                              
+The *install* action allows to declare multiple installations within a single JPS manifest file. The action is available for the *install* and *update* installation types, therefore, it can initiate installation of both new environments and add-ons.                                 
 
 **Examples**
 
@@ -842,7 +842,7 @@ Through the following example, a success message with a compute node identifier 
 }
 ```
 
-For more details about [Custom Response](/creating-manifest/handling-custom-responses/), visit the linked page.                                    
+For more details about [*Custom Response*](/creating-manifest/handling-custom-responses/), visit the linked page.                                    
 
 All the other actions within the *onInstall* array are not executed after the *return* action.                
  
