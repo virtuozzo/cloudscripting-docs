@@ -16,49 +16,74 @@ There are three main pillars of cloud scripting:
 
 <p dir="ltr" style="text-align: justify;">The example below represents the Cloud Scripting basic use case. This manifest declares the creation of a new environment with the Jelastic-certified Payara Micro cluster image and provides possibility to configure new cluster members while scaling nodes. Within the manifest, the following key parameters are declared:</p>
  
-* `onAfterScaleIn`, `onBeforeServiceScaleOut` - scaling <a href="/creating-manifest/events/#onafterscalein" target="blank">events</a>            
+* `nodes` - a environment topology which will be created
+
+* `onAfterScaleIn`, `onAfterScaleOut` - scaling <a href="/creating-manifest/events/#onafterscalein" target="blank">events</a>            
 
 * `cmd` - action to execute <a href="/creating-manifest/actions/#cmd" target="blank">shell commands</a>               
 
-* `forEach` - iteration <a href="/creating-manifest/conditions-and-iterations/#foreach" target="blank">object</a>          
-
-* `addClusterMembers` - custom <a href="/creating-manifest/actions/#custom-actions" target="blank">action</a>         
+* `updateNodes` - custom <a href="/creating-manifest/actions/#custom-actions" target="blank">action</a>         
+* `baseUrl` - external links <a href="/creating-manifest/basic-configs/#relative-links" target="_blank">relative path</a> 
 
 ```json
 {
   "type": "install",
-  "name": "Simple Payara Micro Cluster",
-  "nodes": [
-    {
-      "cloudlets": 16,
-      "nodeGroup": "cp",
-      "image": "jelastic/payara-micro-cluster",
-      "env": {
-        "HAZELCAST_GROUP": "CHANGE_ME",
-        "HAZELCAST_PASSWORD": "CHANGE_ME",
-        "VERT_SCALING": "true"
-      },
-      "volumes": [
-        "/opt/payara/deployments",
-        "/opt/payara/config",
-        "/var/log"
-      ]
-    }
-  ],
-  "onBeforeServiceScaleOut[nodeGroup:cp]": "addClusterMembers",
-  "onAfterScaleIn[nodeGroup:cp]": {
-    "forEach(event.response.nodes)": {
-      "cmd [cp]": "$PAYARA_PATH/bin/clusterManager.sh --removehost ${@i.intIP}"
-    }
+  "name": "Advanced Payara Micro Cluster",
+  "nodes": {
+    "cloudlets": 16,
+    "nodeGroup": "cp",
+    "image": "jelastic/payara-micro-cluster",
+    "env": {
+      "HAZELCAST_GROUP": "${fn.uuid}",
+      "HAZELCAST_PASSWORD": "${fn.password}"
+    },
+    "volumes": [
+      "/opt/payara/deployments",
+      "/opt/payara/config",
+      "/var/log"
+    ]
   },
-  "onInstall": "addClusterMembers",
-  "actions": {
-    "addClusterMembers": {
+  "onInstall": [
+    {
       "forEach(nodes.cp)": {
-        "cmd [cp]": "$PAYARA_PATH/bin/clusterManager.sh --addhost ${@i.intIP}"
+        "updateNodes": {
+          "option": "add",
+          "ip": "${@i.intIP}"
+        }
+      }
+    },
+    {
+      "install": {
+        "jps": "${baseUrl}/application-storage/manifest.jps"
       }
     }
-  }
+  ],
+  "onAfterScaleOut[cp]": {
+    "forEach(event.response.nodes)": {
+      "updateNodes": {
+        "option": "add",
+        "ip": "${@i.intIP}"
+      }
+    }
+  },
+  "onAfterScaleIn[cp]": {
+    "forEach(event.response.nodes)": {
+      "updateNodes": {
+        "option": "remove",
+        "ip": "${@i.intIP}"
+      }
+    }
+  },
+  "actions": {
+    "updateNodes": {
+      "cmd[cp]": "$PAYARA_PATH/bin/clusterManager.sh --${this.option}host ${this.ip}"
+    }
+  },
+  "success": "TODO: Put markdown text here + add markdown syntaxis to the docs",
+  "baseUrl": "https://github.com/jelastic-jps/payara/raw/master/addons",
+  "logo": "https://raw.githubusercontent.com/jelastic-jps/payara/master/images/70.png",
+  "description": "Example: The package automatically provisions Payara Micro cluster, mounts storage container and deploys test war applications.",
+  "homepage": "http://docs.cloudscripting.com/"
 }
 ```
 <br>       
