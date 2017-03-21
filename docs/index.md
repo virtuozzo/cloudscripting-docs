@@ -29,7 +29,8 @@ There are three main pillars of cloud scripting:
 {
   "type": "install",
   "name": "Advanced Payara Micro Cluster",
-  "nodes": {
+  "nodes": [{
+    "count": 1,
     "cloudlets": 16,
     "nodeGroup": "cp",
     "image": "jelastic/payara-micro-cluster",
@@ -42,7 +43,7 @@ There are three main pillars of cloud scripting:
       "/opt/payara/config",
       "/var/log"
     ]
-  },
+  }],
   "onInstall": [
     {
       "forEach(nodes.cp)": {
