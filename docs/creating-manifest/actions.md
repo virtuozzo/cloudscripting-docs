@@ -79,6 +79,49 @@ The single SSH command can be passed in a string. For example, running a bash sc
 }
 ```
 
+The default `cmd` parameter is **comamnds**. It can be usefull to set a several commands in the same `cmd` action. For example:
+
+```json
+{
+  "type": "update",
+  "name": "Cmd commands",
+  "onInstall": {
+    "cmd": [
+      {
+        "commands": "echo 'Hello ' >> /tmp/CmdResponse.txt"
+      },
+      {
+        "commands": "echo 'World!!!' >> /tmp/CmdResponse.txt"
+      }
+    ],
+    "nodeGroup": "cp"
+  }
+}
+```
+
+The same commands can be executed on different target nodes. In this case **nodeGroup** parameter should be set twice for every method:
+
+```json
+{
+  "type": "update",
+  "name": "Cmd commands",
+  "onInstall": {
+    "cmd": [
+      {
+        "commands": "echo 'Hello ' >> /tmp/CmdResponse.txt",
+        "nodeId": "${nodes.cp[0].id}"
+      },
+      {
+        "commands": "echo 'World!!!' >> /tmp/CmdResponse.txt",
+        "nodeGroup": "cp"
+      }
+    ]
+  }
+}
+```
+
+Therefore, the first commands will be executed only in a first compute node. 
+
 While accessing a container via *cmd*, you receive all the required permissions and additionally can manage the main services with **sudo** commands of the following types (and others).            
 ```no-highlight
 sudo /etc/init.d/jetty start  
@@ -162,6 +205,52 @@ Below, you can find one more approach to specify a target node group for the API
 }
 ```
 
+There is an default parameter `method` for `api` action. This parameter is usefull while setting few api method in one `api` action. For example:
+
+```json
+{
+    "type": "update",
+    "name": "API action",
+    "onInstall": {
+        "api": [{
+            "method": "environment.file.Create",
+            "params": {
+                "nodeGroup": "cp",
+                "path": "/tmp/exampleFile.txt"
+            }
+        },{
+            "method": "environment.control.RestartNodesByGroup",
+            "params": {
+                "nodeGroup": "cp"
+            }
+        }]
+    }
+}
+```
+
+In example above there are two api methods **Create** file and **RestartNodesByGroup**. Every method has their own set of parameters which they are required.
+
+The same parameters for all **methods** in one `action` can be set once. For example:
+  
+```json
+{
+    "type": "update",
+    "name": "API action",
+    "onInstall": {
+        "api": [{
+            "method": "environment.file.Create",
+            "params": {
+                "path": "/tmp/exampleFIle.txt"
+            }
+        }, {
+            "method": "environment.control.RestartNodesByGroup"
+        }],
+        "nodeGroup": "cp"
+    }
+}
+```
+Therefore, no needs to duplicate the parameter **nodeGroup** in every **method**. It will applied for every **method** in **api** `action`. 
+
 ### deploy
 
 Available for compute nodes (except for Docker containers)
@@ -242,7 +331,42 @@ Available for all nodes
 where:   
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                   
-- `string` - container path where a file is to be created                              
+- `string` - container path where a file is to be created     
+                         
+There is an ability to create few files in the same target node in one `createFile` action. In this case parameter **path** is needed. For example:
+
+```json
+{
+    "type": "update",
+    "name": "Create File action",
+    "onInstall": {
+        "createFile": [{
+            "path": "/tmp/firstFile"
+        },{
+            "path": "/tmp/secondFile"
+        }],
+        "nodeGroup": "cp"
+    }
+}
+```
+
+In the example above the parameter **nodeGroup** is the same for two `createFile` actions. A target nodes can be specified separately in every method: 
+
+```json
+{
+    "type": "update",
+    "name": "Create File action",
+    "onInstall": {
+        "createFile": [{
+            "path": "/tmp/firstFile",
+            "nodeGroup": "sqldb"
+        },{
+            "path": "/tmp/secondFile",
+            "nodeGroup": "cp"
+        }]
+    }
+}
+```
 
 ### createDirectory
 
@@ -257,6 +381,41 @@ where:
 
 - `nodeId`, `nodGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                                 
 - `string` - container path where a directory is to be created                         
+
+There is an ability to create few directories in the same target node in one `createDirectory` action. In this case parameter **path** is needed. For example:
+
+```json
+{
+    "type": "update",
+    "name": "Create Directory action",
+    "onInstall": {
+        "createDirectory": [{
+            "path": "/tmp/secondDirectory"
+        },{
+            "path": "/tmp/firstDirectory"
+        }],
+        "nodeGroup": "cp"
+    }
+}
+```
+
+In the example above the parameter **nodeGroup** is the same for two `createDirectory` actions. Target nodes can be specified separately in every method: 
+
+```json
+{
+    "type": "update",
+    "name": "Create Directory action",
+    "onInstall": {
+        "createDirectory": [{
+            "path": "/tmp/secondDirectory",
+            "nodeGroup": "sqldb"
+        },{
+            "path": "/tmp/firstDirectory",
+            "nodeGroup": "cp"
+        }]
+    }
+}
+```
 
 ### writeFile
 
@@ -403,6 +562,25 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                   
 - `string` - node’s display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                                                        
 
+The action `setNodeDisplayName` has the default parameter called **displayName**. It is usefull to set display name for few node layers in the same `action`. For example:
+```json
+{
+  "type": "update",
+  "name": "setNodeDisplayName example",
+  "onInstall": {
+    "setNodeDisplayName": [
+      {
+        "displayName": "Compute Nodes",
+        "nodeGroup": "cp"
+      },
+      {
+        "displayName": "SQL Nodes",
+        "nodeGroup": "sqldb"
+      }
+    ]
+  }
+}
+```
 
 ### setNodeCount
 
@@ -420,6 +598,28 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                       
 - `number` - total number of nodes after the action is finished                                          
 
+The action `setNodeCount` has it own default parameter - **count**. It is usefull to set node count for few node layers in one action. For example:
+
+```json
+{
+  "type": "update",
+  "name": "setNodeCount example",
+  "onInstall": {
+    "setNodeCount": [
+      {
+        "count": 3,
+        "nodeGroup": "cp"
+      },
+      {
+        "count": 5,
+        "nodeGroup": "sqldb"
+      }
+    ]
+  }
+}
+```
+Therefore, when `action` execution will be finished three compute nodes and five sql nodes will be available in the same environment.
+
 ### setExtIpEnabled
 
 Available for all nodes                      
@@ -435,6 +635,29 @@ where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                                    
 - `true` or `false` - parameter that allows to attach or detach the external IP address                              
+
+The action `setExtIpEnabled` has  own default parameter *enabled*. It is usefull in case to set external IP address status for few nodes in the same `action`. For example:
+
+```json
+{
+  "type": "update",
+  "name": "Set External IP Address",
+  "onInstall": {
+    "setExtIpEnabled": [
+      {
+        "enabled": true,
+        "nodeGroup": "cp"
+      },
+      {
+        "enabled": false,
+        "nodeGroup": "sqldb"
+      }
+    ]
+  }
+}
+```
+
+Therefore, compute nodes will have an external ip address and sql nodes will be without ext IPs.
 
 ### restartNodes
 
@@ -653,19 +876,59 @@ Setting a delay that is measured in milliseconds. The following example shows ho
 }
 ```
 
+The default optional parameter is **milliseconds**. Therefore, a `sleep` action can be set like in example before:
+
+```json
+{
+  "sleep": {
+    "milliseconds": "1000"
+  }
+}
+```
+
 ### install
 
 The *install* action allows to declare multiple installations within a single JPS manifest file. The action is available for the *install* and *update* installation types, therefore, it can initiate installation of both new environments and add-ons.                                 
 
-**Examples**
+The simplest record for `install` action is described like in example below:
 
-Installing the add-on via the external link (with the *update* installation type).            
+```json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install": "http://example.com/manifest.jps"
+  }
+}
+```
+Therefore, the `install` action can be set by **string**.
+
+Also ther is an ability to set a few external manifests inside one `install` action in one array. For example:
+
+```json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install": [
+      "http://example.com/manifest.jp",
+      "http://example.com/manifest2.jp"
+      ]
+  }
+}
+```
+
+The next example describes installing the add-on via the external link (with the *update* installation type) with additional parameters.            
 ``` json
 {
-  "install" : {
-    "jps" : "http://example.com/manifest.jps",
-    "settings" : {
-      "myparam" : "test"
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install": {
+      "jps": "http://example.com/manifest.jps",
+      "settings": {
+        "myparam": "test"
+      }
     }
   }
 }
@@ -673,16 +936,20 @@ Installing the add-on via the external link (with the *update* installation type
 where:
 
 - `jps` - URL to your custom JPS manifest  
-- `settings` - user <a href="/creating-manifest/visual-settings/" target="_blank">custom form</a>           
+- `settings` - user custom parameters           
 
 Installing the add-on from the local manifest file.                    
 ``` json
 {
-  "install" : {
-    "type" : "update",
-    "name" : "test",
-    "onInstall" : {
-      "log" : "install test"
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install": {
+      "type": "update",
+      "name": "test",
+      "onInstall": {
+        "log": "install test"
+      }
     }
   }
 }
@@ -694,13 +961,17 @@ where:
 Installing the environment via the external link (with the *install* installation type).                 
 ``` json
 {
-  "install" : {
-    "jps" : "http://example.com/manifest.jps",
-    "envName" : "env-${fn.random}",
-    "settings" : {
-      "myparam" : "test"
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install": {
+      "jps": "http://example.com/manifest.jps",
+      "envName": "env-${fn.random}",
+      "settings": {
+        "myparam": "test"
+      }
     }
-  } 
+  }
 }
 ```
 where: 
@@ -712,17 +983,21 @@ where:
 Installing the environment from the local manifest file.                      
 ``` json
 {
-  "install" : {
-    "type" : "install",
-    "region" : "dev",
-    "envName" : "env-${fn.random}",
-    "name" : "test",
-    "nodes" : {
-         "nodeType" : "apache2",
-          "cloudlets" : 16
-    },
-    "onInstall" : {
-      "log" : "install test"
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install": {
+      "type": "install",
+      "region": "dev",
+      "envName": "env-${fn.random}",
+      "name": "test",
+      "nodes": {
+        "nodeType": "apache2",
+        "cloudlets": 16
+      },
+      "onInstall": {
+        "log": "install test"
+      }
     }
   }
 }
