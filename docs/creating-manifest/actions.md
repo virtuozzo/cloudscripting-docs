@@ -79,7 +79,7 @@ The single SSH command can be passed in a string. For example, running a bash sc
 }
 ```
 
-The default `cmd` parameter is **comamnds**. It can be usefull to set a several commands in the same `cmd` action. For example:
+The default `cmd` parameter is **commands**. It can be usefull to set a several commands in the same `cmd` action. For example:
 
 ```json
 {
