@@ -982,13 +982,34 @@ As it was mentioned above, the success response is distinguished between two val
   },
   "success": {
     "email": "README.md",
-    "en": "README.md",
-    "ru": "https://github.com/jelastic-jps/lets-encrypt/blob/master/README.md"
+    "text": {
+      "en": "README.md",
+      "ru": "https://github.com/jelastic-jps/lets-encrypt/blob/master/README.md"
+    }
   }
 }
 ```
 
+A email notification also can be customized in <a href="/creating-manifest/handling-custom-responses/">custom responses</a>. In this case an `email` value from handle custom response has a highier priority. For example:
+
+```json
+{
+  "type": "update",
+  "name": "Success Text Customization",
+  "onInstall": {
+    "return": {
+      "result": "success",
+      "email": "Custom email response text"
+    }
+  },
+  "success": "success!!"
+}
+```
+
 In the last example above, the localization functionality is applied, which depends upon the Jelastic Platform selected language.
+
+A custom responses can be return within <a href="/creating-manifest/actions/#return" target="_blank">`return`</a> or <a href="/creating-manifest/actions/#script" target="_blank">`script`</a> actions. More details about <a href="/creating-manifest/handling-custom-responses/" target="_blank">custom responses here</a>. 
+
 <br>
 <h2>What's next?</h2>
 

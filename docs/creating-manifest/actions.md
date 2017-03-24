@@ -1092,7 +1092,7 @@ If the *return* action includes a string, then the response is displayed via the
     "type": "update",
     "name": "Return Action",
     "onInstall": {
-        "return": "{\"data\": \"${nodes.cp.id}\",\"type\": \"success\"}"
+        "return": "{\"message\": \"${nodes.cp.id}\",\"type\": \"success\"}"
     }
 }
 ```
@@ -1110,7 +1110,6 @@ Through the following example, a success message with a compute node identifier 
   "onInstall": {
     "return": {
       "type": "success",
-      "data": "${nodes.cp.id}",
       "message": "Compute node unique identifer - ${nodes.cp.id}"
     }
   }
@@ -1128,7 +1127,6 @@ All the other actions within the *onInstall* array are not executed after the *r
     "onInstall": [{
             "return": {
                 "type": "success",
-                "data": "${nodes.cp.id}",
                 "message": "Compute node unique identifer - ${nodes.cp.id}"
             }
         },
