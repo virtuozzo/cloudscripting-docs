@@ -16,15 +16,18 @@ There are the following types of pop-up windows that emerge while custom respons
 
 <center>![new-error](/img/new-error.png)</center>          
 
-When the action is executed with the expected result code, the *success* window is displayed.                       
+- `success` - *successfull* result window.  
+When the action is executed with the expected result code, the *success* window is displayed.  
 
 <center>![success](/img/successResponse.jpg)</center>                               
+
+A **success** type has an optional parameter `email` - custom email can be sent after successful JPS installation. 
 
 The *info*, *error* and *warning* pop-up windows emerge as a result of failed installation. The manifest installation is finished immediately, if any action returns the negative result code or code predefined in the *responses* block. Thus, the installation process is marked by the red cross like in the picture below.                        
 
 <center>![success](/img/redCross.jpg)</center>
 
-The basic custom response message can be returned in one string via the *return* or *script* action as follows.                     
+The basic custom response message can be returned in one string via the **return** or **script** action as follows.                     
  
 ```json
 {
@@ -48,9 +51,9 @@ The basic custom response message can be returned in one string via the *return*
 
 In this case, the default response type is *error* and the response *warning* message is returned in a string.
 
-It is possible to return a response with a predefined result type and with a custom message text via the *return* or *script* action.                  
+It is possible to return a response with a predefined result type and with a custom message text via the **return** or **script** action.                  
 
-The *return* action.                  
+The <a href="/creating-manifest/actions/#script" target="_blank">*return*</a> action.                  
 
 ```json
 {
@@ -68,15 +71,15 @@ The *return* action.
 !!! note
     The *email* parameter is available only for the *success* response type. The email is delivered when an action is executed with the *success* response code.                         
 
-The *script* action. 
+The <a href="/creating-manifest/actions/#script" target="_blank">*script*</a> action. 
 
 ```json
 {
-    "type": "update",
-    "name": "response handlers",
-    "onInstall": {
-        "script": "return {result: 'warning', message: 'Warning!','email': 'string'}"
-    }
+  "type": "update",
+  "name": "response handlers",
+  "onInstall": {
+    "script": "return {\"result\": \"warning\", \"message\": \"Warning!\",\"email\": \"string\"}"
+  }
 }
 ```
 
@@ -86,7 +89,7 @@ When a response code with the *success* installation type is returned, two respo
 
 **Examples**                           
 
-Here, the result code is with the *success* installation type, the message is '*Hello!!*', and the email message is '*success!!*'.                                        
+Here, the result code is with the *success* installation type, the message is '*Hello!!*' will be displayed at Jelastic dashboard, and the email message is '*success!!*' will be sent.                                        
 ```json
 {
     "type": "update",
