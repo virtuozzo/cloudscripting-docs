@@ -76,9 +76,9 @@ pages:
 - Troubleshooting: troubleshooting.md
 
 #Release Notes
-- Release Notes:
-    - CS Releases: releasenotes.md
-    - CS vs Jelastic Versions: jelastic-cs-correspondence.md
+#- Release Notes:
+#    - CS Releases: releasenotes.md
+- CS vs Jelastic Versions: jelastic-cs-correspondence.md
 
     #  - Docker Actions : reference/docker-actions.md
    #- Relative Links: creating-templates/relative-links.md
