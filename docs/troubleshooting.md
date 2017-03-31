@@ -19,6 +19,7 @@ Below, you can find some samples of editing custom information to the log:
 
 - outputting a single <a href="/creating-manifest/placeholders/" target="blank">placeholder</a> value                     
 
+@@@
 ``` json
 {
   "type": "update",
@@ -31,9 +32,19 @@ Below, you can find some samples of editing custom information to the log:
   }
 }
 ```
+```yaml
+type: update
+name: LogTest
+onInstall:
+  log:
+    - Hello
+    - ${user.email}
+```
+@@!
 
 - outputting all the placeholders              
 
+@@@
 ``` json
 {
   "type": "update",
@@ -42,16 +53,24 @@ Below, you can find some samples of editing custom information to the log:
     "log": "${placeholders}"
   }
 }
-```  
+```
+```yaml
+type: update
+name: LogTest
+onInstall:
+  log: ${placeholders}
+```
+@@!
 
 - outputting from a script             
 
+@@@
 ``` json  
 {
   "type": "update",
   "name": "LogTest",
   "onInstall": {
-    "executeScript": {
+    "script": {
       "type": "js",
       "script": "http://example.com/script.js"
     }
@@ -65,6 +84,18 @@ Below, you can find some samples of editing custom information to the log:
   ]
 }
 ```
+```yaml
+type: update
+name: LogTest
+onInstall:
+  script:
+    type: js
+    script: "http://example.com/script.js"
+actions:
+  - myaction:
+      log: ${this.message}
+```
+@@!
 
 `script.js` body:      
 
@@ -75,12 +106,12 @@ return {
     result: 0, 
     onAfterReturn: {
         call: [{
-            action: 'log', 
+            action: 'myaction', 
             params: {
                 message: message
             } 
         }, {
-            action: 'log',
+            action: 'myaction',
             params: {
                 message: 'World !'
             }

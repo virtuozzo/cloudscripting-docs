@@ -17,18 +17,16 @@ And to get up and ready with your own project, fulfill the following requirement
 ## Hello World Manifest Example                      
 
 Hello World is a simple ready-to-go application that you can use as a start point in exploring Cloud Scripting possibilities.                                              
-
+@@@
 ```json
 {
   "type": "install",
   "name": "Hello World!",
   "engine": "php5.4",
-  "nodes": [
-    {
+  "nodes": {
       "nodeType": "apache2",
       "cloudlets": 16
-    }
-  ],
+  },
   "onInstall": {
     "deploy": {
       "archive": "http://app.demo.jelastic.com/HelloWorld.zip",
@@ -38,6 +36,21 @@ Hello World is a simple ready-to-go application that you can use as a start poin
   }
 }
 ```
+```yaml
+
+type: install,
+name: Hello World,
+engine: php5.4
+nodes: 
+  nodeType: apache2,
+  cloudlets: 16
+onInstall: 
+  deploy:
+    archive: http://app.demo.jelastic.com/HelloWorld.zip
+    name: Hello World
+    context: ROOT
+```
+@@!
 
 The current manifest states to create a new environment, handled with **Apache 2** application server on top of **PHP 5.4** engine. After that, the platform will fetch the archive with Hello World app from the specified URL and deploy it to the Apache **ROOT** context.                                   
 

@@ -25,6 +25,7 @@ There are three main pillars of cloud scripting:
 * `updateNodes` - custom <a href="/creating-manifest/actions/#custom-actions" target="blank">action</a>         
 * `baseUrl` - external links <a href="/creating-manifest/basic-configs/#relative-links" target="_blank">relative path</a> 
 
+@@@
 ```json
 {
   "type": "install",
@@ -87,6 +88,49 @@ There are three main pillars of cloud scripting:
   "homepage": "http://docs.cloudscripting.com/"
 }
 ```
+```yaml
+type: install
+name: Advanced Payara Micro Cluster
+nodes: 
+  - count: 1
+    image: jelastic/payara-micro-cluster
+    nodeGroup: cp
+    cloudlets: 16
+    env:
+      HAZELCAST_GROUP: ${fn.uuid}
+      HAZELCAST_PASSWORD: ${fn.password}
+    volumes:
+      - /opt/payara/deployments
+      - /opt/payara/config
+      - /var/log
+onInstall:
+  - forEach(nodes.cp):
+      updateNodes:
+        option: add
+        ip: ${@i.intIP}
+  - install:
+      jps: ${baseUrl}/application-storage/manifest.jps
+onAfterScaleOut[cp]:
+  forEach(event.response.nodes):
+    updateNodes:
+      option: add
+      ip: ${@i.intIP}
+onAfterScaleIn[cp]:
+  forEach(event.response.nodes):
+    updateNodes:
+      option: remove
+      ip: ${@i.intIP}
+actions:
+  updateNodes:
+    cmd[cp]: $PAYARA_PATH/bin/clusterManager.sh --${this.option}host ${this.ip}
+success: "TODO: Put markdown text here + add markdown syntaxis to the docs"
+baseUrl: "https://github.com/jelastic-jps/payara/raw/master/addons"
+logo: "https://raw.githubusercontent.com/jelastic-jps/payara/master/images/70.png"
+description: "Example: The package automatically provisions Payara Micro cluster, mounts storage container and deploys test war applications."
+homepage: "http://docs.cloudscripting.com/"
+
+```
+@@!
 <br>       
 <h2> What’s next?</h2>
 
