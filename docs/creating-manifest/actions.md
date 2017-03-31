@@ -1353,6 +1353,7 @@ where:
 - `onInstall` - entry point for performed actions                                 
 
 Installing the environment via the external link (with the *install* installation type).                 
+@@@
 ``` json
 {
   "type": "update",
@@ -1368,6 +1369,17 @@ Installing the environment via the external link (with the *install* installatio
   }
 }
 ```
+```yaml
+type: update
+name: Install action
+onInstall:
+  install:
+    jps: "http://example.com/manifest.jps"
+    envName: env-${fn.random}
+    settings:
+      myparam: test
+```
+@@!
 where: 
 
 - `jps` - URL to your custom JPS manifest                    
@@ -1375,6 +1387,7 @@ where:
 - `settings` - user <a href="/creating-manifest/visual-settings/" target="_blank">custom form</a>                                               
 
 Installing the environment from the local manifest file.                      
+@@@
 ``` json
 {
   "type": "update",
@@ -1396,6 +1409,22 @@ Installing the environment from the local manifest file.
   }
 }
 ```
+```yaml
+type: update
+name: Install action
+onInstall:
+  install:
+    type: install
+    region: dev
+    envName: env-${fn.random}
+    name: test
+    nodes:
+      nodeType: apache2
+      cloudlets: 16
+    onInstall: 
+      log: install test
+```
+@@!
 where:
 
 - `region` - hardware node's <a href="https://docs.jelastic.com/environment-regions" target="_blank">region</a>                                               
@@ -1416,6 +1445,7 @@ Thus, the custom add-on can be installed to the:
 - new environment with the *install* installation type. In this case, add-ons (if there are several ones) are installed sequentially one by one right after a new environment creation.                                                                   
 
 The example below shows how to pass the add-on identifier to the *installAddon* action. This add-on's parameters are described in the *addons* section. As a result, the custom add-on with the *firstAddon* identifier initiates the creation of a new file in the *tmp* directory on the compute node layer.                                                 
+@@@
 ``` json
 {
 	"type": "update",
@@ -1434,6 +1464,19 @@ The example below shows how to pass the add-on identifier to the *installAddon* 
 	}]
 }
 ```
+```yaml
+type: update
+name: Install Add-on example
+onInstall:
+  installAddon:
+    id: firstAddon
+addons:
+  - id: firstAddon
+    name: firstAddon
+    onInstall:
+      createFile [cp]: /tmp/exampleFile.txt
+```
+@@!
 where:  
 
 - `id` - identifier of a custom add-on                           
@@ -1443,6 +1486,7 @@ You can locate the installed add-ons within the **Add-ons** tab at the Jelastic 
 <center>![new-addon](/img/new-addon.png)</center>
 
 In the following example, the *nodeGroup* parameter is passed to the *installAddon* action, targeting the add-on at the balancer (*bl*) node group.                          
+@@@
 ``` json
 {
   "installAddon": {
@@ -1451,6 +1495,12 @@ In the following example, the *nodeGroup* parameter is passed to the *installAdd
   }
 }
 ```
+```yaml
+installAddon:
+  id: firstAddon
+  nodeGroup: bl
+```
+@@!
 
 For more details about the <a href="/creating-manifest/addons/" target="_blank">add-ons</a> installation, visit the linked page.                                              
 
@@ -1461,7 +1511,7 @@ For more details about the <a href="/creating-manifest/addons/" target="_blank">
 The action allows to return any string or object of values. As a result, the response is displayed via the pop-up window. By default, the *error* pop-up window is used.                       
 
 **Example**      
-
+@@@
 ```json
 {
     "type": "update",
@@ -1471,6 +1521,13 @@ The action allows to return any string or object of values. As a result, the res
     }
 }
 ```
+```yaml
+type: update
+name: Return Action
+onInstall:
+  return: Hello World!
+```
+@@!
 
 Through the example above, the pop-up window with the following text is returned.                             
 <center>![returnHelloWorld](/img/returnHelloWorld.jpg)</center>
