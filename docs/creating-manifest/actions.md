@@ -1510,7 +1510,7 @@ For more details about the <a href="/creating-manifest/addons/" target="_blank">
 
 The action allows to return any string or object of values. As a result, the response is displayed via the pop-up window. By default, the *error* pop-up window is used.                       
 
-**Example**      
+**Example**
 @@@
 ```json
 {
@@ -1537,7 +1537,7 @@ The installation is not completed and the following installation window is displ
 <center>![returnHelloWorld](/img/redCross.jpg)</center>
 
 If the *return* action includes a string, then the response is displayed via the *error* pop-up window like in the screen-shot below.                            
-
+@@@
 ```json
 {
     "type": "update",
@@ -1547,13 +1547,22 @@ If the *return* action includes a string, then the response is displayed via the
     }
 }
 ```
+```yaml
+type: update
+name: Return Action
+onInstall:
+  return: |
+    {"message": "${nodes.cp.id}", "type": "success"}
+```
+@@!
 
 The result window also returns the compute node's unique identifier at Jelastic Platform.                                                
 <center>![returnNodeId](/img/returnNodeId.jpg)</center>
 
 If the action returns an object, a response code can be redefined. So the *message* or *result* code parameters are required in the *return* object. Herewith, a zero (0) *result* code is not passed to the response code.        
 
-Through the following example, a success message with a compute node identifier is displayed.                                                                          
+Through the following example, a success message with a compute node identifier is displayed.
+@@@
 ```json
 {
   "type": "update",
@@ -1566,11 +1575,20 @@ Through the following example, a success message with a compute node identifier 
   }
 }
 ```
+```yaml
+type: update
+name: Return Action
+onInstall:
+  return:
+    type: success
+    message: Compute node unique identifer - ${nodes.cp.id}
+```
+@@!
 
 For more details about [*Custom Response*](/creating-manifest/handling-custom-responses/), visit the linked page.                                    
 
 All the other actions within the *onInstall* array are not executed after the *return* action.                
- 
+@@@
 ```json
 {
     "type": "update",
@@ -1585,6 +1603,16 @@ All the other actions within the *onInstall* array are not executed after the *r
     ]
 }
 ```
+```yaml
+type: update
+name: Return Action
+onInstall:
+  - return:
+    type: success
+    message: Compute node unique identifer - ${nodes.cp.id}
+  - restartNodes [cp]
+```
+@@!
 
 Therefore, the *restartNodes* action is not run to restart a compute node.                                                            
 
@@ -1592,7 +1620,8 @@ Therefore, the *restartNodes* action is not run to restart a compute node.
 
 Particular actions can be run by means of calling actions with different parameters.             
 
-The example below shows how to create a new file (e.g. the <b>*example.txt*</b> file in the <b>*tmp*</b> directory) by running a *createFile* action on the compute node.                 
+The example below shows how to create a new file (e.g. the <b>*example.txt*</b> file in the <b>*tmp*</b> directory) by running a *createFile* action on the compute node.
+@@@
 ``` json
 {
   "type": "update",
@@ -1602,11 +1631,19 @@ The example below shows how to create a new file (e.g. the <b>*example.txt*</b> 
   }
 }
 ```
+```yaml
+type: update
+name: execution actions
+onInstall:
+  createFile [cp]: /tmp/example.txt
+```
+@@!
 where: 
 
  - `createFile` - corresponding [*createFile*](#createfile) action                     
 
-The next example illustrates how to create a new custom action (i.e. *customAction*) that can be called for several times.                                                        
+The next example illustrates how to create a new custom action (i.e. *customAction*) that can be called for several times.
+@@@
 ``` json
 {
 	"type": "update",
@@ -1619,6 +1656,15 @@ The next example illustrates how to create a new custom action (i.e. *customActi
 	}
 }
 ```
+```yaml
+type: update
+name: execution actions
+onInstall: customAction
+actions:
+  customAction:
+    createFile [cp]: /tmp/example.txt
+```
+@@!
 where:  
 
 - `actions` - object where custom actions can be predefined                                    
@@ -1628,7 +1674,7 @@ where:
 In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. The parameters, sent to a call method, are transformed into a separate kit of placeholders, which can be further used within the appropriate actions by means of *${this}*  namespace. Access to a node inside environment can be gained according to its type, as well as according to its role in the environment.                             
 
 The example below illustrates how to pass the dynamic parameters for running in the action. Here, the *name* parameter is sent to <b>*customAction*</b> where the *createFile* action is executed.                   
-
+@@@
 ```json
 {
     "type": "update",
@@ -1645,7 +1691,17 @@ The example below illustrates how to pass the dynamic parameters for running in 
     }
 }
 ```
-
+```yaml
+type: update
+name: $this in Custom Actions
+onInstall:
+  customAction:
+    name: simpleTxtFile
+actions:
+  customAction:
+    createFile [cp]: /tmp/${this.name}.txt
+```
+@@!
 Therefore, the same custom actions can be reused for several times with different parameters. Moreover, any action can be targeted at a specific node by ID, at a particular layer (*nodeGroup*) or *nodeType*. For more details about <a href="/creating-manifest/selecting-containers/#types-of-selectors" target="_blank">*Node Selectors*</a>, visit the linked page.                             
  
 ### Code Reuse
@@ -1653,6 +1709,7 @@ Therefore, the same custom actions can be reused for several times with differen
 You can use the already-existing code to perform a new action.                    
 
 For example, outputting Hello World! twice in the <b>*greeting.txt*</b>.                                     
+@@@
 ``` json
 {
   "type": "update",
@@ -1676,11 +1733,25 @@ For example, outputting Hello World! twice in the <b>*greeting.txt*</b>.
   }
 }
 ```
+```yaml
+type: update
+name: Actions Example
+onInstall:
+  - createFile [cp]: ${SERVER_WEBROOT}/greeting.txt
+  - greeting
+  - greeting
+actions:
+  greeting:
+    appendFile [cp]:
+      - path: ${SERVER_WEBROOT}/greeting.txt
+        body: Hello World!
+```
+@@!
 
 ### Call Action with Parameters
 
 The following example shows how to pass additional parameters to the custom action. The parameters should be passed as an object to the custom action.                 
-
+@@@
 ``` json
 {
 	"type": "update",
@@ -1697,11 +1768,23 @@ The following example shows how to pass additional parameters to the custom acti
 	}
 }
 ```
+```yaml
+type: update
+name: execution actions
+onInstall:
+  customAction:
+    fileName: example.txt
+actions:
+  customAction:
+    createFile [cp]: /tmp/${this.fileName}.txt
+```
+@@!
 where:
 
 - `fileName` - additional parameter
 
 Writing Hello World! and outputting the first and the second compute nodes IP addresses.                                                             
+@@@
 ``` json
 {
   "type": "update",
@@ -1738,7 +1821,28 @@ Writing Hello World! and outputting the first and the second compute nodes IP ad
     }
   }
 }
+```yaml
+type: update
+name: Action Example
+onInstall:
+  - createFile [cp]: ${SERVER_WEBROOT}/greeting.txt
+  - greeting
+  - greeting
+  - log:
+      message: ${nodes.cp[0].address}
+  - log:
+      message: ${nodes.cp[1].address}
+actions:
+  greeting:
+    appendFile [cp]:
+      path: ${SERVER_WEBROOT}/greeting.txt
+      body: Hello World!
+  log:
+    appendFile [cp]:
+      path: ${SERVER_WEBROOT}/greeting.txt
+      body: ${this.message}
 ```
+@@!
 <br>       
 <h2>What’s next?</h2>                   
 
