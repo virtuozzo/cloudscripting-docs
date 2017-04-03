@@ -15,7 +15,8 @@ Cloud Scripting enables you to create a personalized solution by customizing the
 
 ## Supported Fields                               
 
-You can use the parameters from the following example to fetch your input data.                        
+You can use the parameters from the following example to fetch your input data.
+@@@
 ``` json
 {
   "type": "update",
@@ -43,7 +44,16 @@ You can use the parameters from the following example to fetch your input data.
     ]
   }
 }
-```   
+```
+```yaml
+type: update
+settings:
+  prepopulate: URL
+  fields:
+    - showIf: object
+      
+```
+@@!
 
 where:
 

@@ -137,7 +137,8 @@ There are three alternative approaches, provided to specify a target container i
 
 - specifying a target container within a name of an action (**node selectors**)     
 
-Through the following example, a new file is created in the compute layer (<em>[cp]</em>) and a new directory is created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers, and container with the Node ID <em>123</em>. Actions for the specified containers are executed in the declared order.                         
+Through the following example, a new file is created in the compute layer (<em>[cp]</em>) and a new directory is created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers, and container with the Node ID <em>123</em>. Actions for the specified containers are executed in the declared order.
+@@@
 ``` json
 [
   {
@@ -147,15 +148,22 @@ Through the following example, a new file is created in the compute layer (<em>[
   },
   {
     "createDirectory [cp,bl,123]": {
-      "path": "/tmp/test.txt"
+      "path": "/tmp/test"
     }
   }
 ]
 ```
-
+```yaml
+- createfile [cp]:
+    path: /tmp/test.txt
+- createDirectory [cp,bl,123]:
+    path: /tmp/test
+```
+@@!
 - specifying a target container next to the performed action                                       
 
-Through the following example, the <a href="/creating-manifest/actions/#createfile" target="_blank">**createFile**</a> and <a href="/creating-manifest/actions/#createdirectory" target="_blank">**createDirectory**</a> actions are applied to the specified <em>nodeGroup</em>, namely the compute layer (<em>[cp]</em>).                                                                
+Through the following example, the <a href="/creating-manifest/actions/#createfile" target="_blank">**createFile**</a> and <a href="/creating-manifest/actions/#createdirectory" target="_blank">**createDirectory**</a> actions are applied to the specified <em>nodeGroup</em>, namely the compute layer (<em>[cp]</em>).
+@@@
 ``` json
 [
   {
@@ -168,7 +176,15 @@ Through the following example, the <a href="/creating-manifest/actions/#createfi
     "nodeGroup": "cp"
   }
 ]
-``` 
+```
+```yaml
+- createFile:
+    path: /tmp/test.txt
+  createDirectory:
+    path: /tmp/test
+  nodeGroup: cp
+```
+@@!
  
 - specifying a target container as a parameter in the *actions* object     
 
