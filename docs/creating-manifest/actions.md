@@ -1821,6 +1821,7 @@ Writing Hello World! and outputting the first and the second compute nodes IP ad
     }
   }
 }
+```
 ```yaml
 type: update
 name: Action Example

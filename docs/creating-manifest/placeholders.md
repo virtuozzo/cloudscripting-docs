@@ -173,9 +173,10 @@ This is the list of placeholders that you can use to specify input parameters.
 - `${settings.key}` - where *key* is a name of the application's setting. The placeholder is defined, if user input parameters are specified within a manifest. So, after preparing a custom user form, the placeholder is defined by the field’s name.              
 
 **Example**
+@@@
 ``` json
 {
-  "jpsType": "update",
+  "type": "update",
   "settings": {
     "fields": [
       {
@@ -187,6 +188,15 @@ This is the list of placeholders that you can use to specify input parameters.
   }
 }
 ```
+```yaml
+type: update
+settings:
+  fields:
+  - type: string
+    name: customName
+    caption: String field
+```
+@@!
 Here, the name of the placeholder is `${settings.customName}`. See the list of <a href="/creating-manifest/visual-settings/" target="_blank">fields</a> that are defined by users.       
 
 ## Action Placeholders
@@ -194,6 +204,7 @@ Here, the name of the placeholder is `${settings.customName}`. See the list of <
 Action placeholders form a set of placeholders that can be used within the actions by means of a <b>*${this}*</b> namespace. So, in <b>*${this.param}*</b> the *param* is a name of the action parameter.                                          
 
 **Example**
+@@@
 ``` json
 {
   "script": "return greeting;",
@@ -202,11 +213,17 @@ Action placeholders form a set of placeholders that can be used within the actio
   }
 }
 ```
+```yaml
+script: "return greeting;"
+params:
+  greeting: Hello World
+```
+@@!
 Passing custom parameters to the action is performed in the following way.                  
-
+@@@
 ``` json
 {
-	"jpsType": "update",
+	"type": "update",
 	"name": "example",
 	"onInstall": {
 		"customAction": {
@@ -221,6 +238,18 @@ Passing custom parameters to the action is performed in the following way.
 	}
 }
 ```
+```yaml
+type: update
+name: example
+onInstall:
+  customAction:
+    first: 1
+    second: 2
+actions:
+  customAction:
+    log: ${this.first}
+```
+@@!
 As a result, console will display the *first* (1) custom parameter from the <b>*${this.first}*</b> placeholder.             
 
 ## UI Placeholders
@@ -234,10 +263,11 @@ This is the list of placeholders that you can use to specify UI parameters.
 - `${baseUrl}` - user custom relative URL. More details about <a href="/creating-manifest/basic-configs/#relative-links">Relative Links here</a>
 - `${platformUrl}` - hoster dashboard URL. A ressellers will have their own domain URL.
 
-**Example** 
+**Example**
+@@@
 ``` json
 {
-  "jpsType": "update",
+  "type": "update",
   "settings": {
     "fields": [
       {
@@ -250,15 +280,26 @@ This is the list of placeholders that you can use to specify UI parameters.
   }
 }
 ```
+```yaml
+type: update
+settings:
+  fields:
+    - type: string
+      name: email
+      caption: Email
+      default: ${user.email}
+```
+@@!
 
 ## Custom Global Placeholders
 
 Placeholders that are managed by users can be predefined via <b>*globals declaration*</b>. The corresponding declaration is performed in advance of the manifest installation.  
 
 **Example**
+@@@
 ``` json
 {
-  "jpsType": "update",
+  "type": "update",
   "name": "Global declaration",
   "globals": {
     "value1": 1,
@@ -266,14 +307,28 @@ Placeholders that are managed by users can be predefined via <b>*globals declara
   }
 }
 ```
+```yaml
+type: update
+name: Global declaration
+globals:
+  value1: 1
+  value2: 2
+```
+@@!
 
-As a result, the new placeholders are created.                       
+As a result, the new placeholders are created.
+@@@
 ``` json
 {
   "globals.value1": 1,
   "globals.value2": 2
 }
-```  
+```
+```yaml
+globals.value1: 1
+globals.value2: 2
+```
+@@!
 
 ## Function Placeholders
 
@@ -306,7 +361,8 @@ The function parameter can be passed from existing placeholders, for example:
 - `${fn.md5([fn.random])}` - *md5* encoding random password   
 - `${fn.base64([user.email])}` - *base64* encoding user email address  
 
-You can easily define function placeholders within the [cutom global placeholders](#custom-global-placeholders), for example:                               
+You can easily define function placeholders within the [cutom global placeholders](#custom-global-placeholders), for example:
+@@@
 ``` json
 {
   "globals": {
@@ -314,6 +370,11 @@ You can easily define function placeholders within the [cutom global placeholder
   }
 }
 ```
+```yaml
+globals:
+  pass: ${fn.password}
+```
+@@!
 Now, you can use <b>*${global.pass}*</b> within the entire manifest.
 
 ## Array Placeholders

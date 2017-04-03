@@ -20,7 +20,7 @@ Each event triggers a particular action on the required application's lifecycle 
 Events can be filtered by <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a>, and <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the action is executed only when the called event matches specified filtering rules. Otherwise, if no filtering rules are specified, every event is listened by all environment entities.         
 
 The following example describes the events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event). Here, filtering by the compute node group (*[cp]*) is set so that the action is executed after compute nodes are scaled out. The *nodeType* filtering is set so that the action is executed after **Apache 2** nodes are restarted. The *nodeID* filtering is set so that the action is executed after a password from the first compute node in the layer is reseted.
-
+@@@
 ``` json
 {
   "type": "update",
@@ -39,6 +39,19 @@ The following example describes the events filtering by *nodeGroup* (for the <b>
   }
 }
 ```
+```yaml
+type: update
+name: Event Subsribtion Example
+onInstall:
+  createFile [cp]: /tmp/result.txt
+onAfterScaleOut [cp]:
+  cmd [cp]: echo 'New Compute node has been added' >> /tmp/result.txt
+onAfterRestartNode [apache2]:
+  cmd [cp]: echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> /tmp/result.txt
+onAfterResetNodePassword [${nodes.cp[0].id}]:
+  cmd [${nodes.cp[0].id}]: echo 'First compute node has been restarted' >> /tmp/result.txt
+```
+@@!
 
 where:
 
@@ -206,7 +219,8 @@ These monitoring triggers are based on the usage of the following resource types
 
 The units of measurement are *PERCENTAGE* and *SPECIFIC*. The second value is availabe only for **NET_EXT** and **NET_EXT_OUT** resource types.
 
-The following example illustrates the subscription to the *onAlert* event. Here, the *log* action is executed if one of the triggers within the compute (*[cp]*) layer is invoked.                         
+The following example illustrates the subscription to the *onAlert* event. Here, the *log* action is executed if one of the triggers within the compute (*[cp]*) layer is invoked.
+@@@
 ``` json
 {
     "type": "update",
@@ -216,8 +230,16 @@ The following example illustrates the subscription to the *onAlert* event. Here,
     }
 }
 ```
+```yaml
+type: update
+name: AddTrigger
+onAlert [cp]:
+  log: onAlert event has subscribed
+```
+@@!
 
-The following example shows how a new trigger is being created.                                            
+The following example shows how a new trigger is being created.
+@@@
 ``` json
 {
   "type": "update",
@@ -247,6 +269,26 @@ The following example shows how a new trigger is being created.
   }
 }
 ```
+```yaml
+type: update
+name : AddTrigger
+onInstall:
+  environment.trigger.AddTrigger:
+    data:
+      name: new alert
+      nodeGroup: sqldb
+      period: 10
+      condition:
+        type: GREATER
+        value: 55
+        resourceType: MEM
+        valueType: PERCENTAGES
+      actions:
+        - type: NOTIFY
+          customData:
+            notify: false
+```
+@@!
 This example involves execution of the Jelastic API *addTrigger* method with a set of required parameters:     
 
 - `name` - name of a notification trigger

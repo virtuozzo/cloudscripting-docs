@@ -6,6 +6,7 @@ Running a specific <a href="/creating-manifest/actions/" target="_blank">action<
 
 The <em>nodeId</em> parameter is used to specify a particular container for the action execution. If you know the Node ID of your container (displayed at the Jelastic dashboard next to the required node), you can set it statically as follows.                                           
 
+@@@
 ``` json
 {
   "writeFile": [
@@ -17,8 +18,15 @@ The <em>nodeId</em> parameter is used to specify a particular container for the 
   ]
 }
 ```
+```yaml
+writeFile:
+  - nodeId: 123
+    path: /var/www/webroot/hw.txt
+    body: Hello World!
+```
+@@!
 If you don't know the Node ID or a container is not created yet, you can set a dynamic value, using special placeholders as follows.                      
-
+@@@
 ``` json
 {
   "writeFile": [
@@ -30,6 +38,13 @@ If you don't know the Node ID or a container is not created yet, you can set a d
   ]
 }
 ```
+```yaml
+writeFile:
+  - nodeId: ${nodes.apache2[0].id}
+    path: /var/www/webroot/hw.txt
+    body: Hello World!
+```
+@@!
 For more information, visit the <a href="/creating-manifest/placeholders/" target="_blank"><em>Placeholders</em></a> documentation page.                               
 
 ### All Containers By Group        
@@ -67,6 +82,7 @@ The <em>nodeType</em> parameter is used to specify all containers that are built
 <b>Examples</b>     
 
 Using the *nodeType* parameter while performing the <a href="/creating-manifest/actions/#writefile" target="_blank">**writeFile**</a> action.                         
+@@@
 ``` json
 {
   "writeFile": {
@@ -76,6 +92,13 @@ Using the *nodeType* parameter while performing the <a href="/creating-manifest/
   }
 } 
 ```
+```yaml
+writeFile:
+  nodeType: apache2
+  path: /tmp/example.txt
+  body: Hello World
+```
+@@!
 where:                
 
 - `writeFile` - action to write data to the file                                                         
@@ -83,7 +106,8 @@ where:
 - `path` - parameter that specifies the path to the file                        
 - `body` - data that is written to the file                                             
 
-Using the *engine* and *nodeType* parameters while creating a new environment.                                      
+Using the *engine* and *nodeType* parameters while creating a new environment.
+@@@
 ``` json
 {
   "type": "install",
@@ -94,6 +118,14 @@ Using the *engine* and *nodeType* parameters while creating a new environment.
   }
 }
 ```
+```yaml
+type: install
+name: install Tomcat7 node
+engine: java7
+nodes:
+  nodeType: tomcat7
+```
+@@!
 where:          
 
 - `engine` - parameter that specifies the engine version                               

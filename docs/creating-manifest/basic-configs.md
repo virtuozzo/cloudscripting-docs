@@ -5,13 +5,18 @@ The above two units display the outer side of a JPS usage and now let’s have a
 The JPS manifest is a file with <b>*.json*</b> extension, which contains an appropriate code written in JSON format. This manifest file includes the links to the web only dependencies. This file can be named as you require. 
 
 The code should contain a set of strings needed for a successful installation of an application. The basis of the code is represented by the following string:
-
+@@@
 ``` json
 {
     "type": "string",
     "name": "any required name"
 }
 ```
+```yaml
+type: string
+name: any required name
+```
+@@!
 
 - *type*
     - `install` - creating at least one environment     
@@ -26,6 +31,7 @@ This basic string should be extended with the settings required by the applicati
 There is a set of available parameters to define a manifest installation behaviour, custom description and design, application icons and success texts etc.
 
 **Basic Template**
+@@@
 ``` json
 {
   "type": "string",
@@ -51,7 +57,32 @@ There is a set of available parameters to define a manifest installation behavio
   "success": "object/string",
   "...": "object"
 }
-``` 
+```
+```yaml
+type: string
+version: string
+name: string
+logo: string
+description: string
+homepage: string
+categories: array
+baseUrl: string
+settings: object
+nodes: array
+engine: string
+region: string
+ssl: boolean
+ha: boolean
+displayName: string
+appVersion: string
+onInstall: object/string
+startPage: string
+actions: array
+addons: array
+success: object/string
+...: object
+```
+@@!
 
 - `type` *[optional]* - type of the application installation. Available values are **install** and **update**. More details described above. 
 - `version` - *[optional]* - JPS type supported by the Jelastic Platform. See the <a href="/jelastic-cs-correspondence/" target="_blank">correspondence between version</a> page.
@@ -119,6 +150,7 @@ There are three available parameters to set Docker volumes:
 - *volumesFrom* - list of nodes the volumes are imported from    
 
 All of the fields are set within the Docker object:
+@@@
 ``` json
 {
   "type": "install",
@@ -134,10 +166,22 @@ All of the fields are set within the Docker object:
   ]
 }
 ```
+```yaml
+type: install
+name: docker volumes
+nodes:
+  nodeGroup: sqldb
+  image: centos:7
+  volumes: []
+  volumeMount: {}
+  volumesFrom: []
+```
+@@!
 
 **Volumes**
 
-This field represents a string array:  
+This field represents a string array:
+@@@
 ``` json
 [
   {
@@ -150,9 +194,18 @@ This field represents a string array:
   }
 ]
 ```
+```yaml
+- volumes:
+  - /external
+  - /data
+  - /master
+  - /local
+```
+@@!
 
 **VolumeMounts**
-This parameter is an object. It can be set like within the example below:    
+This parameter is an object. It can be set like within the example below:
+@@@
 ``` json
 {
   "volumeMounts": {
@@ -166,6 +219,16 @@ This parameter is an object. It can be set like within the example below:
   }
 }
 ```
+```yaml
+volumeMounts:
+  /example-path:
+    sourcePath: ''
+    sourceNodeId: 0
+    sourceNodeGroup: ''
+    sourceHost: ''
+    readOnly: true
+```
+@@!
 Here:  
 
 - `/example-path` - path to place the volume at a target node  
@@ -176,6 +239,7 @@ Here:
 - `sourceNodeGroup` - any available *nodeGroup* within a source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.    
 
 In case not all source node volumes are required to be mounted, the particular ones can be specified:
+@@@
 ``` json
 [
   {
@@ -187,11 +251,19 @@ In case not all source node volumes are required to be mounted, the particular o
   }
 ]
 ```
+```yaml
+- sourceNodeGroup: storage
+  volumes: 
+    - /master
+    - /local
+```
+@@!
 
 <h4>*VolumeMounts* examples</h4>
  
 **Master Node Mount:**   
 Samples to mount a particular volume by exact node identifier & path (*/master*) and to mount all volumes from the layer master node by *nodeGroup* (*/master-1*)
+@@@
 ``` json
 {
   "volumeMounts": {
@@ -206,13 +278,23 @@ Samples to mount a particular volume by exact node identifier & path (*/master*)
   }
 }
 ```
+```yaml
+volumeMounts:
+  /master:
+    sourcePath: /master
+    sourceNodeId: 81725
+    readOnly: true
+  /master-1:
+   sourceNodeGroup: current-node-group
+```
+@@!
 
 Here, *sourcePath* and *readOnly* parameters are optional.
 
 **Mount Data Container:**
 <br>
 Samples to mount all volumes from a particular node by exact node identifier & path (*/node*) and to mount master node volumes by *nodeGroup* type (*/data*)
-
+@@@
 ``` json
 {
   "volumeMounts": {
@@ -225,10 +307,19 @@ Samples to mount all volumes from a particular node by exact node identifier & p
   }
 }
 ```
+```yaml
+volumeMounts:
+  /node:
+    sourceNodeId: 45
+  /data:
+    sourceNodeGroup: storage
+```
+@@!
 
 **External Server Mounts:**
 <br>
 Sample to mount a volume (*/external*) from external server by indicating its host (`sourceHost`), path (`sourcePath`) and access permissions (`readOnly`).
+@@@
 ``` json
 {
   "volumeMounts": {
@@ -240,9 +331,18 @@ Sample to mount a volume (*/external*) from external server by indicating its ho
   }
 }
 ```
+```yaml
+volumeMounts:
+  /external:
+    sourceHost: external.com
+    sourcePath: /remote-path
+    readOnly: true
+```
+@@!
 **Short Set for External Server:**
 <br>
 Sample to mount a number of volumes from external server by specifying the required parameters (i.e. volume path, `sourceHost`, `sourcePath`, access permissions) for each of them within one string.     
+@@@
 ``` json
 {
   "volumeMounts": {
@@ -253,6 +353,14 @@ Sample to mount a number of volumes from external server by specifying the requi
   }
 }
 ```
+```yaml
+volumeMounts:
+  /ext-domain: aws.com
+  /ext-domain/ro: aws.com;ro
+  /ext-domain/path: aws.com:/121233
+  /ext-domain/path/ro: aws.com:/121233:ro
+```
+@@!
 
 Here, "*ro*" stands for *readOnly* permissions.
 
@@ -303,7 +411,7 @@ where:
 **Environment Variables**
 
 Docker environment <a href="https://docs.jelastic.com/docker-variables" target="_blank">variable</a> is an optional topology object. The *env* instruction allows to set the required environment variables to specified values. 
-
+@@@
 ``` json
 {
   "type": "install",
@@ -320,6 +428,17 @@ Docker environment <a href="https://docs.jelastic.com/docker-variables" target="
   ]
 }
 ```
+```yaml
+type: install
+name: Environment variables
+nodes:
+  - nodeGroup: cp
+    image: wordpress:latest
+    env:
+      WORDPRESS_VERSION: 4.6.1
+      PHP_INI_DIR: /usr/local/etc/php
+```
+@@!
 
 **Links**
 
@@ -327,6 +446,7 @@ Docker <a href="https://docs.jelastic.com/docker-links" target="_blank">links</a
 <br>
 
 The example below illustrates the way to link *sql* and *memcached* nodes to *cp* container.
+@@@
 ``` json
 [
   {
@@ -353,6 +473,24 @@ The example below illustrates the way to link *sql* and *memcached* nodes to *cp
   }
 ]
 ```
+```yaml
+- image: wordpress:latest
+  links:
+    - db:DB
+    - memcached:MEMCACHED
+  cloudlets: 8
+  nodeGroup: cp
+  displayName: AppServer
+- image: mysql5:latest
+  cloudlets: 8
+  nodeGroup: db
+  displayName: database
+- image: memcached:latest
+  cloudlets: 4
+  nodeGroup: memcached
+  displayName: Memcached
+```
+@@!
 where:
 
 - `links` - object that defines nodes to be linked to *cp* node by their *nodeGroup* and these links names            
@@ -375,6 +513,7 @@ The relative links functionality is intended to specify the JPS file’s base UR
     > The *baseUrl* value declared within the manifest has higher priority than installation via URL (i.e. <a href="https://docs.jelastic.com/environment-export-import" target="_blank">Import</a>).                
 
 **Example**
+@@@
 ``` json
 {
     "type" : "update",
@@ -389,6 +528,17 @@ The relative links functionality is intended to specify the JPS file’s base UR
     "success" : "README.md"
 }
 ```
+```yaml
+type: update
+name: Base URL test
+baseUrl: https://github.com/jelastic-jps/minio/blob/master
+onInstall:
+  log: Base URL test
+onAfterRestartNode [cp]:
+  script: build-cluster.js
+success: README.md
+```
+@@!
 
 In case of the manifest installation via URL by means of the Jelastic **Import** functionality, the `baseUrl` placeholder will be defined if the specified path is set as in the example below:      
   
@@ -419,7 +569,7 @@ There are a list of JPS blocks which can use resources from **related** links:
 The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="/creating-manifest/actions/#cmd" target="_blank">*cmd*</a> and <a href="/creating-manifest/actions/#script" target="_blank">*script*</a> actions).                 
 
 For example:
-
+@@@
 ``` json
 {
   "type" : "update",
@@ -432,4 +582,12 @@ For example:
   }
 }
 ```
+```yaml
+type: update
+name: Test Base URL
+baseUrl: http://example.com/
+onInstall:
+  cmd [cp]: curl -fSs '${baseUrl}script.sh'    
+```
+@@!
                         

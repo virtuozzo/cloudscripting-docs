@@ -9,19 +9,29 @@ In order to execute a shell script inside of a container, use the <a href="/crea
 
 <b>Examples:</b>
 
-- Executing bash script from URL.                 
+- Executing bash script from URL.
+@@@
 ``` json
 {
   "cmd [cp]": "curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2"
 }
 ```
+```yaml
+cmd [cp]: curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2
+```
+@@!
 
-- Restoring MySQL database.                      
+- Restoring MySQL database.
+@@@
 ``` json
 {
   "cmd [mysql5]": "curl -fsS http://example.com/script.sh | /bin/bash -s '${nodes.sqldb.password}' 'http://example.com/dump.sql' '${user.appPassword}'"
 }
 ```
+```yaml
+cmd [mysql5]: curl -fsS http://example.com/script.sh | /bin/bash -s '${nodes.sqldb.password}' 'http://example.com/dump.sql' '${user.appPassword}'
+```
+@@!
 
 `script.sh`:
 
@@ -57,7 +67,7 @@ Here, `${nodes.sqldb.password}` is available only for the *install* installation
 Using a <a href="/creating-manifest/actions/#script" target="_blank">*script*</a> action.                  
 
 ### Java
-
+@@@
 ``` json
 {
   "script": [
@@ -71,19 +81,34 @@ Using a <a href="/creating-manifest/actions/#script" target="_blank">*script*</a
   ]
 }
 ```
+```yaml
+script:
+  - type: java
+    params:
+      greeting: Hello World!
+    script: |
+      return hivext.local.GetParam("greeting");
+```
+@@!
 
 <!--
 **Example #1 Generate random password**
 -->
 
 ### JavaScript                
-
+@@@
 ``` json
 {
   "script": "return getParam('greeting');",
   "greeting": "Hello World!"
 }
 ```
+```yaml
+script: |
+  return getParam('greeting');
+greeting: Hello World!
+```
+@@!
 <br>
 <h2>What's next?</h2>                
 

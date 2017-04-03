@@ -55,9 +55,7 @@ There are three main pillars of cloud scripting:
       }
     },
     {
-      "install": {
-        "jps": "${baseUrl}/application-storage/manifest.jps"
-      }
+      "install": "${baseUrl}/application-storage/manifest.jps"
     }
   ],
   "onAfterScaleOut[cp]": {
@@ -108,8 +106,7 @@ onInstall:
       updateNodes:
         option: add
         ip: ${@i.intIP}
-  - install:
-      jps: ${baseUrl}/application-storage/manifest.jps
+  - install: ${baseUrl}/application-storage/manifest.jps
 onAfterScaleOut[cp]:
   forEach(event.response.nodes):
     updateNodes:

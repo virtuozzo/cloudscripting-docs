@@ -6,34 +6,42 @@ ul.c-tabs {
 	border: 1px solid #f3f1f1;
 }
 
-.c-tabs__item {
+.c-tabs li.c-tabs__item {
 	display: inline;
+	margin-left: 0 !important;
+}
+
+.c-tabs__item span {
+	cursor: pointer;
+	user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-o-user-select: none;
 }
 .c-tabs__link {
 	display: inline-block;
 	color: #999;
 	text-decoration: none;
-	padding: 1rem 0.5rem;
+	padding: 0.5rem 0.5rem;
 }
 
 .c-tabs__link.is-active {
-	color: #333;
+	color: #2C3E50;
+	border-bottom: 2px solid gray;
 }
 
 .c-tabs__content {
 	display: none;
 	width: 100%;
 	float: left;
-	padding: 0 1.5rem 1.5rem 1.5rem;
 }
 
 @media only screen and (max-width: 640px) {
 	.c-tabs__link { display: block; }
 }
 
-
 .c-tabs {
-	background: #fff;
 	overflow: hidden;
 }
 

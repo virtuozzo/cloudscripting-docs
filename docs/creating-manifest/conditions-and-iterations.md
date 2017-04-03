@@ -22,6 +22,7 @@ The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*<
 <b>Examples</b>    
 
 * Comparing global variables
+@@@
 ``` json
 {
   "type": "update",
@@ -41,8 +42,21 @@ The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*<
   ]
 }
 ```
+```yaml
+type: update
+name: Comparing global variables
+globals:
+  p1: 1
+  p2: 2
+onInstall:
+  - if (globals.p1 < globals.p2):
+      if (user.uid > 1):
+        log: "## p1 < p2 and ${user.email} is not a platform owner"
+```
+@@!
 
 * Checking environment status
+@@@
 ``` json
 {
   "onInstall": {
@@ -52,8 +66,15 @@ The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*<
   }
 }
 ```
+```yaml
+onInstall:
+  if (env.status == 1):
+    log: "## Environment is running"
+```
+@@!
      
 * Checking Jelastic SSL status 
+@@@
 ``` json
 {
   "onInstall": {
@@ -63,8 +84,15 @@ The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*<
   }
 }
 ```
+```yaml
+onInstall:
+  if(!${env.ssl}):
+    log: "## SSL Disabled"
+```
+@@!
 
-* Validating environment domain                            
+* Validating environment domain
+@@@
 ``` json
 {
   "onInstall": {
@@ -74,8 +102,15 @@ The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*<
   }
 }
 ```
+```yaml
+onInstall:
+  if (/^env-/.test(env.domain)):
+    log: "## Env domain begins with env-: ${env.domain}"
+```
+@@!
 
-* Checking compute node OS type and balancer presence 
+* Checking compute node OS type and balancer presence
+@@@
 ``` json
 {
   "onInstall": {
@@ -92,10 +127,19 @@ The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*<
   }
 }
 ```
+```yaml
+onInstall:
+  if (nodes.cp && nodes.cp[0].osType == 'LINUX'):
+    log: "## Environment has compute node based on Linux"
+    if (nodes.bl && nodes.bl[0].nodeType == 'nginx' && nodes.cp.length > 1):
+      log: "## Environment has Nginx balancer and more than one compute node"
+```
+@@!
 
 ### Nested Conditions   
   
 Nesting of two <b>*if*</b> conditional statements - the first one is checking an environment for two compute nodes presence. If the nodes are available, the second one is checking the presence of the external IP address on the first balancer node and is logging the correspondent messages.          
+@@@
 ``` json
 {
   "type": "update",
@@ -103,17 +147,27 @@ Nesting of two <b>*if*</b> conditional statements - the first one is checking an
   "onInstall": {
     "if (${nodes.cp[1].id})": [
       {
-        "cmd [${nodes.cp[1].id}]": "echo \"Environment consists of two compute nodes\" >> /tmp/result.txt "
+        "cmd [${nodes.cp[1].id}]": "echo \"Environment consists of two compute nodes\" >> /tmp/result.txt"
       },
       {
         "if (/^[0-9]{2,3}.[0-9]{2,3}.[0-9]{2,3}.[0-9]{2,3}/.test(\"${nodes.bl[0].extips}\"))": {
-          "cmd [${nodes.cp[0].id}]": "echo \"Balancer node with external IP address!\" >> /tmp/result.txt "
+          "cmd [${nodes.cp[0].id}]": "echo \"Balancer node with external IP address!\" >> /tmp/result.txt"
         }
       }
     ]
   }
 }
 ```
+```yaml
+type: update
+name: Nesting example
+onInstall:
+  if (${nodes.cp[1].id}):
+    - cmd [${nodes.cp[1].id}]: echo "Environment consists of two compute nodes" >> /tmp/result.txt
+    - if (/^[0-9]{2,3}.[0-9]{2,3}.[0-9]{2,3}.[0-9]{2,3}/.test(\"${nodes.bl[0].extips}\")):
+        cmd [${nodes.cp[0].id}]: echo "Balancer node with external IP address!" >> /tmp/result.txt
+```
+@@!
 
 The operation result can be located within a <b>*result.txt*</b>  file that is automatically created in the master node (i.e. the first *cp* node) *<b>tmp</b>* directory.
 ```
@@ -122,6 +176,7 @@ Balancer node with external IP address!
 ```
 
 * Checking balancer stack type   
+@@@
 ``` json
 {
   "type": "update",
@@ -135,12 +190,22 @@ Balancer node with external IP address!
   }
 }
 ```
+```yaml
+type: update
+name: Nginx stack
+onInstall:
+  if (nodes.bl[0].nodeType == 'nginx'):
+    - script: |
+        return { result: 0, error: "Environment balancer node is NGINX stack"};
+```
+@@!
 
 ## Iterations
 
 ### ForEach
 
 The main iterable object is <b>*ForEach*</b> with the following map. 
+@@@
 ``` json
 {
   "env": {
@@ -158,6 +223,20 @@ The main iterable object is <b>*ForEach*</b> with the following map.
   "this": {}
 }
 ```
+```yaml
+env:
+  nodes: []
+  contexts: []
+  extdomains: []
+nodes: {}
+settings: {}
+license: {}
+event:
+  params: {}
+  response: {}
+this: {}
+```
+@@!
 where:    
 
 - `settings` *[optional]* - values of the fields that are predefined within a <a href="/creating-manifest/visual-settings/" target="_blank">user settings form</a>          
@@ -167,7 +246,8 @@ where:
 
 Iteration can be executed by <b>*env.nodes*</b>, <b>*nodes*</b>, <b>*env.contexts*</b>, and <b>*env.extdomains*</b> objects.                      
 
-Iteration set by <b>*env.extdomains*</b>.                                       
+Iteration set by <b>*env.extdomains*</b>.
+@@@
 ``` json
 {
   "forEach(env.extdomains)": [
@@ -181,12 +261,21 @@ Iteration set by <b>*env.extdomains*</b>.
   ]
 }
 ```
+```yaml
+forEach(env.extdomains):
+  - writeFile:
+    nodeGroup: cp
+    path: /var/lib/jelastic/keys/${@i}.txt
+    body: hello
+```
+@@!
 where:    
 
 - `@i` - default iterator name 
 - `env.extdomains` - bound external domains 
 
-Iteration set by <b>*env.contexts*</b>.                                                         
+Iteration set by <b>*env.contexts*</b>.
+@@@
 ``` json
 {
   "forEach(env.contexts)": {
@@ -197,12 +286,19 @@ Iteration set by <b>*env.contexts*</b>.
   }
 }
 ```
+```yaml
+forEach(env.contexts):
+  writeFile [cp]:
+    path: /var/lib/jelastic/keys/${@i.context}.txt
+    body: 1
+```
+@@!
 where:  
 
 - `env.contexts` -  list of contexts (applications) deployed to an environment                           
 
 The example of scaling nodes.                             
-
+@@@
 ``` json
 {
   "type": "update",
@@ -221,13 +317,27 @@ The example of scaling nodes.
   }
 }
 ```
+```yaml
+type: update
+name: Scaling Example
+onAfterScaleIn[nodeGroup:cp]: ScaleNodes
+onAfterScaleOut[nodeGroup:cp]: ScaleNodes
+actions:
+  ScaleNodes:
+    forEach(nodes.cp):
+      cmd [bl]:
+        -  {commands to rewrite all Compute nodes internal IP addresses in balancer configs. Here balancer node is NGINX}
+        - /etc/init.d/nginx reload
+```
+@@!
 As a result of the *cmd* action, the compute nodes internal IP addresses are rewritten within balancer configs and NGINX balancer node is reloaded. The <b>*onAfterScaleIn*</b> and <b>*onAfterScaleOut*</b> events are executed immediately after adding or removing a compute node.   
 
 ### By All Nodes
 
 Iteration by all nodes in an environment.    
 
-Iteration set by <b>*env.nodes*</b>.                                              
+Iteration set by <b>*env.nodes*</b>.
+@@@
 ``` json
 {
   "forEach(env.nodes)": {
@@ -235,10 +345,15 @@ Iteration set by <b>*env.nodes*</b>.
   }
 }
 ```
-
+```yaml
+forEach(env.nodes):
+  cmd [${@i.id}]: echo ${@i.address} > /tmp/example.txt
+```
+@@!
 ### By Compute Nodes 
 
 Iteration by compute nodes with a custom iterator name.
+@@@
 ``` json
 {
   "forEach(cp:nodes.cp)": {
@@ -246,11 +361,16 @@ Iteration by compute nodes with a custom iterator name.
   }
 }
 ```
-
+```yaml
+forEach(cp:nodes.cp):
+  cmd [${@cp.id}]: echo ${@cp.address} > /tmp/example.txt
+```
+@@!
 where:   
 - `@cp [optional]` - custom iterator name. Also, target nodes can be set by type -*${@cp.nodeType}*, or group - *${@cp.nodeGroup}*.                                                    
 
-Custom iterator name can be used for nesting cycles one into another.            
+Custom iterator name can be used for nesting cycles one into another.
+@@@
 ``` json
 {
   "type": "update",
@@ -264,6 +384,15 @@ Custom iterator name can be used for nesting cycles one into another.
   }
 }
 ```
+```yaml
+type: update
+name: execution actions
+onInstall:
+  forEach(item:env.nodes):
+    forEach(secondItem:env.nodes):
+      log: ${@@item} - ${@@secondItem} - ${@}
+```
+@@!
 where:   
 
 - `${@}` - iterator number current loop  
