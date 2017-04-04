@@ -56,6 +56,12 @@ The *cmd* action executes <a href="https://docs.jelastic.com/ssh-overview" targe
 
 **Example** 
 @@@
+```yaml
+cmd [nodeId,nodeType,nodeGroup]:
+  - cmd1
+  - cmd2
+sayYes: true
+```
 ```json
 {
   "cmd [nodeId,nodeType,nodeGroup]": [
@@ -64,12 +70,6 @@ The *cmd* action executes <a href="https://docs.jelastic.com/ssh-overview" targe
   ],
   "sayYes" : true
 }
-```
-```yaml
-cmd [nodeId,nodeType,nodeGroup]:
-  - cmd1
-  - cmd2
-sayYes: true
 ```
 @@!
 
@@ -83,18 +83,27 @@ where:
 
 The single SSH command can be passed in a string. For example, running a bash script from URL on all **Tomcat 6** nodes.                    
 @@@
+```yaml
+cmd [tomcat6]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
+```
 ``` json 
 {
   "cmd [tomcat6]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
 }
 ```
-```yaml
-cmd [tomcat6]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
-```
 @@!
 
 The default `cmd` parameter is **commands**. It can be usefull to set a several commands in the same `cmd` action. For example:
 @@@
+```yaml
+type: update
+name: Cmd commands
+onInstall:
+  cmd:
+    - commands: echo 'Hello ' >> /tmp/CmdResponse.txt
+    - commands: echo 'World ' >> /tmp/CmdResponse.txt
+  nodeGroup: cp
+```
 ```json
 {
   "type": "update",
@@ -112,20 +121,21 @@ The default `cmd` parameter is **commands**. It can be usefull to set a several 
   }
 }
 ```
+@@!
+
+The same commands can be executed on different target nodes. In this case **nodeGroup** parameter should be set twice for every method:
+
+@@@
 ```yaml
 type: update
 name: Cmd commands
 onInstall:
   cmd:
     - commands: echo 'Hello ' >> /tmp/CmdResponse.txt
+      nodeId: ${nodes.cp[0].id}
     - commands: echo 'World ' >> /tmp/CmdResponse.txt
-  nodeGroup: cp
+      nodeGroup: cp
 ```
-@@!
-
-The same commands can be executed on different target nodes. In this case **nodeGroup** parameter should be set twice for every method:
-
-@@@
 ```json
 {
   "type": "update",
@@ -144,16 +154,6 @@ The same commands can be executed on different target nodes. In this case **node
   }
 }
 ```
-```yaml
-type: update
-name: Cmd commands
-onInstall:
-  cmd:
-    - commands: echo 'Hello ' >> /tmp/CmdResponse.txt
-      nodeId: ${nodes.cp[0].id}
-    - commands: echo 'World ' >> /tmp/CmdResponse.txt
-      nodeGroup: cp
-```
 @@!
 Therefore, the first commands will be executed only in a first compute node. 
 
@@ -171,6 +171,10 @@ sudo /etc/init.d/httpd help
 
 Setting SSH commands in an array.      
 @@@
+```yaml
+cmd [tomcat6]:
+  - curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
+```
 ``` json
 {
   "cmd [tomcat6]": [
@@ -178,14 +182,16 @@ Setting SSH commands in an array.
   ]
 }
 ```
-```yaml
-cmd [tomcat6]:
-  - curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
-```
 @@!
                              
 Downloading and unzipping the **WordPress** plugin on all the compute nodes. Here, the commands array is executed through a single SSH command. The same can be performed with the help of the [unpack](#unpack) method.
 @@@
+```yaml
+cmd [cp]:
+  - cd /var/www/webroot/ROOT/wp-content/plugins/
+  - curl -fsSL \"http://example.com/plugin.zip\" -o plugin.zip
+  - unzip plugin.zip
+```
 ``` json
 {
   "cmd [cp]": [
@@ -195,27 +201,21 @@ Downloading and unzipping the **WordPress** plugin on all the compute nodes. Her
   ]
 }
 ```
-```yaml
-cmd [cp]:
-  - cd /var/www/webroot/ROOT/wp-content/plugins/
-  - curl -fsSL \"http://example.com/plugin.zip\" -o plugin.zip
-  - unzip plugin.zip
-```
 @@!
 
 Using **sudo** to reload Nginx balancer.       
 
 @@@
+```yaml
+cmd [nginx]:
+  - sudo /etc/init.d/nginx reload
+```
 ``` json
 {
   "cmd [nginx]": [
     "sudo /etc/init.d/nginx reload"
   ]
 }
-```
-```yaml
-cmd [nginx]:
-  - sudo /etc/init.d/nginx reload
 ```
 @@!
    
@@ -237,13 +237,13 @@ Target containers, specified for the API methods execution can be passed by the 
 
 Restarting all compute nodes in the environment.
 @@@
+```yaml
+api [cp]: jelastic.environment.control.RestartNodesByGroup
+```
 ``` json
 {
     "api [cp]" : "jelastic.environment.control.RestartNodesByGroup"
 }
-```
-```yaml
-api [cp]: jelastic.environment.control.RestartNodesByGroup
 ```
 @@!
 where:        
@@ -253,32 +253,45 @@ where:
 
 This method (*jelastic.environment.control.RestartNodesByGroup*) can be simplified like shown in the next example.
 @@@
+```yaml
+api [cp]: environment.control.RestartNodesByGroup
+```
 ``` json
 {
     "api [cp]" : "environment.control.RestartNodesByGroup"
 }
 ```
-```yaml
-api [cp]: environment.control.RestartNodesByGroup
-```
 @@!
 
 Below, you can find one more approach to specify a target node group for the API method execution.                                  
 @@@
+```yaml
+api: jelastic.environment.control.RestartNodesByGroup,
+nodeGroup: cp
+```
 ``` json
 {
     "api" : "jelastic.environment.control.RestartNodesByGroup",
     "nodeGroup" : "cp"
 }
 ```
-```yaml
-api: jelastic.environment.control.RestartNodesByGroup,
-nodeGroup: cp
-```
 @@!
 
 There is an default parameter `method` for `api` action. This parameter is usefull while setting few api method in one `api` action. For example:
 @@@
+```yaml
+type: update
+name: API action
+onInstall:
+  api:
+    - method: environment.file.Create
+      params:
+        nodeGroup: cp
+        path: /tmp/exampleFile.txt
+    - method: environment.control.RestartNodesByGroup
+      params:
+        nodeGroup: cp
+```
 ```json
 {
     "type": "update",
@@ -299,6 +312,12 @@ There is an default parameter `method` for `api` action. This parameter is usefu
     }
 }
 ```
+@@!
+
+In example above there are two api methods **Create** file and **RestartNodesByGroup**. Every method has their own set of parameters which they are required.
+
+The same parameters for all **methods** in one `action` can be set once. For example:
+@@@
 ```yaml
 type: update
 name: API action
@@ -306,18 +325,10 @@ onInstall:
   api:
     - method: environment.file.Create
       params:
-        nodeGroup: cp
         path: /tmp/exampleFile.txt
     - method: environment.control.RestartNodesByGroup
-      params:
-        nodeGroup: cp
+  nodeGroup: cp
 ```
-@@!
-
-In example above there are two api methods **Create** file and **RestartNodesByGroup**. Every method has their own set of parameters which they are required.
-
-The same parameters for all **methods** in one `action` can be set once. For example:
-@@@
 ```json
 {
     "type": "update",
@@ -335,17 +346,6 @@ The same parameters for all **methods** in one `action` can be set once. For exa
     }
 }
 ```
-```yaml
-type: update
-name: API action
-onInstall:
-  api:
-    - method: environment.file.Create
-      params:
-        path: /tmp/exampleFile.txt
-    - method: environment.control.RestartNodesByGroup
-  nodeGroup: cp
-```
 @@!
 Therefore, no needs to duplicate the parameter **nodeGroup** in every **method**. It will applied for every **method** in **api** `action`. 
 
@@ -353,6 +353,12 @@ Therefore, no needs to duplicate the parameter **nodeGroup** in every **method**
 
 Available for compute nodes (except for Docker containers)
 @@@
+```yaml
+deploy:
+  archive:URL
+  name: string
+  context: string
+```
 ``` json
 {
   "deploy": [
@@ -363,12 +369,6 @@ Available for compute nodes (except for Docker containers)
     }
   ]
 }
-```
-```yaml
-deploy:
-  archive:URL
-  name: string
-  context: string
 ```
 @@!
 where:
@@ -382,6 +382,14 @@ where:
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)-->
 @@@
+```yaml
+upload:
+  - nodeId: number or string
+    nodeGroup: string
+    nodeType: string
+    sourcePath: URL
+    destPath: string
+```
 ``` json
 {
   "upload": [
@@ -395,14 +403,6 @@ Available for all nodes
   ]
 }
 ```
-```yaml
-upload:
-  - nodeId: number or string
-    nodeGroup: string
-    nodeType: string
-    sourcePath: URL
-    destPath: string
-```
 @@!
 where:  
 
@@ -415,6 +415,14 @@ where:
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 @@@
+```yaml
+unpack:
+  - nodeId: number or string
+    nodeGroup: string
+    nodeType: string
+    sourcePath: URL
+    destPath: string
+```
 ``` json
 {
   "unpack": [
@@ -428,14 +436,6 @@ Available for all nodes
   ]
 }
 ```
-```yaml
-unpack:
-  - nodeId: number or string
-    nodeGroup: string
-    nodeType: string
-    sourcePath: URL
-    destPath: string
-```
 @@!
 where:   
 
@@ -448,13 +448,13 @@ where:
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 @@@
+```yaml
+createFile [nodeId, nodeGroup, nodeType]: string 
+```
 ``` json
 {
   "createFile [nodeId, nodeGroup, nodeType]": "string"
 }
-```
-```yaml
-createFile [nodeId, nodeGroup, nodeType]: string 
 ```
 @@!
 where:   
@@ -464,6 +464,15 @@ where:
                          
 There is an ability to create few files in the same target node in one `createFile` action. In this case parameter **path** is needed. For example:
 @@@
+```yaml
+type: update
+name: Create File action
+onInstall:
+  createFile:
+    - path: /tmp/firstFile
+    - path: /tmp/secondFile
+  nodeGroup: cp
+```
 ```json
 {
     "type": "update",
@@ -478,19 +487,20 @@ There is an ability to create few files in the same target node in one `createFi
     }
 }
 ```
+@@!
+
+In the example above the parameter **nodeGroup** is the same for two `createFile` actions. A target nodes can be specified separately in every method: 
+@@@
 ```yaml
 type: update
 name: Create File action
 onInstall:
   createFile:
     - path: /tmp/firstFile
+      nodeGroup: sqldb
     - path: /tmp/secondFile
-  nodeGroup: cp
+      nodeGroup: cp
 ```
-@@!
-
-In the example above the parameter **nodeGroup** is the same for two `createFile` actions. A target nodes can be specified separately in every method: 
-@@@
 ```json
 {
     "type": "update",
@@ -506,16 +516,6 @@ In the example above the parameter **nodeGroup** is the same for two `createFile
     }
 }
 ```
-```yaml
-type: update
-name: Create File action
-onInstall:
-  createFile:
-    - path: /tmp/firstFile
-      nodeGroup: sqldb
-    - path: /tmp/secondFile
-      nodeGroup: cp
-```
 @@!
 
 ### createDirectory
@@ -523,13 +523,13 @@ onInstall:
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 @@@
+```yaml
+createDirectory [nodeId, nodeGroup, nodeType]: string
+```
 ``` json
 {
   "createDirectory [nodeId, nodeGroup, nodeType]": "string"
 }
-```
-```yaml
-createDirectory [nodeId, nodeGroup, nodeType]: string
 ```
 @@!
 where:  
@@ -539,6 +539,15 @@ where:
 
 There is an ability to create few directories in the same target node in one `createDirectory` action. In this case parameter **path** is needed. For example:
 @@@
+```yaml
+type: update
+name: Create Directory action
+onInstall:
+  createDirectory:
+    - path: /tmp/firstDirectory
+    - path: /tmp/secondDirectory
+    nodeGroup: cp
+```
 ```json
 {
     "type": "update",
@@ -553,19 +562,20 @@ There is an ability to create few directories in the same target node in one `cr
     }
 }
 ```
+@@!
+
+In the example above the parameter **nodeGroup** is the same for two `createDirectory` actions. Target nodes can be specified separately in every method: 
+@@@
 ```yaml
 type: update
 name: Create Directory action
 onInstall:
   createDirectory:
     - path: /tmp/firstDirectory
+      nodeGroup: sqldb
     - path: /tmp/secondDirectory
-    nodeGroup: cp
+      nodeGroup: sqldb
 ```
-@@!
-
-In the example above the parameter **nodeGroup** is the same for two `createDirectory` actions. Target nodes can be specified separately in every method: 
-@@@
 ```json
 {
     "type": "update",
@@ -581,16 +591,6 @@ In the example above the parameter **nodeGroup** is the same for two `createDire
     }
 }
 ```
-```yaml
-type: update
-name: Create Directory action
-onInstall:
-  createDirectory:
-    - path: /tmp/firstDirectory
-      nodeGroup: sqldb
-    - path: /tmp/secondDirectory
-      nodeGroup: sqldb
-```
 @@!
 
 ### writeFile
@@ -598,6 +598,12 @@ onInstall:
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 @@@
+```yaml
+writeFile:
+  nodeId: number or string
+  nodeGroup: string
+  nodeType: string
+```
 ``` json
 {
   "writeFile": {
@@ -608,12 +614,6 @@ Available for all nodes
       "body" : "string"
     }
 }
-```
-```yaml
-writeFile:
-  nodeId: number or string
-  nodeGroup: string
-  nodeType: string
 ```
 @@!
 where:  
@@ -627,6 +627,14 @@ where:
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 @@@
+```yaml
+appendFile:
+  nodeId: number or string
+  nodeGroup: string
+  nodeType: string
+  path: string
+  body: string
+```
 ``` json
 {
   "appendFile": {
@@ -637,14 +645,6 @@ Available for all nodes
       "body" : "string"
     }
 }
-```
-```yaml
-appendFile:
-  nodeId: number or string
-  nodeGroup: string
-  nodeType: string
-  path: string
-  body: string
 ```
 @@!
 where:      
@@ -658,6 +658,16 @@ where:
 Available for all nodes
 <!--Available for all nodes (except for *Docker* containers and *Elastic VDS*)--> 
 @@@
+```yaml
+replaceInFile:
+  nodeId: number or string
+  nodeGroup: string
+  nodeType: string
+  path: string
+  replacements:
+    - pattern: string
+      replacement: string
+```
 ``` json
 {
   "replaceInFile": {
@@ -671,16 +681,6 @@ Available for all nodes
       }]
     }
 }
-```
-```yaml
-replaceInFile:
-  nodeId: number or string
-  nodeGroup: string
-  nodeType: string
-  path: string
-  replacements:
-    - pattern: string
-      replacement: string
 ```
 @@!
 
@@ -701,6 +701,25 @@ The present section introduces actions that are provided for managing the topolo
 
 ### addNodes
 @@@
+```yaml
+addNodes:
+  - nodeType: string
+    extip: boolean
+    fixedCloudlets: number
+    flexibleCloudlets: number
+    displayName: string
+    dockerName: jelastic/wordpress-web:latest
+    registryUrl: string
+    registryUser: string
+    registryPassword: string
+    dockerTag: string
+    dockerLinks: sourceNodeGroup:alias
+    dockerEnvVars: object
+    dockerVolumes: array
+    volumeMounts: object
+    dockerRunCmd: array
+    dockerEntryPoint: object
+```
 ``` json
 {
   "addNodes": [
@@ -724,25 +743,6 @@ The present section introduces actions that are provided for managing the topolo
     }
   ]
 }
-```
-```yaml
-addNodes:
-  - nodeType: string
-    extip: boolean
-    fixedCloudlets: number
-    flexibleCloudlets: number
-    displayName: string
-    dockerName: jelastic/wordpress-web:latest
-    registryUrl: string
-    registryUser: string
-    registryPassword: string
-    dockerTag: string
-    dockerLinks: sourceNodeGroup:alias
-    dockerEnvVars: object
-    dockerVolumes: array
-    volumeMounts: object
-    dockerRunCmd: array
-    dockerEntryPoint: object
 ```
 @@!
 where:
@@ -772,13 +772,13 @@ where:
 
 Available for all nodes
 @@@
+```yaml
+setNodeDisplayName [nodeId, nodeGroup, nodeType]: string
+```
 ``` json
 {
   "setNodeDisplayName [nodeId, nodeGroup, nodeType]": "string"
 }
-```
-```yaml
-setNodeDisplayName [nodeId, nodeGroup, nodeType]: string
 ```
 @@!
 where:   
@@ -788,6 +788,16 @@ where:
 
 The action `setNodeDisplayName` has the default parameter called **displayName**. It is usefull to set display name for few node layers in the same `action`. For example:
 @@@
+```yaml
+type: update
+name: setNodeDisplayName example
+onInstall:
+  setNodeDisplayName:
+    - displayName: Compute Nodes
+      nodeGroup: cp
+    - displayName: SQL Nodes
+      nodeGroup: sqldb
+```
 ```json
 {
   "type": "update",
@@ -806,16 +816,6 @@ The action `setNodeDisplayName` has the default parameter called **displayName**
   }
 }
 ```
-```yaml
-type: update
-name: setNodeDisplayName example
-onInstall:
-  setNodeDisplayName:
-    - displayName: Compute Nodes
-      nodeGroup: cp
-    - displayName: SQL Nodes
-      nodeGroup: sqldb
-```
 @@!
 
 ### setNodeCount
@@ -824,13 +824,13 @@ Available for all nodes
 
 The *setNodeCount* action allows to add or remove nodes that are grouped according to the same *nodeGroup* (layer). The node selector is available by *nodeId*, *nodeGroup*, or *nodeType*.             
 @@@
+```yaml
+setNodeCount [nodeId, nodeGroup, nodeType]: number
+```
 ``` json
 {
   "setNodeCount [nodeId, nodeGroup, nodeType]": "number"
 }
-```
-```yaml
-setNodeCount [nodeId, nodeGroup, nodeType]: number
 ```
 @@!
 
@@ -841,6 +841,16 @@ where:
 
 The action `setNodeCount` has it own default parameter - **count**. It is usefull to set node count for few node layers in one action. For example:
 @@@
+```yaml
+type: update
+name: setNodeCount example
+onInstall:
+  setNodeCount:
+    - count: 3
+      nodeGroup: cp
+    - count: 5
+      nodeGroup: sqldb
+```
 ```json
 {
   "type": "update",
@@ -859,16 +869,6 @@ The action `setNodeCount` has it own default parameter - **count**. It is useful
   }
 }
 ```
-```yaml
-type: update
-name: setNodeCount example
-onInstall:
-  setNodeCount:
-    - count: 3
-      nodeGroup: cp
-    - count: 5
-      nodeGroup: sqldb
-```
 @@!
 Therefore, when `action` execution will be finished three compute nodes and five sql nodes will be available in the same environment.
 
@@ -878,13 +878,13 @@ Available for all nodes
 
 The *setExtIpEnabled* action allows to enable or disable the external IP address attachment to a particular node or *nodeGroup*.                                  
 @@@
+```yaml
+setExtIpEnabled [nodeId, nodeGroup, nodeType]: true or false
+```
 ``` json
 {
   "setExtIpEnabled [nodeId, nodeGroup, nodeType]": true or false
 }
-```
-```yaml
-setExtIpEnabled [nodeId, nodeGroup, nodeType]: true or false
 ```
 @@!
 where:               
@@ -894,6 +894,16 @@ where:
 
 The action `setExtIpEnabled` has  own default parameter *enabled*. It is usefull in case to set external IP address status for few nodes in the same `action`. For example:
 @@@
+```yaml
+type: update
+name: Set External IP Address
+onInstall:
+  setExtIpEnabled:
+    - enabled: true
+      nodeGroup: cp
+    - enabled: false
+      nodeGroup: sqldb
+```
 ```json
 {
   "type": "update",
@@ -912,16 +922,6 @@ The action `setExtIpEnabled` has  own default parameter *enabled*. It is usefull
   }
 }
 ```
-```yaml
-type: update
-name: Set External IP Address
-onInstall:
-  setExtIpEnabled:
-    - enabled: true
-      nodeGroup: cp
-    - enabled: false
-      nodeGroup: sqldb
-```
 @@!
 
 Therefore, compute nodes will have an external ip address and sql nodes will be without ext IPs.
@@ -930,6 +930,12 @@ Therefore, compute nodes will have an external ip address and sql nodes will be 
 
 Available for all nodes (except for Elastic VPS)
 @@@
+```yaml
+restartNodes:
+  - nodeId: number or string
+    nodeGroup: string
+    nodeType: string
+```
 ``` json
 {
   "restartNodes": [
@@ -941,12 +947,6 @@ Available for all nodes (except for Elastic VPS)
   ]
 }
 ```
-```yaml
-restartNodes:
-  - nodeId: number or string
-    nodeGroup: string
-    nodeType: string
-```
 @@!
 where:       
 
@@ -956,6 +956,12 @@ where:
 
 Available for all nodes
 @@@
+```yaml
+restartContainers:
+  - nodeId: number or stirng
+    nodeGroup: string
+    nodeType: string
+```
 ``` json
 {
   "restartContainers": [
@@ -967,12 +973,6 @@ Available for all nodes
   ]
 }
 ```
-```yaml
-restartContainers:
-  - nodeId: number or stirng
-    nodeGroup: string
-    nodeType: string
-```
 @@!
 where:         
 
@@ -982,6 +982,12 @@ where:
 
 Available for compute nodes (except for Docker containers)
 @@@
+```yaml
+addContext:
+  - name: string
+    fileName: string
+    type: string
+```
 ``` json
 {
   "addContext": [
@@ -992,12 +998,6 @@ Available for compute nodes (except for Docker containers)
     }
   ]
 }
-```
-```yaml
-addContext:
-  - name: string
-    fileName: string
-    type: string
 ```
 @@!
 where:       
@@ -1017,6 +1017,19 @@ Within this section, you can find actions that are intended for managing databas
 
 Available for SQL databases (except for Docker containers)
 @@@
+```yaml
+prepareSqlDatabase:
+  - nodeId: number or string
+    nodeGroup: string
+    nodeType: string
+    loginCredentials:
+      user: string
+      password: string
+    newDatabaseName: string
+    newDatabaseUser:
+      name: string
+      password: string
+```
 ``` json
 {
   "prepareSqlDatabase": [
@@ -1037,19 +1050,6 @@ Available for SQL databases (except for Docker containers)
   ]
 }
 ```
-```yaml
-prepareSqlDatabase:
-  - nodeId: number or string
-    nodeGroup: string
-    nodeType: string
-    loginCredentials:
-      user: string
-      password: string
-    newDatabaseName: string
-    newDatabaseUser:
-      name: string
-      password: string
-```
 @@!
 where:          
 
@@ -1069,6 +1069,16 @@ where:
 
 Available for SQL databases (except for Docker container)
 @@@
+```yaml
+restoreSqlDump:
+  - nodeId: number or string
+    nodeGroup: string
+    nodeType: string
+    databaseName: string
+    user: string
+    password: string
+    dump: URL
+```
 ``` json
 {
   "restoreSqlDump": [
@@ -1084,16 +1094,6 @@ Available for SQL databases (except for Docker container)
   ]
 }
 ```
-```yaml
-restoreSqlDump:
-  - nodeId: number or string
-    nodeGroup: string
-    nodeType: string
-    databaseName: string
-    user: string
-    password: string
-    dump: URL
-```
 @@!
 where:
 
@@ -1107,6 +1107,16 @@ where:
 
 Available for SQL databases (except for Docker containers)
 @@@
+```yaml
+applySqlPatch:
+  - nodeId: number or string
+    nodeGroup: string
+    nodeType: string
+    databaseName: string
+    user: string
+    password: string
+    patch: string or URL
+```
 ``` json
 {
   "applySqlPatch": [
@@ -1121,16 +1131,6 @@ Available for SQL databases (except for Docker containers)
     }
   ]
 }
-```
-```yaml
-applySqlPatch:
-  - nodeId: number or string
-    nodeGroup: string
-    nodeType: string
-    databaseName: string
-    user: string
-    password: string
-    patch: string or URL
 ```
 @@!
 where:  
@@ -1154,6 +1154,12 @@ A `script` is an ability to executing custom Java or Javascript codes. Therefore
 `executeScript` is deprecated alias.  
 The simplest way to use Java or JavaScript object in your manifest in example below:
 @@@
+```yaml
+type: update
+name: Execute scripts
+onInstall:
+  script: return 'Hello World!';
+```
 ``` json
 {
   "type": "update",
@@ -1163,12 +1169,6 @@ The simplest way to use Java or JavaScript object in your manifest in example be
   }
 }
 ```
-```yaml
-type: update
-name: Execute scripts
-onInstall:
-  script: return 'Hello World!';
-```
 @@!
 
 A custom scripts can be set via external links instead of a **string**.  
@@ -1177,6 +1177,15 @@ The default action script type is `javascript`.
 
 There is an ability to define language type or pass custom parameters. In this case the `script` action should be describe like in example below:
 @@@
+```yaml
+type: update
+name: Execute scripts
+script:
+  script: return '${this.greetings}';
+  params:
+    greeting: Hello World!
+  type: js
+```
 ```json
 {
   "type": "update",
@@ -1189,15 +1198,6 @@ There is an ability to define language type or pass custom parameters. In this c
     "type": "js"
   }
 }
-```
-```yaml
-type: update
-name: Execute scripts
-script:
-  script: return '${this.greetings}';
-  params:
-    greeting: Hello World!
-  type: js
 ```
 @@!
 where:   
@@ -1218,27 +1218,27 @@ There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certi
 
 Setting a delay that is measured in milliseconds. The following example shows how to create a delay for one second.                                               
 @@@
+```yaml
+sleep: 1000
+```
 ``` json
 {
   "sleep": "1000"
 }
 ```
-```yaml
-sleep: 1000
-```
 @@!
 The default optional parameter is **milliseconds**. Therefore, a `sleep` action can be set like in example before:
 @@@
+```yaml
+sleep:
+  milliseconds: 1000
+```
 ```json
 {
   "sleep": {
     "milliseconds": "1000"
   }
 }
-```
-```yaml
-sleep:
-  milliseconds: 1000
 ```
 @@!
 
@@ -1248,6 +1248,12 @@ The *install* action allows to declare multiple installations within a single JP
 
 The simplest record for `install` action is described like in example below:
 @@@
+```yaml
+type: update
+name: Install action
+onInstall:
+  install: http://example.com/manifest.jps
+```
 ```json
 {
   "type": "update",
@@ -1257,17 +1263,19 @@ The simplest record for `install` action is described like in example below:
   }
 }
 ```
-```yaml
-type: update
-name: Install action
-onInstall:
-  install: http://example.com/manifest.jps
-```
 @@!
 Therefore, the `install` action can be set by **string**.
 
 Also ther is an ability to set a few external manifests inside one `install` action in one array. For example:
 @@@
+```yaml
+type: update
+name: Install action
+onInstall:
+  install:
+    - http://example.com/manifest.jps
+    - http://example.com/manifest2.jp
+```
 ```json
 {
   "type": "update",
@@ -1280,17 +1288,18 @@ Also ther is an ability to set a few external manifests inside one `install` act
   }
 }
 ```
+@@!
+The next example describes installing the add-on via the external link (with the *update* installation type) with additional parameters.            
+@@@
 ```yaml
 type: update
 name: Install action
 onInstall:
   install:
-    - http://example.com/manifest.jps
-    - http://example.com/manifest2.jp
+    jps: "http://example.com/manifest.jps"
+    settings:
+      myparam: test
 ```
-@@!
-The next example describes installing the add-on via the external link (with the *update* installation type) with additional parameters.            
-@@@
 ``` json
 {
   "type": "update",
@@ -1305,15 +1314,6 @@ The next example describes installing the add-on via the external link (with the
   }
 }
 ```
-```yaml
-type: update
-name: Install action
-onInstall:
-  install:
-    jps: "http://example.com/manifest.jps"
-    settings:
-      myparam: test
-```
 @@!
 where:
 
@@ -1322,6 +1322,16 @@ where:
 
 Installing the add-on from the local manifest file.
 @@@
+```yaml
+type: update
+name: Install action
+onInstall:
+  install:
+    type: update
+    name: test
+    onInstall:
+      log: install test
+```
 ``` json
 {
   "type": "update",
@@ -1337,16 +1347,6 @@ Installing the add-on from the local manifest file.
   }
 }
 ```
-```yaml
-type: update
-name: Install action
-onInstall:
-  install:
-    type: update
-    name: test
-    onInstall:
-      log: install test
-```
 @@!
 where:
 
@@ -1354,6 +1354,16 @@ where:
 
 Installing the environment via the external link (with the *install* installation type).                 
 @@@
+```yaml
+type: update
+name: Install action
+onInstall:
+  install:
+    jps: http://example.com/manifest.jps
+    envName: env-${fn.random}
+    settings:
+      myparam: test
+```
 ``` json
 {
   "type": "update",
@@ -1369,16 +1379,6 @@ Installing the environment via the external link (with the *install* installatio
   }
 }
 ```
-```yaml
-type: update
-name: Install action
-onInstall:
-  install:
-    jps: http://example.com/manifest.jps
-    envName: env-${fn.random}
-    settings:
-      myparam: test
-```
 @@!
 where: 
 
@@ -1388,6 +1388,21 @@ where:
 
 Installing the environment from the local manifest file.                      
 @@@
+```yaml
+type: update
+name: Install action
+onInstall:
+  install:
+    type: install
+    region: dev
+    envName: env-${fn.random}
+    name: test
+    nodes:
+      nodeType: apache2
+      cloudlets: 16
+    onInstall: 
+      log: install test
+```
 ``` json
 {
   "type": "update",
@@ -1408,21 +1423,6 @@ Installing the environment from the local manifest file.
     }
   }
 }
-```
-```yaml
-type: update
-name: Install action
-onInstall:
-  install:
-    type: install
-    region: dev
-    envName: env-${fn.random}
-    name: test
-    nodes:
-      nodeType: apache2
-      cloudlets: 16
-    onInstall: 
-      log: install test
 ```
 @@!
 where:
@@ -1446,6 +1446,18 @@ Thus, the custom add-on can be installed to the:
 
 The example below shows how to pass the add-on identifier to the *installAddon* action. This add-on's parameters are described in the *addons* section. As a result, the custom add-on with the *firstAddon* identifier initiates the creation of a new file in the *tmp* directory on the compute node layer.                                                 
 @@@
+```yaml
+type: update
+name: Install Add-on example
+onInstall:
+  installAddon:
+    id: firstAddon
+addons:
+  - id: firstAddon
+    name: firstAddon
+    onInstall:
+      createFile [cp]: /tmp/exampleFile.txt
+```
 ``` json
 {
 	"type": "update",
@@ -1464,18 +1476,6 @@ The example below shows how to pass the add-on identifier to the *installAddon* 
 	}]
 }
 ```
-```yaml
-type: update
-name: Install Add-on example
-onInstall:
-  installAddon:
-    id: firstAddon
-addons:
-  - id: firstAddon
-    name: firstAddon
-    onInstall:
-      createFile [cp]: /tmp/exampleFile.txt
-```
 @@!
 where:  
 
@@ -1487,6 +1487,11 @@ You can locate the installed add-ons within the **Add-ons** tab at the Jelastic 
 
 In the following example, the *nodeGroup* parameter is passed to the *installAddon* action, targeting the add-on at the balancer (*bl*) node group.                          
 @@@
+```yaml
+installAddon:
+  id: firstAddon
+  nodeGroup: bl
+```
 ``` json
 {
   "installAddon": {
@@ -1494,11 +1499,6 @@ In the following example, the *nodeGroup* parameter is passed to the *installAdd
     "nodeGroup": "bl"
   }
 }
-```
-```yaml
-installAddon:
-  id: firstAddon
-  nodeGroup: bl
 ```
 @@!
 
@@ -1512,6 +1512,12 @@ The action allows to return any string or object of values. As a result, the res
 
 **Example**
 @@@
+```yaml
+type: update
+name: Return Action
+onInstall:
+  return: Hello World!
+```
 ```json
 {
     "type": "update",
@@ -1520,12 +1526,6 @@ The action allows to return any string or object of values. As a result, the res
         "return": "Hello World!"
     }
 }
-```
-```yaml
-type: update
-name: Return Action
-onInstall:
-  return: Hello World!
 ```
 @@!
 
@@ -1538,6 +1538,13 @@ The installation is not completed and the following installation window is displ
 
 If the *return* action includes a string, then the response is displayed via the *error* pop-up window like in the screen-shot below.                            
 @@@
+```yaml
+type: update
+name: Return Action
+onInstall:
+  return: |
+    {"message": "${nodes.cp.id}", "type": "success"}
+```
 ```json
 {
     "type": "update",
@@ -1546,13 +1553,6 @@ If the *return* action includes a string, then the response is displayed via the
         "return": "{\"message\": \"${nodes.cp.id}\",\"type\": \"success\"}"
     }
 }
-```
-```yaml
-type: update
-name: Return Action
-onInstall:
-  return: |
-    {"message": "${nodes.cp.id}", "type": "success"}
 ```
 @@!
 
@@ -1563,6 +1563,14 @@ If the action returns an object, a response code can be redefined. So the *messa
 
 Through the following example, a success message with a compute node identifier is displayed.
 @@@
+```yaml
+type: update
+name: Return Action
+onInstall:
+  return:
+    type: success
+    message: Compute node unique identifer - ${nodes.cp.id}
+```
 ```json
 {
   "type": "update",
@@ -1575,20 +1583,21 @@ Through the following example, a success message with a compute node identifier 
   }
 }
 ```
-```yaml
-type: update
-name: Return Action
-onInstall:
-  return:
-    type: success
-    message: Compute node unique identifer - ${nodes.cp.id}
-```
 @@!
 
 For more details about [*Custom Response*](/creating-manifest/handling-custom-responses/), visit the linked page.                                    
 
 All the other actions within the *onInstall* array are not executed after the *return* action.                
 @@@
+```yaml
+type: update
+name: Return Action
+onInstall:
+  - return:
+    type: success
+    message: Compute node unique identifer - ${nodes.cp.id}
+  - restartNodes [cp]
+```
 ```json
 {
     "type": "update",
@@ -1603,15 +1612,6 @@ All the other actions within the *onInstall* array are not executed after the *r
     ]
 }
 ```
-```yaml
-type: update
-name: Return Action
-onInstall:
-  - return:
-    type: success
-    message: Compute node unique identifer - ${nodes.cp.id}
-  - restartNodes [cp]
-```
 @@!
 
 Therefore, the *restartNodes* action is not run to restart a compute node.                                                            
@@ -1622,6 +1622,12 @@ Particular actions can be run by means of calling actions with different paramet
 
 The example below shows how to create a new file (e.g. the <b>*example.txt*</b> file in the <b>*tmp*</b> directory) by running a *createFile* action on the compute node.
 @@@
+```yaml
+type: update
+name: execution actions
+onInstall:
+  createFile [cp]: /tmp/example.txt
+```
 ``` json
 {
   "type": "update",
@@ -1631,12 +1637,6 @@ The example below shows how to create a new file (e.g. the <b>*example.txt*</b> 
   }
 }
 ```
-```yaml
-type: update
-name: execution actions
-onInstall:
-  createFile [cp]: /tmp/example.txt
-```
 @@!
 where: 
 
@@ -1644,6 +1644,14 @@ where:
 
 The next example illustrates how to create a new custom action (i.e. *customAction*) that can be called for several times.
 @@@
+```yaml
+type: update
+name: execution actions
+onInstall: customAction
+actions:
+  customAction:
+    createFile [cp]: /tmp/example.txt
+```
 ``` json
 {
 	"type": "update",
@@ -1656,14 +1664,6 @@ The next example illustrates how to create a new custom action (i.e. *customActi
 	}
 }
 ```
-```yaml
-type: update
-name: execution actions
-onInstall: customAction
-actions:
-  customAction:
-    createFile [cp]: /tmp/example.txt
-```
 @@!
 where:  
 
@@ -1675,6 +1675,16 @@ In order to access any required data or parameters of allocated resources inside
 
 The example below illustrates how to pass the dynamic parameters for running in the action. Here, the *name* parameter is sent to <b>*customAction*</b> where the *createFile* action is executed.                   
 @@@
+```yaml
+type: update
+name: $this in Custom Actions
+onInstall:
+  customAction:
+    name: simpleTxtFile
+actions:
+  customAction:
+    createFile [cp]: /tmp/${this.name}.txt
+```
 ```json
 {
     "type": "update",
@@ -1691,16 +1701,6 @@ The example below illustrates how to pass the dynamic parameters for running in 
     }
 }
 ```
-```yaml
-type: update
-name: $this in Custom Actions
-onInstall:
-  customAction:
-    name: simpleTxtFile
-actions:
-  customAction:
-    createFile [cp]: /tmp/${this.name}.txt
-```
 @@!
 Therefore, the same custom actions can be reused for several times with different parameters. Moreover, any action can be targeted at a specific node by ID, at a particular layer (*nodeGroup*) or *nodeType*. For more details about <a href="/creating-manifest/selecting-containers/#types-of-selectors" target="_blank">*Node Selectors*</a>, visit the linked page.                             
  
@@ -1710,6 +1710,19 @@ You can use the already-existing code to perform a new action.
 
 For example, outputting Hello World! twice in the <b>*greeting.txt*</b>.                                     
 @@@
+```yaml
+type: update
+name: Actions Example
+onInstall:
+  - createFile [cp]: ${SERVER_WEBROOT}/greeting.txt
+  - greeting
+  - greeting
+actions:
+  greeting:
+    appendFile [cp]:
+      - path: ${SERVER_WEBROOT}/greeting.txt
+        body: Hello World!
+```
 ``` json
 {
   "type": "update",
@@ -1733,25 +1746,22 @@ For example, outputting Hello World! twice in the <b>*greeting.txt*</b>.
   }
 }
 ```
-```yaml
-type: update
-name: Actions Example
-onInstall:
-  - createFile [cp]: ${SERVER_WEBROOT}/greeting.txt
-  - greeting
-  - greeting
-actions:
-  greeting:
-    appendFile [cp]:
-      - path: ${SERVER_WEBROOT}/greeting.txt
-        body: Hello World!
-```
 @@!
 
 ### Call Action with Parameters
 
 The following example shows how to pass additional parameters to the custom action. The parameters should be passed as an object to the custom action.                 
 @@@
+```yaml
+type: update
+name: execution actions
+onInstall:
+  customAction:
+    fileName: example.txt
+actions:
+  customAction:
+    createFile [cp]: /tmp/${this.fileName}.txt
+```
 ``` json
 {
 	"type": "update",
@@ -1768,16 +1778,6 @@ The following example shows how to pass additional parameters to the custom acti
 	}
 }
 ```
-```yaml
-type: update
-name: execution actions
-onInstall:
-  customAction:
-    fileName: example.txt
-actions:
-  customAction:
-    createFile [cp]: /tmp/${this.fileName}.txt
-```
 @@!
 where:
 
@@ -1785,6 +1785,27 @@ where:
 
 Writing Hello World! and outputting the first and the second compute nodes IP addresses.                                                             
 @@@
+```yaml
+type: update
+name: Action Example
+onInstall:
+  - createFile [cp]: ${SERVER_WEBROOT}/greeting.txt
+  - greeting
+  - greeting
+  - log:
+      message: ${nodes.cp[0].address}
+  - log:
+      message: ${nodes.cp[1].address}
+actions:
+  greeting:
+    appendFile [cp]:
+      path: ${SERVER_WEBROOT}/greeting.txt
+      body: Hello World!
+  log:
+    appendFile [cp]:
+      path: ${SERVER_WEBROOT}/greeting.txt
+      body: ${this.message}
+```
 ``` json
 {
   "type": "update",
@@ -1821,27 +1842,6 @@ Writing Hello World! and outputting the first and the second compute nodes IP ad
     }
   }
 }
-```
-```yaml
-type: update
-name: Action Example
-onInstall:
-  - createFile [cp]: ${SERVER_WEBROOT}/greeting.txt
-  - greeting
-  - greeting
-  - log:
-      message: ${nodes.cp[0].address}
-  - log:
-      message: ${nodes.cp[1].address}
-actions:
-  greeting:
-    appendFile [cp]:
-      path: ${SERVER_WEBROOT}/greeting.txt
-      body: Hello World!
-  log:
-    appendFile [cp]:
-      path: ${SERVER_WEBROOT}/greeting.txt
-      body: ${this.message}
 ```
 @@!
 <br>       

@@ -17,6 +17,29 @@ Cloud Scripting enables you to create a personalized solution by customizing the
 
 You can use the parameters from the following example to fetch your input data.
 @@@
+```yaml
+type: update
+settings:
+  prepopulate: URL
+  fields:
+    - showIf: object
+      type: string
+      inputType: string
+      name: string
+      default: string or localization object
+      caption: string or localization object
+      placeholder: string or localization object
+      required: boolean
+      vtype: string
+      vtypeText: string or localization object
+      regex: string for RegExp constructor
+      regexText: string or localization object
+      hideLabel: string
+      id: string
+      cls: string
+      itemId: string     
+      
+```
 ``` json
 {
   "type": "update",
@@ -44,29 +67,6 @@ You can use the parameters from the following example to fetch your input data.
     ]
   }
 }
-```
-```yaml
-type: update
-settings:
-  prepopulate: URL
-  fields:
-    - showIf: object
-      type: string
-      inputType: string
-      name: string
-      default: string or localization object
-      caption: string or localization object
-      placeholder: string or localization object
-      required: boolean
-      vtype: string
-      vtypeText: string or localization object
-      regex: string for RegExp constructor
-      regexText: string or localization object
-      hideLabel: string
-      id: string
-      cls: string
-      itemId: string     
-      
 ```
 @@!
 
@@ -120,6 +120,13 @@ The basic text field.
 
 <center>![string](/img/string.jpg)</center>  
 @@@
+```yaml
+fields:
+  - hideLabel: false
+    type: string
+    caption: string
+    name: customString
+```
 ```json
 {
   "fields": [
@@ -131,13 +138,6 @@ The basic text field.
     }
   ]
 }
-```
-```yaml
-fields:
-  - hideLabel: false
-    type: string
-    caption: string
-    name: customString
 ```
 @@!
 
@@ -151,6 +151,12 @@ The multiline text field.
 
 <center>![text](/img/text.jpg)</center>  
 @@@
+```yaml
+fields:
+  - type: text
+    caption: string
+    hideLabel: false
+```
 ```json
 {
   "fields": [
@@ -161,12 +167,6 @@ The multiline text field.
     }
   ]
 }
-```
-```yaml
-fields:
-  - type: text
-    caption: string
-    hideLabel: false
 ```
 @@!
 
@@ -180,6 +180,16 @@ The drop-down list and a single-line textbox.
 
 <center>![list](/img/list.jpg)</center>  
 @@@
+```yaml
+fields:
+  - type: list
+    caption: string
+    values:
+      value1: hello
+      value2: world
+    hideLabel: false
+    editable: true
+```
 ``` json
 {
   "fields": [
@@ -196,16 +206,6 @@ The drop-down list and a single-line textbox.
   ]
 }
 ```
-```yaml
-fields:
-  - type: list
-    caption: string
-    values:
-      value1: hello
-      value2: world
-    hideLabel: false
-    editable: true
-```
 @@!
 
 where:      
@@ -220,6 +220,13 @@ The single checkbox field.
 
 <center>![text](/img/checkbox.jpg)</center>  
 @@@
+```yaml
+fields:
+  - type: checkbox
+    caption: string
+    value: true
+    hideLabel: false
+```
 ``` json
 {
   "fields": [
@@ -231,13 +238,6 @@ The single checkbox field.
     }
   ]
 }
-```
-```yaml
-fields:
-  - type: checkbox
-    caption: string
-    value: true
-    hideLabel: false
 ```
 @@!
 
@@ -252,6 +252,15 @@ The checkbox grouping.
 
 <center>![text](/img/checkboxlist.jpg)</center>  
 @@@
+```yaml
+fields:
+  - type: checkboxlist
+    caption: Checkbox List
+    values:
+      value1: hello
+      value2: world
+    hideLabel: false
+```
 ``` json
 {
   "fields": [
@@ -267,15 +276,6 @@ The checkbox grouping.
   ]
 }
 ```
-```yaml
-fields:
-  - type: checkboxlist
-    caption: Checkbox List
-    values:
-      value1: hello
-      value2: world
-    hideLabel: false
-```
 @@!
 
 where:     
@@ -289,6 +289,15 @@ The radio elements grouping.
 
 <center>![text](/img/radiolist.jpg)</center>  
 @@@
+```yaml
+fields:
+  - type: radiolist
+    caption: Radio List
+    values:
+      value1: hello
+      value2: world
+    hideLabel: false
+```
 ``` json
 {
   "fields": [
@@ -303,15 +312,6 @@ The radio elements grouping.
     }
   ]
 }
-```
-```yaml
-fields:
-  - type: radiolist
-    caption: Radio List
-    values:
-      value1: hello
-      value2: world
-    hideLabel: false
 ```
 @@!
 
@@ -329,6 +329,26 @@ The grouping of the radio elements with the <b>*showIf*</b> function.
 
 <center>![text](/img/radio-fieldset.jpg)</center>   
 @@@
+```yaml
+fields:
+  - type: radio-fieldset
+    name: customName
+    default: '1'
+    values:
+      1: hello
+      2: world
+    showIf:
+      1:
+        - hideLabel: false
+          type: string
+          caption: First String
+          name: first
+      2:
+        - hideLabel: false
+          type: string
+          caption: Second String
+          name: second
+```
 ``` json
 {
   "fields": [
@@ -362,26 +382,6 @@ The grouping of the radio elements with the <b>*showIf*</b> function.
   ]
 }
 ```
-```yaml
-fields:
-  - type: radio-fieldset
-    name: customName
-    default: '1'
-    values:
-      1: hello
-      2: world
-    showIf:
-      1:
-        - hideLabel: false
-          type: string
-          caption: First String
-          name: first
-      2:
-        - hideLabel: false
-          type: string
-          caption: Second String
-          name: second
-```
 @@!
 
 where:   
@@ -398,6 +398,22 @@ The field for displaying Docker tags within the list element.
 
 <center>![text](/img/dockertag.jpg)</center>  
 @@@
+```yaml
+name: Cloud Scripting
+settings:
+  fields:
+  - type: dockertags
+    name: tag
+    values:
+    - name: latest
+    - name: first
+dockerImage:
+  name: sych74/pokemongo-map
+  registry: ''
+  username: ''
+  password: ''
+env: {}
+```
 ``` json
 {
   "name": "Cloud Scripting",
@@ -426,22 +442,6 @@ The field for displaying Docker tags within the list element.
   "env": {}
 }
 ```
-```yaml
-name: Cloud Scripting
-settings:
-  fields:
-  - type: dockertags
-    name: tag
-    values:
-    - name: latest
-    - name: first
-dockerImage:
-  name: sych74/pokemongo-map
-  registry: ''
-  username: ''
-  password: ''
-env: {}
-```
 @@!
 
 where:   
@@ -458,6 +458,31 @@ The compositefield is a container with specific functionality and structural com
 
 <center>![compositefield](/img/compositefield.jpg)</center>  
 @@@
+```yaml
+fields:
+- pack: ''
+  align: ''
+  defaultMargins:
+    top: 0
+    right: 0
+    bottom: 0
+    left: 10
+  defaultPadding: 0
+  defaultFlex: 0
+  caption: Compositefield
+  type: compositefield
+  name: compositefield
+  items:
+  - name: checkbox
+    value: true
+    type: checkbox
+  - width: 50px
+    name: first
+    type: string
+  - width: 100px
+    name: latest
+    type: string
+```
 ``` json
 {
   "fields": [
@@ -496,31 +521,6 @@ The compositefield is a container with specific functionality and structural com
   ]
 }
 ```
-```yaml
-fields:
-- pack: ''
-  align: ''
-  defaultMargins:
-    top: 0
-    right: 0
-    bottom: 0
-    left: 10
-  defaultPadding: 0
-  defaultFlex: 0
-  caption: Compositefield
-  type: compositefield
-  name: compositefield
-  items:
-  - name: checkbox
-    value: true
-    type: checkbox
-  - width: 50px
-    name: first
-    type: string
-  - width: 100px
-    name: latest
-    type: string
-```
 @@!
 
 where:   
@@ -537,6 +537,16 @@ The slider element as a form field.
 
 <center>![slider](/img/slider.jpg)</center>
 @@@
+```yaml
+fields:
+- min: '0'
+  max: '10'
+  increment: 1
+  useTips: true
+  caption: Slider
+  type: slider
+  name: slider
+```
 ``` json
 {
   "fields": [
@@ -551,16 +561,6 @@ The slider element as a form field.
     }
   ]
 }
-```
-```yaml
-fields:
-- min: '0'
-  max: '10'
-  increment: 1
-  useTips: true
-  caption: Slider
-  type: slider
-  name: slider
 ```
 @@!
 
@@ -577,6 +577,14 @@ The account environments list expanded within a drop-down element.
 
 <center>![envlist](/img/envlist.jpg)</center>  
 @@@
+```yaml
+fields:
+- caption: Envlist
+  editable: true
+  valueField: appid
+  type: envlist
+  name: envlist
+```
 ``` json
 {
   "fields": [
@@ -589,14 +597,6 @@ The account environments list expanded within a drop-down element.
     }
   ]
 }
-```
-```yaml
-fields:
-- caption: Envlist
-  editable: true
-  valueField: appid
-  type: envlist
-  name: envlist
 ```
 @@!
 where:  
@@ -669,6 +669,24 @@ where:
 The `textfield` value in `popupselector` element can be replaced by parameter from external `url` source. This parameter should be passed with `popupCallbackEvent` value.  
 For example:
 @@@
+```yaml
+type: update
+name: Return Action
+settings:
+  fields:
+    caption: Popupselector
+    type: popupselector
+    name: popupselector
+    buttonText: Open
+    value: '3'
+    url: https://{external_source}/example
+    popupWidth: 300px
+    popupHeight: 300px
+    popupCallbackEvent: click
+    params:
+      first: 1
+      second: 2
+```
 ```json
 {
   "type": "update",
@@ -692,24 +710,6 @@ For example:
   }
 }
 ```
-```yaml
-type: update
-name: Return Action
-settings:
-  fields:
-    caption: Popupselector
-    type: popupselector
-    name: popupselector
-    buttonText: Open
-    value: '3'
-    url: https://{external_source}/example
-    popupWidth: 300px
-    popupHeight: 300px
-    popupCallbackEvent: click
-    params:
-      first: 1
-      second: 2
-```
 @@!
 
 In example above the external source should returns a URL with such parameters as `value` and `event`. The `event` name is the same name as `popupCallbackEvent` in field description in manifest.  
@@ -731,6 +731,13 @@ The text field intended only for display that is not validated and not submitted
 
 <center>![displayfield](/img/displayfield.jpg)</center>  
 @@@
+```yaml
+fields:
+- caption: Displayfield
+  type: displayfield
+  name: displayfield
+  markup: display
+```
 ``` json
 {
   "fields": [
@@ -742,13 +749,6 @@ The text field intended only for display that is not validated and not submitted
     }
   ]
 }
-```
-```yaml
-fields:
-- caption: Displayfield
-  type: displayfield
-  name: displayfield
-  markup: display
 ```
 @@!
 
@@ -763,6 +763,16 @@ The enhanced input field for entering numeric values, with up/down buttons and a
 
 <center>![spinner](/img/spinner.jpg)</center>  
 @@@
+```yaml
+fields:
+- type: spinner
+  name: spinner
+  caption: Spinner
+  min: 1
+  max: 10
+  increment: 2
+  decimanPrecision: ''
+```
 ``` json
 {
   "fields": [
@@ -777,16 +787,6 @@ The enhanced input field for entering numeric values, with up/down buttons and a
     }
   ]
 }
-```
-```yaml
-fields:
-- type: spinner
-  name: spinner
-  caption: Spinner
-  min: 1
-  max: 10
-  increment: 2
-  decimanPrecision: ''
 ```
 @@!
 
@@ -806,6 +806,15 @@ The field that enables to select a number from a predefined range.
  
 <center>![numberpicker](/img/numberpicker.jpg)</center>  
 @@@
+```yaml
+fields:
+- type: numberpicker
+  name: numberpicker
+  caption: Numberpicker
+  min: 3
+  max: 10
+  editable: true
+```
 ``` json
 {
   "fields": [
@@ -819,15 +828,6 @@ The field that enables to select a number from a predefined range.
     }
   ]
 }
-```
-```yaml
-fields:
-- type: numberpicker
-  name: numberpicker
-  caption: Numberpicker
-  min: 3
-  max: 10
-  editable: true
 ```
 @@!
 
@@ -846,6 +846,14 @@ The drop-down menu with the environments hosts.
 
 <center>![hostpicker](/img/hostpicker.jpg)</center>  
 @@@
+```yaml
+fields:
+- type: hostpicker
+  name: hostpicker
+  caption: Hostpicker
+  editable: true
+  valueField: host
+```
 ``` json
 {
   "fields": [
@@ -858,14 +866,6 @@ The drop-down menu with the environments hosts.
     }
   ]
 }
-```
-```yaml
-fields:
-- type: hostpicker
-  name: hostpicker
-  caption: Hostpicker
-  editable: true
-  valueField: host
 ```
 @@!
 
@@ -886,6 +886,13 @@ The toggle element is a switch between two values.
 
 <center>![toggle](/img/toggle.jpg)</center>
 @@@
+```yaml
+fields:
+- type: toggle
+  name: toggle
+  caption: Toggle
+  value: true
+```
 ``` json
 {
   "fields": [
@@ -897,13 +904,6 @@ The toggle element is a switch between two values.
     }
   ]
 }
-```
-```yaml
-fields:
-- type: toggle
-  name: toggle
-  caption: Toggle
-  value: true
 ```
 @@!
 where:    
@@ -917,6 +917,25 @@ Target Nodes is an optional method that allows to define environments suitable f
 
 Filtering for *targetNodes* can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
 @@@
+```yaml
+type: update
+name: targetNodes
+targetNodes:
+  nodeType:
+  - "..."
+  nodeGroup:
+  - "..."
+  dockerOs:
+  - "..."
+  dockerName:
+  - "..."
+  dockerTag:
+  - "..."
+onInstall:
+  createFile:
+    nodeGroup: cp
+    path: "/tmp/newFile"
+```
 ``` json
 {
   "type": "update",
@@ -946,25 +965,6 @@ Filtering for *targetNodes* can be performed by *nodeType*, *nodeGroup*, *docker
   }
 }
 ```
-```yaml
-type: update
-name: targetNodes
-targetNodes:
-  nodeType:
-  - "..."
-  nodeGroup:
-  - "..."
-  dockerOs:
-  - "..."
-  dockerName:
-  - "..."
-  dockerTag:
-  - "..."
-onInstall:
-  createFile:
-    nodeGroup: cp
-    path: "/tmp/newFile"
-```
 @@!
 There are two possible ways to define *targetNodes*.                                  
 ```
@@ -981,6 +981,16 @@ Let’s suppose you have three environments with different topology.
 
 Within these environments, the *targetNodes* filtering for JPS installation can be performed with the next example.                           
 @@@
+```yaml
+type: update
+name: targetNodes
+targetNodes:
+  nodeType: nginx, mysql5
+onInstall:
+  createFile:
+    nodeGroup: cp
+    path: "/tmp/newFile"
+```
 ``` json
 {
   "type": "update",
@@ -995,16 +1005,6 @@ Within these environments, the *targetNodes* filtering for JPS installation can 
     }
   }
 }
-```
-```yaml
-type: update
-name: targetNodes
-targetNodes:
-  nodeType: nginx, mysql5
-onInstall:
-  createFile:
-    nodeGroup: cp
-    path: "/tmp/newFile"
 ```
 @@!
 In this case, the filtering result will be the following.                                                 
@@ -1022,6 +1022,25 @@ The properties used for custom menus are the same as for custom buttons. However
 
 The sample to set custom buttons within the menu list of the Add-ons plank.                       
 @@@
+```yaml
+type: update
+name: Custom buttons
+targetNodes:
+  nodeGroup: bl
+actions:
+- "..."
+menu:
+  confirmText: Custom confirm text
+  loadingText: Load text while waiting
+  action: "{String}"
+  caption: Configure
+  successText: Configuration saved successfully!
+  settings: config
+  title: Title
+  submitButtonText: Button Text
+  logsPath: "/var/log/add-on-action.log"
+  logsNodeGroup: cp
+```
 ``` json
 {
   "type": "update",
@@ -1046,25 +1065,6 @@ The sample to set custom buttons within the menu list of the Add-ons plank.
   }
 }
 ```
-```yaml
-type: update
-name: Custom buttons
-targetNodes:
-  nodeGroup: bl
-actions:
-- "..."
-menu:
-  confirmText: Custom confirm text
-  loadingText: Load text while waiting
-  action: "{String}"
-  caption: Configure
-  successText: Configuration saved successfully!
-  settings: config
-  title: Title
-  submitButtonText: Button Text
-  logsPath: "/var/log/add-on-action.log"
-  logsNodeGroup: cp
-```
 @@!
 Refer to the *Custom Buttons* section below for a detailed description on the parameters set with the current sample.                          
 
@@ -1084,6 +1084,21 @@ Such buttons execute operations that are predefined within a JPS manifest.
 
 The sample to set buttons within the Add-ons plank.                      
 @@@
+```yaml
+type: update
+name: Custom buttons
+targetNodes:
+  nodeGroup: bl
+actions:
+- "..."
+buttons:
+- confirmText: Custom confirm text
+  loadingText: Load text while waiting
+  action: "{String}"
+  caption: Configure
+  successText: Configuration saved successfully!
+  href: http://google.com
+```
 ``` json
 {
   "type": "update",
@@ -1105,21 +1120,6 @@ The sample to set buttons within the Add-ons plank.
     }
   ]
 }
-```
-```yaml
-type: update
-name: Custom buttons
-targetNodes:
-  nodeGroup: bl
-actions:
-- "..."
-buttons:
-- confirmText: Custom confirm text
-  loadingText: Load text while waiting
-  action: "{String}"
-  caption: Configure
-  successText: Configuration saved successfully!
-  href: http://google.com
 ```
 @@!
 where: 
@@ -1148,6 +1148,25 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 Another sample with additional configurations where parameters can be enabled only if the [*settings*](/creating-manifest/user-input-parameters/#custom-settings) field is present.                           
 @@@
+```yaml
+type: update
+name: Custom buttons
+targetNodes:
+  nodeGroup: bl
+actions:
+- "..."
+buttons:
+- confirmText: Custom confirm text
+  loadingText: Load text while waiting
+  action: "{String}"
+  caption: Configure
+  successText: Configuration saved successfully!
+  settings: config
+  title: Title
+  submitButtonText: Button Text
+  logsPath: "/var/log/add-on-action.log"
+  logsNodeGroup: cp
+```
 ``` json
 {
   "type": "update",
@@ -1174,25 +1193,6 @@ Another sample with additional configurations where parameters can be enabled on
   ]
 }
 ```
-```yaml
-type: update
-name: Custom buttons
-targetNodes:
-  nodeGroup: bl
-actions:
-- "..."
-buttons:
-- confirmText: Custom confirm text
-  loadingText: Load text while waiting
-  action: "{String}"
-  caption: Configure
-  successText: Configuration saved successfully!
-  settings: config
-  title: Title
-  submitButtonText: Button Text
-  logsPath: "/var/log/add-on-action.log"
-  logsNodeGroup: cp
-```
 @@!
 where:
 
@@ -1213,6 +1213,29 @@ The settings section can include a few custom forms. The default settings form I
 
 **Example**
 @@@
+```yaml
+type: update
+name: Custom buttons
+targetNodes:
+  nodeGroup: bl
+actions:
+- "..."
+settings:
+  main:
+    fields:
+    - type: text
+      caption: Main form
+  config:
+    fields:
+    - type: text
+      caption: Custom form from button action
+buttons:
+- settings: config
+  action: customAction
+  caption: Configure
+  submitButtonText: Button Text
+  logsPath: "/var/lib/jelastic/keys/111"
+```
 ``` json
 {
   "type": "update",
@@ -1252,29 +1275,6 @@ The settings section can include a few custom forms. The default settings form I
   ]
 }
 ```
-```yaml
-type: update
-name: Custom buttons
-targetNodes:
-  nodeGroup: bl
-actions:
-- "..."
-settings:
-  main:
-    fields:
-    - type: text
-      caption: Main form
-  config:
-    fields:
-    - type: text
-      caption: Custom form from button action
-buttons:
-- settings: config
-  action: customAction
-  caption: Configure
-  submitButtonText: Button Text
-  logsPath: "/var/lib/jelastic/keys/111"
-```
 @@!
 Here, the *main settings* form appears during installation process.   
 
@@ -1290,6 +1290,14 @@ It is possible to customize the *success* text that is displayed upon successful
 
 - Setting relative to the *baseUrl* link that points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                                               
 @@@
+```yaml
+type: update
+name: Success Text first example
+baseUrl: https://github.com/jelastic-jps/minio
+onInstall:
+  log: success text first example
+success: README.md
+```
 ``` json
 {
     "type" : "update",
@@ -1301,19 +1309,11 @@ It is possible to customize the *success* text that is displayed upon successful
     "success" : "README.md"
 }
 ```
-```yaml
-type: update
-name: Success Text first example
-baseUrl: https://github.com/jelastic-jps/minio
-onInstall:
-  log: success text first example
-success: README.md
-```
 @@!
 
 - Customizing the *success* response text by means of the external link.                                     
 @@@
-``` json
+```yaml
 {
   "type": "update",
   "name": "Success Text Second Example",
@@ -1323,7 +1323,7 @@ success: README.md
   "success": "https://github.com/jelastic-jps/lets-encrypt/raw/master/README.md"
 }
 ```
-```yaml
+``` json
 {
   "type": "update",
   "name": "Success Text Second Example",
@@ -1340,6 +1340,14 @@ As it was mentioned above, the success response is distinguished between two val
  - text displayed at the dashboard after installation is successfully conducted                         
  
 @@@
+```yaml
+type: update
+name: Success Text Second Example
+onInstall:
+  log: success Text Second Example
+success:
+  text: https://github.com/jelastic-jps/lets-encrypt/raw/master/README.md
+```
 ``` json
 {
   "type": "update",
@@ -1352,17 +1360,21 @@ As it was mentioned above, the success response is distinguished between two val
   }
 }
 ```
-```yaml
-type: update
-name: Success Text Second Example
-onInstall:
-  log: success Text Second Example
-success:
-  text: https://github.com/jelastic-jps/lets-encrypt/raw/master/README.md
-```
 @@! 
  - message delivered via email notifying about the successful installation                                                  
-@@@ 
+@@@
+```yaml
+type: update
+name: Success Text Test 4
+baseUrl: https://github.com/jelastic-jps/lets-encrypt
+onInstall:
+  log: success text test 4
+success:
+  email: README.md
+  text:
+    en: README.md
+    ru: https://github.com/jelastic-jps/lets-encrypt/blob/master/README.md
+```
 ``` json
 {
   "type": "update",
@@ -1380,22 +1392,19 @@ success:
   }
 }
 ```
-```yaml
-type: update
-name: Success Text Test 4
-baseUrl: https://github.com/jelastic-jps/lets-encrypt
-onInstall:
-  log: success text test 4
-success:
-  email: README.md
-  text:
-    en: README.md
-    ru: https://github.com/jelastic-jps/lets-encrypt/blob/master/README.md
-```
 @@!
 
 A email notification also can be customized in <a href="/creating-manifest/handling-custom-responses/">custom responses</a>. In this case an `email` value from handle custom response has a highier priority. For example:
 @@@
+```yaml
+type: update
+name: Success Text Customization
+onInstall:
+  return:
+    result: success
+    email: Custom email response text
+success: success!!
+```
 ```json
 {
   "type": "update",
@@ -1408,15 +1417,6 @@ A email notification also can be customized in <a href="/creating-manifest/handl
   },
   "success": "success!!"
 }
-```
-```yaml
-type: update
-name: Success Text Customization
-onInstall:
-  return:
-    result: success
-    email: Custom email response text
-success: success!!
 ```
 @@!
 

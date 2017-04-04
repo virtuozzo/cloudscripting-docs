@@ -21,6 +21,18 @@ Events can be filtered by <a href="/creating-manifest/selecting-containers/#all-
 
 The following example describes the events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event). Here, filtering by the compute node group (*[cp]*) is set so that the action is executed after compute nodes are scaled out. The *nodeType* filtering is set so that the action is executed after **Apache 2** nodes are restarted. The *nodeID* filtering is set so that the action is executed after a password from the first compute node in the layer is reseted.
 @@@
+```yaml
+type: update
+name: Event Subsribtion Example
+onInstall:
+  createFile [cp]: /tmp/result.txt
+onAfterScaleOut [cp]:
+  cmd [cp]: echo 'New Compute node has been added' >> /tmp/result.txt
+onAfterRestartNode [apache2]:
+  cmd [cp]: echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> /tmp/result.txt
+onAfterResetNodePassword [${nodes.cp[0].id}]:
+  cmd [${nodes.cp[0].id}]: echo 'First compute node has been restarted' >> /tmp/result.txt
+```
 ``` json
 {
   "type": "update",
@@ -38,18 +50,6 @@ The following example describes the events filtering by *nodeGroup* (for the <b>
     "cmd [${nodes.cp[0].id}]": "echo 'First compute node has been restarted' >> /tmp/result.txt"
   }
 }
-```
-```yaml
-type: update
-name: Event Subsribtion Example
-onInstall:
-  createFile [cp]: /tmp/result.txt
-onAfterScaleOut [cp]:
-  cmd [cp]: echo 'New Compute node has been added' >> /tmp/result.txt
-onAfterRestartNode [apache2]:
-  cmd [cp]: echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> /tmp/result.txt
-onAfterResetNodePassword [${nodes.cp[0].id}]:
-  cmd [${nodes.cp[0].id}]: echo 'First compute node has been restarted' >> /tmp/result.txt
 ```
 @@!
 
@@ -221,6 +221,12 @@ The units of measurement are *PERCENTAGE* and *SPECIFIC*. The second value is av
 
 The following example illustrates the subscription to the *onAlert* event. Here, the *log* action is executed if one of the triggers within the compute (*[cp]*) layer is invoked.
 @@@
+```yaml
+type: update
+name: AddTrigger
+onAlert [cp]:
+  log: onAlert event has subscribed
+```
 ``` json
 {
     "type": "update",
@@ -230,16 +236,29 @@ The following example illustrates the subscription to the *onAlert* event. Here,
     }
 }
 ```
-```yaml
-type: update
-name: AddTrigger
-onAlert [cp]:
-  log: onAlert event has subscribed
-```
 @@!
 
 The following example shows how a new trigger is being created.
 @@@
+```yaml
+type: update
+name : AddTrigger
+onInstall:
+  environment.trigger.AddTrigger:
+    data:
+      name: new alert
+      nodeGroup: sqldb
+      period: 10
+      condition:
+        type: GREATER
+        value: 55
+        resourceType: MEM
+        valueType: PERCENTAGES
+      actions:
+        - type: NOTIFY
+          customData:
+            notify: false
+```
 ``` json
 {
   "type": "update",
@@ -268,25 +287,6 @@ The following example shows how a new trigger is being created.
     }
   }
 }
-```
-```yaml
-type: update
-name : AddTrigger
-onInstall:
-  environment.trigger.AddTrigger:
-    data:
-      name: new alert
-      nodeGroup: sqldb
-      period: 10
-      condition:
-        type: GREATER
-        value: 55
-        resourceType: MEM
-        valueType: PERCENTAGES
-      actions:
-        - type: NOTIFY
-          customData:
-            notify: false
 ```
 @@!
 This example involves execution of the Jelastic API *addTrigger* method with a set of required parameters:     

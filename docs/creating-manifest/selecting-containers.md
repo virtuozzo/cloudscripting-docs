@@ -7,6 +7,12 @@ Running a specific <a href="/creating-manifest/actions/" target="_blank">action<
 The <em>nodeId</em> parameter is used to specify a particular container for the action execution. If you know the Node ID of your container (displayed at the Jelastic dashboard next to the required node), you can set it statically as follows.                                           
 
 @@@
+```yaml
+writeFile:
+  - nodeId: 123
+    path: /var/www/webroot/hw.txt
+    body: Hello World!
+```
 ``` json
 {
   "writeFile": [
@@ -18,15 +24,15 @@ The <em>nodeId</em> parameter is used to specify a particular container for the 
   ]
 }
 ```
-```yaml
-writeFile:
-  - nodeId: 123
-    path: /var/www/webroot/hw.txt
-    body: Hello World!
-```
 @@!
 If you don't know the Node ID or a container is not created yet, you can set a dynamic value, using special placeholders as follows.                      
 @@@
+```yaml
+writeFile:
+  - nodeId: ${nodes.apache2[0].id}
+    path: /var/www/webroot/hw.txt
+    body: Hello World!
+```
 ``` json
 {
   "writeFile": [
@@ -37,12 +43,6 @@ If you don't know the Node ID or a container is not created yet, you can set a d
     }
   ]
 }
-```
-```yaml
-writeFile:
-  - nodeId: ${nodes.apache2[0].id}
-    path: /var/www/webroot/hw.txt
-    body: Hello World!
 ```
 @@!
 For more information, visit the <a href="/creating-manifest/placeholders/" target="_blank"><em>Placeholders</em></a> documentation page.                               
@@ -83,6 +83,12 @@ The <em>nodeType</em> parameter is used to specify all containers that are built
 
 Using the *nodeType* parameter while performing the <a href="/creating-manifest/actions/#writefile" target="_blank">**writeFile**</a> action.                         
 @@@
+```yaml
+writeFile:
+  nodeType: apache2
+  path: /tmp/example.txt
+  body: Hello World
+```
 ``` json
 {
   "writeFile": {
@@ -91,12 +97,6 @@ Using the *nodeType* parameter while performing the <a href="/creating-manifest/
     "body": "Hello World"
   }
 } 
-```
-```yaml
-writeFile:
-  nodeType: apache2
-  path: /tmp/example.txt
-  body: Hello World
 ```
 @@!
 where:                
@@ -108,6 +108,13 @@ where:
 
 Using the *engine* and *nodeType* parameters while creating a new environment.
 @@@
+```yaml
+type: install
+name: install Tomcat7 node
+engine: java7
+nodes:
+  nodeType: tomcat7
+```
 ``` json
 {
   "type": "install",
@@ -117,13 +124,6 @@ Using the *engine* and *nodeType* parameters while creating a new environment.
     "nodeType": "tomcat7"
   }
 }
-```
-```yaml
-type: install
-name: install Tomcat7 node
-engine: java7
-nodes:
-  nodeType: tomcat7
 ```
 @@!
 where:          
@@ -139,6 +139,12 @@ There are three alternative approaches, provided to specify a target container i
 
 Through the following example, a new file is created in the compute layer (<em>[cp]</em>) and a new directory is created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers, and container with the Node ID <em>123</em>. Actions for the specified containers are executed in the declared order.
 @@@
+```yaml
+- createfile [cp]:
+    path: /tmp/test.txt
+- createDirectory [cp,bl,123]:
+    path: /tmp/test
+```
 ``` json
 [
   {
@@ -153,17 +159,18 @@ Through the following example, a new file is created in the compute layer (<em>[
   }
 ]
 ```
-```yaml
-- createfile [cp]:
-    path: /tmp/test.txt
-- createDirectory [cp,bl,123]:
-    path: /tmp/test
-```
 @@!
 - specifying a target container next to the performed action                                       
 
 Through the following example, the <a href="/creating-manifest/actions/#createfile" target="_blank">**createFile**</a> and <a href="/creating-manifest/actions/#createdirectory" target="_blank">**createDirectory**</a> actions are applied to the specified <em>nodeGroup</em>, namely the compute layer (<em>[cp]</em>).
 @@@
+```yaml
+- createFile:
+    path: /tmp/test.txt
+  createDirectory:
+    path: /tmp/test
+  nodeGroup: cp
+```
 ``` json
 [
   {
@@ -176,13 +183,6 @@ Through the following example, the <a href="/creating-manifest/actions/#createfi
     "nodeGroup": "cp"
   }
 ]
-```
-```yaml
-- createFile:
-    path: /tmp/test.txt
-  createDirectory:
-    path: /tmp/test
-  nodeGroup: cp
 ```
 @@!
  

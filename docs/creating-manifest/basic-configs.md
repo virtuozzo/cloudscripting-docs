@@ -6,15 +6,15 @@ The JPS manifest is a file with <b>*.json*</b> extension, which contains an appr
 
 The code should contain a set of strings needed for a successful installation of an application. The basis of the code is represented by the following string:
 @@@
+```yaml
+type: string
+name: any required name
+```
 ``` json
 {
     "type": "string",
     "name": "any required name"
 }
-```
-```yaml
-type: string
-name: any required name
 ```
 @@!
 
@@ -32,6 +32,30 @@ There is a set of available parameters to define a manifest installation behavio
 
 **Basic Template**
 @@@
+```yaml
+type: string
+version: string
+name: string
+logo: string
+description: string
+homepage: string
+categories: array
+baseUrl: string
+settings: object
+nodes: array
+engine: string
+region: string
+ssl: boolean
+ha: boolean
+displayName: string
+appVersion: string
+onInstall: object/string
+startPage: string
+actions: array
+addons: array
+success: object/string
+...: object
+```
 ``` json
 {
   "type": "string",
@@ -57,30 +81,6 @@ There is a set of available parameters to define a manifest installation behavio
   "success": "object/string",
   "...": "object"
 }
-```
-```yaml
-type: string
-version: string
-name: string
-logo: string
-description: string
-homepage: string
-categories: array
-baseUrl: string
-settings: object
-nodes: array
-engine: string
-region: string
-ssl: boolean
-ha: boolean
-displayName: string
-appVersion: string
-onInstall: object/string
-startPage: string
-actions: array
-addons: array
-success: object/string
-...: object
 ```
 @@!
 
@@ -151,6 +151,16 @@ There are three available parameters to set Docker volumes:
 
 All of the fields are set within the Docker object:
 @@@
+```yaml
+type: install
+name: docker volumes
+nodes:
+  nodeGroup: sqldb
+  image: centos:7
+  volumes: []
+  volumeMount: {}
+  volumesFrom: []
+```
 ``` json
 {
   "type": "install",
@@ -166,22 +176,19 @@ All of the fields are set within the Docker object:
   ]
 }
 ```
-```yaml
-type: install
-name: docker volumes
-nodes:
-  nodeGroup: sqldb
-  image: centos:7
-  volumes: []
-  volumeMount: {}
-  volumesFrom: []
-```
 @@!
 
 **Volumes**
 
 This field represents a string array:
 @@@
+```yaml
+- volumes:
+  - /external
+  - /data
+  - /master
+  - /local
+```
 ``` json
 [
   {
@@ -194,18 +201,20 @@ This field represents a string array:
   }
 ]
 ```
-```yaml
-- volumes:
-  - /external
-  - /data
-  - /master
-  - /local
-```
 @@!
 
 **VolumeMounts**
 This parameter is an object. It can be set like within the example below:
 @@@
+```yaml
+volumeMounts:
+  /example-path:
+    sourcePath: ''
+    sourceNodeId: 0
+    sourceNodeGroup: ''
+    sourceHost: ''
+    readOnly: true
+```
 ``` json
 {
   "volumeMounts": {
@@ -219,15 +228,6 @@ This parameter is an object. It can be set like within the example below:
   }
 }
 ```
-```yaml
-volumeMounts:
-  /example-path:
-    sourcePath: ''
-    sourceNodeId: 0
-    sourceNodeGroup: ''
-    sourceHost: ''
-    readOnly: true
-```
 @@!
 Here:  
 
@@ -240,6 +240,12 @@ Here:
 
 In case not all source node volumes are required to be mounted, the particular ones can be specified:
 @@@
+```yaml
+- sourceNodeGroup: storage
+  volumes: 
+    - /master
+    - /local
+```
 ``` json
 [
   {
@@ -251,12 +257,6 @@ In case not all source node volumes are required to be mounted, the particular o
   }
 ]
 ```
-```yaml
-- sourceNodeGroup: storage
-  volumes: 
-    - /master
-    - /local
-```
 @@!
 
 <h4>*VolumeMounts* examples</h4>
@@ -264,6 +264,15 @@ In case not all source node volumes are required to be mounted, the particular o
 **Master Node Mount:**   
 Samples to mount a particular volume by exact node identifier & path (*/master*) and to mount all volumes from the layer master node by *nodeGroup* (*/master-1*)
 @@@
+```yaml
+volumeMounts:
+  /master:
+    sourcePath: /master
+    sourceNodeId: 81725
+    readOnly: true
+  /master-1:
+   sourceNodeGroup: current-node-group
+```
 ``` json
 {
   "volumeMounts": {
@@ -278,15 +287,6 @@ Samples to mount a particular volume by exact node identifier & path (*/master*)
   }
 }
 ```
-```yaml
-volumeMounts:
-  /master:
-    sourcePath: /master
-    sourceNodeId: 81725
-    readOnly: true
-  /master-1:
-   sourceNodeGroup: current-node-group
-```
 @@!
 
 Here, *sourcePath* and *readOnly* parameters are optional.
@@ -295,6 +295,13 @@ Here, *sourcePath* and *readOnly* parameters are optional.
 <br>
 Samples to mount all volumes from a particular node by exact node identifier & path (*/node*) and to mount master node volumes by *nodeGroup* type (*/data*)
 @@@
+```yaml
+volumeMounts:
+  /node:
+    sourceNodeId: 45
+  /data:
+    sourceNodeGroup: storage
+```
 ``` json
 {
   "volumeMounts": {
@@ -307,19 +314,19 @@ Samples to mount all volumes from a particular node by exact node identifier & p
   }
 }
 ```
-```yaml
-volumeMounts:
-  /node:
-    sourceNodeId: 45
-  /data:
-    sourceNodeGroup: storage
-```
 @@!
 
 **External Server Mounts:**
 <br>
 Sample to mount a volume (*/external*) from external server by indicating its host (`sourceHost`), path (`sourcePath`) and access permissions (`readOnly`).
 @@@
+```yaml
+volumeMounts:
+  /external:
+    sourceHost: external.com
+    sourcePath: /remote-path
+    readOnly: true
+```
 ``` json
 {
   "volumeMounts": {
@@ -331,18 +338,18 @@ Sample to mount a volume (*/external*) from external server by indicating its ho
   }
 }
 ```
-```yaml
-volumeMounts:
-  /external:
-    sourceHost: external.com
-    sourcePath: /remote-path
-    readOnly: true
-```
 @@!
 **Short Set for External Server:**
 <br>
 Sample to mount a number of volumes from external server by specifying the required parameters (i.e. volume path, `sourceHost`, `sourcePath`, access permissions) for each of them within one string.     
 @@@
+```yaml
+volumeMounts:
+  /ext-domain: aws.com
+  /ext-domain/ro: aws.com;ro
+  /ext-domain/path: aws.com:/121233
+  /ext-domain/path/ro: aws.com:/121233:ro
+```
 ``` json
 {
   "volumeMounts": {
@@ -352,13 +359,6 @@ Sample to mount a number of volumes from external server by specifying the requi
     "/ext-domain/path/ro": "aws.com:/121233:ro"
   }
 }
-```
-```yaml
-volumeMounts:
-  /ext-domain: aws.com
-  /ext-domain/ro: aws.com;ro
-  /ext-domain/path: aws.com:/121233
-  /ext-domain/path/ro: aws.com:/121233:ro
 ```
 @@!
 
@@ -412,6 +412,16 @@ where:
 
 Docker environment <a href="https://docs.jelastic.com/docker-variables" target="_blank">variable</a> is an optional topology object. The *env* instruction allows to set the required environment variables to specified values. 
 @@@
+```yaml
+type: install
+name: Environment variables
+nodes:
+  - nodeGroup: cp
+    image: wordpress:latest
+    env:
+      WORDPRESS_VERSION: 4.6.1
+      PHP_INI_DIR: /usr/local/etc/php
+```
 ``` json
 {
   "type": "install",
@@ -428,16 +438,6 @@ Docker environment <a href="https://docs.jelastic.com/docker-variables" target="
   ]
 }
 ```
-```yaml
-type: install
-name: Environment variables
-nodes:
-  - nodeGroup: cp
-    image: wordpress:latest
-    env:
-      WORDPRESS_VERSION: 4.6.1
-      PHP_INI_DIR: /usr/local/etc/php
-```
 @@!
 
 **Links**
@@ -447,6 +447,23 @@ Docker <a href="https://docs.jelastic.com/docker-links" target="_blank">links</a
 
 The example below illustrates the way to link *sql* and *memcached* nodes to *cp* container.
 @@@
+```yaml
+- image: wordpress:latest
+  links:
+    - db:DB
+    - memcached:MEMCACHED
+  cloudlets: 8
+  nodeGroup: cp
+  displayName: AppServer
+- image: mysql5:latest
+  cloudlets: 8
+  nodeGroup: db
+  displayName: database
+- image: memcached:latest
+  cloudlets: 4
+  nodeGroup: memcached
+  displayName: Memcached
+```
 ``` json
 [
   {
@@ -473,23 +490,6 @@ The example below illustrates the way to link *sql* and *memcached* nodes to *cp
   }
 ]
 ```
-```yaml
-- image: wordpress:latest
-  links:
-    - db:DB
-    - memcached:MEMCACHED
-  cloudlets: 8
-  nodeGroup: cp
-  displayName: AppServer
-- image: mysql5:latest
-  cloudlets: 8
-  nodeGroup: db
-  displayName: database
-- image: memcached:latest
-  cloudlets: 4
-  nodeGroup: memcached
-  displayName: Memcached
-```
 @@!
 where:
 
@@ -514,6 +514,16 @@ The relative links functionality is intended to specify the JPS file’s base UR
 
 **Example**
 @@@
+```yaml
+type: update
+name: Base URL test
+baseUrl: https://github.com/jelastic-jps/minio/blob/master
+onInstall:
+  log: Base URL test
+onAfterRestartNode [cp]:
+  script: build-cluster.js
+success: README.md
+```
 ``` json
 {
     "type" : "update",
@@ -527,16 +537,6 @@ The relative links functionality is intended to specify the JPS file’s base UR
     },
     "success" : "README.md"
 }
-```
-```yaml
-type: update
-name: Base URL test
-baseUrl: https://github.com/jelastic-jps/minio/blob/master
-onInstall:
-  log: Base URL test
-onAfterRestartNode [cp]:
-  script: build-cluster.js
-success: README.md
 ```
 @@!
 
@@ -570,6 +570,13 @@ The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be u
 
 For example:
 @@@
+```yaml
+type: update
+name: Test Base URL
+baseUrl: http://example.com/
+onInstall:
+  cmd [cp]: curl -fSs '${baseUrl}script.sh'    
+```
 ``` json
 {
   "type" : "update",
@@ -581,13 +588,6 @@ For example:
     }
   }
 }
-```
-```yaml
-type: update
-name: Test Base URL
-baseUrl: http://example.com/
-onInstall:
-  cmd [cp]: curl -fSs '${baseUrl}script.sh'    
 ```
 @@!
                         

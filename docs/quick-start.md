@@ -18,6 +18,19 @@ And to get up and ready with your own project, fulfill the following requirement
 
 Hello World is a simple ready-to-go application that you can use as a start point in exploring Cloud Scripting possibilities.                                              
 @@@
+```yaml
+type: install
+name: Hello World!
+engine: php5.4
+nodes:
+  nodeType: apache2
+  cloudlets: 16
+onInstall:
+  deploy:
+    archive: http://app.demo.jelastic.com/HelloWorld.zip
+    name: Hello World
+    context: ROOT
+```
 ```json
 {
   "type": "install",
@@ -35,19 +48,6 @@ Hello World is a simple ready-to-go application that you can use as a start poin
     }
   }
 }
-```
-```yaml
-type: install
-name: Hello World!
-engine: php5.4
-nodes:
-  nodeType: apache2
-  cloudlets: 16
-onInstall:
-  deploy:
-    archive: http://app.demo.jelastic.com/HelloWorld.zip
-    name: Hello World
-    context: ROOT
 ```
 @@!
 

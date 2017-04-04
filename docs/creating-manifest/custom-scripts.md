@@ -11,25 +11,25 @@ In order to execute a shell script inside of a container, use the <a href="/crea
 
 - Executing bash script from URL.
 @@@
+```yaml
+cmd [cp]: curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2
+```
 ``` json
 {
   "cmd [cp]": "curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2"
 }
 ```
-```yaml
-cmd [cp]: curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2
-```
 @@!
 
 - Restoring MySQL database.
 @@@
+```yaml
+cmd [mysql5]: curl -fsS http://example.com/script.sh | /bin/bash -s '${nodes.sqldb.password}' 'http://example.com/dump.sql' '${user.appPassword}'
+```
 ``` json
 {
   "cmd [mysql5]": "curl -fsS http://example.com/script.sh | /bin/bash -s '${nodes.sqldb.password}' 'http://example.com/dump.sql' '${user.appPassword}'"
 }
-```
-```yaml
-cmd [mysql5]: curl -fsS http://example.com/script.sh | /bin/bash -s '${nodes.sqldb.password}' 'http://example.com/dump.sql' '${user.appPassword}'
 ```
 @@!
 
@@ -68,6 +68,14 @@ Using a <a href="/creating-manifest/actions/#script" target="_blank">*script*</a
 
 ### Java
 @@@
+```yaml
+script:
+  - type: java
+    params:
+      greeting: Hello World!
+    script: |
+      return hivext.local.GetParam("greeting");
+```
 ``` json
 {
   "script": [
@@ -81,14 +89,6 @@ Using a <a href="/creating-manifest/actions/#script" target="_blank">*script*</a
   ]
 }
 ```
-```yaml
-script:
-  - type: java
-    params:
-      greeting: Hello World!
-    script: |
-      return hivext.local.GetParam("greeting");
-```
 @@!
 
 <!--
@@ -97,16 +97,16 @@ script:
 
 ### JavaScript                
 @@@
+```yaml
+script: |
+  return getParam('greeting');
+greeting: Hello World!
+```
 ``` json
 {
   "script": "return getParam('greeting');",
   "greeting": "Hello World!"
 }
-```
-```yaml
-script: |
-  return getParam('greeting');
-greeting: Hello World!
 ```
 @@!
 <br>
