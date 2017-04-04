@@ -37,14 +37,13 @@ Hello World is a simple ready-to-go application that you can use as a start poin
 }
 ```
 ```yaml
-
-type: install,
-name: Hello World,
+type: install
+name: Hello World!
 engine: php5.4
-nodes: 
-  nodeType: apache2,
+nodes:
+  nodeType: apache2
   cloudlets: 16
-onInstall: 
+onInstall:
   deploy:
     archive: http://app.demo.jelastic.com/HelloWorld.zip
     name: Hello World
