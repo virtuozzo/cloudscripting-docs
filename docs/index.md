@@ -89,43 +89,43 @@ There are three main pillars of cloud scripting:
 ```yaml
 type: install
 name: Advanced Payara Micro Cluster
-nodes: 
-  - count: 1
-    image: jelastic/payara-micro-cluster
-    nodeGroup: cp
-    cloudlets: 16
-    env:
-      HAZELCAST_GROUP: ${fn.uuid}
-      HAZELCAST_PASSWORD: ${fn.password}
-    volumes:
-      - /opt/payara/deployments
-      - /opt/payara/config
-      - /var/log
+nodes:
+- count: 1
+ cloudlets: 16
+ nodeGroup: cp
+ image: jelastic/payara-micro-cluster
+ env:
+   HAZELCAST_GROUP: "${fn.uuid}"
+   HAZELCAST_PASSWORD: "${fn.password}"
+ volumes:
+ - "/opt/payara/deployments"
+ - "/opt/payara/config"
+ - "/var/log"
 onInstall:
-  - forEach(nodes.cp):
-      updateNodes:
-        option: add
-        ip: ${@i.intIP}
-  - install: ${baseUrl}/application-storage/manifest.jps
+- forEach(nodes.cp):
+   updateNodes:
+     option: add
+     ip: "${@i.intIP}"
+- install: "${baseUrl}/application-storage/manifest.jps"
 onAfterScaleOut[cp]:
-  forEach(event.response.nodes):
-    updateNodes:
-      option: add
-      ip: ${@i.intIP}
+ forEach(event.response.nodes):
+   updateNodes:
+     option: add
+     ip: "${@i.intIP}"
 onAfterScaleIn[cp]:
-  forEach(event.response.nodes):
-    updateNodes:
-      option: remove
-      ip: ${@i.intIP}
+ forEach(event.response.nodes):
+   updateNodes:
+     option: remove
+     ip: "${@i.intIP}"
 actions:
-  updateNodes:
-    cmd[cp]: $PAYARA_PATH/bin/clusterManager.sh --${this.option}host ${this.ip}
-success: "TODO: Put markdown text here + add markdown syntaxis to the docs"
-baseUrl: "https://github.com/jelastic-jps/payara/raw/master/addons"
-logo: "https://raw.githubusercontent.com/jelastic-jps/payara/master/images/70.png"
-description: "Example: The package automatically provisions Payara Micro cluster, mounts storage container and deploys test war applications."
-homepage: "http://docs.cloudscripting.com/"
-
+ updateNodes:
+   cmd[cp]: "$PAYARA_PATH/bin/clusterManager.sh --${this.option}host ${this.ip}"
+success: 'TODO: Put markdown text here + add markdown syntaxis to the docs'
+baseUrl: https://github.com/jelastic-jps/payara/raw/master/addons
+logo: https://raw.githubusercontent.com/jelastic-jps/payara/master/images/70.png
+description: 'Example: The package automatically provisions Payara Micro cluster,
+ mounts storage container and deploys test war applications.'
+homepage: http://docs.cloudscripting.com/
 ```
 @@!
 <br>       
