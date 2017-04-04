@@ -95,31 +95,31 @@ nodes:
  nodeGroup: cp
  image: jelastic/payara-micro-cluster
  env:
-   HAZELCAST_GROUP: "${fn.uuid}"
-   HAZELCAST_PASSWORD: "${fn.password}"
+   HAZELCAST_GROUP: ${fn.uuid}
+   HAZELCAST_PASSWORD: ${fn.password}
  volumes:
- - "/opt/payara/deployments"
- - "/opt/payara/config"
- - "/var/log"
+ - /opt/payara/deployments
+ - /opt/payara/config
+ - /var/log
 onInstall:
 - forEach(nodes.cp):
    updateNodes:
      option: add
      ip: "${@i.intIP}"
-- install: "${baseUrl}/application-storage/manifest.jps"
+- install: ${baseUrl}/application-storage/manifest.jps
 onAfterScaleOut[cp]:
  forEach(event.response.nodes):
    updateNodes:
      option: add
-     ip: "${@i.intIP}"
+     ip: ${@i.intIP}
 onAfterScaleIn[cp]:
  forEach(event.response.nodes):
    updateNodes:
      option: remove
-     ip: "${@i.intIP}"
+     ip: ${@i.intIP}
 actions:
  updateNodes:
-   cmd[cp]: "$PAYARA_PATH/bin/clusterManager.sh --${this.option}host ${this.ip}"
+   cmd[cp]: $PAYARA_PATH/bin/clusterManager.sh --${this.option}host ${this.ip}
 success: 'TODO: Put markdown text here + add markdown syntaxis to the docs'
 baseUrl: https://github.com/jelastic-jps/payara/raw/master/addons
 logo: https://raw.githubusercontent.com/jelastic-jps/payara/master/images/70.png

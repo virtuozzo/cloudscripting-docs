@@ -89,7 +89,7 @@ The single SSH command can be passed in a string. For example, running a bash sc
 }
 ```
 ```yaml
-cmd [tomcat6]: "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
+cmd [tomcat6]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
 ```
 @@!
 
@@ -180,7 +180,7 @@ Setting SSH commands in an array.
 ```
 ```yaml
 cmd [tomcat6]:
-  - "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
+  - curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
 ```
 @@!
                              
@@ -198,7 +198,7 @@ Downloading and unzipping the **WordPress** plugin on all the compute nodes. Her
 ```yaml
 cmd [cp]:
   - cd /var/www/webroot/ROOT/wp-content/plugins/
-  - "curl -fsSL \"http://example.com/plugin.zip\" -o plugin.zip"
+  - curl -fsSL \"http://example.com/plugin.zip\" -o plugin.zip
   - unzip plugin.zip
 ```
 @@!
@@ -259,7 +259,7 @@ This method (*jelastic.environment.control.RestartNodesByGroup*) can be simplifi
 }
 ```
 ```yaml
-
+api [cp]: environment.control.RestartNodesByGroup
 ```
 @@!
 
@@ -1261,7 +1261,7 @@ The simplest record for `install` action is described like in example below:
 type: update
 name: Install action
 onInstall:
-  install: "http://example.com/manifest.jps"
+  install: http://example.com/manifest.jps
 ```
 @@!
 Therefore, the `install` action can be set by **string**.
@@ -1285,8 +1285,8 @@ type: update
 name: Install action
 onInstall:
   install:
-    - "http://example.com/manifest.jps"
-    - "http://example.com/manifest2.jp"
+    - http://example.com/manifest.jps
+    - http://example.com/manifest2.jp
 ```
 @@!
 The next example describes installing the add-on via the external link (with the *update* installation type) with additional parameters.            
@@ -1374,7 +1374,7 @@ type: update
 name: Install action
 onInstall:
   install:
-    jps: "http://example.com/manifest.jps"
+    jps: http://example.com/manifest.jps
     envName: env-${fn.random}
     settings:
       myparam: test
