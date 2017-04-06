@@ -45,7 +45,7 @@ onInstall:
 - forEach(nodes.cp):
    updateNodes:
      option: add
-     ip: "${@i.intIP}"
+     ip: ${@i.intIP}
 - install: ${baseUrl}/application-storage/manifest.jps
 onAfterScaleOut[cp]:
  forEach(event.response.nodes):
