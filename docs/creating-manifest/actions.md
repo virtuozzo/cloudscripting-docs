@@ -110,7 +110,7 @@ onInstall:
   "name": "Cmd commands",
   "onInstall": {
     "cmd": [
-      "echo 'Hello ' >> /tmp/CmdResponse.txt,
+      "echo 'Hello ' >> /tmp/CmdResponse.txt",
       "echo 'World!!!' >> /tmp/CmdResponse.txt"
     ],
     "nodeGroup": "cp"
