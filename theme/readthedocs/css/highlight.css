@@ -81,6 +81,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   color: #008080;
 }
 
+.hljs-number {
+  color: #71a35c
+}
+
 .hljs-regexp {
   color: #009926;
 }
