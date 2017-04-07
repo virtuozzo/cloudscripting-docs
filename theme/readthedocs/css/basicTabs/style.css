@@ -11,13 +11,11 @@ ul.c-tabs {
 	margin-left: 0 !important;
 }
 
-.c-tabs__item span {
+.c-tabs__item span.c-tabs__link {
 	cursor: pointer;
 	user-select: none;
 	-moz-user-select: none;
-	-khtml-user-select: none;
 	-webkit-user-select: none;
-	-o-user-select: none;
 }
 .c-tabs__link {
 	display: inline-block;
