@@ -13,7 +13,7 @@ With the help of actions you can achieve automation of the tasks related to:
 - applying a database patch                                                   
 
 The default workflow for any action execution is the following:                  
-
+d
 - replacing <a href="/creating-manifest/placeholders" target="_blank">placeholders</a>                                     
 
 - getting a list of <a href="/creating-manifest/selecting-containers" target="_blank">target containers</a>                                                 
@@ -100,8 +100,8 @@ type: update
 name: Cmd commands
 onInstall:
   cmd:
-    - commands: echo 'Hello ' >> /tmp/CmdResponse.txt
-    - commands: echo 'World ' >> /tmp/CmdResponse.txt
+    - echo 'Hello ' >> /tmp/CmdResponse.txt
+    - echo 'World ' >> /tmp/CmdResponse.txt
   nodeGroup: cp
 ```
 ```json
@@ -110,12 +110,8 @@ onInstall:
   "name": "Cmd commands",
   "onInstall": {
     "cmd": [
-      {
-        "commands": "echo 'Hello ' >> /tmp/CmdResponse.txt"
-      },
-      {
-        "commands": "echo 'World!!!' >> /tmp/CmdResponse.txt"
-      }
+      "echo 'Hello ' >> /tmp/CmdResponse.txt,
+      "echo 'World!!!' >> /tmp/CmdResponse.txt"
     ],
     "nodeGroup": "cp"
   }
@@ -123,39 +119,39 @@ onInstall:
 ```
 @@!
 
-The same commands can be executed on different target nodes. In this case **nodeGroup** parameter should be set twice for every method:
+<!--The same commands can be executed on different target nodes. In this case **nodeGroup** parameter should be set twice for every method:-->
 
-@@@
-```yaml
-type: update
-name: Cmd commands
-onInstall:
-  cmd:
-    - commands: echo 'Hello ' >> /tmp/CmdResponse.txt
-      nodeId: ${nodes.cp[0].id}
-    - commands: echo 'World ' >> /tmp/CmdResponse.txt
-      nodeGroup: cp
-```
-```json
-{
-  "type": "update",
-  "name": "Cmd commands",
-  "onInstall": {
-    "cmd": [
-      {
-        "commands": "echo 'Hello ' >> /tmp/CmdResponse.txt",
-        "nodeId": "${nodes.cp[0].id}"
-      },
-      {
-        "commands": "echo 'World!!!' >> /tmp/CmdResponse.txt",
-        "nodeGroup": "cp"
-      }
-    ]
-  }
-}
-```
-@@!
-Therefore, the first commands will be executed only in a first compute node. 
+<!--@@@-->
+<!--```yaml-->
+<!--type: update-->
+<!--name: Cmd commands-->
+<!--onInstall:-->
+  <!--cmd:-->
+    <!--- commands: echo 'Hello ' >> /tmp/CmdResponse.txt-->
+      <!--nodeId: ${nodes.cp[0].id}-->
+    <!--- commands: echo 'World ' >> /tmp/CmdResponse.txt-->
+      <!--nodeGroup: cp-->
+<!--```-->
+<!--```json-->
+<!--{-->
+  <!--"type": "update",-->
+  <!--"name": "Cmd commands",-->
+  <!--"onInstall": {-->
+    <!--"cmd": [-->
+      <!--{-->
+        <!--"commands": "echo 'Hello ' >> /tmp/CmdResponse.txt",-->
+        <!--"nodeId": "${nodes.cp[0].id}"-->
+      <!--},-->
+      <!--{-->
+        <!--"commands": "echo 'World!!!' >> /tmp/CmdResponse.txt",-->
+        <!--"nodeGroup": "cp"-->
+      <!--}-->
+    <!--]-->
+  <!--}-->
+<!--}-->
+<!--```-->
+<!--@@!-->
+<!--Therefore, the first commands will be executed only in a first compute node. -->
 
 While accessing a container via *cmd*, you receive all the required permissions and additionally can manage the main services with **sudo** commands of the following types (and others).            
 ```no-highlight
