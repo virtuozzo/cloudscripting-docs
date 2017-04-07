@@ -72,7 +72,7 @@ description: |
   mounts storage container and deploys test war applications.
   
 success: |
-  Successfull installation window 
+  Successfull installation text 
 
 logo: https://raw.githubusercontent.com/jelastic-jps/payara/master/images/70.png
 homepage: http://docs.cloudscripting.com/
