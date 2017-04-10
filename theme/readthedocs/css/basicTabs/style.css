@@ -11,6 +11,10 @@ ul.c-tabs {
 	margin-left: 0 !important;
 }
 
+.c-tabs li.c-tabs__item:first-child {
+	padding-left: 27px;
+}
+
 .c-tabs__item span.c-tabs__link {
 	cursor: pointer;
 	user-select: none;

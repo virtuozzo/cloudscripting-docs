@@ -25,7 +25,8 @@ writeFile:
 }
 ```
 @@!
-If you don't know the Node ID or a container is not created yet, you can set a dynamic value, using special placeholders as follows.                      
+If you don't know the Node ID or a container is not created yet, you can set a dynamic value, using special placeholders as follows.
+
 @@@
 ```yaml
 writeFile:

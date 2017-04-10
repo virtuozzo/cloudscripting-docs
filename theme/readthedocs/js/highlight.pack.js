@@ -325,8 +325,7 @@
             var i, length;
 
             for (i = 0, length = mode.contains.length; i < length; i++) {
-                console.log("lexeme ->" + lexeme);
-                console.log("mode.contains[i].beginRe ->" + mode.contains[i].beginRe);
+
                 if (testRe(mode.contains[i].beginRe, lexeme)) {
                     return mode.contains[i];
                 }

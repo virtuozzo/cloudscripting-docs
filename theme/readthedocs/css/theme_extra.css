@@ -235,7 +235,7 @@ code.cs, code.c {
 pre code {
     font-size: 90%;
     /*background-color: #ecf0f1;*/
-    background-color: rgb(243, 243, 243); /*#ecf0f1;*/
+    background-color: #ffffff;/*rgb(243, 243, 243); /*#ecf0f1;*/
     /*border: 1px solid #ccc;*/
 }
 
