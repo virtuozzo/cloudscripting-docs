@@ -154,6 +154,7 @@ All of the fields are set within the Docker object:
 ```yaml
 type: install
 name: docker volumes
+
 nodes:
   nodeGroup: sqldb
   image: centos:7
@@ -415,6 +416,7 @@ Docker environment <a href="https://docs.jelastic.com/docker-variables" target="
 ```yaml
 type: install
 name: Environment variables
+
 nodes:
   - nodeGroup: cp
     image: wordpress:latest
@@ -455,10 +457,12 @@ The example below illustrates the way to link *sql* and *memcached* nodes to *cp
   cloudlets: 8
   nodeGroup: cp
   displayName: AppServer
+
 - image: mysql5:latest
   cloudlets: 8
   nodeGroup: db
   displayName: database
+
 - image: memcached:latest
   cloudlets: 4
   nodeGroup: memcached
@@ -518,10 +522,13 @@ The relative links functionality is intended to specify the JPS file’s base UR
 type: update
 name: Base URL test
 baseUrl: https://github.com/jelastic-jps/minio/blob/master
+
 onInstall:
   log: Base URL test
+  
 onAfterRestartNode [cp]:
   script: build-cluster.js
+  
 success: README.md
 ```
 ``` json
@@ -574,6 +581,7 @@ For example:
 type: update
 name: Test Base URL
 baseUrl: http://example.com/
+
 onInstall:
   cmd [cp]: curl -fSs '${baseUrl}script.sh'    
 ```

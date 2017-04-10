@@ -22,9 +22,11 @@ Hello World is a simple ready-to-go application that you can use as a start poin
 type: install
 name: Hello World!
 engine: php5.4
+
 nodes:
   nodeType: apache2
   cloudlets: 16
+
 onInstall:
   deploy:
     archive: http://app.demo.jelastic.com/HelloWorld.zip

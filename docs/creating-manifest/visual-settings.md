@@ -19,6 +19,7 @@ You can use the parameters from the following example to fetch your input data.
 @@@
 ```yaml
 type: update
+
 settings:
   prepopulate: URL
   fields:
@@ -400,6 +401,7 @@ The field for displaying Docker tags within the list element.
 @@@
 ```yaml
 name: Cloud Scripting
+
 settings:
   fields:
   - type: dockertags
@@ -407,11 +409,13 @@ settings:
     values:
     - name: latest
     - name: first
+
 dockerImage:
   name: sych74/pokemongo-map
   registry: ''
   username: ''
   password: ''
+
 env: {}
 ```
 ``` json
@@ -460,28 +464,28 @@ The compositefield is a container with specific functionality and structural com
 @@@
 ```yaml
 fields:
-- pack: ''
-  align: ''
-  defaultMargins:
-    top: 0
-    right: 0
-    bottom: 0
-    left: 10
-  defaultPadding: 0
-  defaultFlex: 0
-  caption: Compositefield
-  type: compositefield
-  name: compositefield
-  items:
-  - name: checkbox
-    value: true
-    type: checkbox
-  - width: 50px
-    name: first
-    type: string
-  - width: 100px
-    name: latest
-    type: string
+  - pack: ''
+    align: ''
+    defaultMargins:
+      top: 0
+      right: 0
+      bottom: 0
+      left: 10
+    defaultPadding: 0
+    defaultFlex: 0
+    caption: Compositefield
+    type: compositefield
+    name: compositefield
+    items:
+      - name: checkbox
+        value: true
+        type: checkbox
+      - width: 50px
+        name: first
+        type: string
+      - width: 100px
+        name: latest
+        type: string
 ```
 ``` json
 {
@@ -539,13 +543,13 @@ The slider element as a form field.
 @@@
 ```yaml
 fields:
-- min: '0'
-  max: '10'
-  increment: 1
-  useTips: true
-  caption: Slider
-  type: slider
-  name: slider
+  - min: '0'
+    max: '10'
+    increment: 1
+    useTips: true
+    caption: Slider
+    type: slider
+    name: slider
 ```
 ``` json
 {
@@ -579,11 +583,11 @@ The account environments list expanded within a drop-down element.
 @@@
 ```yaml
 fields:
-- caption: Envlist
-  editable: true
-  valueField: appid
-  type: envlist
-  name: envlist
+  - caption: Envlist
+    editable: true
+    valueField: appid
+    type: envlist
+    name: envlist
 ```
 ``` json
 {
@@ -617,7 +621,21 @@ where:
 The field for opening a pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.                      
 
 <center>![popupselector](/img/popupselector.jpg)</center>  
-"""
+@@@
+```yaml
+fields:
+  - caption: Popupselector
+    type: popupselector
+    name: popupselector
+    buttonText: Open
+    url: http://{external url}
+    popupWidth: 300px
+    popupHeight: 300px
+    popupCallbackEvent: handler
+    params:
+      first: 1
+      second: 2
+```
 ``` json
 {
   "fields": [
@@ -637,20 +655,6 @@ The field for opening a pop-up window via the POST request to any external servi
     }
   ]
 }
-```
-```yaml
-fields:
-- caption: Popupselector
-  type: popupselector
-  name: popupselector
-  buttonText: Open
-  url: http://{external url}
-  popupWidth: 300px
-  popupHeight: 300px
-  popupCallbackEvent: handler
-  params:
-    first: 1
-    second: 2
 ```
 @@!
 
@@ -672,6 +676,7 @@ For example:
 ```yaml
 type: update
 name: Return Action
+
 settings:
   fields:
     caption: Popupselector
@@ -733,10 +738,10 @@ The text field intended only for display that is not validated and not submitted
 @@@
 ```yaml
 fields:
-- caption: Displayfield
-  type: displayfield
-  name: displayfield
-  markup: display
+  - caption: Displayfield
+    type: displayfield
+    name: displayfield
+    markup: display
 ```
 ``` json
 {
@@ -765,13 +770,13 @@ The enhanced input field for entering numeric values, with up/down buttons and a
 @@@
 ```yaml
 fields:
-- type: spinner
-  name: spinner
-  caption: Spinner
-  min: 1
-  max: 10
-  increment: 2
-  decimanPrecision: ''
+  - type: spinner
+    name: spinner
+    caption: Spinner
+    min: 1
+    max: 10
+    increment: 2
+    decimanPrecision: ''
 ```
 ``` json
 {
@@ -808,12 +813,12 @@ The field that enables to select a number from a predefined range.
 @@@
 ```yaml
 fields:
-- type: numberpicker
-  name: numberpicker
-  caption: Numberpicker
-  min: 3
-  max: 10
-  editable: true
+  - type: numberpicker
+    name: numberpicker
+    caption: Numberpicker
+    min: 3
+    max: 10
+    editable: true
 ```
 ``` json
 {
@@ -848,11 +853,11 @@ The drop-down menu with the environments hosts.
 @@@
 ```yaml
 fields:
-- type: hostpicker
-  name: hostpicker
-  caption: Hostpicker
-  editable: true
-  valueField: host
+  - type: hostpicker
+    name: hostpicker
+    caption: Hostpicker
+    editable: true
+    valueField: host
 ```
 ``` json
 {
@@ -888,10 +893,10 @@ The toggle element is a switch between two values.
 @@@
 ```yaml
 fields:
-- type: toggle
-  name: toggle
-  caption: Toggle
-  value: true
+  - type: toggle
+    name: toggle
+    caption: Toggle
+    value: true
 ```
 ``` json
 {
@@ -920,6 +925,7 @@ Filtering for *targetNodes* can be performed by *nodeType*, *nodeGroup*, *docker
 ```yaml
 type: update
 name: targetNodes
+
 targetNodes:
   nodeType:
   - "..."
@@ -931,6 +937,7 @@ targetNodes:
   - "..."
   dockerTag:
   - "..."
+
 onInstall:
   createFile:
     nodeGroup: cp
@@ -984,8 +991,10 @@ Within these environments, the *targetNodes* filtering for JPS installation can 
 ```yaml
 type: update
 name: targetNodes
+
 targetNodes:
   nodeType: nginx, mysql5
+
 onInstall:
   createFile:
     nodeGroup: cp
@@ -1025,10 +1034,13 @@ The sample to set custom buttons within the menu list of the Add-ons plank.
 ```yaml
 type: update
 name: Custom buttons
+
 targetNodes:
   nodeGroup: bl
+
 actions:
-- "..."
+  - "..."
+
 menu:
   confirmText: Custom confirm text
   loadingText: Load text while waiting
@@ -1087,17 +1099,20 @@ The sample to set buttons within the Add-ons plank.
 ```yaml
 type: update
 name: Custom buttons
+
 targetNodes:
   nodeGroup: bl
+
 actions:
-- "..."
+  - "..."
+
 buttons:
-- confirmText: Custom confirm text
-  loadingText: Load text while waiting
-  action: "{String}"
-  caption: Configure
-  successText: Configuration saved successfully!
-  href: http://google.com
+  - confirmText: Custom confirm text
+    loadingText: Load text while waiting
+    action: "{String}"
+    caption: Configure
+    successText: Configuration saved successfully!
+    href: http://google.com
 ```
 ``` json
 {
@@ -1151,21 +1166,24 @@ Another sample with additional configurations where parameters can be enabled on
 ```yaml
 type: update
 name: Custom buttons
+
 targetNodes:
   nodeGroup: bl
+
 actions:
-- "..."
+  - "..."
+
 buttons:
-- confirmText: Custom confirm text
-  loadingText: Load text while waiting
-  action: "{String}"
-  caption: Configure
-  successText: Configuration saved successfully!
-  settings: config
-  title: Title
-  submitButtonText: Button Text
-  logsPath: "/var/log/add-on-action.log"
-  logsNodeGroup: cp
+  - confirmText: Custom confirm text
+    loadingText: Load text while waiting
+    action: "{String}"
+    caption: Configure
+    successText: Configuration saved successfully!
+    settings: config
+    title: Title
+    submitButtonText: Button Text
+    logsPath: "/var/log/add-on-action.log"
+    logsNodeGroup: cp
 ```
 ``` json
 {
@@ -1216,10 +1234,13 @@ The settings section can include a few custom forms. The default settings form I
 ```yaml
 type: update
 name: Custom buttons
+
 targetNodes:
   nodeGroup: bl
+  
 actions:
-- "..."
+  - "..."
+
 settings:
   main:
     fields:
@@ -1229,12 +1250,13 @@ settings:
     fields:
     - type: text
       caption: Custom form from button action
+
 buttons:
-- settings: config
-  action: customAction
-  caption: Configure
-  submitButtonText: Button Text
-  logsPath: "/var/lib/jelastic/keys/111"
+  - settings: config
+    action: customAction
+    caption: Configure
+    submitButtonText: Button Text
+    logsPath: "/var/lib/jelastic/keys/111"
 ```
 ``` json
 {
@@ -1294,8 +1316,10 @@ It is possible to customize the *success* text that is displayed upon successful
 type: update
 name: Success Text first example
 baseUrl: https://github.com/jelastic-jps/minio
+
 onInstall:
   log: success text first example
+
 success: README.md
 ```
 ``` json
@@ -1314,14 +1338,13 @@ success: README.md
 - Customizing the *success* response text by means of the external link.                                     
 @@@
 ```yaml
-{
-  "type": "update",
-  "name": "Success Text Second Example",
-  "onInstall": {
-    "log": "success Text Second Example"
-  },
-  "success": "https://github.com/jelastic-jps/lets-encrypt/raw/master/README.md"
-}
+type: update
+name: Success Text Second Example
+
+onInstall:
+  log: success Text Second Example
+
+success: https://github.com/jelastic-jps/lets-encrypt/raw/master/README.md
 ```
 ``` json
 {
@@ -1343,8 +1366,10 @@ As it was mentioned above, the success response is distinguished between two val
 ```yaml
 type: update
 name: Success Text Second Example
+
 onInstall:
   log: success Text Second Example
+
 success:
   text: https://github.com/jelastic-jps/lets-encrypt/raw/master/README.md
 ```
@@ -1367,8 +1392,10 @@ success:
 type: update
 name: Success Text Test 4
 baseUrl: https://github.com/jelastic-jps/lets-encrypt
+
 onInstall:
   log: success text test 4
+
 success:
   email: README.md
   text:
@@ -1399,10 +1426,12 @@ A email notification also can be customized in <a href="/creating-manifest/handl
 ```yaml
 type: update
 name: Success Text Customization
+
 onInstall:
   return:
     result: success
     email: Custom email response text
+
 success: success!!
 ```
 ```json

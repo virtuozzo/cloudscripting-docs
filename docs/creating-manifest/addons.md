@@ -9,10 +9,12 @@ The following example illustrates the add-on's installation to a specific *nodeG
 ```yaml
 type: install
 name: Addon installation
+
 nodes:
   - nodeType: apache2
     addons: custom-addon-id
   - nodeType: mysql5
+
 addons:
   - id: custom-addon-id
     name: Custom Addon
@@ -52,9 +54,11 @@ The following example illustrates the add-on's installation by calling the *inst
 ```yaml
 type: install
 name: Addon installation
+
 onInstall:
   installAddon:
     id: custom-addon-id
+
 addons:
   id: custom-addon-id
   name: Custom Addon

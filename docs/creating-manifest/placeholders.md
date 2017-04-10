@@ -176,6 +176,7 @@ This is the list of placeholders that you can use to specify input parameters.
 @@@
 ```yaml
 type: update
+
 settings:
   fields:
   - type: string
@@ -207,6 +208,7 @@ Action placeholders form a set of placeholders that can be used within the actio
 @@@
 ```yaml
 script: "return greeting;"
+
 params:
   greeting: Hello World
 ```
@@ -224,10 +226,12 @@ Passing custom parameters to the action is performed in the following way.
 ```yaml
 type: update
 name: example
+
 onInstall:
   customAction:
     first: 1
     second: 2
+
 actions:
   customAction:
     log: ${this.first}
@@ -267,6 +271,7 @@ This is the list of placeholders that you can use to specify UI parameters.
 @@@
 ```yaml
 type: update
+
 settings:
   fields:
     - type: string
@@ -300,6 +305,7 @@ Placeholders that are managed by users can be predefined via <b>*globals declara
 ```yaml
 type: update
 name: Global declaration
+
 globals:
   value1: 1
   value2: 2

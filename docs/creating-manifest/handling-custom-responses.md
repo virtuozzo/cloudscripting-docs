@@ -32,6 +32,7 @@ The basic custom response message can be returned in one string via the **return
 ```yaml
 type: update
 name: response handlers
+
 onInstall:
   return: Warning!
 ```
@@ -50,6 +51,7 @@ onInstall:
 ```yaml
 type: update
 name: response handlers
+
 onInstall:
   script: |
     return 'Warning!'
@@ -75,6 +77,7 @@ The <a href="/creating-manifest/actions/#script" target="_blank">*return*</a> ac
 ```yaml
 type: update
 name: response handlers
+
 onInstall:
   return:
     result: warniong
@@ -104,6 +107,7 @@ The <a href="/creating-manifest/actions/#script" target="_blank">*script*</a> ac
 ```yaml
 type: update
 name: response handlers
+
 onInstall:
   script: |
     return {"result": "warning", "message": "Warning!","email": "string"
@@ -130,6 +134,7 @@ Here, the result code is with the *success* installation type, the message is '*
 ```yaml
 type: update
 name: response handlers
+
 onInstall:
   script: |
     return {'result': 'success','message': 'Hello!!'}
@@ -152,6 +157,7 @@ Here, the result code is with the *success* installation type, the message is '*
 ```yaml
 type: update
 name: response handlers
+
 onInstall:
   script: |
     return {'result': 'success','message': 'Hello!!', 'email': 'Hello!!'}
@@ -172,6 +178,7 @@ The result message text can be localized according to the languages, available w
 @@@
 ```yaml
 type: warning
+
 message:
   en: Localized text
   es: Texto localizado
@@ -197,9 +204,11 @@ The example below describes a creation of the same file twice and handling a res
 ```yaml
 type: update
 name: Handling File Creation
+
 onInstall:
   - createFile [cp]: /tmp/customDirectory
   - createFile [cp]: /tmp/customDirectory
+
 responses:
   4036:
     type: error
@@ -238,9 +247,11 @@ The additional functionality is provided to display action responses using <a hr
 ```yaml
 type: update
 name: Custom Response Handlers
+
 onInstall:
   script: |
     return {result : 1000};
+
 responses:
   1000:
     type: warning
@@ -273,8 +284,10 @@ If the result code is delivered via string, then the default result code is *110
 ```yaml
 type: update
 name: Custom Response Handlers
+
 onInstall:
   script: return 'error'
+
 responses:
   error:
     type: info
@@ -306,9 +319,11 @@ The response objects that are returned from custom scripts and predefined in the
 ```yaml
 type: update
 name: Custom Response Handlers
+
 onInstall:
   script: |
     return {'result': '2308', 'message': 'Success from script with result 2308'}
+
 responses:
   2308:
     type: success

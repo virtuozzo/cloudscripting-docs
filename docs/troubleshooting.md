@@ -23,6 +23,7 @@ Below, you can find some samples of editing custom information to the log:
 ```yaml
 type: update
 name: LogTest
+
 onInstall:
   log:
     - Hello
@@ -48,6 +49,7 @@ onInstall:
 ```yaml
 type: update
 name: LogTest
+
 onInstall:
   log: ${placeholders}
 ```
@@ -68,10 +70,12 @@ onInstall:
 ```yaml
 type: update
 name: LogTest
+
 onInstall:
   script:
     type: js
     script: "http://example.com/script.js"
+
 actions:
   - myaction:
       log: ${this.message}

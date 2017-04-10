@@ -112,6 +112,7 @@ Using the *engine* and *nodeType* parameters while creating a new environment.
 type: install
 name: install Tomcat7 node
 engine: java7
+
 nodes:
   nodeType: tomcat7
 ```
@@ -142,6 +143,7 @@ Through the following example, a new file is created in the compute layer (<em>[
 ```yaml
 - createfile [cp]:
     path: /tmp/test.txt
+
 - createDirectory [cp,bl,123]:
     path: /tmp/test
 ```

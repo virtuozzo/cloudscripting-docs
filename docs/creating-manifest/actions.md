@@ -98,6 +98,7 @@ The default `cmd` parameter is **commands**. It can be usefull to set a several 
 ```yaml
 type: update
 name: Cmd commands
+
 onInstall:
   cmd:
     - echo 'Hello ' >> /tmp/CmdResponse.txt
@@ -278,6 +279,7 @@ There is an default parameter `method` for `api` action. This parameter is usefu
 ```yaml
 type: update
 name: API action
+
 onInstall:
   api:
     - method: environment.file.Create
@@ -317,6 +319,7 @@ The same parameters for all **methods** in one `action` can be set once. For exa
 ```yaml
 type: update
 name: API action
+
 onInstall:
   api:
     - method: environment.file.Create
@@ -463,6 +466,7 @@ There is an ability to create few files in the same target node in one `createFi
 ```yaml
 type: update
 name: Create File action
+
 onInstall:
   createFile:
     - path: /tmp/firstFile
@@ -490,6 +494,7 @@ In the example above the parameter **nodeGroup** is the same for two `createFile
 ```yaml
 type: update
 name: Create File action
+
 onInstall:
   createFile:
     - path: /tmp/firstFile
@@ -538,6 +543,7 @@ There is an ability to create few directories in the same target node in one `cr
 ```yaml
 type: update
 name: Create Directory action
+
 onInstall:
   createDirectory:
     - path: /tmp/firstDirectory
@@ -565,6 +571,7 @@ In the example above the parameter **nodeGroup** is the same for two `createDire
 ```yaml
 type: update
 name: Create Directory action
+
 onInstall:
   createDirectory:
     - path: /tmp/firstDirectory
@@ -787,6 +794,7 @@ The action `setNodeDisplayName` has the default parameter called **displayName**
 ```yaml
 type: update
 name: setNodeDisplayName example
+
 onInstall:
   setNodeDisplayName:
     - displayName: Compute Nodes
@@ -840,6 +848,7 @@ The action `setNodeCount` has it own default parameter - **count**. It is useful
 ```yaml
 type: update
 name: setNodeCount example
+
 onInstall:
   setNodeCount:
     - count: 3
@@ -893,6 +902,7 @@ The action `setExtIpEnabled` has  own default parameter *enabled*. It is usefull
 ```yaml
 type: update
 name: Set External IP Address
+
 onInstall:
   setExtIpEnabled:
     - enabled: true
@@ -1153,6 +1163,7 @@ The simplest way to use Java or JavaScript object in your manifest in example be
 ```yaml
 type: update
 name: Execute scripts
+
 onInstall:
   script: return 'Hello World!';
 ```
@@ -1176,6 +1187,7 @@ There is an ability to define language type or pass custom parameters. In this c
 ```yaml
 type: update
 name: Execute scripts
+
 script:
   script: return '${this.greetings}';
   params:
@@ -1247,6 +1259,7 @@ The simplest record for `install` action is described like in example below:
 ```yaml
 type: update
 name: Install action
+
 onInstall:
   install: http://example.com/manifest.jps
 ```
@@ -1267,6 +1280,7 @@ Also ther is an ability to set a few external manifests inside one `install` act
 ```yaml
 type: update
 name: Install action
+
 onInstall:
   install:
     - http://example.com/manifest.jps
@@ -1290,6 +1304,7 @@ The next example describes installing the add-on via the external link (with the
 ```yaml
 type: update
 name: Install action
+
 onInstall:
   install:
     jps: "http://example.com/manifest.jps"
@@ -1321,6 +1336,7 @@ Installing the add-on from the local manifest file.
 ```yaml
 type: update
 name: Install action
+
 onInstall:
   install:
     type: update
@@ -1353,6 +1369,7 @@ Installing the environment via the external link (with the *install* installatio
 ```yaml
 type: update
 name: Install action
+
 onInstall:
   install:
     jps: http://example.com/manifest.jps
@@ -1387,6 +1404,7 @@ Installing the environment from the local manifest file.
 ```yaml
 type: update
 name: Install action
+
 onInstall:
   install:
     type: install
@@ -1445,9 +1463,11 @@ The example below shows how to pass the add-on identifier to the *installAddon* 
 ```yaml
 type: update
 name: Install Add-on example
+
 onInstall:
   installAddon:
     id: firstAddon
+
 addons:
   - id: firstAddon
     name: firstAddon
@@ -1511,6 +1531,7 @@ The action allows to return any string or object of values. As a result, the res
 ```yaml
 type: update
 name: Return Action
+
 onInstall:
   return: Hello World!
 ```
@@ -1537,6 +1558,7 @@ If the *return* action includes a string, then the response is displayed via the
 ```yaml
 type: update
 name: Return Action
+
 onInstall:
   return: |
     {"message": "${nodes.cp.id}", "type": "success"}
@@ -1562,6 +1584,7 @@ Through the following example, a success message with a compute node identifier 
 ```yaml
 type: update
 name: Return Action
+
 onInstall:
   return:
     type: success
@@ -1588,10 +1611,11 @@ All the other actions within the *onInstall* array are not executed after the *r
 ```yaml
 type: update
 name: Return Action
+
 onInstall:
   - return:
-    type: success
-    message: Compute node unique identifer - ${nodes.cp.id}
+      type: success
+      message: Compute node unique identifer - ${nodes.cp.id}
   - restartNodes [cp]
 ```
 ```json
@@ -1621,6 +1645,7 @@ The example below shows how to create a new file (e.g. the <b>*example.txt*</b> 
 ```yaml
 type: update
 name: execution actions
+
 onInstall:
   createFile [cp]: /tmp/example.txt
 ```
@@ -1644,6 +1669,7 @@ The next example illustrates how to create a new custom action (i.e. *customActi
 type: update
 name: execution actions
 onInstall: customAction
+
 actions:
   customAction:
     createFile [cp]: /tmp/example.txt
@@ -1674,9 +1700,11 @@ The example below illustrates how to pass the dynamic parameters for running in 
 ```yaml
 type: update
 name: $this in Custom Actions
+
 onInstall:
   customAction:
     name: simpleTxtFile
+
 actions:
   customAction:
     createFile [cp]: /tmp/${this.name}.txt
@@ -1709,10 +1737,12 @@ For example, outputting Hello World! twice in the <b>*greeting.txt*</b>.
 ```yaml
 type: update
 name: Actions Example
+
 onInstall:
   - createFile [cp]: ${SERVER_WEBROOT}/greeting.txt
   - greeting
   - greeting
+
 actions:
   greeting:
     appendFile [cp]:
@@ -1751,9 +1781,11 @@ The following example shows how to pass additional parameters to the custom acti
 ```yaml
 type: update
 name: execution actions
+
 onInstall:
   customAction:
     fileName: example.txt
+
 actions:
   customAction:
     createFile [cp]: /tmp/${this.fileName}.txt
@@ -1784,6 +1816,7 @@ Writing Hello World! and outputting the first and the second compute nodes IP ad
 ```yaml
 type: update
 name: Action Example
+
 onInstall:
   - createFile [cp]: ${SERVER_WEBROOT}/greeting.txt
   - greeting
@@ -1792,6 +1825,7 @@ onInstall:
       message: ${nodes.cp[0].address}
   - log:
       message: ${nodes.cp[1].address}
+
 actions:
   greeting:
     appendFile [cp]:

@@ -24,12 +24,16 @@ The following example describes the events filtering by *nodeGroup* (for the <b>
 ```yaml
 type: update
 name: Event Subsribtion Example
+
 onInstall:
   createFile [cp]: /tmp/result.txt
+
 onAfterScaleOut [cp]:
   cmd [cp]: echo 'New Compute node has been added' >> /tmp/result.txt
+
 onAfterRestartNode [apache2]:
   cmd [cp]: echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> /tmp/result.txt
+
 onAfterResetNodePassword [${nodes.cp[0].id}]:
   cmd [${nodes.cp[0].id}]: echo 'First compute node has been restarted' >> /tmp/result.txt
 ```
@@ -224,6 +228,7 @@ The following example illustrates the subscription to the *onAlert* event. Here,
 ```yaml
 type: update
 name: AddTrigger
+
 onAlert [cp]:
   log: onAlert event has subscribed
 ```
@@ -243,6 +248,7 @@ The following example shows how a new trigger is being created.
 ```yaml
 type: update
 name : AddTrigger
+
 onInstall:
   environment.trigger.AddTrigger:
     data:

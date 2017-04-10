@@ -26,9 +26,11 @@ The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*<
 ```yaml
 type: update
 name: Comparing global variables
+
 globals:
   p1: 1
   p2: 2
+
 onInstall:
   - if (globals.p1 < globals.p2):
       if (user.uid > 1):
@@ -143,6 +145,7 @@ Nesting of two <b>*if*</b> conditional statements - the first one is checking an
 ```yaml
 type: update
 name: Nesting example
+
 onInstall:
   if (${nodes.cp[1].id}):
     - cmd [${nodes.cp[1].id}]: echo "Environment consists of two compute nodes" >> /tmp/result.txt
@@ -180,6 +183,7 @@ Balancer node with external IP address!
 ```yaml
 type: update
 name: Nginx stack
+
 onInstall:
   if (nodes.bl[0].nodeType == 'nginx'):
     - script: |
@@ -211,12 +215,15 @@ env:
   nodes: []
   contexts: []
   extdomains: []
+
 nodes: {}
 settings: {}
 license: {}
+
 event:
   params: {}
   response: {}
+
 this: {}
 ```
 ``` json
@@ -251,9 +258,9 @@ Iteration set by <b>*env.extdomains*</b>.
 ```yaml
 forEach(env.extdomains):
   - writeFile:
-    nodeGroup: cp
-    path: /var/lib/jelastic/keys/${@i}.txt
-    body: hello
+      nodeGroup: cp
+      path: /var/lib/jelastic/keys/${@i}.txt
+      body: hello
 ```
 ``` json
 {
@@ -302,13 +309,16 @@ The example of scaling nodes.
 ```yaml
 type: update
 name: Scaling Example
-onAfterScaleIn[nodeGroup:cp]: ScaleNodes
-onAfterScaleOut[nodeGroup:cp]: ScaleNodes
+
+onAfterScaleIn [nodeGroup:cp]: ScaleNodes
+
+onAfterScaleOut [nodeGroup:cp]: ScaleNodes
+
 actions:
   ScaleNodes:
     forEach(nodes.cp):
       cmd [bl]:
-        -  {commands to rewrite all Compute nodes internal IP addresses in balancer configs. Here balancer node is NGINX}
+        - {commands to rewrite all Compute nodes internal IP addresses in balancer configs. Here balancer node is NGINX}
         - /etc/init.d/nginx reload
 ```
 ``` json
@@ -374,6 +384,7 @@ Custom iterator name can be used for nesting cycles one into another.
 ```yaml
 type: update
 name: execution actions
+
 onInstall:
   forEach(item:env.nodes):
     forEach(secondItem:env.nodes):
