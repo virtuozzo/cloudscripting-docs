@@ -1309,6 +1309,7 @@ The *config settings* form appears after clicking the <b>Configure</b> button wi
 ## Success Text Customization
 
 It is possible to customize the *success* text that is displayed upon successful installation either at the dashboard, or via email notification.          
+A success text can be defined like plain text or like Markdown syntax. More details about Markdown syntax in Cloud Scripting [here](/creating-manifest/visual-settings/#markdown-description) 
 
 - Setting relative to the *baseUrl* link that points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.                                               
 @@@
@@ -1452,6 +1453,141 @@ success: success!!
 In the last example above, the localization functionality is applied, which depends upon the Jelastic Platform selected language.
 
 A custom responses can be return within <a href="/creating-manifest/actions/#return" target="_blank">`return`</a> or <a href="/creating-manifest/actions/#script" target="_blank">`script`</a> actions. More details about <a href="/creating-manifest/handling-custom-responses/" target="_blank">custom responses here</a>. 
+
+## Markdown description
+
+Markdown is a light language with plain text formatting syntax. This language is supported by Cloud Scripting technology to describe a `description`, `success texts` or showing [`custom response` texts](/creating-manifest/visual-settings/#success-text-customization).
+
+### Emphasis
+
+Markdown treats underscores and asterisks to emphase text. Wrapped text with one `*` or `_` will be wrapperd with HTML `<em>` tag and double `*`'s or `_`'s will be wrapped with HTML `<strong>` tag.
+
+<center>![emphasis](/img/emphasis.jpg)</center>
+@@@
+```yaml
+type: update
+name: Emphasis
+description: |
+  *Italic* or _Italic_
+  
+  **Bolt** or __Bolt__
+```
+```json
+{
+	"type": "update",
+	"name": "Emphasis",
+	"description": "*Italic* or _Italic_\n\n**Bolt** or __Bolt__\n"
+}
+```
+@@!
+
+### Headers
+Cloud Scripting Markdown supports two styles headers: 
+  
+* setex-style headers are two headers (first and second levels) using "underlined" signs like in examples below:  
+```
+This is a H1 
+============
+This is a H2
+------------
+```
+
+* atx-style headers support 1-6 levels
+```
+# This is H1
+## This is H2
+##### This is H6
+```
+
+### Links
+
+Markdown supports two link styles - *inline* and *reference*. Both styles use [square brackets].
+
+<center>![markdown_links](/img/markdown_links.jpg)</center>
+For example:
+@@@
+```yaml
+type: update
+name: Emphasis
+description: |
+  [jelastic.com URL](https://jelastic.com)
+  
+  or
+  
+  [jelastic.com URL][1]
+  
+  [1]: https://jelastic.com
+```
+```json
+{
+	"type": "update",
+	"name": "Emphasis",
+	"description": "[jelastic.com URL](https://jelastic.com)\n\nor\n\n[jelastic.com URL][1]\n\n[1]: https://jelastic.com\n"
+}
+```
+@@!
+
+### Images
+
+Markdown `image` syntax is resemble a `link` and also allowing in two styles: inline and reference. A difference between them is a symbol `!`.
+For example:
+@@@
+```yaml
+type: update
+name: Emphasis
+description: |
+  ![Jelastic](https://jelastic.com/assets/img/favicon-32x32.ico)
+  
+  ![Jelastic][1]
+  
+  [1]: https://jelastic.com/assets/img/favicon-32x32.ico
+```
+```json
+{
+	"type": "update",
+	"name": "Emphasis",
+	"description": "![Jelastic](https://jelastic.com/assets/img/favicon-32x32.ico)\n\n![Jelastic][1]\n\n[1]: https://jelastic.com/assets/img/favicon-32x32.ico\n"
+}
+```
+@@!
+
+### Blockquotes 
+
+This is an email-style characters `>`. Blockquotes can be inserted at the beginning of each line or can wrapped a full paragraph.  
+<center>![blockquote](/img/blockquote.jpg)</center>  
+For example:
+@@@
+```yaml
+type: update
+name: Markdown blockquote
+description: |
+    > Blockquote
+```
+```json
+{
+	"type": "update",
+	"name": "Markdown blockquote",
+	"description": "> Blockquote\n"
+}
+```
+@@!
+
+@@@
+```yaml
+type: update
+name: Markdown blockquote
+description: |
+    > multiline 
+    blockquote
+```
+```json
+{
+	"type": "update",
+	"name": "Markdown blockquote",
+	"description": "> multiline \nblockquote\n"
+}
+```
+@@!
 
 <br>
 <h2>What's next?</h2>
