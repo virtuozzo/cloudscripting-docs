@@ -71,7 +71,7 @@ description: |
   Example: The package automatically provisions Payara Micro cluster, 
   mounts storage container and deploys test war applications.
   
-success: https://raw.githubusercontent.com/jelastic-jps/payara/master/payara-micro-cluster-advanced/scripts/successText.md
+success: https://github.com/jelastic-jps/payara/blob/master/payara-micro-cluster-advanced/scripts/successText.md
 
 logo: https://raw.githubusercontent.com/jelastic-jps/payara/master/images/70.png
 homepage: http://docs.cloudscripting.com/
@@ -129,7 +129,7 @@ homepage: http://docs.cloudscripting.com/
       "cmd[cp]": "$PAYARA_PATH/bin/clusterManager.sh --${this.option}host ${this.ip}"
     }
   },
-  "success": "https://raw.githubusercontent.com/jelastic-jps/payara/master/payara-micro-cluster-advanced/scripts/successText.md",
+  "success": "https://github.com/jelastic-jps/payara/blob/master/payara-micro-cluster-advanced/scripts/successText.md",
   "baseUrl": "https://github.com/jelastic-jps/payara/raw/master/addons",
   "logo": "https://raw.githubusercontent.com/jelastic-jps/payara/master/images/70.png",
   "description": "Example: The package automatically provisions Payara Micro cluster, mounts storage container and deploys test war applications.",
