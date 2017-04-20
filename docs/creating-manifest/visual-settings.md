@@ -1461,7 +1461,7 @@ Cloud Scripting uses [CommonMark](http://commonmark.org/) implementation to conv
 
 ### Emphasis
 
-Markdown treats underscores and asterisks to emphase text. Wrapped text with one `*` or `_` will be wrapperd with HTML `<em>` tag and double `*`'s or `_`'s will be wrapped with HTML `<strong>` tag.
+Markdown treats underscores and asterisks to emphase text. Wrapped text with one `*` or `_` will be wrapped with HTML `<em>` tag and double `*`'s or `_`'s will be wrapped with HTML `<strong>` tag.
 
 <center>![emphasis](/img/emphasis.jpg)</center>
 
