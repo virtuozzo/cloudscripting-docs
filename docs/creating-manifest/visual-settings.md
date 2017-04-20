@@ -1456,13 +1456,15 @@ A custom responses can be return within <a href="/creating-manifest/actions/#ret
 
 ## Markdown description
 
-Markdown is a light language with plain text formatting syntax. This language is supported by Cloud Scripting technology to describe a `description`, `success texts` or showing [`custom response` texts](/creating-manifest/visual-settings/#success-text-customization).
+Markdown is a light language with plain text formatting syntax. This language is supported by Cloud Scripting technology to describe a `description`, `success texts` or showing [`custom response` texts](/creating-manifest/visual-settings/#success-text-customization).  
+Cloud Scripting uses [CommonMark](http://commonmark.org/) implementation to convert Markdown syntax into html code.  
 
 ### Emphasis
 
 Markdown treats underscores and asterisks to emphase text. Wrapped text with one `*` or `_` will be wrapperd with HTML `<em>` tag and double `*`'s or `_`'s will be wrapped with HTML `<strong>` tag.
 
 <center>![emphasis](/img/emphasis.jpg)</center>
+
 @@@
 ```yaml
 type: update
@@ -1504,11 +1506,11 @@ This is a H2
 Markdown supports two link styles - *inline* and *reference*. Both styles use [square brackets].
 
 <center>![markdown_links](/img/markdown_links.jpg)</center>
-For example:
+
 @@@
 ```yaml
 type: update
-name: Emphasis
+name: Links
 description: |
   [jelastic.com URL](https://jelastic.com)
   
@@ -1521,7 +1523,7 @@ description: |
 ```json
 {
 	"type": "update",
-	"name": "Emphasis",
+	"name": "Links",
 	"description": "[jelastic.com URL](https://jelastic.com)\n\nor\n\n[jelastic.com URL][1]\n\n[1]: https://jelastic.com\n"
 }
 ```
@@ -1530,14 +1532,16 @@ description: |
 ### Images
 
 Markdown `image` syntax is resemble a `link` and also allowing in two styles: inline and reference. A difference between them is a symbol `!`.
-For example:
+
+<center>![markdown_image](/img/markdown_images.jpg)</center>
+
 @@@
 ```yaml
 type: update
-name: Emphasis
+name: Images
 description: |
   ![Jelastic](https://jelastic.com/assets/img/favicon-32x32.ico)
-  
+  or
   ![Jelastic][1]
   
   [1]: https://jelastic.com/assets/img/favicon-32x32.ico
@@ -1545,8 +1549,8 @@ description: |
 ```json
 {
 	"type": "update",
-	"name": "Emphasis",
-	"description": "![Jelastic](https://jelastic.com/assets/img/favicon-32x32.ico)\n\n![Jelastic][1]\n\n[1]: https://jelastic.com/assets/img/favicon-32x32.ico\n"
+	"name": "Images",
+	"description": "![Jelastic](https://jelastic.com/assets/img/favicon-32x32.ico)\nor\n![Jelastic][1]\n\n[1]: https://jelastic.com/assets/img/favicon-32x32.ico\n"
 }
 ```
 @@!
@@ -1555,7 +1559,7 @@ description: |
 
 This is an email-style characters `>`. Blockquotes can be inserted at the beginning of each line or can wrapped a full paragraph.  
 <center>![blockquote](/img/blockquote.jpg)</center>  
-For example:
+
 @@@
 ```yaml
 type: update
@@ -1588,6 +1592,170 @@ description: |
 }
 ```
 @@!
+
+Blockquotes can be nested in each others by additional level or `>`:
+
+<center>![markdown_nested_blockquote](/img/markdown_nested_blockquote.jpg)</center>
+
+@@@
+```yaml
+type: update
+name: Markdown blockquote
+description: |
+  > example
+  > > blockquote
+```
+```json
+{
+	"type": "update",
+	"name": "Markdown blockquote",
+	"description": "> example\n> > blockquote\n"
+}
+```
+@@!
+
+### Paragraph
+
+A simple line text or consecutive lines of text. Lines is separated by one or more blank lines.
+```
+A paragraph.
+
+A paragraph after 1 blank line.	 
+```
+
+### Lists
+
+It is a buletted and numbered lists.  
+Bulleted lists can be defined with symbols `*` or `-` or `+`.
+
+<center>![markdown_lists](/img/markdown_lists.jpg)</center>
+
+@@@
+```yaml
+type: update
+name: Markdown Lists
+description: |
+  * List
+  * List
+  * List
+  
+  or
+  - List
+  - List
+  - List
+  
+  or
+    + List
+    + List
+    + List
+```
+```json
+{
+	"type": "update",
+	"name": "Markdown Lists",
+	"description": "* List\n* List\n* List\nor\n- List\n- List\n- List\n"
+}
+```
+@@!
+
+Ordered lisrs with numbers have two modes: 
+<center>![markdown_lists2](/img/markdown_lists2.jpg)</center>
+
+@@@
+```yaml
+type: update
+name: Markdown Lists
+description: |
+  1. List
+  2. List
+  3. List
+  
+  or
+  1) List
+  2) List
+  3) List
+```
+```json
+{
+	"type": "update",
+	"name": "Markdown Lists",
+	"description": "1. List\n2. List\n3. List\n\nor\n1) List\n2) List\n3) List\n"
+}
+```
+@@!
+
+### Horizontal Rule
+Horizontal rule is a horizontal line (`<hr />`), can be placed by symbols `*`, `-`. A minimum required symbols number is three.
+
+<center>![markdown_rule](/img/markdown_rule.jpg)</center>
+
+@@@
+```yaml
+type: update
+name: Markdown Horizontal Rule
+description: |
+  ---
+  
+  or
+  ***
+```
+```json
+{
+	"type": "update",
+	"name": "Markdown Lists",
+	"description": "---\n\nor\n***\n"
+}
+```
+@@!
+
+### Inline code
+
+Indicates a line of code with html tag `<code>`. Markdown symbol is backtick quotes `` ` ``.
+
+<center>![markdown_code](/img/markdown_code.jpg)</center>
+
+@@@
+```yaml
+type: update
+name: Markdown Inline code
+description: |
+  `Inline code` with backticks
+```
+```json
+{
+	"type": "update",
+	"name": "Markdown Lists",
+	"description": "`Inline code` with backticks\n"
+}
+```
+@@!
+
+### Code block
+Multiline code block. Makrdown tag symbol is three backtick quotes at the beginning and at the end of code block - `` ``` ``` ``
+
+<center>![markdown_code_block](/img/markdown_code_block.jpg)</center>
+
+@@@
+```yaml
+type: update
+name: Markdown Lists
+description: |
+  ```
+  # code block
+  print '3 backticks or'
+  print 'indent 4 spaces'
+  ```
+```
+```json
+{
+	"type": "update",
+	"name": "Markdown Code block",
+	"description": "```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
+}
+```
+@@!
+
+Mode details about Markdown implementation can be find in CommonMark specification - [CommonMark](http://spec.commonmark.org/).
 
 <br>
 <h2>What's next?</h2>
