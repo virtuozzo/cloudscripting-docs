@@ -1533,18 +1533,18 @@ description: |
 
 Markdown `image` syntax is resemble a `link` and also allowing in two styles: inline and reference. A difference between them is a symbol `!`.
 
-<center>![markdown_image](/img/markdown_images.jpg)</center>
+<center>![markdown_images](/img/log-jelastic.png)</center>
 
 @@@
 ```yaml
 type: update
 name: Images
 description: |
-  ![Jelastic](https://jelastic.com/assets/img/favicon-32x32.ico)
+  ![Jelastic](/img/log-jelastic.png)
   or
   ![Jelastic][1]
   
-  [1]: https://jelastic.com/assets/img/favicon-32x32.ico
+  [1]: /img/log-jelastic.png
 ```
 ```json
 {

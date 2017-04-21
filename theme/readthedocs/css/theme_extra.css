@@ -348,3 +348,7 @@ pre code.example {
 .fa-angle-down:before,a .fa-angle-up:before {
     vertical-align: text-bottom;
 }
+
+.rst-content img {
+    width: initial;
+}
