@@ -10,9 +10,12 @@ theme_center_lead: false
 
 #theme: material
 theme_dir: './theme/readthedocs'
+#theme: 'readthedocs'
 #theme_dir: './theme/material'
 #theme: slate
 #theme: highlight.js
+repo_url: 'https://github.com/cloudscripting/docs/tree/1.2/docs/'
+#edit_uri: '/tree/1.2/docs'
 
 # Extensions
 markdown_extensions:
