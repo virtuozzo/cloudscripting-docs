@@ -352,3 +352,8 @@ pre code.example {
 .rst-content img {
     width: initial;
 }
+
+.icon.icon-github {
+    padding-top: 7px;
+    font-size: 15px;
+}

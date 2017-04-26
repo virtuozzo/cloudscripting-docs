@@ -13,7 +13,7 @@
       <li class="wy-breadcrumbs-aside">
         {% if repo_url %}
           {% if repo_name == 'GitHub' %}
-            <a href="{{ repo_url }}{% if current_page %}{{ current_page.input_path }} {% endif %}" target="_blank" rel="noreferrer" class="icon icon-github"> Edit on GitHub</a>
+            <a href="{{ repo_url }}{% if current_page %}{{ current_page.input_path }} {% endif %}" target="_blank" rel="noopener noreferrer nofollow" class="icon icon-github"> Edit on GitHub</a>
           {% elif repo_name == 'Bitbucket' %}
            <a href="{{ repo_url }}" class="icon icon-bitbucket"> Edit on BitBucket</a>
           {% endif %}
