@@ -14,7 +14,7 @@ theme_dir: './theme/readthedocs'
 #theme_dir: './theme/material'
 #theme: slate
 #theme: highlight.js
-repo_url: 'https://github.com/cloudscripting/docs/tree/1.2/docs/'
+repo_url: 'https://github.com/cloudscripting/docs/edit/1.2/docs/'
 #edit_uri: '/tree/1.2/docs'
 
 # Extensions
