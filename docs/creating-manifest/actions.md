@@ -94,6 +94,7 @@ cmd [tomcat6]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
 @@!
 
 The default `cmd` parameter is **commands**. It can be usefull to set a several commands in the same `cmd` action. For example:
+
 @@@
 ```yaml
 type: update
@@ -120,40 +121,41 @@ onInstall:
 ```
 @@!
 
-<!--The same commands can be executed on different target nodes. In this case **nodeGroup** parameter should be set twice for every method:-->
-
-<!--@@@-->
-<!--```yaml-->
-<!--type: update-->
-<!--name: Cmd commands-->
-<!--onInstall:-->
-  <!--cmd:-->
-    <!--- commands: echo 'Hello ' >> /tmp/CmdResponse.txt-->
-      <!--nodeId: ${nodes.cp[0].id}-->
-    <!--- commands: echo 'World ' >> /tmp/CmdResponse.txt-->
-      <!--nodeGroup: cp-->
-<!--```-->
-<!--```json-->
-<!--{-->
-  <!--"type": "update",-->
-  <!--"name": "Cmd commands",-->
-  <!--"onInstall": {-->
-    <!--"cmd": [-->
-      <!--{-->
-        <!--"commands": "echo 'Hello ' >> /tmp/CmdResponse.txt",-->
-        <!--"nodeId": "${nodes.cp[0].id}"-->
-      <!--},-->
-      <!--{-->
-        <!--"commands": "echo 'World!!!' >> /tmp/CmdResponse.txt",-->
-        <!--"nodeGroup": "cp"-->
-      <!--}-->
-    <!--]-->
-  <!--}-->
-<!--}-->
-<!--```-->
-<!--@@!-->
-<!--Therefore, the first commands will be executed only in a first compute node. -->
-
+<!--
+The same commands can be executed on different target nodes. In this case **nodeGroup** parameter should be set twice for every method:
+ 
+@@@
+```yaml
+type: update
+name: Cmd commands
+onInstall:
+  cmd:
+    - commands: echo 'Hello ' >> /tmp/CmdResponse.txt
+      nodeId: ${nodes.cp[0].id}
+    - commands: echo 'World ' >> /tmp/CmdResponse.txt
+      nodeGroup: cp
+```
+```json
+{
+  "type": "update",
+  "name": "Cmd commands",
+  "onInstall": {
+    "cmd": [
+      {
+        "commands": "echo 'Hello ' >> /tmp/CmdResponse.txt",
+        "nodeId": "${nodes.cp[0].id}"
+      },
+      {
+        "commands": "echo 'World!!!' >> /tmp/CmdResponse.txt",
+        "nodeGroup": "cp"
+      }
+    ]
+  }
+}
+```
+@@!
+Therefore, the first commands will be executed only in a first compute node. 
+-->
 While accessing a container via *cmd*, you receive all the required permissions and additionally can manage the main services with **sudo** commands of the following types (and others).            
 ```no-highlight
 sudo /etc/init.d/jetty start  
@@ -163,7 +165,8 @@ sudo /etc/init.d/memcached status
 sudo /etc/init.d/mongod reload  
 sudo /etc/init.d/nginx upgrade  
 sudo /etc/init.d/httpd help                             
-```                                                        
+```                
+                                        
 **Examples**  
 
 Setting SSH commands in an array.      
