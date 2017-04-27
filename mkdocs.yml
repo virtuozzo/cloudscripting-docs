@@ -2,29 +2,20 @@ site_name: Cloud Scripting
 site_url: http://
 copyright: Copyright &copy; Jelastic, Inc.
 
-#use_directory_urls: true
 use_absolute_urls: true
 include_search: true
 theme_center_lead: false
 
 
-#theme: material
 theme_dir: './theme/readthedocs'
-#theme: 'readthedocs'
-#theme_dir: './theme/material'
-#theme: slate
-#theme: highlight.js
 repo_url: 'https://github.com/cloudscripting/docs/edit/1.2/docs/'
-#edit_uri: '/tree/1.2/docs'
 
-# Extensions
 markdown_extensions:
   - admonition
   - toc
   - tables
   - markdown.extensions.myextension
   - markdown.extensions.admonition
-  #- markdown.extensions.codehilite(guess_lang=false)
   - markdown.extensions.footnotes
   - markdown.extensions.meta
   - markdown.extensions.toc(permalink=true)
@@ -38,20 +29,8 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
-  #- pymdownx.superfences
   - pymdownx.tasklist(custom_checkbox=true)
   - pymdownx.tilde
-
-#markdown_extensions: [admonition, toc, tables]
-                      #attention
-                      #caution
-                      #danger
-                      #error
-                      #hint
-                      #important
-                      #note
-                      #tip
-                      #warning
 
 pages:
 
@@ -59,7 +38,6 @@ pages:
    - Overview: index.md
    - Quick Start: quick-start.md
 
-# Creating Templates
 - Creating Manifest:
    - Basic Configs: creating-manifest/basic-configs.md
    - Specifying Target Container: creating-manifest/selecting-containers.md
@@ -71,58 +49,14 @@ pages:
    - Add-Ons: creating-manifest/addons.md
    - Custom Responses: creating-manifest/handling-custom-responses.md
    - Visual Settings: creating-manifest/visual-settings.md
-#   - Custom Errors: reference/handling-custom-responses.md
 
-#Samples
 - Samples:
    - Overview: samples.md
-# Troubleshooting
+
 - Troubleshooting: troubleshooting.md
 
-#Release Notes
-#- Release Notes:
-#    - CS Releases: releasenotes.md
 - CS vs Jelastic Versions: jelastic-cs-correspondence.md
 
-    #  - Docker Actions : reference/docker-actions.md
-   #- Relative Links: creating-templates/relative-links.md
-
-#- Specifting Target Container:
-   #- Writing Scripts: creating-templates/custom-scripts.md
- #  - Selecting Containers For Your Actions: creating-templates/selecting-containers.md
-   #- Getting User Input: creating-templates/visual-settings.md
-   #- Conditions and Iterations: creating-templates/conditions-and-iterations.md
-   #- Actions: reference/actions.md
-   #- Events: reference/events.md
-#   - Procedures: reference/procedures.md
-   #- Placeholders: reference/placeholders.md
-
-# Configurations
-#- Configurations:
- #  - Containers by Groups and Types: reference/container-types.md
-
-# Examples
-#- Examples:
-
-#   - Operation Examples: examples/operation-examples.md
-#   - Add-ons : examples/add-ons.md
-#   - Complex Ready to Go Solutions: examples/complex-ready-to-go-solutions.md
-#   - Vertical Scaling: examples/vertical-scaling.md
-#   - Horizontal Scaling: examples/horizontal-scaling.md
-#   - Using Docker&reg;: examples/using-docker.md
-#   - Wordpress Cluster: examples/wordpress-cluster.md
-#   - Migration&Cloning Environment: examples/environment-migration-after-cloning.md
-#   - Two Envs in defferent regions: examples/two-envs-in-diff-regions.md
-#   - Add-on install inside manifest: examples/addon-inside-manifest.md
-#   - Mount Data Storage: examples/mount-data-storage.md
-
-
-
-# Jelastic & CloudScripting correspondence
-#- Jelastic & CS Correspondence: jelastic-cs-correspondence.md
-
-
-#current_version: master
 versions:
    releases:
       - 0.5
