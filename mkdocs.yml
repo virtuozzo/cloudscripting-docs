@@ -2,47 +2,29 @@ site_name: Cloud Scripting
 site_url: http://
 copyright: Copyright &copy; 2015, Jelastic, Inc.
 
-#use_directory_urls: true
 use_absolute_urls: true
 include_search: true
 theme_center_lead: false
 
-#theme: "readthedocs"
 theme_dir: './theme/readthedocs'
-#theme: slate
-#theme: highlight.js
 
 markdown_extensions: [admonition, toc, tables]
-                      #attention
-                      #caution
-                      #danger
-                      #error
-                      #hint
-                      #important
-                      #note
-                      #tip
-                      #warning
 
 pages:
 - Overview: index.md
 
-# Quick Start
 - Quick Start: quick-start.md
 
-# Jelastic & CloudScripting correspondence
 - Jelastic & CS correspondence: jelastic-cs-correspondence.md
 
-# Creating Templates
 - Creating Templates:
    - Template Basics: creating-templates/template-basics.md
    - Writing Scripts: creating-templates/writing-scripts.md
    - Selecting Containers For Your Actions: creating-templates/selecting-containers.md
    - Getting User Input: creating-templates/user-input-parameters.md
 
-# Troubleshooting
 - Troubleshooting: troubleshooting.md
 
-# Reference
 - Reference:
    - Actions: reference/actions.md
    - Events: reference/events.md
@@ -50,7 +32,6 @@ pages:
    - Placeholders: reference/placeholders.md
    - Container Types: reference/container-types.md
 
-# Examples
 - Examples:
    - Vertical Scaling: examples/vertical-scaling.md
    - Horizontal Scaling: examples/horizontal-scaling.md
@@ -59,7 +40,6 @@ pages:
    - Migration&Cloning Environment: examples/environment-migration-after-cloning.md
    - Two Envs in defferent regions: examples/two-envs-in-diff-regions.md
 
-#current_version: master
 versions:
    releases:
       - 0.9
