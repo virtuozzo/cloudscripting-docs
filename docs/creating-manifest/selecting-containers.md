@@ -207,7 +207,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 
 - **bl** (for load balancers) - *nginx, varnish, haproxy, apache-lb*                     
 
-- **cp** (for compute nodes) - *tomcat6, tomcat7, tomcat8, tomee, glassfish3, glassfish4, jetty6, jetty8, jetty9, jboss7, smartfox-server, powerdns, railo4, wildfly, wildfly9, wildfly10, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs, iis8*                         
+- **cp** (for compute nodes) - *tomcat6, tomcat7, tomcat8, tomee, glassfish3, glassfish4, jetty6, jetty8, jetty9, jboss7, smartfox-server, powerdns, railo4, wildfly, wildfly9, wildfly10, springboot, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs, iis8*                         
 
 - **sqldb** (for SQL databases) - *mysql5, mysql5-6, mariadb, mariadb10, postgres8, postgres9, mssql, mssqlweb, mssqlstd*                             
 
@@ -242,7 +242,8 @@ The Jelastic Platform supports the following software stacks:
         - `railo4` - *Railo4 9*          
         - `wildfly` - *Wildfly 8*         
         - `wildfly9` - *Wildfly 9*                       
-        - `wildfly10` - *Wildfly 10*                     
+        - `wildfly10` - *Wildfly 10* 
+        - `springboot` - *SpringBoot 1.x-2.x* 
     - *PHP*              
         - `apache2` - *Apache 2*                
         - `nginxphp` - *Nginx PHP*          
