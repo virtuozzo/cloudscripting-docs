@@ -360,19 +360,6 @@ The event is called before the *deleteEnvironment* action.
     - `password` - user password     
 - `${event.response.}` parameters are absent      
 
-### onAfterDelete
-
-The event is called after the *deleteEnvironment* action.    
-
-**Event Placeholders:**   
-
-- `${event.params.}`:   
-    - `session` - current user session     
-    - `appid` - environment unique appid     
-    - `password` - user password  
-- `${event.response.}`:  
-    - `result` - result code. The successful action result is *'0'*.       
-
 ### onBeforeAddNode
 
 The event is triggered before adding a new node to an environment. The *onBeforeAddNode* event is executed for each newly added node.   
