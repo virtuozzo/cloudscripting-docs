@@ -153,3 +153,4 @@ homepage: http://docs.cloudscripting.com/
 - Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                    
 
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                                                    
+reject this commit
