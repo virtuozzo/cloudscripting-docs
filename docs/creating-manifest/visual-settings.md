@@ -480,10 +480,10 @@ fields:
       - name: checkbox
         value: true
         type: checkbox
-      - width: 50px
+      - width: 50
         name: first
         type: string
-      - width: 100px
+      - width: 100
         name: latest
         type: string
 ```
@@ -511,12 +511,12 @@ fields:
           "type": "checkbox"
         },
         {
-          "width": "50px",
+          "width": 50,
           "name": "first",
           "type": "string"
         },
         {
-          "width": "100px",
+          "width": 100,
           "name": "latest",
           "type": "string"
         }
@@ -543,8 +543,8 @@ The slider element as a form field.
 @@@
 ```yaml
 fields:
-  - min: '0'
-    max: '10'
+  - min: 0
+    max: 10
     increment: 1
     useTips: true
     caption: Slider
@@ -555,8 +555,8 @@ fields:
 {
   "fields": [
     {
-      "min": "0",
-      "max": "10",
+      "min": 0,
+      "max": 10,
       "increment": 1,
       "useTips": true,
       "caption": "Slider",
@@ -629,8 +629,8 @@ fields:
     name: popupselector
     buttonText: Open
     url: http://{external url}
-    popupWidth: 300px
-    popupHeight: 300px
+    popupWidth: 300
+    popupHeight: 300
     popupCallbackEvent: handler
     params:
       first: 1
@@ -645,8 +645,8 @@ fields:
       "name": "popupselector",
       "buttonText": "Open",
       "url": "http://{external url}",
-      "popupWidth": "300px",
-      "popupHeight": "300px",
+      "popupWidth": 300,
+      "popupHeight": 300,
       "popupCallbackEvent": "handler",
       "params": {
         "first": 1,
@@ -685,8 +685,8 @@ settings:
     buttonText: Open
     value: '3'
     url: https://{external_source}/example
-    popupWidth: 300px
-    popupHeight: 300px
+    popupWidth: 300
+    popupHeight: 300
     popupCallbackEvent: click
     params:
       first: 1
@@ -704,8 +704,8 @@ settings:
       "buttonText": "Open",
       "value": "3",
       "url": "https://{external_source}/example",
-      "popupWidth": "300px",
-      "popupHeight": "300px",
+      "popupWidth": 300,
+      "popupHeight": 300,
       "popupCallbackEvent": "click",
       "params": {
         "first": 1,
