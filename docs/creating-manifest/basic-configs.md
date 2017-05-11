@@ -119,7 +119,7 @@ The list of available parameters are:
 - `cloudlets` *[optional]* - a number of dynamic cloudlets. The default value is 0. `flexible` is an alias. 
 - `fixedCloudlets` *[optional]* - a mount of fixed cloudlets. The default value is 1.
 - `count` *[optional]* - a mount of nodes in one group. The default value is 1.
-- `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any cistom node group.
+- `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any custom node group.
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.
 - `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`. Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](/creating-manifest/addons/)   
