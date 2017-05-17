@@ -74,7 +74,7 @@ Actions for the specified <em>nodeGroup</em> are executed successively one by on
 
 !!! note
     If you state a custom <em>nodeGroup</em> value for Docker containers, the corresponding container is placed to the <em>Extra</em> layer. Subsequently, this <em>nodeGroup</em> value can be used within the same-named actions field to point to the particular <em>Extra</em> layer.
-    <center>![dockerextra](/img/dockerextra.png)</center>         
+    ![dockerextra](/img/dockerextra.png)         
 
 ### All Containers By Type
 
@@ -298,7 +298,19 @@ The Jelastic Platform supports the following software stacks:
      - `storage` - *Shared storage*
 - **Docker Containers (docker):**
      - `docker`
-         
+
+###Dokerized Template Tags
+
+There is a list of `dokerized` supported Jelastic templates with their tags:
+
+|nodeType|`tomcat`|`tomee`|`apache2`|`nginxphp`|`nginx(lb)`|`mysql5`|
+|--------|--------|-------|---------|----------|-----------|--------|
+|**tag**|*6.0.45-jdk-1.6.0_45*<br>*6.0.45-jdk-1.7.0_79*<br>*6.0.45-jdk-1.8.0_102*<br>*7.0.73-jdk-1.8.0_102*<br>*7.0.73-jdk-1.6.0_45*<br>*7.0.73-jdk-1.7.0_79*<br>*8.5.5-jdk-1.7.0_79*<br>*8.5.5-jdk-1.8.0_102*|*7.0.1-jdk-1.7.0_79*<br>*7.0.1-jdk-1.8.0_102*|*2.4.6-php-5.3.29*<br>*2.4.6-php-5.4.45*<br>*2.4.6-php-5.5.38*<br>*2.4.6-php-5.6.28*<br>*2.4.6-php-7.0.13*<br>*2.4.6-php-7.1.0*|*1.10.1-php-5.3.29*<br>*1.10.1-php-5.4.45*<br>*1.10.1-php-5.5.38*<br>*1.10.1-php-5.6.28*<br>*1.10.1-php-7.0.10*<br>*1.10.1-php-7.0.13*<br>*1.10.1-php-7.1.0*|*1.10.1*|*5.7.14*|
+
+
+|nodeType|`mysql5-6`|`mariadb`|`mariadb10`|`memcached`|`maven3`|`varnish`|
+|--------|----------|---------|-----------|-----------|--------|---------|
+|**tag**|*5.6.32*|*5.5.51*|*10.1.20*|*memcached*|*3.3.9-jdk-1.7.0_79*<br>*3.3.9-jdk-1.8.0_102*|*4.1.5*
 
 ### Engine Versions
 
