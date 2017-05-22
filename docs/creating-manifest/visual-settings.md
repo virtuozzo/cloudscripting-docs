@@ -1112,7 +1112,7 @@ buttons:
     action: "{String}"
     caption: Configure
     successText: Configuration saved successfully!
-    href: http://google.com
+    href: http://example.com/
 ```
 ``` json
 {
@@ -1131,7 +1131,7 @@ buttons:
       "action": "{String}",
       "caption": "Configure",
       "successText": "Configuration saved successfully!",
-      "href": "http://google.com"
+      "href": "http://example.com/"
     }
   ]
 }
