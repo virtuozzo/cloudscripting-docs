@@ -119,7 +119,7 @@ where:
 ### string
 The basic text field.  
 
-<center>![string](/img/string.jpg)</center>  
+![string](/img/string.jpg)  
 @@@
 ```yaml
 fields:
@@ -150,7 +150,7 @@ where:
 ### text
 The multiline text field.
 
-<center>![text](/img/text.jpg)</center>  
+![text](/img/text.jpg) 
 @@@
 ```yaml
 fields:
@@ -179,7 +179,7 @@ where:
 ### list   
 The drop-down list and a single-line textbox.  
 
-<center>![list](/img/list.jpg)</center>  
+![list](/img/list.jpg) 
 @@@
 ```yaml
 fields:
@@ -219,7 +219,7 @@ where:
 ### checkbox
 The single checkbox field.
 
-<center>![text](/img/checkbox.jpg)</center>  
+![text](/img/checkbox.jpg) 
 @@@
 ```yaml
 fields:
@@ -251,7 +251,7 @@ where:
 ### checkboxlist
 The checkbox grouping.  
 
-<center>![text](/img/checkboxlist.jpg)</center>  
+![text](/img/checkboxlist.jpg) 
 @@@
 ```yaml
 fields:
@@ -288,7 +288,7 @@ where:
 ### radiolist
 The radio elements grouping.  
 
-<center>![text](/img/radiolist.jpg)</center>  
+![text](/img/radiolist.jpg) 
 @@@
 ```yaml
 fields:
@@ -328,7 +328,7 @@ The grouping of the radio elements with the <b>*showIf*</b> function.
 !!! note
     The *hideLabel* boolean is always *true* for this field.   
 
-<center>![text](/img/radio-fieldset.jpg)</center>   
+![text](/img/radio-fieldset.jpg)  
 @@@
 ```yaml
 fields:
@@ -397,7 +397,7 @@ where:
 ### dockertag
 The field for displaying Docker tags within the list element.                             
 
-<center>![text](/img/dockertag.jpg)</center>  
+![text](/img/dockertag.jpg) 
 @@@
 ```yaml
 name: Cloud Scripting
@@ -460,7 +460,7 @@ where:
 ### compositefield
 The compositefield is a container with specific functionality and structural components that constitute it as a block for application-oriented custom user interfaces.  
 
-<center>![compositefield](/img/compositefield.jpg)</center>  
+![compositefield](/img/compositefield.jpg) 
 @@@
 ```yaml
 fields:
@@ -539,7 +539,7 @@ where:
 ### slider
 The slider element as a form field.
 
-<center>![slider](/img/slider.jpg)</center>
+![slider](/img/slider.jpg)</center>
 @@@
 ```yaml
 fields:
@@ -579,7 +579,7 @@ where:
 ### envlist
 The account environments list expanded within a drop-down element.  
 
-<center>![envlist](/img/envlist.jpg)</center>  
+![envlist](/img/envlist.jpg) 
 @@@
 ```yaml
 fields:
@@ -620,7 +620,7 @@ where:
 
 The field for opening a pop-up window via the POST request to any external service. It provides the possibility to pass additional parameters.                      
 
-<center>![popupselector](/img/popupselector.jpg)</center>  
+![popupselector](/img/popupselector.jpg) 
 @@@
 ```yaml
 fields:
@@ -734,7 +734,7 @@ where:
 
 The text field intended only for display that is not validated and not submitted.  
 
-<center>![displayfield](/img/displayfield.jpg)</center>  
+![displayfield](/img/displayfield.jpg) 
 @@@
 ```yaml
 fields:
@@ -766,7 +766,7 @@ where:
 ### spinner
 The enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.  
 
-<center>![spinner](/img/spinner.jpg)</center>  
+![spinner](/img/spinner.jpg) 
 @@@
 ```yaml
 fields:
@@ -809,7 +809,7 @@ where:
 
 The field that enables to select a number from a predefined range.                    
  
-<center>![numberpicker](/img/numberpicker.jpg)</center>  
+![numberpicker](/img/numberpicker.jpg) 
 @@@
 ```yaml
 fields:
@@ -849,7 +849,7 @@ where:
 
 The drop-down menu with the environments hosts.                      
 
-<center>![hostpicker](/img/hostpicker.jpg)</center>  
+![hostpicker](/img/hostpicker.jpg) 
 @@@
 ```yaml
 fields:
@@ -889,7 +889,7 @@ where:
 ### toggle
 The toggle element is a switch between two values.
 
-<center>![toggle](/img/toggle.jpg)</center>
+![toggle](/img/toggle.jpg)</center>
 @@@
 ```yaml
 fields:
@@ -984,7 +984,7 @@ There are two possible ways to define *targetNodes*.
  
 Let’s suppose you have three environments with different topology.                              
 
-<center>![target-nodes](/img/target-nodes.png)</center>                                       
+![target-nodes](/img/target-nodes.png)                                      
 
 Within these environments, the *targetNodes* filtering for JPS installation can be performed with the next example.                           
 @@@
@@ -1018,12 +1018,12 @@ onInstall:
 @@!
 In this case, the filtering result will be the following.                                                 
 
-<center>![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
+![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
   
 ## Custom Menus    
 Menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](#custom-buttons).                                         
 
-<center>![new-menu](/img/new-menu.png)</center>         
+![new-menu](/img/new-menu.png)        
 
 By default, this menu contains the <b>Uninstall</b> button. The rest of listed actions, if there are any, execute operations from the <a href="/reference/events/" target="_blank">events</a> settings.           
 
@@ -1083,11 +1083,11 @@ Refer to the *Custom Buttons* section below for a detailed description on the pa
 ## Custom Buttons
 The custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node.                                      
 
-<center>![custom-addon](/img/custom-addon.png)</center>       
+![custom-addon](/img/custom-addon.png)      
 
 Such buttons execute operations that are predefined within a JPS manifest.   
 
-<center>![traffic-distributor](/img/traffic-distributor.png)</center>    
+![traffic-distributor](/img/traffic-distributor.png)   
 
 !!! note
     > The JPS manifest should include the [*targetNodes*](#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.     
@@ -1144,20 +1144,20 @@ where:
 
 It will be displayed after clicking on the appropriate button for an add-on. According to the code above, the text will be the following.              
 
-<center>![Confirm](/img/Confirm.jpg)</center>      
+![Confirm](/img/Confirm.jpg)     
 
 - `loadingText` *[optional]* - UI text to be displayed during loading and applying changes. The default value is *'Applying...'*.    
 
-<center>![LoadingText](/img/LoadingText.jpg)</center>      
+![LoadingText](/img/LoadingText.jpg)     
 
 - `action` *[required] [string]* - name of the custom action that will be executed. The custom action body structure is described in the <a href="/reference/actions/#custom-actions" target="_blank">*actions*</a> section.          
 - `caption` - title of the button  
 
-<center>![Caption](/img/Caption.jpg)</center>   
+![Caption](/img/Caption.jpg)  
 
 - `successText` -  message that appears once action is successfully performed  
 
-<center>![SuccessText](/img/SuccessText.jpg)</center>     
+![SuccessText](/img/SuccessText.jpg)    
 
 - `href` *[optional]* - external link that is opened in a new browser tab and is executed only if the *settings* field is absent. In case of *href* execution, an *action* will not be carried out.                      
 
@@ -1218,11 +1218,11 @@ where:
 - `title` - custom dialog title. If absent, then *caption* will be applied.    
 - `submitButtonText` - text for submission button in the opened dialog. The default value is *'Apply'*.   
 
-<center>![SubmitButtonText](/img/SubmitButtonText.jpg)</center>  
+![SubmitButtonText](/img/SubmitButtonText.jpg) 
 
 - `logsPath` - path to a log file that is accessible via the **Show Logs** button                          
 
-<center>![LogsPath](/img/LogsPath.jpg)</center>  
+![LogsPath](/img/LogsPath.jpg) 
 
 - `logsNodeGroup` - nodeGroup <a href="/creating-templates/selecting-containers/#predefined-nodegroup-values" target="_blank">layer</a> the logging path should be opened for                           
 
@@ -1300,11 +1300,11 @@ buttons:
 @@!
 Here, the *main settings* form appears during installation process.   
 
-<center>![settingMain](/img/SettingsMain.jpg)</center>   
+![settingMain](/img/SettingsMain.jpg)  
 
 The *config settings* form appears after clicking the <b>Configure</b> button within the Add-ons section.   
 
-<center>![settingCustom](/img/SettingsCustom.jpg)</center>     
+![settingCustom](/img/SettingsCustom.jpg)    
 
 ## Success Text Customization
 
@@ -1458,299 +1458,64 @@ A custom responses can be return within <a href="/creating-manifest/actions/#ret
 
 Markdown is a light language with plain text formatting syntax. This language is supported by Cloud Scripting technology to describe a `description`, `success texts` or showing [`custom response` texts](/creating-manifest/visual-settings/#success-text-customization).  
 Cloud Scripting uses [CommonMark](http://commonmark.org/) implementation to convert Markdown syntax into html code.  
+Therefore, there is a main supported Makrdow tag list:
 
-### Emphasis
+Style 1                            |Style 2 | Result|
+-------                                 |----------|------
+\*Italic\*                            |\_Italic\_|*Italic*
+\*\*Bolt\*\*                            |\_\_Bolt\_\_|**Bolt**
+\# Heading 1                           | Heading 1<br>\=\=\=\=\=\=\=\=\=  | <h1 class='default'>Heading 1</h1>
+\#\# Heading 2                          | Heading 2<br>\-\-\-\-\-\-\-\-\-\-\-\-| <h2 class='default'>Heading 2</h2>
+\[Link](https://jelastic.com)          |[Link][1]<br>.<br>.<br>.<br>[1]: https://jelastic.com|[jelastic.com URL](https://jelastic.com)
+\!\[Image](https://example.com/logo.png)|![Image][1]<br>.<br>.<br>.<br>[1]: https://example.com/logo.png|![Image](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)
+\> Blockquote                          ||![blockquote](/img/markdown_blockquote.jpg) Blockquote
+A paragraph.<br>  <br>A paragraph after 1 blank line.||A paragraph.<br><br>A paragraph after 1 blank line.
+\* List<br>\* List|\- List<br>\- List|* List<br>* List
+1\. One<br>2\. Two<br>3\. Three| 1\) One<br>2\) Two<br>3\) Three|1. One<br>2. Two<br>3. Three
+Horizontal Rule<br>\-\-\-|Horizontal Rule<br>\*\*\*|Horizontal Rule<br>![horizontal-rule](/img/markdown_horizontal-rule.jpg)
+\`\`Inline code\`\` with brackticks|| ![Inline code](/img/markdown_inline-code.jpg) with brackticks
+\`\`\`<br>print '3 backticks <br>or3 tildes'<br>\`\`\`|\~\~\~\~<br>print '3 backticks<br> or 3 tildes'<br>\~\~\~\~|![Block code](/img/markdown_block-code.jpg)
 
-Markdown treats underscores and asterisks to emphase text. Wrapped text with one `*` or `_` will be wrapped with HTML `<em>` tag and double `*`'s or `_`'s will be wrapped with HTML `<strong>` tag.
+The elements visual displaying can be find on the screen below:
+![makrdown_tags](/img/markdown_tags.jpg)
 
-<center>![emphasis](/img/emphasis.jpg)</center>
-
-@@@
-```yaml
-type: update
-name: Emphasis
-description: |
-  *Italic* or _Italic_
-  
-  **Bolt** or __Bolt__
-```
-```json
-{
-	"type": "update",
-	"name": "Emphasis",
-	"description": "*Italic* or _Italic_\n\n**Bolt** or __Bolt__\n"
-}
-```
-@@!
-
-### Headers
-Cloud Scripting Markdown supports two styles headers: 
-  
-* setex-style headers are two headers (first and second levels) using "underlined" signs like in examples below:  
-```
-This is a H1 
-============
-This is a H2
-------------
-```
-
-* atx-style headers support 1-6 levels
-```
-# This is H1
-## This is H2
-##### This is H6
-```
-
-### Links
-
-Markdown supports two link styles - *inline* and *reference*. Both styles use [square brackets].
-
-<center>![markdown_links](/img/markdown_links.jpg)</center>
+Source code each these elements is displayed below: 
 
 @@@
 ```yaml
 type: update
-name: Links
+name: Makrdown tags
 description: |
-  [jelastic.com URL](https://jelastic.com)
-  
-  or
-  
-  [jelastic.com URL][1]
-  
-  [1]: https://jelastic.com
-```
-```json
-{
-	"type": "update",
-	"name": "Links",
-	"description": "[jelastic.com URL](https://jelastic.com)\n\nor\n\n[jelastic.com URL][1]\n\n[1]: https://jelastic.com\n"
-}
-```
-@@!
+  *Italic* or _Italic_    
+  **Bolt** or __Bolt__  
 
-### Images
+  # This is H1   
+  ## This is H2  
+  ##### This is H6  
 
-Markdown `image` syntax is resemble a `link` and also allowing in two styles: inline and reference. A difference between them is a symbol `!`.
+  [jelastic.com URL](https://jelastic.com)  
 
-<center>![markdown_images](/img/log-jelastic.png)</center>
+  ![Jelastic](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)  
 
-@@@
-```yaml
-type: update
-name: Images
-description: |
-  ![Jelastic](/img/log-jelastic.png)
-  or
-  ![Jelastic][1]
-  
-  [1]: /img/log-jelastic.png
-```
-```json
-{
-	"type": "update",
-	"name": "Images",
-	"description": "![Jelastic](https://jelastic.com/assets/img/favicon-32x32.ico)\nor\n![Jelastic][1]\n\n[1]: https://jelastic.com/assets/img/favicon-32x32.ico\n"
-}
-```
-@@!
+  > Blockquote  
 
-### Blockquotes 
+  * List  
 
-This is an email-style characters `>`. Blockquotes can be inserted at the beginning of each line or can wrapped a full paragraph.  
-<center>![blockquote](/img/blockquote.jpg)</center>  
+  ---  
 
-@@@
-```yaml
-type: update
-name: Markdown blockquote
-description: |
-    > Blockquote
-```
-```json
-{
-	"type": "update",
-	"name": "Markdown blockquote",
-	"description": "> Blockquote\n"
-}
-```
-@@!
+  `Inline code` with backticks   
 
-@@@
-```yaml
-type: update
-name: Markdown blockquote
-description: |
-    > multiline 
-    blockquote
-```
-```json
-{
-	"type": "update",
-	"name": "Markdown blockquote",
-	"description": "> multiline \nblockquote\n"
-}
-```
-@@!
-
-Blockquotes can be nested in each others by additional level or `>`:
-
-<center>![markdown_nested_blockquote](/img/markdown_nested_blockquote.jpg)</center>
-
-@@@
-```yaml
-type: update
-name: Markdown blockquote
-description: |
-  > example
-  > > blockquote
-```
-```json
-{
-	"type": "update",
-	"name": "Markdown blockquote",
-	"description": "> example\n> > blockquote\n"
-}
-```
-@@!
-
-### Paragraph
-
-A simple line text or consecutive lines of text. Lines is separated by one or more blank lines.
-```
-A paragraph.
-
-A paragraph after 1 blank line.	 
-```
-
-### Lists
-
-It is a buletted and numbered lists.  
-Bulleted lists can be defined with symbols `*` or `-` or `+`.
-
-<center>![markdown_lists](/img/markdown_lists.jpg)</center>
-
-@@@
-```yaml
-type: update
-name: Markdown Lists
-description: |
-  * List
-  * List
-  * List
-  
-  or
-  - List
-  - List
-  - List
-  
-  or
-    + List
-    + List
-    + List
-```
-```json
-{
-	"type": "update",
-	"name": "Markdown Lists",
-	"description": "* List\n* List\n* List\nor\n- List\n- List\n- List\n"
-}
-```
-@@!
-
-Ordered lisrs with numbers have two modes: 
-<center>![markdown_lists2](/img/markdown_lists2.jpg)</center>
-
-@@@
-```yaml
-type: update
-name: Markdown Lists
-description: |
-  1. List
-  2. List
-  3. List
-  
-  or
-  1) List
-  2) List
-  3) List
-```
-```json
-{
-	"type": "update",
-	"name": "Markdown Lists",
-	"description": "1. List\n2. List\n3. List\n\nor\n1) List\n2) List\n3) List\n"
-}
-```
-@@!
-
-### Horizontal Rule
-Horizontal rule is a horizontal line (`<hr />`), can be placed by symbols `*`, `-`. A minimum required symbols number is three.
-
-<center>![markdown_rule](/img/markdown_rule.jpg)</center>
-
-@@@
-```yaml
-type: update
-name: Markdown Horizontal Rule
-description: |
-  ---
-  
-  or
-  ***
-```
-```json
-{
-	"type": "update",
-	"name": "Markdown Lists",
-	"description": "---\n\nor\n***\n"
-}
-```
-@@!
-
-### Inline code
-
-Indicates a line of code with html tag `<code>`. Markdown symbol is backtick quotes `` ` ``.
-
-<center>![markdown_code](/img/markdown_code.jpg)</center>
-
-@@@
-```yaml
-type: update
-name: Markdown Inline code
-description: |
-  `Inline code` with backticks
-```
-```json
-{
-	"type": "update",
-	"name": "Markdown Lists",
-	"description": "`Inline code` with backticks\n"
-}
-```
-@@!
-
-### Code block
-Multiline code block. Makrdown tag symbol is three backtick quotes at the beginning and at the end of code block - `` ``` ``` ``
-
-<center>![markdown_code_block](/img/markdown_code_block.jpg)</center>
-
-@@@
-```yaml
-type: update
-name: Markdown Lists
-description: |
   ```
   # code block
   print '3 backticks or'
   print 'indent 4 spaces'
-  ```
+  ``` 
 ```
 ```json
 {
-	"type": "update",
-	"name": "Markdown Code block",
-	"description": "```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
+    "type": "update",
+    "name": "Makrdown tags",
+    "description": "*Italic* or _Italic_    \n**Bolt** or __Bolt__  \n\n# This is H1   \n## This is H2  \n##### This is H6  \n\n[jelastic.com URL](https://jelastic.com)  \n\n![Jelastic](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)  \n\n> Blockquote  \n\n* List  \n\n---  \n\n`Inline code` with backticks   \n\n```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
 }
 ```
 @@!

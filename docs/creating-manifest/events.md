@@ -91,7 +91,7 @@ The <b>*onInstall*</b> event is the entry point for executing any action. If the
 
 The <b>*onUninstall*</b> event can be called from the **Add-ons** tab at the Jelastic dashboard. This event is aimed at removing data accumulated through actions that are triggered by the <b>*onInstall*</b> event.                     
   
-<center>![uninstall](/img/uninstall.png)</center>    
+![uninstall](/img/uninstall.png)    
 
 ### onBeforeChangeTopology
 

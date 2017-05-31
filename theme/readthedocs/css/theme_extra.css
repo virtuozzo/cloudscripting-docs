@@ -349,11 +349,33 @@ pre code.example {
     vertical-align: text-bottom;
 }
 
+button#copyButton {
+    position: absolute;
+    margin-left: 700px;
+    padding-bottom: 3px;
+    border: 1px solid gray;
+    border-radius: 3px;
+    background-color: #f0f4f7;
+    opacity: 0.6;
+    right: 4px;
+    margin-top: 4px;
+    width: 50px;
+    height: 28px;
+}
+
 .rst-content img {
     width: initial;
+}
+
+img.clippy {
+    width: 15px;
 }
 
 .icon.icon-github {
     padding-top: 7px;
     font-size: 15px;
+}
+
+h1.default, h2.default {
+    color: #2C3E50
 }

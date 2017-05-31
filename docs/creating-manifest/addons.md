@@ -47,7 +47,7 @@ addons:
 
 In the example above, the <a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> <b>*RestartNodesByGroup*</b> method is executed after the environment creation is completed. The compute node is restarted at the end of the manifest installation procedure. Herewith, the add-on is installed, if the *parent* manifest's installation type is *install*. When the add-on is installed, the **Add-ons** tab for the corresponding compute node becomes available at the dashboard.                                    
 
-<center>![new-addon](/img/new-addon.png)</center>                        
+![new-addon](/img/new-addon.png)                        
   
 The following example illustrates the add-on's installation by calling the *installAddon* action. You can call this action for both *update* and *install* installation types of a *parent* manifest.                            
 @@@

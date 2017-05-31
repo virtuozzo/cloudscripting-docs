@@ -414,7 +414,7 @@ In this case, every environment node will have only one conjunction by <b>Node I
 
 The **ForEach** execution is recorded in the user console <a href="/troubleshooting/" target="_blank">log file</a> for convenient code debugging.           
 
-<center>![forEachCount](/img/forEachCount.jpg)</center>
+![forEachCount](/img/forEachCount.jpg)
 <br>
 <h2>What's next?</h2>        
 

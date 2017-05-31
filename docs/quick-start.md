@@ -61,11 +61,11 @@ In order to give a try to *Hello World* sample from above (or deploy your own ap
 
 1.&nbsp;Click the **Import** button at the top pane of the dashboard.                                             
 
-<center>![import-button.png](img/import-button.png)</center>                        
+![import-button.png](img/import-button.png)                        
 
 2.&nbsp;Within the opened frame, switch to the **JPS** tab and paste the code provided above (for Hello World app).                      
 
-<center>![import-manifest.png](img/import-manifest.png)</center>               
+![import-manifest.png](img/import-manifest.png)               
 
 !!! note
     **Tip:** Subsequently, you can use this editor to adjust your manifest code on a fly. Clicking on the **Examples** string nearby will redirect you to <a href="https://github.com/jelastic-jps" target="_blank">Jelastic JPS Collection</a> with numerous ready-to-go solutions (just import the link to the appropriate *manifest.jps* file to fetch the required one). Also, two more options for JPS deployment are available here:<ul><li><b>*Local File*</b> - to upload the locally stored manifest</li><li><b>*URL*</b> - to specify direct link to the required file</li></ul>        
@@ -74,15 +74,15 @@ To proceed, click on **Import** in the bottom-right corner.
 
 3.&nbsp;Within the installation confirmation window, specify domain name for a new **Environment**, set a **Display Name** (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>) for it and select the preferred <a href="https://docs.jelastic.com/environment-regions" target="_blank">region</a> (if available).                  
 
-<center>![hello-world.png](img/hello-world.png)</center>                                        
+![hello-world.png](img/hello-world.png)                                        
 
 4.&nbsp;Once the import is completed, you’ll get notification about successful package installation.                                                                              
 
-<center>![open-in-browser.png](img/open-in-browser.png)</center>               
+![open-in-browser.png](img/open-in-browser.png)               
 
 Now you can **Open** your new environment in a **browser** and check the result.                         
 
-<center>![hello-world-startpage.png](img/hello-world-startpage.png)</center>                                   
+![hello-world-startpage.png](img/hello-world-startpage.png)                                   
 
 Just in the same way, you can build and run the solution you need - from frequent tasks automation to implementing complex CI/CD flows and clustering configurations.                               
 <br>    

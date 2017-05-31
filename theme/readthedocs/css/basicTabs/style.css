@@ -4,15 +4,12 @@
 
 ul.c-tabs {
 	border: 1px solid #f3f1f1;
+	position: relative;
 }
 
 .c-tabs li.c-tabs__item {
 	display: inline;
 	margin-left: 0 !important;
-}
-
-.c-tabs li.c-tabs__item:first-child {
-	padding-left: 27px;
 }
 
 .c-tabs__item span.c-tabs__link {
@@ -25,7 +22,7 @@ ul.c-tabs {
 	display: inline-block;
 	color: #999;
 	text-decoration: none;
-	padding: 0.5rem 0.5rem;
+	padding: 8px 8px;
 }
 
 .c-tabs__link.is-active {

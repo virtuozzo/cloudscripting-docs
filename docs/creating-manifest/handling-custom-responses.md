@@ -6,26 +6,26 @@ There are the following types of pop-up windows that emerge while custom respons
 
 - `info` - *information* pop-up window                
 
-<center>![SuccessText](/img/SuccessText.jpg)</center>          
+![SuccessText](/img/SuccessText.jpg)      
 
 - `warning` - *warning* pop-up window with a custom message                
  
-<center>![new-warning](/img/new-warning.png)</center>        
+![new-warning](/img/new-warning.png)        
 
 - `error` - *error* pop-up window          
 
-<center>![new-error](/img/new-error.png)</center>          
+![new-error](/img/new-error.png)          
 
 - `success` - *successfull* result window.  
 When the action is executed with the expected result code, the *success* window is displayed.  
 
-<center>![success](/img/successResponse.jpg)</center>                               
+![success](/img/successResponse.jpg)                               
 
 A **success** type has an optional parameter `email` - custom email can be sent after successful JPS installation. 
 
 The *info*, *error* and *warning* pop-up windows emerge as a result of failed installation. The manifest installation is finished immediately, if any action returns the negative result code or code predefined in the *responses* block. Thus, the installation process is marked by the red cross like in the picture below.                        
 
-<center>![success](/img/redCross.jpg)</center>
+![success](/img/redCross.jpg)
 
 The basic custom response message can be returned in one string via the **return** or **script** action as follows.                     
 @@@
@@ -348,7 +348,7 @@ responses:
 
 The final *success* form is similar to the following one. 
 
-<center>![redefinedSuccessResponseHandler](/img/redefinedSuccessResponseHandler.jpg)</center>                         
+![redefinedSuccessResponseHandler](/img/redefinedSuccessResponseHandler.jpg)                         
 <h2> What's next?</h2>
 
 - Explore how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                                

@@ -13,7 +13,7 @@ With the help of actions you can achieve automation of the tasks related to:
 - applying a database patch                                                   
 
 The default workflow for any action execution is the following:                  
-d
+
 - replacing <a href="/creating-manifest/placeholders" target="_blank">placeholders</a>                                     
 
 - getting a list of <a href="/creating-manifest/selecting-containers" target="_blank">target containers</a>                                                 
@@ -1502,7 +1502,7 @@ where:
 
 You can locate the installed add-ons within the **Add-ons** tab at the Jelastic dashboard. 
 
-<center>![new-addon](/img/new-addon.png)</center>
+![new-addon](/img/new-addon.png)
 
 In the following example, the *nodeGroup* parameter is passed to the *installAddon* action, targeting the add-on at the balancer (*bl*) node group.                          
 @@@
@@ -1550,11 +1550,11 @@ onInstall:
 @@!
 
 Through the example above, the pop-up window with the following text is returned.                             
-<center>![returnHelloWorld](/img/returnHelloWorld.jpg)</center>
+![returnHelloWorld](/img/returnHelloWorld.jpg)
 
 The installation is not completed and the following installation window is displayed.                    
 
-<center>![returnHelloWorld](/img/redCross.jpg)</center>
+![returnHelloWorld](/img/redCross.jpg)
 
 If the *return* action includes a string, then the response is displayed via the *error* pop-up window like in the screen-shot below.                            
 @@@
@@ -1578,7 +1578,7 @@ onInstall:
 @@!
 
 The result window also returns the compute node's unique identifier at Jelastic Platform.                                                
-<center>![returnNodeId](/img/returnNodeId.jpg)</center>
+![returnNodeId](/img/returnNodeId.jpg)
 
 If the action returns an object, a response code can be redefined. So the *message* or *result* code parameters are required in the *return* object. Herewith, a zero (0) *result* code is not passed to the response code.        
 
