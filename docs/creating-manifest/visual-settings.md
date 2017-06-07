@@ -1477,14 +1477,14 @@ Horizontal Rule<br>\-\-\-|Horizontal Rule<br>\*\*\*|Horizontal Rule<br>![horizon
 \`\`\`<br>print '3 backticks <br>or3 tildes'<br>\`\`\`|\~\~\~\~<br>print '3 backticks<br> or 3 tildes'<br>\~\~\~\~|![Block code](/img/markdown_block-code.jpg)
 
 The elements visual displaying can be find on the screen below:
-![makrdown_tags](/img/markdown_tags.jpg)
+![markdown_tags](/img/markdown_tags.jpg)
 
 Source code each these elements is displayed below: 
 
 @@@
 ```yaml
 type: update
-name: Makrdown tags
+name: Markdown tags
 description: |
   *Italic* or _Italic_    
   **Bold** or __Bold__  
@@ -1514,7 +1514,7 @@ description: |
 ```json
 {
     "type": "update",
-    "name": "Makrdown tags",
+    "name": "Markdown tags",
     "description": "*Italic* or _Italic_    \n**Bold** or __Bold__  \n\n# This is H1   \n## This is H2  \n##### This is H6  \n\n[jelastic.com URL](https://jelastic.com)  \n\n![Jelastic](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)  \n\n> Blockquote  \n\n* List  \n\n---  \n\n`Inline code` with backticks   \n\n```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
 }
 ```
