@@ -1463,7 +1463,7 @@ Therefore, there is a main supported Makrdow tag list:
 Style 1                            |Style 2 | Result|
 -------                                 |----------|------
 \*Italic\*                            |\_Italic\_|*Italic*
-\*\*Bolt\*\*                            |\_\_Bolt\_\_|**Bolt**
+\*\*Bold\*\*                            |\_\_Bold\_\_|**Bold**
 \# Heading 1                           | Heading 1<br>\=\=\=\=\=\=\=\=\=  | <h1 class='default'>Heading 1</h1>
 \#\# Heading 2                          | Heading 2<br>\-\-\-\-\-\-\-\-\-\-\-\-| <h2 class='default'>Heading 2</h2>
 \[Link](https://jelastic.com)          |[Link][1]<br>.<br>.<br>.<br>[1]: https://jelastic.com|[jelastic.com URL](https://jelastic.com)
@@ -1487,7 +1487,7 @@ type: update
 name: Makrdown tags
 description: |
   *Italic* or _Italic_    
-  **Bolt** or __Bolt__  
+  **Bold** or __Bold__  
 
   # This is H1   
   ## This is H2  
@@ -1515,7 +1515,7 @@ description: |
 {
     "type": "update",
     "name": "Makrdown tags",
-    "description": "*Italic* or _Italic_    \n**Bolt** or __Bolt__  \n\n# This is H1   \n## This is H2  \n##### This is H6  \n\n[jelastic.com URL](https://jelastic.com)  \n\n![Jelastic](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)  \n\n> Blockquote  \n\n* List  \n\n---  \n\n`Inline code` with backticks   \n\n```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
+    "description": "*Italic* or _Italic_    \n**Bold** or __Bold__  \n\n# This is H1   \n## This is H2  \n##### This is H6  \n\n[jelastic.com URL](https://jelastic.com)  \n\n![Jelastic](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)  \n\n> Blockquote  \n\n* List  \n\n---  \n\n`Inline code` with backticks   \n\n```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
 }
 ```
 @@!
