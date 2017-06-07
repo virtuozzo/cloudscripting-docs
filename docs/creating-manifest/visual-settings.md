@@ -1473,7 +1473,7 @@ A paragraph.<br>  <br>A paragraph after 1 blank line.||A paragraph.<br><br>A par
 \* List<br>\* List|\- List<br>\- List|* List<br>* List
 1\. One<br>2\. Two<br>3\. Three| 1\) One<br>2\) Two<br>3\) Three|1. One<br>2. Two<br>3. Three
 Horizontal Rule<br>\-\-\-|Horizontal Rule<br>\*\*\*|Horizontal Rule<br>![horizontal-rule](/img/markdown_horizontal-rule.jpg)
-\`\`Inline code\`\` with brackticks|| ![Inline code](/img/markdown_inline-code.jpg) with brackticks
+\`\`Inline code\`\` with backticks|| ![Inline code](/img/markdown_inline-code.jpg) with backticks
 \`\`\`<br>print '3 backticks <br>or3 tildes'<br>\`\`\`|\~\~\~\~<br>print '3 backticks<br> or 3 tildes'<br>\~\~\~\~|![Block code](/img/markdown_block-code.jpg)
 
 The elements visual displaying can be find on the screen below:
