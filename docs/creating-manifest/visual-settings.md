@@ -96,7 +96,7 @@ where:
         * `numberpicker` - [field to select a number](#numberpicker) within a range                            
         * `number-picker` - alias to `numberpicker`  
         * `hostpicker` - drop-down menu with [environment hosts](#hostpicker)                             
-        * `host-picher` - alias to `hostpicker`                                      
+        * `host-picker` - alias to `hostpicker`                                      
         * `toggle` - [switcher](#toggle) between two values                        
     - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. See more info on the <a href="https://www.w3.org/wiki/HTML/Elements/input#Point" target="_blank">type attribute</a>.                         
     - `name` - input field name, that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests   
