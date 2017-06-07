@@ -1479,7 +1479,7 @@ Horizontal Rule<br>\-\-\-|Horizontal Rule<br>\*\*\*|Horizontal Rule<br>![horizon
 The elements visual displaying can be find on the screen below:
 ![markdown_tags](/img/markdown_tags.jpg)
 
-Source code each these elements is displayed below: 
+Source code for each of these elements is displayed below: 
 
 @@@
 ```yaml
