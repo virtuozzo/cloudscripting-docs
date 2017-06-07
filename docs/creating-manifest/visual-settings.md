@@ -1520,7 +1520,7 @@ description: |
 ```
 @@!
 
-Mode details about Markdown implementation can be find in CommonMark specification - [CommonMark](http://spec.commonmark.org/).
+More details about Markdown implementation can be found in CommonMark specification - [CommonMark](http://spec.commonmark.org/).
 
 <br>
 <h2>What's next?</h2>
