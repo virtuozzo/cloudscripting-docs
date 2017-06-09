@@ -1521,6 +1521,8 @@ installAddon:
 ```
 @@!
 
+The action `installAddon` has the default parameter called `id`. 
+
 For more details about the <a href="/creating-manifest/addons/" target="_blank">add-ons</a> installation, visit the linked page.                                              
 
 <!-- add example -->
