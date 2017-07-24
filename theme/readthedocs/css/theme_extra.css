@@ -379,3 +379,6 @@ img.clippy {
 h1.default, h2.default {
     color: #2C3E50
 }
+form#rtd-search-form {
+    color: #333333;
+}
