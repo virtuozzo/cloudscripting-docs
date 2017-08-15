@@ -551,13 +551,15 @@ success: README.md
 In case of the manifest installation via URL by means of the Jelastic **Import** functionality, the `baseUrl` placeholder will be defined if the specified path is set as in the example below:      
   
 ```
-{protocol}://{domain}/myfile.extension
+${baseUrl}/manifest.jps
 ```
 where:                
 
+- ${baseUrl}={protocol}//{domain}/{path}
 - <b>*{protocol}*</b> - *http* or *https* protocols              
 - <b>*{domain}*</b> - domain name of the website, where the manifest is stored                     
-- <b>*myfile.extension*</b> - name of the file with indicated extension (i.e. *jps*) at the end                     
+- <b>*{path}*</b> - directory path                
+- <b>*manifest.jps*</b> - name of the file jps package                   
 
 There are the following Cloud Scripting rules applied while parsing file's relative path:   
                       
