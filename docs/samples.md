@@ -193,7 +193,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/wildfly">PostgreSQL Cluster</a>
+            <a target="_blank" href="https://github.com/jelastic-jps/postgresql-replication">PostgreSQL Cluster</a>
         </td>
         <td>
             PostgreSQL Cluster with preconfigured Master-Slave replication
