@@ -43,7 +43,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/wordpress/tree/master/wordpress-cluster">Application Clustering</a>
+            <a target="_blank" href="https://github.com/jelastic-jps/wordpress-cluster">Application Clustering</a>
         </td>
         <td>
             Building highly available and scalable clustered solution for WordPress
