@@ -184,7 +184,8 @@ The event is executed before adding new Docker container(s) to the existing node
     - `session` - current user session    
     - `appid` - environment unique appid     
     - `nodeId` - node identifier where event is executed     
-- `${event.response.}` parameters are absent       
+- `${event.response.}`:
+    - `nodes` - nodes array which will be added to the environment
 
 ### onAfterServiceScaleOut
 
@@ -196,7 +197,8 @@ The event is executed after adding new Docker container(s) to the existing node 
     - `session` - current user session     
     - `appid` - environment unique appid     
     - `nodeId` - node identifier where event is executed       
-- `${event.response.}` result code. The successful action result is *'0'*.           
+- `${event.response.}` 
+    - `nodes` - nodes array which was added to the environment          
 
 ### onAlert
 This event provides a possibility to bind actions to <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a> and <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">Automatic Horizontal Scaling Alerts</a> that are configured through the Jelastic triggers.   
