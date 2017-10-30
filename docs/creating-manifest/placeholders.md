@@ -40,6 +40,7 @@ This is the list of placeholders that you can use within the environment section
     - `displayName` *[string]* - application display name
     - `envName` *[string]* - short domain name (without hosting provider URL)
     - `shortdomain` *[string]* - short domain name (alias to `envName`)
+    - `name` *[string]* - alias to `envName`
     - `hardwareNodeGroup` *[string]* - hardware node group
     - `ssl` *[boolean]* - environment SSL status
     - `sslstate` *[boolean]* - environment SSL state
