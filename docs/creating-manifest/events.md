@@ -729,6 +729,38 @@ The event is related to cloning environment (performed via the Jelastic dashboar
     - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.       
     - `env` - environment information. Explore the full list of available <a href="/creating-manifest/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.       
 
+### onBeforeBuildProject
+
+The event is related to build project action and is triggered before it (executed from the Jelastic dashboard).
+
+**Event Placeholders:**   
+
+- `${event.params.}`:   
+    - `session` - current user session      
+    - `appid` - environment unique appid      
+    - `project` - project name in Jelastic dashboard       
+    - `env` - environment name where action is executed       
+    - `nodeid` - environment name where action is executed       
+    - `projectid` - project unique identifier in Jelastic dashboard       
+- `${event.response.}`:  
+    - `result` - parameters are absent   
+
+### onAfterBuildProject
+
+The event is related to build project action and is triggered after it (executed from the Jelastic dashboard).
+
+**Event Placeholders:**   
+
+- `${event.params.}`:   
+    - `session` - current user session      
+    - `appid` - environment unique appid      
+    - `project` - project name in Jelastic dashboard       
+    - `env` - environment name where action is executed       
+    - `nodeid` - environment name where action is executed       
+    - `projectid` - project unique identifier in Jelastic dashboard       
+- `${event.response.}`:  
+    - `result` - result code. The successful action result is *'0'*.    
+
 ### onBeforeDeploy
 
 The event is bound to the *deploy* action, which is executed at the Jelastic dashboard by deploying any context (i.e. archive with a compressed app) to the environment, and is triggered before it (viz. *deploy* action).    
