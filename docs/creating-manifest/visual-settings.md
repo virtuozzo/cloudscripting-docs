@@ -1316,7 +1316,7 @@ A success text can be defined like plain text or like Markdown syntax. More deta
 ```yaml
 type: update
 name: Success Text first example
-baseUrl: https://github.com/jelastic-jps/minio
+baseUrl: https://github.com/jelastic-jps/minio/blob/master/
 
 onInstall:
   log: success text first example
