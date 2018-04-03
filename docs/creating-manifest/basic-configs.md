@@ -510,6 +510,57 @@ For example:
 - variable *MYSQL_ROOT_PASSWORD* from *sql* node is *DB_MYSQL_ROOT_PASSWORD* in *cp* node   
 - variable *IP_ADDRESS* from *memcached* node is *MEMCACHED_IP_ADDRESS* in *cp* node
 
+###Entry Points
+There is an ability to set custom entry points - the button *Open in Browser*, which can be clicked when JPS with type `install` is installed.
+![open-in-browser.png](/img/open-in-browser.png)
+
+Entry Points can be set in `startPage` option. The default `startPage` value is an installed environment URL (even it hasn't been defined).
+Entry Points can include any general placeholders - which have been defined during enviroment installation.
+
+For example:
+@@@
+```yaml
+type: install
+baseUrl: https://docs.cloudscripting.com/
+nodes:
+  nodeType: apache
+  cloudlets: 8
+startPage: ${baseUrl}creating-manifest/basic-configs/
+```
+```json
+{
+  "type": "install",
+  "baseUrl": "https://docs.cloudscripting.com/",
+  "nodes": {
+    "nodeType": "apache",
+    "cloudlets": 8
+  },
+  "startPage": "${baseUrl}creating-manifest/basic-configs/"
+}
+```
+@@!
+
+The case where any custom directory of created environment can be opened in *Open in Browser* button:
+@@@
+```yaml
+type: install
+nodes:
+  nodeType: apache
+  cloudlets: 8
+startPage: ${env.url}customDirectory/
+```
+```json
+{
+  "type": "install",
+  "nodes": {
+    "nodeType": "apache",
+    "cloudlets": 8
+  },
+  "startPage": "${env.url}customDirectory/"
+}
+```
+@@!
+
 ##Relative Links
 
 The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the <b>*baseUrl*</b> parameter or specified while <a href="https://docs.jelastic.com/environment-export-import" target="_blank">importing</a> a corresponding JPS file via the Jelastic dashboard.          
