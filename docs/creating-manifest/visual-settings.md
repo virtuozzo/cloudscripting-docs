@@ -394,6 +394,32 @@ where:
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.  
 - `caption` *[optional]* - field label
 
+Also there is an ability to set an `values` order. It needs to be defined like an array of objects.
+For example:
+@@@
+```yaml
+values:
+  - value: 1
+    caption: hello
+  - value: 2
+    caption: world
+```
+```json
+{
+   "values": [
+       {
+           "value": 1,
+           "caption": "hello"
+       },
+       {
+           "value": 2,
+           "caption": "world"
+       }
+   ]
+}
+```
+@@!
+
 ### dockertag
 The field for displaying Docker tags within the list element.                             
 
