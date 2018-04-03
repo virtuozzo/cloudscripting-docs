@@ -935,8 +935,34 @@ onInstall:
 
 Therefore, compute nodes will have an external ip address and sql nodes will be without ext IPs.
 
+### restartServices
+
+`restartService` is an alias.
+Will be restarted only main service in container which is related to separate template.
+@@@
+```yaml
+restartService:
+  - nodeId: number or string
+    nodeGroup: string
+```
+``` json
+{
+  "restartService": [
+    {
+      "nodeId": "number or string",
+      "nodeGroup": "string"
+    }
+  ]
+}
+```
+@@!
+where:
+
+- `nodeId`, `nodeGroup` - parameters that determine target containers for the action execution (at least one of these parameters is required)
+
 ### restartNodes
 
+`restartNode` is an alias.
 Available for all nodes (except for Elastic VPS)
 @@@
 ```yaml
@@ -944,6 +970,7 @@ restartNodes:
   - nodeId: number or string
     nodeGroup: string
     nodeType: string
+    reboot: boolean
 ```
 ``` json
 {
@@ -951,7 +978,8 @@ restartNodes:
     {
       "nodeId": "number or string",
       "nodeGroup": "string",
-      "nodeType": "string"
+      "nodeType": "string",
+      "reboot": "boolean"
     }
   ]
 }
@@ -959,9 +987,12 @@ restartNodes:
 @@!
 where:       
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                  
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)
+- `reboot` - flag which determines in which way node should be restarted. Positive value means the whole container should be restarted (the similar action to <a href="/creating-manifest/actions/#restartcontainers" target="_blank">`restartContainer`</a>), the negative one value means only main service in current container will be restarted (the similar action to <a href="/creating-manifest/actions/#restartservices" target="_blank">`restartService`</a>).
 
 ### restartContainers
+
+The whole container will be restarted.
 
 Available for all nodes
 @@@
