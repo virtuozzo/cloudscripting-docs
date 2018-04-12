@@ -226,10 +226,13 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 The Jelastic Platform supports the following software stacks:         
 
 - **Compute Nodes (cp):**                  
-    - *Java*                
+    - *Java*
+        - `tomcat` - *Dockerized Tomcat*
         - `tomcat6` - *Tomcat 6*                
         - `tomcat7` - *Tomcat 7*               
-        - `tomcat8` - *Tomcat 8*                       
+        - `tomcat8` - *Tomcat 8*
+        - `tomcat85` - *Tomcat 8.5*
+        - `tomcat9` - *Tomcat 9*
         - `tomee` - *TomEE*              
         - `glassfish3` - *GlassFish 3*             
         - `glassfish4` - *GlassFish 4*                      

@@ -96,8 +96,8 @@ success: object/string
 - `nodes` - an array to describe information about nodes for an installation. Required option for JPS with **type** `install`.
 - `engine` *[optional]* - engine <a href="/creating-manifest/selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
 - `region` *[optional]* - region, where an environment will be installed. Required option for **type** `install`.
-- `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with `type` *install* mode.            
-- `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with `type` *install* mode.
+- `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with **type** `install` mode.
+- `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with **type** `install` mode.
 - `displayName` *[optional]* - display name for an environment. Required option for **type** `install`.
 - `appVersion` *[optional]* - custom version of an application
 - `onInstall` *[optional]* - <a href="/creating-manifest/events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
@@ -234,9 +234,9 @@ volumeMounts:
 Here:  
 
 - `/example-path` - path to place the volume at a target node  
-- `sourcePath [optional]` - default value that repeats volume path (*/example-path* in our sample)    
+- `sourcePath` *[optional]* - default value that repeats volume path (*/example-path* in our sample)
 - `sourceNodeId` -  node identifier the volume should be mounted from (optional, in case of the `sourceNodeGroup` parameter using)       
-- `sourceHost [optional]` - parameter for <a href="https://docs.jelastic.com/configure-external-nfs-server" target="_blank">external mounts</a> usage    
+- `sourceHost` *[optional]* - parameter for <a href="https://docs.jelastic.com/configure-external-nfs-server" target="_blank">external mounts</a> usage
 - `readOnly` - defines write data permissions at source node, the default value is `false`   
 - `sourceNodeGroup` - any available *nodeGroup* within a source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.    
 
@@ -261,9 +261,9 @@ In case not all source node volumes are required to be mounted, the particular o
 ```
 @@!
 
-<h4>*VolumeMounts* examples</h4>
+<h4>VolumeMounts examples</h4>
  
-**Master Node Mount:**   
+**Master Node Mount:**
 Samples to mount a particular volume by exact node identifier & path (*/master*) and to mount all volumes from the layer master node by *nodeGroup* (*/master-1*)
 @@@
 ```yaml
@@ -625,7 +625,7 @@ There are a list of JPS blocks which can use resources from **related** links:
 - `logo` - JPS application image is shown while jps installation
 - `script` - <a href="/creating-manifest/actions/#script" target="_blank">action</a>,= for executing javascript and java scripts
 - `description` - information about JPS which is shown before install process
-- `success` - message after successfull application installation
+- `success` - message after successful application installation
  
 The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="/creating-manifest/actions/#cmd" target="_blank">*cmd*</a> and <a href="/creating-manifest/actions/#script" target="_blank">*script*</a> actions).                 
 
