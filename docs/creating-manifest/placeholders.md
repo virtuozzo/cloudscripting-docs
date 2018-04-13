@@ -37,6 +37,7 @@ This is the list of placeholders that you can use within the environment section
     - `domain` *[string]* - application domain
     - `protocol` *[string]* - protocol
     - `url` *[string]* - link to application (environment)
+    - `region` *[string]* - a region name where environemnt has been installed
     - `displayName` *[string]* - application display name
     - `envName` *[string]* - short domain name (without hosting provider URL)
     - `shortdomain` *[string]* - short domain name (alias to `envName`)

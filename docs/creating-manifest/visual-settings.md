@@ -87,7 +87,8 @@ where:
         * `dockertags` - drop-down menu with a list of [docker tags](#dockertag)                                         
         * `compositefield` - [component](#compositefield) that comprises any available field    
         * `slider` - [slider element](#slider) as a form field
-        * `envlist` - [list of environments](#envlist) available for a corresponding account                  
+        * `envlist` - [list of environments](#envlist) available for a corresponding account
+        * `regionlist` - drop-down menu with a [regions](#regionlist) list
         * `popupselector` - new [pop-up window](#popupselector) via POST request with posibility to pass additional parameters
         * `popup-selector` - alias to `popupselector`                               
         * `displayfield` - [text field](#displayfield) intended for displaying text                            
@@ -632,7 +633,7 @@ fields:
 where:  
 
 - `caption` *[optional]* - field label    
-- `name` *[optional]* - name of the field  
+- `name` - name of the field
 - `editable` *[optional][boolean]* - enables/disables the *envlist* field editing. The default value is *'false'*.    
 - `valueField` *[optional][string]* - value from environment information, which will be sent to a server. The default value is *'domain'*. Available values are:      
     - *iconCls* - CSS class     
@@ -640,6 +641,83 @@ where:
     - *shortdomain* - short environment domain name (without platform URL)  
     - *displayName* - environment *displayName*  
     - *appid* - unique environment ID       
+
+### regionlist
+An available region list for a current account where new environments can be installed.
+
+@@@
+```yaml
+fields:
+  - caption: Second Env Region
+    type: regionlist
+    name: secondRegion
+    editable: true
+    disableInactive: true
+    selectFirstAvailable: true
+    message: unavailable region
+    filter:
+      type: ["vz6", "vz7"]
+      name: .*-eu
+      uniqueName: String
+      displayName: Default Region
+      domain: default_domain.com
+      isEnabled: true
+      isDefault: true
+      isActive: true
+      isRegionMigrationAllowed: true,
+      region: 1
+```
+```json
+{
+  "fields": [
+    {
+      "caption": "Second Env Region",
+      "type": "regionlist",
+      "name": "secondRegion",
+      "editable": true,
+      "disableInactive": true,
+      "selectFirstAvailable": true,
+      "message": "unavailable region",
+      "filter": {
+        "type": [
+          "vz6",
+          "vz7"
+        ],
+        "name": ".*-eu",
+        "uniqueName": "default_region",
+        "displayName": "Default Region",
+        "domain": "default_domain.com",
+        "isEnabled": true,
+        "isDefault": true,
+        "isActive": true,
+        "isRegionMigrationAllowed": true,
+        "region": 1
+      }
+    }
+  ]
+}
+```
+@@!
+where:
+
+- `caption` *[optional]* - field label
+- `name` - name of the field
+- `editable` *[optional] [boolean]* - enables/disables editing the *regionlist* field. The default value is *'false'*.
+- `disableInactive` [boolean] - an ability to chose inactive regions in combo. The default value is *'true'*
+- `selectFirstAvailable` - displaying a first available region in combo
+- `message` *[optional] [string]* - text to display after hover on disabled regions on expanded combo
+- `filter` *[optional]:
+    - `type` - filtering regions by virtualization types in combo [possible options: PVC, PCS_STORAGE, VZ6, VZ7], `vzTypes` is an alias.
+    - `vzTypes` - virtualization types
+    - `name` *[string]* - filtering regions by name, name's part or expressions. `uniqueName` is an alias
+    - `uniqueName` *[string]* - region unique name filtering
+    - `displayName` *[string]* - filtering by region display name
+    - `domain` *[string]* - filtering by region domain
+    - `isEnabled` *[boolean]* - show only enabled regions
+    - `isDefault` *[boolean]* - display only default region
+    - `isActive` *[boolean]* - only active regions will be available in combo
+    - `isRegionMigrationAllowed` *[boolean]* - display regions where migration is allowed
+    - `region` *[number]* - filtering by region identifier
 
 ### popupselector
 (*popup-selector* is an alias)     

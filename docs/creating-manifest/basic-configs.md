@@ -42,6 +42,7 @@ homepage: string
 categories: array
 baseUrl: string
 settings: object
+targetRegions: object
 nodes: array
 engine: string
 region: string
@@ -67,6 +68,7 @@ success: object/string
   "categories": "array",
   "baseUrl": "string",
   "settings": "object",
+  "targetRegions" : "object",
   "nodes": "array",
   "engine": "string",
   "region": "string",
@@ -92,10 +94,14 @@ success: object/string
 - `homepage` *[optional]* - link to any external aplication source
 - `categories` - categories available for manifests filtering                                                                        
 - `baseUrl` *[optional]* - custom <a href="#relative-links" target="_blank">relative links</a>                                       
-- `settings` *[optional]* - custom form with <a href="/creating-manifest/visual-settings/" target="_blank">predefined user input elements</a>                        
-- `nodes` - an array to describe information about nodes for an installation. Required option for JPS with **type** `install`.
+- `settings` *[optional]* - custom form with <a href="/creating-manifest/visual-settings/" target="_blank">predefined user input elements</a>
+- `targetRegions` *[optional]* - filtering available regions on Jelastic platform. Option will be used only with **type** `install`
+    - `type` *[optional]* [array] - region's virtualization types
+    - `name` *[optional]* [string] - text or JavaScript RegExp argument to filtering region's by name
+- `region` *[optional]* - region, where an environment will be installed. Option will be used only with **type** `install`.
+`targetRegions` has has a higher priority than `region`. So in case when both of options have been set regions will be filtered according to the `targetRegions` rules.
+- `nodes` - an array to describe information about nodes for an installation. Option will be used only with **type** `install`.
 - `engine` *[optional]* - engine <a href="/creating-manifest/selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
-- `region` *[optional]* - region, where an environment will be installed. Required option for **type** `install`.
 - `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with **type** `install` mode.
 - `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with **type** `install` mode.
 - `displayName` *[optional]* - display name for an environment. Required option for **type** `install`.
