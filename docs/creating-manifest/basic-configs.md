@@ -629,7 +629,7 @@ If installation is being run from <a href="https://github.com/jelastic-jps" targ
 There are a list of JPS blocks which can use resources from **related** links:
 
 - `logo` - JPS application image is shown while jps installation
-- `script` - <a href="/creating-manifest/actions/#script" target="_blank">action</a>,= for executing javascript and java scripts
+- `script` - <a href="/creating-manifest/actions/#script" target="_blank">action</a>, for executing javascript and java scripts
 - `description` - information about JPS which is shown before install process
 - `success` - message after successful application installation
  
