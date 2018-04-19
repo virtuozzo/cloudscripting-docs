@@ -1291,7 +1291,7 @@ In the example above the `cmd` action the first one. Here, <i>echo</i> command i
 The result can be check in console log panel like in example screen:
 ![assert](/img/assert.jpg)
 
-An `assert` action can be defined in array of strings or in simple one line(*string*):
+An `assert` action can be defined as an array of strings or in simple one line(*string*):
 
 @@@
 ```yaml
@@ -1300,6 +1300,47 @@ assert: "'${response.responses.out}' == 'test'"
 ```json
 {
   "assert": "'${response.responses.out}' == 'test'"
+}
+```
+@@!
+
+or as object like in cases below (in this case `assert` can be an array of string too):
+
+@@@
+```yaml
+message: test myvar
+assert: "${this.myvar} === true"
+```
+```json
+{
+  "message": "test myvar",
+  "assert": "${this.myvar} === true"
+}
+```
+@@!
+
+or an array of objects:
+
+@@@
+```yaml
+assert:
+- condition: "${this.myvar} === true"
+  message: test myvar
+- condition: true != false
+  message: test simple condition
+```
+```json
+{
+  "assert": [
+    {
+      "condition": "${this.myvar} === true",
+      "message": "test myvar"
+    },
+    {
+      "condition": "true != false",
+      "message": "test simple condition"
+    }
+  ]
 }
 ```
 @@!
