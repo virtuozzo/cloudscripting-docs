@@ -204,7 +204,7 @@ Here, the name of the placeholder is `${settings.customName}`. See the list of <
 
 ## Action Placeholders
 
-Action placeholders form a set of placeholders that can be used within the actions by means of a <b>*${this}*</b> namespace. So, in <b>*${this.param}*</b> the *param* is a name of the action parameter.                                          
+Action placeholders form a set of placeholders that can be used within the actions by means of a <b>*\${this}*</b> namespace. So, in <b>*${this.param}*</b> the *param* is a name of the action parameter.
 
 **Example**
 @@@
@@ -337,6 +337,14 @@ globals.value2: 2
 }
 ```
 @@!
+
+Values are global placeholders (<i>value1</i> and <i>value2</i> in example above) could consist of like simple text or/and placeholders in it. There are the list of placeholders which are predefined in `globals` block:
+
+- `${settings.*}` - <a href="/creating-manifest/placeholders/#input-parameters" target="_blank">input parameters</a> from `settings` block, where custom forms are described
+- `${env.*}` - all <a href="/creating-manifest/placeholders/#environment-placeholders" target="_balnk">environment placeholders</a>. Placeholders are available only in JPS manifests with `type` *install* -  `globals` block will be updated after an environment is created.
+- `${nodes.*}` - all <a href="/creating-manifest/placeholders/#node-placeholders" target="_balnk">node placeholders</a>. Node values in global placeholders will be available only after environment is created.
+- `${user.*}` - <a href="/creating-manifest/placeholders/#account-information" target="-blank">account placeholders</a> ara available during all JPS installation process.
+- `${fn.*}` - <a href="/creating-manifest/placeholders/#function-placeholders" target="_blank">functional placeholders</a>  ara available during all JPS installation process.
 
 ## Function Placeholders
 
