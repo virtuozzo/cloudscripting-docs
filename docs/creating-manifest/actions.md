@@ -1257,7 +1257,7 @@ There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certi
     Learn more about using <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a>.    
 
 ### assert
-Is an ability to check two any values and verify results in <a href="/troubleshooting/" target="_blank">console log</a>. One of the usefull case is checking response parameters from previous action with expected values. Responses parameters can be compared with other parameters or with any hardcoded values.
+Is an ability to check two any values and verify results in <a href="/troubleshooting/" target="_blank">console log</a>. One of the usefull case is checking response fields from previous action with expected values. Responses parameters can be compared with other parameters or with any hardcoded values.
 For example:
 @@@
 ```yaml
