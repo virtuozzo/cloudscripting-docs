@@ -1256,6 +1256,137 @@ There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certi
 !!! note
     Learn more about using <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a>.    
 
+### assert
+Is an ability to check response parameters from previous action and verify results in <a href="/troubleshooting/" target="_blank">console log</a>. Responses parameters can be compared with other parameters or with any hardcoded values.
+For example:
+@@@
+```yaml
+type: update
+name: Assert action
+onInstall:
+- cmd [cp]: echo test
+- assert:
+  - "'${response.responses.out}' == 'test'"
+  - "'${response.responses[0].out}' == 'test'"
+```
+```json
+{
+  "type": "update",
+  "name": "Assert action",
+  "onInstall": [
+    {
+      "cmd [cp]": "echo test"
+    },
+    {
+      "assert": [
+        "'${response.responses.out}' == 'test'",
+        "'${response.responses[0].out}' == 'test'",
+      ]
+    }
+  ]
+}
+```
+@@!
+In the example above the `cmd` action the first one. Here, <i>echo</i> command is executed with world <i>test</i>. The second action `assert` compares response output result form the first command and the word <i>test</i>.
+The result can be check in console log panel like in example screen:
+![assert](/img/assert.jpg)
+
+An `assert` action can be defined in array of strings or in simple one line(*string*):
+
+@@@
+```yaml
+assert: "'${response.responses.out}' == 'test'"
+```
+```json
+{
+  "assert": "'${response.responses.out}' == 'test'"
+}
+```
+@@!
+
+Failed comparing value will be marked in red colored text:
+![assert-failed](/img/assert-failed.jpg)
+
+Also, there is an ability to set custom messages in cousole log instead default text *ASSERT*:
+@@@
+```yaml
+type: update
+name: Assert action - custom message
+onInstall:
+- cmd [cp]: echo hello
+- assert:
+    condition: "'${response.responses.nodeid}' == '160008'"
+    message: Custom Assert Message
+```
+```json
+{
+  "type": "update",
+  "name": "Assert action - custom message",
+  "onInstall": [
+    {
+      "cmd [cp]": "echo hello"
+    },
+    {
+      "assert": {
+        "condition": "'${response.responses.nodeid}' == '160008'",
+        "message": "Custom Assert Message"
+      }
+    }
+  ]
+}
+```
+@@!
+
+![assert-custom-msg](/img/assert-custom-msg.jpg)
+
+Response placeholders in `assert` action are being defined only from the previous one action.
+For example, placeholder *${response.responses.out}* from `cmd` action willn't be defined in `assert` action, but placeholder *${response.test}* from previous `script` action will.
+
+@@@
+```json
+{
+  "type": "update",
+  "name": "Assert action - scrion action assert",
+  "onInstall": [
+    {
+      "cmd [cp]": "echo test"
+    },
+    {
+      "script": [
+        "return {",
+        "   result : 0,",
+        "   test: '123'",
+        "};"
+      ]
+    },
+    {
+      "assert": [
+        "'${response.test}' == '123'",
+        "'${response.responses.out}' != 'test'"
+      ]
+    }
+  ]
+}
+```
+```yaml
+type: update
+name: Assert action - scrion action assert
+onInstall:
+- cmd [cp]: echo test
+- script:
+  - return {
+  - "   result : 0,"
+  - "   test: '123'"
+  - "};"
+- assert:
+  - "'${response.test}' == '123'"
+  - "'${response.responses.out}' != 'test'"
+```
+@@!
+
+Result screen:
+![assert-only-prev-action.jpg](/img/assert-only-prev-action.jpg)
+
 ### sleep
 
 Setting a delay that is measured in milliseconds. The following example shows how to create a delay for one second.                                               
