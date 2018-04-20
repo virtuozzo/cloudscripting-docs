@@ -632,7 +632,30 @@ There are a list of JPS blocks which can use resources from **related** links:
 - `script` - <a href="/creating-manifest/actions/#script" target="_blank">action</a>, for executing javascript and java scripts
 - `description` - information about JPS which is shown before install process
 - `success` - message after successful application installation
- 
+
+Relative links in these blocks check a file availability by URL. If file by defined link is absent (404 response code) a simple text will be displayed in that blocks.
+
+For example:
+
+@@@
+```yaml
+type: update
+name: Relative Path Detection
+baseUrl: https://example.com/
+success: text.txt
+```
+```json
+{
+  "type": "update",
+  "name": "Relative Path Detection",
+  "baseUrl": "https://example.com/",
+  "success": "text.txt"
+}
+```
+@@!
+
+In the example above the text *text.txt* will be displayed in success email notification and in success window in Jelastic dashboard when JPS installation will be finished. If URL **https://example.com/text.txt** has any content then that content will be displayed.
+
 The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="/creating-manifest/actions/#cmd" target="_blank">*cmd*</a> and <a href="/creating-manifest/actions/#script" target="_blank">*script*</a> actions).                 
 
 For example:
