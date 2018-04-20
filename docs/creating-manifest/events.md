@@ -66,6 +66,15 @@ where:
 - `onAfterRestartNode` - event that triggers the action after restarting *apache2* compute nodes     
 - `onAfterResetNodePassword` - event that triggers the action after resetting a password from the first compute node in the layer       
 
+There are few options to filter executed events:
+
+1. onBeforeRestartNode [cp] or [apache] or [1234] - short filters for events
+2. onBeforeRestartNode [nodeGroup: cp] or [nodeType: apache] or [nodeId: 1234] - full filters sets
+3. Combines of different simple filters from first or second points above in one -
+onBeforeRestartNode[1234, 5678] (executing `event` only on nodes checked by unque identifiers) or onBeforeRestartNode[nodeGroup: cp, nodeId: 123]
+
+Such reserved keywords like *nodeGroup*, *nodeType* and *nodeId* in event filtering are not case sensitive, so they can be declared in any way.
+
 ## Events Execution Sequence
 
 Below you can find the graphs that list actions with adjoining events. Every action has a pair of adjoining events - one of them is executed *before* the action and another one is launched *after* the action, that is when the action is finished.  
