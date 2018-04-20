@@ -140,6 +140,7 @@ There are three alternative approaches, provided to specify a target container i
 - specifying a target container within a name of an action (**node selectors**)     
 
 Through the following example, a new file is created in the compute layer (<em>[cp]</em>) and a new directory is created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers, and container with the Node ID <em>123</em>. Actions for the specified containers are executed in the declared order.
+
 @@@
 ```yaml
 - createfile [cp]:
@@ -163,6 +164,32 @@ Through the following example, a new file is created in the compute layer (<em>[
 ]
 ```
 @@!
+
+A defined action in manifest could be executed in all nodes of all layers within an environment where JPS is executed.
+For example:
+
+@@@
+```yaml
+type: update
+name: cmd in all nodes
+onInstall:
+  cmd [*]: echo hello world!
+```
+```json
+{
+  "type": "update",
+  "name": "cmd in all nodes",
+  "onInstall": {
+    "cmd [*]": "echo hello world!"
+  }
+}
+```
+@@!
+
+There is a console log screen which displays that `cmd` action has been executed in all nodes by unique identifier one by one:
+
+![wildcard-mask](/img/wildcard-mask.jpg)
+
 - specifying a target container next to the performed action                                       
 
 Through the following example, the <a href="/creating-manifest/actions/#createfile" target="_blank">**createFile**</a> and <a href="/creating-manifest/actions/#createdirectory" target="_blank">**createDirectory**</a> actions are applied to the specified <em>nodeGroup</em>, namely the compute layer (<em>[cp]</em>).
