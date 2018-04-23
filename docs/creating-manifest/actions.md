@@ -1256,6 +1256,135 @@ There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certi
 !!! note
     Learn more about using <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a>.    
 
+### setGlobals
+
+There are two scope levels during manifest axacution - *global* and *local*. Global scope consists of several parameters like: `env`, `nodes`, `globals` and `targetNodes`.
+This action is an ability to define variables within global scope. Suchwise, this is an opportunity to set values in object *${globals.*}*.
+For example:
+@@@
+```yaml
+type: update
+name: setGlobals action
+onInstall:
+- setGlobals:
+    a: 1
+    b: 2
+- assert: "'${globals.a}' === '1' && '${globals.b}' === '2'"
+- checkGlobals
+actions:
+  checkGlobals:
+    assert: "'${globals.a}' === '1' && '${globals.b}' === '2'"
+```
+```json
+{
+    "type" : "update",
+    "name" : "setGlobals action",
+
+    "onInstall": [
+        {
+            "setGlobals": {
+                "a": 1,
+                "b": 2
+            }
+        },
+        {
+            "assert": "'${globals.a}' === '1' && '${globals.b}' === '2'"
+        },
+        "checkGlobals"
+    ],
+
+    "actions" : {
+        "checkGlobals" : {
+            "assert": "'${globals.a}' === '1' && '${globals.b}' === '2'"
+        }
+    }
+}
+```
+@@!
+
+The result is on the screen below:
+![setGlobals](/img/setGlobals.png)
+
+First action `setGlobals` denifes new *global* values - variables *a* and *b*. Then a new placeholders *\${globals.a}* and *\${globals.b}* are available in all next actions (custom actions are included too).
+
+!!!Note
+    <b>Global</b> scope is created at the beginning of JPS installation and it is available within current manifest only.
+
+### set
+An ability to set local scope variables. Suchwise, new variables within *\${this.*}* scope could be defined.
+The example below shows a local scope borders within manifest and local variables usability:
+
+@@@
+```yaml
+type: update
+name: Test action 'set'
+onInstall:
+- set:
+    a: 1
+    b: 2
+- assert: "'${this.a}' === '1' && '${this.b}' === '2'"
+- checkLocalVars:
+    c: 3
+    d: 4
+actions:
+  checkLocalVars:
+  - assert:
+    - "'${this.a}' !== '1' && '${this.b}' !== '2'"
+    - "'${this.c}' === '3' && '${this.d}' === '4'"
+  - set:
+      a: 1
+      b: 2
+  - assert: "'${this.a}' === '1' && '${this.b}' === '2'"A
+```
+```json
+{
+  "type": "update",
+  "name": "Test action 'set'",
+  "onInstall": [
+    {
+      "set": {
+        "a": 1,
+        "b": 2
+      }
+    },
+    {
+      "assert": "'${this.a}' === '1' && '${this.b}' === '2'"
+    },
+    {
+      "checkLocalVars": {
+        "c": 3,
+        "d": 4
+      }
+    }
+  ],
+  "actions": {
+    "checkLocalVars": [
+      {
+        "assert": [
+          "'${this.a}' !== '1' && '${this.b}' !== '2'",
+          "'${this.c}' === '3' && '${this.d}' === '4'"
+        ]
+      },
+      {
+        "set": {
+          "a": 1,
+          "b": 2
+        }
+      },
+      {
+        "assert": "'${this.a}' === '1' && '${this.b}' === '2'"
+      }
+    ]
+  }
+}
+```
+@@!
+![set](/img/set.png)
+
+So from the screen results, it could understandable that local scope creates each time during a processing an event or while call custom actions.
+While execution custom action a local scope can consists of arguments if they pass with action. So these arguments will be in a custom action local scope.
+
+
 ### assert
 Is an ability to check two any values and verify results in <a href="/troubleshooting/" target="_blank">console log</a>. One of the usefull case is checking response fields from previous action with expected values. Responses parameters can be compared with other parameters or with any hardcoded values.
 For example:
