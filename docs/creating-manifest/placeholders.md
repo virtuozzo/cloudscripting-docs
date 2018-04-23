@@ -206,7 +206,7 @@ Here, the name of the placeholder is `${settings.customName}`. See the list of <
 
 ## Action Placeholders
 
-Action placeholders form a set of placeholders that can be used within the actions by means of a <b>*\${this}*</b> namespace. So, in <b>*${this.param}*</b> the *param* is a name of the action parameter.
+Action placeholders form a set of placeholders that can be used within the actions by means of a <b>*\${this.*}*</b> namespace. So, in <b>*${this.param}*</b> the *param* is a name of the action parameter.
 
 **Example**
 @@@
@@ -258,7 +258,41 @@ actions:
 }
 ```
 @@!
-As a result, console will display the *first* (1) custom parameter from the <b>*${this.first}*</b> placeholder.             
+As a result, console will display the *first* (1) custom parameter from the <b>*${this.first}*</b> placeholder.
+
+Also custom actions can receive as a parameter a string or an array or strings. In this case a new placeholder *\${this}* will be defined within executed action.
+
+For example:
+@@@
+```yaml
+type: update
+name: this placeholder
+onInstall:
+  customAction:  custom string
+actions:
+  customAction:
+    log: ${this}
+```
+```json
+{
+  "type": "update",
+  "name": "this placeholder",
+  "onInstall": {
+    "customAction": "custom string"
+  },
+  "actions": {
+    "customAction": {
+      "log": "${this}"
+    }
+  }
+}
+```
+@@!
+
+The result message of \${this} placeholder is on the screen below:
+![this-placeholder](/img/this-placeholder.png)
+
+In case if an argument is an array of strings the executed custom action will be executed so many times how many arguments are in an array.
 
 ## UI Placeholders
 
