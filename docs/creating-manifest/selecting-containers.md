@@ -222,7 +222,39 @@ Learn more on this parameter within the <a href="/creating-manifest/actions/#cus
 
 !!! note 
     <b>Node selectors</b> have higher priority than containers specified next to the action, but lower than parameters set in the *actions* object.   
-    If you specify all three parameters (*nodeId*, *nodeGroup*, and *nodeType*), actions for indicated containers are executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.   
+    If you specify all three parameters (*nodeId*, *nodeGroup*, and *nodeType*), actions for indicated containers are executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.
+
+## NodeGroup Aliases
+
+An existed nodes in environments can be targeted not only by their defined *nodeGroup*s and by aliases. That aliases could be defined in manifests like in example:
+@@@
+```yaml
+type: update
+name: Alias for nodeGroup
+nodeGroupAlias:
+  cp: sqldb2
+onInstall:
+  log: ${nodes.sqldb2.id}
+```
+```json
+{
+  "type": "update",
+  "name": "Alias for nodeGroup",
+  "nodeGroupAlias": {
+    "cp": "sqldb2"
+  },
+  "onInstall": {
+    "log": "${nodes.sqldb2.id}"
+  }
+}
+```
+@@!
+
+In the example above JPS add-on with `type` *update* could be applied on any existing environment. In this case all compute nodes with **nodeGroup** *cp* can be called by aliases (Nodes with **nodeGroup** *sqldb2* are absent in environemnt). So the example result is displayed in the screen:
+![nodeGroup-alias](/img/nodeGroupAlias.png)
+
+!!! note
+    `nodeGroupAlias` option works only within current JPS manifest.
 
 ## Supported Stacks                                  
 

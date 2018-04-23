@@ -43,6 +43,7 @@ categories: array
 baseUrl: string
 settings: object
 targetRegions: object
+nodeGroupAlias: object
 nodes: array
 engine: string
 region: string
@@ -69,6 +70,7 @@ success: object/string
   "baseUrl": "string",
   "settings": "object",
   "targetRegions" : "object",
+  "nodeGroupAlias": "object",
   "nodes": "array",
   "engine": "string",
   "region": "string",
@@ -100,6 +102,7 @@ success: object/string
     - `name` *[optional]* [string] - text or JavaScript RegExp argument to filtering region's by name
 - `region` *[optional]* - region, where an environment will be installed. Option will be used only with **type** `install`.
 `targetRegions` has has a higher priority than `region`. So in case when both of options have been set regions will be filtered according to the `targetRegions` rules.
+- `nodeGroupAlias` *[optional]* - an ability to set aliases for existed in environments *nodeGroup*
 - `nodes` - an array to describe information about nodes for an installation. Option will be used only with **type** `install`.
 - `engine` *[optional]* - engine <a href="/creating-manifest/selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
 - `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with **type** `install` mode.
