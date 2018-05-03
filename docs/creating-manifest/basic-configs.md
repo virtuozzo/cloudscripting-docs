@@ -189,8 +189,7 @@ nodes:
 ```
 @@!
 
-**Volumes**
-
+**Volumes**<br>
 This field represents a string array:
 @@@
 ```yaml
@@ -214,7 +213,7 @@ This field represents a string array:
 ```
 @@!
 
-**VolumeMounts**
+**VolumeMounts**<br>
 This parameter is an object. It can be set like within the example below:
 @@@
 ```yaml
@@ -451,6 +450,35 @@ nodes:
 }
 ```
 @@!
+
+Environment variables can manage to control nodes availability from outside to the platform. <a href="https://docs.jelastic.com/setting-custom-firewall" target="_blank">Jelastic Container Firewall</a> feature was implemented in Jelastic version 5.4 and new firewall rules can be set during creating new environment.<br>
+ The reserved environment variable for this option is - **JELASTIC_PORTS**. This parameter defines which ports will be added in *inbound* rules. All rules in this case will be added for both protocols (**TCP/UDP**).
+
+@@@
+```yaml
+jpsType: install
+name: JELASTIC_PORTS env variable
+nodes:
+  nodeType: apache2
+  nodeGroup: cp
+  env:
+    JELASTIC_PORTS: 3306, 33061, 33062
+```
+```json
+{
+  "jpsType": "install",
+  "name": "JELASTIC_PORTS env variable",
+  "nodes": {
+    "nodeType": "apache2",
+    "nodeGroup": "cp",
+    "env": {
+      "JELASTIC_PORTS": "3306, 33061, 33062"
+    }
+  }
+}
+```
+@@!
+All ports for output traffic are opened by default.
 
 **Links**
 
