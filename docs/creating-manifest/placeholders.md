@@ -510,6 +510,99 @@ The list of single placeholders:
 - `${nginxphp.PHP_MODULES}` - */usr/lib64/php/modules*   
 - `${nginxphp.WEBROOT}` - */var/www/webroot*   
 
+
+## Default Values of Placeholders
+
+All placeholders which are spelled out in manifest and are not defined in Cloud Scripting during manifest execution will be displayed like a simple texts. <br>
+In the example below the **action** `assert` is executed where values are compared.
+
+@@@
+```yaml
+type: update
+name: Default values of placeholders
+onInstall:
+  assert:
+  - "'${unknown:defaultValue}' === 'defaultValue'"
+  - "'${noName:[fn.password(7)]}'.length === 7"
+  - "'${unknown:}' === ''"
+```
+```json
+{
+    "type": "update",
+    "name": "Default values of placeholders",
+    "onInstall": {
+        "assert": [
+            "'${unknown:defaultValue}' === 'defaultValue'",
+            "'${noName:[fn.password(7)]}'.length === 7",
+            "'${unknown:}' === ''"
+        ]
+    }
+}
+```
+@@!
+
+The first comparing in `assert` action is **"'\${unknown:defaultValue}' === 'defaultValue'"**, where placeholder *\${unknown:defaultValue}* in Cloud Scripting engine isn't defined. So the sipmle string will be displayed in console. The same behaviour will be with another comparisons.<br>
+The executed results on the screen below:
+![simple-comparison](/img/simple-comparison.png)
+
+Default placeholder values can be replaced in placeholders if they were defined before they are spelled out in manifest. For example, custom placeholders can be defined in action `set`.
+
+@@@
+```yaml
+type: update
+name: Default values of placeholders
+onInstall:
+- set:
+    custom: test
+    length: 7
+    'null':
+    'false': false
+    empty: ''
+- assert:
+  - "'${unknown:defaultValue}' === 'defaultValue'"
+  - "'${unknown:[fn.password(7)]}'.length === 7"
+  - "'${unknown:[this.custom]:[this.custom]}' === 'test'"
+  - "'${unknown:[fn.password([this.length])]}'.length === 7"
+  - "'${unknown:[this.custom]}' === 'test'"
+  - "'${unknown:[this.empty]}' === ''"
+  - "'${unknown:[this.false]}' === 'false'"
+  - "'${unknown:[this.null]}' === 'null'"
+  - "'${unknown:}' === ''"
+```
+```json
+{
+  "type": "update",
+  "name": "Default values of placeholders",
+  "onInstall": [
+    {
+      "set": {
+        "custom": "test",
+        "length": 7,
+        "null": null,
+        "false": false,
+        "empty": ""
+      }
+    },
+    {
+      "assert": [
+        "'${unknown:defaultValue}' === 'defaultValue'",
+        "'${unknown:[fn.password(7)]}'.length === 7",
+        "'${unknown:[this.custom]:[this.custom]}' === 'test'",
+        "'${unknown:[fn.password([this.length])]}'.length === 7",
+        "'${unknown:[this.custom]}' === 'test'",
+        "'${unknown:[this.empty]}' === ''",
+        "'${unknown:[this.false]}' === 'false'",
+        "'${unknown:[this.null]}' === 'null'",
+        "'${unknown:}' === ''"
+      ]
+    }
+  ]
+}
+```
+@@!
+The results on the screen below:
+![comparison](/img/comparison.png)
+
 <br>       
 <h2> What’s next?</h2>                    
 
