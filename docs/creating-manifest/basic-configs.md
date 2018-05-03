@@ -418,7 +418,7 @@ where:
 - *"storage:ro"* - like { sourceNodeGroup : "storage", readOnly : true }
 -->
 
-**Environment Variables**
+#### Environment Variables
 
 Docker environment <a href="https://docs.jelastic.com/docker-variables" target="_blank">variable</a> is an optional topology object. The *env* instruction allows to set the required environment variables to specified values. 
 @@@
@@ -480,7 +480,78 @@ nodes:
 @@!
 All ports for output traffic are opened by default.
 
-**Links**
+Another one reserved environment variables is **ON_ENV_INSTALL**. This variable is responsible for executing new JPS installation after new nodeGroup (layer of nodes) has been created.<br>
+This variable for **nodeGroup** can be set in JPS or via dashboard. More info about Docker configuration is Jelastic dashbboard <a href="https://docs.jelastic.com/docker-configuration" target="_blank">here</a>.
+
+!!! note
+    > By default in manifest from the **ON_ENV_INSTALL** variable *\${settings.nodeGroup}* placeholder is defined. It will be a nodeGroup value where this manifest is executed.
+
+**ON_ENV_INSTALL** can consists of manifest URL (string) or an object.<br>
+URL is a external link for manifest with any *type* - `install` or `update`. An object could has two options:
+
+ - `jps` - link, source of external manifest
+ - `settings` - a list of any parameters which will be defined in external manifest in *\${settings.\*}* scope.
+
+In the first example **ON_ENV_INSTALL** is defined like simple URL:
+@@@
+```yaml
+type: install
+name: ON ENV INSTALL
+nodes:
+  nodeType: nginxphp
+  env:
+    ON_ENV_INSTALL: http://example.com/manifest.jps
+```
+```json
+{
+  "type": "install",
+  "name": "ON ENV INSTALL",
+  "nodes": {
+    "nodeType": "nginxphp",
+    "env": {
+      "ON_ENV_INSTALL": "http://example.com/manifest.jps"
+    }
+  }
+}
+```
+@@!
+
+Another one example displays an ability to set any custom options which can be used in executed manifest from variable:
+
+@@@
+```yaml
+type: install
+name: ON ENV INSTALL
+nodes:
+  nodeType: nginxphp
+  env:
+    ON_ENV_INSTALL:
+      jps: http://example.com/manifest.jps
+      settings:
+        customSetting: mySetting
+```
+```json
+{
+  "type": "install",
+  "name": "ON ENV INSTALL",
+  "nodes": {
+    "nodeType": "nginxphp",
+    "env": {
+      "ON_ENV_INSTALL": {
+        "jps": "http://example.com/manifest.jps",
+        "settings": {
+          "customSetting": "mySetting"
+        }
+      }
+    }
+  }
+}
+```
+@@!
+In the example above in *manifest.jps* a **\${settings.customSetting}** placeholder is available with value *mySetting*.
+Any number of custom parameters in *settings* can be set.
+
+#### Links
 
 Docker <a href="https://docs.jelastic.com/docker-links" target="_blank">links</a> option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
 <br>
