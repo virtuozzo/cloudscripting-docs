@@ -1,3 +1,4 @@
+
 # Visual Settings
 
 Cloud Scripting enables you to create a personalized solution by customizing the visual appearance and textual content of such elements as:              
@@ -1021,7 +1022,10 @@ where:
 - `caption` *[optional]* - field label    
 - `value` *[boolean]* - enables/disables toggle value. The default value is *'false'*.   
 
-##Target Nodes
+## Dynamic filling of the manifest fields
+Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit*  *onBeforeInstall*](/creating-mainfest/events/#onbeforeinit%20onbeforeinstall) events.
+
+## Target Nodes
 Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.                                
 
 Filtering for *targetNodes* can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.                         
@@ -1637,3 +1641,4 @@ Mode details about Markdown implementation can be find in CommonMark specificati
 
 - Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>                    
   
+
