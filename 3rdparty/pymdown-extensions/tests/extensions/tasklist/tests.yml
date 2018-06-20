@@ -1,0 +1,30 @@
+__default__: {}
+
+tasklist:
+  css:
+    - ../_assets/tasklist.css
+  extensions:
+    pymdownx.tasklist:
+
+tasklist (custom):
+  css:
+    - ../_assets/tasklist_custom.css
+  extensions:
+    pymdownx.tasklist:
+      custom_checkbox: true
+
+tasklist (checkable):
+  css:
+    - ../_assets/tasklist.css
+  extensions:
+    pymdownx.tasklist:
+      clickable_checkbox: true
+
+tasklist (custom checkable):
+  css:
+    - ../_assets/tasklist_custom.css
+  extensions:
+    pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+      
