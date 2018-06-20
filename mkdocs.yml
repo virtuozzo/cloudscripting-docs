@@ -14,7 +14,8 @@ markdown_extensions:
   - admonition
   - toc
   - tables
-  - markdown-tabs
+#  - markdown.extensions.myextension
+  - tabs
   - markdown.extensions.admonition
   - markdown.extensions.footnotes
   - markdown.extensions.meta
