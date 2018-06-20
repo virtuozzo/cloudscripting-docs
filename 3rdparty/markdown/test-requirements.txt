@@ -1,0 +1,6 @@
+nose
+coverage<4.0
+pyyaml
+pytidylib
+mkdocs
+mkdocs-nature
