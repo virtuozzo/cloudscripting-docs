@@ -1,0 +1,92 @@
+__default__: {}
+
+magiclink:
+  extensions:
+    pymdownx.magiclink:
+      hide_protocol: false
+      repo_url_shortener: true
+      user: facelessuser
+      repo: pymdown-extensions
+
+magiclink (bitbucket):
+  extensions:
+    pymdownx.magiclink:
+      hide_protocol: false
+      provider: bitbucket
+      repo_url_shortener: true
+      repo_url_shorthand: true
+      social_url_shorthand: true
+      user: facelessuser
+      repo: pymdown-extensions
+
+magiclink (extensions):
+  extensions:
+    pymdownx.magiclink:
+      hide_protocol: false
+      repo_url_shortener: true
+      repo_url_shorthand: true
+      social_url_shorthand: true
+      user: facelessuser
+      repo: pymdown-extensions
+    pymdownx.betterem:
+    pymdownx.tilde:
+    pymdownx.caret:
+    pymdownx.mark:
+
+magiclink (gitlab):
+  extensions:
+    pymdownx.magiclink:
+      hide_protocol: false
+      provider: gitlab
+      repo_url_shortener: true
+      repo_url_shorthand: true
+      social_url_shorthand: true
+      user: facelessuser
+      repo: pymdown-extensions
+
+magiclink (invalid):
+  extensions:
+    pymdownx.magiclink:
+      hide_protocol: false
+      provider: invalid
+      repo_url_shortener: true
+      repo_url_shorthand: true
+      social_url_shorthand: true
+
+magiclink (legacy):
+  extensions:
+    pymdownx.magiclink:
+      hide_protocol: false
+      repo_url_shortener: true
+      base_repo_url: https://github.com/facelessuser/pymdown-extensions
+
+magiclink (shorthand):
+  extensions:
+    pymdownx.magiclink:
+      hide_protocol: false
+      repo_url_shortener: true
+      repo_url_shorthand: true
+      social_url_shorthand: true
+      user: facelessuser
+      repo: pymdown-extensions
+
+magiclink (shorthand-social):
+  extensions:
+    pymdownx.magiclink:
+      hide_protocol: false
+      repo_url_shortener: true
+      repo_url_shorthand: true
+      social_url_shorthand: true
+      provider: twitter
+      user: facelessuser
+      repo: pymdown-extensions
+
+magiclink_hide_protocol:
+  extensions:
+    pymdownx.magiclink:
+      hide_protocol: true
+      repo_url_shortener: true
+      repo_url_shorthand: true
+      social_url_shorthand: true
+      user: facelessuser
+      repo: pymdown-extensions
