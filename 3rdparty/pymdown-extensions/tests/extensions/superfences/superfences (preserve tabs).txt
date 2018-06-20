@@ -1,0 +1,141 @@
+# Neseted Fences:
+
+	```
+	This will still be parsed
+	as a normal indented code block.
+	```
+
+```
+This will still be parsed
+as a fenced code block.
+```
+
+- 
+	```
+	This will work.
+	```
+
+- This is a list that contains multiple code blocks.
+
+	- Here is an indented block
+
+			```
+			This will still be parsed
+			as a normal indented code block.
+			```
+
+	- Here is a fenced code block:
+
+		```
+		This will still be parsed
+		as a fenced code block.
+		```
+
+		> ```
+		> Blockquotes?
+
+		> Not a problem!
+		> ```
+
+- Fenced block with lesser child fence.
+
+	````
+		```
+		Fenced block containing fenced syntax.
+		```
+	````
+
+	````
+	```
+	Fenced block containing fenced syntax.
+	```
+	````
+
+- Fenced block with greater child fence:
+
+	```
+		````
+		Fenced block containing fenced syntax.
+		````
+	```
+
+	```
+	````
+	Fenced block containing fenced syntax.
+	````
+	```
+
+- Fenced block with indented child fence:
+
+	```
+		```
+		Fenced block containing fenced syntax.
+		```
+	```
+
+- Tabs
+
+    ```
+    Test	with tabs.
+	Test	with tabs.
+  	Test		tabs.
+    ```
+
+	```
+	============================================================
+	T	Tp	Sp	D	Dp	S	D7	T
+	------------------------------------------------------------
+	A	F#m	Bm	E	C#m	D	E7	A
+	A#	Gm	Cm	F	Dm	D#	F7	A#
+	B♭	Gm	Cm	F	Dm	E♭m	F7	B♭
+	```
+
+- Here is a highlighted code block with line numbers:
+
+	```python linenums="1"
+	"""Some file."""
+	import foo.bar
+	import boo.baz
+	import foo.bar.baz
+	```
+
+- Here is a highlighted code block with line numbers and line highlighting:
+
+	```python hl_lines="2 3" linenums="1"
+	"""Some file."""
+	import foo.bar
+	import boo.baz
+	import foo.bar.baz
+	```
+
+- Highlight extended language:
+
+	```php-inline 
+	$a = array("foo" => 0, "bar" => 1);
+	```
+
+# UML Flow Charts
+
+```flow
+st=>start: Start:>http://www.google.com[blank]
+e=>end:>http://www.google.com
+op1=>operation: My Operation
+sub1=>subroutine: My Subroutine
+cond=>condition: Yes
+or No?:>http://www.google.com
+io=>inputoutput: catch something...
+
+st->op1->cond
+cond(yes)->io->e
+cond(no)->sub1(right)->op1
+```
+
+# UML Sequence Diagrams
+
+```sequence
+Title: Here is a title
+A->B: Normal line
+B-->C: Dashed line
+C->>D: Open arrow
+D-->>A: Dashed open arrow
+```
