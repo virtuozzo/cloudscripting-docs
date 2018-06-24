@@ -1,5 +1,5 @@
 site_name: Cloud Scripting
-site_url: http://
+site_url: https://docs.cloudscripting.com/
 copyright: Copyright &copy; Jelastic, Inc.
 
 use_absolute_urls: true
@@ -14,8 +14,7 @@ markdown_extensions:
   - admonition
   - toc
   - tables
-#  - markdown.extensions.myextension
-  - tabs
+  - markdown-tabs
   - markdown.extensions.admonition
   - markdown.extensions.footnotes
   - markdown.extensions.meta
