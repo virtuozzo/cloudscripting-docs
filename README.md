@@ -4,7 +4,7 @@ Source repo for Cloud Scripting Documentation [https://docs.cloudscripting.com/]
 
 1. Clone this repo and run installation script:
 ```
-git clone https://github.com/cloudscripting/docs
+git clone https://github.com/cloudscripting/docs.git
 cd docs
 sudo ./install.sh
 ```
