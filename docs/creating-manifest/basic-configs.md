@@ -145,7 +145,22 @@ The following parameters are available for Docker nodes only:
 - `volumeMounts` *[optional]* - Docker external volumes mounts                             
 - `cmd` *[optional]* - Docker run configs                            
 - `entrypoint` *[optional]* - Docker entry points  
+- `startService` *[optional]* - defines whether to run defined service or not. By default `false`
 
+<!--##STAR TNEW### StartService issue description-->
+###startService Parameter
+
+The flag `startService` works only for custom dockers and for dockerized templates, and, accordingly, does not affect the cartridges and legacy native templates.
+
+When creating a topology, scripting always passes the flag `startService=false` to all AddNode methods, which allows us to speed up the creation and avoid problems with the inaccessibility of some nodes during the launch of services.
+Further, if in the topology description, the startService flag is not false, scripting calls in parallel the ExecDockerRunCmd methods for all the created containers via the AddNode method.
+
+При создании топологии, скриптинг на все методы AddNode всегда передает флаг startService=false, что позволяет нам ускорить создание и избежать проблем с недоступностью каких-то нод в процессе запуска сервисов.
+Далее, если в описании топологии, флаг startService не равен false, скриптинг параллельно вызывает методы ExecDockerRunCmd для всех созданных контейнеров через метод AddNode.
+ 
+Во время вызова ExecDockerRunCmd, JelCore вызывает команду jem docker run, которая запускает сервис и добавляет его в автозагрузку (jem docker run вызывается еще в методе AddNode, если не был передан флаг startService=false).
+
+<!--##END NEW### StartService issue description-->
 
 <!--##Docker Actions-->
 ###Nodes Actions
