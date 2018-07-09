@@ -154,7 +154,7 @@ The *startService* flag is responsible for a service launch and its addition to 
 
 The *startService* flag works only for custom dockers and for dockerized templates, and, accordingly, does not affect the cartridges and legacy native templates.
 
-### Conditions that Define Service Behavior
+##### Conditions that Define Service Behavior
 
 The service doesn’t start as it is not added to autoload in the following cases:
 
