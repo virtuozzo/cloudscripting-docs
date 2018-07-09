@@ -2054,13 +2054,14 @@ The *onAfterRemoveVolume* event is triggered after removing volumes from Docker 
 
 <!--##Start onBeforeInit onBeforeInstall issue description-->
 
-## onBeforeInit   onBeforeInstall
+### onBeforeInit   onBeforeInstall
 It is possible to dynamically fill in the manifest fields using *onBeforeInit* and *onBeforeInstall* events.
-### onBeforeInit
-The *onBeforeInit* event is executed:
- - on *GetAppInfo* request, which is called to display application
-   installation dialog in the dashboard
- - on application installation
+#### onBeforeInit
+The *onBeforeInit* event is executed:   
+
+-   on *GetAppInfo* request, which is called to display application
+   installation dialog in the dashboard   
+-   on application installation
 
 Placeholders do not work inside *onBeforeInit*, since even *globals* can be defined dynamically.
 You can override all the parameters of the manifest, except for:
@@ -2069,9 +2070,10 @@ You can override all the parameters of the manifest, except for:
 -   `name`
 -   `baseUrl`
 
-### onBeforeInstall
+#### onBeforeInstall
 The *onBeforeInstall* event is executed after *onBeforeInit*, but before application installation.
 Inside *onBeforeInstall* the placeholders **\${globals.}**,  **\${settings.}**  and all the parameters can be redefined, except for:
+
 -   `type`
 -   `name`
 -   `baseUrl`
@@ -2079,25 +2081,25 @@ Inside *onBeforeInstall* the placeholders **\${globals.}**,  **\${settings.}**  
 -   `settings`
 
 *onBeforeInit* and *onBeforeInstall* can treat JavaScript code, written as:
+
 -   string
 @@@
 ```yaml
-type: update  
+type: update
 name: "Ability to dynamically determine UI in JPS"  
 onBeforeInit: |
-  return { 
-    result: 0, 
+  return {
+    result: 0,
     settings : {
-      fields: [{ 
-        type : "string", 
+      fields: [{
+        type : "string",
         caption: "Custom Field",
-        name : "custom_field", 
-        "default" : "test" 
+        name : "custom_field",
+        "default" : "test"
       }]
     }
   };
-
-onInstall:  
+onInstall:
 assert: "'${settings.custom_field}' == 'test'"
 ```
 ```json
@@ -2109,9 +2111,27 @@ assert: "'${settings.custom_field}' == 'test'"
   "assert": "'${settings.custom_field}' == 'test'"
 }
 
-```  
+```
+@@!
+>
 -   string array
 @@@
+```yaml
+type: update
+name: test
+onBeforeInit:
+- return {
+- "  result: 0,"
+- "  settings : {"
+- "    fields: [{"
+- "      type : 'string',"
+- "      caption: 'Custom Field',"
+- "      name : 'custom_field',"
+- "      'default' : 'test'"
+- "    }]"
+- "  }"
+- "};"
+```
 ```json
 {
     "type": "update",
@@ -2132,28 +2152,14 @@ assert: "'${settings.custom_field}' == 'test'"
     ]
 }
 ```
-```yaml
-type: update
-name: test
-onBeforeInit:
-- return {
-- "  result: 0,"
-- "  settings : {"
-- "    fields: [{"
-- "      type : 'string',"
-- "      caption: 'Custom Field',"
-- "      name : 'custom_field',"
-- "      'default' : 'test'"
-- "    }]"
-- "  }"
-- "};"
-```
+@@!
+>
 -   URL
 @@@
 ```yaml
 type: update  
 name: "Ability to dynamically determine UI in JPS"  
-onBeforeInit: https://gist.githubusercontent.com/jelastic/4160926fdd7df13ae097a5194d42023e/raw/eff5ffa6015b8f997bfa31558524033193b6092a/  
+onBeforeInit: https://gist.githubusercontent.com/SlavaKatiukha/4160926fdd7df13ae097a5194d42023e/raw/eff5ffa6015b8f997bfa31558524033193b6092a/
 onInstall:  
 assert: "'${settings.custom_field}' == 'test'"
 ```
@@ -2161,9 +2167,7 @@ assert: "'${settings.custom_field}' == 'test'"
 {
 "type": "update",  
 "name": "Ability to dynamically determine UI in JPS",  
-"onBeforeInit": "https://gist.githubusercontent.com/jelastic/4160926fdd7df13ae097a5194d42023e/raw/eff5ffa6015b8f997bfa31558524033193b6092a/",
-                
-                
+"onBeforeInit": "https://gist.githubusercontent.com/SlavaKatiukha/4160926fdd7df13ae097a5194d42023e/raw/eff5ffa6015b8f997bfa31558524033193b6092a/",
 "onInstall": [
                 { 
         "assert": [ 
@@ -2173,12 +2177,14 @@ assert: "'${settings.custom_field}' == 'test'"
             ]
 }
 ```
+@@!
+>
 -   filepath in case the baseUrl was determined
-- @@@
+@@@
 ```yaml
 type: update  
 name: "Ability to dynamically determine UI in JPS"  
-baseUrl: https://gist.githubusercontent.com/jelastic/4160926fdd7df13ae097a5194d42023e/raw/eff5ffa6015b8f997bfa31558524033193b6092a/  
+baseUrl: https://gist.githubusercontent.com/SlavaKatiukha/4160926fdd7df13ae097a5194d42023e/raw/eff5ffa6015b8f997bfa31558524033193b6092a/
 onBeforeInit: InitManifestTest.cs  
 onInstall:  
 assert: "'${settings.custom_field}' == 'test'"
@@ -2187,7 +2193,7 @@ assert: "'${settings.custom_field}' == 'test'"
 {
 "type": "update",  
 "name": "Ability to dynamically determine UI in JPS",  
-"baseUrl": "https://gist.githubusercontent.com/jelastic/4160926fdd7df13ae097a5194d42023e/raw/eff5ffa6015b8f997bfa31558524033193b6092a/" , 
+"baseUrl": "https://gist.githubusercontent.com/SlavaKatiukha/4160926fdd7df13ae097a5194d42023e/raw/eff5ffa6015b8f997bfa31558524033193b6092a/" , 
 "onBeforeInit": "InitManifestTest.cs",  
 "onInstall": [
                 { 
@@ -2198,6 +2204,7 @@ assert: "'${settings.custom_field}' == 'test'"
             ]
 }
 ``` 
+@@!
 
 The script outputs JS-object. The object contains code **result** and manifest customized field set in JSON.
 
