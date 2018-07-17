@@ -59,7 +59,7 @@ where:
 
 - `type` - *update* type presupposes the add-on installation to the existing environment with the predefined listeners for events
 - `onInstall` - entry point for executing actions
-- `cp` - target node group
+    - `cp` - target node group
 - `onAfterScaleOut` - event that triggers the action after adding a new compute node
 - `onAfterRestartNode` - event that triggers the action after restarting *apache2* compute nodes
 - `onAfterResetNodePassword` - event that triggers the action after resetting a password from the first compute node in the layer
@@ -80,7 +80,8 @@ Below you can find the graphs that list actions with adjoining events. Every act
 
 !!! note
 
-The <b>*createEnvironment*</b> action does not have any adjoining events, because events are bound after the environment creation.
+      The <b>*createEnvironment*</b> action does not have any adjoining events, because events are bound after the environment creation.
+
 The <b>*changeTopology*</b> actions are considered quite time-consuming while being performed via the Jelastic dashboard, therefore, you can automate their workflow with the following CS actions and related events.
 
 <center><img style="height: 900px; padding-right: 69px" src="/img/changeTopologySequence.png" alt="change topology sequence icon" /></center>
@@ -125,16 +126,16 @@ The event is executed once the *changeTopology* action is finished.
     - `appid` - environment unique appid
     - `nodes` - nodes array with detailed info about the topology change
     - `env` - environment settings, e.g. *engine, ssl, ha, region* etc
-    - `${event.response.}`:
+- `${event.response.}`:
     - `result` - result code. The successful action result is *'0"*.
     - `envGroups` - environment groups array
     - `right` - account right for envronment
     - `nodeGroups` - node delays:
-    - `restartNodeDelay` - delay for restart
-    - `name` - node group name
-    - `redeployContainerDelay` - delay for container redeployment
-    - `redeployContextDelay` - delay for context redeployment
-    - `restartContainerDelay` - delay for container restart
+        - `restartNodeDelay` - delay for restart
+        - `name` - node group name
+        - `redeployContainerDelay` - delay for container redeployment
+        - `redeployContextDelay` - delay for context redeployment
+        - `restartContainerDelay` - delay for container restart
     - `nodes` - nodes array with detailed info about the topology change. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
     - `env` - environment information. Explore the full list of available <a href="/creating-manifest/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.
 
@@ -263,15 +264,14 @@ onInstall:
       nodeGroup: sqldb
       period: 10
       condition:
-      type: GREATER
-      value: 55
-      resourceType: MEM
-      valueType: PERCENTAGES
-
-actions:
-- type: NOTIFY
-  customData:
-  notify: false
+        type: GREATER
+        value: 55
+        resourceType: MEM
+        valueType: PERCENTAGES
+      actions:
+        - type: NOTIFY
+          customData:
+            notify: false
 ```
 ``` json
 {
@@ -310,14 +310,14 @@ This example involves execution of the Jelastic API *addTrigger* method with a s
 - `nodeGroup` - target node group (you can apply trigger to any node group within the chosen environment)
 - `period` - load period for nodes
 - `condition` - rules for monitoring resources
-- `type` - comparison sign, the available values are *GREATER* and *LESS*
-- `value` - percentage of a resource that is monitored
-- `resourceType` - types of resources that are monitored by a trigger, namely *CPU, Memory (RAM), Network, Disk I/O*, and *Disk IOPS*
-- `valueType` - measurement value. Here, *PERCENTAGES* is the only possible measurement value. The available range is from <b>*0*</b> up to <b>*100*</b>.
+    - `type` - comparison sign, the available values are *GREATER* and *LESS*
+    - `value` - percentage of a resource that is monitored
+    - `resourceType` - types of resources that are monitored by a trigger, namely *CPU, Memory (RAM), Network, Disk I/O*, and *Disk IOPS*
+    - `valueType` - measurement value. Here, *PERCENTAGES* is the only possible measurement value. The available range is from <b>*0*</b> up to <b>*100*</b>.
 - `actions` - object to describe a trigger action
-- `type` - trigger action, the available values are *NOTIFY*, *ADD_NODE*, and *REMOVE_NODE*
-- `customData`:
-- `notify`- alert notification sent to a user via email
+    - `type` - trigger action, the available values are *NOTIFY*, *ADD_NODE*, and *REMOVE_NODE*
+    - `customData`:
+        - `notify`- alert notification sent to a user via email
 
 The Jelastic engine sends an alert notification to the Cloud Scripting system when the appropriate trigger is invoked. Therefore, the *onAlert* event provides a possibility to bind actions to alert notifications and execute custom actions.
 
@@ -358,7 +358,7 @@ The event is triggered after restarting a node. It is called subsequently upon t
     - `nodeGroup` - node group (*nodemission*) where event is executed
     - `env` - environment short name within which the event is called
     - `name` - environment display name
-    - `${event.response.}`:
+- `${event.response.}`:
     - `nodeid` - restarted node's identifier
     - `out` - success output message
     - `result` - result code. The successful action result is *'0'*.
@@ -502,1557 +502,784 @@ The *onAfterCloneNodes* event is applicable only for the next node groups (exclu
 
 ### onBeforeLinkNode
 
-  
-
 The event is executed before linking nodes to apply configurations to IP addresses. It is compatible only with *compute* and *balancer* node groups and excludes Docker nodes.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `parentNodes` - node identifiers for linking
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `childNodes` - node identifiers for linking with parent nodes
-
-- `env` - environment short name
-
+    - `parentNodes` - node identifiers for linking
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `childNodes` - node identifiers for linking with parent nodes
+    - `env` - environment short name
 - `${event.response.}`- parameters are absent
-
-  
 
 ### onAfterLinkNode
 
-  
-
 The event is executed after linking nodes to apply configurations to IP addresses. It is available only for *compute* and *balancer* node groups and excludes Docker nodes.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `parentNodes` - node identifiers for linking
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `childNodes` - node identifiers for linking with parent nodes
-
-- `env` - environment short name
-
+    - `parentNodes` - node identifiers for linking
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `childNodes` - node identifiers for linking with parent nodes
+    - `env` - environment short name
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-- `infos` - info with result codes about all nodes' linkings:
-
-- `result` - result code
-
-  
+    - `result` - result code. The successful action result is *'0'*.
+    - `infos` - info with result codes about all nodes' linkings:
+        - `result` - result code
 
 ### onBeforeAttachExtIp
 
-  
-
 The event is executed before attaching the external IP address. The *onBeforeAttachExtIp* event is triggered each time before the external IP address attachment.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `nodeid` - node identifier for attaching external IP address
-
-- `session` - current user session
-
-- `envName` - environment unique appid
-
-- `appid` - application unique appid
-
-- `name` - environment display name
-
-- `env` - environment short domain name
-
+    - `nodeid` - node identifier for attaching external IP address
+    - `session` - current user session
+    - `envName` - environment unique appid
+    - `appid` - application unique appid
+    - `name` - environment display name
+    - `env` - environment short domain name
 - `${event.response.}`:
-
-- `result` - parameters are absent
-
-  
+    - `result` - parameters are absent
 
 ### onAfterAttachExtIp
 
-  
-
 The event is executed after attaching the external IP address. The *onBeforeAttachExtIp* event is triggered each time upon the external IP address attachment.
-
-  
 
 **Event Placeholders:**
 
 - `${event.params.}`:
-
-- `nodeid` - node identifier for attaching external IP address
-
-- `session` - current user session
-
-- `envName` - environment unique appid
-
-- `appid` - application unique appid
-
-- `name` - environment display name
-
-- `env` - environment short domain name
-
+    - `nodeid` - node identifier for attaching external IP address
+    - `session` - current user session
+    - `envName` - environment unique appid
+    - `appid` - application unique appid
+    - `name` - environment display name
+    - `env` - environment short domain name
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-- `obejct` *[string]* - attached extrenal IP address
-
-  
+    - `result` - result code. The successful action result is *'0'*.
+    - `obejct` *[string]* - attached extrenal IP address
 
 ### onBeforeDetachExtIp
 
-  
-
 The event is executed before detaching the external IP address. The *onBeforeDetachExtIp* event is triggered each time before the external IP address detachment.
-
-  
 
 **Event placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `nodeid` - node identifier for detaching external IP address
-
-- `session` - current user session
-
-- `envName` - environment unique appid
-
-- `appid` - application unique appid
-
-- `ip` - detached IP address
-
-- `name` - environment display name
-
-- `env` - environment short domain name
-
+    - `nodeid` - node identifier for detaching external IP address
+    - `session` - current user session
+    - `envName` - environment unique appid
+    - `appid` - application unique appid
+    - `ip` - detached IP address
+    - `name` - environment display name
+    - `env` - environment short domain name
 - `${event.response.}` - parameters are absent
-
   
-
 ### onAfterDetachExtIp
-
-  
 
 The event is executed after detaching the external IP address. The *onAfterDetachExtIp* event is triggered each time upon the external IP address detachment.
 
-  
-
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `nodeid` - node identifier for detaching external IP address
-
-- `session` - current user session
-
-- `envName` - environment unique appid
-
-- `appid` - application unique appid
-
-- `ip` - detached IP address
-
-- `name` - environment display name
-
-- `env` - environment short domain name
-
+    - `nodeid` - node identifier for detaching external IP address
+    - `session` - current user session
+    - `envName` - environment unique appid
+    - `appid` - application unique appid
+    - `ip` - detached IP address
+    - `name` - environment display name
+    - `env` - environment short domain name
 - `${event.response.}`:
-
-- `result` - parameters are absent
-
+    - `result` - parameters are absent
   
-
 ### onBeforeUpdateVcsProject
-
-  
 
 The event is carried out before updating the VCS project. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a>, refer to the linked page.
 
-  
-
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `projectId` - project id
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `envName` - environment unique identifier
-
-- `context` - project context name
-
-- `env` - environemnt short domain name
-
-- `nodeGroup` *[optional]* - predefined node group
-
-- `nodegroup` *[optional]* - same value as `nodeGroup`
-
-- `nodeid` *[optional]* - node unique identifier
-
-- `delay` *[optional]* - delay between deploys on nodes (in case if mode than two nodes in one nodeGroup are available).
-
+    - `projectId` - project id
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `envName` - environment unique identifier
+    - `context` - project context name
+    - `env` - environemnt short domain name
+    - `nodeGroup` *[optional]* - predefined node group
+    - `nodegroup` *[optional]* - same value as `nodeGroup`
+    - `nodeid` *[optional]* - node unique identifier
+    - `delay` *[optional]* - delay between deploys on nodes (in case if mode than two nodes in one nodeGroup are available).
 - `${event.response.}`- parameters are absent
-
-  
 
 ### onAfterUpdateVcsProject
 
-  
-
 The event is carried out after updating the VCS project. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a>, refer to the linked page.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `projectId` - project id
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `envName` - environment unique identifier
-
-- `context` - project context name
-
-- `env` - environemnt short domain name
-
-- `nodeGroup` *[optional]* - predefined node group
-
-- `nodegroup` *[optional]* - same value as `nodeGroup`
-
-- `nodeid` *[optional]* - node unique identifier
-
-- `delay` *[optional]* - delay between deploys on nodes (in case if mode than two nodes in one nodeGroup are available).
-
+    - `projectId` - project id
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `envName` - environment unique identifier
+    - `context` - project context name
+    - `env` - environemnt short domain name
+    - `nodeGroup` *[optional]* - predefined node group
+    - `nodegroup` *[optional]* - same value as `nodeGroup`
+    - `nodeid` *[optional]* - node unique identifier
+    - `delay` *[optional]* - delay between deploys on nodes (in case if mode than two nodes in one nodeGroup are available).
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
+    - `result` - result code. The successful action result is *'0'*.
   
-
 ### onBeforeSetCloudletCount
-
-  
 
 The event is executed before setting cloudlet count, which implies changing the number of allocated cloudlets per any layer in the environment.
 
-  
-
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `fixedCloudlets` - reserved cloudlets value
-
-- `flexibleCloudlets` - dynamic cloudlets value
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `nodeGroup` - predefined node group
-
-- `nodegroup` - same value as `nodeGroup`
-
-- `env` - environemnt short domain name
-
-- `name` - environemnt display name
-
+    - `fixedCloudlets` - reserved cloudlets value
+    - `flexibleCloudlets` - dynamic cloudlets value
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `nodeGroup` - predefined node group
+    - `nodegroup` - same value as `nodeGroup`
+    - `env` - environemnt short domain name
+    - `name` - environemnt display name
 - `${event.response.}`: parameters are absent
-
-  
 
 ### onAfterSetCloudletCount
 
-  
-
 The event is executed after setting cloudlet count, which implies changing the number of allocated cloudlets per any layer in the environment.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `fixedCloudlets` - reserved cloudlets value
-
-- `flexibleCloudlets` - dynamic cloudlets value
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `nodeGroup` - predefined node group
-
-- `nodegroup` - same value as `nodeGroup`
-
-- `env` - environemnt short domain name
-
-- `name` - environemnt display name
-
+    - `fixedCloudlets` - reserved cloudlets value
+    - `flexibleCloudlets` - dynamic cloudlets value
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `nodeGroup` - predefined node group
+    - `nodegroup` - same value as `nodeGroup`
+    - `env` - environemnt short domain name
+    - `name` - environemnt display name
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-  
+    - `result` - result code. The successful action result is *'0'*.
 
 ### onBeforeChangeEngine
 
-  
-
 The event is performed before changing the engine's version (e.g. from *php 7* to *php 7.1*) in the required environment. The *onBeforeChangeEngine* event is not compatible with Docker-based environments.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `settings` - environment settings to change, i.e engine in the present case
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `settings` - environment settings to change, i.e engine in the present case
 - `${event.response.}`:
-
-- `result` - parameters are absent
-
-  
+    - `result` - parameters are absent
 
 ### onAfterChangeEngine
-
-  
 
 The event is performed after changing the engine's version (e.g. from *php 7* to *php 7.1*) in the required environment. The *onBeforeChangeEngine* event is not compatible with Docker-based environments.
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `settings` - environment settings to change, i.e engine in the present case
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `settings` - environment settings to change, i.e engine in the present case
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-  
+    - `result` - result code. The successful action result is *'0'*.
 
 ### onBeforeStart
 
-  
-
 The event is related to starting environment (executed from the Jelastic dashboard) and is triggered before it.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `env` - environemnt short domain name
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `env` - environemnt short domain name
 - `${event.response.}` - parameters are absent
-
-  
 
 ### onAfterStart
 
-  
-
 The event is related to starting environment (executed from the Jelastic dashboard) and is triggered after it.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `env` - environment short domain name
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `env` - environment short domain name
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-  
+    - `result` - result code. The successful action result is *'0'*.
 
 ### onBeforeStop
 
-  
-
 The event is related to stopping environment (executed from the Jelastic dashboard) and is triggered before it.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `env` - environment short domain name
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `env` - environment short domain name
 - `${event.response.}`: parameters are absent
-
   
-
 ### onAfterStop
-
-  
 
 The event is related to stopping environment (executed from the Jelastic dashboard) and is triggered after it.
 
-  
-
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
+    - `session` - current user session
+    - `appid` - environment unique appid
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-  
+    - `result` - result code. The successful action result is *'0'*.
 
 ### onBeforeClone
 
-  
-
 The event is related to cloning environment (performed via the Jelastic dashboard by means of the same-named button) and is triggered before it.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `domain` - cloned environment name
-
-- `srcenv` - source environment, parent environment for clone.
-
-- `targetenv` - cloned environment name. The same value as `domain`
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `domain` - cloned environment name
+    - `srcenv` - source environment, parent environment for clone.
+    - `targetenv` - cloned environment name. The same value as `domain`
 - `${event.response.}` - parameters are absent
-
-  
 
 ### onAfterClone
 
-  
-
 The event is related to cloning environment (performed via the Jelastic dashboard by means of the same-named button) and is triggered after it.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `domain` - cloned environment name
-
-- `srcenv` - source environment, parent environment for clone.
-
-- `targetenv` - cloned environment name. The same value as `domain`
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `domain` - cloned environment name
+    - `srcenv` - source environment, parent environment for clone.
+    - `targetenv` - cloned environment name. The same value as `domain`
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-- `envGroups` - environment groups array
-
-- `nodeGroups` - node delays:
-
-- `restartNodeDelay` - delay for node restart
-
-- `name` - node group name
-
-- `redeployContainerDelay` - delay for container redeployment
-
-- `redeployContextDelay` - delay for context redeployment
-
-- `restartContainerDelay` - delay for container restart
-
-- `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
-
-- `env` - environment information. Explore the full list of available <a href="/creating-manifest/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.
-
-  
+    - `result` - result code. The successful action result is *'0'*.
+    - `envGroups` - environment groups array
+    - `nodeGroups` - node delays:
+        - `restartNodeDelay` - delay for node restart
+        - `name` - node group name
+        - `redeployContainerDelay` - delay for container redeployment
+        - `redeployContextDelay` - delay for context redeployment
+        - `restartContainerDelay` - delay for container restart
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
+    - `env` - environment information. Explore the full list of available <a href="/creating-manifest/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.
 
 ### onBeforeBuildProject
 
-  
-
 The event is related to build project action and is triggered before it (executed from the Jelastic dashboard).
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `project` - project name in Jelastic dashboard
-
-- `env` - environment name where action is executed
-
-- `nodeid` - environment name where action is executed
-
-- `projectid` - project unique identifier in Jelastic dashboard
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `project` - project name in Jelastic dashboard
+    - `env` - environment name where action is executed
+    - `nodeid` - environment name where action is executed
+    - `projectid` - project unique identifier in Jelastic dashboard
 - `${event.response.}`:
-
-- `result` - parameters are absent
-
-  
+    - `result` - parameters are absent
 
 ### onAfterBuildProject
 
-  
-
 The event is related to build project action and is triggered after it (executed from the Jelastic dashboard).
 
-  
-
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `project` - project name in Jelastic dashboard
-
-- `env` - environment name where action is executed
-
-- `nodeid` - environment name where action is executed
-
-- `projectid` - project unique identifier in Jelastic dashboard
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `project` - project name in Jelastic dashboard
+    - `env` - environment name where action is executed
+    - `nodeid` - environment name where action is executed
+    - `projectid` - project unique identifier in Jelastic dashboard
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-  
+    - `result` - result code. The successful action result is *'0'*.
 
 ### onBeforeDeploy
-
   
-
 The event is bound to the *deploy* action, which is executed at the Jelastic dashboard by deploying any context (i.e. archive with a compressed app) to the environment, and is triggered before it (viz. *deploy* action).
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `atomicDeploy` *[boolean]* - deployment of a context to all nodes at once
-
-- `path` - context path
-
-- `context` - context name
-
-- `archivename` - deployed context display name that is shown at the dashboard
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `atomicDeploy` *[boolean]* - deployment of a context to all nodes at once
+    - `path` - context path
+    - `context` - context name
+    - `archivename` - deployed context display name that is shown at the dashboard
 - `${event.response.}`:
-
-- `result` - parameters are absent
-
-  
+    - `result` - parameters are absent
 
 ### onAfterDeploy
 
-  
-
 The event is bound to the *deploy* action, which is executed at the Jelastic dashboard by deploying any context (i.e. archive with a compressed app) to the environment, and is triggered after it (viz. *deploy* action).
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `atomicDeploy` *[boolean]* - deployment of a context to all nodes at once
-
-- `path` - context path
-
-- `context` - context name
-
-- `archivename` - deployed context display name that is shown at the dashboard
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `atomicDeploy` *[boolean]* - deployment of a context to all nodes at once
+    - `path` - context path
+    - `context` - context name
+    - `archivename` - deployed context display name that is shown at the dashboard
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-- `responses` - deploy result texts:
-
-- `result` - deploy result code for current node ID
-
-- `out` - deploy result text
-
-- `nodeid` - node identifier
-
-  
+    - `result` - result code. The successful action result is *'0'*.
+    - `responses` - deploy result texts:
+        - `result` - deploy result code for current node ID
+        - `out` - deploy result text
+        - `nodeid` - node identifier
 
 ### onBeforeResetNodePassword
 
-  
-
 The event is bound to resetting a password (executed at the Jelastic dashboard via the **Reset password** button) and is triggered before it.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `nodeType` - predefined node type
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `nodeType` - predefined node type
 - `${event.response.}`:
-
-- `result` - parameters are absent
-
-  
+    - `result` - parameters are absent
 
 ### onAfterResetNodePassword
 
-  
-
 The event is bound to resetting a password (executed at the Jelastic dashboard via the **Reset password** button) and is triggered after it.
-
-  
 
 **Event Placeholders:**
 
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `nodeType` - predefined node type
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `nodeType` - predefined node type
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-  
+    - `result` - result code. The successful action result is *'0'*.
 
 ### onBeforeRemoveNode
 
-  
-
 This event is executed before deleting node(s) from your environment.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `nodeid` - predefined node identifier
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `nodeid` - predefined node identifier
 - `${event.response.}`:
-
-- `result` - parameters are absent
-
+    - `result` - parameters are absent
   
-
 ### onAfterRemoveNode
-
-  
 
 This event is executed after deleting node(s) from your environment.
 
-  
-
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `nodeid` - predefined node identifier
-
-- `env` - the same value `envName`
-
-- `name` - environment display name
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `nodeid` - predefined node identifier
+    - `env` - the same value `envName`
+    - `name` - environment display name
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-  
+    - `result` - result code. The successful action result is *'0'*.
 
 ### onBeforeRestartContainer
 
-  
-
 This event is carried out before restarting container. The *onBeforeRestartContainer* event is triggered before the *restartConteinerById* action.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `nodeGroup` - predefined node group
-
-- `nodeType` - predefined node type
-
-- `envName` - environment short domain name
-
-- `env` - the same value `envName`
-
-- `name` - environment display name
-
-- `nodeid` - node unique identifier where method is executed
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `nodeGroup` - predefined node group
+    - `nodeType` - predefined node type
+    - `envName` - environment short domain name
+    - `env` - the same value `envName`
+    - `name` - environment display name
+    - `nodeid` - node unique identifier where method is executed
 - `${event.response.}` - parameters are absent
-
-  
 
 ### onAfterRestartContainer
 
-  
-
 This event is carried out after restarting container. The *onAfterRestartContainer* event is triggered after the *restartConteinerById* action.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `nodeGroup` - predefined node group
-
-- `nodeType` - predefined node type
-
-- `envName` - environment short domain name
-
-- `env` - the same value `envName`
-
-- `name` - environment display name
-
-- `nodeid` - node unique identifier where method is executed
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `nodeGroup` - predefined node group
+    - `nodeType` - predefined node type
+    - `envName` - environment short domain name
+    - `env` - the same value `envName`
+    - `name` - environment display name
+    - `nodeid` - node unique identifier where method is executed
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-  
+    - `result` - result code. The successful action result is *'0'*.
 
 ### onBeforeMigrate
 
-  
-
 The event is related to the <a href="https://docs.jelastic.com/environment-regions-migration" target="_blank">*migrating environment*</a> action and is called before it.
 
-  
-
 **Event Placeholders:**
-
   
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `isOnline` *[boolean]* - online migration that causes no downtime, if set to *'true'*, therefore, setting it as *'false'* leads to the downtime
-
-- `hardwareNodeGroup` - predefined hard node group
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `isOnline` *[boolean]* - online migration that causes no downtime, if set to *'true'*, therefore, setting it as *'false'* leads to the downtime
+    - `hardwareNodeGroup` - predefined hard node group
 - `${event.response.}` - parameters are absent
-
-  
 
 ### onAfterMigrate
 
-  
-
 The event is related to <a href="https://docs.jelastic.com/environment-regions-migration" target="_blank">*migrating environment*</a> and is called after it.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `isOnline` *[boolean]* - online migration that causes no downtime, if set to *'true'*, therefore, setting it as *'false'* leads to the downtime
-
-- `hardwareNodeGroup` - predefined hard node group
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `isOnline` *[boolean]* - online migration that causes no downtime, if set to *'true'*, therefore, setting it as *'false'* leads to the downtime
+    - `hardwareNodeGroup` - predefined hard node group
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-  
+    - `result` - result code. The successful action result is *'0'*.
 
 ### onBeforeRedeployContainer
 
-  
-
 This event is performed before the container redeployment. It is bound to the *redeployContainerById* and *redeployContainerByGroup* (i.e. redeployment of all containers in a layer) actions. The event is available for Docker containers only.
-
-  
 
 **Event Placeholders:**
 
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `sequential` *[boolean]* - containers sequential redeployment
-
-- `nodeGroup` - predefined node group
-
-- `nodegroup` - same value as `nodeGroup`
-
-- `name` - environment display name
-
-- `env` - environment domain name
-
-- `tag` - chosen tag for redeploy
-
-- `useExistingVolumes` - using volumes existing on nodes
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `sequential` *[boolean]* - containers sequential redeployment
+    - `nodeGroup` - predefined node group
+    - `nodegroup` - same value as `nodeGroup`
+    - `name` - environment display name
+    - `env` - environment domain name
+    - `tag` - chosen tag for redeploy
+    - `useExistingVolumes` - using volumes existing on nodes
 - `${event.response.}` - parameters are absent
-
-  
 
 ### onAfterRedeployContainer
 
-  
-
 This event is performed after the container redeployment. It is bound to the *redeployContainerById* and *redeployContainerByGroup* (i.e. redeployment of all containers in a layer) actions. The event is available for Docker containers only.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `sequential` *[boolean]* - containers sequential redeployment
-
-- `nodeGroup` - predefined node group
-
-- `nodegroup` - same value as `nodeGroup`
-
-- `name` - environment display name
-
-- `env` - environment domain name
-
-- `tag` - chosen tag for redeploy
-
-- `useExistingVolumes` - using volumes existing on nodes
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `sequential` *[boolean]* - containers sequential redeployment
+    - `nodeGroup` - predefined node group
+    - `nodegroup` - same value as `nodeGroup`
+    - `name` - environment display name
+    - `env` - environment domain name
+    - `tag` - chosen tag for redeploy
+    - `useExistingVolumes` - using volumes existing on nodes
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-  
+    - `result` - result code. The successful action result is *'0'*.
 
 ### onBeforeLinkNodes
 
-  
-
-  
-
 The event is executed before the *linkNodes* action. This event is run for each linking containers action. It is provided for Docker containers only.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `groupAlias` - alias for linking nodes
-
-- `alias`
-
-- `sourceNodeId` - source node for links storage
-
-- `sourcenodeid` - an alias for `sourceNodeId`
-
-- `sourcenodename` - source node name
-
-- `targetNodeId` - target node for links storage
-
-- `targetnodeid` - an alias to `targetNodeId`
-
-- `targetnodename` - target node name
-
-- `env` - environment domain name
-
-- `isAutoRestart` *[boolean]* - auto restart after linking
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `groupAlias` - alias for linking nodes
+    - `alias`
+    - `sourceNodeId` - source node for links storage
+    - `sourcenodeid` - an alias for `sourceNodeId`
+    - `sourcenodename` - source node name
+    - `targetNodeId` - target node for links storage
+    - `targetnodeid` - an alias to `targetNodeId`
+    - `targetnodename` - target node name
+    - `env` - environment domain name
+    - `isAutoRestart` *[boolean]* - auto restart after linking
 - `${event.response.}` - parameters are absent
-
-  
 
 ### onAfterLinkNodes
 
-  
-
 The event is executed after the *linkNodes* action. This event is run for each linking containers action. It is provided for Docker containers only.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `groupAlias` - alias for linking nodes
-
-- `alias` - an alias for `groupAlias`
-
-- `sourceNodeId` - source node for links storage
-
-- `sourcenodeid` - an alias for `sourceNodeId`
-
-- `sourcenodename` - source node name
-
-- `targetNodeId` - target node for links storage
-
-- `targetnodeid` - an alias to `targetNodeId`
-
-- `targetnodename` - target node name
-
-- `env` - environment domain name
-
-- `isAutoRestart` *[boolean]* - auto restart after linking
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `groupAlias` - alias for linking nodes
+    - `alias` - an alias for `groupAlias`
+    - `sourceNodeId` - source node for links storage
+    - `sourcenodeid` - an alias for `sourceNodeId`
+    - `sourcenodename` - source node name
+    - `targetNodeId` - target node for links storage
+    - `targetnodeid` - an alias to `targetNodeId`
+    - `targetnodename` - target node name
+    - `env` - environment domain name
+    - `isAutoRestart` *[boolean]* - auto restart after linking
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-  
+    - `result` - result code. The successful action result is *'0'*.
 
 ### onBeforeUnlinkNodes
 
-  
-
 This event is executed before the *unLinkNodes* action and is run for each unlinking containers action. The *onBeforeUnlinkNodes* event is applied for Docker containers only.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `alias` - alias for unlinking nodes
-
-- `sourceNodeId` - source node for links storage
-
-- `sourcenodeid` an alias for `sourceNodeId`
-
-- `targetNodeId` - target node for links storage
-
-- `targetnodeid` an alias for `targetNodeId`
-
-- `targetnodename` - target node name
-
-- `sourcenodename` - source node name
-
-- `alias` - an alias for `groupAlias`
-
-- `env` - environment domain name
-
-- `isAutoRestart` *[boolean]* - auto restart after unlinking
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `alias` - alias for unlinking nodes
+    - `sourceNodeId` - source node for links storage
+    - `sourcenodeid` an alias for `sourceNodeId`
+    - `targetNodeId` - target node for links storage
+    - `targetnodeid` an alias for `targetNodeId`
+    - `targetnodename` - target node name
+    - `sourcenodename` - source node name
+    - `alias` - an alias for `groupAlias`
+    - `env` - environment domain name
+    - `isAutoRestart` *[boolean]* - auto restart after unlinking
 - `${event.response.}` - parameters are absent
-
-  
 
 ### onAfterUnlinkNodes
 
-  
-
 This event is executed after the *unLinkNodes* action and is run for each unlinking containers action. The *onAfterUnlinkNodes* event is applied for Docker containers only.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `alias` - alias for unlinking nodes
-
-- `sourceNodeId` - source node for links storage
-
-- `sourcenodeid` an alias for `sourceNodeId`
-
-- `targetNodeId` - target node for links storage
-
-- `targetnodeid` an alias for `targetNodeId`
-
-- `targetnodename` - target node name
-
-- `sourcenodename` - source node name
-
-- `alias` - an alias for `groupAlias`
-
-- `env` - environment domain name
-
-- `isAutoRestart` *[boolean]* - auto restart after unlinking
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `alias` - alias for unlinking nodes
+    - `sourceNodeId` - source node for links storage
+    - `sourcenodeid` an alias for `sourceNodeId`
+    - `targetNodeId` - target node for links storage
+    - `targetnodeid` an alias for `targetNodeId`
+    - `targetnodename` - target node name
+    - `sourcenodename` - source node name
+    - `alias` - an alias for `groupAlias`
+    - `env` - environment domain name
+    - `isAutoRestart` *[boolean]* - auto restart after unlinking
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-  
+    - `result` - result code. The successful action result is *'0'*.
 
 ### onBeforeSetEnvVars
 
-  
-
 The event is triggered before the *setEnvVars* action. It is executed for every Docker or dockerized container before setting environment variables.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `name` - environment display name
-
-- `env` - environment domain name
-
-- `nodeId` - current node identifier
-
-- `nodeid` - an alias, the same value as `nodeId`
-
-- `data` - variables set for a container
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `name` - environment display name
+    - `env` - environment domain name
+    - `nodeId` - current node identifier
+    - `nodeid` - an alias, the same value as `nodeId`
+    - `data` - variables set for a container
 - `${event.response.}` - parameters are absent
-
-  
 
 ### onAfterSetEnvVars
 
-  
-
 The event is triggered after the *setEnvVars* action. It is executed for every Docker or dockerized container upon setting environment variables.
-
   
-
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `name` - environment display name
-
-- `env` - environment domain name
-
-- `nodeId` - current node identifier
-
-- `nodeid` - an alias, the same value as `nodeId`
-
-- `data` - variables set for a container
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `name` - environment display name
+    - `env` - environment domain name
+    - `nodeId` - current node identifier
+    - `nodeid` - an alias, the same value as `nodeId`
+    - `data` - variables set for a container
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-  
+    - `result` - result code. The successful action result is *'0'*.
 
 ### onBeforeSetEntryPoint
 
-  
-
 This event is called before the *setEntryPoint* action. It is executed for every Docker container before setting the entry point. The *onBeforeSetEntryPoint* event is applied for Docker containers only.
 
-  
-
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `nodeId` - current node identifier
-
-- `data` - entry point set for a container
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `nodeId` - current node identifier
+    - `data` - entry point set for a container
 - `${event.response.}` - parameters are absent
 
-  
-
 ### onAfterSetEntryPoint
-
   
-
 This event is called after the *setEntryPoint* action. It is executed for every Docker container upon setting the entry point. The *onAfterSetEntryPoint* event is applied for Docker containers only.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `nodeId` - current node identifier
-
-- `data` - entry point set for a container
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `nodeId` - current node identifier
+    - `data` - entry point set for a container
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-  
+    - `result` - result code. The successful action result is *'0'*.
 
 ### onBeforeSetRunCmd
 
-  
-
 The event is executed before the *setRunCmd* action. It is triggered for every Docker container, before setting run configs. This event is compatible with Docker containers only.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `name` - environment display name
-
-- `env` - environment short domain name
-
-- `nodeId` - current node identifier
-
-- `nodeid` - an alias for `nodeId`
-
-- `data` - run cmd set for a container
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `name` - environment display name
+    - `env` - environment short domain name
+    - `nodeId` - current node identifier
+    - `nodeid` - an alias for `nodeId`
+    - `data` - run cmd set for a container
 - `${event.response.}` - parameters are absent
 
 ### onAfterSetRunCmd
 
-  
-
 The event is executed after the *setRunCmd* action. It is triggered for every Docker container, upon setting run configs. This event is compatible with Docker containers only.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `name` - environment display name
-
-- `env` - environment short domain name
-
-- `nodeId` - current node identifier
-
-- `nodeid` - an alias for `nodeId`
-
-- `data` - run cmd set for a container
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `name` - environment display name
+    - `env` - environment short domain name
+    - `nodeId` - current node identifier
+    - `nodeid` - an alias for `nodeId`
+    - `data` - run cmd set for a container
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
+    - `result` - result code. The successful action result is *'0'*.
   
-
 ### onBeforeStartService
-
-  
 
 This event is executed each time before running the Docker *RunCmd* commands. Thus, it is always carried out for each Docker container action, e.g. before starting/restarting container and starting environment.
 
-  
-
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `nodeId` - current node identifier
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `nodeId` - current node identifier
 - `${event.response.}` - parameters are absent
-
-  
 
 ### onAfterStartService
 
-  
-
 This event is executed each time after running the Docker *RunCmd* commands.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `nodeId` - current node identifier
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `nodeId` - current node identifier
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*.
-
-  
+    - `result` - result code. The successful action result is *'0'*.
 
 ### onBeforeAddVolume
 
-  
-
 The event is performed before adding volumes to Docker container. It is executed once for each Docker container.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `name` - environment display name
-
-- `env` - environment short domain name
-
-- `nodeGroup` - current node group
-
-- `nodeId` - current node identifier
-
-- `nodeid` - the same value as `nodeId`, an alias
-
-- `path` - volume path
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `name` - environment display name
+    - `env` - environment short domain name
+    - `nodeGroup` - current node group
+    - `nodeId` - current node identifier
+    - `nodeid` - the same value as `nodeId`, an alias
+    - `path` - volume path
 - `${event.response.}` - parameters are absent
-
   
-
 ### onAfterAddVolume
-
-  
 
 This event is performed after adding volumes to Docker container. It is executed once for each Docker container.
 
-  
-
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `name` - environment display name
-
-- `env` - environment short domain name
-
-- `nodeGroup` - current node group
-
-- `nodeId` - current node identifier
-
-- `nodeid` - the same value as `nodeId`, an alias
-
-- `path` - volume path
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `name` - environment display name
+    - `env` - environment short domain name
+    - `nodeGroup` - current node group
+    - `nodeId` - current node identifier
+    - `nodeid` - the same value as `nodeId`, an alias
+    - `path` - volume path
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*
-
-- `nodeid` - current node identifier
-
-  
+    - `result` - result code. The successful action result is *'0'*
+    - `nodeid` - current node identifier
 
 ### onBeforeRemoveVolume
 
-  
-
 The *onBeforeRemoveVolume* event is called before removing volumes from Docker container. It is executed once for each Docker container.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `name` - environment display name
-
-- `env` - environment short domain name
-
-- `nodeId` - current node identifier
-
-- `nodeid` - the same value as `nodeId`, an alias
-
-- `nodeGroup` - current node group
-
-- `path` - volume path
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `name` - environment display name
+    - `env` - environment short domain name
+    - `nodeId` - current node identifier
+    - `nodeid` - the same value as `nodeId`, an alias
+    - `nodeGroup` - current node group
+    - `path` - volume path
 - `${event.response.}` - parameters are absent
-
-  
 
 ### onAfterRemoveVolume
 
-  
-
 The *onAfterRemoveVolume* event is triggered after removing volumes from Docker container. It is executed once for each Docker container.
-
-  
 
 **Event Placeholders:**
 
-  
-
 - `${event.params.}`:
-
-- `session` - current user session
-
-- `appid` - environment unique appid
-
-- `name` - environment display name
-
-- `env` - environment short domain name
-
-- `nodeId` - current node identifier
-
-- `nodeid` - the same value as `nodeId`, an alias
-
-- `nodeGroup` - current node group
-
-- `path` - volume path
-
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `name` - environment display name
+    - `env` - environment short domain name
+    - `nodeId` - current node identifier
+    - `nodeid` - the same value as `nodeId`, an alias
+    - `nodeGroup` - current node group
+    - `path` - volume path
 - `${event.response.}`:
-
-- `result` - result code. The successful action result is *'0'*
-
-- `nodeid` - current node identifier
-
-<!--##Start onBeforeInit onBeforeInstall issue description-->
+    - `result` - result code. The successful action result is *'0'*
+    - `nodeid` - current node identifier
 
 ### onBeforeInit   onBeforeInstall
 It is possible to dynamically fill in the manifest fields using *onBeforeInit* and *onBeforeInstall* events.
@@ -2235,29 +1462,17 @@ The event is executed after swap the external domain names between two environme
     - `targetappid` - "string" application identifier of the second environment
 -   `${event.response.}`:
     - `result` - result code. The successful action result is '0'
-  
 
 <br>
 
 ## What’s next?
 
-  
-
 - Find out how to fetch parameters with <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a>
-
-  
 
 - See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>
 
-  
-
 - Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>
-
-  
 
 - Learn how to create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>
 
-  
-
 - Check how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>
-

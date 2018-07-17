@@ -50,6 +50,7 @@ region: string
 ssl: boolean
 ha: boolean
 displayName: string
+skipNodeEmails: boolean
 appVersion: string
 onInstall: object/string
 startPage: string
@@ -77,6 +78,7 @@ success: object/string
   "ssl": "boolean",
   "ha": "boolean",
   "displayName": "string",
+  "skipNodeEmails": "boolean",
   "appVersion": "string",
   "onInstall": "object/array",
   "startPage": "string",
@@ -108,6 +110,7 @@ success: object/string
 - `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with **type** `install` mode.
 - `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with **type** `install` mode.
 - `displayName` *[optional]* - display name for an environment. Required option for **type** `install`.
+- `skipNodeEmails` *[optional]* - an ability to skip sending emails about creating nodes. Emails are related only to nodes where implemented reset password functionality
 - `appVersion` *[optional]* - custom version of an application
 - `onInstall` *[optional]* - <a href="/creating-manifest/events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
 - `startPage` *[optional]* - path to be opened via the **Open in browser** button through a successful installation message
@@ -752,6 +755,28 @@ startPage: ${env.url}customDirectory/
 ```
 @@!
 
+###Skip Node Emails
+
+In Jelastic platforms owner will be informed by email by default about adding new nodes into environments. These emails are related only to nodes where implemented reset password functionality (databases, Glassfish etc.). In Cloud Scripting there is an ability set an option to skip these emails. For example: 
+@@@
+```yaml
+type: install
+iname: skipNodeEmails
+nodes:
+  nodeType: mysql5
+skipNodeEmails: true
+```
+```json
+{
+  "type": "install",
+  "name": "skipNodeEmails",
+  "nodes": {
+    "nodeType": "mysql5"
+  },
+  "skipNodeEmails": true
+}
+```
+@@!
 ##Relative Links
 
 The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the <b>*baseUrl*</b> parameter or specified while <a href="https://docs.jelastic.com/environment-export-import" target="_blank">importing</a> a corresponding JPS file via the Jelastic dashboard.          
