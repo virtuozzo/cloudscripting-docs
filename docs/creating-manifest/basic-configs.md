@@ -202,30 +202,24 @@ The *targetRegions* option has multiple additional parameters for filtering the 
 
 -   `name` *[optional]{string}* - text or JavaScript RegExp argument to filter regions by name that can be found in JCA -> Hardware Nodes -> Name column:   
 *“targetRegions”: { “name”: “hn01.azure-cus” }*  
->
--   `uniqueName` *[optional]{string}* - name alias :   
+-   `uniqueName` *[optional]{string}* - name alias :
 *“targetRegions”: { “uniqueName”: “hn01.azure-cus” }*
->
--   `displayName` *[optional]{string}* - text or JavaScript RegExp argument to filter regions by name that is displayed at the dashboard:   
+-   `displayName` *[optional]{string}* - text or JavaScript RegExp argument to filter regions by name that is displayed at the dashboard:
 *“targetRegions”: { “displayName”: “Azure CUS” }*
->
--   `isActive` *[optional]{boolean}* - filters regions by logical values true or false, according to its status in JCA->Regions->Status column.   
+-   `isActive` *[optional]{boolean}* - filters regions by logical values true or false, according to its status in JCA->Regions->Status column.
 *“targetRegions”: { “isActive”: “false” }*
->
 -   `isRegionMigrationAllowed` *[optional]{boolean}* - filters regions by logical values true or false, according to the possibility to enable live migration   
 *“targetRegions”: { “isRegionMigrationAllowed”: “true” }*
->
--   `region` *[optional]{number}* - filters by region’s id:   
+-   `region` *[optional]{number}* - filters by region’s id:
 *“targetRegions”: { “region”: “1” }*
->
--   `vzTypes` *[optional]{string array}* - text or JavaScript RegExp argument to filter region’s by virtualization type: “pvc”, “vz6”, “pcs-storage”, “vz7”, where “pvc” for Parallels Virtuozzo Containers, “vz6” for Virtuozzo 6, “pcs-storage” for Parallels Cloud Storage, “vz7” for Virtuozzo 7    
+-   `vzTypes` *[optional]{string array}* - text or JavaScript RegExp argument to filter region’s by virtualization type: “pvc”, “vz6”, “pcs-storage”, “vz7”, where “pvc” for Parallels Virtuozzo Containers, “vz6” for Virtuozzo 6, “pcs-storage” for Parallels Cloud Storage, “vz7” for Virtuozzo 7
 *“targetRegions”: { “vzTypes”: “pvc” }*
->
--   `type` *[optional]{string array}* - vzTypes alias    
+-   `type` *[optional]{string array}* - vzTypes alias
 *"targetRegions": { “type”: “pvc” }*
    
 >
-**Note**: All fields in filter could be passed as an Array of Strings or String. Each string could be a valid JavaScript RegExp argument. Even boolean values can be as RegExp argument. Examples:   
+!!! note
+    > All fields in filter could be passed as an Array of Strings or String. Each string could be a valid JavaScript RegExp argument. Even boolean values can be as RegExp argument. Examples:
 *“targetRegions”: {“isActive”: “f.*” }*   
 *“targetRegions”: { “displayName”: [".\*O.\*", “.\*A.\*”, “.\*P.\*”] }* 
 <!-- RegionFiltering section -->

@@ -2213,7 +2213,7 @@ The script outputs JS-object. The object contains code **result** and manifest c
 
 <!--##END onBeforeInit onBeforeInstall issue description-->
 
-### onBeforeSwapExtDomain
+### onBeforeSwapExtDomains
 The event is executed before swap the external domain names between two environments called by API or via the Jelastic dashboard.
 
 **Event Placeholders:**
@@ -2224,7 +2224,7 @@ The event is executed before swap the external domain names between two environm
     - `targetappid`  - "string" application identifier of the second environment
 -   `${event.response.}`:  parameters are absent
 
-### onAfterSwapExtDomain
+### onAfterSwapExtDomains
 The event is executed after swap the external domain names between two environments called by API or via the Jelastic dashboard.
 
 **Event Placeholders:**
