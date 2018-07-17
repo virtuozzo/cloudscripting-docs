@@ -2079,6 +2079,7 @@ Inside *onBeforeInstall* the placeholders **\${globals.}**,  **\${settings.}**  
 -   `settings`
 
 *onBeforeInit* and *onBeforeInstall* can treat JavaScript code, written as:
+
 -   string
 @@@
 ```yaml
@@ -2096,8 +2097,7 @@ onBeforeInit: |
       }]
     }
   };
-
-onInstall:  
+onInstall:
 assert: "'${settings.custom_field}' == 'test'"
 ```
 ```json
@@ -2108,8 +2108,9 @@ assert: "'${settings.custom_field}' == 'test'"
   "onInstall": null,
   "assert": "'${settings.custom_field}' == 'test'"
 }
+```
+@@!
 
-```  
 -   string array
 @@@
 ```json
@@ -2148,6 +2149,8 @@ onBeforeInit:
 - "  }"
 - "};"
 ```
+@@!
+
 -   URL
 @@@
 ```yaml
@@ -2173,8 +2176,10 @@ assert: "'${settings.custom_field}' == 'test'"
             ]
 }
 ```
+@@!
+
 -   filepath in case the baseUrl was determined
-- @@@
+@@@
 ```yaml
 type: update  
 name: "Ability to dynamically determine UI in JPS"  
@@ -2197,7 +2202,8 @@ assert: "'${settings.custom_field}' == 'test'"
                 }
             ]
 }
-``` 
+```
+@@!
 
 The script outputs JS-object. The object contains code **result** and manifest customized field set in JSON.
 
