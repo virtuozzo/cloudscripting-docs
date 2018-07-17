@@ -2234,7 +2234,7 @@ The event is executed after swap the external domain names between two environme
     - `appid` - environment unique appid
     - `targetappid` - "string" application identifier of the second environment
 -   `${event.response.}`:
-        - `result` - result code. The successful action result is '0'
+    - `result` - result code. The successful action result is '0'
   
 
 <br>
