@@ -28,6 +28,8 @@ The following specific groups of placeholders are singled out:
 
 - [File Path Placeholders](/creating-manifest/placeholders/#file-path-placeholders)                                 
 
+Placeholders like `env`, `nodes`, `targetNodes`, `response` are dynamically. They could be updated by their requests if they are required to be updated.
+
 ## Environment Placeholders
 
 This is the list of placeholders that you can use within the environment section (*{env.}*) of your manifest.                               
@@ -41,6 +43,7 @@ This is the list of placeholders that you can use within the environment section
     - `displayName` *[string]* - application display name
     - `envName` *[string]* - short domain name (without hosting provider URL)
     - `shortdomain` *[string]* - short domain name (alias to `envName`)
+    - `name` *[string]* - alias to `envName`
     - `hardwareNodeGroup` *[string]* - hardware node group
     - `ssl` *[boolean]* - environment SSL status
     - `sslstate` *[boolean]* - environment SSL state
@@ -203,7 +206,7 @@ Here, the name of the placeholder is `${settings.customName}`. See the list of <
 
 ## Action Placeholders
 
-Action placeholders form a set of placeholders that can be used within the actions by means of a <b>*${this}*</b> namespace. So, in <b>*${this.param}*</b> the *param* is a name of the action parameter.                                          
+Action placeholders form a set of placeholders that can be used within the actions by means of a <b>*\${this.*}*</b> namespace. So, in <b>*${this.param}*</b> the *param* is a name of the action parameter.
 
 **Example**
 @@@
@@ -255,7 +258,41 @@ actions:
 }
 ```
 @@!
-As a result, console will display the *first* (1) custom parameter from the <b>*${this.first}*</b> placeholder.             
+As a result, console will display the *first* (1) custom parameter from the <b>*${this.first}*</b> placeholder.
+
+Also custom actions can receive as a parameter a string or an array or strings. In this case a new placeholder *\${this}* will be defined within executed action.
+
+For example:
+@@@
+```yaml
+type: update
+name: this placeholder
+onInstall:
+  customAction:  custom string
+actions:
+  customAction:
+    log: ${this}
+```
+```json
+{
+  "type": "update",
+  "name": "this placeholder",
+  "onInstall": {
+    "customAction": "custom string"
+  },
+  "actions": {
+    "customAction": {
+      "log": "${this}"
+    }
+  }
+}
+```
+@@!
+
+The result message of \${this} placeholder is on the screen below:
+![this-placeholder](/img/this-placeholder.png)
+
+In case if an argument is an array of strings the executed custom action will be executed so many times how many arguments are in an array.
 
 ## UI Placeholders
 
@@ -324,6 +361,14 @@ globals:
 @@!
 
 As a result, you can use <b>*${globals.value1}*</b> and <b>*${globals.value2}*</b>  within the entire manifest.
+
+Values are global placeholders (<i>value1</i> and <i>value2</i> in example above) could consist of like simple text or/and placeholders in it. There are the list of placeholders which are predefined in `globals` block:
+
+- `${settings.*}` - <a href="/creating-manifest/placeholders/#input-parameters" target="_blank">input parameters</a> from `settings` block, where custom forms are described
+- `${env.*}` - all <a href="/creating-manifest/placeholders/#environment-placeholders" target="_balnk">environment placeholders</a>. Placeholders are available only in JPS manifests with `type` *install* -  `globals` block will be updated after an environment is created.
+- `${nodes.*}` - all <a href="/creating-manifest/placeholders/#node-placeholders" target="_balnk">node placeholders</a>. Node values in global placeholders will be available only after environment is created.
+- `${user.*}` - <a href="/creating-manifest/placeholders/#account-information" target="-blank">account placeholders</a> ara available during all JPS installation process.
+- `${fn.*}` - <a href="/creating-manifest/placeholders/#function-placeholders" target="_blank">functional placeholders</a>  ara available during all JPS installation process.
 
 ## Function Placeholders
 
@@ -452,6 +497,99 @@ The list of single placeholders:
 - `${nginxphp.PHPFPM_CONF}` - */etc/php-fpm.conf*   
 - `${nginxphp.PHP_MODULES}` - */usr/lib64/php/modules*   
 - `${nginxphp.WEBROOT}` - */var/www/webroot*   
+
+
+## Default Values of Placeholders
+
+All placeholders which are spelled out in manifest and are not defined in Cloud Scripting during manifest execution will be displayed like a simple texts. <br>
+In the example below the **action** `assert` is executed where values are compared.
+
+@@@
+```yaml
+type: update
+name: Default values of placeholders
+onInstall:
+  assert:
+  - "'${unknown:defaultValue}' === 'defaultValue'"
+  - "'${noName:[fn.password(7)]}'.length === 7"
+  - "'${unknown:}' === ''"
+```
+```json
+{
+    "type": "update",
+    "name": "Default values of placeholders",
+    "onInstall": {
+        "assert": [
+            "'${unknown:defaultValue}' === 'defaultValue'",
+            "'${noName:[fn.password(7)]}'.length === 7",
+            "'${unknown:}' === ''"
+        ]
+    }
+}
+```
+@@!
+
+The first comparing in `assert` action is **"'\${unknown:defaultValue}' === 'defaultValue'"**, where placeholder *\${unknown:defaultValue}* in Cloud Scripting engine isn't defined. So the sipmle string will be displayed in console. The same behaviour will be with another comparisons.<br>
+The executed results on the screen below:
+![simple-comparison](/img/simple-comparison.png)
+
+Default placeholder values can be replaced in placeholders if they were defined before they are spelled out in manifest. For example, custom placeholders can be defined in action `set`.
+
+@@@
+```yaml
+type: update
+name: Default values of placeholders
+onInstall:
+- set:
+    custom: test
+    length: 7
+    'null':
+    'false': false
+    empty: ''
+- assert:
+  - "'${unknown:defaultValue}' === 'defaultValue'"
+  - "'${unknown:[fn.password(7)]}'.length === 7"
+  - "'${unknown:[this.custom]:[this.custom]}' === 'test'"
+  - "'${unknown:[fn.password([this.length])]}'.length === 7"
+  - "'${unknown:[this.custom]}' === 'test'"
+  - "'${unknown:[this.empty]}' === ''"
+  - "'${unknown:[this.false]}' === 'false'"
+  - "'${unknown:[this.null]}' === 'null'"
+  - "'${unknown:}' === ''"
+```
+```json
+{
+  "type": "update",
+  "name": "Default values of placeholders",
+  "onInstall": [
+    {
+      "set": {
+        "custom": "test",
+        "length": 7,
+        "null": null,
+        "false": false,
+        "empty": ""
+      }
+    },
+    {
+      "assert": [
+        "'${unknown:defaultValue}' === 'defaultValue'",
+        "'${unknown:[fn.password(7)]}'.length === 7",
+        "'${unknown:[this.custom]:[this.custom]}' === 'test'",
+        "'${unknown:[fn.password([this.length])]}'.length === 7",
+        "'${unknown:[this.custom]}' === 'test'",
+        "'${unknown:[this.empty]}' === ''",
+        "'${unknown:[this.false]}' === 'false'",
+        "'${unknown:[this.null]}' === 'null'",
+        "'${unknown:}' === ''"
+      ]
+    }
+  ]
+}
+```
+@@!
+The results on the screen below:
+![comparison](/img/comparison.png)
 
 <br>       
 <h2> What’s next?</h2>                    
