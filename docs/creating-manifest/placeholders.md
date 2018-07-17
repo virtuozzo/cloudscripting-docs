@@ -322,19 +322,7 @@ globals:
 ```
 @@!
 
-As a result, the new placeholders are created.
-@@@
-```yaml
-globals.value1: 1
-globals.value2: 2
-```
-``` json
-{
-  "globals.value1": 1,
-  "globals.value2": 2
-}
-```
-@@!
+As a result, you can use <b>*${globals.value1}*</b> and <b>*${globals.value2}*</b>  within the entire manifest.
 
 ## Function Placeholders
 
@@ -381,7 +369,7 @@ globals:
 }
 ```
 @@!
-Now, you can use <b>*${global.pass}*</b> within the entire manifest.
+Now, you can use <b>*${globals.pass}*</b> within the entire manifest.
 
 ## Array Placeholders
 
@@ -477,4 +465,4 @@ The list of single placeholders:
 
 - Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>
 
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples           
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples
