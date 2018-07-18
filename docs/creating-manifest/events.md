@@ -59,7 +59,7 @@ where:
 
 - `type` - *update* type presupposes the add-on installation to the existing environment with the predefined listeners for events
 - `onInstall` - entry point for executing actions
-- `cp` - target node group
+    - `cp` - target node group
 - `onAfterScaleOut` - event that triggers the action after adding a new compute node
 - `onAfterRestartNode` - event that triggers the action after restarting *apache2* compute nodes
 - `onAfterResetNodePassword` - event that triggers the action after resetting a password from the first compute node in the layer
@@ -1437,10 +1437,8 @@ The script outputs JS-object. The object contains code **result** and manifest c
 -   If the script has completed successfully with **result: 0**, then all the fields in the script response are applied to the manifest.  
 -   In case the script has completed unsuccessfully with **result: 11041** along with message “**JPS manifest initialization error**”, the  attached object data provides the details about an error.
 
-<!--##END onBeforeInit onBeforeInstall issue description-->
-
-### onBeforeSwapExtDomain
-The event is executed before swap the external domain names between two environments called by API or via the Jelastic dashboard.
+### onBeforeSwapExtDomains
+The event is executed before swapping the external domain names between two environments via API or Jelastic dashboard
 
 **Event Placeholders:**
 
@@ -1450,8 +1448,8 @@ The event is executed before swap the external domain names between two environm
     - `targetappid`  - "string" application identifier of the second environment
 -   `${event.response.}`:  parameters are absent
 
-### onAfterSwapExtDomain
-The event is executed after swap the external domain names between two environments called by API or via the Jelastic dashboard.
+### onAfterSwapExtDomains
+The event is executed after swapping the external domain names between two environments via API or Jelastic dashboard.
 
 **Event Placeholders:**
 
