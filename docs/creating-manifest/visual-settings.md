@@ -97,7 +97,7 @@ where:
         * `numberpicker` - [field to select a number](#numberpicker) within a range                            
         * `number-picker` - alias to `numberpicker`  
         * `hostpicker` - drop-down menu with [environment hosts](#hostpicker)                             
-        * `host-picher` - alias to `hostpicker`                                      
+        * `host-picker` - alias to `hostpicker`                                      
         * `toggle` - [switcher](#toggle) between two values                        
     - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. See more info on the <a href="https://www.w3.org/wiki/HTML/Elements/input#Point" target="_blank">type attribute</a>.                         
     - `name` - input field name, that could be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests   
@@ -1541,7 +1541,7 @@ Therefore, there is a main supported Makrdow tag list:
 Style 1                            |Style 2 | Result|
 -------                                 |----------|------
 \*Italic\*                            |\_Italic\_|*Italic*
-\*\*Bolt\*\*                            |\_\_Bolt\_\_|**Bolt**
+\*\*Bold\*\*                            |\_\_Bold\_\_|**Bold**
 \# Heading 1                           | Heading 1<br>\=\=\=\=\=\=\=\=\=  | <h1 class='default'>Heading 1</h1>
 \#\# Heading 2                          | Heading 2<br>\-\-\-\-\-\-\-\-\-\-\-\-| <h2 class='default'>Heading 2</h2>
 \[Link](https://jelastic.com)          |[Link][1]<br>.<br>.<br>.<br>[1]: https://jelastic.com|[jelastic.com URL](https://jelastic.com)
@@ -1551,21 +1551,21 @@ A paragraph.<br>  <br>A paragraph after 1 blank line.||A paragraph.<br><br>A par
 \* List<br>\* List|\- List<br>\- List|* List<br>* List
 1\. One<br>2\. Two<br>3\. Three| 1\) One<br>2\) Two<br>3\) Three|1. One<br>2. Two<br>3. Three
 Horizontal Rule<br>\-\-\-|Horizontal Rule<br>\*\*\*|Horizontal Rule<br>![horizontal-rule](/img/markdown_horizontal-rule.jpg)
-\`\`Inline code\`\` with brackticks|| ![Inline code](/img/markdown_inline-code.jpg) with brackticks
+\`\`Inline code\`\` with backticks|| ![Inline code](/img/markdown_inline-code.jpg) with backticks
 \`\`\`<br>print '3 backticks <br>or3 tildes'<br>\`\`\`|\~\~\~\~<br>print '3 backticks<br> or 3 tildes'<br>\~\~\~\~|![Block code](/img/markdown_block-code.jpg)
 
 The elements visual displaying can be find on the screen below:
-![makrdown_tags](/img/markdown_tags.jpg)
+![markdown_tags](/img/markdown_tags.jpg)
 
 Source code each these elements is displayed below: 
 
 @@@
 ```yaml
 type: update
-name: Makrdown tags
+name: Markdown tags
 description: |
   *Italic* or _Italic_    
-  **Bolt** or __Bolt__  
+  **Bold** or __Bold__  
 
   # This is H1   
   ## This is H2  
@@ -1592,8 +1592,8 @@ description: |
 ```json
 {
     "type": "update",
-    "name": "Makrdown tags",
-    "description": "*Italic* or _Italic_    \n**Bolt** or __Bolt__  \n\n# This is H1   \n## This is H2  \n##### This is H6  \n\n[jelastic.com URL](https://jelastic.com)  \n\n![Jelastic](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)  \n\n> Blockquote  \n\n* List  \n\n---  \n\n`Inline code` with backticks   \n\n```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
+    "name": "Markdown tags",
+    "description": "*Italic* or _Italic_    \n**Bold** or __Bold__  \n\n# This is H1   \n## This is H2  \n##### This is H6  \n\n[jelastic.com URL](https://jelastic.com)  \n\n![Jelastic](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)  \n\n> Blockquote  \n\n* List  \n\n---  \n\n`Inline code` with backticks   \n\n```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
 }
 ```
 @@!
