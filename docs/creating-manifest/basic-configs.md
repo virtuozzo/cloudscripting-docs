@@ -78,7 +78,7 @@ success: object/string
   "ssl": "boolean",
   "ha": "boolean",
   "displayName": "string",
-  "skipNodeEmails": "boolean"
+  "skipNodeEmails": "boolean",
   "appVersion": "string",
   "onInstall": "object/array",
   "startPage": "string",
@@ -147,8 +147,76 @@ The following parameters are available for Docker nodes only:
 - `volumes` *[optional]* - Docker node volumes               
 - `volumeMounts` *[optional]* - Docker external volumes mounts                             
 - `cmd` *[optional]* - Docker run configs                            
-- `entrypoint` *[optional]* - Docker entry points  
+- `entrypoint` *[optional]* - Docker entry points
+<!-- startService section -->
+- `startService` *[optional]* - defines whether to run defined service or not. By default false
 
+### startService Parameter
+
+The *startService* flag is responsible for a service launch and its addition to the autoload while container creation. By default, this parameter is enabled but can be deactivated by changing the *startService* value to false.
+
+The *startService* flag works only for custom dockers and for dockerized templates, and, accordingly, does not affect the cartridges and legacy native templates.
+
+##### Conditions that Define Service Behavior
+
+The service doesn’t start as it is not added to autoload in the following cases:
+
+-   the [RestartContainersByGroup](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartContainersByGroup) or [RestartContainer](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartContainer) methods are called through the API
+
+-   the environment is stopped/started
+
+-   the environment is cloned
+
+-   the environment is created with *startServiceOnCreation=false*
+
+-   the Restart button is pressed at the dashboard calling the [RestartContainersByGroup](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartContainersByGroup) and [RestartContainer](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartContainer) API methods (only for managed dockerized containers)
+
+You can force adding the service to autoload by calling the *ExecDockerRunCmd* method
+
+The service starts if:
+
+-   the container is redeployed (starts at every boot time)
+
+-   the container is scaled (starts at the newly added nodes)
+
+-   the Restart button is pressed at the dashboard calling the [RrestartNodesByGroup](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartNodesByGroup) and [RestartNodeById](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartNodeById) API methods (only for native Docker containers)
+
+<!-- end of startService section -->
+<!-- RegionFiltering section -->
+### Regions Filtering
+
+Jelastic provides a possibility to use multiple availability regions within a single PaaS installation. The number of hardware regions depends on user account and hosting provider.
+
+If multiple regions are available, the environment will be created at one that is chosen based on the following filtering rules:
+
+-   taking the default region according to the user account settings
+-   stating a specific region name in the **region** parameter within JPS manifest
+-   specifying filter conditions (described below) in the **targetRegions** parameter within JPS manifest
+
+!!! note
+    > in case both options (*targetRegions* and *region*) are added to the manifest, the *region* option will be ignored.
+
+The *targetRegions* option has multiple additional parameters for filtering the regions:
+
+-   `name` *[optional]{string}* - text or JavaScript RegExp argument to filter regions by name that can be found in JCA -> Hardware Nodes -> Name column:
+*“targetRegions”: { “name”: “hn01.azure-cus” }*  
+-   `uniqueName` *[optional]{string}* - name alias :
+*“targetRegions”: { “uniqueName”: “hn01.azure-cus” }*
+-   `displayName` *[optional]{string}* - text or JavaScript RegExp argument to filter regions by name that is displayed at the dashboard:   
+*“targetRegions”: { “displayName”: “Azure CUS” }*
+-   `isActive` *[optional]{boolean}* - filters regions by logical values true or false, according to its status in JCA->Regions->Status column.
+*“targetRegions”: { “isActive”: “false” }*
+-   `isRegionMigrationAllowed` *[optional]{boolean}* - filters regions by logical values true or false, according to the possibility to enable live migration
+*“targetRegions”: { “isRegionMigrationAllowed”: “true” }*
+-   `region` *[optional]{number}* - filters by region’s id:
+*“targetRegions”: { “region”: “1” }*
+-   `vzTypes` *[optional]{string array}* - text or JavaScript RegExp argument to filter region’s by virtualization type: “pvc”, “vz6”, “pcs-storage”, “vz7”, where “pvc” for Parallels Virtuozzo Containers, “vz6” for Virtuozzo 6, “pcs-storage” for Parallels Cloud Storage, “vz7” for Virtuozzo 7
+*“targetRegions”: { “vzTypes”: “pvc” }*
+-   `type` *[optional]{string array}* - vzTypes alias
+*"targetRegions": { “type”: “pvc” }*
+   
+!!! note
+    > All fields in filter could be passed as an Array of Strings or String. Each string could be a valid JavaScript RegExp argument. Even boolean values can be as RegExp argument. Examples: <br>*“targetRegions”: {“isActive”: “f.*” }*<br>*“targetRegions”: { “displayName”: [".\*O.\*", “.\*A.\*”, “.\*P.\*”] }*
 
 <!--##Docker Actions-->
 ###Nodes Actions
