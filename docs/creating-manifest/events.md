@@ -1438,10 +1438,8 @@ The script outputs JS-object. The object contains code **result** and manifest c
 -   If the script has completed successfully with **result: 0**, then all the fields in the script response are applied to the manifest.  
 -   In case the script has completed unsuccessfully with **result: 11041** along with message “**JPS manifest initialization error**”, the  attached object data provides the details about an error.
 
-<!--##END onBeforeInit onBeforeInstall issue description-->
-
 ### onBeforeSwapExtDomain
-The event is executed before swap the external domain names between two environments called by API or via the Jelastic dashboard.
+The event is executed before swapping the external domain names between two environments via API or Jelastic dashboard.
 
 **Event Placeholders:**
 
@@ -1452,7 +1450,7 @@ The event is executed before swap the external domain names between two environm
 -   `${event.response.}`:  parameters are absent
 
 ### onAfterSwapExtDomain
-The event is executed after swap the external domain names between two environments called by API or via the Jelastic dashboard.
+The event is executed after swapping the external domain names between two environments via API or Jelastic dashboard.
 
 **Event Placeholders:**
 
