@@ -665,7 +665,7 @@ fields:
       isEnabled: true
       isDefault: true
       isActive: true
-      isRegionMigrationAllowed: true,
+      isRegionMigrationAllowed: true
       region: 1
 ```
 ```json
