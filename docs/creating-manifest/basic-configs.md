@@ -129,8 +129,8 @@ The list of available parameters are:
 
 - `nodeType` *[required]* - the defined node type. The list of available stacks are <a href="/creating-manifest/selecting-containers/#supported-stacks" target="_blank">here</a>. 
 - `cloudlets` *[optional]* - a number of dynamic cloudlets. The default value is 0. `flexible` is an alias. 
-- `fixedCloudlets` *[optional]* - a mount of fixed cloudlets. The default value is 1.
-- `count` *[optional]* - a mount of nodes in one group. The default value is 1.
+- `fixedCloudlets` *[optional]* - amount of fixed cloudlets. The default value is 1.
+- `count` *[optional]* - amount of nodes in one group. The default value is 1.
 - `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any custom node group.
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.
@@ -195,36 +195,32 @@ If multiple regions are available, the environment will be created at one that i
 -   stating a specific region name in the **region** parameter within JPS manifest
 -   specifying filter conditions (described below) in the **targetRegions** parameter within JPS manifest
 
-
-**Note**: in case both options (*targetRegions* and *region*) are added to the manifest, the *region* option will be ignored.
-
-
+!!! note
+    In case both options (*targetRegions* and *region*) are added to the manifest, the *region* option will be ignored.
 
 The *targetRegions* option has multiple additional parameters for filtering the regions:
 
-
--   `name` *[optional]{string}* - text or JavaScript RegExp argument to filter regions by name that can be found in JCA -> Hardware Nodes -> Name column:   
+-   `name` *[optional]{string}* - text or JavaScript RegExp argument to filter regions by name that can be found in JCA -> Hardware Nodes -> Name column :   
 *“targetRegions”: { “name”: “hn01.azure-cus” }*  
--   `uniqueName` *[optional]{string}* - name alias :
+-   `uniqueName` *[optional]{string}* - name alias :   
 *“targetRegions”: { “uniqueName”: “hn01.azure-cus” }*
--   `displayName` *[optional]{string}* - text or JavaScript RegExp argument to filter regions by name that is displayed at the dashboard:
+-   `displayName` *[optional]{string}* - text or JavaScript RegExp argument to filter regions by name that is displayed at the dashboard:   
 *“targetRegions”: { “displayName”: “Azure CUS” }*
--   `isActive` *[optional]{boolean}* - filters regions by logical values true or false, according to its status in JCA->Regions->Status column.
+-   `isActive` *[optional]{boolean}* - filters regions by logical values true or false, according to its status in JCA->Regions->Status column :   
 *“targetRegions”: { “isActive”: “false” }*
--   `isRegionMigrationAllowed` *[optional]{boolean}* - filters regions by logical values true or false, according to the possibility to enable live migration   
+-   `isRegionMigrationAllowed` *[optional]{boolean}* - filters regions by logical values true or false, according to the possibility to enable live migration:   
 *“targetRegions”: { “isRegionMigrationAllowed”: “true” }*
--   `region` *[optional]{number}* - filters by region’s id:
+-   `region` *[optional]{number}* - filters by region’s id:   
 *“targetRegions”: { “region”: “1” }*
--   `vzTypes` *[optional]{string array}* - text or JavaScript RegExp argument to filter region’s by virtualization type: “pvc”, “vz6”, “pcs-storage”, “vz7”, where “pvc” for Parallels Virtuozzo Containers, “vz6” for Virtuozzo 6, “pcs-storage” for Parallels Cloud Storage, “vz7” for Virtuozzo 7
+-   `vzTypes` *[optional]{string array}* - text or JavaScript RegExp argument to filter region’s by virtualization type: “pvc”, “vz6”, “pcs-storage”, “vz7”, where “pvc” for Parallels Virtuozzo Containers, “vz6” for Virtuozzo 6, “pcs-storage” for Parallels Cloud Storage, “vz7” for Virtuozzo 7:   
 *“targetRegions”: { “vzTypes”: “pvc” }*
--   `type` *[optional]{string array}* - vzTypes alias
-*"targetRegions": { “type”: “pvc” }*
-   
->
+-   `type` *[optional]{string array}* - vzTypes alias:   
+*“targetRegions”: { “type”: “pvc” }*
+
 !!! note
-    > All fields in filter could be passed as an Array of Strings or String. Each string could be a valid JavaScript RegExp argument. Even boolean values can be as RegExp argument. Examples:
-*“targetRegions”: {“isActive”: “f.*” }*   
-*“targetRegions”: { “displayName”: [".\*O.\*", “.\*A.\*”, “.\*P.\*”] }* 
+    All fields in filter could be passed as an Array of Strings or String. Each string could be a valid JavaScript RegExp argument. Even boolean values can be as RegExp argument. Examples:   
+    *“targetRegions”: {“isActive”: “f.\*” }*   
+    *“targetRegions”: { “displayName”: [".\*O.\*", “.\*A.\*”, “.\*P.\*”] }* 
 <!-- RegionFiltering section -->
 
 <!--##Docker Actions-->
