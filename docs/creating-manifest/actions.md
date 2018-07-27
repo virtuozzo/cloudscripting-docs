@@ -1477,7 +1477,7 @@ assert:
 Failed comparing value will be marked in red colored text:
 ![assert-failed](/img/assert-failed.jpg)
 
-Also, there is an ability to set custom messages in cousole log instead default text *ASSERT*:
+Also, there is an ability to set custom messages in console log instead default text *ASSERT*:
 @@@
 ```yaml
 type: update
