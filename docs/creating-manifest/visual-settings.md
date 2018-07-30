@@ -77,12 +77,12 @@ where:
 - `prepopulate` *[optional]* - link to a script, that will fetch default field values
 - `fields` - array of fields that will be displayed in a custom form
     - `showIf` - shows/hides field by condition (applicable only to *radio-fieldset* field)
-    - `type` *[optional]* - input field type. Default value is *'string'*. Possible values:
+    - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:
         * `string` - [basic](#string) text field
         * `text`  - [multiline](#text) text field
         * `list` - drop-down menu with [textboxes](#list)
         * `checkbox` - [single checkbox](#checkbox) field
-        * `checkboxlist` - [checkbox](#checkboxlist) grouping
+<!--        * `checkboxlist` - [checkbox](#checkboxlist) grouping -->
         * `radiolist` - [radio field](#radiolist) grouping
         * `radio-fieldset` - alias to `radiolist`
         * `dockertags` - drop-down menu with a list of [docker tags](#dockertag)
@@ -100,18 +100,18 @@ where:
         * `hostpicker` - drop-down menu with [environment hosts](#hostpicker)
         * `host-picker` - alias to `hostpicker`
         * `toggle` - [switcher](#toggle) between two values
-    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). Default value is *'text'*. See more info on <a href="https://www.w3.org/wiki/HTML/Elements/input#Point" target="_blank">type attribute</a>.
+    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. See more info on <a href="https://www.w3.org/wiki/HTML/Elements/input#Point" target="_blank">type attribute</a>.
     - `name` - input field name, that can be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests
     - `default` *[optional]* - default value for the input field
     - `caption` *[optional]* - field label
     - `placeholder` *[optional]* - used <a href="/reference/placeholders/" target="blank">placeholders</a>
     - `required` *[optional]* - possible values are *'true'* & *'false'*. If left empty, default value is *'true'*.
-    - `regex` *[optional]* - constructor for testing JavaScript RegExp object that refers to the field value, during validation. If test fails, the field will be marked as invalid using *regexText*. Default value is *'null'*.
-    - `regexText` *[optional]* - displays error message in case of *regex* test failure during validation. Default value is *' '* (blank space).
+    - `regex` *[optional]* - constructor for testing JavaScript RegExp object that refers to the field value, during validation. If test fails, the field will be marked as invalid using *regexText*. The default value is *'null'*.
+    - `regexText` *[optional]* - displays error message in case of *regex* test failure during validation. The default value is *' '* (blank space).
     - `vtype` *[optional]* - validation type name. Possible values:
-        - `alpha` - keystroke filter mask applied to alpha input. Default value is *'/[a-z_]/i'*.
-        - `alphanum` - keystroke filter mask applied to alphanumeric input. Default value is *'/[a-z0-9_]/i'*.
-        - `email` - keystroke filter mask applied to email input. Default value is *'/[a-z0-9_.-+\'@]/i'*. See <a href="http://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.VTypes-method-email" target="_blank">appropriate method</a> for more information about complex email validation.
+        - `alpha` - keystroke filter mask applied to alpha input. The default value is *'/[a-z_]/i'*.
+        - `alphanum` - keystroke filter mask applied to alphanumeric input. The default value is *'/[a-z0-9_]/i'*.
+        - `email` - keystroke filter mask applied to email input. The default value is *'/[a-z0-9_.-+\'@]/i'*. See <a href="http://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.VTypes-method-email" target="_blank">appropriate method</a> for more information about complex email validation.
         - `URL` - keystroke filter mask applied to URL input
     - `vtypeText` *[optional]* - custom error message to be displayed instead of the default one, provided by *vtype* for this field. The default value is *' '* (blank space).
 
@@ -250,6 +250,7 @@ where:
 - `value` - enables or disables checkbox
 - `hideLabel` *[optional][boolean]* - shows/hides field label. Default value is *'false'*.
 
+<!--
 ### checkboxlist
 Checkbox grouping.
 
@@ -286,6 +287,7 @@ where:
 - `caption` *[optional]* - field label
 - `values` - checkboxes (*"key"*:*"value"*)
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*.
+-->
 
 ### radiolist
 Radio elements grouping.
