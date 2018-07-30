@@ -82,7 +82,7 @@ where:
         * `text`  - [multiline](#text) text field
         * `list` - drop-down menu with [textboxes](#list)
         * `checkbox` - [single checkbox](#checkbox) field
-        * `checkboxlist` - [checkbox](#checkboxlist) grouping
+<!--        * `checkboxlist` - [checkbox](#checkboxlist) grouping -->
         * `radiolist` - [radio field](#radiolist) grouping
         * `radio-fieldset` - alias to `radiolist`
         * `dockertags` - drop-down menu with a list of [docker tags](#dockertag)
@@ -250,6 +250,7 @@ where:
 - `value` - enables or disables checkbox
 - `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.
 
+<!--
 ### checkboxlist
 Checkbox grouping.
 
@@ -286,6 +287,7 @@ where:
 - `caption` *[optional]* - field label
 - `values` - checkboxes (*"key"*:*"value"*)
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.
+-->
 
 ### radiolist
 Radio elements grouping.
