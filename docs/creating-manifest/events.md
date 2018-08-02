@@ -380,6 +380,7 @@ The event is called before the *deleteEnvironment* action.
 
 The event is triggered before adding a new node to an environment. The *onBeforeAddNode* event is executed for each newly added node.
 
+
 There are the following available node groups:
 
 - *balancer*
@@ -579,7 +580,7 @@ The event is executed before detaching the external IP address. The *onBeforeDet
     - `name` - environment display name
     - `env` - environment short domain name
 - `${event.response.}` - parameters are absent
-
+  
 ### onAfterDetachExtIp
 
 The event is executed after detaching the external IP address. The *onAfterDetachExtIp* event is triggered each time upon the external IP address detachment.
@@ -636,6 +637,7 @@ The event is carried out after updating the VCS project. For a detailed guidance
 - `${event.response.}`:
     - `result` - result code. The successful action result is *'0'*.
 
+
 ### onBeforeSetCloudletCount
 
 The event is executed before setting cloudlet count, which implies changing the number of allocated cloudlets per any layer in the environment.
@@ -690,6 +692,7 @@ The event is performed after changing the engine's version (e.g. from *php 7* to
 
 **Event Placeholders:**
 
+
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
@@ -733,6 +736,7 @@ The event is related to stopping environment (executed from the Jelastic dashboa
     - `appid` - environment unique appid
     - `env` - environment short domain name
 - `${event.response.}`: parameters are absent
+
 
 ### onAfterStop
 
@@ -817,8 +821,9 @@ The event is related to build project action and is triggered after it (executed
     - `result` - result code. The successful action result is *'0'*.
 
 ### onBeforeDeploy
-
+  
 The event is bound to the *deploy* action, which is executed at the Jelastic dashboard by deploying any context (i.e. archive with a compressed app) to the environment, and is triggered before it (viz. *deploy* action).
+
 
 **Event Placeholders:**
 
@@ -884,13 +889,14 @@ This event is executed before deleting node(s) from your environment.
 
 **Event Placeholders:**
 
+
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
     - `nodeid` - predefined node identifier
 - `${event.response.}`:
     - `result` - parameters are absent
-
+  
 ### onAfterRemoveNode
 
 This event is executed after deleting node(s) from your environment.
@@ -1110,7 +1116,7 @@ The event is triggered before the *setEnvVars* action. It is executed for every 
 ### onAfterSetEnvVars
 
 The event is triggered after the *setEnvVars* action. It is executed for every Docker or dockerized container upon setting environment variables.
-
+  
 **Event Placeholders:**
 
 - `${event.params.}`:
@@ -1138,7 +1144,7 @@ This event is called before the *setEntryPoint* action. It is executed for every
 - `${event.response.}` - parameters are absent
 
 ### onAfterSetEntryPoint
-
+  
 This event is called after the *setEntryPoint* action. It is executed for every Docker container upon setting the entry point. The *onAfterSetEntryPoint* event is applied for Docker containers only.
 
 **Event Placeholders:**
@@ -1225,7 +1231,7 @@ The event is performed before adding volumes to Docker container. It is executed
     - `nodeid` - the same value as `nodeId`, an alias
     - `path` - volume path
 - `${event.response.}` - parameters are absent
-
+  
 ### onAfterAddVolume
 
 This event is performed after adding volumes to Docker container. It is executed once for each Docker container.
@@ -1283,11 +1289,14 @@ The *onAfterRemoveVolume* event is triggered after removing volumes from Docker 
 
 ### onBeforeInit   onBeforeInstall
 It is possible to dynamically fill in the manifest fields using *onBeforeInit* and *onBeforeInstall* events.
-### onBeforeInit
-The *onBeforeInit* event is executed:
- - on *GetAppInfo* request, which is called to display application
-   installation dialog in the dashboard
- - on application installation
+
+#### onBeforeInit
+The *onBeforeInit* event is executed:   
+
+-   on *GetAppInfo* request, which is called to display application
+   installation dialog in the dashboard   
+-   on application installation
+
 
 Placeholders do not work inside *onBeforeInit*, since even *globals* can be defined dynamically.
 You can override all the parameters of the manifest, except for:

@@ -1258,7 +1258,7 @@ There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certi
 
 ### setGlobals
 
-There are two scope levels during manifest axacution - *global* and *local*. Global scope consists of several parameters like: `env`, `nodes`, `globals` and `targetNodes`.
+There are two scope levels during manifest execution - *global* and *local*. Global scope consists of several parameters like: `env`, `nodes`, `globals` and `targetNodes`.
 This action is an ability to define variables within global scope. Suchwise, this is an opportunity to set values in object *${globals.*}*.
 For example:
 @@@
@@ -1477,7 +1477,7 @@ assert:
 Failed comparing value will be marked in red colored text:
 ![assert-failed](/img/assert-failed.jpg)
 
-Also, there is an ability to set custom messages in cousole log instead default text *ASSERT*:
+Also, there is an ability to set custom messages in console log instead default text *ASSERT*:
 @@@
 ```yaml
 type: update

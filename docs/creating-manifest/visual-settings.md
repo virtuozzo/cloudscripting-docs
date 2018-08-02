@@ -1024,7 +1024,10 @@ where:
 - `caption` *[optional]* - field label
 - `value` *[boolean]* - enables/disables toggle value. Default value is *'false'*.
 
-##Target Nodes
+## Dynamic filling of the manifest fields
+Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit*  *onBeforeInstall*](/creating-manifest/events/#onbeforeinit-onbeforeinstall) events.
+
+## Target Nodes
 Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.                                
 
 Filtering for *targetNodes* can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.
