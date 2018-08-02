@@ -380,6 +380,7 @@ The event is called before the *deleteEnvironment* action.
 
 The event is triggered before adding a new node to an environment. The *onBeforeAddNode* event is executed for each newly added node.
 
+
 There are the following available node groups:
 
 - *balancer*
@@ -596,7 +597,7 @@ The event is executed after detaching the external IP address. The *onAfterDetac
     - `env` - environment short domain name
 - `${event.response.}`:
     - `result` - parameters are absent
-  
+
 ### onBeforeUpdateVcsProject
 
 The event is carried out before updating the VCS project. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a>, refer to the linked page.
@@ -635,7 +636,8 @@ The event is carried out after updating the VCS project. For a detailed guidance
     - `delay` *[optional]* - delay between deploys on nodes (in case if mode than two nodes in one nodeGroup are available).
 - `${event.response.}`:
     - `result` - result code. The successful action result is *'0'*.
-  
+
+
 ### onBeforeSetCloudletCount
 
 The event is executed before setting cloudlet count, which implies changing the number of allocated cloudlets per any layer in the environment.
@@ -690,6 +692,7 @@ The event is performed after changing the engine's version (e.g. from *php 7* to
 
 **Event Placeholders:**
 
+
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
@@ -733,7 +736,8 @@ The event is related to stopping environment (executed from the Jelastic dashboa
     - `appid` - environment unique appid
     - `env` - environment short domain name
 - `${event.response.}`: parameters are absent
-  
+
+
 ### onAfterStop
 
 The event is related to stopping environment (executed from the Jelastic dashboard) and is triggered after it.
@@ -820,6 +824,7 @@ The event is related to build project action and is triggered after it (executed
   
 The event is bound to the *deploy* action, which is executed at the Jelastic dashboard by deploying any context (i.e. archive with a compressed app) to the environment, and is triggered before it (viz. *deploy* action).
 
+
 **Event Placeholders:**
 
 - `${event.params.}`:
@@ -884,6 +889,7 @@ This event is executed before deleting node(s) from your environment.
 
 **Event Placeholders:**
 
+
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
@@ -946,7 +952,7 @@ This event is carried out after restarting container. The *onAfterRestartContain
 The event is related to the <a href="https://docs.jelastic.com/environment-regions-migration" target="_blank">*migrating environment*</a> action and is called before it.
 
 **Event Placeholders:**
-  
+
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
@@ -1183,7 +1189,7 @@ The event is executed after the *setRunCmd* action. It is triggered for every Do
     - `data` - run cmd set for a container
 - `${event.response.}`:
     - `result` - result code. The successful action result is *'0'*.
-  
+
 ### onBeforeStartService
 
 This event is executed each time before running the Docker *RunCmd* commands. Thus, it is always carried out for each Docker container action, e.g. before starting/restarting container and starting environment.
@@ -1283,12 +1289,14 @@ The *onAfterRemoveVolume* event is triggered after removing volumes from Docker 
 
 ### onBeforeInit   onBeforeInstall
 It is possible to dynamically fill in the manifest fields using *onBeforeInit* and *onBeforeInstall* events.
+
 #### onBeforeInit
 The *onBeforeInit* event is executed:   
 
 -   on *GetAppInfo* request, which is called to display application
    installation dialog in the dashboard   
 -   on application installation
+
 
 Placeholders do not work inside *onBeforeInit*, since even *globals* can be defined dynamically.
 You can override all the parameters of the manifest, except for:

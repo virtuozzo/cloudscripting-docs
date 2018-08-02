@@ -147,7 +147,7 @@ fields:
 where:
 
 - `caption` *[optional]* - field label
-- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*.
 
 ### text
 Multiline text field.
@@ -176,7 +176,7 @@ fields:
 where:
 
 - `caption` *[optional]* - field label
-- `hideLabel`*[optional] [boolean]* - hides field label. The default value is *'false'*.
+- `hideLabel`*[optional] [boolean]* - hides field label. Default value is *'false'*.
 
 ### list
 Drop-down list and a single-line textbox.
@@ -215,8 +215,8 @@ where:
 
 - `caption` *[optional]* - field label
 - `values` - objects values (*"key"*:*"value"*)
-- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.
-- `editable` [optional][boolean] - allows to input custom values. The default value is *'false'*.
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*.
+- `editable` [optional][boolean] - allows to input custom values. Default value is *'false'*.
 
 ### checkbox
 Single checkbox field.
@@ -248,7 +248,7 @@ where:
 
 - `caption` *[optional]* - field label
 - `value` - enables or disables checkbox
-- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.
+- `hideLabel` *[optional][boolean]* - shows/hides field label. Default value is *'false'*.
 
 <!--
 ### checkboxlist
@@ -286,7 +286,7 @@ where:
 
 - `caption` *[optional]* - field label
 - `values` - checkboxes (*"key"*:*"value"*)
-- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*.
 -->
 
 ### radiolist
@@ -324,7 +324,7 @@ where:
 
 - `caption` *[optional]* - field label
 - `values` - checkboxes (*"key"*:*"value"*)
-- `hideLabel` *[optional][boolean]* - shows/hides field label. The default value is *'false'*.
+- `hideLabel` *[optional][boolean]* - shows/hides field label. Default value is *'false'*.
 
 ### radio-fieldset
 Grouping of the radio elements with <b>*showIf*</b> function.
@@ -395,7 +395,7 @@ where:
 - `default` *[optional]* - field selected upon opening the form
 - `values` - checkboxes (*"key"*:*"value"*)
 - `showIf` - conditional object that shows predefined elements by clicking on the *radio-fieldset* elements. Predefined elements can vary.
-- `hideLabel` *[optional] [boolean]* - shows/hides field label. The default value is *'false'*.
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*.
 - `caption` *[optional]* - field label
 
 Also there is an ability to set an `values` order. It needs to be defined like an array of objects.
@@ -559,10 +559,10 @@ fields:
 
 where:
 
-- `pack` *[optional]* - manages the way items are packed together. The default value is *'start'*. Possible values: *'start'*, *'center'* and *'end'*.
-- `align` *[optional]* - manages the way items are aligned. The default value is *'top'*. Possible values: *'top'*, *'middle'*, *'stretch'*, *'stretchmax'*.
-- `defaultMargins` *[optional]* - default margins for items. The default value is *'0'*.
-- `defaultPadding` *[optional]* - default paddings for items. The default value is *'0'*.
+- `pack` *[optional]* - manages the way items are packed together. Default value is *'start'*. Possible values: *'start'*, *'center'* and *'end'*.
+- `align` *[optional]* - manages the way items are aligned. Default value is *'top'*. Possible values: *'top'*, *'middle'*, *'stretch'*, *'stretchmax'*.
+- `defaultMargins` *[optional]* - default margins for items. Default value is *'0'*.
+- `defaultPadding` *[optional]* - default paddings for items. Default value is *'0'*.
 - `defaultFlex` *[optional]* - horizontal flex for items
 - `items` - elements
 
@@ -602,7 +602,7 @@ where:
 
 - `min` - minimum slider value
 - `max` - maximum slider value
-- `useTips` - displaying tips for the value. The default value is *'true'*.
+- `useTips` - displaying tips for the value. Default value is *'true'*.
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field
 
@@ -636,9 +636,9 @@ fields:
 where:
 
 - `caption` *[optional]* - field label
-- `name` - name of the field
-- `editable` *[optional][boolean]* - enables/disables the *envlist* field editing. The default value is *'false'*.
-- `valueField` *[optional][string]* - value from environment information, which will be sent to a server. The default value is *'domain'*. Available values are:
+- `name` *[optional]* - name of the field
+- `editable` *[optional][boolean]* - enables/disables the *envlist* field editing. Default value is *'false'*.
+- `valueField` *[optional][string]* - value from environment information, which will be sent to a server. Default value is *'domain'*. Available values are:
     - *iconCls* - CSS class
     - *isRunning* - checking whether environment status is *running*
     - *shortdomain* - short environment domain name (without platform URL)
@@ -868,7 +868,7 @@ where:
 
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field
-- `markup` - value to initialize the field's display. The default value is *'undefined'*.
+- `markup` - value to initialize the field's display. Default value is *'undefined'*.
 
 ### spinner
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.
@@ -949,7 +949,7 @@ where:
 - `caption` *[optional]* - field label
 - `min` - minimum spinner value
 - `max` - maximum spinner value
-- `editable` *[optional] [boolean]* - enables/disables editing the *numberpicker* field. The default value is *'false'*.
+- `editable` *[optional] [boolean]* - enables/disables editing the *numberpicker* field. Default value is *'false'*.
 
 ### hostpicker
 (*host-picker* is an alias)
@@ -985,8 +985,8 @@ where:
 
 - `name` *[optional]* - name of the field
 - `caption` *[optional]* - field label
-- `editable` *[optional] [boolean]* - enables/disables editing the *envlist* field. The default value is *'false'*.
-- `valueField` *[optional][string]* - value from environment information, which will be sent to a server. The default value is *'domain'*. Available values are:
+- `editable` *[optional] [boolean]* - enables/disables editing the *envlist* field. Default value is *'false'*.
+- `valueField` *[optional][string]* - value from environment information, which will be sent to a server. Default value is *'domain'*. Available values are:
     - *iconCls* - CSS class
     - *isRunning* - checking whether environment status is *running*
     - *shortdomain* - short environment domain name (without platform URL)
@@ -1022,13 +1022,14 @@ where:
 
 - `name` *[optional]* - name of the field
 - `caption` *[optional]* - field label
-- `value` *[boolean]* - enables/disables toggle value. The default value is *'false'*.
+- `value` *[boolean]* - enables/disables toggle value. Default value is *'false'*.
 
 ## Dynamic filling of the manifest fields
 Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit*  *onBeforeInstall*](/creating-manifest/events/#onbeforeinit-onbeforeinstall) events.
 
 ## Target Nodes
 Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.                                
+
 Filtering for *targetNodes* can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.
 @@@
 ```yaml
@@ -1249,13 +1250,13 @@ buttons:
 where:
 
 - `buttons` - button parameters array
-- `confirmText` *[optional]* - custom confirmation text for users. The default value is *'Are you sure?'*.
+- `confirmText` *[optional]* - custom confirmation text for users. Default value is *'Are you sure?'*.
 
 It will be displayed after clicking the appropriate button for an add-on. According to the code above, the text will be the following.
 
 ![Confirm](/img/Confirm.jpg)
 
-- `loadingText` *[optional]* - UI text to be displayed during loading and applying changes. The default value is *'Applying...'*.
+- `loadingText` *[optional]* - UI text to be displayed during loading and applying changes. Default value is *'Applying...'*.
 
 ![LoadingText](/img/LoadingText.jpg)
 
@@ -1325,7 +1326,7 @@ where:
 
 - `settings` - custom form ID. Default is *'main'*.
 - `title` - custom dialog title. If absent, *caption* will be applied.
-- `submitButtonText` - text for submission button in the opened dialog. The default value is *'Apply'*.
+- `submitButtonText` - text for submission button in the opened dialog. Default value is *'Apply'*.
 
 ![SubmitButtonText](/img/SubmitButtonText.jpg)
 

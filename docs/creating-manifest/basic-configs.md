@@ -147,7 +147,7 @@ The following parameters are available for Docker nodes only:
 - `volumes` *[optional]* - Docker node volumes               
 - `volumeMounts` *[optional]* - Docker external volumes mounts                             
 - `cmd` *[optional]* - Docker run configs                            
-- `entrypoint` *[optional]* - Docker entry points  
+- `entrypoint` *[optional]* - Docker entry points
 <!-- startService section -->
 - `startService` *[optional]* - defines whether to run defined service or not. By default false
 
@@ -196,6 +196,7 @@ If multiple regions are available, the environment will be created at one that i
 -   specifying filter conditions (described below) in the **targetRegions** parameter within JPS manifest
 
 !!! note
+
     In case both options (*targetRegions* and *region*) are added to the manifest, the *region* option will be ignored.
 
 The *targetRegions* option has multiple additional parameters for filtering the regions:
@@ -222,6 +223,7 @@ The *targetRegions* option has multiple additional parameters for filtering the 
     *“targetRegions”: {“isActive”: “f.\*” }*   
     *“targetRegions”: { “displayName”: [".\*O.\*", “.\*A.\*”, “.\*P.\*”] }* 
 <!-- RegionFiltering section -->
+
 
 <!--##Docker Actions-->
 ###Nodes Actions
@@ -747,11 +749,13 @@ startPage: ${env.url}customDirectory/
 
 ###Skip Node Emails
 
-By default in Jelastic, a user is informed via email about adding new nodes into environments. In Cloud Scripting there is an ability set an option to skip these emails. For example: 
+In Jelastic platforms owner will be informed by email by default about adding new nodes into environments. These emails are related only to nodes where implemented reset password functionality (databases, Glassfish etc.).
+In Cloud Scripting there is an ability set an option to skip these emails.
+For example:
 @@@
 ```yaml
 type: install
-iname: skipNodeEmails
+name: skipNodeEmails
 nodes:
   nodeType: mysql5
 skipNodeEmails: true
@@ -767,6 +771,8 @@ skipNodeEmails: true
 }
 ```
 @@!
+
+
 ##Relative Links
 
 The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the <b>*baseUrl*</b> parameter or specified while <a href="https://docs.jelastic.com/environment-export-import" target="_blank">importing</a> a corresponding JPS file via the Jelastic dashboard.          
