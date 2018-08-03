@@ -39,7 +39,7 @@ This is the list of placeholders that you can use within the environment section
     - `domain` *[string]* - application domain
     - `protocol` *[string]* - protocol
     - `url` *[string]* - link to application (environment)
-    - `region` *[string]* - a region name where environemnt has been installed
+    - `region` *[string]* - a region name where environment has been installed
     - `displayName` *[string]* - application display name
     - `envName` *[string]* - short domain name (without hosting provider URL)
     - `shortdomain` *[string]* - short domain name (alias to `envName`)
@@ -447,7 +447,7 @@ where:
 
 **The First and the Last Array Elements** 
 
-- `{nodes.cp.first.(key)}` - array element with the the *'0'* index              
+- `{nodes.cp.first.(key)}` - array element with the *'0'* index              
 - `{nodes.sqldb.last.(key)}` - array element with the last ID in the array                      
 
 Here, <b>*key*</b> is the node parameter.                         

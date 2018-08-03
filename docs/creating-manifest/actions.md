@@ -93,7 +93,7 @@ cmd [tomcat6]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
 ```
 @@!
 
-The default `cmd` parameter is **commands**. It can be usefull to set a several commands in the same `cmd` action. For example:
+The default `cmd` parameter is **commands**. It can be useful to set a several commands in the same `cmd` action. For example:
 
 @@@
 ```yaml
@@ -277,7 +277,7 @@ nodeGroup: cp
 ```
 @@!
 
-There is an default parameter `method` for `api` action. This parameter is usefull while setting few api method in one `api` action. For example:
+There is an default parameter `method` for `api` action. This parameter is useful while setting few api method in one `api` action. For example:
 @@@
 ```yaml
 type: update
@@ -792,7 +792,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                   
 - `string` - node’s display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                                                        
 
-The action `setNodeDisplayName` has the default parameter called **displayName**. It is usefull to set display name for few node layers in the same `action`. For example:
+The action `setNodeDisplayName` has the default parameter called **displayName**. It is useful to set display name for few node layers in the same `action`. For example:
 @@@
 ```yaml
 type: update
@@ -846,7 +846,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                       
 - `number` - total number of nodes after the action is finished                                          
 
-The action `setNodeCount` has it own default parameter - **count**. It is usefull to set node count for few node layers in one action. For example:
+The action `setNodeCount` has it own default parameter - **count**. It is useful to set node count for few node layers in one action. For example:
 @@@
 ```yaml
 type: update
@@ -900,7 +900,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                                    
 - `true` or `false` - parameter that allows to attach or detach the external IP address                              
 
-The action `setExtIpEnabled` has  own default parameter *enabled*. It is usefull in case to set external IP address status for few nodes in the same `action`. For example:
+The action `setExtIpEnabled` has  own default parameter *enabled*. It is useful in case to set external IP address status for few nodes in the same `action`. For example:
 @@@
 ```yaml
 type: update
@@ -998,7 +998,7 @@ Available for all nodes
 @@@
 ```yaml
 restartContainers:
-  - nodeId: number or stirng
+  - nodeId: number or string
     nodeGroup: string
     nodeType: string
 ```
@@ -1386,7 +1386,7 @@ While execution custom action a local scope can consists of arguments if they pa
 
 
 ### assert
-Is an ability to check two any values and verify results in <a href="/troubleshooting/" target="_blank">console log</a>. One of the usefull case is checking response fields from previous action with expected values. Responses parameters can be compared with other parameters or with any hardcoded values.
+Is an ability to check two any values and verify results in <a href="/troubleshooting/" target="_blank">console log</a>. One of the useful case is checking response fields from previous action with expected values. Responses parameters can be compared with other parameters or with any hardcoded values.
 For example:
 @@@
 ```yaml
@@ -1925,7 +1925,7 @@ name: Return Action
 onInstall:
   return:
     type: success
-    message: Compute node unique identifer - ${nodes.cp.id}
+    message: Compute node unique identifier - ${nodes.cp.id}
 ```
 ```json
 {
@@ -1934,7 +1934,7 @@ onInstall:
   "onInstall": {
     "return": {
       "type": "success",
-      "message": "Compute node unique identifer - ${nodes.cp.id}"
+      "message": "Compute node unique identifier - ${nodes.cp.id}"
     }
   }
 }
@@ -1952,7 +1952,7 @@ name: Return Action
 onInstall:
   - return:
       type: success
-      message: Compute node unique identifer - ${nodes.cp.id}
+      message: Compute node unique identifier - ${nodes.cp.id}
   - restartNodes [cp]
 ```
 ```json
@@ -1962,7 +1962,7 @@ onInstall:
     "onInstall": [{
             "return": {
                 "type": "success",
-                "message": "Compute node unique identifer - ${nodes.cp.id}"
+                "message": "Compute node unique identifier - ${nodes.cp.id}"
             }
         },
         "restartNodes [cp]"
