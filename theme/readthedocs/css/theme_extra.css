@@ -64,6 +64,7 @@ h3, h4, h5, h6 {
 .rst-versions.rst-badge .rst-current-version {
     line-height: 8px;
     top: 46px;
+    padding: 0;
 }
 
 .rst-versions.shift-up .rst-other-versions {
