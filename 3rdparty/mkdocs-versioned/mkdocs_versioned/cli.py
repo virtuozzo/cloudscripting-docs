@@ -9,7 +9,8 @@ import logging
 from mkdocs.commands import build
 from mkdocs import config
 
-log = logging.getLogger('mkdocs.cli')
+# log = logging.getLogger('mkdocs.cli')
+log = logging.getLogger(__name__)
 
 config_file_help = "Provide a specific MkDocs config"
 strict_help = ("Enable strict mode. This will cause MkDocs to abort the build "
@@ -45,14 +46,12 @@ def _build(cfg, pathspec, tags, site_dir=None):
         }
     }
 
-    print(site_dir)
-
     if site_dir is not None:
         c['site_dir'] = site_dir
 
     try:
         cfg.load_dict(c)
-        build.build(cfg, clean_site_dir=True)
+        build.build(cfg)
     except Exception:
         log.exception("Failed to build '%s'", pathspec)
 
@@ -60,7 +59,7 @@ def _build(cfg, pathspec, tags, site_dir=None):
 @click.command()
 @click.option('--config-file', type=click.File('rb'), help=config_file_help)
 @click.option('--strict', is_flag=True, help=strict_help)
-@click.option('--site-dir', type=click.Path(), help=site_dir_help)
+@click.option('--site-dir', type=click.Path(), help=site_dir_help, default='./site/')
 @click.option('--tags', '-t', multiple=True)
 @click.option('--default', '-d', default='master')
 @click.option('--latest', '-l', default='master')
@@ -72,15 +71,17 @@ def build_command(config_file, strict, site_dir, tags, default, latest):
 #    cli.configure_logging(level=logging.INFO)
     g = Git()
     tags = tags or g.tag().splitlines()
-    print(g)
     log.info("Building %s to /", default)
-    g.checkout(default)
+    # g.checkout(default)
+
+    print("Building %s to /", default)
 
     _build(_load_config(config_file, strict, site_dir), default, tags)
-    print("Building %s to /latest", latest)
-    log.info("Building %s to /latest", latest)
-    g.checkout(default)
-    _build(_load_config(config_file, strict, site_dir), latest, tags, 'latest')
+
+    # print("Building %s to /latest", latest)
+    # log.info("Building %s to /latest", latest)
+    # g.checkout(default)
+    # _build(_load_config(config_file, strict, site_dir), latest, tags, 'latest')
 
     for tag in sorted(tags):
 
@@ -94,4 +95,4 @@ def build_command(config_file, strict, site_dir, tags, default, latest):
         log.info("Building %s to /%s", tag, "site/" + site_dir)
         _build(_load_config(config_file, strict, site_dir), tag, tags, "site/" + site_dir)
 
-    g.checkout('master')
+    g.checkout(default)
