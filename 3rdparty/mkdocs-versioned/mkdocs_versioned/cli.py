@@ -72,9 +72,8 @@ def build_command(config_file, strict, site_dir, tags, default, latest):
     g = Git()
     tags = tags or g.tag().splitlines()
     log.info("Building %s to /", default)
-    # g.checkout(default)
-
     print("Building %s to /", default)
+    # g.checkout(default)
 
     _build(_load_config(config_file, strict, site_dir), default, tags)
 
@@ -89,10 +88,12 @@ def build_command(config_file, strict, site_dir, tags, default, latest):
 
         if not os.path.exists("mkdocs.yml"):
             log.warning("Unable to build %s, as no mkdocs.yml was found", tag)
+            print("Unable to build %s, as no mkdocs.yml was found", tag)
             continue
 
         site_dir = "{0}".format(tag)
         log.info("Building %s to /%s", tag, "site/" + site_dir)
+        print("Building %s to /%s", tag, "site/" + site_dir)
         _build(_load_config(config_file, strict, site_dir), tag, tags, "site/" + site_dir)
 
     g.checkout(default)

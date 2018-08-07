@@ -247,7 +247,6 @@ def build_pages(config, dirty=False):
 
 def build(config, live_server=False, dirty=False):
     """ Perform a full site build. """
-    print('in build')
     # Run `config` plugin events.
     config = config['plugins'].run_event('config', config)
 
