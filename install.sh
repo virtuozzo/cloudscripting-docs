@@ -6,7 +6,7 @@ declare -a py_dependencies=(
     "${DIR}/3rdparty/markdown"
     "${DIR}/3rdparty/pymdown-extensions"
     "${DIR}/3rdparty/mkdocs"
-    "${DIR}/3rdparty/mkdocs_versioned"
+    "${DIR}/3rdparty/mkdocs-versioned"
     "${DIR}/plugins/markdown-tabs"
 )
 
