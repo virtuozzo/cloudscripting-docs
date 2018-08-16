@@ -66,7 +66,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 
 - *storage*                   
 
-- *vps*                 
+- *vds* (for VPS)                 
 
 - *build*                           
 
@@ -213,7 +213,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 
 - **nosqldb** (for NoSQL databases) - *mongodb, mongodb2, couchdb, redis, redis3, cassandra, cassandra2, cassandra3, neo4j, neo4j2-1, neo4j3, orientDB, orientDB2, Percona*                   
 
-- **vps** (for virtual private servers) - *centos6, centos7, ubuntu16-04, windows2008, windows2012*                          
+- **vds** (for virtual private servers, VPS) - *centos6, centos7, ubuntu16-04, windows2008, windows2012*                          
 
 - **cache** (for a cache server) - *memcached*                         
 
