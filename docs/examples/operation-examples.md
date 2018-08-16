@@ -1068,7 +1068,7 @@ return jelastic.env.control.CreateEnvironment(sAppid, sSession, sActionkey, oEnv
 
 ##Install Add-on inside Manifest
 
-This manifest provides an environment, that is handled with the help of **Apache PHP** aplication server, is powered by **PHP 7** engine version and has external IP address attached. Subsequently, Public IP address can be detached with the help of the **Add-on** button.
+This manifest provides an environment, that is handled with the help of **Apache PHP** application server, is powered by **PHP 7** engine version and has external IP address attached. Subsequently, Public IP address can be detached with the help of the **Add-on** button.
 ``` json
 {
   "type": "install",
