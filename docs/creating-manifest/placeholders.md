@@ -401,7 +401,7 @@ where:
 
 **The First and the Last Array Elements** 
 
-- `{nodes.cp.first.(key)}` - array element with the the *'0'* index              
+- `{nodes.cp.first.(key)}` - array element with the *'0'* index              
 - `{nodes.sqldb.last.(key)}` - array element with the last ID in the array                      
 
 Here, <b>*key*</b> is the node parameter.                         
