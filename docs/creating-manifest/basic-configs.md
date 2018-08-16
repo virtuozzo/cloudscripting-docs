@@ -89,7 +89,7 @@ success: object/string
 - `name` *[required]* - JPS custom name
 - `logo` *[optional]* - JPS image that will be displayed within custom add-ons
 - `description` - text string that describes a template. This section should always follow the template format version section.
-- `homepage` *[optional]* - link to any external aplication source
+- `homepage` *[optional]* - link to any external application source
 - `categories` - categories available for manifests filtering                                                                        
 - `baseUrl` *[optional]* - custom <a href="#relative-links" target="_blank">relative links</a>                                       
 - `settings` *[optional]* - custom form with <a href="/creating-manifest/visual-settings/" target="_blank">predefined user input elements</a>                        
@@ -572,7 +572,7 @@ There are a list of JPS blocks which can use resources from **related** links:
 - `logo` - JPS application image is shown while jps installation
 - `script` - <a href="/creating-manifest/actions/#script" target="_blank">action</a>,= for executing javascript and java scripts
 - `description` - information about JPS which is shown before install process
-- `success` - message after successfull application installation
+- `success` - message after successful application installation
  
 The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="/creating-manifest/actions/#cmd" target="_blank">*cmd*</a> and <a href="/creating-manifest/actions/#script" target="_blank">*script*</a> actions).                 
 
