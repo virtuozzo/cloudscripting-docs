@@ -89,7 +89,7 @@ where:
         * `slider` - [slider element](#slider) as a form field
         * `envlist` - [list of environments](#envlist) available for a corresponding account
         * `regionlist` - drop-down menu with a [regions](#regionlist) list
-        * `popupselector` - new [pop-up window](#popupselector) via POST request with posibility to pass additional parameters
+        * `popupselector` - new [pop-up window](#popupselector) via POST request with possibility to pass additional parameters
         * `popup-selector` - alias to `popupselector`
         * `displayfield` - [text field](#displayfield) intended for displaying text
         * `spacer` - alias to `displayfield`
