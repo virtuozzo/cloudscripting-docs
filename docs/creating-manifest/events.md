@@ -16,7 +16,7 @@ Each event triggers a particular action on the required application's lifecycle 
 
 Events can be filtered by <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a>, and <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the action is executed only when the called event matches specified filtering rules. Otherwise, if no filtering rules are specified, every event is listened by all environment entities.
 
-The following example describes the events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event). Here, filtering by the compute node group (*[cp]*) is set so that the action is executed after compute nodes are scaled out. The *nodeType* filtering is set so that the action is executed after **Apache 2** nodes are restarted. The *nodeID* filtering is set so that the action is executed after a password from the first compute node in the layer is reseted.
+The following example describes the events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event). Here, filtering by the compute node group (*[cp]*) is set so that the action is executed after compute nodes are scaled out. The *nodeType* filtering is set so that the action is executed after **Apache 2** nodes are restarted. The *nodeID* filtering is set so that the action is executed after a password from the first compute node in the layer is reset.
 
 @@@
 ```yaml
@@ -227,7 +227,7 @@ These monitoring triggers are based on the usage of the following resource types
 - **Disk I/O** - disk input/output rate
 - **Disk IOPS** - disk input/output rate (in operations per second)
 
-The units of measurement are *PERCENTAGE* and *SPECIFIC*. The second value is availabe only for **NET_EXT** and **NET_EXT_OUT** resource types.
+The units of measurement are *PERCENTAGE* and *SPECIFIC*. The second value is available only for **NET_EXT** and **NET_EXT_OUT** resource types.
 
 The following example illustrates the subscription to the *onAlert* event. Here, the *log* action is executed if one of the triggers within the compute (*[cp]*) layer is invoked.
 
@@ -609,7 +609,7 @@ The event is carried out before updating the VCS project. For a detailed guidanc
     - `appid` - environment unique appid
     - `envName` - environment unique identifier
     - `context` - project context name
-    - `env` - environemnt short domain name
+    - `env` - environment short domain name
     - `nodeGroup` *[optional]* - predefined node group
     - `nodegroup` *[optional]* - same value as `nodeGroup`
     - `nodeid` *[optional]* - node unique identifier
@@ -628,7 +628,7 @@ The event is carried out after updating the VCS project. For a detailed guidance
     - `appid` - environment unique appid
     - `envName` - environment unique identifier
     - `context` - project context name
-    - `env` - environemnt short domain name
+    - `env` - environment short domain name
     - `nodeGroup` *[optional]* - predefined node group
     - `nodegroup` *[optional]* - same value as `nodeGroup`
     - `nodeid` *[optional]* - node unique identifier
@@ -649,8 +649,8 @@ The event is executed before setting cloudlet count, which implies changing the 
     - `appid` - environment unique appid
     - `nodeGroup` - predefined node group
     - `nodegroup` - same value as `nodeGroup`
-    - `env` - environemnt short domain name
-    - `name` - environemnt display name
+    - `env` - environment short domain name
+    - `name` - environment display name
 - `${event.response.}`: parameters are absent
 
 ### onAfterSetCloudletCount
@@ -666,8 +666,8 @@ The event is executed after setting cloudlet count, which implies changing the n
     - `appid` - environment unique appid
     - `nodeGroup` - predefined node group
     - `nodegroup` - same value as `nodeGroup`
-    - `env` - environemnt short domain name
-    - `name` - environemnt display name
+    - `env` - environment short domain name
+    - `name` - environment display name
 - `${event.response.}`:
     - `result` - result code. The successful action result is *'0'*.
 
@@ -706,7 +706,7 @@ The event is related to starting environment (executed from the Jelastic dashboa
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
-    - `env` - environemnt short domain name
+    - `env` - environment short domain name
 - `${event.response.}` - parameters are absent
 
 ### onAfterStart
