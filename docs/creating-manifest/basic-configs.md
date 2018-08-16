@@ -43,12 +43,14 @@ categories: array
 baseUrl: string
 settings: object
 targetRegions: object
+nodeGroupAlias: object
 nodes: array
 engine: string
 region: string
 ssl: boolean
 ha: boolean
 displayName: string
+skipNodeEmails: boolean
 appVersion: string
 onInstall: object/string
 startPage: string
@@ -69,12 +71,14 @@ success: object/string
   "baseUrl": "string",
   "settings": "object",
   "targetRegions" : "object",
+  "nodeGroupAlias": "object",
   "nodes": "array",
   "engine": "string",
   "region": "string",
   "ssl": "boolean",
   "ha": "boolean",
   "displayName": "string",
+  "skipNodeEmails": "boolean",
   "appVersion": "string",
   "onInstall": "object/array",
   "startPage": "string",
@@ -100,12 +104,13 @@ success: object/string
     - `name` *[optional]* [string] - text or JavaScript RegExp argument to filtering region's by name
 - `region` *[optional]* - region, where an environment will be installed. Option will be used only with **type** `install`.
 `targetRegions` has a higher priority than `region`. So in case when both of options have been set regions will be filtered according to the `targetRegions` rules.
+- `nodeGroupAlias` *[optional]* - an ability to set aliases for existed in environments *nodeGroup*
 - `nodes` - an array to describe information about nodes for an installation. Option will be used only with **type** `install`.
 - `engine` *[optional]* - engine <a href="/creating-manifest/selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
-- `region` *[optional]* - region, where an environment will be installed. Required option for **type** `install`.
-- `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with `type` *install* mode.
-- `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with `type` *install* mode.
+- `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with **type** `install` mode.
+- `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with **type** `install` mode.
 - `displayName` *[optional]* - display name for an environment. Required option for **type** `install`.
+- `skipNodeEmails` *[optional]* - an ability to skip sending emails about creating nodes. Emails are related only to nodes where implemented reset password functionality
 - `appVersion` *[optional]* - custom version of an application
 - `onInstall` *[optional]* - <a href="/creating-manifest/events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
 - `startPage` *[optional]* - path to be opened via the **Open in browser** button through a successful installation message
@@ -124,8 +129,8 @@ The list of available parameters are:
 
 - `nodeType` *[required]* - the defined node type. The list of available stacks are <a href="/creating-manifest/selecting-containers/#supported-stacks" target="_blank">here</a>. 
 - `cloudlets` *[optional]* - a number of dynamic cloudlets. The default value is 0. `flexible` is an alias. 
-- `fixedCloudlets` *[optional]* - a mount of fixed cloudlets. The default value is 1.
-- `count` *[optional]* - a mount of nodes in one group. The default value is 1.
+- `fixedCloudlets` *[optional]* - amount of fixed cloudlets. The default value is 1.
+- `count` *[optional]* - amount of nodes in one group. The default value is 1.
 - `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any custom node group.
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.
@@ -143,7 +148,80 @@ The following parameters are available for Docker nodes only:
 - `volumeMounts` *[optional]* - Docker external volumes mounts                             
 - `cmd` *[optional]* - Docker run configs                            
 - `entrypoint` *[optional]* - Docker entry points  
+<!-- startService section -->
+- `startService` *[optional]* - defines whether to run defined service or not. By default false
 
+### startService Parameter
+
+The *startService* flag is responsible for a service launch and its addition to the autoload while container creation. By default, this parameter is enabled but can be deactivated by changing the *startService* value to false.
+
+The *startService* flag works only for custom dockers and for dockerized templates, and, accordingly, does not affect the cartridges and legacy native templates.
+
+##### Conditions that Define Service Behavior
+
+The service doesn’t start as it is not added to autoload in the following cases:
+
+-   the [RestartContainersByGroup](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartContainersByGroup) or [RestartContainer](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartContainer) methods are called through the API
+
+-   the environment is stopped/started
+
+-   the environment is cloned
+
+-   the environment is created with *startServiceOnCreation=false*
+
+-   the Restart button is pressed at the dashboard calling the [RestartContainersByGroup](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartContainersByGroup) and [RestartContainer](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartContainer) API methods (only for managed dockerized containers)
+
+
+You can force adding the service to autoload by calling the *ExecDockerRunCmd* method
+
+
+The service starts if:
+
+-   the container is redeployed (starts at every boot time)
+
+-   the container is scaled (starts at the newly added nodes)
+
+-   the Restart button is pressed at the dashboard calling the [RrestartNodesByGroup](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartNodesByGroup) and [RestartNodeById](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartNodeById) API methods (only for native Docker containers)
+
+<!-- end of startService section -->
+<!-- RegionFiltering section -->
+### Regions Filtering
+
+Jelastic provides a possibility to use multiple availability regions within a single PaaS installation. The number of hardware regions depends on user account and hosting provider. 
+
+If multiple regions are available, the environment will be created at one that is chosen based on the following filtering rules:  
+
+-   taking the default region according to the user account settings
+-   stating a specific region name in the **region** parameter within JPS manifest
+-   specifying filter conditions (described below) in the **targetRegions** parameter within JPS manifest
+
+!!! note
+    In case both options (*targetRegions* and *region*) are added to the manifest, the *region* option will be ignored.
+
+The *targetRegions* option has multiple additional parameters for filtering the regions:
+
+-   `name` *[optional]{string}* - text or JavaScript RegExp argument to filter regions by name that can be found in JCA -> Hardware Nodes -> Name column :   
+*“targetRegions”: { “name”: “hn01.azure-cus” }*  
+-   `uniqueName` *[optional]{string}* - name alias :   
+*“targetRegions”: { “uniqueName”: “hn01.azure-cus” }*
+-   `displayName` *[optional]{string}* - text or JavaScript RegExp argument to filter regions by name that is displayed at the dashboard:   
+*“targetRegions”: { “displayName”: “Azure CUS” }*
+-   `isActive` *[optional]{boolean}* - filters regions by logical values true or false, according to its status in JCA->Regions->Status column :   
+*“targetRegions”: { “isActive”: “false” }*
+-   `isRegionMigrationAllowed` *[optional]{boolean}* - filters regions by logical values true or false, according to the possibility to enable live migration:   
+*“targetRegions”: { “isRegionMigrationAllowed”: “true” }*
+-   `region` *[optional]{number}* - filters by region’s id:   
+*“targetRegions”: { “region”: “1” }*
+-   `vzTypes` *[optional]{string array}* - text or JavaScript RegExp argument to filter region’s by virtualization type: “pvc”, “vz6”, “pcs-storage”, “vz7”, where “pvc” for Parallels Virtuozzo Containers, “vz6” for Virtuozzo 6, “pcs-storage” for Parallels Cloud Storage, “vz7” for Virtuozzo 7:   
+*“targetRegions”: { “vzTypes”: “pvc” }*
+-   `type` *[optional]{string array}* - vzTypes alias:   
+*“targetRegions”: { “type”: “pvc” }*
+
+!!! note
+    All fields in filter could be passed as an Array of Strings or String. Each string could be a valid JavaScript RegExp argument. Even boolean values can be as RegExp argument. Examples:   
+    *“targetRegions”: {“isActive”: “f.\*” }*   
+    *“targetRegions”: { “displayName”: [".\*O.\*", “.\*A.\*”, “.\*P.\*”] }* 
+<!-- RegionFiltering section -->
 
 <!--##Docker Actions-->
 ###Nodes Actions
@@ -187,8 +265,7 @@ nodes:
 ```
 @@!
 
-**Volumes**
-
+**Volumes**<br>
 This field represents a string array:
 @@@
 ```yaml
@@ -212,7 +289,7 @@ This field represents a string array:
 ```
 @@!
 
-**VolumeMounts**
+**VolumeMounts**<br>
 This parameter is an object. It can be set like within the example below:
 @@@
 ```yaml
@@ -417,7 +494,7 @@ where:
 - *"storage:ro"* - like { sourceNodeGroup : "storage", readOnly : true }
 -->
 
-**Environment Variables**
+#### Environment Variables
 
 Docker environment <a href="https://docs.jelastic.com/docker-variables" target="_blank">variable</a> is an optional topology object. The *env* instruction allows to set the required environment variables to specified values. 
 @@@
@@ -450,7 +527,107 @@ nodes:
 ```
 @@!
 
-**Links**
+Environment variables can manage to control nodes availability from outside to the platform. <a href="https://docs.jelastic.com/setting-custom-firewall" target="_blank">Jelastic Container Firewall</a> feature was implemented in Jelastic version 5.4 and new firewall rules can be set during creating new environment.<br>
+ The reserved environment variable for this option is - **JELASTIC_PORTS**. This parameter defines which ports will be added in *inbound* rules. All rules in this case will be added for both protocols (**TCP/UDP**).
+
+@@@
+```yaml
+jpsType: install
+name: JELASTIC_PORTS env variable
+nodes:
+  nodeType: apache2
+  nodeGroup: cp
+  env:
+    JELASTIC_PORTS: 3306, 33061, 33062
+```
+```json
+{
+  "jpsType": "install",
+  "name": "JELASTIC_PORTS env variable",
+  "nodes": {
+    "nodeType": "apache2",
+    "nodeGroup": "cp",
+    "env": {
+      "JELASTIC_PORTS": "3306, 33061, 33062"
+    }
+  }
+}
+```
+@@!
+All ports for output traffic are opened by default.
+
+Another one reserved environment variables is **ON_ENV_INSTALL**. This variable is responsible for executing new JPS installation after new nodeGroup (layer of nodes) has been created.<br>
+This variable for **nodeGroup** can be set in JPS or via dashboard. More info about Docker configuration is Jelastic dashbboard <a href="https://docs.jelastic.com/docker-configuration" target="_blank">here</a>.
+
+!!! note
+    > By default in manifest from the **ON_ENV_INSTALL** variable *\${settings.nodeGroup}* placeholder is defined. It will be a nodeGroup value where this manifest is executed.
+
+**ON_ENV_INSTALL** can consists of manifest URL (string) or an object.<br>
+URL is a external link for manifest with any *type* - `install` or `update`. An object could has two options:
+
+ - `jps` - link, source of external manifest
+ - `settings` - a list of any parameters which will be defined in external manifest in *\${settings.\*}* scope.
+
+In the first example **ON_ENV_INSTALL** is defined like simple URL:
+@@@
+```yaml
+type: install
+name: ON ENV INSTALL
+nodes:
+  nodeType: nginxphp
+  env:
+    ON_ENV_INSTALL: http://example.com/manifest.jps
+```
+```json
+{
+  "type": "install",
+  "name": "ON ENV INSTALL",
+  "nodes": {
+    "nodeType": "nginxphp",
+    "env": {
+      "ON_ENV_INSTALL": "http://example.com/manifest.jps"
+    }
+  }
+}
+```
+@@!
+
+Another one example displays an ability to set any custom options which can be used in executed manifest from variable:
+
+@@@
+```yaml
+type: install
+name: ON ENV INSTALL
+nodes:
+  nodeType: nginxphp
+  env:
+    ON_ENV_INSTALL:
+      jps: http://example.com/manifest.jps
+      settings:
+        customSetting: mySetting
+```
+```json
+{
+  "type": "install",
+  "name": "ON ENV INSTALL",
+  "nodes": {
+    "nodeType": "nginxphp",
+    "env": {
+      "ON_ENV_INSTALL": {
+        "jps": "http://example.com/manifest.jps",
+        "settings": {
+          "customSetting": "mySetting"
+        }
+      }
+    }
+  }
+}
+```
+@@!
+In the example above in *manifest.jps* a **\${settings.customSetting}** placeholder is available with value *mySetting*.
+Any number of custom parameters in *settings* can be set.
+
+#### Links
 
 Docker <a href="https://docs.jelastic.com/docker-links" target="_blank">links</a> option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
 <br>
@@ -517,6 +694,79 @@ For example:
 - variable *MYSQL_ROOT_PASSWORD* from *sql* node is *DB_MYSQL_ROOT_PASSWORD* in *cp* node   
 - variable *IP_ADDRESS* from *memcached* node is *MEMCACHED_IP_ADDRESS* in *cp* node
 
+###Entry Points
+There is an ability to set custom entry points - the button *Open in Browser*, which can be clicked when JPS with type `install` is installed.
+![open-in-browser.png](/img/open-in-browser.png)
+
+Entry Points can be set in `startPage` option. The default `startPage` value is an installed environment URL (even it hasn't been defined).
+Entry Points can include any general placeholders - which have been defined during environment installation.
+
+For example:
+@@@
+```yaml
+type: install
+baseUrl: https://docs.cloudscripting.com/
+nodes:
+  nodeType: apache
+  cloudlets: 8
+startPage: ${baseUrl}creating-manifest/basic-configs/
+```
+```json
+{
+  "type": "install",
+  "baseUrl": "https://docs.cloudscripting.com/",
+  "nodes": {
+    "nodeType": "apache",
+    "cloudlets": 8
+  },
+  "startPage": "${baseUrl}creating-manifest/basic-configs/"
+}
+```
+@@!
+
+The case where any custom directory of created environment can be opened in *Open in Browser* button:
+@@@
+```yaml
+type: install
+nodes:
+  nodeType: apache
+  cloudlets: 8
+startPage: ${env.url}customDirectory/
+```
+```json
+{
+  "type": "install",
+  "nodes": {
+    "nodeType": "apache",
+    "cloudlets": 8
+  },
+  "startPage": "${env.url}customDirectory/"
+}
+```
+@@!
+
+###Skip Node Emails
+
+By default in Jelastic, a user is informed via email about adding new nodes into environments. In Cloud Scripting there is an ability set an option to skip these emails. For example: 
+@@@
+```yaml
+type: install
+iname: skipNodeEmails
+nodes:
+  nodeType: mysql5
+skipNodeEmails: true
+```
+```json
+{
+  "type": "install",
+  "name": "skipNodeEmails",
+  "nodes": {
+    "nodeType": "mysql5"
+  },
+  "skipNodeEmails": true
+}
+```
+@@!
 ##Relative Links
 
 The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the <b>*baseUrl*</b> parameter or specified while <a href="https://docs.jelastic.com/environment-export-import" target="_blank">importing</a> a corresponding JPS file via the Jelastic dashboard.          
@@ -579,10 +829,33 @@ If installation is being run from <a href="https://github.com/jelastic-jps" targ
 There are a list of JPS blocks which can use resources from **related** links:
 
 - `logo` - JPS application image is shown while jps installation
-- `script` - <a href="/creating-manifest/actions/#script" target="_blank">action</a>,= for executing javascript and java scripts
+- `script` - <a href="/creating-manifest/actions/#script" target="_blank">action</a>, for executing javascript and java scripts
 - `description` - information about JPS which is shown before install process
 - `success` - message after successful application installation
- 
+
+Relative links in these blocks check a file availability by URL. If file by defined link is absent (404 response code) a simple text will be displayed in that blocks.
+
+For example:
+
+@@@
+```yaml
+type: update
+name: Relative Path Detection
+baseUrl: https://example.com/
+success: text.txt
+```
+```json
+{
+  "type": "update",
+  "name": "Relative Path Detection",
+  "baseUrl": "https://example.com/",
+  "success": "text.txt"
+}
+```
+@@!
+
+In the example above the text *text.txt* will be displayed in success email notification and in success window in Jelastic dashboard when JPS installation will be finished. If URL **https://example.com/text.txt** has any content then that content will be displayed.
+
 The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="/creating-manifest/actions/#cmd" target="_blank">*cmd*</a> and <a href="/creating-manifest/actions/#script" target="_blank">*script*</a> actions).                 
 
 For example:

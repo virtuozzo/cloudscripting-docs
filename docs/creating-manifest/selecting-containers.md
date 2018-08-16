@@ -140,6 +140,7 @@ There are three alternative approaches, provided to specify a target container i
 - specifying a target container within a name of an action (**node selectors**)     
 
 Through the following example, a new file is created in the compute layer (<em>[cp]</em>) and a new directory is created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers, and container with the Node ID <em>123</em>. Actions for the specified containers are executed in the declared order.
+
 @@@
 ```yaml
 - createfile [cp]:
@@ -163,6 +164,32 @@ Through the following example, a new file is created in the compute layer (<em>[
 ]
 ```
 @@!
+
+A defined action in manifest could be executed in all nodes of all layers within an environment where JPS is executed.
+For example:
+
+@@@
+```yaml
+type: update
+name: cmd in all nodes
+onInstall:
+  cmd [*]: echo hello world!
+```
+```json
+{
+  "type": "update",
+  "name": "cmd in all nodes",
+  "onInstall": {
+    "cmd [*]": "echo hello world!"
+  }
+}
+```
+@@!
+
+There is a console log screen which displays that `cmd` action has been executed in all nodes by unique identifier one by one:
+
+![wildcard-mask](/img/wildcard-mask.jpg)
+
 - specifying a target container next to the performed action                                       
 
 Through the following example, the <a href="/creating-manifest/actions/#createfile" target="_blank">**createFile**</a> and <a href="/creating-manifest/actions/#createdirectory" target="_blank">**createDirectory**</a> actions are applied to the specified <em>nodeGroup</em>, namely the compute layer (<em>[cp]</em>).
@@ -195,7 +222,39 @@ Learn more on this parameter within the <a href="/creating-manifest/actions/#cus
 
 !!! note 
     <b>Node selectors</b> have higher priority than containers specified next to the action, but lower than parameters set in the *actions* object.   
-    If you specify all three parameters (*nodeId*, *nodeGroup*, and *nodeType*), actions for indicated containers are executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.   
+    If you specify all three parameters (*nodeId*, *nodeGroup*, and *nodeType*), actions for indicated containers are executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.
+
+## NodeGroup Aliases
+
+An existed nodes in environments can be targeted not only by their defined *nodeGroup*s and by aliases. That aliases could be defined in manifests like in example:
+@@@
+```yaml
+type: update
+name: Alias for nodeGroup
+nodeGroupAlias:
+  cp: sqldb2
+onInstall:
+  log: ${nodes.sqldb2.id}
+```
+```json
+{
+  "type": "update",
+  "name": "Alias for nodeGroup",
+  "nodeGroupAlias": {
+    "cp": "sqldb2"
+  },
+  "onInstall": {
+    "log": "${nodes.sqldb2.id}"
+  }
+}
+```
+@@!
+
+In the example above JPS add-on with `type` *update* could be applied on any existing environment. In this case all compute nodes with **nodeGroup** *cp* can be called by aliases (Nodes with **nodeGroup** *sqldb2* are absent in environment). So the example result is displayed in the screen:
+![nodeGroup-alias](/img/nodeGroupAlias.png)
+
+!!! note
+    `nodeGroupAlias` option works only within current JPS manifest.
 
 ## Supported Stacks                                  
 
@@ -207,11 +266,11 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 
 - **bl** (for load balancers) - *nginx, varnish, haproxy, apache-lb*                     
 
-- **cp** (for compute nodes) - *tomcat6, tomcat7, tomcat8, tomee, glassfish3, glassfish4, jetty6, jetty8, jetty9, jboss7, smartfox-server, powerdns, railo4, wildfly, wildfly9, wildfly10, springboot, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs, iis8*                         
+- **cp** (for compute nodes) - *tomcat6, tomcat7, tomcat8, tomee, glassfish3, glassfish4, jetty6, jetty8, jetty9, jboss7, smartfox-server, powerdns, railo4, wildfly, wildfly9, wildfly10, wildfly11, wildfly12, springboot, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs, iis8*                         
 
 - **sqldb** (for SQL databases) - *mysql5, mysql5-6, mariadb, mariadb10, postgres8, postgres9, mssql, mssqlweb, mssqlstd*                             
 
-- **nosqldb** (for NoSQL databases) - *mongodb, mongodb2, couchdb, redis, redis3, cassandra, cassandra2, cassandra3, neo4j, neo4j2-1, neo4j3, orientDB, orientDB2, Percona*                   
+- **nosqldb** (for NoSQL databases) - *mongodb, mongodb2, couchdb, redis, redis3, redis4, cassandra, cassandra2, cassandra3, neo4j, neo4j2-1, neo4j3, orientDB, orientDB2, Percona*                   
 
 - **vds** (for virtual private servers, VPS) - *centos6, centos7, ubuntu16-04, windows2008, windows2012*                          
 
@@ -226,13 +285,17 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 The Jelastic Platform supports the following software stacks:         
 
 - **Compute Nodes (cp):**                  
-    - *Java*                
+    - *Java*
+        - `tomcat` - *Dockerized Tomcat*
         - `tomcat6` - *Tomcat 6*                
         - `tomcat7` - *Tomcat 7*               
-        - `tomcat8` - *Tomcat 8*                       
+        - `tomcat8` - *Tomcat 8*
+        - `tomcat85` - *Tomcat 8.5*
+        - `tomcat9` - *Tomcat 9*
         - `tomee` - *TomEE*              
         - `glassfish3` - *GlassFish 3*             
-        - `glassfish4` - *GlassFish 4*                      
+        - `glassfish4` - *GlassFish 4*
+        - `glassfish` - *GlassFish 5*
         - `jetty6` - *Jetty 6*                                      
         - `jetty8` - *Jetty 8*                  
         - `jetty9` - *Jetty 9*        
@@ -242,7 +305,9 @@ The Jelastic Platform supports the following software stacks:
         - `railo4` - *Railo4 9*          
         - `wildfly` - *Wildfly 8*         
         - `wildfly9` - *Wildfly 9*                       
-        - `wildfly10` - *Wildfly 10* 
+        - `wildfly10` - *Wildfly 10*
+        - `wildfly11` - *Wildfly 11*
+        - `wildfly12` - *Wildfly 12*
         - `springboot` - *SpringBoot 1.x-2.x* 
     - *PHP*              
         - `apache2` - *Apache 2*                
@@ -271,6 +336,7 @@ The Jelastic Platform supports the following software stacks:
      - `couchdb` - *CouchDB*
      - `redis` - *Redis 2.8*
      - `redis3` - *Redis 3.2*
+     - `redis4` - *Redis 4.0*
      - `cassandra2` - *Cassandra 2*
      - `cassandra3` - *Cassandra 3*
      - `neo4j` - *Neo4j*
@@ -303,14 +369,14 @@ The Jelastic Platform supports the following software stacks:
 
 There is a list of `dokerized` supported Jelastic templates with their tags:
 
-|nodeType|`tomcat`|`tomee`|`apache2`|`nginxphp`|`nginx(lb)`|`mysql5`|
-|--------|--------|-------|---------|----------|-----------|--------|
-|**tag**|*6.0.45-jdk-1.6.0_45*<br>*6.0.45-jdk-1.7.0_79*<br>*6.0.45-jdk-1.8.0_102*<br>*7.0.73-jdk-1.8.0_102*<br>*7.0.73-jdk-1.6.0_45*<br>*7.0.73-jdk-1.7.0_79*<br>*8.5.5-jdk-1.7.0_79*<br>*8.5.5-jdk-1.8.0_102*|*7.0.1-jdk-1.7.0_79*<br>*7.0.1-jdk-1.8.0_102*|*2.4.6-php-5.3.29*<br>*2.4.6-php-5.4.45*<br>*2.4.6-php-5.5.38*<br>*2.4.6-php-5.6.28*<br>*2.4.6-php-7.0.13*<br>*2.4.6-php-7.1.0*|*1.10.1-php-5.3.29*<br>*1.10.1-php-5.4.45*<br>*1.10.1-php-5.5.38*<br>*1.10.1-php-5.6.28*<br>*1.10.1-php-7.0.10*<br>*1.10.1-php-7.0.13*<br>*1.10.1-php-7.1.0*|*1.10.1*|*5.7.14*|
+|nodeType|`tomcat`|`tomee`|`apache2`|`nginxphp`|`nginx(lb)`|
+|--------|--------|-------|---------|----------|-----------|
+|**tag**|*6.0.45-jdk-1.6.0_45*<br>*6.0.45-jdk-1.7.0_79*<br>*6.0.45-jdk-1.8.0_102*<br>*7.0.73-jdk-1.8.0_102*<br>*7.0.73-jdk-1.6.0_45*<br>*7.0.73-jdk-1.7.0_79*<br>*7.0.85-OpenJDK-1.7.0_161*<br>*7.0.85-OpenJDK-1.8.0_161*<br>*8.5.29-jdk-10*<br>*9.0.6-jdk-10*|*7.0.1-jdk-1.7.0_79*<br>*7.0.1-jdk-1.8.0_102*<br>*7.0.3-jdk-1.7.0_79*<br>*7.0.3-jdk-1.8.0_131*<br>*7.0.3-jdk-1.8.0_141*<br>*7.0.3-OpenJDK-1.7.0_141**<br>*7.0.3-OpenJDK-1.8.0_141*|*2.4.6-php-5.3.29*<br>*2.4.6-php-5.4.45*<br>*2.4.6-php-5.5.38*<br>*2.4.6-php-5.6.28*<br>*2.4.6-php-7.0.13*<br>*2.4.6-php-7.1.0*<br>*2.4.6-php-7.1.13*<br>*2.4.6-php-7.1.7*|*1.10.1-php-5.3.29*<br>*1.10.1-php-5.4.45*<br>*1.10.1-php-5.5.38*<br>*1.10.1-php-5.6.28*<br>*1.10.1-php-7.0.10*<br>*1.10.1-php-7.0.13*<br>*1.10.1-php-7.1.0*<br>*1.12.2-php-7.1.13*<br>*1.12.2-php-7.2.1*|*1.10.1*<br>*1.10.3*<br>*1.12.2*|
 
 
-|nodeType|`mysql5-6`|`mariadb`|`mariadb10`|`memcached`|`maven3`|`varnish`|
-|--------|----------|---------|-----------|-----------|--------|---------|
-|**tag**|*5.6.32*|*5.5.51*|*10.1.20*|*memcached*|*3.3.9-jdk-1.7.0_79*<br>*3.3.9-jdk-1.8.0_102*|*4.1.5*
+|nodeType|`mysql`|`mariadb-dockerized`|`memcached`|`maven3`|`varnish`|
+|--------|----------|-----------|-----------|--------|---------|
+|**tag**|*5.6.32*<br>*5.6.36*<br>*5.6.37*<br>*5.7.14*<br>*5.7.18*<br>*5.7.19*|*5.5.56*<br>*5.5.57*<br>*5.5.58*<br>*10.1.20*<br>*10.1.24*<br>*10.2.7*<br>*10.2.8*<br>*10.2.12*|*1.4.24*<br>*1.5.4*<br>*1.5.6*|*3.3.9-jdk-1.7.0_79*<br>*3.3.9-jdk-1.8.0_102*<br>*3.5.0-jdk-1.8.0_152*<br>*3.5.2-jdk-9.0.4*<br>*3.5.2-jdk-10*|*4.1.5*<br>*5.2.1*
 
 ### Engine Versions
 
@@ -318,25 +384,25 @@ The following section deals with the supported engine versions and their availab
 
 **Java Stacks**
 
-|nodeType|`tomcat6`|`tomcat7`|`tomcat8`|`tomee`|`glassfish3`|`glassfish4`|`jetty6`|`jetty8`|`jetty9`|
-|------------|------|---------|---------|-------|------------|------------|--------|--------|--------|
-|engine|*java6*<br>*java7*<br>*java8*|*java6*<br>*java7*<br>*java8*|*java7*<br>*java8*|*java7*<br>*java8*|*java6*<br>*java7*|*java7*<br>*java8*|*java6*<br>*java7*<br>*java8*|*java6*<br>*java7*<br>*java8*|*java8*|
+|nodeType|`tomcat6`|`tomcat7`|`tomcat8`|`tomee`|`glassfish`|`glassfish3`|`glassfish4`|`jetty6`|`jetty8`|
+|------------|------|---------|---------|-------|------------|------------|------------|--------|--------|
+|engine|*java6*<br>*java7*<br>*java8*|*java6*<br>*java7*<br>*java8*<br>jdk 10|*java7*<br>*java8*<br>JDK 9<br>jdk 10|*java7*<br>*java8*|*jdk-1.8.0_144*<br>*jdk-1.8.0_152*|*java6*<br>*java7*|*java7*<br>*java8*|*java6*<br>*java7*<br>*java8*|*java6*<br>*java7*<br>*java8*|
 
-|nodeType|`jboss7`|`smartfox-server`|`powerdns`|`railo4`|`wildfly`|`wildfly9`|`wildfly10`|
-|--------|--------|---------------- |----------|--------|---------|----------|-----------|
-|engine  |*java7*|*java6*<br>*java7*<br>*java8*|*java6*|*java7*<br>*java8*|*java7*<br>*java8*|*java7*<br>*java8*|*java8*|
+|nodeType|`jetty9`|`jboss7`|`smartfox-server`|`powerdns`|`railo4`|`wildfly`|`wildfly9`|`wildfly10`|`wildfly11`|`wildfly12`|
+|--------|--------|---------------- |----------|--------|---------|----------|-----------|--------|--------|--------|
+|engine  |*java8*|*java7*|*java6*<br>*java7*<br>*java8*|*java6*|*java7*<br>*java8*|*java7*<br>*java8*|*java7*<br>*java8*|*java8*<br>*jdk-9*|*java8*<br>*jdk-9*|*java8*<br>*jdk-9*<br>*jdk-10*|
 
 **PHP Stacks**
 
 |nodeType|`apache2`                                   |`nginxphp`                                  |
 |--------|--------------------------------------------|--------------------------------------------|
-|engine  |*php5.3*<br>*php5.4*<br>*php5.5*<br>*php5.6*<br>*php7*|*php5.3*<br>*php5.4*<br>*php5.5*<br>*php5.6*<br>*php7*|
+|engine  |*php5.3*<br>*php5.4*<br>*php5.5*<br>*php5.6*<br>*php7*<br>*php7.1.7*<br>*php7.2.1*|*php5.3*<br>*php5.4*<br>*php5.5*<br>*php5.6*<br>*php7*<br>*php7.1.13*<br>*php7.2.1*|
 
 **Ruby Stacks**
 
 |nodeType|`apache2-ruby`                                     |`nginx-ruby`                                       |
 |--------|---------------------------------------------------|---------------------------------------------------|
-|engine  |*ruby1.9*<br>*ruby2.0*<br>*ruby2.1*<br>*ruby2.2*<br>*ruby2.3*|*ruby1.9*<br>*ruby2.0*<br>*ruby2.1*<br>*ruby2.2*<br>*ruby2.3*|
+|engine  |*ruby1.9*<br>*ruby2.0*<br>*ruby2.1*<br>*ruby2.2*<br>*ruby2.3*<br>*ruby2.4.1*|*ruby1.9*<br>*ruby2.0*<br>*ruby2.1*<br>*ruby2.2*<br>*ruby2.3*<br>*ruby2.4.1*|
 
 **Python Stacks**
 
@@ -348,7 +414,7 @@ The following section deals with the supported engine versions and their availab
 
 |nodeType|`nodejs`            |
 |--------|--------------------|
-|engine  |*nodejs0.10*<br>*nodejs0.12*<br>*nodejs4.3*<br>*nodejs5.6*|
+|engine  |*nodejs6.11.5*<br>*nodejs6.12.3*<br>*nodejs8.9.0*<br>*nodejs8.9.4*<br>*nodejs9.0.0*<br>*nodejs9.4.0*|
 
 **.Net**
 

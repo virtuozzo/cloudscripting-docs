@@ -64,6 +64,8 @@ onInstall:
 ```
 @@!
 
+All dynamic placeholders in *\${placeholders}* value are updated immediately after any action. Also placeholders will be updated automatically before displaying \${placeholders} value into console.
+
 - outputting from a script             
 
 @@@

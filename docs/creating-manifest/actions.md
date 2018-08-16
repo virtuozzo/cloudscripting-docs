@@ -935,8 +935,34 @@ onInstall:
 
 Therefore, compute nodes will have an external ip address and sql nodes will be without ext IPs.
 
+### restartServices
+
+`restartService` is an alias.
+Will be restarted only main service in container which is related to separate template.
+@@@
+```yaml
+restartService:
+  - nodeId: number or string
+    nodeGroup: string
+```
+``` json
+{
+  "restartService": [
+    {
+      "nodeId": "number or string",
+      "nodeGroup": "string"
+    }
+  ]
+}
+```
+@@!
+where:
+
+- `nodeId`, `nodeGroup` - parameters that determine target containers for the action execution (at least one of these parameters is required)
+
 ### restartNodes
 
+`restartNode` is an alias.
 Available for all nodes (except for Elastic VPS)
 @@@
 ```yaml
@@ -944,6 +970,7 @@ restartNodes:
   - nodeId: number or string
     nodeGroup: string
     nodeType: string
+    reboot: boolean
 ```
 ``` json
 {
@@ -951,7 +978,8 @@ restartNodes:
     {
       "nodeId": "number or string",
       "nodeGroup": "string",
-      "nodeType": "string"
+      "nodeType": "string",
+      "reboot": "boolean"
     }
   ]
 }
@@ -959,9 +987,12 @@ restartNodes:
 @@!
 where:       
 
-- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                  
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)
+- `reboot` - flag which determines in which way node should be restarted. Positive value means the whole container should be restarted (the similar action to <a href="/creating-manifest/actions/#restartcontainers" target="_blank">`restartContainer`</a>), the negative one value means only main service in current container will be restarted (the similar action to <a href="/creating-manifest/actions/#restartservices" target="_blank">`restartService`</a>).
 
 ### restartContainers
+
+The whole container will be restarted.
 
 Available for all nodes
 @@@
@@ -1224,6 +1255,307 @@ There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certi
 
 !!! note
     Learn more about using <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a>.    
+
+### setGlobals
+
+There are two scope levels during manifest execution - *global* and *local*. Global scope consists of several parameters like: `env`, `nodes`, `globals` and `targetNodes`.
+This action is an ability to define variables within global scope. Suchwise, this is an opportunity to set values in object *${globals.*}*.
+For example:
+@@@
+```yaml
+type: update
+name: setGlobals action
+onInstall:
+- setGlobals:
+    a: 1
+    b: 2
+- assert: "'${globals.a}' === '1' && '${globals.b}' === '2'"
+- checkGlobals
+actions:
+  checkGlobals:
+    assert: "'${globals.a}' === '1' && '${globals.b}' === '2'"
+```
+```json
+{
+    "type" : "update",
+    "name" : "setGlobals action",
+
+    "onInstall": [
+        {
+            "setGlobals": {
+                "a": 1,
+                "b": 2
+            }
+        },
+        {
+            "assert": "'${globals.a}' === '1' && '${globals.b}' === '2'"
+        },
+        "checkGlobals"
+    ],
+
+    "actions" : {
+        "checkGlobals" : {
+            "assert": "'${globals.a}' === '1' && '${globals.b}' === '2'"
+        }
+    }
+}
+```
+@@!
+
+The result is on the screen below:
+![setGlobals](/img/setGlobals.png)
+
+First action `setGlobals` denifes new *global* values - variables *a* and *b*. Then a new placeholders *\${globals.a}* and *\${globals.b}* are available in all next actions (custom actions are included too).
+
+!!!Note
+    <b>Global</b> scope is created at the beginning of JPS installation and it is available within current manifest only.
+
+### set
+An ability to set local scope variables. Suchwise, new variables within *\${this.*}* scope could be defined.
+The example below shows a local scope borders within manifest and local variables usability:
+
+@@@
+```yaml
+type: update
+name: Test action 'set'
+onInstall:
+- set:
+    a: 1
+    b: 2
+- assert: "'${this.a}' === '1' && '${this.b}' === '2'"
+- checkLocalVars:
+    c: 3
+    d: 4
+actions:
+  checkLocalVars:
+  - assert:
+    - "'${this.a}' !== '1' && '${this.b}' !== '2'"
+    - "'${this.c}' === '3' && '${this.d}' === '4'"
+  - set:
+      a: 1
+      b: 2
+  - assert: "'${this.a}' === '1' && '${this.b}' === '2'"A
+```
+```json
+{
+  "type": "update",
+  "name": "Test action 'set'",
+  "onInstall": [
+    {
+      "set": {
+        "a": 1,
+        "b": 2
+      }
+    },
+    {
+      "assert": "'${this.a}' === '1' && '${this.b}' === '2'"
+    },
+    {
+      "checkLocalVars": {
+        "c": 3,
+        "d": 4
+      }
+    }
+  ],
+  "actions": {
+    "checkLocalVars": [
+      {
+        "assert": [
+          "'${this.a}' !== '1' && '${this.b}' !== '2'",
+          "'${this.c}' === '3' && '${this.d}' === '4'"
+        ]
+      },
+      {
+        "set": {
+          "a": 1,
+          "b": 2
+        }
+      },
+      {
+        "assert": "'${this.a}' === '1' && '${this.b}' === '2'"
+      }
+    ]
+  }
+}
+```
+@@!
+![set](/img/set.png)
+
+So from the screen results, it could understandable that local scope creates each time during a processing an event or while call custom actions.
+While execution custom action a local scope can consists of arguments if they pass with action. So these arguments will be in a custom action local scope.
+
+
+### assert
+Is an ability to check two any values and verify results in <a href="/troubleshooting/" target="_blank">console log</a>. One of the useful case is checking response fields from previous action with expected values. Responses parameters can be compared with other parameters or with any hardcoded values.
+For example:
+@@@
+```yaml
+type: update
+name: Assert action
+onInstall:
+- cmd [cp]: echo test
+- assert:
+  - "'${response.responses.out}' == 'test'"
+  - "'${response.responses[0].out}' == 'test'"
+```
+```json
+{
+  "type": "update",
+  "name": "Assert action",
+  "onInstall": [
+    {
+      "cmd [cp]": "echo test"
+    },
+    {
+      "assert": [
+        "'${response.responses.out}' == 'test'",
+        "'${response.responses[0].out}' == 'test'",
+      ]
+    }
+  ]
+}
+```
+@@!
+In the example above the `cmd` action the first one. Here, <i>echo</i> command is executed with world <i>test</i>. The second action `assert` compares response output result form the first command and the word <i>test</i>.
+The result can be check in console log panel like in example screen:
+![assert](/img/assert.jpg)
+
+An `assert` action can be defined as an array of strings or in simple one line(*string*):
+
+@@@
+```yaml
+assert: "'${response.responses.out}' == 'test'"
+```
+```json
+{
+  "assert": "'${response.responses.out}' == 'test'"
+}
+```
+@@!
+
+or as object like in cases below (in this case `assert` can be an array of string too):
+
+@@@
+```yaml
+message: test myvar
+assert: "${this.myvar} === true"
+```
+```json
+{
+  "message": "test myvar",
+  "assert": "${this.myvar} === true"
+}
+```
+@@!
+
+or an array of objects:
+
+@@@
+```yaml
+assert:
+- condition: "${this.myvar} === true"
+  message: test myvar
+- condition: true != false
+  message: test simple condition
+```
+```json
+{
+  "assert": [
+    {
+      "condition": "${this.myvar} === true",
+      "message": "test myvar"
+    },
+    {
+      "condition": "true != false",
+      "message": "test simple condition"
+    }
+  ]
+}
+```
+@@!
+
+Failed comparing value will be marked in red colored text:
+![assert-failed](/img/assert-failed.jpg)
+
+Also, there is an ability to set custom messages in console log instead default text *ASSERT*:
+@@@
+```yaml
+type: update
+name: Assert action - custom message
+onInstall:
+- cmd [cp]: echo hello
+- assert:
+    condition: "'${response.responses.nodeid}' == '160008'"
+    message: Custom Assert Message
+```
+```json
+{
+  "type": "update",
+  "name": "Assert action - custom message",
+  "onInstall": [
+    {
+      "cmd [cp]": "echo hello"
+    },
+    {
+      "assert": {
+        "condition": "'${response.responses.nodeid}' == '160008'",
+        "message": "Custom Assert Message"
+      }
+    }
+  ]
+}
+```
+@@!
+
+![assert-custom-msg](/img/assert-custom-msg.jpg)
+
+Response placeholders in `assert` action are being defined only from the previous one action.
+For example, placeholder *${response.responses.out}* from `cmd` action willn't be defined in `assert` action, but placeholder *${response.test}* from previous `script` action will.
+
+@@@
+```json
+{
+  "type": "update",
+  "name": "Assert action - scrion action assert",
+  "onInstall": [
+    {
+      "cmd [cp]": "echo test"
+    },
+    {
+      "script": [
+        "return {",
+        "   result : 0,",
+        "   test: '123'",
+        "};"
+      ]
+    },
+    {
+      "assert": [
+        "'${response.test}' == '123'",
+        "'${response.responses.out}' != 'test'"
+      ]
+    }
+  ]
+}
+```
+```yaml
+type: update
+name: Assert action - scrion action assert
+onInstall:
+- cmd [cp]: echo test
+- script:
+  - return {
+  - "   result : 0,"
+  - "   test: '123'"
+  - "};"
+- assert:
+  - "'${response.test}' == '123'"
+  - "'${response.responses.out}' != 'test'"
+```
+@@!
+
+Result screen:
+![assert-only-prev-action.jpg](/img/assert-only-prev-action.jpg)
 
 ### sleep
 
