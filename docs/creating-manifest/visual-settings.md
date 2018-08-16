@@ -77,7 +77,7 @@ where:
 - `prepopulate` *[optional]* - link to a script, that will fetch default field values
 - `fields` - array of fields that will be displayed in a custom form
     - `showIf` - shows/hides field by condition (applicable only to *radio-fieldset* field)
-    - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:
+    - `type` *[optional]* - input field type. Default value is *'string'*. Possible values:
         * `string` - [basic](#string) text field
         * `text`  - [multiline](#text) text field
         * `list` - drop-down menu with [textboxes](#list)
@@ -1091,6 +1091,7 @@ There are two possible ways to define *targetNodes*.
 
 <b>Example</b>
 
+
 Let’s suppose you have three environments with different topology.
 
 ![target-nodes](/img/target-nodes.png)
@@ -1641,4 +1642,3 @@ More details about Markdown implementation can be found in CommonMark specificat
 - Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements
 
 - Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>
-
