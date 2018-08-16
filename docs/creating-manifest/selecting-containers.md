@@ -250,7 +250,7 @@ onInstall:
 ```
 @@!
 
-In the example above JPS add-on with `type` *update* could be applied on any existing environment. In this case all compute nodes with **nodeGroup** *cp* can be called by aliases (Nodes with **nodeGroup** *sqldb2* are absent in environemnt). So the example result is displayed in the screen:
+In the example above JPS add-on with `type` *update* could be applied on any existing environment. In this case all compute nodes with **nodeGroup** *cp* can be called by aliases (Nodes with **nodeGroup** *sqldb2* are absent in environment). So the example result is displayed in the screen:
 ![nodeGroup-alias](/img/nodeGroupAlias.png)
 
 !!! note
