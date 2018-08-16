@@ -91,7 +91,7 @@ success: object/string
 - `name` *[required]* - JPS custom name
 - `logo` *[optional]* - JPS image that will be displayed within custom add-ons
 - `description` - text string that describes a template. This section should always follow the template format version section.
-- `homepage` *[optional]* - link to any external aplication source
+- `homepage` *[optional]* - link to any external application source
 - `categories` - categories available for manifests filtering                                                                        
 - `baseUrl` *[optional]* - custom <a href="#relative-links" target="_blank">relative links</a>                                       
 - `settings` *[optional]* - custom form with <a href="/creating-manifest/visual-settings/" target="_blank">predefined user input elements</a>
@@ -99,7 +99,7 @@ success: object/string
     - `type` *[optional]* [array] - region's virtualization types
     - `name` *[optional]* [string] - text or JavaScript RegExp argument to filtering region's by name
 - `region` *[optional]* - region, where an environment will be installed. Option will be used only with **type** `install`.
-`targetRegions` has has a higher priority than `region`. So in case when both of options have been set regions will be filtered according to the `targetRegions` rules.
+`targetRegions` has a higher priority than `region`. So in case when both of options have been set regions will be filtered according to the `targetRegions` rules.
 - `nodes` - an array to describe information about nodes for an installation. Option will be used only with **type** `install`.
 - `engine` *[optional]* - engine <a href="/creating-manifest/selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
 - `region` *[optional]* - region, where an environment will be installed. Required option for **type** `install`.
