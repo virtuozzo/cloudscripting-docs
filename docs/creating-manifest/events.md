@@ -243,6 +243,31 @@ onAlert [cp]:
 ```
 @@!
 
+In the following example, the *log* action is executed if the invoked trigger is subscribed to the *onAlert* event with the *custom_name*.
+
+@@@
+```yaml
+type: update
+name: AddTrigger
+
+onAlert [name:custom_name]:
+  log: onAlert event has subscribed
+```
+```json
+{
+    "type": "update",
+    "name": "AddTrigger",
+    "onAlert [name:custom_name]": {
+        "log": "onAlert event has subscribed"
+    }
+}
+```
+@@!
+
+<left><img style="width: 600px"  src="/img/trigger_name.png" alt="trigger name" /></left>
+
+The trigger name can be set up through the dashboard as on the picture above or as described in the example as follows.
+
 The following example shows how a new trigger is being created.
 @@@
 ```yaml
