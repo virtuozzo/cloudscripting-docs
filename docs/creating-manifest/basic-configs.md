@@ -749,8 +749,7 @@ startPage: ${env.url}customDirectory/
 
 ###Skip Node Emails
 
-In Jelastic platforms owner will be informed by email by default about adding new nodes into environments. These emails are related only to nodes where implemented reset password functionality (databases, Glassfish etc.).
-In Cloud Scripting there is an ability set an option to skip these emails.
+By default in Jelastic, a user is informed via email about adding new nodes into environments. In Cloud Scripting there is an ability set an option to skip these emails.
 For example:
 @@@
 ```yaml
