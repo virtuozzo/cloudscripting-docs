@@ -24,7 +24,7 @@ The following example describes the events filtering by *nodeGroup* (for the <b>
 @@@
 ```yaml
 type: update
-name: Event Subsribtion Example
+name: Event Subscription Example
 
 onInstall:
   createFile [cp]: /tmp/result.txt
@@ -41,7 +41,7 @@ onAfterResetNodePassword [${nodes.cp[0].id}]:
 ``` json
 {
   "type": "update",
-  "name": "Event Subsribtion Example",
+  "name": "Event Subscription Example",
   "onInstall": {
     "createFile [cp]": "/tmp/result.txt"
   },
@@ -559,7 +559,7 @@ The event is executed after attaching the external IP address. The *onBeforeAtta
     - `childNodes` - node identifier for attaching external IP address          
 - `${event.response.}`:  
     - `result` - result code. The successful action result is *'0'*.      
-    - `obejct` *[string]* - attached extrenal IP address         
+    - `object` *[string]* - attached external IP address         
 
 ### onBeforeDetachExtIp
 

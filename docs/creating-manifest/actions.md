@@ -538,7 +538,7 @@ createDirectory [nodeId, nodeGroup, nodeType]: string
 @@!
 where:  
 
-- `nodeId`, `nodGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                                 
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                                 
 - `string` - container path where a directory is to be created                         
 
 There is an ability to create few directories in the same target node in one `createDirectory` action. In this case parameter **path** is needed. For example:
@@ -760,7 +760,7 @@ where:
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
     The following parameters are required for <a href="https://docs.jelastic.com/dockers-overview" target="_blank">Docker</a> containers only:                                    
 - `dockerName` *[optional]* - name and tag of Docker image
-- `registryUrl` *[optional]* - custom Docker regitry
+- `registryUrl` *[optional]* - custom Docker registry
 - `registryUser` *[optional]* - Docker registry username
 - `registryPassword` *[optional]* - Docker registry password
 - `dockerTag` - Docker tag for installation
@@ -1063,7 +1063,7 @@ prepareSqlDatabase:
 where:          
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine target containers for the action execution. By default, the *nodeGroup* value is equal to *sqldb*.                            
-- `loginCredentials` - root creadentials from a new node                    
+- `loginCredentials` - root credentials from a new node                    
     - `user` - username                    
     - `password` - password                 
 - `newDatabaseName` - your custom database name              
@@ -1213,13 +1213,13 @@ script:
 @@!
 where:   
 
-- `script` - an object where are defined script code, optional parameters and languarge code type                                                
+- `script` - an object where are defined script code, optional parameters and language code type                                                
 - `type` *[optional]* - script type with the following possible values (the default value is *'js'*):                                          
     - `js` `(javascript)` an alias    
     - `java`      
 - `params` *[optional]* - script parameters. Can can be used in scripts like placeholder in example - *${this.greeting}*                               
 
-A `script` action provides an ability to execute Jelastic API in custom scripts. Therefore, it is easy to manage Jelastic evnvironments by `scripts`.   
+A `script` action provides an ability to execute Jelastic API in custom scripts. Therefore, it is easy to manage Jelastic environments by `scripts`.   
 There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certified by Jelastic team.
 
 !!! note
@@ -1278,7 +1278,7 @@ onInstall:
 @@!
 Therefore, the `install` action can be set by **string**.
 
-Also ther is an ability to set a few external manifests inside one `install` action in one array. For example:
+Also there is an ability to set a few external manifests inside one `install` action in one array. For example:
 @@@
 ```yaml
 type: update
@@ -1696,7 +1696,7 @@ where:
 
 ### Action Placeholders
 
-In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. The parameters, sent to a call method, are transformed into a separate kit of placeholders, which can be further used within the appropriate actions by means of *${this}*  namespace. Access to a node inside environment can be gained according to its type, as well as according to its role in the environment.                             
+In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. The parameters, sent to a call method, are transformed into a separate kit of placeholders, which can be further used within the appropriate actions by means of *${this}*  name space. Access to a node inside environment can be gained according to its type, as well as according to its role in the environment.                             
 
 The example below illustrates how to pass the dynamic parameters for running in the action. Here, the *name* parameter is sent to <b>*customAction*</b> where the *createFile* action is executed.                   
 @@@

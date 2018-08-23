@@ -726,7 +726,7 @@ http://{Jelastic_Platform_URL} + "fireevent?event=click&value=hello"
 where:
 
 - `Jelastic_Platform_URL` - Jelastic Dashboard URL where manifest is executed
-- `click` - event namewhich is handled in manifest in `popupCallbackEvent` parameter
+- `click` - event name which is handled in manifest in `popupCallbackEvent` parameter
 - `value` - type is **string**. The `textfield` will be filled by it when button "Open" will be applied.
 
 ### displayfield
@@ -1422,7 +1422,7 @@ success:
 ```
 @@!
 
-A email notification also can be customized in <a href="/creating-manifest/handling-custom-responses/">custom responses</a>. In this case an `email` value from handle custom response has a highier priority. For example:
+A email notification also can be customized in <a href="/creating-manifest/handling-custom-responses/">custom responses</a>. In this case an `email` value from handle custom response has a higher priority. For example:
 @@@
 ```yaml
 type: update
@@ -1458,7 +1458,7 @@ A custom responses can be return within <a href="/creating-manifest/actions/#ret
 
 Markdown is a light language with plain text formatting syntax. This language is supported by Cloud Scripting technology to describe a `description`, `success texts` or showing [`custom response` texts](/creating-manifest/visual-settings/#success-text-customization).  
 Cloud Scripting uses [CommonMark](http://commonmark.org/) implementation to convert Markdown syntax into html code.  
-Therefore, there is a main supported Makrdow tag list:
+Therefore, there is a main supported Markdown tag list:
 
 Style 1                            |Style 2 | Result|
 -------                                 |----------|------
