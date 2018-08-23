@@ -303,7 +303,7 @@ This is the list of placeholders that you can use to specify UI parameters.
 - `${env.domain}` - full domain name without protocol
 - `${env.appid}` - unique environment appid at the Jelastic Platform
 - `${baseUrl}` - user custom relative URL. More details about <a href="/creating-manifest/basic-configs/#relative-links">Relative Links here</a>
-- `${platformUrl}` - hoster dashboard URL. A ressellers will have their own domain URL.
+- `${platformUrl}` - hoster dashboard URL. A reseller will have the own domain URL.
 
 **Example**
 @@@
@@ -367,8 +367,8 @@ Values are global placeholders (<i>value1</i> and <i>value2</i> in example above
 - `${settings.*}` - <a href="/creating-manifest/placeholders/#input-parameters" target="_blank">input parameters</a> from `settings` block, where custom forms are described
 - `${env.*}` - all <a href="/creating-manifest/placeholders/#environment-placeholders" target="_balnk">environment placeholders</a>. Placeholders are available only in JPS manifests with `type` *install* -  `globals` block will be updated after an environment is created.
 - `${nodes.*}` - all <a href="/creating-manifest/placeholders/#node-placeholders" target="_balnk">node placeholders</a>. Node values in global placeholders will be available only after environment is created.
-- `${user.*}` - <a href="/creating-manifest/placeholders/#account-information" target="-blank">account placeholders</a> ara available during all JPS installation process.
-- `${fn.*}` - <a href="/creating-manifest/placeholders/#function-placeholders" target="_blank">functional placeholders</a>  ara available during all JPS installation process.
+- `${user.*}` - <a href="/creating-manifest/placeholders/#account-information" target="-blank">account placeholders</a> are available during all JPS installation process.
+- `${fn.*}` - <a href="/creating-manifest/placeholders/#function-placeholders" target="_blank">functional placeholders</a>  are available during all JPS installation process.
 
 ## Function Placeholders
 
@@ -401,7 +401,7 @@ The function parameter can be passed from existing placeholders, for example:
 - `${fn.md5([fn.random])}` - *md5* encoding random password   
 - `${fn.base64([user.email])}` - *base64* encoding user email address  
 
-You can easily define function placeholders within the [cutom global placeholders](#custom-global-placeholders), for example:
+You can easily define function placeholders within the [custom global placeholders](#custom-global-placeholders), for example:
 @@@
 ```yaml
 globals:
@@ -529,7 +529,7 @@ onInstall:
 ```
 @@!
 
-The first comparing in `assert` action is **"'\${unknown:defaultValue}' === 'defaultValue'"**, where placeholder *\${unknown:defaultValue}* in Cloud Scripting engine isn't defined. So the sipmle string will be displayed in console. The same behaviour will be with another comparisons.<br>
+The first comparing in `assert` action is **"'\${unknown:defaultValue}' === 'defaultValue'"**, where placeholder *\${unknown:defaultValue}* in Cloud Scripting engine isn't defined. So the simple string will be displayed in console. The same behaviour will be with another comparisons.<br>
 The executed results on the screen below:
 ![simple-comparison](/img/simple-comparison.png)
 

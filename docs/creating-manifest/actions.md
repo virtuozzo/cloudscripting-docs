@@ -538,7 +538,7 @@ createDirectory [nodeId, nodeGroup, nodeType]: string
 @@!
 where:  
 
-- `nodeId`, `nodGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                                 
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                                 
 - `string` - container path where a directory is to be created                         
 
 There is an ability to create few directories in the same target node in one `createDirectory` action. In this case parameter **path** is needed. For example:
@@ -760,7 +760,7 @@ where:
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
     The following parameters are required for <a href="https://docs.jelastic.com/dockers-overview" target="_blank">Docker</a> containers only:                                    
 - `dockerName` *[optional]* - name and tag of Docker image
-- `registryUrl` *[optional]* - custom Docker regitry
+- `registryUrl` *[optional]* - custom Docker registry
 - `registryUser` *[optional]* - Docker registry username
 - `registryPassword` *[optional]* - Docker registry password
 - `dockerTag` - Docker tag for installation
@@ -1094,7 +1094,7 @@ prepareSqlDatabase:
 where:          
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine target containers for the action execution. By default, the *nodeGroup* value is equal to *sqldb*.                            
-- `loginCredentials` - root creadentials from a new node                    
+- `loginCredentials` - root credentials from a new node                    
     - `user` - username                    
     - `password` - password                 
 - `newDatabaseName` - your custom database name              
@@ -1244,13 +1244,13 @@ script:
 @@!
 where:   
 
-- `script` - an object where are defined script code, optional parameters and languarge code type                                                
+- `script` - an object where are defined script code, optional parameters and language code type                                                
 - `type` *[optional]* - script type with the following possible values (the default value is *'js'*):                                          
     - `js` `(javascript)` an alias    
     - `java`      
 - `params` *[optional]* - script parameters. Can can be used in scripts like placeholder in example - *${this.greeting}*                               
 
-A `script` action provides an ability to execute Jelastic API in custom scripts. Therefore, it is easy to manage Jelastic evnvironments by `scripts`.   
+A `script` action provides an ability to execute Jelastic API in custom scripts. Therefore, it is easy to manage Jelastic environments by `scripts`.   
 There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certified by Jelastic team.
 
 !!! note
@@ -1305,7 +1305,7 @@ actions:
 The result is on the screen below:
 ![setGlobals](/img/setGlobals.png)
 
-First action `setGlobals` denifes new *global* values - variables *a* and *b*. Then a new placeholders *\${globals.a}* and *\${globals.b}* are available in all next actions (custom actions are included too).
+First action `setGlobals` defines new *global* values - variables *a* and *b*. Then a new placeholders *\${globals.a}* and *\${globals.b}* are available in all next actions (custom actions are included too).
 
 !!!Note
     <b>Global</b> scope is created at the beginning of JPS installation and it is available within current manifest only.
@@ -1510,13 +1510,13 @@ onInstall:
 ![assert-custom-msg](/img/assert-custom-msg.jpg)
 
 Response placeholders in `assert` action are being defined only from the previous one action.
-For example, placeholder *${response.responses.out}* from `cmd` action willn't be defined in `assert` action, but placeholder *${response.test}* from previous `script` action will.
+To check the result from the previous action, see the example:
 
 @@@
 ```json
 {
   "type": "update",
-  "name": "Assert action - scrion action assert",
+  "name": "Assert action - script action assert",
   "onInstall": [
     {
       "cmd [cp]": "echo test"
@@ -1540,7 +1540,7 @@ For example, placeholder *${response.responses.out}* from `cmd` action willn't b
 ```
 ```yaml
 type: update
-name: Assert action - scrion action assert
+name: Assert action - script action assert
 onInstall:
 - cmd [cp]: echo test
 - script:
@@ -1610,7 +1610,7 @@ onInstall:
 @@!
 Therefore, the `install` action can be set by **string**.
 
-Also ther is an ability to set a few external manifests inside one `install` action in one array. For example:
+Also there is an ability to set a few external manifests inside one `install` action in one array. For example:
 @@@
 ```yaml
 type: update

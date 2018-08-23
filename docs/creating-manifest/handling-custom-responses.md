@@ -80,7 +80,7 @@ name: response handlers
 
 onInstall:
   return:
-    result: warniong
+    result: warning
     message: Warning!
     email: string
 ```

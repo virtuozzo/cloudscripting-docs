@@ -24,7 +24,7 @@ The following example describes the events filtering by *nodeGroup* (for the <b>
 @@@
 ```yaml
 type: update
-name: Event Subsribtion Example
+name: Event Subscription Example
 
 onInstall:
 createFile [cp]: /tmp/result.txt
@@ -41,7 +41,7 @@ cmd [${nodes.cp[0].id}]: echo 'First compute node has been restarted' >> /tmp/re
 ``` json
 {
   "type": "update",
-  "name": "Event Subsribtion Example",
+  "name": "Event Subscription Example",
   "onInstall": {
     "createFile [cp]": "/tmp/result.txt"
   },
@@ -72,7 +72,7 @@ There are few options to filter executed events:
 1. onBeforeRestartNode [cp] or [apache] or [1234] - short filters for events
 2. onBeforeRestartNode [nodeGroup: cp] or [nodeType: apache] or [nodeId: 1234] - full filters sets
 3. Combines of different simple filters from first or second points above in one -
-onBeforeRestartNode[1234, 5678] (executing `event` only on nodes checked by unque identifiers) or onBeforeRestartNode[nodeGroup: cp, nodeId: 123]
+onBeforeRestartNode[1234, 5678] (executing `event` only on nodes checked by unique identifiers) or onBeforeRestartNode[nodeGroup: cp, nodeId: 123]
 
 Such reserved keywords like *nodeGroup*, *nodeType* and *nodeId* in event filtering are not case sensitive, so they can be declared in any way.
 
@@ -132,7 +132,7 @@ The event is executed once the *changeTopology* action is finished.
 - `${event.response.}`:
     - `result` - result code. The successful action result is *'0"*.
     - `envGroups` - environment groups array
-    - `right` - account right for envronment
+    - `right` - account right for environment
     - `nodeGroups` - node delays:
         - `restartNodeDelay` - delay for restart
         - `name` - node group name
@@ -401,7 +401,7 @@ The event is called before the *deleteEnvironment* action.
     - `session` - current user session
     - `appid` - environment unique appid
     - `password` - user password
-    - `env` - environmetn short name (only domain name)
+    - `env` - environment short name (only domain name)
 - `${event.response.}` parameters are absent
 
 ### onBeforeAddNode
@@ -590,7 +590,7 @@ The event is executed after attaching the external IP address. The *onBeforeAtta
     - `env` - environment short domain name
 - `${event.response.}`:
     - `result` - result code. The successful action result is *'0'*.
-    - `obejct` *[string]* - attached extrenal IP address
+    - `obejct` *[string]* - attached external IP address
 
 ### onBeforeDetachExtIp
 
