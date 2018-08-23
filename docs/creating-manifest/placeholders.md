@@ -265,7 +265,7 @@ This is the list of placeholders that you can use to specify UI parameters.
 - `${env.domain}` - full domain name without protocol
 - `${env.appid}` - unique environment appid at the Jelastic Platform
 - `${baseUrl}` - user custom relative URL. More details about <a href="/creating-manifest/basic-configs/#relative-links">Relative Links here</a>
-- `${platformUrl}` - hoster dashboard URL. A ressellers will have their own domain URL.
+- `${platformUrl}` - hoster dashboard URL. A reseller will have the own domain URL.
 
 **Example**
 @@@
@@ -355,7 +355,7 @@ The function parameter can be passed from existing placeholders, for example:
 - `${fn.md5([fn.random])}` - *md5* encoding random password   
 - `${fn.base64([user.email])}` - *base64* encoding user email address  
 
-You can easily define function placeholders within the [cutom global placeholders](#custom-global-placeholders), for example:
+You can easily define function placeholders within the [custom global placeholders](#custom-global-placeholders), for example:
 @@@
 ```yaml
 globals:
