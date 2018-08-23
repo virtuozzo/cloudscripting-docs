@@ -804,7 +804,7 @@ http://{Jelastic_Platform_URL} + "fireevent?event=click&value=hello"
 where:
 
 - `Jelastic_Platform_URL` - Jelastic Dashboard URL where manifest is executed
-- `click` - event namewhich is handled in manifest in `popupCallbackEvent` parameter
+- `click` - event name which is handled in manifest in `popupCallbackEvent` parameter
 - `value` - type is **string**. The `textfield` will be filled by it when button "Open" will be applied.
 
 ### displayfield
@@ -1500,7 +1500,7 @@ success:
 ```
 @@!
 
-Email notification also can be customized in <a href="/creating-manifest/handling-custom-responses/">custom responses</a>. In this case `email` value from handle custom response has a highier priority. For example:
+Email notification also can be customized in <a href="/creating-manifest/handling-custom-responses/">custom responses</a>. In this case `email` value from handle custom response has a higher priority. For example:
 @@@
 ```yaml
 type: update
@@ -1536,7 +1536,7 @@ Custom responses can be returned within <a href="/creating-manifest/actions/#ret
 
 Markdown is a light language with plain text formatting syntax. This language is supported by Cloud Scripting technology to describe a `description`, `success texts` or show [`custom response` texts](/creating-manifest/visual-settings/#success-text-customization).
 Cloud Scripting uses [CommonMark](http://commonmark.org/) implementation to convert Markdown syntax into html code.
-Therefore, there is a main supported Makrdow tag list:
+Therefore, there is a main supported Markdown tag list:
 
 Style 1                            |Style 2 | Result|
 -------                                 |----------|------
@@ -1554,7 +1554,7 @@ Horizontal Rule<br>\-\-\-|Horizontal Rule<br>\*\*\*|Horizontal Rule<br>![horizon
 \`\`Inline code\`\` with backticks|| ![Inline code](/img/markdown_inline-code.jpg) with backticks
 \`\`\`<br>print '3 backticks <br>or3 tildes'<br>\`\`\`|\~\~\~\~<br>print '3 backticks<br> or 3 tildes'<br>\~\~\~\~|![Block code](/img/markdown_block-code.jpg)
 
-The elements visualisation can be foundnd on the screen below:
+The elements visualization can be found on the screen below:
 ![markdown_tags](/img/markdown_tags.jpg)
 
 Source code for each of these elements is displayed below:
