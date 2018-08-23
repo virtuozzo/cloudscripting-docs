@@ -559,7 +559,7 @@ nodes:
 All ports for output traffic are opened by default.
 
 Another one reserved environment variables is **ON_ENV_INSTALL**. This variable is responsible for executing new JPS installation after new nodeGroup (layer of nodes) has been created.<br>
-This variable for **nodeGroup** can be set in JPS or via dashboard. More info about Docker configuration is Jelastic dashbboard <a href="https://docs.jelastic.com/docker-configuration" target="_blank">here</a>.
+This variable for **nodeGroup** can be set in JPS or via dashboard. More info about Docker configuration is Jelastic dashboard <a href="https://docs.jelastic.com/docker-configuration" target="_blank">here</a>.
 
 !!! note
     > By default in manifest from the **ON_ENV_INSTALL** variable *\${settings.nodeGroup}* placeholder is defined. It will be a nodeGroup value where this manifest is executed.
