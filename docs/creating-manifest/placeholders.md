@@ -28,7 +28,7 @@ The following specific groups of placeholders are singled out:
 
 - [File Path Placeholders](/creating-manifest/placeholders/#file-path-placeholders)                                 
 
-Placeholders like `env`, `nodes`, `targetNodes`, `response` are dynamically. They could be updated by their requests if they are required to be updated.
+Placeholders like `env`, `nodes`, `targetNodes`, `response` are dynamically updated. They could be updated by their requests if they are required to be updated.
 
 ## Environment Placeholders
 
