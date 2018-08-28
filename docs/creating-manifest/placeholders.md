@@ -77,7 +77,7 @@ This is the list of placeholders that you can use within the nodes section (*{no
     - `{nodes.(group).first.(key)}`
     - `{nodes.(group).last.(key)}`   
     where:
-    - `(group)` - node group (<a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">nodeType</a>)           
+    - `(group)` - node group (<a href="/1.2/creating-manifest/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> or <a href="/1.2/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">nodeType</a>)           
     - `(i)` - node index, starting from *'0'*
     - `(key)` - name of the applied parameter, according to the following list:
         - `address` - internal or external IP address                               
@@ -154,7 +154,7 @@ Event placeholders represent a set of dynamic parameters that are executed as a 
 - `${event.params.(key)}` - where *key* is a name of the event parameter                     
 - `${event.response.(key)}` -where *key* is a name of the event response parameter             
 
-Learn more about the event placeholders within the <a href="/creating-manifest/events" target="_blank">*Events*</a> page.         
+Learn more about the event placeholders within the <a href="/1.2/creating-manifest/events" target="_blank">*Events*</a> page.         
 
 ## Account Information  
 
@@ -198,7 +198,7 @@ settings:
 }
 ```
 @@!
-Here, the name of the placeholder is `${settings.customName}`. See the list of <a href="/creating-manifest/visual-settings/" target="_blank">fields</a> that are defined by users.       
+Here, the name of the placeholder is `${settings.customName}`. See the list of <a href="/1.2/creating-manifest/visual-settings/" target="_blank">fields</a> that are defined by users.       
 
 ## Action Placeholders
 
@@ -264,7 +264,7 @@ This is the list of placeholders that you can use to specify UI parameters.
 - `${user.email}` - user email address
 - `${env.domain}` - full domain name without protocol
 - `${env.appid}` - unique environment appid at the Jelastic Platform
-- `${baseUrl}` - user custom relative URL. More details about <a href="/creating-manifest/basic-configs/#relative-links">Relative Links here</a>
+- `${baseUrl}` - user custom relative URL. More details about <a href="/1.2/creating-manifest/basic-configs/#relative-links">Relative Links here</a>
 - `${platformUrl}` - hoster dashboard URL. A reseller will have the own domain URL.
 
 **Example**
@@ -397,7 +397,7 @@ Each element has an index in the array.
 where:
 
 - `(i)` - array index, starting from *'0'*                     
-- `(key)` - node <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">parameters</a>                            
+- `(key)` - node <a href="/1.2/creating-manifest/placeholders/#node-placeholders" target="_blank">parameters</a>                            
 
 **The First and the Last Array Elements** 
 
@@ -439,7 +439,7 @@ You can use the following placeholders, as well, with the definite *nodeType*:
 - `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*  
 - `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*      
 
-Explore the full list of available <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> values within the linked page.                                                         
+Explore the full list of available <a href="/1.2/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> values within the linked page.                                                         
 
 The list of single placeholders:
 
@@ -455,14 +455,14 @@ The list of single placeholders:
 <br>       
 <h2> What’s next?</h2>                    
 
-- See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                                
+- See how to use <a href="/1.2/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                                
 
-- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                      
+- Read how to integrate your <a href="/1.2/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                      
 
-- Check how to create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                         
+- Check how to create your custom <a href="/1.2/creating-manifest/addons/" target="_blank">Add-Ons</a>                                         
 
-- Find out how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>      
+- Find out how to handle <a href="/1.2/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>      
 
-- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>
+- Learn how to customize <a href="/1.2/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>
 
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples           

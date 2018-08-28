@@ -17,7 +17,7 @@ Run into trouble with Cloud Scripting? Here are some helpful tips and specific s
 
 Below, you can find some samples of editing custom information to the log:                      
 
-- outputting a single <a href="/creating-manifest/placeholders/" target="blank">placeholder</a> value                     
+- outputting a single <a href="/1.2/creating-manifest/placeholders/" target="blank">placeholder</a> value                     
 
 @@@
 ```yaml

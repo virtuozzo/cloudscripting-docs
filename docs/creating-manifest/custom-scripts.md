@@ -1,11 +1,11 @@
 # Custom Scripts
 
 You can write your custom scripts in Java or JavaScript. Inside these scripts, a set of client libraries for <a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> methods calling is available. 
-You can bind your scripts to the <b>*onAfterReturn*</b> event to execute the required <a href="/creating-manifest/actions/" target="_blank">actions</a>.                
+You can bind your scripts to the <b>*onAfterReturn*</b> event to execute the required <a href="/1.2/creating-manifest/actions/" target="_blank">actions</a>.                
 
 
 ## Intercontainer Scripts
-In order to execute a shell script inside of a container, use the <a href="/creating-manifest/actions/#cmd" target="_blank">ExecuteShellCommands</a> (*cmd*) action.                                              
+In order to execute a shell script inside of a container, use the <a href="/1.2/creating-manifest/actions/#cmd" target="_blank">ExecuteShellCommands</a> (*cmd*) action.                                              
 
 <b>Examples:</b>
 
@@ -64,7 +64,7 @@ Here, `${nodes.sqldb.password}` is available only for the *install* installation
 
 ## Top Level Scripts  
 
-Using a <a href="/creating-manifest/actions/#script" target="_blank">*script*</a> action.                  
+Using a <a href="/1.2/creating-manifest/actions/#script" target="_blank">*script*</a> action.                  
 
 ### Java
 @@@
@@ -112,11 +112,11 @@ greeting: Hello World!
 <br>
 <h2>What's next?</h2>                
 
-- See how to create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                
+- See how to create your custom <a href="/1.2/creating-manifest/addons/" target="_blank">Add-Ons</a>                                
 
-- Find out how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>                                                                           
+- Find out how to handle <a href="/1.2/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>                                                                           
 
-- Explore how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                
+- Explore how to customize <a href="/1.2/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                
 
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                      
 

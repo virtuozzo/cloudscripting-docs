@@ -6,11 +6,11 @@ Jelastic <b>Cloud Scripting (CS)</b> is a tool, designed to program the cloud pl
 
 There are three main pillars of cloud scripting:
 
-* **Actions** - scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="/creating-manifest/custom-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash <a href="/creating-manifest/actions/#cmd" target="_blank">shell command</a>, JS and Java scripts   
+* **Actions** - scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="/1.2/creating-manifest/custom-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash <a href="/1.2/creating-manifest/actions/#cmd" target="_blank">shell command</a>, JS and Java scripts   
 
-* **Events** - specific <a href="/creating-manifest/events/" target="_blank">triggers</a> for executing actions on a required application lifecycle stage   
+* **Events** - specific <a href="/1.2/creating-manifest/events/" target="_blank">triggers</a> for executing actions on a required application lifecycle stage   
   
-* **Injection** - supplying default actions, <a href="/creating-manifest/placeholders/" target="_blank">placeholders</a>, platform API methods, environment variables, request parameters and input settings in custom scripts by default
+* **Injection** - supplying default actions, <a href="/1.2/creating-manifest/placeholders/" target="_blank">placeholders</a>, platform API methods, environment variables, request parameters and input settings in custom scripts by default
 
 <p dir="ltr" style="text-align: justify;">The developed Cloud Scripting solutions are wrapped into packages and distributed with Jelastic Packaging Standard (<a href="https://docs.jelastic.com/jps" target="_blank">JPS</a>). This is accomplished through preparing a manifest file in JSON format. Such packaged solutions can be effortlessly deployed to the platform via <a href="https://docs.jelastic.com/environment-import" target="_blank">import</a> functionality.</p>
 
@@ -18,12 +18,12 @@ There are three main pillars of cloud scripting:
  
 * `nodes` - a environment topology which will be created
 
-* `onAfterScaleIn`, `onAfterScaleOut` - scaling <a href="/creating-manifest/events/#onafterscalein" target="blank">events</a>            
+* `onAfterScaleIn`, `onAfterScaleOut` - scaling <a href="/1.2/creating-manifest/events/#onafterscalein" target="blank">events</a>            
 
-* `cmd` - action to execute <a href="/creating-manifest/actions/#cmd" target="blank">shell commands</a>               
+* `cmd` - action to execute <a href="/1.2/creating-manifest/actions/#cmd" target="blank">shell commands</a>               
 
-* `updateNodes` - custom <a href="/creating-manifest/actions/#custom-actions" target="blank">action</a>         
-* `baseUrl` - external links <a href="/creating-manifest/basic-configs/#relative-links" target="_blank">relative path</a> 
+* `updateNodes` - custom <a href="/1.2/creating-manifest/actions/#custom-actions" target="blank">action</a>         
+* `baseUrl` - external links <a href="/1.2/creating-manifest/basic-configs/#relative-links" target="_blank">relative path</a> 
 
 @@@
 ```yaml
@@ -142,14 +142,14 @@ homepage: http://docs.cloudscripting.com/
 
 - Build a simple automation with <a href="/quick-start/" target="_blank">Quick Start</a> Guide                               
  
-- Learn how to <a href="/creating-manifest/basic-configs/" target="_blank">Create Manifest</a>               
+- Learn how to <a href="/1.2/creating-manifest/basic-configs/" target="_blank">Create Manifest</a>               
  
-- Explore the list of available <a href="/creating-manifest/actions/" target="_blank">Actions</a>                      
+- Explore the list of available <a href="/1.2/creating-manifest/actions/" target="_blank">Actions</a>                      
  
-- See the <a href="/creating-manifest/events/" target="_blank">Events</a> list the actions can be bound to                       
+- See the <a href="/1.2/creating-manifest/events/" target="_blank">Events</a> list the actions can be bound to                       
   
-- Find out the list of <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching               
+- Find out the list of <a href="/1.2/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching               
  
-- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                    
+- Read how to integrate your <a href="/1.2/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                    
 
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                                                    

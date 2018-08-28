@@ -1150,7 +1150,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 ![LoadingText](/img/LoadingText.jpg)     
 
-- `action` *[required] [string]* - name of the custom action that will be executed. The custom action body structure is described in the <a href="/reference/actions/#custom-actions" target="_blank">*actions*</a> section.          
+- `action` *[required] [string]* - name of the custom action that will be executed. The custom action body structure is described in the <a href="/1.2/creating-manifest/actions/#custom-actions" target="_blank">*actions*</a> section.          
 - `caption` - title of the button  
 
 ![Caption](/img/Caption.jpg)  
@@ -1161,7 +1161,7 @@ It will be displayed after clicking on the appropriate button for an add-on. Acc
 
 - `href` *[optional]* - external link that is opened in a new browser tab and is executed only if the *settings* field is absent. In case of *href* execution, an *action* will not be carried out.                      
 
-Another sample with additional configurations where parameters can be enabled only if the [*settings*](/creating-manifest/user-input-parameters/#custom-settings) field is present.                           
+Another sample with additional configurations where parameters can be enabled only if the [*settings*](/creating-manifest/visual-settings/#custom-settings) field is present.                           
 @@@
 ```yaml
 type: update
@@ -1224,7 +1224,7 @@ where:
 
 ![LogsPath](/img/LogsPath.jpg) 
 
-- `logsNodeGroup` - nodeGroup <a href="/creating-templates/selecting-containers/#predefined-nodegroup-values" target="_blank">layer</a> the logging path should be opened for                           
+- `logsNodeGroup` - nodeGroup <a href="/1.2/creating-manifest/selecting-containers/#predefined-nodegroup-values" target="_blank">layer</a> the logging path should be opened for                           
 
 ## Custom Settings
 The settings section can include a few custom forms. The default settings form ID is *'main'*.    
@@ -1422,7 +1422,7 @@ success:
 ```
 @@!
 
-A email notification also can be customized in <a href="/creating-manifest/handling-custom-responses/">custom responses</a>. In this case an `email` value from handle custom response has a higher priority. For example:
+A email notification also can be customized in <a href="/1.2/creating-manifest/handling-custom-responses/">custom responses</a>. In this case an `email` value from handle custom response has a higher priority. For example:
 @@@
 ```yaml
 type: update
@@ -1452,7 +1452,7 @@ success: success!!
 
 In the last example above, the localization functionality is applied, which depends upon the Jelastic Platform selected language.
 
-A custom responses can be return within <a href="/creating-manifest/actions/#return" target="_blank">`return`</a> or <a href="/creating-manifest/actions/#script" target="_blank">`script`</a> actions. More details about <a href="/creating-manifest/handling-custom-responses/" target="_blank">custom responses here</a>. 
+A custom responses can be return within <a href="/1.2/creating-manifest/actions/#return" target="_blank">`return`</a> or <a href="/1.2/creating-manifest/actions/#script" target="_blank">`script`</a> actions. More details about <a href="/1.2/creating-manifest/handling-custom-responses/" target="_blank">custom responses here</a>. 
 
 ## Markdown Description
 

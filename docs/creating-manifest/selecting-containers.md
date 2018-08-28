@@ -1,6 +1,6 @@
 # Specifying Target Container
 
-Running a specific <a href="/creating-manifest/actions/" target="_blank">action</a> requires to specify a target container, in confines of which this action is executed. Thus, it is possible to specify a [particular container](#particular-container), all containers within a layer by the [*nodeGroup*](#all-containers-by-group) value, or all containers of the same type by the [*nodeType*](#all-containers-by-type) value.                                 
+Running a specific <a href="/1.2/creating-manifest/actions/" target="_blank">action</a> requires to specify a target container, in confines of which this action is executed. Thus, it is possible to specify a [particular container](#particular-container), all containers within a layer by the [*nodeGroup*](#all-containers-by-group) value, or all containers of the same type by the [*nodeType*](#all-containers-by-type) value.                                 
 
 ### Particular Container
 
@@ -46,7 +46,7 @@ writeFile:
 }
 ```
 @@!
-For more information, visit the <a href="/creating-manifest/placeholders/" target="_blank"><em>Placeholders</em></a> documentation page.                               
+For more information, visit the <a href="/1.2/creating-manifest/placeholders/" target="_blank"><em>Placeholders</em></a> documentation page.                               
 
 ### All Containers By Group        
  
@@ -82,7 +82,7 @@ The <em>nodeType</em> parameter is used to specify all containers that are built
 
 <b>Examples</b>     
 
-Using the *nodeType* parameter while performing the <a href="/creating-manifest/actions/#writefile" target="_blank">**writeFile**</a> action.                         
+Using the *nodeType* parameter while performing the <a href="/1.2/creating-manifest/actions/#writefile" target="_blank">**writeFile**</a> action.                         
 @@@
 ```yaml
 writeFile:
@@ -165,7 +165,7 @@ Through the following example, a new file is created in the compute layer (<em>[
 @@!
 - specifying a target container next to the performed action                                       
 
-Through the following example, the <a href="/creating-manifest/actions/#createfile" target="_blank">**createFile**</a> and <a href="/creating-manifest/actions/#createdirectory" target="_blank">**createDirectory**</a> actions are applied to the specified <em>nodeGroup</em>, namely the compute layer (<em>[cp]</em>).
+Through the following example, the <a href="/1.2/creating-manifest/actions/#createfile" target="_blank">**createFile**</a> and <a href="/1.2/creating-manifest/actions/#createdirectory" target="_blank">**createDirectory**</a> actions are applied to the specified <em>nodeGroup</em>, namely the compute layer (<em>[cp]</em>).
 @@@
 ```yaml
 - createFile:
@@ -191,7 +191,7 @@ Through the following example, the <a href="/creating-manifest/actions/#createfi
  
 - specifying a target container as a parameter in the *actions* object     
 
-Learn more on this parameter within the <a href="/creating-manifest/actions/#custom-actions" target="_blank"><em>Custom Actions</em></a> documentation page.                                      
+Learn more on this parameter within the <a href="/1.2/creating-manifest/actions/#custom-actions" target="_blank"><em>Custom Actions</em></a> documentation page.                                      
 
 !!! note 
     <b>Node selectors</b> have higher priority than containers specified next to the action, but lower than parameters set in the *actions* object.   
@@ -361,12 +361,12 @@ The following section deals with the supported engine versions and their availab
 
 <h2>What’s next?</h2>
 
-- Explore the list of available <a href="/creating-manifest/actions/" target="_blank">Actions</a>                                   
+- Explore the list of available <a href="/1.2/creating-manifest/actions/" target="_blank">Actions</a>                                   
 
-- See the <a href="/creating-manifest/events/" target="_blank">Events</a> list the actions can be bound to                                  
+- See the <a href="/1.2/creating-manifest/events/" target="_blank">Events</a> list the actions can be bound to                                  
 
-- Find out the list of <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching                                         
+- Find out the list of <a href="/1.2/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching                                         
 
-- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                                 
+- Read how to integrate your <a href="/1.2/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                                 
 
-- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                            
+- Learn how to customize <a href="/1.2/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                            

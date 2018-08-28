@@ -90,20 +90,20 @@ success: object/string
 - `homepage` *[optional]* - link to any external application source
 - `categories` - categories available for manifests filtering                                                                        
 - `baseUrl` *[optional]* - custom <a href="#relative-links" target="_blank">relative links</a>                                       
-- `settings` *[optional]* - custom form with <a href="/creating-manifest/visual-settings/" target="_blank">predefined user input elements</a>                        
+- `settings` *[optional]* - custom form with <a href="/1.2/creating-manifest/visual-settings/" target="_blank">predefined user input elements</a>                        
 - `nodes` - an array to describe information about nodes for an installation. Required option for JPS with **type** `install`.
-- `engine` *[optional]* - engine <a href="/creating-manifest/selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
+- `engine` *[optional]* - engine <a href="/1.2/creating-manifest/selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
 - `region` *[optional]* - region, where an environment will be installed. Required option for **type** `install`.
 - `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with `type` *install* mode.            
 - `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with `type` *install* mode.
 - `displayName` *[optional]* - display name for an environment. Required option for **type** `install`.
 - `appVersion` *[optional]* - custom version of an application
-- `onInstall` *[optional]* - <a href="/creating-manifest/events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
+- `onInstall` *[optional]* - <a href="/1.2/creating-manifest/events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
 - `startPage` *[optional]* - path to be opened via the **Open in browser** button through a successful installation message
-- `actions` *[optional]* - objects to describe all <a href="/creating-manifest/actions/#custom-actions" target="_blank">custom actions</a>
+- `actions` *[optional]* - objects to describe all <a href="/1.2/creating-manifest/actions/#custom-actions" target="_blank">custom actions</a>
 - `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](/creating-manifest/visual-settings/#success-text-customization).
-- "..." - the list of <a href="/creating-manifest/events/" target="_blank">events</a> can be predefined before manifest is installed. More details 
+- "..." - the list of <a href="/1.2/creating-manifest/events/" target="_blank">events</a> can be predefined before manifest is installed. More details 
 
 ##Environment Installation
 
@@ -113,7 +113,7 @@ The environment can be installed in case when the `type` parameter is set to **i
 
 The list of available parameters are:
 
-- `nodeType` *[required]* - the defined node type. The list of available stacks are <a href="/creating-manifest/selecting-containers/#supported-stacks" target="_blank">here</a>. 
+- `nodeType` *[required]* - the defined node type. The list of available stacks are <a href="/1.2/creating-manifest/selecting-containers/#supported-stacks" target="_blank">here</a>. 
 - `cloudlets` *[optional]* - a number of dynamic cloudlets. The default value is 0. `flexible` is an alias. 
 - `fixedCloudlets` *[optional]* - a mount of fixed cloudlets. The default value is 1.
 - `count` *[optional]* - a mount of nodes in one group. The default value is 1.
@@ -568,11 +568,11 @@ If installation is being run from <a href="https://github.com/jelastic-jps" targ
 There are a list of JPS blocks which can use resources from **related** links:
 
 - `logo` - JPS application image is shown while jps installation
-- `script` - <a href="/creating-manifest/actions/#script" target="_blank">action</a>,= for executing javascript and java scripts
+- `script` - <a href="/1.2/creating-manifest/actions/#script" target="_blank">action</a>,= for executing javascript and java scripts
 - `description` - information about JPS which is shown before install process
 - `success` - message after successful application installation
  
-The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="/creating-manifest/actions/#cmd" target="_blank">*cmd*</a> and <a href="/creating-manifest/actions/#script" target="_blank">*script*</a> actions).                 
+The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="/1.2/creating-manifest/actions/#cmd" target="_blank">*cmd*</a> and <a href="/1.2/creating-manifest/actions/#script" target="_blank">*script*</a> actions).                 
 
 For example:
 @@@

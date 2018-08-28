@@ -2,7 +2,7 @@
 
 ## Conditions    
 
-The main conditional statement is <b>*if*</b>. Within this parameter, all the available <a href="/creating-manifest/placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
+The main conditional statement is <b>*if*</b>. Within this parameter, all the available <a href="/1.2/creating-manifest/placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
 
 For example
 ```
@@ -246,10 +246,10 @@ this: {}
 @@!
 where:    
 
-- `settings` *[optional]* - values of the fields that are predefined within a <a href="/creating-manifest/visual-settings/" target="_blank">user settings form</a>          
-- `license [optional]` - link to fetch parameters that are specified within the <a href="/creating-manifest/visual-settings/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through the `$(license.{any_name}` <a href="/creating-manifest/placeholders/" target="_blank">placeholder</a>  within a manifest.       
-- `event [optional]` - object with <a href="/creating-manifest/events/" target="_blank">events</a> that can be of two types, triggering a particular <a href="/creating-manifest/actions/" target="_blank"> action</a> *before* or *after* the event execution       
-- `this [optional]` - object with parameters that are transmitted within the procedure body. See the full list of available<a href="/creating-manifest/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
+- `settings` *[optional]* - values of the fields that are predefined within a <a href="/1.2/creating-manifest/visual-settings/" target="_blank">user settings form</a>          
+- `license [optional]` - link to fetch parameters that are specified within the <a href="/1.2/creating-manifest/visual-settings/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through the `$(license.{any_name}` <a href="/1.2/creating-manifest/placeholders/" target="_blank">placeholder</a>  within a manifest.       
+- `event [optional]` - object with <a href="/1.2/creating-manifest/events/" target="_blank">events</a> that can be of two types, triggering a particular <a href="/1.2/creating-manifest/actions/" target="_blank"> action</a> *before* or *after* the event execution       
+- `this [optional]` - object with parameters that are transmitted within the procedure body. See the full list of available<a href="/1.2/creating-manifest/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
 
 Iteration can be executed by <b>*env.nodes*</b>, <b>*nodes*</b>, <b>*env.contexts*</b>, and <b>*env.extdomains*</b> objects.                      
 
@@ -418,13 +418,13 @@ The **ForEach** execution is recorded in the user console <a href="/troubleshoot
 <br>
 <h2>What's next?</h2>        
 
-- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                         
+- Read how to integrate your <a href="/1.2/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                         
 
-- Learn how to сreate your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                         
+- Learn how to сreate your custom <a href="/1.2/creating-manifest/addons/" target="_blank">Add-Ons</a>                                         
 
-- Find out how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>                       
+- Find out how to handle <a href="/1.2/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>                       
 
-- See how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                   
+- See how to customize <a href="/1.2/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                   
 
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                           
 

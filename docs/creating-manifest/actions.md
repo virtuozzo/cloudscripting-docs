@@ -1,6 +1,6 @@
 # Actions
 
-Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="/creating-manifest/custom-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS, and Java scripts. Any action, available to be performed by means of API (including custom scripts running), should be bound to some <a href="/creating-manifest/events" target="_blank">event</a> and executed as a result of this event occurrence.                                                      
+Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="/1.2/creating-manifest/custom-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS, and Java scripts. Any action, available to be performed by means of API (including custom scripts running), should be bound to some <a href="/1.2/creating-manifest/events" target="_blank">event</a> and executed as a result of this event occurrence.                                                      
 
 With the help of actions you can achieve automation of the tasks related to:                
 
@@ -14,9 +14,9 @@ With the help of actions you can achieve automation of the tasks related to:
 
 The default workflow for any action execution is the following:                  
 
-- replacing <a href="/creating-manifest/placeholders" target="_blank">placeholders</a>                                     
+- replacing <a href="/1.2/creating-manifest/placeholders" target="_blank">placeholders</a>                                     
 
-- getting a list of <a href="/creating-manifest/selecting-containers" target="_blank">target containers</a>                                                 
+- getting a list of <a href="/1.2/creating-manifest/selecting-containers" target="_blank">target containers</a>                                                 
 
 - checking permissions                                     
 
@@ -36,7 +36,7 @@ Thus, the following specific groups of actions are singled out:
 
 ## Container Operations
 
-There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the <a href="/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Containers</em></a> page.                        
+There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the <a href="/1.2/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Containers</em></a> page.                        
 
 Any container operation can be performed using a [*cmd*](#cmd) action. Moreover, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:       
 
@@ -231,7 +231,7 @@ There are a number of parameters required by Jelastic API that are defined autom
 
 - *session* - unique session of a current user                                  
 
-Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be run on all nodes within a single <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required that is available either through the <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>, or a set of [custom action parameters](#action-placeholders) (*${this}*).                     
+Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be run on all nodes within a single <a href="/1.2/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/1.2/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/1.2/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required that is available either through the <a href="/1.2/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>, or a set of [custom action parameters](#action-placeholders) (*${this}*).                     
 
 **Examples**
 
@@ -696,7 +696,7 @@ where:
 - `path` - path where a file is available               
 - `replacements` - list of replacements within the node's configuration files                        
     - `pattern` - regular expressions to find a string (e.g. *app\\.host\\.url\\s*=\\s*.**)                   
-    - `replacement` - you can use as a replacement any string value, including any combination of <a href="/creating-manifest/placeholders" target="_blank">placeholders</a>                                            
+    - `replacement` - you can use as a replacement any string value, including any combination of <a href="/1.2/creating-manifest/placeholders" target="_blank">placeholders</a>                                            
 
 <!-- DeletePath -->
 <!-- RenamePath --> 
@@ -753,7 +753,7 @@ addNodes:
 @@!
 where:
 
-- `nodeType` *[required]* - parameter to specify <a href="/creating-manifest/selecting-containers/#predefined-nodetype-values" target="_blank">software stacks</a>. For Docker containers the *nodeType* value is **docker**.                                        
+- `nodeType` *[required]* - parameter to specify <a href="/1.2/creating-manifest/selecting-containers/#predefined-nodetype-values" target="_blank">software stacks</a>. For Docker containers the *nodeType* value is **docker**.                                        
 - `extip` *[optional]* - attaching the external IP address to a container. The default value is *'false'*.                     
 - `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.                             
 - `flexibleCloudlets` *[optional]* - number of dynamic cloudlets. The default value is *'1'*.                           
@@ -1148,7 +1148,7 @@ where:
 - `databaseName` - name of a database for a patch to be applied                    
 - `user` - username in a database, on behalf of which an application is used                                          
 - `password` - password in a database, on behalf of which an application is used                              
-- `patch` - SQL query or a link to it. It is used only for SQL databases. Here, the <a href="/creating-manifest/placeholders" target="_blank">placeholders</a> support is available.                    
+- `patch` - SQL query or a link to it. It is used only for SQL databases. Here, the <a href="/1.2/creating-manifest/placeholders" target="_blank">placeholders</a> support is available.                    
 
 !!! note
     The action is executed only for *mysql5*, *mariadb*, and *mariadb10* containers.                         
@@ -1182,7 +1182,7 @@ onInstall:
 @@!
 
 A custom scripts can be set via external links instead of a **string**.  
-The example execution result is a <a href="/creating-manifest/handling-custom-responses/" target="_blank">response type</a> `error` with message *"Hello World!"*.
+The example execution result is a <a href="/1.2/creating-manifest/handling-custom-responses/" target="_blank">response type</a> `error` with message *"Hello World!"*.
 The default action script type is `javascript`.
 
 There is an ability to define language type or pass custom parameters. In this case the `script` action should be describe like in example below:
@@ -1400,7 +1400,7 @@ where:
 
 - `jps` - URL to your custom JPS manifest                    
 - `envName` - short domain name of a new environment                                   
-- `settings` - user <a href="/creating-manifest/visual-settings/" target="_blank">custom form</a>                                               
+- `settings` - user <a href="/1.2/creating-manifest/visual-settings/" target="_blank">custom form</a>                                               
 
 Installing the environment from the local manifest file.                      
 @@@
@@ -1453,7 +1453,7 @@ where:
 
 ### installAddon
 
-You can install a <a href="/creating-manifest/addons/" target="_blank">custom add-on</a> within another - *parent* manifest. By default, custom add-ons have the *update* installation type.                                      
+You can install a <a href="/1.2/creating-manifest/addons/" target="_blank">custom add-on</a> within another - *parent* manifest. By default, custom add-ons have the *update* installation type.                                      
 
 Thus, the custom add-on can be installed to the:                                         
 
@@ -1521,7 +1521,7 @@ installAddon:
 ```
 @@!
 
-For more details about the <a href="/creating-manifest/addons/" target="_blank">add-ons</a> installation, visit the linked page.                                              
+For more details about the <a href="/1.2/creating-manifest/addons/" target="_blank">add-ons</a> installation, visit the linked page.                                              
 
 <!-- add example -->
 
@@ -1729,7 +1729,7 @@ actions:
 }
 ```
 @@!
-Therefore, the same custom actions can be reused for several times with different parameters. Moreover, any action can be targeted at a specific node by ID, at a particular layer (*nodeGroup*) or *nodeType*. For more details about <a href="/creating-manifest/selecting-containers/#types-of-selectors" target="_blank">*Node Selectors*</a>, visit the linked page.                             
+Therefore, the same custom actions can be reused for several times with different parameters. Moreover, any action can be targeted at a specific node by ID, at a particular layer (*nodeGroup*) or *nodeType*. For more details about <a href="/1.2/creating-manifest/selecting-containers/#types-of-selectors" target="_blank">*Node Selectors*</a>, visit the linked page.                             
  
 ### Code Reuse
 
@@ -1880,14 +1880,14 @@ actions:
 <br>       
 <h2>What’s next?</h2>                   
 
-- See the <a href="/creating-manifest/events/" target="_blank">Events</a> list the actions can be bound to            
+- See the <a href="/1.2/creating-manifest/events/" target="_blank">Events</a> list the actions can be bound to            
 
-- Find out the list of <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching           
+- Find out the list of <a href="/1.2/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching           
 
-- See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                                  
+- See how to use <a href="/1.2/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                                  
 
-- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                                               
+- Read how to integrate your <a href="/1.2/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                                               
 
-- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                                    
+- Learn how to customize <a href="/1.2/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                                    
 
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                                           
