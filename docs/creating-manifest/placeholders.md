@@ -265,7 +265,7 @@ This is the list of placeholders that you can use to specify UI parameters.
 - `${env.domain}` - full domain name without protocol
 - `${env.appid}` - unique environment appid at the Jelastic Platform
 - `${baseUrl}` - user custom relative URL. More details about <a href="/1.2/creating-manifest/basic-configs/#relative-links">Relative Links here</a>
-- `${platformUrl}` - hoster dashboard URL. A reseller will have the own domain URL.
+- `${platformUrl}` - hoster dashboard URL.
 
 **Example**
 @@@
