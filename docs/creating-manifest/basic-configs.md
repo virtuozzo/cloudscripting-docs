@@ -111,7 +111,7 @@ success: object/string
 - `skipNodeEmails` *[optional]* - an ability to skip sending emails about creating nodes. Emails are related only to nodes where implemented reset password functionality
 - `appVersion` *[optional]* - custom version of an application
 - `onInstall` *[optional]* - <a href="/1.5.2/creating-manifest/events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
-- `startPage` *[optional]* - path to be opened via the **Open in browser** button through a successful installation message
+- `startPage` *[optional]* - an [entry point](/creating-manifest/basic-configs/#entry-points) to be opened via the **Open in browser** button through a successful installation message
 - `actions` *[optional]* - objects to describe all <a href="/1.5.2/creating-manifest/actions/#custom-actions" target="_blank">custom actions</a>
 - `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](/creating-manifest/visual-settings/#success-text-customization).
