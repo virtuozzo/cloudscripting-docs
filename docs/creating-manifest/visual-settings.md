@@ -883,7 +883,7 @@ fields:
     min: 1
     max: 10
     increment: 2
-    decimanPrecision: ''
+    decimalPrecision: ''
 ```
 ``` json
 {
@@ -895,7 +895,7 @@ fields:
       "min": 1,
       "max": 10,
       "increment": 2,
-      "decimanPrecision": ""
+      "decimalPrecision": ""
     }
   ]
 }
@@ -909,7 +909,7 @@ where:
 - `min` - minimum spinner value
 - `max` - maximum spinner value
 - `increment` - increment value
-- `decimanPrecision` - precision value
+- `decimalPrecision` - precision value
 
 ### numberpicker
 (*number-picker* is an alias)
