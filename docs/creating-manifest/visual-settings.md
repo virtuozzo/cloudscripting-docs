@@ -77,7 +77,7 @@ where:
 - `prepopulate` *[optional]* - link to a script, that will fetch default field values
 - `fields` - array of fields that will be displayed in a custom form
     - `showIf` - shows/hides field by condition (applicable only to *radio-fieldset* field)
-    - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:
+    - `type` *[optional]* - input field type. Default value is *'string'*. Possible values:
         * `string` - [basic](#string) text field
         * `text`  - [multiline](#text) text field
         * `list` - drop-down menu with [textboxes](#list)
@@ -90,7 +90,7 @@ where:
         * `slider` - [slider element](#slider) as a form field
         * `envlist` - [list of environments](#envlist) available for a corresponding account
         * `regionlist` - drop-down menu with a [regions](#regionlist) list
-        * `popupselector` - new [pop-up window](#popupselector) via POST request with posibility to pass additional parameters
+        * `popupselector` - new [pop-up window](#popupselector) via POST request with possibility to pass additional parameters
         * `popup-selector` - alias to `popupselector`
         * `displayfield` - [text field](#displayfield) intended for displaying text
         * `spacer` - alias to `displayfield`
@@ -833,7 +833,7 @@ http://{Jelastic_Platform_URL} + "fireevent?event=click&value=hello"
 where:
 
 - `Jelastic_Platform_URL` - Jelastic Dashboard URL where manifest is executed
-- `click` - event namewhich is handled in manifest in `popupCallbackEvent` parameter
+- `click` - event name which is handled in manifest in `popupCallbackEvent` parameter
 - `value` - type is **string**. The `textfield` will be filled by it when button "Open" will be applied.
 
 ### displayfield
@@ -1091,6 +1091,7 @@ There are two possible ways to define *targetNodes*.
 
 <b>Example</b>
 
+
 Let’s suppose you have three environments with different topology.
 
 ![target-nodes](/img/target-nodes.png)
@@ -1259,7 +1260,7 @@ It will be displayed after clicking the appropriate button for an add-on. Accord
 
 ![LoadingText](/img/LoadingText.jpg)
 
-- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the <a href="/reference/actions/#custom-actions" target="_blank">*actions*</a> section.
+- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the <a href="/1.5/creating-manifest/actions/#custom-actions" target="_blank">*actions*</a> section.
 - `caption` - title of the button
 
 ![Caption](/img/Caption.jpg)
@@ -1270,7 +1271,7 @@ It will be displayed after clicking the appropriate button for an add-on. Accord
 
 - `href` *[optional]* - external link that is opened in a new browser tab and is executed only if the *settings* field is absent. In case of *href* execution, an *action* will not be carried out.
 
-Another sample with additional configurations where parameters can be enabled only if the [*settings*](/creating-manifest/user-input-parameters/#custom-settings) field is present.
+Another sample with additional configurations where parameters can be enabled only if the [*settings*](/creating-manifest/visual-settings/#custom-settings) field is present.
 @@@
 ```yaml
 type: update
@@ -1333,7 +1334,7 @@ where:
 
 ![LogsPath](/img/LogsPath.jpg)
 
-- `logsNodeGroup` - nodeGroup <a href="/creating-templates/selecting-containers/#predefined-nodegroup-values" target="_blank">layer</a> the logging path should be opened for
+- `logsNodeGroup` - nodeGroup <a href="/1.5/creating-manifest/selecting-containers/#predefined-nodegroup-values" target="_blank">layer</a> the logging path should be opened for
 
 ## Custom Settings
 Settings section can include a few custom forms. Default settings form ID is *'main'*.
@@ -1531,7 +1532,7 @@ success:
 ```
 @@!
 
-Email notification also can be customized in <a href="/creating-manifest/handling-custom-responses/">custom responses</a>. In this case `email` value from handle custom response has a highier priority. For example:
+Email notification also can be customized in <a href="/1.5/creating-manifest/handling-custom-responses/">custom responses</a>. In this case `email` value from handle custom response has a higher priority. For example:
 @@@
 ```yaml
 type: update
@@ -1561,13 +1562,13 @@ success: success!!
 
 In the last example above, the localization functionality is applied, which depends upon the Jelastic Platform selected language.
 
-Custom responses can be returned within <a href="/creating-manifest/actions/#return" target="_blank">`return`</a> or <a href="/creating-manifest/actions/#script" target="_blank">`script`</a> actions. More details about <a href="/creating-manifest/handling-custom-responses/" target="_blank">custom responses here</a>.
+Custom responses can be returned within <a href="/1.5/creating-manifest/actions/#return" target="_blank">`return`</a> or <a href="/1.5/creating-manifest/actions/#script" target="_blank">`script`</a> actions. More details about <a href="/1.5/creating-manifest/handling-custom-responses/" target="_blank">custom responses here</a>.
 
 ## Markdown Description
 
 Markdown is a light language with plain text formatting syntax. This language is supported by Cloud Scripting technology to describe a `description`, `success texts` or show [`custom response` texts](/creating-manifest/visual-settings/#success-text-customization).
 Cloud Scripting uses [CommonMark](http://commonmark.org/) implementation to convert Markdown syntax into html code.
-Therefore, there is a main supported Makrdow tag list:
+Therefore, there is a main supported Markdown tag list:
 
 Style 1                            |Style 2 | Result|
 -------                                 |----------|------
@@ -1585,7 +1586,7 @@ Horizontal Rule<br>\-\-\-|Horizontal Rule<br>\*\*\*|Horizontal Rule<br>![horizon
 \`\`Inline code\`\` with backticks|| ![Inline code](/img/markdown_inline-code.jpg) with backticks
 \`\`\`<br>print '3 backticks <br>or3 tildes'<br>\`\`\`|\~\~\~\~<br>print '3 backticks<br> or 3 tildes'<br>\~\~\~\~|![Block code](/img/markdown_block-code.jpg)
 
-The elements visualisation can be foundnd on the screen below:
+The elements visualization can be found on the screen below:
 ![markdown_tags](/img/markdown_tags.jpg)
 
 Source code for each of these elements is displayed below:
@@ -1641,4 +1642,3 @@ More details about Markdown implementation can be found in CommonMark specificat
 - Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements
 
 - Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>
-

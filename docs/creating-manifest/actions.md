@@ -1,6 +1,6 @@
 # Actions
 
-Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="/creating-manifest/custom-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS, and Java scripts. Any action, available to be performed by means of API (including custom scripts running), should be bound to some <a href="/creating-manifest/events" target="_blank">event</a> and executed as a result of this event occurrence.                                                      
+Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="/1.5/creating-manifest/custom-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS, and Java scripts. Any action, available to be performed by means of API (including custom scripts running), should be bound to some <a href="/1.5/creating-manifest/events" target="_blank">event</a> and executed as a result of this event occurrence.                                                      
 
 With the help of actions you can achieve automation of the tasks related to:                
 
@@ -14,9 +14,9 @@ With the help of actions you can achieve automation of the tasks related to:
 
 The default workflow for any action execution is the following:                  
 
-- replacing <a href="/creating-manifest/placeholders" target="_blank">placeholders</a>                                     
+- replacing <a href="/1.5/creating-manifest/placeholders" target="_blank">placeholders</a>                                     
 
-- getting a list of <a href="/creating-manifest/selecting-containers" target="_blank">target containers</a>                                                 
+- getting a list of <a href="/1.5/creating-manifest/selecting-containers" target="_blank">target containers</a>                                                 
 
 - checking permissions                                     
 
@@ -36,7 +36,7 @@ Thus, the following specific groups of actions are singled out:
 
 ## Container Operations
 
-There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the <a href="/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Containers</em></a> page.                        
+There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the <a href="/1.5/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Containers</em></a> page.                        
 
 Any container operation can be performed using a [*cmd*](#cmd) action. Moreover, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:       
 
@@ -93,7 +93,7 @@ cmd [tomcat6]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
 ```
 @@!
 
-The default `cmd` parameter is **commands**. It can be usefull to set a several commands in the same `cmd` action. For example:
+The default `cmd` parameter is **commands**. It can be useful to set a several commands in the same `cmd` action. For example:
 
 @@@
 ```yaml
@@ -231,7 +231,7 @@ There are a number of parameters required by Jelastic API that are defined autom
 
 - *session* - unique session of a current user                                  
 
-Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be run on all nodes within a single <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required that is available either through the <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>, or a set of [custom action parameters](#action-placeholders) (*${this}*).                     
+Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be run on all nodes within a single <a href="/1.5/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/1.5/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/1.5/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required that is available either through the <a href="/1.5/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>, or a set of [custom action parameters](#action-placeholders) (*${this}*).                     
 
 **Examples**
 
@@ -277,7 +277,7 @@ nodeGroup: cp
 ```
 @@!
 
-There is an default parameter `method` for `api` action. This parameter is usefull while setting few api method in one `api` action. For example:
+There is an default parameter `method` for `api` action. This parameter is useful while setting few api method in one `api` action. For example:
 @@@
 ```yaml
 type: update
@@ -538,7 +538,7 @@ createDirectory [nodeId, nodeGroup, nodeType]: string
 @@!
 where:  
 
-- `nodeId`, `nodGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                                 
+- `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                                 
 - `string` - container path where a directory is to be created                         
 
 There is an ability to create few directories in the same target node in one `createDirectory` action. In this case parameter **path** is needed. For example:
@@ -696,7 +696,7 @@ where:
 - `path` - path where a file is available               
 - `replacements` - list of replacements within the node's configuration files                        
     - `pattern` - regular expressions to find a string (e.g. *app\\.host\\.url\\s*=\\s*.**)                   
-    - `replacement` - you can use as a replacement any string value, including any combination of <a href="/creating-manifest/placeholders" target="_blank">placeholders</a>                                            
+    - `replacement` - you can use as a replacement any string value, including any combination of <a href="/1.5/creating-manifest/placeholders" target="_blank">placeholders</a>                                            
 
 <!-- DeletePath -->
 <!-- RenamePath --> 
@@ -753,14 +753,14 @@ addNodes:
 @@!
 where:
 
-- `nodeType` *[required]* - parameter to specify <a href="/creating-manifest/selecting-containers/#predefined-nodetype-values" target="_blank">software stacks</a>. For Docker containers the *nodeType* value is **docker**.                                        
+- `nodeType` *[required]* - parameter to specify <a href="/1.5/creating-manifest/selecting-containers/#predefined-nodetype-values" target="_blank">software stacks</a>. For Docker containers the *nodeType* value is **docker**.                                        
 - `extip` *[optional]* - attaching the external IP address to a container. The default value is *'false'*.                     
 - `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.                             
 - `flexibleCloudlets` *[optional]* - number of dynamic cloudlets. The default value is *'1'*.                           
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
     The following parameters are required for <a href="https://docs.jelastic.com/dockers-overview" target="_blank">Docker</a> containers only:                                    
 - `dockerName` *[optional]* - name and tag of Docker image
-- `registryUrl` *[optional]* - custom Docker regitry
+- `registryUrl` *[optional]* - custom Docker registry
 - `registryUser` *[optional]* - Docker registry username
 - `registryPassword` *[optional]* - Docker registry password
 - `dockerTag` - Docker tag for installation
@@ -792,7 +792,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                   
 - `string` - node’s display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                                                        
 
-The action `setNodeDisplayName` has the default parameter called **displayName**. It is usefull to set display name for few node layers in the same `action`. For example:
+The action `setNodeDisplayName` has the default parameter called **displayName**. It is useful to set display name for few node layers in the same `action`. For example:
 @@@
 ```yaml
 type: update
@@ -846,7 +846,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                       
 - `number` - total number of nodes after the action is finished                                          
 
-The action `setNodeCount` has it own default parameter - **count**. It is usefull to set node count for few node layers in one action. For example:
+The action `setNodeCount` has it own default parameter - **count**. It is useful to set node count for few node layers in one action. For example:
 @@@
 ```yaml
 type: update
@@ -900,7 +900,7 @@ where:
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                                                                    
 - `true` or `false` - parameter that allows to attach or detach the external IP address                              
 
-The action `setExtIpEnabled` has  own default parameter *enabled*. It is usefull in case to set external IP address status for few nodes in the same `action`. For example:
+The action `setExtIpEnabled` has  own default parameter *enabled*. It is useful in case to set external IP address status for few nodes in the same `action`. For example:
 @@@
 ```yaml
 type: update
@@ -988,7 +988,7 @@ restartNodes:
 where:       
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)
-- `reboot` - flag which determines in which way node should be restarted. Positive value means the whole container should be restarted (the similar action to <a href="/creating-manifest/actions/#restartcontainers" target="_blank">`restartContainer`</a>), the negative one value means only main service in current container will be restarted (the similar action to <a href="/creating-manifest/actions/#restartservices" target="_blank">`restartService`</a>).
+- `reboot` - flag which determines in which way node should be restarted. Positive value means the whole container should be restarted (the similar action to <a href="/1.5/creating-manifest/actions/#restartcontainers" target="_blank">`restartContainer`</a>), the negative one value means only main service in current container will be restarted (the similar action to <a href="/1.5/creating-manifest/actions/#restartservices" target="_blank">`restartService`</a>).
 
 ### restartContainers
 
@@ -998,7 +998,7 @@ Available for all nodes
 @@@
 ```yaml
 restartContainers:
-  - nodeId: number or stirng
+  - nodeId: number or string
     nodeGroup: string
     nodeType: string
 ```
@@ -1094,7 +1094,7 @@ prepareSqlDatabase:
 where:          
 
 - `nodeId`, `nodeGroup`, `nodeType` *[optional]* - parameters that determine target containers for the action execution. By default, the *nodeGroup* value is equal to *sqldb*.                            
-- `loginCredentials` - root creadentials from a new node                    
+- `loginCredentials` - root credentials from a new node                    
     - `user` - username                    
     - `password` - password                 
 - `newDatabaseName` - your custom database name              
@@ -1179,7 +1179,7 @@ where:
 - `databaseName` - name of a database for a patch to be applied                    
 - `user` - username in a database, on behalf of which an application is used                                          
 - `password` - password in a database, on behalf of which an application is used                              
-- `patch` - SQL query or a link to it. It is used only for SQL databases. Here, the <a href="/creating-manifest/placeholders" target="_blank">placeholders</a> support is available.                    
+- `patch` - SQL query or a link to it. It is used only for SQL databases. Here, the <a href="/1.5/creating-manifest/placeholders" target="_blank">placeholders</a> support is available.                    
 
 !!! note
     The action is executed only for *mysql5*, *mariadb*, and *mariadb10* containers.                         
@@ -1213,7 +1213,7 @@ onInstall:
 @@!
 
 A custom scripts can be set via external links instead of a **string**.  
-The example execution result is a <a href="/creating-manifest/handling-custom-responses/" target="_blank">response type</a> `error` with message *"Hello World!"*.
+The example execution result is a <a href="/1.5/creating-manifest/handling-custom-responses/" target="_blank">response type</a> `error` with message *"Hello World!"*.
 The default action script type is `javascript`.
 
 There is an ability to define language type or pass custom parameters. In this case the `script` action should be describe like in example below:
@@ -1244,13 +1244,13 @@ script:
 @@!
 where:   
 
-- `script` - an object where are defined script code, optional parameters and languarge code type                                                
+- `script` - an object where are defined script code, optional parameters and language code type                                                
 - `type` *[optional]* - script type with the following possible values (the default value is *'js'*):                                          
     - `js` `(javascript)` an alias    
     - `java`      
 - `params` *[optional]* - script parameters. Can can be used in scripts like placeholder in example - *${this.greeting}*                               
 
-A `script` action provides an ability to execute Jelastic API in custom scripts. Therefore, it is easy to manage Jelastic evnvironments by `scripts`.   
+A `script` action provides an ability to execute Jelastic API in custom scripts. Therefore, it is easy to manage Jelastic environments by `scripts`.   
 There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certified by Jelastic team.
 
 !!! note
@@ -1305,7 +1305,7 @@ actions:
 The result is on the screen below:
 ![setGlobals](/img/setGlobals.png)
 
-First action `setGlobals` denifes new *global* values - variables *a* and *b*. Then a new placeholders *\${globals.a}* and *\${globals.b}* are available in all next actions (custom actions are included too).
+First action `setGlobals` defines new *global* values - variables *a* and *b*. Then a new placeholders *\${globals.a}* and *\${globals.b}* are available in all next actions (custom actions are included too).
 
 !!!Note
     <b>Global</b> scope is created at the beginning of JPS installation and it is available within current manifest only.
@@ -1386,7 +1386,7 @@ While execution custom action a local scope can consists of arguments if they pa
 
 
 ### assert
-Is an ability to check two any values and verify results in <a href="/troubleshooting/" target="_blank">console log</a>. One of the usefull case is checking response fields from previous action with expected values. Responses parameters can be compared with other parameters or with any hardcoded values.
+Is an ability to check two any values and verify results in <a href="/troubleshooting/" target="_blank">console log</a>. One of the useful case is checking response fields from previous action with expected values. Responses parameters can be compared with other parameters or with any hardcoded values.
 For example:
 @@@
 ```yaml
@@ -1510,13 +1510,13 @@ onInstall:
 ![assert-custom-msg](/img/assert-custom-msg.jpg)
 
 Response placeholders in `assert` action are being defined only from the previous one action.
-For example, placeholder *${response.responses.out}* from `cmd` action willn't be defined in `assert` action, but placeholder *${response.test}* from previous `script` action will.
+To check the result from the previous action, see the example:
 
 @@@
 ```json
 {
   "type": "update",
-  "name": "Assert action - scrion action assert",
+  "name": "Assert action - script action assert",
   "onInstall": [
     {
       "cmd [cp]": "echo test"
@@ -1540,7 +1540,7 @@ For example, placeholder *${response.responses.out}* from `cmd` action willn't b
 ```
 ```yaml
 type: update
-name: Assert action - scrion action assert
+name: Assert action - script action assert
 onInstall:
 - cmd [cp]: echo test
 - script:
@@ -1610,7 +1610,7 @@ onInstall:
 @@!
 Therefore, the `install` action can be set by **string**.
 
-Also ther is an ability to set a few external manifests inside one `install` action in one array. For example:
+Also there is an ability to set a few external manifests inside one `install` action in one array. For example:
 @@@
 ```yaml
 type: update
@@ -1732,7 +1732,7 @@ where:
 
 - `jps` - URL to your custom JPS manifest                    
 - `envName` - short domain name of a new environment                                   
-- `settings` - user <a href="/creating-manifest/visual-settings/" target="_blank">custom form</a>                                               
+- `settings` - user <a href="/1.5/creating-manifest/visual-settings/" target="_blank">custom form</a>                                               
 
 Installing the environment from the local manifest file.                      
 @@@
@@ -1785,7 +1785,7 @@ where:
 
 ### installAddon
 
-You can install a <a href="/creating-manifest/addons/" target="_blank">custom add-on</a> within another - *parent* manifest. By default, custom add-ons have the *update* installation type.                                      
+You can install a <a href="/1.5/creating-manifest/addons/" target="_blank">custom add-on</a> within another - *parent* manifest. By default, custom add-ons have the *update* installation type.                                      
 
 Thus, the custom add-on can be installed to the:                                         
 
@@ -1855,7 +1855,7 @@ installAddon:
 
 The action `installAddon` has the default parameter called `id`. 
 
-For more details about the <a href="/creating-manifest/addons/" target="_blank">add-ons</a> installation, visit the linked page.                                              
+For more details about the <a href="/1.5/creating-manifest/addons/" target="_blank">add-ons</a> installation, visit the linked page.                                              
 
 <!-- add example -->
 
@@ -1925,7 +1925,7 @@ name: Return Action
 onInstall:
   return:
     type: success
-    message: Compute node unique identifer - ${nodes.cp.id}
+    message: Compute node unique identifier - ${nodes.cp.id}
 ```
 ```json
 {
@@ -1934,7 +1934,7 @@ onInstall:
   "onInstall": {
     "return": {
       "type": "success",
-      "message": "Compute node unique identifer - ${nodes.cp.id}"
+      "message": "Compute node unique identifier - ${nodes.cp.id}"
     }
   }
 }
@@ -1952,7 +1952,7 @@ name: Return Action
 onInstall:
   - return:
       type: success
-      message: Compute node unique identifer - ${nodes.cp.id}
+      message: Compute node unique identifier - ${nodes.cp.id}
   - restartNodes [cp]
 ```
 ```json
@@ -1962,7 +1962,7 @@ onInstall:
     "onInstall": [{
             "return": {
                 "type": "success",
-                "message": "Compute node unique identifer - ${nodes.cp.id}"
+                "message": "Compute node unique identifier - ${nodes.cp.id}"
             }
         },
         "restartNodes [cp]"
@@ -2063,7 +2063,7 @@ actions:
 }
 ```
 @@!
-Therefore, the same custom actions can be reused for several times with different parameters. Moreover, any action can be targeted at a specific node by ID, at a particular layer (*nodeGroup*) or *nodeType*. For more details about <a href="/creating-manifest/selecting-containers/#types-of-selectors" target="_blank">*Node Selectors*</a>, visit the linked page.                             
+Therefore, the same custom actions can be reused for several times with different parameters. Moreover, any action can be targeted at a specific node by ID, at a particular layer (*nodeGroup*) or *nodeType*. For more details about <a href="/1.5/creating-manifest/selecting-containers/#types-of-selectors" target="_blank">*Node Selectors*</a>, visit the linked page.                             
  
 ### Code Reuse
 
@@ -2214,14 +2214,14 @@ actions:
 <br>       
 <h2>What’s next?</h2>                   
 
-- See the <a href="/creating-manifest/events/" target="_blank">Events</a> list the actions can be bound to            
+- See the <a href="/1.5/creating-manifest/events/" target="_blank">Events</a> list the actions can be bound to            
 
-- Find out the list of <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching           
+- Find out the list of <a href="/1.5/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching           
 
-- See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                                  
+- See how to use <a href="/1.5/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                                  
 
-- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                                               
+- Read how to integrate your <a href="/1.5/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                                               
 
-- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                                    
+- Learn how to customize <a href="/1.5/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                                    
 
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                                           

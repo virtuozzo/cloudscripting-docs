@@ -28,7 +28,7 @@ The following specific groups of placeholders are singled out:
 
 - [File Path Placeholders](/creating-manifest/placeholders/#file-path-placeholders)                                 
 
-Placeholders like `env`, `nodes`, `targetNodes`, `response` are dynamically. They could be updated by their requests if they are required to be updated.
+Placeholders like `env`, `nodes`, `targetNodes`, `response` are dynamically updated. They could be updated by their requests if they are required to be updated.
 
 ## Environment Placeholders
 
@@ -39,7 +39,7 @@ This is the list of placeholders that you can use within the environment section
     - `domain` *[string]* - application domain
     - `protocol` *[string]* - protocol
     - `url` *[string]* - link to application (environment)
-    - `region` *[string]* - a region name where environemnt has been installed
+    - `region` *[string]* - a region name where environment has been installed
     - `displayName` *[string]* - application display name
     - `envName` *[string]* - short domain name (without hosting provider URL)
     - `shortdomain` *[string]* - short domain name (alias to `envName`)
@@ -81,7 +81,7 @@ This is the list of placeholders that you can use within the nodes section (*{no
     - `{nodes.(group).first.(key)}`
     - `{nodes.(group).last.(key)}`   
     where:
-    - `(group)` - node group (<a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">nodeType</a>)           
+    - `(group)` - node group (<a href="/1.5/creating-manifest/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> or <a href="/1.5/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">nodeType</a>)           
     - `(i)` - node index, starting from *'0'*
     - `(key)` - name of the applied parameter, according to the following list:
         - `address` - internal or external IP address                               
@@ -158,7 +158,7 @@ Event placeholders represent a set of dynamic parameters that are executed as a 
 - `${event.params.(key)}` - where *key* is a name of the event parameter                     
 - `${event.response.(key)}` -where *key* is a name of the event response parameter             
 
-Learn more about the event placeholders within the <a href="/creating-manifest/events" target="_blank">*Events*</a> page.         
+Learn more about the event placeholders within the <a href="/1.5/creating-manifest/events" target="_blank">*Events*</a> page.         
 
 ## Account Information  
 
@@ -202,7 +202,7 @@ settings:
 }
 ```
 @@!
-Here, the name of the placeholder is `${settings.customName}`. See the list of <a href="/creating-manifest/visual-settings/" target="_blank">fields</a> that are defined by users.       
+Here, the name of the placeholder is `${settings.customName}`. See the list of <a href="/1.5/creating-manifest/visual-settings/" target="_blank">fields</a> that are defined by users.       
 
 ## Action Placeholders
 
@@ -302,8 +302,8 @@ This is the list of placeholders that you can use to specify UI parameters.
 - `${user.email}` - user email address
 - `${env.domain}` - full domain name without protocol
 - `${env.appid}` - unique environment appid at the Jelastic Platform
-- `${baseUrl}` - user custom relative URL. More details about <a href="/creating-manifest/basic-configs/#relative-links">Relative Links here</a>
-- `${platformUrl}` - hoster dashboard URL. A ressellers will have their own domain URL.
+- `${baseUrl}` - user custom relative URL. More details about <a href="/1.5/creating-manifest/basic-configs/#relative-links">Relative Links here</a>
+- `${platformUrl}` - hoster dashboard URL.
 
 **Example**
 @@@
@@ -364,11 +364,11 @@ As a result, you can use <b>*${globals.value1}*</b> and <b>*${globals.value2}*</
 
 Values are global placeholders (<i>value1</i> and <i>value2</i> in example above) could consist of like simple text or/and placeholders in it. There are the list of placeholders which are predefined in `globals` block:
 
-- `${settings.*}` - <a href="/creating-manifest/placeholders/#input-parameters" target="_blank">input parameters</a> from `settings` block, where custom forms are described
-- `${env.*}` - all <a href="/creating-manifest/placeholders/#environment-placeholders" target="_balnk">environment placeholders</a>. Placeholders are available only in JPS manifests with `type` *install* -  `globals` block will be updated after an environment is created.
-- `${nodes.*}` - all <a href="/creating-manifest/placeholders/#node-placeholders" target="_balnk">node placeholders</a>. Node values in global placeholders will be available only after environment is created.
-- `${user.*}` - <a href="/creating-manifest/placeholders/#account-information" target="-blank">account placeholders</a> ara available during all JPS installation process.
-- `${fn.*}` - <a href="/creating-manifest/placeholders/#function-placeholders" target="_blank">functional placeholders</a>  ara available during all JPS installation process.
+- `${settings.*}` - <a href="/1.5/creating-manifest/placeholders/#input-parameters" target="_blank">input parameters</a> from `settings` block, where custom forms are described
+- `${env.*}` - all <a href="/1.5/creating-manifest/placeholders/#environment-placeholders" target="_balnk">environment placeholders</a>. Placeholders are available only in JPS manifests with `type` *install* -  `globals` block will be updated after an environment is created.
+- `${nodes.*}` - all <a href="/1.5/creating-manifest/placeholders/#node-placeholders" target="_balnk">node placeholders</a>. Node values in global placeholders will be available only after environment is created.
+- `${user.*}` - <a href="/1.5/creating-manifest/placeholders/#account-information" target="-blank">account placeholders</a> are available during all JPS installation process.
+- `${fn.*}` - <a href="/1.5/creating-manifest/placeholders/#function-placeholders" target="_blank">functional placeholders</a>  are available during all JPS installation process.
 
 ## Function Placeholders
 
@@ -401,7 +401,7 @@ The function parameter can be passed from existing placeholders, for example:
 - `${fn.md5([fn.random])}` - *md5* encoding random password   
 - `${fn.base64([user.email])}` - *base64* encoding user email address  
 
-You can easily define function placeholders within the [cutom global placeholders](#custom-global-placeholders), for example:
+You can easily define function placeholders within the [custom global placeholders](#custom-global-placeholders), for example:
 @@@
 ```yaml
 globals:
@@ -443,11 +443,11 @@ Each element has an index in the array.
 where:
 
 - `(i)` - array index, starting from *'0'*                     
-- `(key)` - node <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">parameters</a>                            
+- `(key)` - node <a href="/1.5/creating-manifest/placeholders/#node-placeholders" target="_blank">parameters</a>                            
 
 **The First and the Last Array Elements** 
 
-- `{nodes.cp.first.(key)}` - array element with the the *'0'* index              
+- `{nodes.cp.first.(key)}` - array element with the *'0'* index              
 - `{nodes.sqldb.last.(key)}` - array element with the last ID in the array                      
 
 Here, <b>*key*</b> is the node parameter.                         
@@ -485,7 +485,7 @@ You can use the following placeholders, as well, with the definite *nodeType*:
 - `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*  
 - `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*      
 
-Explore the full list of available <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> values within the linked page.                                                         
+Explore the full list of available <a href="/1.5/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> values within the linked page.                                                         
 
 The list of single placeholders:
 
@@ -529,7 +529,7 @@ onInstall:
 ```
 @@!
 
-The first comparing in `assert` action is **"'\${unknown:defaultValue}' === 'defaultValue'"**, where placeholder *\${unknown:defaultValue}* in Cloud Scripting engine isn't defined. So the sipmle string will be displayed in console. The same behaviour will be with another comparisons.<br>
+The first comparing in `assert` action is **"'\${unknown:defaultValue}' === 'defaultValue'"**, where placeholder *\${unknown:defaultValue}* in Cloud Scripting engine isn't defined. So the simple string will be displayed in console. The same behaviour will be with another comparisons.<br>
 The executed results on the screen below:
 ![simple-comparison](/img/simple-comparison.png)
 
@@ -594,14 +594,14 @@ The results on the screen below:
 <br>       
 <h2> What’s next?</h2>                    
 
-- See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                                
+- See how to use <a href="/1.5/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                                
 
-- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                      
+- Read how to integrate your <a href="/1.5/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                      
 
-- Check how to create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>                                         
+- Check how to create your custom <a href="/1.5/creating-manifest/addons/" target="_blank">Add-Ons</a>                                         
 
-- Find out how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>      
+- Find out how to handle <a href="/1.5/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>      
 
-- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>
+- Learn how to customize <a href="/1.5/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>
 
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples

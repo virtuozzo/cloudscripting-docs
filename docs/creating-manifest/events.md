@@ -1,6 +1,6 @@
 # Events
 
-Any <a href="/creating-manifest/actions/" target="_blank">action</a>, available to be performed by means of <a href="https://docs.jelastic.com/api/" target="_blank">API</a> (including <a href="/creating-manifest/custom-scripts/" target="_blank">custom scripts</a> running), should be bound to some event and executed as a result of this event occurrence.
+Any <a href="/1.5/creating-manifest/actions/" target="_blank">action</a>, available to be performed by means of <a href="https://docs.jelastic.com/api/" target="_blank">API</a> (including <a href="/1.5/creating-manifest/custom-scripts/" target="_blank">custom scripts</a> running), should be bound to some event and executed as a result of this event occurrence.
 
 Each event triggers a particular action on the required application's lifecycle stage. The entry point for executing any action is the [*onInstall*](#oninstall) event.
 
@@ -14,14 +14,17 @@ Each event triggers a particular action on the required application's lifecycle 
 
 ## Events Filtering
 
-Events can be filtered by <a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blabk">*nodeGroup*</a>, <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a>, and <a href="/creating-manifest/selecting-containers/#particular-container" target="_blank">*nodeId*</a> parameters. As a result, the action is executed only when the called event matches specified filtering rules. Otherwise, if no filtering rules are specified, every event is listened by all environment entities.
+Events can be filtered by any input parameters. As a result, the action is executed only when the called event matches specified filtering rules. Parameter name (e.g. *myalert*) can be specified via a colon: **onAlert [name:myalert]**. Input parameters list is described for every [event](/creating-manifest/events/#event-list) within **${event.params.}**. Also, it is possible to filter events with comma-separated list of the parameters (**onBeforeRedeployContainer [nodeGroup:cp, sequential:true, useExistingVolumes:true]**). 
+In case the parameter name is not specified via colon, engine tries to determine parameter as a [*nodeID*](/creating-manifest/selecting-containers/#particular-container), if it’s not possible, then it tries to determine a [*nodeGroup*](/creating-manifest/selecting-containers/#all-containers-by-group), if it’s not possible, after that it tries to determine a [*nodeType*](/creating-manifest/selecting-containers/#all-containers-by-type). Finally, if no filtering rules are specified, no event triggers.
 
-The following example describes the events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event). Here, filtering by the compute node group (*[cp]*) is set so that the action is executed after compute nodes are scaled out. The *nodeType* filtering is set so that the action is executed after **Apache 2** nodes are restarted. The *nodeID* filtering is set so that the action is executed after a password from the first compute node in the layer is reseted.
+The following example describes the events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event). Here, filtering by the compute node group (*[cp]*) is set so that the action is executed after compute nodes are scaled out. The *nodeType* filtering is set so that the action is executed after **Apache 2** nodes are restarted. The *nodeID* filtering is set so that the action is executed after a password from the first compute node in the layer is reset.
+
+The following example describes the events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event). Here, filtering by the compute node group (*[cp]*) is set so that the action is executed after compute nodes are scaled out. The *nodeType* filtering is set so that the action is executed after **Apache 2** nodes are restarted. The *nodeID* filtering is set so that the action is executed after a password from the first compute node in the layer is reset.
 
 @@@
 ```yaml
 type: update
-name: Event Subsribtion Example
+name: Event Subscription Example
 
 onInstall:
 createFile [cp]: /tmp/result.txt
@@ -38,7 +41,7 @@ cmd [${nodes.cp[0].id}]: echo 'First compute node has been restarted' >> /tmp/re
 ``` json
 {
   "type": "update",
-  "name": "Event Subsribtion Example",
+  "name": "Event Subscription Example",
   "onInstall": {
     "createFile [cp]": "/tmp/result.txt"
   },
@@ -69,7 +72,7 @@ There are few options to filter executed events:
 1. onBeforeRestartNode [cp] or [apache] or [1234] - short filters for events
 2. onBeforeRestartNode [nodeGroup: cp] or [nodeType: apache] or [nodeId: 1234] - full filters sets
 3. Combines of different simple filters from first or second points above in one -
-onBeforeRestartNode[1234, 5678] (executing `event` only on nodes checked by unque identifiers) or onBeforeRestartNode[nodeGroup: cp, nodeId: 123]
+onBeforeRestartNode[1234, 5678] (executing `event` only on nodes checked by unique identifiers) or onBeforeRestartNode[nodeGroup: cp, nodeId: 123]
 
 Such reserved keywords like *nodeGroup*, *nodeType* and *nodeId* in event filtering are not case sensitive, so they can be declared in any way.
 
@@ -129,15 +132,15 @@ The event is executed once the *changeTopology* action is finished.
 - `${event.response.}`:
     - `result` - result code. The successful action result is *'0"*.
     - `envGroups` - environment groups array
-    - `right` - account right for envronment
+    - `right` - account right for environment
     - `nodeGroups` - node delays:
         - `restartNodeDelay` - delay for restart
         - `name` - node group name
         - `redeployContainerDelay` - delay for container redeployment
         - `redeployContextDelay` - delay for context redeployment
         - `restartContainerDelay` - delay for container restart
-    - `nodes` - nodes array with detailed info about the topology change. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
-    - `env` - environment information. Explore the full list of available <a href="/creating-manifest/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.
+    - `nodes` - nodes array with detailed info about the topology change. Explore the full list of available <a href="/1.5/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
+    - `env` - environment information. Explore the full list of available <a href="/1.5/creating-manifest/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.
 
 ### onBeforeScaleOut
 
@@ -161,7 +164,7 @@ The event is executed after adding new node(s) to the existing node group. The *
     - `count` - number of nodes that are added
     - `nodeGroup` - node group that is scaled out
 - `${event.response.}`:
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/1.5/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
 
 ### onBeforeScaleIn
 
@@ -173,7 +176,7 @@ The event is executed before removing node(s) (i.e. scaling *in*) from the targe
     - `count` - number of nodes that are removed
     - `nodeGroup` - node group that is scaled in
 - `${event.response.}`:
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/1.5/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
 
 ### onAfterScaleIn
 
@@ -185,7 +188,7 @@ The event is executed after scaling *in* the corresponding node group. The *onAf
     - `count` - number of nodes that are removed
     - `nodeGroup` - node group that is scaled in
 - `${event.response.}`:
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/1.5/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
 
 ### onBeforeServiceScaleOut
 
@@ -227,7 +230,7 @@ These monitoring triggers are based on the usage of the following resource types
 - **Disk I/O** - disk input/output rate
 - **Disk IOPS** - disk input/output rate (in operations per second)
 
-The units of measurement are *PERCENTAGE* and *SPECIFIC*. The second value is availabe only for **NET_EXT** and **NET_EXT_OUT** resource types.
+The units of measurement are *PERCENTAGE* and *SPECIFIC*. The second value is available only for **NET_EXT** and **NET_EXT_OUT** resource types.
 
 The following example illustrates the subscription to the *onAlert* event. Here, the *log* action is executed if one of the triggers within the compute (*[cp]*) layer is invoked.
 
@@ -249,6 +252,31 @@ onAlert [cp]:
 }
 ```
 @@!
+
+In the following example, the *log* action is executed if the invoked trigger is subscribed to the *onAlert* event with the *custom_name*.
+
+@@@
+```yaml
+type: update
+name: AddTrigger
+
+onAlert [name:custom_name]:
+  log: onAlert event has subscribed
+```
+```json
+{
+    "type": "update",
+    "name": "AddTrigger",
+    "onAlert [name:custom_name]": {
+        "log": "onAlert event has subscribed"
+    }
+}
+```
+@@!
+
+<left><img style="width: 600px"  src="/img/trigger_name.png" alt="trigger name" /></left>
+
+The trigger name can be set up through the dashboard as on the picture above or as described in the example as follows.
 
 The following example shows how a new trigger is being created.
 
@@ -373,7 +401,7 @@ The event is called before the *deleteEnvironment* action.
     - `session` - current user session
     - `appid` - environment unique appid
     - `password` - user password
-    - `env` - environmetn short name (only domain name)
+    - `env` - environment short name (only domain name)
 - `${event.response.}` parameters are absent
 
 ### onBeforeAddNode
@@ -562,7 +590,7 @@ The event is executed after attaching the external IP address. The *onBeforeAtta
     - `env` - environment short domain name
 - `${event.response.}`:
     - `result` - result code. The successful action result is *'0'*.
-    - `obejct` *[string]* - attached extrenal IP address
+    - `obejct` *[string]* - attached external IP address
 
 ### onBeforeDetachExtIp
 
@@ -609,7 +637,7 @@ The event is carried out before updating the VCS project. For a detailed guidanc
     - `appid` - environment unique appid
     - `envName` - environment unique identifier
     - `context` - project context name
-    - `env` - environemnt short domain name
+    - `env` - environment short domain name
     - `nodeGroup` *[optional]* - predefined node group
     - `nodegroup` *[optional]* - same value as `nodeGroup`
     - `nodeid` *[optional]* - node unique identifier
@@ -628,7 +656,7 @@ The event is carried out after updating the VCS project. For a detailed guidance
     - `appid` - environment unique appid
     - `envName` - environment unique identifier
     - `context` - project context name
-    - `env` - environemnt short domain name
+    - `env` - environment short domain name
     - `nodeGroup` *[optional]* - predefined node group
     - `nodegroup` *[optional]* - same value as `nodeGroup`
     - `nodeid` *[optional]* - node unique identifier
@@ -649,8 +677,8 @@ The event is executed before setting cloudlet count, which implies changing the 
     - `appid` - environment unique appid
     - `nodeGroup` - predefined node group
     - `nodegroup` - same value as `nodeGroup`
-    - `env` - environemnt short domain name
-    - `name` - environemnt display name
+    - `env` - environment short domain name
+    - `name` - environment display name
 - `${event.response.}`: parameters are absent
 
 ### onAfterSetCloudletCount
@@ -666,8 +694,8 @@ The event is executed after setting cloudlet count, which implies changing the n
     - `appid` - environment unique appid
     - `nodeGroup` - predefined node group
     - `nodegroup` - same value as `nodeGroup`
-    - `env` - environemnt short domain name
-    - `name` - environemnt display name
+    - `env` - environment short domain name
+    - `name` - environment display name
 - `${event.response.}`:
     - `result` - result code. The successful action result is *'0'*.
 
@@ -706,7 +734,7 @@ The event is related to starting environment (executed from the Jelastic dashboa
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
-    - `env` - environemnt short domain name
+    - `env` - environment short domain name
 - `${event.response.}` - parameters are absent
 
 ### onAfterStart
@@ -781,8 +809,8 @@ The event is related to cloning environment (performed via the Jelastic dashboar
         - `redeployContainerDelay` - delay for container redeployment
         - `redeployContextDelay` - delay for context redeployment
         - `restartContainerDelay` - delay for container restart
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
-    - `env` - environment information. Explore the full list of available <a href="/creating-manifest/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/1.5/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
+    - `env` - environment information. Explore the full list of available <a href="/1.5/creating-manifest/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.
 
 ### onBeforeBuildProject
 
@@ -1465,12 +1493,12 @@ The event is executed after swapping the external domain names between two envir
 
 ## What’s next?
 
-- Find out how to fetch parameters with <a href="/creating-manifest/placeholders/" target="_blank">Placeholders</a>
+- Find out how to fetch parameters with <a href="/1.5/creating-manifest/placeholders/" target="_blank">Placeholders</a>
 
-- See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>
+- See how to use <a href="/1.5/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>
 
-- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>
+- Read how to integrate your <a href="/1.5/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>
 
-- Learn how to create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>
+- Learn how to create your custom <a href="/1.5/creating-manifest/addons/" target="_blank">Add-Ons</a>
 
-- Check how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>
+- Check how to handle <a href="/1.5/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>
