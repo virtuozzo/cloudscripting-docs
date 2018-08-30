@@ -8,7 +8,7 @@ theme_center_lead: false
 
 
 theme_dir: './theme/readthedocs'
-repo_url: 'https://github.com/cloudscripting/docs/edit/1.5.1/docs/'
+repo_url: 'https://github.com/cloudscripting/docs/edit/1.6/docs/'
 
 markdown_extensions:
   - admonition
@@ -59,7 +59,6 @@ pages:
 
 versions:
    releases:
-      - 1.2
       - 1.3
       - 1.4
       - 1.4.2
