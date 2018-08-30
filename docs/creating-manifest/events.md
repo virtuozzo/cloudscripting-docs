@@ -892,7 +892,7 @@ The event is bound to resetting a password (executed at the Jelastic dashboard v
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
-    - `nodeType` - predefined node type
+    - `nodeGroup` - predefined node group
 - `${event.response.}`:
     - `result` - parameters are absent
 
@@ -905,7 +905,7 @@ The event is bound to resetting a password (executed at the Jelastic dashboard v
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
-    - `nodeType` - predefined node type
+    - `nodeGroup` - predefined node group
 - `${event.response.}`:
     - `result` - result code. The successful action result is *'0'*.
 
