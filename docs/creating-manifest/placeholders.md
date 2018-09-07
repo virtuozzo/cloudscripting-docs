@@ -143,7 +143,8 @@ This is the list of placeholders that you can use within the nodes section (*{no
             - `iconurl` - add-on logo                                               
             - `id` - ID of the installed package
             - `length` - number of packages installed to a node
-            - `isInstalled` - installation status, the possible values are *'true'* & *'false'*                      
+            - `isInstalled` - installation status, the possible values are *'true'* & *'false'*                     
+        - `scalingMode` - stateless or stateful [scaling](https://docs.jelastic.com/horizontal-scaling) mode, the possible values are *'NEW'* or *'CLONE'* respectively 
     
 In case a few nodes are available within a single *nodeGroup*, you can execute actions in one of them by specifying: 
 
