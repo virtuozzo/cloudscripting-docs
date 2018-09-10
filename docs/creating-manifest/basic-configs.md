@@ -134,7 +134,7 @@ The list of available parameters are:
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.
 - `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`. Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](/creating-manifest/addons/)
 - `tag` *[optional]* - an image tag for `dokerized` Jelastic templates with `nodeType` parameter. Full list of supported tag [here](/creating-manifest/selecting-containers/#dokerized-template-tags).
-- `scalingMode` - *stateless* or *stateful* [scaling](https://docs.jelastic.com/horizontal-scaling) mode, the possible values are *'NEW'* or *'CLONE'* respectively. The default value is *'CLONE'* for *nodeGroup* types: *bl,cp,vds*. For the rest of *nodeGroup* types the default value is *'NEW'*.
+- `scalingMode` *[optional]* - *stateless* or *stateful* [scaling](https://docs.jelastic.com/horizontal-scaling) mode, the possible values are *'NEW'* or *'CLONE'* respectively. The default value is *'CLONE'* for *nodeGroup* types: *bl,cp,vds*. For the rest of *nodeGroup* types the default value is *'NEW'*.
 
 The following parameters are available for Docker nodes only:   
                        
