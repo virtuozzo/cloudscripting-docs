@@ -129,6 +129,11 @@ The list of available parameters are:
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.
 - `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`. Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](/creating-manifest/addons/)
 - `tag` *[optional]* - an image tag for `dokerized` Jelastic templates with `nodeType` parameter. Full list of supported tag [here](/creating-manifest/selecting-containers/#dokerized-template-tags).
+- `diskLimit` *[optional]* - sets a storage size limit. The default value is equal to disk quota for current *nodeGroup*. It is measured in GB by default. The MB and TB can be used as well. Examples:
+    - 10 = 10 GB
+    - 10G = 10GB
+    - 100M = 100MB
+    - 1T = 1TB
 
 The following parameters are available for Docker nodes only:   
                        
