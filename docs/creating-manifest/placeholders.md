@@ -91,7 +91,7 @@ This is the list of placeholders that you can use within the nodes section (*{no
         - `contextValidatorRegex` - validation for context names    
         - `diskIopsLimit` - IOPS limitation quota   
         - `addons.length` - number of available add-ons at the selected node
-        - `diskLimit` - hardware node disk space quota  
+        - `diskLimit` - hardware node disk space quota in MB 
         - `endpoints` [*array indexes*] - <a href="https://docs.jelastic.com/endpoints" target="_blank">endpoints</a> functionality                              
             - `domain` - full domain name of the node the endpoint is being set for                  
             - `id` - node ID  
