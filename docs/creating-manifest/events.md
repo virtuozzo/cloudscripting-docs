@@ -1507,7 +1507,7 @@ type: update
 name: 'Environment Transfer Testing script'
  
 onAfterConfirmTransfer:
-  - log: after confirm transfer
+  - log: env ${env.name} transfer confirmed
 ```
 ``` json
 {
@@ -1515,7 +1515,7 @@ onAfterConfirmTransfer:
   "name": "Environment Transfer Testing script",
   "onAfterConfirmTransfer": [
     {
-      "log": "after confirm transfer"
+      "log": "env ${env.name} transfer confirmed"
     }
   ]
 }
