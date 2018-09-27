@@ -1496,6 +1496,32 @@ The event is executed after swapping the external domain names between two envir
 -   `${event.response.}`:
     - `result` - result code. The successful action result is '0'
 
+### onAfterConfirmTransfer
+The event is called upon user confirms changing of an environment ownership from one Jelastic account to another within a single hosting service provider. Confirmation occurs once user clicks on a link in an appropriate email.
+
+Event subscription example:
+
+@@@
+```yaml
+type: update
+name: 'Environment Transfer Testing script'
+ 
+onAfterConfirmTransfer:
+  - log: after confirm transfer
+```
+``` json
+{
+  "type": "update",
+  "name": "Environment Transfer Testing script",
+  "onAfterConfirmTransfer": [
+    {
+      "log": "after confirm transfer"
+    }
+  ]
+}
+```
+@@!
+
 <br>
 
 ## What’s next?
