@@ -1481,7 +1481,7 @@ The event is executed before swapping the external domain names between two envi
 -   `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
-    - `targetappid`  - "string" application identifier of the second environment
+    - `targetAppid`  - "string" application identifier of the second environment
 -   `${event.response.}`:  parameters are absent
 
 ### onAfterSwapExtDomains
@@ -1492,7 +1492,7 @@ The event is executed after swapping the external domain names between two envir
 -   `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
-    - `targetappid` - "string" application identifier of the second environment
+    - `targetAppid` - "string" application identifier of the second environment
 -   `${event.response.}`:
     - `result` - result code. The successful action result is '0'
 
