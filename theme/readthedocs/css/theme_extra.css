@@ -59,7 +59,8 @@ h3, h4, h5, h6 {
 }
 .rst-versions.rst-badge.shift-up {
     max-width: 268px;
-    height: 59px;
+    height: 97px;
+    bottom: 32px;
 }
 .rst-versions.rst-badge .rst-current-version {
     line-height: 8px;
@@ -68,6 +69,8 @@ h3, h4, h5, h6 {
 
 .rst-versions.shift-up .rst-other-versions {
     width: 268px;
+    position: absolute;
+    bottom: 0;
 }
 
 .wy-side-nav-search>a {
@@ -333,14 +336,11 @@ pre code.example {
 .rst-versions .next-arrows:hover {
     background-image:url(../img/arrows-next-active.png);
 }
-.stickynav {
-    /*width: 280px;*/
-}
 .wy-menu-vertical a:active {
     background-color: transparent;
 }
 .rst-versions.rst-badge.shift-up .rst-current-version {
-    top: 73px;
+    top: 106px;
 }
 .wy-nav-content {
     min-height: 100vh;
@@ -381,4 +381,12 @@ h1.default, h2.default {
 }
 form#rtd-search-form {
     color: #333333;
+}
+
+.rst-versions.rst-badge.shift-up {
+    background-color: rgba(31, 29,29, 0);
+}
+
+.rst-versions .rst-other-versions {
+    padding: 10px;
 }
