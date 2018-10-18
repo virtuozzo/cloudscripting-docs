@@ -80,7 +80,7 @@ This is the list of placeholders that you can use within the nodes section (*{no
     - `{nodes.(group)[(i)].(key)}`
     - `{nodes.(group).first.(key)}`
     - `{nodes.(group).last.(key)}`   
-    - `{nodes.(group).master.(key)}`
+    - `{nodes.(group).master.(key)}`   
     where:
     - `(group)` - node group (<a href="/1.4.2/creating-manifest/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> or <a href="/1.4.2/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">nodeType</a>)           
     - `(i)` - node index, starting from *'0'*
