@@ -80,6 +80,7 @@ This is the list of placeholders that you can use within the nodes section (*{no
     - `{nodes.(group)[(i)].(key)}`
     - `{nodes.(group).first.(key)}`
     - `{nodes.(group).last.(key)}`   
+    - `{nodes.(group).master.(key)}`   
     where:
     - `(group)` - node group (<a href="/1.6/creating-manifest/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> or <a href="/1.6/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">nodeType</a>)           
     - `(i)` - node index, starting from *'0'*
@@ -150,6 +151,7 @@ In case a few nodes are available within a single *nodeGroup*, you can execute a
 - `{nodes.cp[1].address}` - IP address of the second compute node  
 - `{nodes.bl.first.address}` - first IP address of a balancer node in the *nodeGroup* array            
 - `{nodes.db.last.address}` - last IP address of a batabase node     
+- `{nodes.(group).master.(key)}` - main node in the *nodeGroup* (i.e. layer)
 
 ## Event Placeholders
 
