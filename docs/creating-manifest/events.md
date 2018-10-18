@@ -663,7 +663,7 @@ The event is performed before changing the engine's version (e.g. from *php 7*  
 
 ### onAfterChangeEngine
 
-The event is performed after changing the engine's version (e.g. from *php 7*  to *php 7.1*) in the required environment. The *onBeforeChangeEngine* event is not compatible with Docker-based environments.   
+The event is performed after changing the engine's version (e.g. from *php 7*  to *php 7.1*) in the required environment. The *onAfterChangeEngine* event is not compatible with Docker-based environments.   
  
 **Event Placeholders:**   
 
