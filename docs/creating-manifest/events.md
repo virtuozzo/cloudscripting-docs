@@ -25,16 +25,16 @@ type: update
 name: Event Subscription Example
 
 onInstall:
-createFile [cp]: /tmp/result.txt
+  createFile [cp]: /tmp/result.txt
 
 onAfterScaleOut [cp]:
-cmd [cp]: echo 'New Compute node has been added' >> /tmp/result.txt
+  cmd [cp]: echo 'New Compute node has been added' >> /tmp/result.txt
 
 onAfterRestartNode [apache2]:
-cmd [cp]: echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> /tmp/result.txt
+  cmd [cp]: echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> /tmp/result.txt
 
 onAfterResetNodePassword [${nodes.cp[0].id}]:
-cmd [${nodes.cp[0].id}]: echo 'First compute node has been restarted' >> /tmp/result.txt
+  cmd [${nodes.cp[0].id}]: echo 'First compute node has been restarted' >> /tmp/result.txt
 ```
 ``` json
 {
