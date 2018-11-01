@@ -25,16 +25,16 @@ type: update
 name: Event Subscription Example
 
 onInstall:
-createFile [cp]: /tmp/result.txt
+  createFile [cp]: /tmp/result.txt
 
 onAfterScaleOut [cp]:
-cmd [cp]: echo 'New Compute node has been added' >> /tmp/result.txt
+  cmd [cp]: echo 'New Compute node has been added' >> /tmp/result.txt
 
 onAfterRestartNode [apache2]:
-cmd [cp]: echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> /tmp/result.txt
+  cmd [cp]: echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> /tmp/result.txt
 
 onAfterResetNodePassword [${nodes.cp[0].id}]:
-cmd [${nodes.cp[0].id}]: echo 'First compute node has been restarted' >> /tmp/result.txt
+  cmd [${nodes.cp[0].id}]: echo 'First compute node has been restarted' >> /tmp/result.txt
 ```
 ``` json
 {
@@ -714,7 +714,7 @@ The event is performed before changing the engine's version (e.g. from *php 7* t
 
 ### onAfterChangeEngine
 
-The event is performed after changing the engine's version (e.g. from *php 7* to *php 7.1*) in the required environment. The *onBeforeChangeEngine* event is not compatible with Docker-based environments.
+The event is performed after changing the engine's version (e.g. from *php 7* to *php 7.1*) in the required environment. The *onAfterChangeEngine* event is not compatible with Docker-based environments.
 
 **Event Placeholders:**
 
