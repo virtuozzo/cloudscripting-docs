@@ -753,7 +753,7 @@ startPage: ${env.url}customDirectory/
 
 ###Skip Node Emails
 
-By default in Jelastic, a user is informed via email about adding new nodes into environments. In Cloud Scripting there is an ability set an option to skip these emails upon environment creation.
+By default in Jelastic, a user is informed via email about adding new nodes into environments. In Cloud Scripting there is an ability set an option to skip these emails upon environment creation. This option does not affect the email notification upon node addition by scaling.
 For example:
 @@@
 ```yaml
