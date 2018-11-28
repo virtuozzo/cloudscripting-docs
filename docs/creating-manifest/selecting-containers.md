@@ -268,7 +268,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 
 - **cp** (for compute nodes) - *tomcat6, tomcat7, tomcat8, tomee, glassfish3, glassfish4, jetty6, jetty8, jetty9, jboss7, smartfox-server, powerdns, railo4, wildfly, wildfly9, wildfly10, wildfly11, wildfly12, springboot, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs, iis8*                         
 
-- **sqldb** (for SQL databases) - *mysql5, mysql5-6, mariadb, mariadb10, postgres, postgresql, postgres9, mssql, mssqlweb, mssqlstd*                             
+- **sqldb** (for SQL databases) - *mysql5, mysql5-6, mariadb, mariadb10, postgresql, mssql, mssqlweb, mssqlstd*                             
 
 - **nosqldb** (for NoSQL databases) - *mongodb, mongodb2, couchdb, redis, redis3, redis4, cassandra, cassandra2, cassandra3, neo4j, neo4j2-1, neo4j3, orientDB, orientDB2, Percona*                   
 
@@ -325,9 +325,7 @@ The Jelastic Platform supports the following software stacks:
      - `mysql5` - *MySQL*
      - `mariadb` - *MariaDB 5*
      - `mariadb10` - *MariaDB 10*
-     - `postgres` - *PostgreSQL 10*
      - `postgresql` - *PostgreSQL 10*
-     - `postgres9` - *PostgreSQL 9*
      - `mssql` - *MSSQL 2012*
      - `mssqlweb` - *MSSQL Web*
      - `mssqlstd` - *MSSQL std*
