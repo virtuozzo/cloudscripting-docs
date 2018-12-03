@@ -268,7 +268,7 @@ The Jelastic Platform supports the following predefined *nodeGroup* values:
 
 - **cp** (for compute nodes) - *tomcat6, tomcat7, tomcat8, tomee, glassfish3, glassfish4, jetty6, jetty8, jetty9, jboss7, smartfox-server, powerdns, railo4, wildfly, wildfly9, wildfly10, wildfly11, wildfly12, springboot, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs, iis8*                         
 
-- **sqldb** (for SQL databases) - *mysql5, mysql5-6, mariadb, mariadb10, postgres8, postgres9, mssql, mssqlweb, mssqlstd*                             
+- **sqldb** (for SQL databases) - *mysql5, mysql5-6, mariadb, mariadb10, postgres9, postgresql, mssql, mssqlweb, mssqlstd*                             
 
 - **nosqldb** (for NoSQL databases) - *mongodb, mongodb2, couchdb, redis, redis3, redis4, cassandra, cassandra2, cassandra3, neo4j, neo4j2-1, neo4j3, orientDB, orientDB2, Percona*                   
 
@@ -325,8 +325,8 @@ The Jelastic Platform supports the following software stacks:
      - `mysql5` - *MySQL*
      - `mariadb` - *MariaDB 5*
      - `mariadb10` - *MariaDB 10*
-     - `postgres8` - *PostgreSQL 8*
      - `postgres9` - *PostgreSQL 9*
+     - `postgresql` - *PostgreSQL 10*
      - `mssql` - *MSSQL 2012*
      - `mssqlweb` - *MSSQL Web*
      - `mssqlstd` - *MSSQL std*
@@ -374,9 +374,9 @@ There is a list of `dokerized` supported Jelastic templates with their tags:
 |**tag**|*6.0.45-jdk-1.6.0_45*<br>*6.0.45-jdk-1.7.0_79*<br>*6.0.45-jdk-1.8.0_102*<br>*7.0.73-jdk-1.8.0_102*<br>*7.0.73-jdk-1.6.0_45*<br>*7.0.73-jdk-1.7.0_79*<br>*7.0.85-OpenJDK-1.7.0_161*<br>*7.0.85-OpenJDK-1.8.0_161*<br>*8.5.29-jdk-10*<br>*9.0.6-jdk-10*|*7.0.1-jdk-1.7.0_79*<br>*7.0.1-jdk-1.8.0_102*<br>*7.0.3-jdk-1.7.0_79*<br>*7.0.3-jdk-1.8.0_131*<br>*7.0.3-jdk-1.8.0_141*<br>*7.0.3-OpenJDK-1.7.0_141**<br>*7.0.3-OpenJDK-1.8.0_141*|*2.4.6-php-5.3.29*<br>*2.4.6-php-5.4.45*<br>*2.4.6-php-5.5.38*<br>*2.4.6-php-5.6.28*<br>*2.4.6-php-7.0.13*<br>*2.4.6-php-7.1.0*<br>*2.4.6-php-7.1.13*<br>*2.4.6-php-7.1.7*|*1.10.1-php-5.3.29*<br>*1.10.1-php-5.4.45*<br>*1.10.1-php-5.5.38*<br>*1.10.1-php-5.6.28*<br>*1.10.1-php-7.0.10*<br>*1.10.1-php-7.0.13*<br>*1.10.1-php-7.1.0*<br>*1.12.2-php-7.1.13*<br>*1.12.2-php-7.2.1*|*1.10.1*<br>*1.10.3*<br>*1.12.2*|
 
 
-|nodeType|`mysql`|`mariadb-dockerized`|`memcached`|`maven3`|`varnish`|
-|--------|----------|-----------|-----------|--------|---------|
-|**tag**|*5.6.32*<br>*5.6.36*<br>*5.6.37*<br>*5.7.14*<br>*5.7.18*<br>*5.7.19*|*5.5.56*<br>*5.5.57*<br>*5.5.58*<br>*10.1.20*<br>*10.1.24*<br>*10.2.7*<br>*10.2.8*<br>*10.2.12*|*1.4.24*<br>*1.5.4*<br>*1.5.6*|*3.3.9-jdk-1.7.0_79*<br>*3.3.9-jdk-1.8.0_102*<br>*3.5.0-jdk-1.8.0_152*<br>*3.5.2-jdk-9.0.4*<br>*3.5.2-jdk-10*|*4.1.5*<br>*5.2.1*
+|nodeType|`mysql`|`mariadb-dockerized`|`postgresql`|`memcached`|`maven3`|`varnish`|
+|--------|----------|-----------|-----------|--------|---------|---------|
+|**tag**|*5.6.32*<br>*5.6.36*<br>*5.6.37*<br>*5.7.14*<br>*5.7.18*<br>*5.7.19*|*5.5.56*<br>*5.5.57*<br>*5.5.58*<br>*10.1.20*<br>*10.1.24*<br>*10.2.7*<br>*10.2.8*<br>*10.2.12*|*9.6.8*<br>*9.6.9*<br>*9.6.10*<br>*10.1*<br>*10.3*<br>*10.4*<br>*10.5*|*1.4.24*<br>*1.5.4*<br>*1.5.6*|*3.3.9-jdk-1.7.0_79*<br>*3.3.9-jdk-1.8.0_102*<br>*3.5.0-jdk-1.8.0_152*<br>*3.5.2-jdk-9.0.4*<br>*3.5.2-jdk-10*|*4.1.5*<br>*5.2.1*
 
 ### Engine Versions
 
