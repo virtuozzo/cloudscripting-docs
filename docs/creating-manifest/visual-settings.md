@@ -654,7 +654,6 @@ fields:
   - caption: Second Env Region
     type: regionlist
     name: secondRegion
-    editable: true
     disableInactive: true
     selectFirstAvailable: true
     message: unavailable region
@@ -677,7 +676,6 @@ fields:
       "caption": "Second Env Region",
       "type": "regionlist",
       "name": "secondRegion",
-      "editable": true,
       "disableInactive": true,
       "selectFirstAvailable": true,
       "message": "unavailable region",
@@ -705,7 +703,6 @@ where:
 
 - `caption` *[optional]* - field label
 - `name` - name of the field
-- `editable` *[optional] [boolean]* - enables/disables editing the *regionlist* field. The default value is *'false'*.
 - `disableInactive` [boolean] - an ability to chose inactive regions in combo. The default value is *'true'*
 - `selectFirstAvailable` - displaying a first available region in combo
 - `message` *[optional] [string]* - text to display after hover on disabled regions on expanded combo
