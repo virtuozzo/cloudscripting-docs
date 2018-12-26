@@ -1022,7 +1022,7 @@ where:
 - `value` *[boolean]* - enables/disables toggle value. Default value is *'false'*.
 
 ## Dynamic filling of the manifest fields
-Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit*  *onBeforeInstall*](/creating-manifest/events/#onbeforeinit-onbeforeinstall) events.
+Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit*  *onBeforeInstall*](/creating-manifest/events/#onbeforeinit) events.
 
 ## Target Nodes
 Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.                                
