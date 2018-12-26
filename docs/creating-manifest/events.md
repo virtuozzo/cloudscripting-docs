@@ -1335,7 +1335,8 @@ You can override all the parameters of the manifest, except for:
 
 #### onBeforeInstall
 The *onBeforeInstall* event is executed before application installation but after *onBeforeInit*.
-The placeholders **\${globals.}** and **\${settings.}** can be used within *onBeforeInstall*. All of the manifest parameters can be overridden, except for:   
+The placeholders **\${globals.}** and **\${settings.}** can be used within *onBeforeInstall*. All of the manifest parameters can be overridden, except for:
+
 -   `type`
 -   `name`
 -   `baseUrl`
