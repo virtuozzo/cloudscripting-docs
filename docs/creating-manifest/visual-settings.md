@@ -654,7 +654,6 @@ fields:
   - caption: Second Env Region
     type: regionlist
     name: secondRegion
-    editable: true
     disableInactive: true
     selectFirstAvailable: true
     message: unavailable region
@@ -677,7 +676,6 @@ fields:
       "caption": "Second Env Region",
       "type": "regionlist",
       "name": "secondRegion",
-      "editable": true,
       "disableInactive": true,
       "selectFirstAvailable": true,
       "message": "unavailable region",
@@ -705,7 +703,6 @@ where:
 
 - `caption` *[optional]* - field label
 - `name` - name of the field
-- `editable` *[optional] [boolean]* - enables/disables editing the *regionlist* field. The default value is *'false'*.
 - `disableInactive` [boolean] - an ability to chose inactive regions in combo. The default value is *'true'*
 - `selectFirstAvailable` - displaying a first available region in combo
 - `message` *[optional] [string]* - text to display after hover on disabled regions on expanded combo
@@ -1025,7 +1022,7 @@ where:
 - `value` *[boolean]* - enables/disables toggle value. Default value is *'false'*.
 
 ## Dynamic filling of the manifest fields
-Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit*  *onBeforeInstall*](/creating-manifest/events/#onbeforeinit-onbeforeinstall) events.
+Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit*  *onBeforeInstall*](/creating-manifest/events/#onbeforeinit) events.
 
 ## Target Nodes
 Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.                                

@@ -1314,7 +1314,8 @@ The *onAfterRemoveVolume* event is triggered after removing volumes from Docker 
     - `result` - result code. The successful action result is *'0'*
     - `nodeid` - current node identifier
 
-### onBeforeInit   onBeforeInstall
+### onBeforeInit   
+### onBeforeInstall   
 It is possible to dynamically fill in the manifest fields using *onBeforeInit* and *onBeforeInstall* events.
 
 #### onBeforeInit
@@ -1333,8 +1334,8 @@ You can override all the parameters of the manifest, except for:
 -   `baseUrl`
 
 #### onBeforeInstall
-The *onBeforeInstall* event is executed after *onBeforeInit*, but before application installation.
-Inside *onBeforeInstall* the placeholders **\${globals.}**,  **\${settings.}**  and all the parameters can be redefined, except for:
+The *onBeforeInstall* event is executed before application installation but after *onBeforeInit*.
+The placeholders **\${globals.}** and **\${settings.}** can be used within *onBeforeInstall*. All of the manifest parameters can be overridden, except for:
 
 -   `type`
 -   `name`
