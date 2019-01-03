@@ -9,3 +9,5 @@ target
 *-temp-*
 .clover
 .DS_Store
+*.pyc
+*.egg-info*
