@@ -1,5 +1,3 @@
-Source repo for Cloud Scripting Documentation [https://docs.cloudscripting.com/](https://docs.cloudscripting.com/)
-
 # Staging the docs on local machine
 
 1. Clone this repo and run installation script:
