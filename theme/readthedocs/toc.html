@@ -6,19 +6,43 @@
                 {% if nav_item.title != '**HIDDEN**'%}
                     <li class="toctree-l2 {% if nav_item.active%}current{%endif%}">
                         <a class="{% if nav_item.active%}current{%endif%}" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
-                        {% if nav_item == current_page %}
+                        {% if nav_item.url == page.url %}
                             <ul>
-                            {% for toc_item in toc %}
+                            {% for toc_item in page.toc %}
                                 {% if not loop.first %}
                                     <li class="toctree-l3"><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
                                 {% endif %}
 
                                 {% for toc_item in toc_item.children %}
-                                    <li><a class="toctree-l4" href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                                    <!--<li class="toctree-l4">{{ toc_item.title }}</li>-->
 
-                                    {% for toc_item in toc_item.children %}
-                                        <li><a class="toctree-l4" href="{{ toc_item.url }}">&nbsp;&nbsp;&nbsp;&nbsp;&blacksquare;&nbsp; {{ toc_item.title }}</a></li>
-                                    {% endfor %}
+                                <!--<li><a class="toctree-l4" href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>-->
+
+                                    {% if toc_item.children %}
+
+                                    <label class="toctree-l4">{{ toc_item.title }}
+                                        <!--for="for-label"-->
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                        <i class="fa fa-angle-up" aria-hidden="true"></i>
+                                    </label>
+                                    <!--<i class="fa fa-sort-desc" aria-hidden="true"></i>-->
+                                    <!--<i class="fa fa-sort-asc" aria-hidden="true"></i>-->
+
+<!--/onclick="showChildren(this)"-->
+                                <!--<input id="for-label" class="toctree-l4-inp" type="checkbox" style="display:none">-->
+
+
+                                    <div id="hidden_toctree-l4-incl">
+                                        {% for toc_item in toc_item.children %}
+                                            <!--<li id="toctree-l4-incl">-->
+                                                <a class="toctree-l4-incl" href="{{ toc_item.url }}" style="">&nbsp;&nbsp;&nbsp;&nbsp;&blacksquare;&nbsp; {{ toc_item.title }}</a>
+                                            <!--</li>-->
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                        <li><a class="toctree-l4" href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                                    {% endif %}
+
                                 {% endfor %}
                             {% endfor %}
                             </ul>
@@ -37,7 +61,7 @@
                         {% endif %}
 
                         {% for toc_item in toc_item.children %}
-                            <li><a class="toctree-l4" href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                            <li><a class="toctree-l4 {% if nav_item.active%}activecurrent{%endif%}" href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
                         {% endfor %}
                     {% endfor %}
                     </ul>
@@ -47,4 +71,3 @@
 
     {% endfor %}
 </ul>
-

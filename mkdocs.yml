@@ -1,48 +1,68 @@
 site_name: Cloud Scripting
-site_url: http://
-copyright: Copyright &copy; 2015, Jelastic, Inc.
+site_url: https://docs.cloudscripting.com/
+copyright: Copyright &copy; Jelastic, Inc.
 
 use_absolute_urls: true
 include_search: true
 theme_center_lead: false
 
-theme_dir: './theme/readthedocs'
 
-markdown_extensions: [admonition, toc, tables]
+theme_dir: './theme/readthedocs'
+repo_url: 'https://github.com/cloudscripting/docs/edit/1.6.2/docs/'
+
+markdown_extensions:
+  - admonition
+  - toc
+  - tables
+  - markdown-tabs
+  - markdown.extensions.admonition
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+  - markdown.extensions.toc(permalink=true)
+  - pymdownx.arithmatex
+  - pymdownx.betterem(smart_enable=all)
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tasklist(custom_checkbox=true)
+  - pymdownx.tilde
 
 pages:
-- Overview: index.md
 
-- Quick Start: quick-start.md
+- GETTING STARTED:
+   - Overview: index.md
+   - Quick Start: quick-start.md
 
-- Jelastic & CS correspondence: jelastic-cs-correspondence.md
+- Creating Manifest:
+   - Basic Configs: creating-manifest/basic-configs.md
+   - Specifying Target Container: creating-manifest/selecting-containers.md
+   - Actions: creating-manifest/actions.md
+   - Events: creating-manifest/events.md
+   - Placeholders: creating-manifest/placeholders.md
+   - Conditions and Iterations: creating-manifest/conditions-and-iterations.md
+   - Custom Scripts: creating-manifest/custom-scripts.md
+   - Add-Ons: creating-manifest/addons.md
+   - Custom Responses: creating-manifest/handling-custom-responses.md
+   - Visual Settings: creating-manifest/visual-settings.md
 
-- Creating Templates:
-   - Template Basics: creating-templates/template-basics.md
-   - Writing Scripts: creating-templates/writing-scripts.md
-   - Selecting Containers For Your Actions: creating-templates/selecting-containers.md
-   - Getting User Input: creating-templates/user-input-parameters.md
+- Samples:
+   - Overview: samples.md
 
 - Troubleshooting: troubleshooting.md
 
-- Reference:
-   - Actions: reference/actions.md
-   - Events: reference/events.md
-   - Procedures: reference/procedures.md
-   - Placeholders: reference/placeholders.md
-   - Container Types: reference/container-types.md
-
-- Examples:
-   - Vertical Scaling: examples/vertical-scaling.md
-   - Horizontal Scaling: examples/horizontal-scaling.md
-   - Using Docker&reg;: examples/using-docker.md
-   - Wordpress Cluster: examples/wordpress-cluster.md
-   - Migration&Cloning Environment: examples/environment-migration-after-cloning.md
-   - Two Envs in defferent regions: examples/two-envs-in-diff-regions.md
+- CS vs Jelastic Versions: jelastic-cs-correspondence.md
 
 versions:
    releases:
-      - 0.9
-      - 0.8
-      - 0.5
-
+      - 1.4.2
+      - 1.5
+      - 1.5.1
+      - 1.5.2
+      - 1.6
+      - 1.6.1
+      - 1.6.2

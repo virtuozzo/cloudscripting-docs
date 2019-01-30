@@ -1,83 +1,123 @@
 # Troubleshooting
 
-- Log in to your Jelastic account and open the following link in a new browser tab: <http://appstore.cloudscripting.com/console/>  
-- In the opened browser tab you will see the Cloud Scripting execution log
+Run into trouble with Cloud Scripting? Here are some helpful tips and specific suggestions for troubleshooting as follows:                             
 
-![Console](http://77047754c838ee6badea32b5afab1882.app.cart.jelastic.com/xssu/cross/download/RDYYHFRvUwRZAQ8fYlJqFBNHARcBTURBChNqHyt5clNCF0RRDwYAQmNTTEBI)
+* Log in to your Jelastic dashboard and open the link of the following type in a new browser tab.                            
+
+    *http://app.{HOSTER_URL}/console/*                       
+    
+    Here, substitute <b>*{HOSTER_URL}*</b>  with the platform domain of your hosting provider (see the last column of the table within the <a href="https://docs.jelastic.com/jelastic-hoster-info" target="_blank">Hosters Info</a> page).                                           
+
+* In the opened browser tab, you will see the Cloud Scripting execution log.                                                               
+    
+![troubleshooting](img/troubleshooting.jpg)          
 
 !!! note
-    Maximum log size is 1 MB. The log will be truncated or overwritten if this limit exceeded.
+    The maximum size of the log is 1 MB. The log will be truncated or overwritten, if this limit is exceeded.
 
-Below you can see an examples of how to write custom information to the log.
+Below, you can find some samples of editing custom information to the log:                      
 
-Output single placeholder value:
+- outputting a single <a href="/1.6/creating-manifest/placeholders/" target="blank">placeholder</a> value                     
+
+@@@
+```yaml
+type: update
+name: LogTest
+
+onInstall:
+  log:
+    - Hello
+    - ${user.email}
 ```
+``` json
 {
-  "jpsType": "update",
-  "application": {
-    "name": "LogTest",                                      
-    "onInstall": {
-      "log": [
-        "Hello", 
-        "${user.email}"
-      ]
-    }
-  }
-}
-```
-
-Output all placeholders:
-```
-{
-  "jpsType": "update",
-  "application": {
-    "name": "LogTest",
-    "onInstall": {
-      "log": "${placeholders}"
-    }
-  }
-}
-```                                                                                      
-
-Output from the script:
-```
-{
-  "jpsType": "update",
-  "application": {
-    "name": "LogTest",
-    "onInstall": {
-      "executeScript": {
-        "type": "js",
-        "script": "http://example.com/script.js"
-      }
-    },
-    "procedures": [
-      {
-        "id": "log",
-        "onCall": {
-          "log": "${this.message}"
-        }
-      }
+  "type": "update",
+  "name": "LogTest",
+  "onInstall": {
+    "log": [
+      "Hello",
+      "${user.email}"
     ]
   }
 }
 ```
+@@!
 
-`script.js` body:
+- outputting all the placeholders              
 
-```                                                
+@@@
+```yaml
+type: update
+name: LogTest
+
+onInstall:
+  log: ${placeholders}
+```
+``` json
+{
+  "type": "update",
+  "name": "LogTest",
+  "onInstall": {
+    "log": "${placeholders}"
+  }
+}
+```
+@@!
+
+All dynamic placeholders in *\${placeholders}* value are updated immediately after any action. Also placeholders will be updated automatically before displaying \${placeholders} value into console.
+
+- outputting from a script             
+
+@@@
+```yaml
+type: update
+name: LogTest
+
+onInstall:
+  script:
+    type: js
+    script: "http://example.com/script.js"
+
+actions:
+  - myaction:
+      log: ${this.message}
+```
+``` json  
+{
+  "type": "update",
+  "name": "LogTest",
+  "onInstall": {
+    "script": {
+      "type": "js",
+      "script": "http://example.com/script.js"
+    }
+  },
+  "actions": [
+    {
+      "myaction": {
+        "log": "${this.message}"
+      }
+    }
+  ]
+}
+```
+@@!
+
+`script.js` body:      
+
+``` javascript                                               
 var message = 'Hello';
 
 return { 
     result: 0, 
     onAfterReturn: {
         call: [{
-            procedure: 'log', 
+            action: 'myaction', 
             params: {
                 message: message
             } 
         }, {
-            procedure: 'log',
+            action: 'myaction',
             params: {
                 message: 'World !'
             }
@@ -85,6 +125,14 @@ return {
     } 
 };
 ```
+<br>
+<h2> What's next?</h2>    
+
+- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                    
+
+- Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>          
+
+
 <!--## Logging-->
 <!--Work in progress...-->
 <!--

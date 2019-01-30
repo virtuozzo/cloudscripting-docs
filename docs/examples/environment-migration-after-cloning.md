@@ -1,7 +1,7 @@
 # Automated Environment Migration after Cloning
-```example
+``` json
 {
-	"jpsType": "install",
+	"type": "install",
 	"application": {
 		"name": "cloneEnv",
 		"env": {
@@ -52,11 +52,11 @@
 				"id": "uploadFiles",
 				"onCall": [{
 						"upload": [{
-								"nodeMission": "cp",
+								"nodeGroup": "cp",
 								"sourcePath": "http://app.jelastic.com/xssu/cross/download/RTYYHA81VwNaVlRAYAw4TUMVCRBUShURWBZsHH8iIlYQQktYDwIBQmNTTEBI",
 								"destPath": "${WEBAPPS}/alfresco/WEB-INF/classes/alfresco-global.properties"
 							}, {
-								"nodeMission": "cp",
+								"nodeGroup": "cp",
 								"sourcePath": "http://app.jelastic.com/xssu/cross/download/QjYYHA81VwNaVlRAYAw4TUMVCRBUShURWBZsHH8iIlYQQktYDwIBQmNTTEBI",
 								"destPath": "${JAVA_LIB}/mysql-connector-java-5.0.8-bin.jar"
 							}
@@ -67,7 +67,7 @@
 				"id": "createDb",
 				"onCall": [{
 						"executeShellCommands": {
-							"nodeMission": "sqldb",
+							"nodeGroup": "sqldb",
 							"commands": [
 									"curl \"https://download.jelastic.com/public.php?service=files&t=0f65b115eb5b9cdb889d135579414321&download\" -o /tmp/script.sh 2>&1",
 									"bash /tmp/script.sh \"${nodes.sqldb.password}\" 2>&1"
@@ -79,7 +79,7 @@
 				"id": "replaceInFiles",
 				"onCall": [{
 						"replaceInFile": [{
-								"nodeMission": "cp",
+								"nodeGroup": "cp",
 								"path": "${WEBAPPS}/alfresco/WEB-INF/classes/alfresco-global.properties",
 								"replacements": [{
 										"pattern": "{DB_HOST}",
@@ -96,7 +96,7 @@
 									}
 								]
 							}, {
-								"nodeMission": "cp",
+								"nodeGroup": "cp",
 								"restart": true,
 								"path": "/opt/tomcat/webapps/alfresco/index.jsp",
 								"replacements": [{

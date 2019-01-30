@@ -1,0 +1,11 @@
+# Emojis
++1 :+1:<br>
+-1 :-1:<br>
+100 :100:<br>
+1234 :1234:<br>
+1st_place_medal :1st_place_medal:<br>
+2nd_place_medal :2nd_place_medal:<br>
+3rd_place_medal :3rd_place_medal:<br>
+8ball :8ball:<br>
+a :a:<br>
+ab :ab:<br>

@@ -1,8 +1,8 @@
 # Swap domain between two environments
 
-```example
+``` json
 {
-	"jpsType": "install",
+	"type": "install",
 	"application": {
 		"name": "swapDomain",
 		"env": {

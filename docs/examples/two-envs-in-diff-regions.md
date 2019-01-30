@@ -1,8 +1,8 @@
 #Create two environments from one JPS in different regions
 
-```example
+``` json
 {
-	"jpsType": "install",
+	"type": "install",
 	"application": {
 		"name": "2Envs",
 		"env": {
@@ -26,7 +26,7 @@
 }
 ```
 
-```example
+``` json
 var sAppid = hivext.local.getParam("TARGET_APPID"),
     sSession = hivext.local.getParam("session"),
     sRegion = "windows1",

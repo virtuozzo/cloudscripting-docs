@@ -7,90 +7,77 @@ In order to access any required data or parameters of allocated resources inside
 
 ## Examples
 
-### Code Reuse
+<h3>Code Reuse</h3>
 
 Output `Hello World!` two times in `greeting.txt`:  
-```
+``` json
 {
-  "jpsType": "update",
-  "application": {
-    "name": "Procedures Example",
-    "onInstall": [{
-      "createFile": {
-        "nodeMission": "cp",
-        "path": "${SERVER_WEBROOT}/greeting.txt"
-      }
-    }, {
+  "type": "update",
+  "name": "Procedures Example",
+  "onInstall": [
+    {
+      "createFile [cp]": "${SERVER_WEBROOT}/greeting.txt"
+    },
+    {
       "call": [
         "greeting",
         "greeting"
       ]
-    }],
-    "procedures": [{
-      "id": "greeting",
-      "onCall": [{
-        "appendFile": [{
-          "nodeMission": "cp",
+    }
+  ],
+  "actions": {
+    "greeting": {
+      "appendFile": [
+        {
+          "nodeGroup": "cp",
           "path": "${SERVER_WEBROOT}/greeting.txt",
           "body": "Hello World!"
-        }]
-      }]
-    }]
+        }
+      ]
+    }
   }
 }
 ```
 
-### Call procedure with parameters 
+<h3>Call procedure with parameters</h3>
 
 Write `Hello World!` and output first and second compute node IP address 
-```
+``` json
 {
-  "jpsType": "update",
-  "application": {
-    "name": "Procedures Example",
-    "onInstall": [{
-      "createFile": {
-        "nodeMission": "cp",
-        "path": "${SERVER_WEBROOT}/greeting.txt"
-      }
-    }, {
-      "call": [
-        "greeting",
-        "greeting",
-        {
-          "procedure": "log",
-          "params": {
-            "message": "${nodes.cp[0].address}"
-          }
-        },
-        {
-          "procedure": "log",
-          "params": {
-            "message": "${nodes.cp[1].address}"
-          }
-        }
-      ]
-    }],
-    "procedures": [{
-      "id": "greeting",
-      "onCall": [{
-        "appendFile": [{
-          "nodeMission": "cp",
-          "path": "${SERVER_WEBROOT}/greeting.txt",
-          "body": "Hello World!"
-        }]
-      }]
-    }, {
-      "id": "log",
-      "onCall": [{
-        "appendFile": [{
-          "nodeMission": "cp",
-          "path": "${SERVER_WEBROOT}/greeting.txt",
-          "body": "${this.message}"
-        }]
-      }]
-    }]
-  }
+	"type": "update",
+	"name": "Procedures Example",
+	"onInstall": [{
+		"createFile [cp]": "${SERVER_WEBROOT}/greeting.txt"
+	}, {
+		"call": [
+			"greeting",
+			"greeting", {
+				"log": {
+					"message": "${nodes.cp[0].address}"
+				}
+			}, {
+				"log": {
+					"message": "${nodes.cp[1].address}"
+				}
+			}
+		]
+	}],
+	"actions": {
+		"greeting": {
+			"appendFile": [{
+				"nodeGroup": "cp",
+				"path": "${SERVER_WEBROOT}/greeting.txt",
+				"body": "Hello World!"
+			}]
+		},
+		"log": {
+			"appendFile": [{
+				"nodeGroup": "cp",
+				"path": "${SERVER_WEBROOT}/greeting.txt",
+				"body": "${this.message}"
+			}]
+		}
+	}
 }
 ```
 
