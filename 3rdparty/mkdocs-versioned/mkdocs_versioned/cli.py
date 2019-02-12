@@ -118,5 +118,3 @@ def build_command(config_file, strict, site_dir, branches, default, latest):
     print("Checkout branch %s", active_branch)
 
     g.checkout(active_branch)
-
-build_command()
