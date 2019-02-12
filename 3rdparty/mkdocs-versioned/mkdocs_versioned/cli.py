@@ -1,11 +1,10 @@
 import os
-
 import click
-import mkdocs
-from git import Git
 import logging
+import mkdocs
 
-
+from git import Git
+from git import Repo
 from mkdocs.commands import build
 from mkdocs import config
 
@@ -16,6 +15,7 @@ config_file_help = "Provide a specific MkDocs config"
 strict_help = ("Enable strict mode. This will cause MkDocs to abort the build "
                "on any warnings.")
 site_dir_help = "The directory to output the result of the documentation build."
+
 
 def _load_config(config_file, strict, site_dir):
     cfg = config.load_config(
@@ -37,12 +37,12 @@ def _load_config(config_file, strict, site_dir):
     return cfg
 
 
-def _build(cfg, pathspec, tags, site_dir=None):
+def _build(cfg, pathspec, branches, site_dir=None):
 
     c = {
         'extra': {
             'current_version': pathspec,
-            'all_versions': tags,
+            'all_versions': branches,
         }
     }
 
@@ -60,40 +60,63 @@ def _build(cfg, pathspec, tags, site_dir=None):
 @click.option('--config-file', type=click.File('rb'), help=config_file_help)
 @click.option('--strict', is_flag=True, help=strict_help)
 @click.option('--site-dir', type=click.Path(), help=site_dir_help, default='./site/')
-@click.option('--tags', '-t', multiple=True)
+@click.option('--branches', '-b', multiple=True)
 @click.option('--default', '-d', default='master')
 @click.option('--latest', '-l', default='master')
-
-
-def build_command(config_file, strict, site_dir, tags, default, latest):
+def build_command(config_file, strict, site_dir, branches, default, latest):
     """Build the MkDocs documentation"""
 
 #    cli.configure_logging(level=logging.INFO)
+    global release_branches
+
     g = Git()
-    tags = tags or g.tag().splitlines()
-    log.info("Building %s to /", default)
-    print("Building %s to /", default)
-    # g.checkout(default)
+    repo = Repo()
 
-    _build(_load_config(config_file, strict, site_dir), default, tags)
+    branches = branches or g.branch('-r').splitlines()
+    all_branch_names = list(map(lambda branch: branch.split("origin/")[1], branches))
 
-    # print("Building %s to /latest", latest)
-    # log.info("Building %s to /latest", latest)
-    # g.checkout(default)
-    # _build(_load_config(config_file, strict, site_dir), latest, tags, 'latest')
+    print("Branches %s", branches)
 
-    for tag in sorted(tags):
+    active_branch = repo.active_branch.name
+    print("Active branch %s", active_branch)
 
-        g.checkout(tag)
+    if active_branch != default:
+        print("Checkout %s", active_branch)
+        g.checkout(default)
 
-        if not os.path.exists("mkdocs.yml"):
-            log.warning("Unable to build %s, as no mkdocs.yml was found", tag)
-            print("Unable to build %s, as no mkdocs.yml was found", tag)
-            continue
+    default_config = _load_config(config_file, strict, site_dir)
 
-        site_dir = "{0}".format(tag)
-        log.info("Building %s to /%s", tag, "site/" + site_dir)
-        print("Building %s to /%s", tag, "site/" + site_dir)
-        _build(_load_config(config_file, strict, site_dir), tag, tags, "site/" + site_dir)
+    versions = default_config.get("versions")
 
-    g.checkout(default)
+    if versions is not None:
+        release_branches = versions.get("releases")
+
+    if release_branches is not None:
+        default_version = release_branches.pop()
+        print("Default version %s", default_version)
+
+        print("Building %s to /", default_version)
+        _build(default_config, default_version, release_branches)
+
+        for branch in sorted(release_branches):
+            if branch in all_branch_names:
+                g.checkout(branch)
+                g.pull()
+
+                if not os.path.exists("mkdocs.yml"):
+                    log.warning("Unable to build %s, as no mkdocs.yml was found", branch)
+                    print("Unable to build %s, as no mkdocs.yml was found", branch)
+                    continue
+
+                site_dir = "{0}".format(branch)
+                log.info("Building %s to /%s", branch, "site/" + site_dir)
+                print("Building %s to /%s", branch, "site/" + site_dir)
+                _build(_load_config(config_file, strict, site_dir), branch, release_branches, "site/" + site_dir)
+
+        # print("Selected Branches %s", default_config.get("versions").get("releases"))
+
+    print("Checkout branch %s", active_branch)
+
+    g.checkout(active_branch)
+
+build_command()
