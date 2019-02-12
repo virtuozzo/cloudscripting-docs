@@ -92,14 +92,15 @@ def build_command(config_file, strict, site_dir, branches, default, latest):
         release_branches = versions.get("releases")
 
     if release_branches is not None:
-        default_version = release_branches.pop()
+        release_branches = sorted(release_branches)
+        default_version = release_branches[-1]
         print("Default version %s", default_version)
 
         print("Building %s to /", default_version)
         _build(default_config, default_version, release_branches)
 
-        for branch in sorted(release_branches):
-            if branch in all_branch_names:
+        for branch in release_branches:
+            if branch != default_version and branch in all_branch_names:
                 g.checkout(branch)
                 g.pull()
 
