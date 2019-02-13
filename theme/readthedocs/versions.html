@@ -13,8 +13,8 @@
     <div class="rst-other-versions">
         <dl>
             <dt>Versions</dt>
-            {% for release in config.versions.releases %}
-            {% if release == config.versions.releases[-1] %}
+            {% for release in config.versions.keys() %}
+            {% if release == config.versions.keys()[-1] %}
             <dd><a href="/">{{ release }}</a></dd>
             {% else %}
             <dd><a href="/{{ release }}">{{ release }}</a></dd>

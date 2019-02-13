@@ -89,7 +89,7 @@ def build_command(config_file, strict, site_dir, branches, default, latest):
     versions = default_config.get("versions")
 
     if versions is not None:
-        release_branches = versions.get("releases")
+        release_branches = versions.keys()
 
     if release_branches is not None:
         release_branches = sorted(release_branches)
