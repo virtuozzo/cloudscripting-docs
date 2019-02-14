@@ -2,9 +2,9 @@ site_name: Cloud Scripting
 site_url: https://docs.cloudscripting.com/
 copyright: Copyright &copy; Jelastic, Inc.
 
-use_absolute_urls: true
-include_search: true
-theme_center_lead: false
+#use_absolute_urls: true
+#:include_search true
+#theme_center_lead: false
 
 
 theme_dir: './theme/readthedocs'
