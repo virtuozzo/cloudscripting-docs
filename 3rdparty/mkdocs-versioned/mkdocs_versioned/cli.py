@@ -57,6 +57,21 @@ def _build(cfg, pathspec, branches, site_dir=None):
         log.exception("Failed to build '%s'", pathspec)
 
 
+def get_logging_level(level):
+    if level == 'notset':
+        return logging.NOTSET
+    elif level == 'debug':
+        return logging.DEBUG
+    elif level == 'info':
+        return logging.INFO
+    elif level == 'warning':
+        return logging.WARNING
+    elif level == 'error':
+        return logging.ERROR
+    elif level == 'critical':
+        return logging.CRITICAL
+
+
 @click.command()
 @click.option('--config-file', type=click.File('rb'), help=config_file_help)
 @click.option('--strict', is_flag=True, help=strict_help)
@@ -73,7 +88,7 @@ def build_command(config_file, strict, site_dir, branches, default, latest, logg
 
     logging.basicConfig(
         stream=sys.stdout,
-        level=logging_level,
+        level=get_logging_level(logging_level),
         format='%(asctime)s %(levelname)s [%(threadName)s] [%(filename)s:%(lineno)d] %(message)s'
     )
 
