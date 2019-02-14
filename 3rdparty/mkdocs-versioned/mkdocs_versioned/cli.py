@@ -1,4 +1,5 @@
 import os
+import sys
 import click
 import logging
 import mkdocs
@@ -63,11 +64,18 @@ def _build(cfg, pathspec, branches, site_dir=None):
 @click.option('--branches', '-b', multiple=True)
 @click.option('--default', '-d', default='master')
 @click.option('--latest', '-l', default='master')
-def build_command(config_file, strict, site_dir, branches, default, latest):
+@click.option('--logging-level', default='info')
+def build_command(config_file, strict, site_dir, branches, default, latest, logging_level):
     """Build the MkDocs documentation"""
 
 #    cli.configure_logging(level=logging.INFO)
     global release_branches
+
+    logging.basicConfig(
+        stream=sys.stdout,
+        level=logging_level,
+        format='%(asctime)s %(levelname)s [%(threadName)s] [%(filename)s:%(lineno)d] %(message)s'
+    )
 
     g = Git()
     repo = Repo()
