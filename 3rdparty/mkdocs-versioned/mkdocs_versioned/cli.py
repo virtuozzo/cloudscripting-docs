@@ -111,6 +111,9 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
     g = Git()
     repo = Repo()
 
+    branches = branches or g.branch('-r').splitlines()
+    all_branch_names = list(map(lambda branch: branch.split("origin/")[1], branches))
+
     active_branch = repo.active_branch.name
     print("Active branch %s", active_branch)
     print("Default branch %s", default_branch)
