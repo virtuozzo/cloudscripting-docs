@@ -1,3 +1,4 @@
+import functools
 import os
 import sys
 import click
@@ -72,15 +73,30 @@ def get_logging_level(level):
         return logging.CRITICAL
 
 
+def version_compare(version1, version2):
+    version_parts1 = str(version1).split('.')
+    version_parts2 = str(version2).split('.')
+    max_len = max(len(version_parts1), len(version_parts2))
+
+    for i in range(0, max_len):
+        part1 = next(iter(version_parts1[i:]), 0)
+        part2 = next(iter(version_parts2[i:]), 0)
+
+        if part1 != part2:
+            return 1 if part1 > part2 else -1
+
+    return 0
+
+
 @click.command()
 @click.option('--config-file', type=click.File('rb'), help=config_file_help)
 @click.option('--strict', is_flag=True, help=strict_help)
 @click.option('--site-dir', type=click.Path(), help=site_dir_help, default='./site/')
 @click.option('--branches', '-b', multiple=True)
-@click.option('--default', '-d', default='master')
+@click.option('--default-branch', '-d', default='master')
 @click.option('--latest', '-l', default='master')
 @click.option('--logging-level', default='info')
-def build_command(config_file, strict, site_dir, branches, default, latest, logging_level):
+def build_command(config_file, strict, site_dir, branches, default_branch, latest, logging_level):
     """Build the MkDocs documentation"""
 
 #    cli.configure_logging(level=logging.INFO)
@@ -95,33 +111,36 @@ def build_command(config_file, strict, site_dir, branches, default, latest, logg
     g = Git()
     repo = Repo()
 
-    branches = branches or g.branch('-r').splitlines()
-    all_branch_names = list(map(lambda branch: branch.split("origin/")[1], branches))
-
-    print("Branches %s", branches)
-
     active_branch = repo.active_branch.name
     print("Active branch %s", active_branch)
+    print("Default branch %s", default_branch)
+    print("Latest branch %s", latest)
 
-    if active_branch != default:
-        print("Checkout %s", active_branch)
-        g.checkout(default)
+    repo.git.stash("save")
+
+    if active_branch != latest:
+        print("Checkout Default %s", active_branch)
+        g.checkout(default_branch)
 
     default_config = _load_config(config_file, strict, site_dir)
 
-    versions = default_config.get("versions")
+    versions = default_config.get("extra").get("versions")
+
+    log.info("versions %s" % versions)
 
     if versions is not None:
         release_branches = versions.keys()
 
     if release_branches is not None:
-        release_branches = sorted(release_branches)
+        release_branches = release_branches.sort(key=functools.cmp_to_key(version_compare))
+        log.info("Release branches %s" % release_branches)
+
         default_version = release_branches[-1]
         print("Default version %s", default_version)
 
         print("Building %s to /", default_version)
         _build(default_config, default_version, release_branches)
-        repo.git.stash("save")
+
         for branch in release_branches:
             if branch != default_version and branch in all_branch_names:
                 g.checkout(branch)
@@ -142,4 +161,4 @@ def build_command(config_file, strict, site_dir, branches, default, latest, logg
     print("Checkout branch %s", active_branch)
 
     g.checkout(active_branch)
-    repo.git.stash("apply")
+    repo.git.stash("pop")
