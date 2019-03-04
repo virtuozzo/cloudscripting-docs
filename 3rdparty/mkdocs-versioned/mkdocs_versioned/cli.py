@@ -135,7 +135,7 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
         release_branches = versions.keys()
 
     if release_branches is not None:
-        release_branches = release_branches.sort(key=functools.cmp_to_key(version_compare))
+        # release_branches = release_branches.sort(key=functools.cmp_to_key(version_compare))
         log.info("Release branches %s" % release_branches)
 
         default_version = release_branches[-1]
