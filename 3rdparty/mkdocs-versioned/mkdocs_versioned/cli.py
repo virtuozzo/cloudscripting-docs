@@ -140,14 +140,17 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
         release_branches = sorted(release_branches, key=functools.cmp_to_key(version_compare))
         log.info("Release branches %s" % release_branches)
 
-        default_version = release_branches[-1]
+        default_version = next(iter(release_branches), None)# release_branches[-1]
+
         print("Default version %s", default_version)
 
         print("Building %s to /", default_version)
+
+        g.checkout(default_version)
         _build(default_config, default_version, release_branches)
 
         for branch in release_branches:
-            if branch != default_version and branch in all_branch_names:
+            if branch in all_branch_names: #branch != default_version and
                 g.checkout(branch)
                 g.pull()
 
