@@ -166,4 +166,4 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
     print("Checkout branch %s", active_branch)
 
     g.checkout(active_branch)
-    repo.git.stash("pop")
+    # repo.git.stash("pop")
