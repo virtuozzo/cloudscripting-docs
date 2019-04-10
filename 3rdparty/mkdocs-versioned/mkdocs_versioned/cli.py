@@ -145,9 +145,9 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
 
         print("Default version %s", default_version)
 
-        print("Building %s to /", default_version)
+        # print("Building %s to /", default_version)
 
-        _build(default_config, default_version, release_branches)
+        # _build(default_config, default_version, release_branches)
 
         for branch in release_branches:
             if branch in all_branch_names: #branch != default_version and
