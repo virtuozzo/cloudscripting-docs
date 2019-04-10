@@ -83,7 +83,7 @@ def version_compare(version1, version2):
         part2 = next(iter(version_parts2[i:]), 0)
 
         if part1 != part2:
-            return 1 if part1 > part2 else -1
+            return -1 if part1 > part2 else 1
 
     return 0
 
@@ -129,13 +129,15 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
 
     versions = default_config.get("extra").get("versions")
 
-    log.info("versions %s" % versions)
+    formatedVersions = {}
+    for version in versions:
+        formatedVersions[unicode(version)] = unicode(version)
 
-    if versions is not None:
-        release_branches = versions.keys()
+    if formatedVersions is not None:
+        release_branches = formatedVersions.keys()
 
     if release_branches is not None:
-        # release_branches = release_branches.sort(key=functools.cmp_to_key(version_compare))
+        release_branches = sorted(release_branches, key=functools.cmp_to_key(version_compare))
         log.info("Release branches %s" % release_branches)
 
         default_version = release_branches[-1]
