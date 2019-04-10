@@ -5,4 +5,4 @@ VERSION=$1
 
 mkdocs_versioned --default-branch=$VERSION
 
-cp -r site/$VERSION/* .
+cp -r site/$VERSION/* site/.
