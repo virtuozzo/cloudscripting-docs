@@ -53,7 +53,6 @@ def _build(cfg, pathspec, branches, site_dir=None):
 
     try:
         cfg.load_dict(c)
-        print(cfg)
         build.build(cfg)
     except Exception:
         log.exception("Failed to build '%s'", pathspec)
