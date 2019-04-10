@@ -53,6 +53,7 @@ def _build(cfg, pathspec, branches, site_dir=None):
 
     try:
         cfg.load_dict(c)
+        print(cfg)
         build.build(cfg)
     except Exception:
         log.exception("Failed to build '%s'", pathspec)
@@ -146,7 +147,6 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
 
         print("Building %s to /", default_version)
 
-        g.checkout(default_version)
         _build(default_config, default_version, release_branches)
 
         for branch in release_branches:
