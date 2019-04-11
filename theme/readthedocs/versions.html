@@ -14,7 +14,7 @@
         <dl>
             <dt>Versions</dt>
             {% for version in config.extra.all_versions %}
-            {% if version == config.extra.all_versions[-1] %}
+            {% if version == config.extra.all_versions[0] %}
             <dd><a href="/">{{ version }}</a></dd>
             {% else %}
             <dd><a href="/{{ version }}">{{ version }}</a></dd>
