@@ -150,7 +150,7 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
         print("Building %s to /", default_version)
 
         _build(default_config, default_version, release_branches, jelasticVersions)
-        return
+
         for branch in release_branches:
             if branch != default_version and branch in all_branch_names:
                 g.checkout(branch)
