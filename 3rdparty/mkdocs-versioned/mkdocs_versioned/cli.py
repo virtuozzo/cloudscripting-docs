@@ -152,7 +152,7 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
         _build(default_config, default_version, release_branches, jelasticVersions)
 
         for branch in release_branches:
-            if branch != default_version and branch in all_branch_names:
+            if branch in all_branch_names: #branch != default_version and
                 g.checkout(branch)
                 g.pull()
 
