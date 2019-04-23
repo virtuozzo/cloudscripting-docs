@@ -2,6 +2,7 @@ import functools
 import os
 import sys
 import click
+import re
 import logging
 import mkdocs
 
@@ -171,4 +172,8 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
     print("Checkout branch %s", active_branch)
 
     g.checkout(active_branch)
-    repo.git.stash("apply")
+
+    stashes = repo.git.stash("list")
+    if re.match("stash@{0}", stashes):
+        repo.git.stash("pop")
+        print("pop latest stash")
