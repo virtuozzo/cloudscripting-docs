@@ -171,6 +171,7 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
         # print("Selected Branches %s", default_config.get("versions").get("releases"))
 
     print("Checkout branch %s", active_branch)
+    g.checkout("master")
 
     end_stashes_count = len(re.findall("stash@{[0-9]{1,3}}:", repo.git.stash("list")))
 
