@@ -121,6 +121,7 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
     print("Default branch %s", default_branch)
     print("Latest branch %s", latest)
 
+    start_stashes_count = len(re.findall("stash@{[0-9]{1,3}}:", repo.git.stash("list")))
     repo.git.stash("save")
 
     if active_branch != latest:
@@ -171,9 +172,8 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
 
     print("Checkout branch %s", active_branch)
 
-    g.checkout(active_branch)
+    end_stashes_count = len(re.findall("stash@{[0-9]{1,3}}:", repo.git.stash("list")))
 
-    stashes = repo.git.stash("list")
-    if re.match("stash@{0}", stashes):
+    if end_stashes_count > start_stashes_count:
         repo.git.stash("pop")
         print("pop latest stash")
