@@ -60,10 +60,10 @@ onInstall:
     id: custom-addon-id
 
 addons:
-  id: custom-addon-id
-  name: Custom Addon
-  onInstall:
-    createFile [cp]: /var/log/test.log
+  - id: custom-addon-id
+    name: Custom Addon
+    onInstall:
+      createFile [cp]: /var/log/test.log
 ```
 ```json
 {
