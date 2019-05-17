@@ -215,8 +215,9 @@ where:
 
 - `caption` *[optional]* - field label
 - `values` - objects values (*"key"*:*"value"*)
-- `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*.
-- `editable` [optional][boolean] - allows to input custom values. Default value is *'false'*.
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
+- `editable` *[optional][boolean]* - allows to input custom values. Default value is *'false'*
+- `default` *[optional]: key* - sets the *"key"* which *"value"* will be displayed by default
 
 ### checkbox
 Single checkbox field.
