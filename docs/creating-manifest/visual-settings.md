@@ -720,6 +720,114 @@ where:
     - `isRegionMigrationAllowed` *[boolean]* - display regions where migration is allowed
     - `region` *[number]* - filtering by region identifier
 
+There is an ability to carry out actions on the environments in several regions at once with parameter `multiSelect:`**true** :
+
+@@@
+```yaml
+type: install
+name: Multi-Regions Test
+
+settings:
+  fields:
+    caption: Regions
+    type: regionlist
+    multiSelect: true
+    name: regions
+    selectFirstAvailable: true
+    delimiter: ','
+    min: 2
+    max: 2
+    
+onInstall:
+- script: |
+    return { 
+      result: 0, 
+      regions: '${settings.regions}'.split(',')
+    };
+    
+- set:
+    region1: ${response.regions[0]}
+    region2: ${response.regions[1]}
+    
+- install:
+    region: ${this.region1}
+    envName: env1-${fn.random}
+    jps:
+      type: install
+      name: Env 1
+      nodes:
+        nodeType: apache2
+        cloudlets: 8
+  
+- install:
+    region: ${this.region2}
+    envName: env2-${fn.random}
+    jps:
+      type: install
+      name: Env 2
+      nodes:
+        nodeType: apache2
+        cloudlets: 8
+```
+```json
+{
+  "type": "install",
+  "name": "Multi-Regions Test",
+  "settings": {
+    "fields": {
+      "caption": "Regions",
+      "type": "regionlist",
+      "multiSelect": true,
+      "name": "regions",
+      "selectFirstAvailable": true,
+      "delimiter": ",",
+      "min": 2,
+      "max": 2
+    }
+  },
+  "onInstall": [
+    {
+      "script": "return { \n  result: 0, \n  regions: '${settings.regions}'.split(',')\n};\n"
+    },
+    {
+      "set": {
+        "region1": "${response.regions[0]}",
+        "region2": "${response.regions[1]}"
+      }
+    },
+    {
+      "install": {
+        "region": "${this.region1}",
+        "envName": "env1-${fn.random}",
+        "jps": {
+          "type": "install",
+          "name": "Env 1",
+          "nodes": {
+            "nodeType": "apache2",
+            "cloudlets": 8
+          }
+        }
+      }
+    },
+    {
+      "install": {
+        "region": "${this.region2}",
+        "envName": "env2-${fn.random}",
+        "jps": {
+          "type": "install",
+          "name": "Env 2",
+          "nodes": {
+            "nodeType": "apache2",
+            "cloudlets": 8
+          }
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
 ### popupselector
 (*popup-selector* is an alias)
 
