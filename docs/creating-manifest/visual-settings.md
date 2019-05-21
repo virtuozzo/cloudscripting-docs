@@ -646,6 +646,60 @@ where:
     - *displayName* - environment *displayName*
     - *appid* - unique environment ID
 
+To perform actions on several environments the `multiSelect` option with related parameters should be used:
+
+- `multiSelect` *[optional][boolean]* - provides an ability to choose several environment at once
+- `disableInactive` *[optional][boolean]* - an ability to chose inactive environments in combo. The default value is 'true'
+- `delimiter` *[optional][string]* - a delimiter character to separate list data items. The default value is a comma ','
+- `min` *[optional][number]* - minimum number of selected environments, required to begin installation
+- `max` *[optional][number]* - maximum number of selected environments, exceeding this number doesn’t allow to begin installation
+
+Example:
+
+@@@
+```yaml
+type: install
+name: JE-45464 [Dashboard] Multiselect for envlist adjustments
+
+settings:
+  fields:
+    - caption: Environments
+      type: envlist
+      name: envs
+      min: 2
+      max: 3
+      required: true
+      multiSelect: true
+      delimiter: ","
+      
+onInstall:
+  log: ${settings.envs}
+```
+```json
+{
+  "type": "install",
+  "name": "Multiselect for envlist adjustments",
+  "settings": {
+    "fields": [
+      {
+        "caption": "Environments",
+        "type": "envlist",
+        "name": "envs",
+        "min": 2,
+        "max": 3,
+        "required": true,
+        "multiSelect": true,
+        "delimiter": ","
+      }
+    ]
+  },
+  "onInstall": {
+    "log": "${settings.envs}"
+  }
+}
+```
+@@!
+
 ### regionlist
 An available region list for a current account where new environments can be installed.
 
