@@ -659,7 +659,7 @@ Example:
 @@@
 ```yaml
 type: install
-name: JE-45464 [Dashboard] Multiselect for envlist adjustments
+name: Multiselect for envlist adjustments
 
 settings:
   fields:
