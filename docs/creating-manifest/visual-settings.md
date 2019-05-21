@@ -1087,6 +1087,80 @@ onInstall:
 ```
 @@!
 
+### envname
+The field for displaying environment name, which comprises :
+
+@@@
+```yaml
+fields:
+  - caption: Env Name    
+    type: envname
+    randomName: true
+    showFullDomain: true,
+    dependsOn: regionFieldName
+```
+```json
+{
+  "fields": [
+    {
+      "caption": "Env Name",
+      "type": "envname",
+      "randomName": true,
+      "showFullDomain": "true,",
+      "dependsOn": "regionFieldName"
+    }
+  ]
+}
+```
+@@!
+
+where:
+- `caption` *[optional]* - field label
+- `region` *[optional]* - region name. The default value is default user's region.
+- `randomName` *[optional][boolean]* - autogenerate default value (e.g. env-1234567...). The default value is 'true'.
+- `showFullDomain` *[optional][boolean]* - show region's domain next to the env name.The default value is 'true'.
+- `dependsOn` *[optional]*- specifies dependency on *regionlist* field.
+
+The `dependsOn` property is used to handle the dependence between *envname* and *regionlist* parameters. Changing the Region field, the corresponding subdomain of the Environment field is revalidated and displayed respectively:
+
+@@@
+```yaml
+type: install
+name: Conditional filters for type "list"
+
+settings:
+  fields:    
+    - caption: Region
+      type: regionlist
+      name: region
+      
+    - caption: Env Name    
+      type: envname            
+      dependsOn: region
+```
+```json
+{
+  "type": "install",
+  "name": "Conditional filters for type \"list\"",
+  "settings": {
+    "fields": [
+      {
+        "caption": "Region",
+        "type": "regionlist",
+        "name": "region"
+      },
+      {
+        "caption": "Env Name",
+        "type": "envname",
+        "dependsOn": "region"
+      }
+    ]
+  }
+}
+```
+@@!
+
+
 ### popupselector
 (*popup-selector* is an alias)
 
