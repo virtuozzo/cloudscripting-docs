@@ -219,6 +219,211 @@ where:
 - `editable` *[optional][boolean]* - allows to input custom values. Default value is *'false'*
 - `default` *[optional]: key* - sets the *"key"* which *"value"* will be displayed by default
 
+There is an ability to make one list being dependent from another with `dependsOn` property. 
+
+- `dependsOn` *[optional]* - specifies values dependence between two lists.
+
+Thus, switching values in one *list*, the corresponding values are changed in another one. The values of the lists can be specified in non-strict and strict orders. 
+
+Non-strict order example:
+
+@@@
+```yaml
+type: install
+name: Conditional filters for type "list"
+
+settings:
+  fields:
+    - caption: List 1
+      type: list
+      name: list1
+      default: value1
+      required: true
+      values:        
+        value1: one
+        value2: two
+        value3: three
+      
+    - caption: List 2
+      type: list
+      name: list2
+      required: true      
+      dependsOn:                 
+        list1:
+            value1:              
+              1: 1
+              one: one
+            value2:    
+              2: 2
+              two: two
+            value3:               
+              3: 3
+              three: three
+```
+```json
+{
+  "type": "install",
+  "name": "JE-40567 [Cloud Scripting:Visual Settings] - conditional filters for type \"list\"",
+  "settings": {
+    "fields": [
+      {
+        "caption": "List 1",
+        "type": "list",
+        "name": "list1",
+        "default": "value1",
+        "required": true,
+        "values": {
+          "value1": "one",
+          "value2": "two",
+          "value3": "three"
+        }
+      },
+      {
+        "caption": "List 2",
+        "type": "list",
+        "name": "list2",
+        "required": true,
+        "dependsOn": {
+          "list1": {
+            "value1": {
+              "1": 1,
+              "one": "one"
+            },
+            "value2": {
+              "2": 2,
+              "two": "two"
+            },
+            "value3": {
+              "3": 3,
+              "three": "three"
+            }
+          }
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
+Strict order example:
+
+@@@
+```yaml
+type: install
+name: JE-40567 [Cloud Scripting:Visual Settings] - conditional filters for type "list"
+
+settings:
+  fields:
+    - caption: List 1
+      type: list
+      name: list1
+      default: value1
+      required: true
+      values:        
+        - value: value1
+          caption: one
+        - value: value2
+          caption: two
+        - value: value3
+          caption: three
+      
+    - caption: List 2
+      type: list
+      name: list2
+      required: true      
+      dependsOn:                 
+        list1:
+            value1:
+              - value: 1
+                caption: 1
+              - value: ONE
+                caption: ONE              
+            value2:    
+              - value: 2
+                caption: 2
+              - value: TWO
+                caption: TWO
+            value3:               
+              - value: 3
+                caption: 3
+              - value: THREE
+                caption: THREE      
+```
+```json
+{
+  "type": "install",
+  "name": "JE-40567 [Cloud Scripting:Visual Settings] - conditional filters for type \"list\"",
+  "settings": {
+    "fields": [
+      {
+        "caption": "List 1",
+        "type": "list",
+        "name": "list1",
+        "default": "value1",
+        "required": true,
+        "values": [
+          {
+            "value": "value1",
+            "caption": "one"
+          },
+          {
+            "value": "value2",
+            "caption": "two"
+          },
+          {
+            "value": "value3",
+            "caption": "three"
+          }
+        ]
+      },
+      {
+        "caption": "List 2",
+        "type": "list",
+        "name": "list2",
+        "required": true,
+        "dependsOn": {
+          "list1": {
+            "value1": [
+              {
+                "value": 1,
+                "caption": 1
+              },
+              {
+                "value": "ONE",
+                "caption": "ONE"
+              }
+            ],
+            "value2": [
+              {
+                "value": 2,
+                "caption": 2
+              },
+              {
+                "value": "TWO",
+                "caption": "TWO"
+              }
+            ],
+            "value3": [
+              {
+                "value": 3,
+                "caption": 3
+              },
+              {
+                "value": "THREE",
+                "caption": "THREE"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
+
 ### checkbox
 Single checkbox field.
 
