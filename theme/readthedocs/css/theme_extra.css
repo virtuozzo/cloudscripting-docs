@@ -391,3 +391,51 @@ form#rtd-search-form {
 .rst-versions .rst-other-versions {
     padding: 10px;
 }
+
+.wrapper {
+    background: rgba(0,0,0,.6);
+    z-index: 9999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.wrapper .popup-header {
+    padding: 10px;
+}
+
+.wrapper .successText {
+    opacity: 0.8;
+    padding: 20px;
+}
+
+.wrapper .popup-content, .wrapper .successText {
+    margin: 200px auto 0 auto;
+    background: white;
+    width: 50%;
+}
+
+.wrapper .popup-pane {
+    padding: 0 15px 15px;
+}
+
+.wrapper .popup-pane .actions {
+    margin-top: 5px;
+    text-align: right;
+}
+
+.popup-pane .actions .btn.disable {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.popup-pane .actions .btn, .popup-pane .actions .btn-back {
+    margin: 0 10px 0 10px;
+    padding: 8px 13px 10px 13px;
+}
+
+.not-visible {
+    display: none;
+}
