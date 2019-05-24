@@ -1510,7 +1510,7 @@ name: 'Environment Transfer Testing script'
 onAfterConfirmTransfer:
   - log: env ${env.name} transfer confirmed
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "Environment Transfer Testing script",
@@ -1522,6 +1522,119 @@ onAfterConfirmTransfer:
 }
 ```
 @@!
+
+### onBeforeBindSSL
+The event is executed before binding a custom SSL certificate to the environment.
+  
+Event Placeholders:  
+
+-   `${event.params.}`:
+    - `env` - environment short domain name
+-   `${event.response.}`: 
+    - `result` - result code. The successful action result is '0'  
+
+@@@
+```yaml
+type: update
+name: 'JE-43961 [CS] - add onBeforeBindSSL event'
+onBeforeBindSSL: 
+  log: before bind SSL
+```
+```json
+{
+  "type": "update",
+  "name": "JE-43961 [CS] - add onBeforeBindSSL event",
+  "onBeforeBindSSL": {
+    "log": "before bind SSL"
+  }
+}
+```
+@@!
+
+### onAfterBindSSL
+The event is executed after binding a custom SSL certificate to the environment.
+  
+Event Placeholders:  
+
+-   `${event.params.}`:
+    - `env` - environment short domain name
+-   `${event.response.}`: 
+    - `result` - result code. The successful action result is '0'  
+
+@@@
+```yaml
+type: update
+name: 'JE-43961 [CS] - add onAfterBindSSL event'
+onAfterBindSSL: 
+  log: after bind SSL
+```
+```json
+{
+  "type": "update",
+  "name": "JE-43961 [CS] - add onAfterBindSSL events",
+  "onAfterBindSSL": {
+    "log": "after bind SSL"
+  }
+}
+```
+@@!
+
+### onBeforeRemoveSSL
+The event is executed before removing a custom SSL certificate from the environment.
+  
+Event Placeholders:  
+
+-   `${event.params.}`:
+    - `env` - environment short domain name
+-   `${event.response.}`: 
+    - `result` - result code. The successful action result is '0'  
+
+@@@
+```yaml
+type: update
+name: 'JE-43961 [CS] - add onBeforeRemoveSSL events'
+onBeforeRemoveSSL: 
+  log: before remove SSL
+```
+``` json
+{
+  "type": "update",
+  "name": "JE-43961 [CS] - add onBeforeRemoveSSL events",
+  "onBeforeRemoveSSL": {
+    "log": "before remove SSL"
+  }
+}
+```
+@@!
+
+### onAfterRemoveSSL
+The event is executed after removing a custom SSL certificate from the environment.
+  
+Event Placeholders:  
+
+-   `${event.params.}`:
+    - `env` - environment short domain name
+-   `${event.response.}`: 
+    - `result` - result code. The successful action result is '0'  
+
+@@@
+```yaml
+type: update
+name: 'JE-43961 [CS] - add onAfterRemoveSSL events'
+onAfterRemoveSSL: 
+  log: after remove SSL
+```
+``` json
+{
+  "type": "update",
+  "name": "JE-43961 [CS] - add onAfterRemoveSSL events",
+  "onAfterRemoveSSL": {
+    "log": "after remove SSL"
+  }
+}
+```
+@@!
+
 
 <br>
 

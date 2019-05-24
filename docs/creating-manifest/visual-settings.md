@@ -215,8 +215,214 @@ where:
 
 - `caption` *[optional]* - field label
 - `values` - objects values (*"key"*:*"value"*)
-- `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*.
-- `editable` [optional][boolean] - allows to input custom values. Default value is *'false'*.
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
+- `editable` *[optional][boolean]* - allows to input custom values. Default value is *'false'*
+- `default` *[optional]: key* - sets the *"key"* which *"value"* will be displayed by default
+
+There is an ability to make one list being dependent from another with `dependsOn` property. 
+
+- `dependsOn` *[optional]* - specifies values dependence between two lists.
+
+Thus, switching values in one *list*, the corresponding values are changed in another one. The values of the lists can be specified in non-strict and strict orders. 
+
+Non-strict order example:
+
+@@@
+```yaml
+type: install
+name: Conditional filters for type "list"
+
+settings:
+  fields:
+    - caption: List 1
+      type: list
+      name: list1
+      default: value1
+      required: true
+      values:        
+        value1: one
+        value2: two
+        value3: three
+      
+    - caption: List 2
+      type: list
+      name: list2
+      required: true      
+      dependsOn:                 
+        list1:
+            value1:              
+              1: 1
+              one: one
+            value2:    
+              2: 2
+              two: two
+            value3:               
+              3: 3
+              three: three
+```
+```json
+{
+  "type": "install",
+  "name": "JE-40567 [Cloud Scripting:Visual Settings] - conditional filters for type \"list\"",
+  "settings": {
+    "fields": [
+      {
+        "caption": "List 1",
+        "type": "list",
+        "name": "list1",
+        "default": "value1",
+        "required": true,
+        "values": {
+          "value1": "one",
+          "value2": "two",
+          "value3": "three"
+        }
+      },
+      {
+        "caption": "List 2",
+        "type": "list",
+        "name": "list2",
+        "required": true,
+        "dependsOn": {
+          "list1": {
+            "value1": {
+              "1": 1,
+              "one": "one"
+            },
+            "value2": {
+              "2": 2,
+              "two": "two"
+            },
+            "value3": {
+              "3": 3,
+              "three": "three"
+            }
+          }
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
+Strict order example:
+
+@@@
+```yaml
+type: install
+name: JE-40567 [Cloud Scripting:Visual Settings] - conditional filters for type "list"
+
+settings:
+  fields:
+    - caption: List 1
+      type: list
+      name: list1
+      default: value1
+      required: true
+      values:        
+        - value: value1
+          caption: one
+        - value: value2
+          caption: two
+        - value: value3
+          caption: three
+      
+    - caption: List 2
+      type: list
+      name: list2
+      required: true      
+      dependsOn:                 
+        list1:
+            value1:
+              - value: 1
+                caption: 1
+              - value: ONE
+                caption: ONE              
+            value2:    
+              - value: 2
+                caption: 2
+              - value: TWO
+                caption: TWO
+            value3:               
+              - value: 3
+                caption: 3
+              - value: THREE
+                caption: THREE      
+```
+```json
+{
+  "type": "install",
+  "name": "JE-40567 [Cloud Scripting:Visual Settings] - conditional filters for type \"list\"",
+  "settings": {
+    "fields": [
+      {
+        "caption": "List 1",
+        "type": "list",
+        "name": "list1",
+        "default": "value1",
+        "required": true,
+        "values": [
+          {
+            "value": "value1",
+            "caption": "one"
+          },
+          {
+            "value": "value2",
+            "caption": "two"
+          },
+          {
+            "value": "value3",
+            "caption": "three"
+          }
+        ]
+      },
+      {
+        "caption": "List 2",
+        "type": "list",
+        "name": "list2",
+        "required": true,
+        "dependsOn": {
+          "list1": {
+            "value1": [
+              {
+                "value": 1,
+                "caption": 1
+              },
+              {
+                "value": "ONE",
+                "caption": "ONE"
+              }
+            ],
+            "value2": [
+              {
+                "value": 2,
+                "caption": 2
+              },
+              {
+                "value": "TWO",
+                "caption": "TWO"
+              }
+            ],
+            "value3": [
+              {
+                "value": 3,
+                "caption": 3
+              },
+              {
+                "value": "THREE",
+                "caption": "THREE"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
 
 ### checkbox
 Single checkbox field.
@@ -645,6 +851,60 @@ where:
     - *displayName* - environment *displayName*
     - *appid* - unique environment ID
 
+To perform actions on several environments the `multiSelect` option with related parameters should be used:
+
+- `multiSelect` *[optional][boolean]* - provides an ability to choose several environment at once
+- `disableInactive` *[optional][boolean]* - an ability to chose inactive environments in combo. The default value is 'true'
+- `delimiter` *[optional][string]* - a delimiter character to separate list data items. The default value is a comma ','
+- `min` *[optional][number]* - minimum number of selected environments, required to begin installation
+- `max` *[optional][number]* - maximum number of selected environments, exceeding this number doesn’t allow to begin installation
+
+Example:
+
+@@@
+```yaml
+type: install
+name: Multiselect for envlist adjustments
+
+settings:
+  fields:
+    - caption: Environments
+      type: envlist
+      name: envs
+      min: 2
+      max: 3
+      required: true
+      multiSelect: true
+      delimiter: ","
+      
+onInstall:
+  log: ${settings.envs}
+```
+```json
+{
+  "type": "install",
+  "name": "Multiselect for envlist adjustments",
+  "settings": {
+    "fields": [
+      {
+        "caption": "Environments",
+        "type": "envlist",
+        "name": "envs",
+        "min": 2,
+        "max": 3,
+        "required": true,
+        "multiSelect": true,
+        "delimiter": ","
+      }
+    ]
+  },
+  "onInstall": {
+    "log": "${settings.envs}"
+  }
+}
+```
+@@!
+
 ### regionlist
 An available region list for a current account where new environments can be installed.
 
@@ -718,6 +978,188 @@ where:
     - `isActive` *[boolean]* - only active regions will be available in combo
     - `isRegionMigrationAllowed` *[boolean]* - display regions where migration is allowed
     - `region` *[number]* - filtering by region identifier
+
+There is an ability to carry out actions on the environments in several regions at once with parameter `multiSelect:`**true** :
+
+@@@
+```yaml
+type: install
+name: Multi-Regions Test
+
+settings:
+  fields:
+    caption: Regions
+    type: regionlist
+    multiSelect: true
+    name: regions
+    selectFirstAvailable: true
+    delimiter: ','
+    min: 2
+    max: 2
+    
+onInstall:
+- script: |
+    return { 
+      result: 0, 
+      regions: '${settings.regions}'.split(',')
+    };
+    
+- set:
+    region1: ${response.regions[0]}
+    region2: ${response.regions[1]}
+    
+- install:
+    region: ${this.region1}
+    envName: env1-${fn.random}
+    jps:
+      type: install
+      name: Env 1
+      nodes:
+        nodeType: apache2
+        cloudlets: 8
+  
+- install:
+    region: ${this.region2}
+    envName: env2-${fn.random}
+    jps:
+      type: install
+      name: Env 2
+      nodes:
+        nodeType: apache2
+        cloudlets: 8
+```
+```json
+{
+  "type": "install",
+  "name": "Multi-Regions Test",
+  "settings": {
+    "fields": {
+      "caption": "Regions",
+      "type": "regionlist",
+      "multiSelect": true,
+      "name": "regions",
+      "selectFirstAvailable": true,
+      "delimiter": ",",
+      "min": 2,
+      "max": 2
+    }
+  },
+  "onInstall": [
+    {
+      "script": "return { \n  result: 0, \n  regions: '${settings.regions}'.split(',')\n};\n"
+    },
+    {
+      "set": {
+        "region1": "${response.regions[0]}",
+        "region2": "${response.regions[1]}"
+      }
+    },
+    {
+      "install": {
+        "region": "${this.region1}",
+        "envName": "env1-${fn.random}",
+        "jps": {
+          "type": "install",
+          "name": "Env 1",
+          "nodes": {
+            "nodeType": "apache2",
+            "cloudlets": 8
+          }
+        }
+      }
+    },
+    {
+      "install": {
+        "region": "${this.region2}",
+        "envName": "env2-${fn.random}",
+        "jps": {
+          "type": "install",
+          "name": "Env 2",
+          "nodes": {
+            "nodeType": "apache2",
+            "cloudlets": 8
+          }
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
+### envname
+The field for displaying environment name, which comprises :
+
+@@@
+```yaml
+fields:
+  - caption: Env Name    
+    type: envname
+    randomName: true
+    showFullDomain: true,
+    dependsOn: regionFieldName
+```
+```json
+{
+  "fields": [
+    {
+      "caption": "Env Name",
+      "type": "envname",
+      "randomName": true,
+      "showFullDomain": "true,",
+      "dependsOn": "regionFieldName"
+    }
+  ]
+}
+```
+@@!
+
+where:
+- `caption` *[optional]* - field label
+- `region` *[optional]* - region name. The default value is default user's region.
+- `randomName` *[optional][boolean]* - autogenerate default value (e.g. env-1234567...). The default value is 'true'.
+- `showFullDomain` *[optional][boolean]* - show region's domain next to the env name.The default value is 'true'.
+- `dependsOn` *[optional]*- specifies dependency on *regionlist* field.
+
+The `dependsOn` property is used to handle the dependence between *envname* and *regionlist* parameters. Changing the Region field, the corresponding subdomain of the Environment field is revalidated and displayed respectively:
+
+@@@
+```yaml
+type: install
+name: Conditional filters for type "list"
+
+settings:
+  fields:    
+    - caption: Region
+      type: regionlist
+      name: region
+      
+    - caption: Env Name    
+      type: envname            
+      dependsOn: region
+```
+```json
+{
+  "type": "install",
+  "name": "Conditional filters for type \"list\"",
+  "settings": {
+    "fields": [
+      {
+        "caption": "Region",
+        "type": "regionlist",
+        "name": "region"
+      },
+      {
+        "caption": "Env Name",
+        "type": "envname",
+        "dependsOn": "region"
+      }
+    ]
+  }
+}
+```
+@@!
+
 
 ### popupselector
 (*popup-selector* is an alias)
