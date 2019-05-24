@@ -402,8 +402,14 @@ form#rtd-search-form {
     bottom: 0;
 }
 
-.wrapper .popup-header {
-    padding: 10px;
+.wrapper .popup-header, .wrapper .popup-description {
+    padding: 10px 15px 5px 15px;
+}
+
+.wrapper .popup-description .selected {
+    background: #eee;
+    padding: 5px;
+    margin: 5px 0 5px 0;
 }
 
 .wrapper .successText {
@@ -413,12 +419,33 @@ form#rtd-search-form {
 
 .wrapper .popup-content, .wrapper .successText {
     margin: 200px auto 0 auto;
+    max-width: 600px;
     background: white;
     width: 50%;
 }
 
 .wrapper .popup-pane {
     padding: 0 15px 15px;
+}
+
+.wrapper .popup-pane .name {
+    display: table-caption;
+}
+
+.wrapper .popup-pane .name .input {
+    padding-left: 5px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    font-size: 110%;
+    box-shadow: inset 0 1px 3px #ddd;
+    -webkit-transition: border 0.3s linear;
+    -moz-transition: border 0.3s linear;
+    transition: border 0.3s linear;
+}
+
+.wrapper .popup-pane .comment {
+    height: 100px;
+    margin-top: 5px;
 }
 
 .wrapper .popup-pane .actions {
@@ -431,8 +458,11 @@ form#rtd-search-form {
     opacity: 0.5;
 }
 
+.popup-pane .actions .btn {
+    text-decoration: none;
+}
+
 .popup-pane .actions .btn, .popup-pane .actions .btn-back {
-    margin: 0 10px 0 10px;
     padding: 8px 13px 10px 13px;
 }
 

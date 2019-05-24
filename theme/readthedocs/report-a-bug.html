@@ -1,9 +1,20 @@
 <div class="wrapper not-visible">
     <div class="popup-content">
         <div class="popup-header">
-            <h2>Message about error</h2>
+            <h2>Report an Error</h2>
+        </div>
+        <div class="popup-description not-visible">
+            You are going to report an error within the following paragraph:
+            <div class="selected">
+                <span class="text"></span>
+            </div>
         </div>
         <div class="popup-pane">
+            <div class="name">
+                Name (email):
+                <input class="input">
+            </div>
+            Please describe the crux of the issue:
             <textarea class="comment"></textarea>
             <div class="actions">
                 <a href="javascript:void(0);" onclick="closeSendContent()" class="btn-back">
