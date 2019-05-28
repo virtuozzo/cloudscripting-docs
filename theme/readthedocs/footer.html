@@ -12,10 +12,15 @@
 
   <hr/>
 
-  <div role="contentinfo">
-    {%- if config.copyright %}
-    <p>{{ config.copyright }} {{ build_date_utc | string | truncate(4, end='') }}</p>
-    {%- endif %}
+  <div class="footer-line">
+    <div role="contentinfo">
+      {%- if config.copyright %}
+      <p>{{ config.copyright }} {{ build_date_utc | string | truncate(4, end='') }}</p>
+      {%- endif %}
+    </div>
+    <div class="bug-found">
+      {% include "bug-found.html" %}
+    </div>
   </div>
 
   <!--Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.-->
