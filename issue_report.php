@@ -1,5 +1,5 @@
 <?php
-    $token = "803fafa87b3a130c8f26d5f85f89a21db0d5fa1d";
+    $token = "3ddfbd0b99d66ac374b063d38dcfcb243ea1e24e";
     $url = "https://api.github.com/repos/dzotic9/docs/issues?access_token=" .$token;
     $selectedText = $_GET['selected'];
     $userName = $_GET['userName'];
