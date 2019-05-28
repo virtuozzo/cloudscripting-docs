@@ -153,7 +153,7 @@ The following parameters are available for Docker nodes only:
 - `cmd` *[optional]* - Docker run configs                            
 - `entrypoint` *[optional]* - Docker entry points
 <!-- startService section -->
-- `startService` *[optional]* - defines whether to run defined service or not. By default false
+- `startService` *[optional]* - defines whether to run defined service or not. By default `true`
 
 ### startService Parameter
 
