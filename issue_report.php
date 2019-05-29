@@ -1,8 +1,9 @@
 <?php
-    $token = "7775cf1ad521edf34523aa4ca60a2266b60c7481";
+    $token = "2226f9ddd3bd1f430afb99be023646a889f1a52e";
     $url = "https://api.github.com/repos/dzotic9/docs/issues";
     $selectedText = $_GET['selected'];
     $userName = $_GET['userName'];
+    $position = $_GET['topPosition'];
     $comment = $_GET['comment'];
     $labels = "cs-bug-report";
     $page = $_GET['page'];
@@ -12,7 +13,8 @@
     $text = "Target page: " .$page.
         "<br>Name: " .$userName.
         "<br>Selected text: " .$selectedText.
-        "<br>Comment: " .$comment;
+        "<br>Comment: " .$comment.
+        "<br>Position: " .$position;
 
     $text = str_replace("\n","\\n",$text);
     $data = '{"title": "'. $title .'", "body": "'. addslashes($text) .'", "assignee": "'. $assignee .'", "labels": ["'. $labels .'"]}';

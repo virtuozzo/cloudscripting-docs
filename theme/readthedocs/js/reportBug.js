@@ -65,12 +65,13 @@ function closeSendContent() {
 function sendIssue() {
     var xhr = new XMLHttpRequest(),
         url = window.location.protocol + "//" + window.location.hostname + "/issue_report.php",//"http://docs.cloudscripting.local/issue_report.php",
+        nTopPosition = window.getSelection().getRangeAt(0).getBoundingClientRect().top + window.pageYOffset,
         sComment = feedback.textarea.val() || "",
         sSelected = feedback.selectedText.text() || "",
         sUserName = feedback.username.val() || "",
         params;
 
-    params = encodeURI("?comment=" + sComment + "&selected=" + sSelected + "&page=" + window.location.pathname + "&userName=" + sUserName);
+    params = encodeURI("?comment=" + sComment + "&selected=" + sSelected + "&page=" + window.location.pathname + "&userName=" + sUserName + "&topPosition=" + parseInt(nTopPosition));
 
     //TODO add userName page
     xhr.open('GET', url + params, true);
