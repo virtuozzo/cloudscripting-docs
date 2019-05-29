@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 GIT_CS_PATH="/var/www/webroot/git-cs-docs"
+USER="dzotic9"
+API_REPO_URL="https://api.github.com/repos/${USER}/docs/"
+REPO_URL="https://github.com/${USER}/docs/"
+BRANCH="master"
 WEBROOT="/var/www/webroot/ROOT"
 LOG_FILE="/var/www/webroot/post_deploy.log"
 EMAILS="alexey.lazarenko@jelastic.com"
@@ -14,7 +18,7 @@ function sendErrorMailResponse() {
 }
 
 function sendSuccessMailResponse() {
-    mail -s "[CS docs] POST DEPLOY&BUILD" ${EMAILS} <<< "CS docs successfully updated"
+    mail -s "[CS docs] POST DEPLOY&BUILD" ${EMAILS} <<< "CS docs successfully updated. Commit: ${REPO_URL}commit/${SHA}"
 }
 getLatestVersion
 
@@ -30,5 +34,7 @@ then
 else
     echo "OK";
     ln -sfn ${GIT_CS_PATH}/site/ ${WEBROOT}/site
+    curl -lsSL $API_REPO_URL"commits/"$BRANCH > test
+    SHA=$(grep -Poi 'sha.{4}\K[0-9a-z]*' -m 1 test)
     sendSuccessMailResponse
 fi
