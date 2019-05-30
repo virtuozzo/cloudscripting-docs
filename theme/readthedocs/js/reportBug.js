@@ -84,6 +84,7 @@ function sendIssue() {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');//application/json//application/x-www-form-urlencoded
     xhr.send(params);
     showSuccess();
+    feedback.textarea.val();
 }
 
 function showSuccess() {
