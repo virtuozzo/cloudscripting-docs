@@ -68,15 +68,21 @@ function sendIssue() {
         nTopPosition = window.getSelection().getRangeAt(0).getBoundingClientRect().top + window.pageYOffset,
         sComment = feedback.textarea.val() || "",
         sSelected = feedback.selectedText.text() || "",
+        oSelectedAnchorNode = window.getSelection().anchorNode,
+        sSelectedParent = oSelectedAnchorNode.parentElement,
         sUserName = feedback.username.val() || "",
         params;
 
-    params = encodeURI("?comment=" + sComment + "&selected=" + sSelected + "&page=" + window.location.pathname + "&userName=" + sUserName + "&topPosition=" + parseInt(nTopPosition));
+    while (sSelectedParent.outerText.length <= sSelected.length) {
+        sSelectedParent = sSelectedParent.parentElement;
+    }
+
+    params = encodeURI("comment=" + sComment + "&selected=" + sSelected + "&page=" + window.location.pathname + "&userName=" + sUserName + "&parent=" + sSelectedParent.outerText);
 
     //TODO add userName page
-    xhr.open('GET', url + params, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');//application/json//application/x-www-form-urlencoded
+    xhr.send(params);
     showSuccess();
 }
 

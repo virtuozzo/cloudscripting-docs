@@ -412,6 +412,12 @@ form#rtd-search-form {
     margin: 5px 0 5px 0;
 }
 
+.wrapper .popup-description .selected .text {
+    display: block;
+    overflow: auto;
+    max-height: 100px;
+}
+
 .wrapper .successText {
     opacity: 0.8;
     padding: 20px;
@@ -425,11 +431,12 @@ form#rtd-search-form {
 }
 
 .wrapper .popup-pane {
-    padding: 0 15px 15px;
+    padding: 0 15px 10px;
 }
 
 .wrapper .popup-pane .name {
     display: table-caption;
+    padding-bottom: 5px;
 }
 
 .wrapper .popup-pane .name .input {
@@ -449,7 +456,7 @@ form#rtd-search-form {
 }
 
 .wrapper .popup-pane .actions {
-    margin-top: 5px;
+    margin-top: 10px;
     text-align: right;
 }
 
@@ -473,6 +480,10 @@ form#rtd-search-form {
 .footer-line {
     display: flex;
 }
+.footer-line p {
+    margin-bottom: 0;
+    line-height: 48px;
+}
 
 .footer-line .bug-found {
     float: right;
@@ -482,13 +493,14 @@ form#rtd-search-form {
 .footer-line .bug-found .buttons .keyboard-button {
     color: #5e5b5b;
     display: inline-block;
-    border: 1px solid #242424;
+    border: 1px solid #cccccc;
     width: 27px;
     line-height: 14px;
     height: 22px;
     border-radius: 4px 4px 4px 4px;
     padding: 2px 2px 5px;
-    background: linear-gradient(to right top,#a2a1a1 0,#f1f1f1 100%) repeat scroll 0 0 transparent;
+    /*background: linear-gradient(to right top,#a2a1a1 0,#f1f1f1 100%) repeat scroll 0 0 transparent;*/
+    background: #f1f1f1;
 }
 
 .footer-line .bug-found .buttons .keyboard-button.enter {
