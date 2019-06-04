@@ -434,6 +434,16 @@ form#rtd-search-form {
     padding: 0 15px 10px;
 }
 
+.wrapper .popup-pane .rst-content .admonition-title {
+    margin: 0;
+}
+
+.wrapper .popup-pane .note {
+    padding: 3px;
+    margin-bottom: 15px;
+    line-height: 16px;
+}
+
 .wrapper .popup-pane .name {
     display: table-caption;
     padding-bottom: 5px;
@@ -443,7 +453,6 @@ form#rtd-search-form {
     padding-left: 5px;
     display: inline-block;
     border: 1px solid #ccc;
-    font-size: 110%;
     box-shadow: inset 0 1px 3px #ddd;
     -webkit-transition: border 0.3s linear;
     -moz-transition: border 0.3s linear;
@@ -451,13 +460,67 @@ form#rtd-search-form {
 }
 
 .wrapper .popup-pane .comment {
+    font-size: 100%;
     height: 100px;
     margin-top: 5px;
+    max-height: 200px;
 }
 
 .wrapper .popup-pane .actions {
     margin-top: 10px;
     text-align: right;
+}
+
+.wrapper .popup-pane .markdown-icon {
+    float: right;
+    position: relative;
+}
+
+.wrapper .popup-pane .markdown-icon:before {
+    content: url(../img/markdown_icon.png);
+    float: right;
+}
+
+.wrapper .popup-pane .markdown-icon:hover {
+    background		: #ffffff;
+    text-decoration	: none;
+}
+
+.wrapper .popup-pane .markdown-icon div {
+    position: absolute;
+    width: 200px;
+}
+
+.wrapper .popup-pane .markdown-icon span {
+    display			: none;
+    padding			: 2px 3px;
+    right           : 170px;
+    width			: 200px;
+    font-size       : 85%;
+}
+.wrapper .popup-pane .markdown-icon:hover span {
+    display			: inline;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius   : 3px;
+    background		: #ffffff;
+    border			: 1px solid #979797;
+    color			: #979797;
+    position: relative;
+    bottom: 25px;
+}
+
+.tip:after {
+    border: 6px solid transparent;
+    content: "";
+    height: 0;
+    top: 19px;
+    right: 13px;
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    z-index: 1000001;
+    border-top-color: #979797;
 }
 
 .popup-pane .actions .btn.disable {
@@ -505,4 +568,8 @@ form#rtd-search-form {
 
 .footer-line .bug-found .buttons .keyboard-button.enter {
     width: 40px;
+}
+
+.no-scroll {
+    overflow: hidden;
 }
