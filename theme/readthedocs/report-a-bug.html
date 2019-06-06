@@ -1,4 +1,4 @@
-<div class="wrapper not-visible">
+<div class="wrapper-send-report not-visible">
     <div class="popup-content">
         <div class="popup-header">
             <h2>Report an Error</h2>
@@ -16,8 +16,8 @@
                 </div>
             </div>
             <div class="name">
-                Name (optional):
-                <input class="input">
+                <span>Name (optional):</span>
+                <input class="input" tabindex="1">
             </div>
             <div>
             <span>Please describe the crux of the issue:</span>
@@ -29,12 +29,12 @@
             </a>
 
             </div>
-            <textarea class="comment"></textarea>
+            <textarea class="comment" tabindex="2"></textarea>
             <div class="actions">
-                <a href="javascript:void(0);" onclick="closeSendContent()" class="btn-back">
+                <a href="javascript:void(0);" onclick="closeSendContent()" class="btn-back" tabindex="4">
                     <span>Cancel</span>
                 </a>
-                <a href="javascript:void(0);" onclick="sendIssue()" class="btn disable">
+                <a href="javascript:void(0);" onclick="sendIssue()" class="btn disable" tabindex="3">
                     <span>Send</span>
                 </a>
             </div>

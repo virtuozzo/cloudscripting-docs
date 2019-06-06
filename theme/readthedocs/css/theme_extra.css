@@ -392,7 +392,7 @@ form#rtd-search-form {
     padding: 10px;
 }
 
-.wrapper {
+.wrapper-send-report {
     background: rgba(0,0,0,.6);
     z-index: 9999;
     position: fixed;
@@ -402,55 +402,64 @@ form#rtd-search-form {
     bottom: 0;
 }
 
-.wrapper .popup-header, .wrapper .popup-description {
+.wrapper-send-report .popup-header h2 {
+    color: #fe676c;
+}
+
+.wrapper-send-report .popup-header, .wrapper-send-report .popup-description {
     padding: 10px 15px 5px 15px;
 }
 
-.wrapper .popup-description .selected {
+.wrapper-send-report .popup-description .selected {
     background: #eee;
     padding: 5px;
     margin: 5px 0 5px 0;
 }
 
-.wrapper .popup-description .selected .text {
+.wrapper-send-report .popup-description .selected .text {
     display: block;
     overflow: auto;
     max-height: 100px;
 }
 
-.wrapper .successText {
+.wrapper-send-report .successText {
     opacity: 0.8;
     padding: 20px;
 }
 
-.wrapper .popup-content, .wrapper .successText {
-    margin: 200px auto 0 auto;
+.wrapper-send-report .popup-content, .wrapper-send-report .successText {
+    margin: 285px auto 0 auto;
+    min-width: 250px;
+}
+
+.wrapper-send-report .popup-content, .wrapper-send-report .successText {
     max-width: 600px;
     background: white;
     width: 50%;
 }
 
-.wrapper .popup-pane {
+.wrapper-send-report .popup-pane {
     padding: 0 15px 10px;
 }
 
-.wrapper .popup-pane .rst-content .admonition-title {
+.wrapper-send-report .popup-pane .rst-content .admonition-title {
     margin: 0;
 }
 
-.wrapper .popup-pane .note {
+.wrapper-send-report .popup-pane .note {
     padding: 3px;
     margin-bottom: 15px;
     line-height: 16px;
 }
 
-.wrapper .popup-pane .name {
-    display: table-caption;
+.wrapper-send-report .popup-pane .name {
     padding-bottom: 5px;
+    display: grid;
 }
 
-.wrapper .popup-pane .name .input {
-    padding-left: 5px;
+.wrapper-send-report .popup-pane .name .input {
+    padding: 4px 0 4px 5px;
+    margin-top: 5px;
     display: inline-block;
     border: 1px solid #ccc;
     box-shadow: inset 0 1px 3px #ddd;
@@ -459,46 +468,49 @@ form#rtd-search-form {
     transition: border 0.3s linear;
 }
 
-.wrapper .popup-pane .comment {
+.wrapper-send-report .popup-pane .comment {
+    padding: 4px 0 4px 5px;
     font-size: 100%;
-    height: 100px;
     margin-top: 5px;
     max-height: 200px;
+    min-height: 100px;
+    height: 170px;
 }
 
-.wrapper .popup-pane .actions {
+.wrapper-send-report .popup-pane .actions {
     margin-top: 10px;
     text-align: right;
 }
 
-.wrapper .popup-pane .markdown-icon {
+.wrapper-send-report .popup-pane .markdown-icon {
+    padding-top: 2px;
     float: right;
     position: relative;
 }
 
-.wrapper .popup-pane .markdown-icon:before {
+.wrapper-send-report .popup-pane .markdown-icon:before {
     content: url(../img/markdown_icon.png);
     float: right;
 }
 
-.wrapper .popup-pane .markdown-icon:hover {
+.wrapper-send-report .popup-pane .markdown-icon:hover {
     background		: #ffffff;
     text-decoration	: none;
 }
 
-.wrapper .popup-pane .markdown-icon div {
+.wrapper-send-report .popup-pane .markdown-icon div {
     position: absolute;
     width: 200px;
 }
 
-.wrapper .popup-pane .markdown-icon span {
+.wrapper-send-report .popup-pane .markdown-icon span {
     display			: none;
     padding			: 2px 3px;
     right           : 170px;
     width			: 200px;
     font-size       : 85%;
 }
-.wrapper .popup-pane .markdown-icon:hover span {
+.wrapper-send-report .popup-pane .markdown-icon:hover span {
     display			: inline;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -515,7 +527,7 @@ form#rtd-search-form {
     content: "";
     height: 0;
     top: 19px;
-    right: 13px;
+    right: 12px;
     pointer-events: none;
     position: absolute;
     width: 0;
