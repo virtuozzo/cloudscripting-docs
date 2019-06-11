@@ -1,174 +1,194 @@
-var feedback = {};
-
-(function(config) {
-    var BODY = "body",
-        oBody,
-        oWrapper,
-        oTextArea,
-        oSendBtn,
-        sSelection,
+var App = {};
+App.error = {};
+App.error.Report = function() {
+    var me = this,
+        BODY = "body",
+        NOT_VISIBLE_CLS = "not-visible",
+        DISABLE = "disable",
         oSelection,
-        oDescription;
+        sSelection,
+        oReportEls = {};
 
-    $(BODY).ready(function () {
-        var NOT_VISIBLE_CLS = "not-visible",
-            DISABLE = "disable";
+    this.initElements = function() {
+        oReportEls.body = oBody = $(BODY);
+        oReportEls.gridBody = oBody.children('.wy-grid-for-nav');
+        oReportEls.wrapper = oWrapper = $(".wrapper-send-report");
+        oReportEls.popupContent = oWrapper.children(":first");
+        oReportEls.description = oDescription = oWrapper.find(".popup-description");
+        oReportEls.textarea = oTextArea = oReportEls.popupContent.find(".comment");
+        oReportEls.note = oReportEls.popupContent.find(".rst-content");
+        oReportEls.selectedText = oDescription.find(".selected .text");
+        oReportEls.selectedParent= "";
+        oReportEls.sendBtn = oSendBtn = oReportEls.popupContent.find('.actions .btn');
+        oReportEls.successForm = oReportEls.popupContent.find(".successText");
+        oReportEls.username = oReportEls.popupContent.find(".name .input");
 
-        config.body = oBody = $(BODY);
-        config.gridBody = oBody.children('.wy-grid-for-nav');
-        config.wrapper = oWrapper = $(".wrapper-send-report");
-        config.popupContent = oWrapper.children(":first");
-        config.description = oDescription = oWrapper.find(".popup-description");
-        config.textarea = oTextArea = config.popupContent.find(".comment");
-        config.note = config.popupContent.find(".rst-content");
-        config.selectedText = oDescription.find(".selected .text");
-        config.selectedParent= "";
-        config.sendBtn = oSendBtn = config.popupContent.find('.actions .btn');
-        config.successForm = config.popupContent.find(".successText");
-        config.username = config.popupContent.find(".name .input");
+        oReportEls.textarea.keyup(me.enableSendBtn).focusout(me.enableSendBtn);
 
-        config.textarea.keyup(enableSendBtn).focusout(enableSendBtn);
-
-        /*
-        test scroll
-         */
-        function preventDefault(e) {
-            if (!config.wrapper.hasClass(NOT_VISIBLE_CLS)) {
-                e = e || window.event;
-                if (e.preventDefault)
-                    e.preventDefault();
-                e.returnValue = false;
-            }
-        }
-        window.addEventListener('DOMMouseScroll', preventDefault, false);
-        window.onwheel = preventDefault; // modern standard
-        window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
-        window.ontouchmove  = preventDefault;
-
-        config.body.keypress(function (e) {
+        oReportEls.body.keypress(function (e) {
             if (e.ctrlKey && (e.keyCode == 10 || e.keyCode == 13)) {
-
-                if (!config.wrapper.hasClass(NOT_VISIBLE_CLS)) return;
-
-                config.popupContent.removeClass(NOT_VISIBLE_CLS);
-                oSelection = window.getSelection();
-                sSelection = oSelection.toString() || "";
-                config.selectedParent = oSelection.anchorNode;
-                config.wrapper.removeClass(NOT_VISIBLE_CLS);
-
-                if (config.username.val()) {
-                    config.textarea.focus();
-                } else {
-                    config.username.focus();
-                }
-
-                if (sSelection) {
-                    config.sendBtn.removeClass(DISABLE);
-                    config.description.removeClass(NOT_VISIBLE_CLS);
-                    config.selectedText.text(sSelection);
-                    config.note.addClass(NOT_VISIBLE_CLS);
-                } else {
-                    config.note.removeClass(NOT_VISIBLE_CLS);
-                    config.description.addClass(NOT_VISIBLE_CLS);
-                }
-
-                if (!config.textarea.val()) {
-                    config.sendBtn.addClass(DISABLE);
-                }
+                me.openReportForm();
             }
         });
 
-        config.body.keyup(function(e) {
+        $("a.bug-found").on('click', me.openReportForm);
+
+        oReportEls.body.keyup(function(e) {
             if (e.keyCode == 27) {
-                config.wrapper.addClass(NOT_VISIBLE_CLS);
+                oReportEls.wrapper.addClass(NOT_VISIBLE_CLS);
+                oReportEls.gridBody.css({'overflow': "scroll"});
             }
         });
 
-        config.body.on('click', function(event) {
+        oReportEls.body.on('click', function(event) {
             if (event.target.className == "wrapper-send-report" &&
-                !config.wrapper.hasClass(NOT_VISIBLE_CLS) &&
-                config.popupContent.hasClass(NOT_VISIBLE_CLS) &&
-                !config.successForm.hasClass(NOT_VISIBLE_CLS) &&
+                !oReportEls.wrapper.hasClass(NOT_VISIBLE_CLS) &&
+                oReportEls.popupContent.hasClass(NOT_VISIBLE_CLS) &&
+                !oReportEls.successForm.hasClass(NOT_VISIBLE_CLS) &&
                 $('.wy-body-for-nav').has(event.target).length) {
-                closeSendContent();
+                me.closeSendContent();
             }
         });
+    };
 
-        function enableSendBtn() {
-            if (!this.value.trim()) {
-                config.sendBtn.addClass(DISABLE);
-            } else {
-                config.sendBtn.removeClass(DISABLE);
-            }
+    this.enableSendBtn = function() {
+        if (this.value && !this.value.trim()) {
+            oReportEls.sendBtn.addClass(DISABLE);
+        } else {
+            oReportEls.sendBtn.removeClass(DISABLE);
         }
-    });
-})(feedback);
+    };
 
-function closeSendContent() {
-    var NOT_VISIBLE_CLS = "not-visible";
-    feedback.successForm.addClass(NOT_VISIBLE_CLS);
-    feedback.wrapper.addClass(NOT_VISIBLE_CLS);
-}
+    this.preventDefaultEvent = function(e) {
+        if (!oReportEls.wrapper.hasClass(NOT_VISIBLE_CLS) && e.target.className == "wrapper-send-report"){
+            e = e || window.event;
+            if (e.preventDefault)
+                e.preventDefault();
+            e.returnValue = false;
+        }
+    };
 
-function sendIssue() {
-    var xhr = new XMLHttpRequest(),
-        url = window.location.protocol + "//" + window.location.hostname + "/issue_report.php",
-        sComment = feedback.textarea.val() || "",
-        sSelected = feedback.selectedText.text() || "",
-        oSelectedAnchorNode = feedback.selectedParent,
-        sSelectedParent = oSelectedAnchorNode.parentElement,
-        sUserName = feedback.username.val() || "",
-        sSurroundEls = "",
-        sParent = "",
-        aSurroundEls,
-        nChildIndex,
-        oParent,
-        oChildren,
-        params;
+    this.openReportForm = function() {
+        if (!oReportEls.wrapper.hasClass(NOT_VISIBLE_CLS)) return;
 
-    sSelectedParent = sSelectedParent.parentElement;
-    oParent = $(sSelectedParent) || {};
-    oChildren = oParent.children() || {};
-    nChildIndex = oChildren.index(feedback.selectedParent.parentElement);
+        oReportEls.popupContent.removeClass(NOT_VISIBLE_CLS);
+        oSelection = window.getSelection();
+        sSelection = oSelection.toString() || "";
+        oReportEls.selectedParent = oSelection.anchorNode;
+        oReportEls.wrapper.removeClass(NOT_VISIBLE_CLS);
+        oReportEls.gridBody.css({'overflow': "hidden"});
 
-    if (oChildren.length > nChildIndex) {
-        aSurroundEls = oChildren.slice(nChildIndex-3 > 0 ? nChildIndex-3 : 0, nChildIndex+3 <= oChildren.length ? nChildIndex+3 : oChildren.length);
+        if (oReportEls.username.val()) {
+            oReportEls.textarea.focus();
+        } else {
+            oReportEls.username.focus();
+        }
 
-        for (var i = 0, n = aSurroundEls.length; i < n; i++) {
-            if (aSurroundEls[i].outerText.indexOf(sSelected) != -1) {
-                if (aSurroundEls[i].outerText.length > sSelected.length) {
-                    sSurroundEls += aSurroundEls[i].outerText.replace(sSelected, '\n```\n' + sSelected + "\n```\n");
+        if (sSelection) {
+            oReportEls.sendBtn.removeClass(DISABLE);
+            oReportEls.description.removeClass(NOT_VISIBLE_CLS);
+            oReportEls.selectedText.text(sSelection);
+            oReportEls.note.addClass(NOT_VISIBLE_CLS);
+        } else {
+            oReportEls.note.removeClass(NOT_VISIBLE_CLS);
+            oReportEls.description.addClass(NOT_VISIBLE_CLS);
+        }
+
+        me.setCenterForm();
+
+        if (!oReportEls.textarea.val()) {
+            oReportEls.sendBtn.addClass(DISABLE);
+        }
+
+        return false;
+    };
+
+    this.setCenterForm = function() {
+        var nValue;
+
+        nValue = (window.innerHeight - oReportEls.popupContent.height()) / 2;
+        oReportEls.popupContent.css({"margin-top": nValue + "px"})
+    };
+
+    this.closeSendContent = function() {
+        oReportEls.successForm.addClass(NOT_VISIBLE_CLS);
+        oReportEls.wrapper.addClass(NOT_VISIBLE_CLS);
+        oReportEls.gridBody.css({'overflow': "scroll"});
+    };
+
+    this.showSuccess = function() {
+        var NOT_VISIBLE_CLS = "not-visible";
+
+        oReportEls.successForm = $(".successText");
+        oReportEls.popupContent = $(".popup-content");
+        oReportEls.popupContent.addClass(NOT_VISIBLE_CLS);
+        oReportEls.successForm.removeClass(NOT_VISIBLE_CLS);
+
+        setTimeout(function() {
+            closeSendContent();
+        }, 3000);
+    };
+
+    this.sendIssue = function() {
+        var xhr = new XMLHttpRequest(),
+            url = window.location.protocol + "//" + window.location.hostname + "/issue_report.php",
+            sComment = oReportEls.textarea.val() || "",
+            sSelected = oReportEls.selectedText.text() || "",
+            oSelectedAnchorNode = oReportEls.selectedParent,
+            sSelectedParent = oSelectedAnchorNode.parentElement,
+            sUserName = oReportEls.username.val() || "",
+            sSurroundEls = "",
+            sParent = "",
+            aSurroundEls,
+            nChildIndex,
+            oParent,
+            oChildren,
+            params;
+
+        sSelectedParent = sSelectedParent.parentElement;
+        oParent = $(sSelectedParent) || {};
+        oChildren = oParent.children() || {};
+        nChildIndex = oChildren.index(oReportEls.selectedParent.parentElement);
+
+        if (oChildren.length > nChildIndex) {
+            aSurroundEls = oChildren.slice(nChildIndex-3 > 0 ? nChildIndex-3 : 0, nChildIndex+3 <= oChildren.length ? nChildIndex+3 : oChildren.length);
+
+            for (var i = 0, n = aSurroundEls.length; i < n; i++) {
+                if (aSurroundEls[i].outerText.indexOf(sSelected) != -1) {
+                    if (aSurroundEls[i].outerText.length > sSelected.length) {
+                        sSurroundEls += aSurroundEls[i].outerText.replace(sSelected, '\n```\n' + sSelected + "\n```\n");
+                    } else {
+                        sSurroundEls += "\n```\n" + aSurroundEls[i].outerText + "\n```\n";
+                    }
                 } else {
-                    sSurroundEls += "\n```\n" + aSurroundEls[i].outerText + "\n```\n";
+                    sSurroundEls += aSurroundEls[i].outerText + "\n";
                 }
-            } else {
-                sSurroundEls += aSurroundEls[i].outerText + "\n";
             }
         }
-    }
 
-    sParent = sSurroundEls || "```" + sSelectedParent.outerText + "```";
+        sParent = sSurroundEls || "```" + sSelectedParent.outerText + "```";
 
-    params = encodeURI("comment=" + sComment + "&selected=" + sSelected + "&page=" + window.location.pathname + "&userName=" + sUserName + "&context=" + sParent);
+        params = encodeURI("comment=" + sComment + "&selected=" + sSelected + "&page=" + window.location.pathname + "&userName=" + sUserName + "&context=" + sParent);
 
-    //TODO add userName page
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send(params);
-    feedback.textarea.val("");
-    feedback.gridBody.removeClass("no-scroll");
-    showSuccess();
-}
+        //TODO add userName page
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(params);
+        oReportEls.textarea.val("");
+        oReportEls.gridBody.removeClass("no-scroll");
+        me.showSuccess();
+    };
+};
 
-function showSuccess() {
-    var NOT_VISIBLE_CLS = "not-visible";
+(function() {
+    var oReport = new App.error.Report();
 
-    feedback.successForm = $(".successText");
-    feedback.popupContent = $(".popup-content");
-    feedback.popupContent.addClass(NOT_VISIBLE_CLS);
-    feedback.successForm.removeClass(NOT_VISIBLE_CLS);
+    $("body").ready(function () {
+        oReport.initElements();
 
-    setTimeout(function() {
-        closeSendContent();
-    }, 3000);
-}
+        window.addEventListener('DOMMouseScroll', oReport.preventDefaultEvent, false);
+        window.onwheel = oReport.preventDefaultEvent; // modern standard
+        window.onmousewheel = document.onmousewheel = oReport.preventDefaultEvent; // older browsers, IE
+        window.ontouchmove  = oReport.preventDefaultEvent;
+    });
+})();
