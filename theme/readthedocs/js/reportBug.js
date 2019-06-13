@@ -19,7 +19,7 @@ App.error.Report = function() {
         oReportEls.note = oReportEls.popupContent.find(".rst-content");
         oReportEls.selectedText = oDescription.find(".selected .text");
         oReportEls.selectedParent= "";
-        oReportEls.sendBtn = oSendBtn = oReportEls.popupContent.find('.actions .btn');
+        oReportEls.sendBtn = oReportEls.popupContent.find('.actions .btn');
         oReportEls.successForm = oReportEls.popupContent.find(".successText");
         oReportEls.username = oReportEls.popupContent.find(".name .input");
 
@@ -32,6 +32,8 @@ App.error.Report = function() {
         });
 
         $("a.bug-found").on('click', me.openReportForm);
+        oReportEls.popupContent.find(".popup-pane .btn-back").on('click', me.closeSendContent);
+        oReportEls.sendBtn.on('click', me.sendIssue);
 
         oReportEls.body.keyup(function(e) {
             if (e.keyCode == 27) {
@@ -52,7 +54,7 @@ App.error.Report = function() {
     };
 
     this.enableSendBtn = function() {
-        if (this.value && !this.value.trim()) {
+        if (!this.value || (this.value && !this.value.trim())) {
             oReportEls.sendBtn.addClass(DISABLE);
         } else {
             oReportEls.sendBtn.removeClass(DISABLE);
@@ -74,7 +76,7 @@ App.error.Report = function() {
         oReportEls.popupContent.removeClass(NOT_VISIBLE_CLS);
         oSelection = window.getSelection();
         sSelection = oSelection.toString() || "";
-        oReportEls.selectedParent = oSelection.anchorNode;
+        oReportEls.selectedParent = oSelection.anchorNode || {};
         oReportEls.wrapper.removeClass(NOT_VISIBLE_CLS);
         oReportEls.gridBody.css({'overflow': "hidden"});
 
@@ -94,7 +96,7 @@ App.error.Report = function() {
             oReportEls.description.addClass(NOT_VISIBLE_CLS);
         }
 
-        me.setCenterForm();
+        me.setCenterForm(oReportEls.popupContent);
 
         if (!oReportEls.textarea.val()) {
             oReportEls.sendBtn.addClass(DISABLE);
@@ -103,11 +105,11 @@ App.error.Report = function() {
         return false;
     };
 
-    this.setCenterForm = function() {
+    this.setCenterForm = function(element) {
         var nValue;
 
-        nValue = (window.innerHeight - oReportEls.popupContent.height()) / 2;
-        oReportEls.popupContent.css({"margin-top": nValue + "px"})
+        nValue = (window.innerHeight - element.height()) / 2;
+        element.css({"margin-top": nValue + "px"})
     };
 
     this.closeSendContent = function() {
@@ -121,11 +123,12 @@ App.error.Report = function() {
 
         oReportEls.successForm = $(".successText");
         oReportEls.popupContent = $(".popup-content");
-        oReportEls.popupContent.addClass(NOT_VISIBLE_CLS);
         oReportEls.successForm.removeClass(NOT_VISIBLE_CLS);
+        me.setCenterForm(oReportEls.successForm);
+        oReportEls.popupContent.addClass(NOT_VISIBLE_CLS);
 
         setTimeout(function() {
-            closeSendContent();
+            me.closeSendContent();
         }, 3000);
     };
 
@@ -135,7 +138,7 @@ App.error.Report = function() {
             sComment = oReportEls.textarea.val() || "",
             sSelected = oReportEls.selectedText.text() || "",
             oSelectedAnchorNode = oReportEls.selectedParent,
-            sSelectedParent = oSelectedAnchorNode.parentElement,
+            sSelectedParent = oSelectedAnchorNode.parentElement || {},
             sUserName = oReportEls.username.val() || "",
             sSurroundEls = "",
             sParent = "",
@@ -145,28 +148,30 @@ App.error.Report = function() {
             oChildren,
             params;
 
-        sSelectedParent = sSelectedParent.parentElement;
-        oParent = $(sSelectedParent) || {};
-        oChildren = oParent.children() || {};
-        nChildIndex = oChildren.index(oReportEls.selectedParent.parentElement);
+        if (sSelection) {
+            sSelectedParent = sSelectedParent.parentElement || {};
+            oParent = $(sSelectedParent) || {};
+            oChildren = oParent.children() || {};
+            nChildIndex = oChildren.index(oReportEls.selectedParent.parentElement);
 
-        if (oChildren.length > nChildIndex) {
-            aSurroundEls = oChildren.slice(nChildIndex-3 > 0 ? nChildIndex-3 : 0, nChildIndex+3 <= oChildren.length ? nChildIndex+3 : oChildren.length);
+            if (oChildren.length > nChildIndex) {
+                aSurroundEls = oChildren.slice(nChildIndex - 3 > 0 ? nChildIndex - 3 : 0, nChildIndex + 3 <= oChildren.length ? nChildIndex + 3 : oChildren.length);
 
-            for (var i = 0, n = aSurroundEls.length; i < n; i++) {
-                if (aSurroundEls[i].outerText.indexOf(sSelected) != -1) {
-                    if (aSurroundEls[i].outerText.length > sSelected.length) {
-                        sSurroundEls += aSurroundEls[i].outerText.replace(sSelected, '\n```\n' + sSelected + "\n```\n");
+                for (var i = 0, n = aSurroundEls.length; i < n; i++) {
+                    if (aSurroundEls[i].outerText.indexOf(sSelected) != -1) {
+                        if (aSurroundEls[i].outerText.length > sSelected.length) {
+                            sSurroundEls += aSurroundEls[i].outerText.replace(sSelected, '\n```\n' + sSelected + "\n```\n");
+                        } else {
+                            sSurroundEls += "\n```\n" + aSurroundEls[i].outerText + "\n```\n";
+                        }
                     } else {
-                        sSurroundEls += "\n```\n" + aSurroundEls[i].outerText + "\n```\n";
+                        sSurroundEls += aSurroundEls[i].outerText + "\n";
                     }
-                } else {
-                    sSurroundEls += aSurroundEls[i].outerText + "\n";
                 }
             }
         }
 
-        sParent = sSurroundEls || "```" + sSelectedParent.outerText + "```";
+        sParent = sSelection ? sSurroundEls || "```" + sSelectedParent.outerText + "```" : "";
 
         params = encodeURI("comment=" + sComment + "&selected=" + sSelected + "&page=" + window.location.pathname + "&userName=" + sUserName + "&context=" + sParent);
 
