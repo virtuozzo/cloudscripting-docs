@@ -456,50 +456,6 @@ volumeMounts:
 
 Here, "*ro*" stands for *readOnly* permissions.
 
-<!--
-##volumesFrom
-
-`volumesFrom` is an list object.    
-There are two ways to select the volume source container:
-``` json
-[
-  {
-    "sourceNodeId": "49",
-    "readOnly": true
-  },{
-    "sourceNodeGroup": "storage",
-    "readOnly": true
-  }
-]
-```
-
-In case to import not full source node volumes list You can set like below:
-``` json
-[
-  {
-    "sourceNodeGroup": "storage",
-    "volumes": [
-      "/master",
-      "/local"
-    ]
-  }
-]
-```
-
-Simple set examples above:
-``` json
-[
-  49,
-  "storage",
-  "storage:ro"
-]
-```
-where:   
-- *49* - like { sourceNodeId : 49, readOnly : false }  
-- *"storage"* - like { sourceNodeGroup : "storage", readOnly : false }  
-- *"storage:ro"* - like { sourceNodeGroup : "storage", readOnly : true }
--->
-
 #### Environment Variables
 
 Docker environment <a href="https://docs.jelastic.com/docker-variables" target="_blank">variable</a> is an optional topology object. The *env* instruction allows to set the required environment variables to specified values. 

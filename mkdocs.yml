@@ -24,7 +24,7 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+      emoji_generator: '!!python/name:pymdownx.emoji.to_svg'
   - pymdownx.inlinehilite
   - pymdownx.magiclink
   - pymdownx.mark
@@ -50,12 +50,27 @@ pages:
    - Custom Responses: creating-manifest/handling-custom-responses.md
    - Visual Settings: creating-manifest/visual-settings.md
 
+- Reference Page: reference-page.md
+
 - Samples:
    - Overview: samples.md
 
 - Troubleshooting: troubleshooting.md
 
 - CS vs Jelastic Versions: jelastic-cs-correspondence.md
+
+references:
+   - basic-configs
+   - selecting-containers
+   - actions
+   - events
+   - placeholders
+   - conditions-and-iterations
+   - custom-scripts
+   - handling-custom-responses
+   - visual-settings
+   - troubleshooting
+   - jelastic-cs-correspondence
 
 extra:
   versions:
