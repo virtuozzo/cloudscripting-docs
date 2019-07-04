@@ -5,4 +5,4 @@ VERSION=$1
 
 mkdocs_versioned --default-branch=$VERSION
 
-cp issue_report.php .
+cp issue_report.php site/
