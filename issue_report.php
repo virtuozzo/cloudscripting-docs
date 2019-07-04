@@ -1,5 +1,5 @@
 <?php
-    $token = "3d8cdb66cbbef202194e6307aebb9d596df2ce95";
+    include '../config.php';
     $url = "https://api.github.com/repos/dzotic9/docs/issues";
     $selectedText = $_POST['selected'];
     $userName = $_POST['userName'];
