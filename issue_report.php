@@ -1,5 +1,5 @@
 <?php
-    include '../config.php';
+    include_once('/var/www/webroot/config.php');
     $selectedText = $_POST['selected'];
     $userName = $_POST['userName'];
     $context = $_POST['context'];
