@@ -1,13 +1,11 @@
 <?php
     include '../config.php';
-    $url = "https://api.github.com/repos/dzotic9/docs/issues";
     $selectedText = $_POST['selected'];
     $userName = $_POST['userName'];
     $context = $_POST['context'];
     $comment = $_POST['comment'];
     $labels = "cs-bug-report";
     $page = $_POST['page'];
-    $assignee = "dzotic9";
 
     function checkRequiredParams($params) {
         foreach ($params as $key => $value) {
