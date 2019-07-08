@@ -593,6 +593,13 @@ onInstall:
 The results on the screen below:
 ![comparison](/img/comparison.png)
 
+## Engine Placeholder
+The *${engine}* placeholder returns a Cloud Scripting engine version that is supported by the platform the manifest is executed on.  
+
+`${engine}` - CS engine version  
+
+It is can be complemented with function placeholders *[${fn.compareEngine(version)}](https://docs.cloudscripting.com/creating-manifest/placeholders/#function-placeholders)* and *[${fn.compare(version1, version2)}](https://docs.cloudscripting.com/creating-manifest/placeholders/#function-placeholders)* that can be used to determine whether JPS manifest is supported by the platform’s engine version or not.  
+
 <br>       
 <h2> What’s next?</h2>                    
 
