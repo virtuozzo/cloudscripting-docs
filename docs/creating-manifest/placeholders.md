@@ -608,6 +608,44 @@ The *${engine}* placeholder returns a Cloud Scripting engine version that is sup
 
 It is can be complemented with function placeholders *[${fn.compareEngine(version)}](https://docs.cloudscripting.com/creating-manifest/placeholders/#function-placeholders)* and *[${fn.compare(version1, version2)}](https://docs.cloudscripting.com/creating-manifest/placeholders/#function-placeholders)* that can be used to determine whether JPS manifest is supported by the platform’s engine version or not.  
 
+@@@
+```yaml
+type: install
+name: JE-43816 Ability co compare CS engine versions
+
+onInstall:
+- assert:
+  - "'${engine}'.split('.').length > 0"
+  - "'${fn.compare}' == 0"
+  - "'${fn.compare(5.4.1, 5.4.2)}' == -1"
+  - "'${fn.compare(5.5, 5.4.2)}' == 1"
+  - "'${fn.compare(5.4.0, 5.4.0.0)}' == 0"
+  - "'${fn.compareEngine}' == 0"
+  - "'${fn.compareEngine(1.5.1)}' == 1"
+  - "'${fn.compareEngine(1000000)}' == -1"
+```
+```json
+{
+  "type": "install",
+  "name": "JE-43816 Ability co compare CS engine versions",
+  "onInstall": [
+    {
+      "assert": [
+        "'${engine}'.split('.').length > 0",
+        "'${fn.compare}' == 0",
+        "'${fn.compare(5.4.1, 5.4.2)}' == -1",
+        "'${fn.compare(5.5, 5.4.2)}' == 1",
+        "'${fn.compare(5.4.0, 5.4.0.0)}' == 0",
+        "'${fn.compareEngine}' == 0",
+        "'${fn.compareEngine(1.5.1)}' == 1",
+        "'${fn.compareEngine(1000000)}' == -1"
+      ]
+    }
+  ]
+}
+```
+@@!
+
 <br>       
 <h2> What’s next?</h2>                    
 
