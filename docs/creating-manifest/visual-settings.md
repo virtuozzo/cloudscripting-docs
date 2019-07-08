@@ -1114,7 +1114,7 @@ fields:
 ```
 @@!
 
-where:
+where:  
 - `caption` *[optional]* - field label  
 - `region` *[optional]* - region name. The default value is default user's region  
 - `randomName` *[optional][boolean]* - autogenerate default value (e.g. env-1234567...). The default value is 'true'  
