@@ -402,6 +402,14 @@ The function parameter can be passed from existing placeholders, for example:
 
 - `${fn.md5([fn.random])}` - *md5* encoding random password   
 - `${fn.base64([user.email])}` - *base64* encoding user email address  
+- `${fn.compareEngine(version)}` - compares, supported by the hoster platform, CS engine version with the given *version*.  	Returns result:  
+	0 - *version* equals CS engine version  
+	1 - CS engine version greater than *version*  
+	-1 - CS engine version less than *version*  
+- `${fn.compare(version1, version2)}` - compares two given versions separated by dots. Returns result:  
+	0 - *version1* equals *version2*  
+	1 - *version1* greater than *version2*  
+	-1 - *version1* less than *version2*  
 
 You can easily define function placeholders within the [custom global placeholders](#custom-global-placeholders), for example:
 @@@
