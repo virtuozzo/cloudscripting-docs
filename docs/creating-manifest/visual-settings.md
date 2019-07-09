@@ -2003,6 +2003,16 @@ In the last example above, the localization functionality is applied, which depe
 
 Custom responses can be returned within <a href="/1.6/creating-manifest/actions/#return" target="_blank">`return`</a> or <a href="/1.6/creating-manifest/actions/#script" target="_blank">`script`</a> actions. More details about <a href="/1.6/creating-manifest/handling-custom-responses/" target="_blank">custom responses here</a>.
 
+## JPS installation without environment  
+  
+In case no environment is specified in the manifest, the installation dialog has no *Environment Name* and *Region* fields, but the *[custom settings](/creating-manifest/visual-settings/#custom-settings)* can be used and displayed.  
+  
+![import-button.png](img/addon-wo-env.png)  
+  
+The installation process for such **type:install** manifest is accompanied by installation process dialog which displays **Deploying {name}** instead of: *Preparing environment*, *Deploying{name}*, *Configuring environment*.  
+  
+![import-button.png](img/deploy-addon-wo-env.png)  
+  
 ## Markdown Description
 
 Markdown is a light language with plain text formatting syntax. This language is supported by Cloud Scripting technology to describe a `description`, `success texts` or show [`custom response` texts](/creating-manifest/visual-settings/#success-text-customization).
