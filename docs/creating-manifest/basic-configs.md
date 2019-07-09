@@ -128,7 +128,7 @@ The list of available parameters are:
 - `nodeType` *[required]* - the defined node type. The list of available stacks are <a href="/1.6/creating-manifest/selecting-containers/#supported-stacks" target="_blank">here</a>. 
 - `cloudlets` *[optional]* - a number of dynamic cloudlets. The default value is 0. `flexible` is an alias. 
 - `fixedCloudlets` *[optional]* - amount of fixed cloudlets. The default value is 1.
-- `count` *[optional]* - amount of nodes in one group. The default value is 1.
+- `count` *[optional]* - amount of nodes in one group. The default value is 1. To set up the parameter dynamically see an [example](/creating-manifest/visual-settings/#radio-fieldset).
 - `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any custom node group.
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.
