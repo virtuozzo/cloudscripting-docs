@@ -60,17 +60,16 @@ pages:
 - CS vs Jelastic Versions: jelastic-cs-correspondence.md
 
 references:
-   - basic-configs
-   - selecting-containers
-   - actions
-   - events
+   - actions:
+       extraPages:
+         - conditions-and-iterations
+   - events:
+       params:
+         hideh2Tag: True
+   - visual-settings:
+       params:
+          hideh2Tag: True
    - placeholders
-   - conditions-and-iterations
-   - custom-scripts
-   - handling-custom-responses
-   - visual-settings
-   - troubleshooting
-   - jelastic-cs-correspondence
 
 extra:
   versions:

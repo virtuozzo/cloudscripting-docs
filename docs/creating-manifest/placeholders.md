@@ -35,42 +35,71 @@ Placeholders like `env`, `nodes`, `targetNodes`, `response` are dynamically upda
 This is the list of placeholders that you can use within the environment section (*{env.}*) of your manifest.                               
 
 - `{env.}`
-    - `appid` *[string]* - application appid 
-    - `domain` *[string]* - application domain
-    - `protocol` *[string]* - protocol
-    - `url` *[string]* - link to application (environment)
-    - `region` *[string]* - a region name where environment has been installed
-    - `displayName` *[string]* - application display name
-    - `envName` *[string]* - short domain name (without hosting provider URL)
-    - `shortdomain` *[string]* - short domain name (alias to `envName`)
-    - `name` *[string]* - alias to `envName`
-    - `hardwareNodeGroup` *[string]* - hardware node group
-    - `ssl` *[boolean]* - environment SSL status
-    - `sslstate` *[boolean]* - environment SSL state
-    - `status` *[number]* - environment status. The available statuses are:                    
+    - ###### `appid`
+     *[string]* - application appid
+    - ###### `domain`
+     *[string]* - application domain
+    - ###### `protocol`
+     *[string]* - protocol
+    - ###### `url`
+     *[string]* - link to application (environment)
+    - ###### `region`
+     *[string]* - a region name where environment has been installed
+    - ###### `displayName`
+     *[string]* - application display name
+    - ###### `envName`
+     *[string]* - short domain name (without hosting provider URL)
+    - ###### `shortdomain`
+     *[string]* - short domain name (alias to `envName`)
+    - ###### `name`
+     *[string]* - alias to `envName`
+    - ###### `hardwareNodeGroup`
+     *[string]* - hardware node group
+    - ###### `ssl`
+     *[boolean]* - environment SSL status
+    - ###### `sslstate`
+     *[boolean]* - environment SSL state
+    - ###### `status`
+     *[number]* - environment status. The available statuses are:
         - *running*              
         - *down*               
         - *launching*                 
         - *sleep*               
         - *creating*                 
-        - *cloning*                
-        - *exists*                        
-    - `uid` *[number]* - user ID
-    - `ishaenabled` *[boolean]* - high availability status 
-    - `ha` *[boolean]* - alias to `${env.ishaenabled}`
-    - `isTransferring` *[boolean]* - transferring status
-    - `creatorUid` *[number]* - environment creator ID 
-    - `engine.id` *[number]* - engine ID
-    - `engine.keyword` *[string]* - engine keyword
-    - `engine.name` *[string]* - engine name
-    - `engine.type` *[string]* - engine type
-    - `engine.vcsSupport` *[boolean]* - VCS support status
-    - `engine.version` *[string]* - engine version 
-    - `contexts.type` *[string]* - environment context type
-    - `contexts.context` *[string]* - context name
-    - `contexts.archivename` *[string]* - context display name
-    - `contexts.length` *[number]* - number of contexts that are deployed to an environment
-    - `extdomains.length` *[number]* - number of external domains that are bound to an environment
+        - *cloning*
+        - *exists*
+    - ###### `uid`
+     *[number]* - user ID
+    - ###### `ishaenabled`
+     *[boolean]* - high availability status
+    - ###### `ha`
+     *[boolean]* - alias to `${env.ishaenabled}`
+    - ###### `isTransferring`
+     *[boolean]* - transferring status
+    - ###### `creatorUid`
+     *[number]* - environment creator ID
+    - ###### `engine.id`
+     *[number]* - engine ID
+    - ###### `engine.keyword`
+     *[string]* - engine keyword
+    - ###### `engine.name`
+     *[string]* - engine name
+    - ###### `engine.type`
+     *[string]* - engine type
+    - ###### `engine.vcsSupport`
+     *[boolean]* - VCS support status
+    - ###### `engine.version`
+     *[string]* - engine version
+    - ###### `contexts.type`
+     *[string]* - environment context type
+    - ###### `contexts.context`
+     *[string]* - context name
+    - ###### `contexts.archivename`
+     *[string]* - context display name
+    - ###### `contexts.length`
+      *[number]* - number of contexts that are deployed to an environment
+    - ###### `extdomains.length`
+    *[number]* - number of external domains that are bound to an environment
 
 ## Node Placeholders    
 
@@ -79,76 +108,131 @@ This is the list of placeholders that you can use within the nodes section (*{no
 - `${nodes.}`
     - `{nodes.(group)[(i)].(key)}`
     - `{nodes.(group).first.(key)}`
-    - `{nodes.(group).last.(key)}`   
-    - `{nodes.(group).master.(key)}`   
+    - `{nodes.(group).last.(key)}`
+    - `{nodes.(group).master.(key)}`
     where:
-    - `(group)` - node group (<a href="/1.6/creating-manifest/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> or <a href="/1.6/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">nodeType</a>)           
+    - `(group)` - node group (<a href="/creating-manifest/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> or <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">nodeType</a>)
     - `(i)` - node index, starting from *'0'*
     - `(key)` - name of the applied parameter, according to the following list:
-        - `address` - internal or external IP address                               
-        - `adminUrl` - full URL address with protocol   
-        - `canBeExported` *[boolean]* - Jelastic <a href="https://docs.jelastic.com/environment-export-import" target="_blank">Export</a> feature       
-        - `bandwidthLimit` - node bandwidth limit   
-        - `contextValidatorRegex` - validation for context names    
-        - `diskIopsLimit` - IOPS limitation quota   
-        - `addons.length` - number of available add-ons at the selected node
-        - `diskLimit` - hardware node disk space quota in MB 
-        - `endpoints` [*array indexes*] - <a href="https://docs.jelastic.com/endpoints" target="_blank">endpoints</a> functionality                              
-            - `domain` - full domain name of the node the endpoint is being set for                  
-            - `id` - node ID  
-            - `name` - title for the new endpoint (can be either custom or <a href="https://docs.jelastic.com/endpoints#preconfigured" target="_blank">predefined</a>)                         
-            - `privatePort` - preferred local node port              
-            - `publicPort` - private (dynamic) port used for mapping                                         
-            - `protocol` - protocol type (currently, only TCP is provided)             
-            - `length` - number of available endpoints within the selected node               
-        - `fixedCloudlets` - fixed cloudlets number                        
-        - `flexibleCloudlets` - flexible cloudlets number                                   
-        - `id` - node ID   
-        - `intIP` - internal IP address   
-        - `extIPs` - external IP address array (`extips` is an alias)                                
-        - `isClusterSupport`    
-        - `isExternalIpRequired` - status, indicating that node requires the external IP address       
-        - `isResetPassword` - enables to reset a service password    
-        - `isWebAccess`   
-        - `ismaster` - master node status in the *nodeGroup* (i.e. layer)   
-        - `maxchanks`   
-        - `length` - number of nodes available in an environment             
-        - `name` - stack name   
-        - `nodeGroup` - node layer, e.g. *lb*, *cp*, *sqldb*, *nosqldb*, *cache*, *storage*, (*extra* for Docker containers)     
-        - `nodeType` -  stacks *nodeType*                        
-        - `nodemission` - deprecated value (same as `nodeGroup`)  
-        - `osType` - OS type (e.g. Linux)   
-        - `password` - container password   
-        - `port` - service port   
-        - `type` - container compatibility (native)     
-        - `url` - full URL address with protocol      
-        - `version` - stack version   
-        - `engines`(for compute nodes):  
-            - `id` - engine ID at the platform  
-            - `keyword` - engine keyword (e.g. *java7*, *php7.0*)  
-            - `name` - full engine name (e.g. *Java 8*, *PHP 7*)  
-            - `type` - engine type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
-            - `vcsSupport` - supporting VCS in a container  
-            - `version` - engine version  
-            - `length` - number of available engines for the selected compute layer     
+        - ###### `address`
+         internal or external IP address
+        - ###### `adminUrl`
+         full URL address with protocol
+        - ###### `canBeExported`
+         *[boolean]* - Jelastic <a href="https://docs.jelastic.com/environment-export-import" target="_blank">Export</a> feature
+        - ###### `bandwidthLimit`
+         node bandwidth limit
+        - ###### `contextValidatorRegex`
+         validation for context names
+        - ###### `diskIopsLimit`
+         IOPS limitation quota
+        - ###### `addons.length`
+         number of available add-ons at the selected node
+        - ###### `diskLimit`
+         hardware node disk space quota in MB
+        - ###### `endpoints`
+         [*array indexes*] - <a href="https://docs.jelastic.com/endpoints" target="_blank">endpoints</a> functionality
+            - ###### `domain`
+             full domain name of the node the endpoint is being set for
+            - ###### `id`
+             node ID
+            - ###### `name`
+             title for the new endpoint (can be either custom or <a href="https://docs.jelastic.com/endpoints#preconfigured" target="_blank">predefined</a>)
+            - ###### `privatePort`
+             preferred local node port
+            - ###### `publicPort`
+             private (dynamic) port used for mapping
+            - ###### `protocol`
+             protocol type (currently, only TCP is provided)
+            - ###### `length`
+             number of available endpoints within the selected node
+        - ###### `fixedCloudlets`
+         fixed cloudlets number
+        - ###### `flexibleCloudlets`
+         flexible cloudlets number
+        - ###### `id`
+         node ID
+        - ###### `intIP`
+         internal IP address
+        - ###### `extIPs`
+         external IP address array (`extips` is an alias)
+        - ###### `isClusterSupport`
+        - ###### `isExternalIpRequired`
+         status, indicating that node requires the external IP address
+        - ###### `isResetPassword`
+         enables to reset a service password
+        - ###### `isWebAccess`
+        - ###### `ismaster`
+         master node status in the *nodeGroup* (i.e. layer)
+        - ###### `maxchanks`
+        - ###### `length`
+         number of nodes available in an environment
+        - ###### `name`
+         stack name
+        - ###### `nodeGroup`
+         node layer, e.g. *lb*, *cp*, *sqldb*, *nosqldb*, *cache*, *storage*, (*extra* for Docker containers)
+        - ###### `nodeType`
+          stacks *nodeType*
+        - ###### `nodemission`
+         deprecated value (same as `nodeGroup`)
+        - ###### `osType`
+         OS type (e.g. Linux)
+        - ###### `password`
+         container password
+        - ###### `port`
+         service port
+        - ###### `type`
+         container compatibility (native)
+        - ###### `url`
+         full URL address with protocol
+        - ###### `version`
+         stack version
+        - `engines`(for compute nodes):
+            - ###### `id`
+             engine ID at the platform
+            - ###### `keyword`
+             engine keyword (e.g. *java7*, *php7.0*)
+            - ###### `name`
+             full engine name (e.g. *Java 8*, *PHP 7*)
+            - ###### `type`
+             engine type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)
+            - ###### `vcsSupport`
+             supporting VCS in a container
+            - ###### `version`
+             engine version
+            - ###### `length`
+             number of available engines for the selected compute layer
         - `activeEngine`(current engine in a container):  
-            - `id` - engine ID at the platform   
-            - `keyword` - engine keyword (e.g. *java7*, *php7.0*)  
-            - `name` - full engine name (e.g. *Java 8*, *PHP 7*)  
-            - `type` - engine type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
-            - `vcsSupport` - supporting VCS in a container  
-            - `version` - engine version   
-        - `packages` [*array*] - packages with add-ons installed over the corresponding nodes (e.g. <a href="https://docs.jelastic.com/ftp-ftps-support" target="_blank">FTP</a> add-on)                              
-            - `description` - package description                                       
-            - `documentationurl` - redirect to page(s) with more info on the particular add-on                          
-            - `iconurl` - add-on logo                                               
-            - `id` - ID of the installed package
-            - `length` - number of packages installed to a node
-            - `isInstalled` - installation status, the possible values are *'true'* & *'false'*                     
+            - ###### `id`
+             engine ID at the platform
+            - ###### `keyword`
+             engine keyword (e.g. *java7*, *php7.0*)
+            - ###### `name`
+             full engine name (e.g. *Java 8*, *PHP 7*)
+            - ###### `type`
+             engine type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)
+            - ###### `vcsSupport`
+             supporting VCS in a container
+            - ###### `version`
+             engine version
+        - ###### `packages`
+         [*array*] packages with add-ons installed over the corresponding nodes (e.g. <a href="https://docs.jelastic.com/ftp-ftps-support" target="_blank">FTP</a> add-on)
+            - ###### `description`
+             package description
+            - ###### `documentationurl`
+             redirect to page(s) with more info on the particular add-on
+            - ###### `iconurl`
+             add-on logo
+            - ###### `id`
+             ID of the installed package
+            - ###### `length`
+             number of packages installed to a node
+            - ###### `isInstalled`
+             installation status, the possible values are *'true'* & *'false'*
     
 In case a few nodes are available within a single *nodeGroup*, you can execute actions in one of them by specifying: 
 
-- `{nodes.cp[1].address}` - IP address of the second compute node  
+- `{nodes.cp[1].address}` - IP address of the second compute node
 - `{nodes.bl.first.address}` - first IP address of a balancer node in the *nodeGroup* array            
 - `{nodes.db.last.address}` - last IP address of a batabase node     
 - `{nodes.(group).master.(key)}` - main node in the *nodeGroup* (i.e. layer)
@@ -157,26 +241,34 @@ In case a few nodes are available within a single *nodeGroup*, you can execute a
 
 Event placeholders represent a set of dynamic parameters that are executed as a result of a certain event occurrence. The event placeholders have their custom set of parameters and begin with the default keywords:
                          
-- `${event.params.(key)}` - where *key* is a name of the event parameter                     
-- `${event.response.(key)}` -where *key* is a name of the event response parameter             
+- ###### `${event.params.(key)}`
+ where *key* is a name of the event parameter
+- ###### `${event.response.(key)}`
+ where *key* is a name of the event response parameter
 
-Learn more about the event placeholders within the <a href="/1.6/creating-manifest/events" target="_blank">*Events*</a> page.         
+Learn more about the event placeholders within the <a href="/creating-manifest/events" target="_blank">*Events*</a> page.
 
 ## Account Information  
 
 This is the list of placeholders that you can use to specify account information.                                                                       
 
-- `${user.uid}` - user ID at the Jelastic Platform               
-- `${user.email}` - user email address      
-- `${user.appPassword}` - random value that can be used to set application passwords       
-- `${user.name}` - email address value (same as `${user.email}`)       
+- ###### `${user.uid}`
+ user ID at the Jelastic Platform
+- ###### `${user.email}`
+ user email address
+- ###### `${user.appPassword}`
+ random value that can be used to set application passwords
+- ###### `${user.name}`
+ email address value (same as `${user.email}`)
 
 ## Input Parameters
 
 This is the list of placeholders that you can use to specify input parameters.                        
 
-- `${settings.jelastic_email}` - user email that is always predefined       
-- `${settings.key}` - where *key* is a name of the application's setting. The placeholder is defined, if user input parameters are specified within a manifest. So, after preparing a custom user form, the placeholder is defined by the field’s name.              
+- ###### `${settings.jelastic_email}`
+ user email that is always predefined
+- ###### `${settings.key}`
+ where *key* is a name of the application's setting. The placeholder is defined, if user input parameters are specified within a manifest. So, after preparing a custom user form, the placeholder is defined by the field’s name.
 
 **Example**
 @@@
@@ -204,7 +296,7 @@ settings:
 }
 ```
 @@!
-Here, the name of the placeholder is `${settings.customName}`. See the list of <a href="/1.6/creating-manifest/visual-settings/" target="_blank">fields</a> that are defined by users.       
+Here, the name of the placeholder is `${settings.customName}`. See the list of <a href="/creating-manifest/visual-settings/" target="_blank">fields</a> that are defined by users.
 
 ## Action Placeholders
 
@@ -300,12 +392,18 @@ In case if an argument is an array of strings the executed custom action will be
 
 This is the list of placeholders that you can use to specify UI parameters.                              
 
-- `${user.uid}` - user ID at the Jelastic Platform
-- `${user.email}` - user email address
-- `${env.domain}` - full domain name without protocol
-- `${env.appid}` - unique environment appid at the Jelastic Platform
-- `${baseUrl}` - user custom relative URL. More details about <a href="/1.6/creating-manifest/basic-configs/#relative-links">Relative Links here</a>
-- `${platformUrl}` - hoster dashboard URL.
+- ###### `${user.uid}`
+ user ID at the Jelastic Platform
+- ###### `${user.email}`
+ user email address
+- ###### `${env.domain}`
+full domain name without protocol
+- ###### `${env.appid}`
+unique environment appid at the Jelastic Platform
+- ###### `${baseUrl}`
+ user custom relative URL. More details about <a href="/creating-manifest/basic-configs/#relative-links">Relative Links here</a>
+- ###### `${platformUrl}`
+hoster dashboard URL.
 
 **Example**
 @@@
@@ -362,32 +460,41 @@ globals:
 ```
 @@!
 
-As a result, you can use <b>*${globals.value1}*</b> and <b>*${globals.value2}*</b>  within the entire manifest.
+As a result, you can use <b>*\${globals.value1}*</b> and <b>*\${globals.value2}*</b>  within the entire manifest.
 
 Values are global placeholders (<i>value1</i> and <i>value2</i> in example above) could consist of like simple text or/and placeholders in it. There are the list of placeholders which are predefined in `globals` block:
 
-- `${settings.*}` - <a href="/1.6/creating-manifest/placeholders/#input-parameters" target="_blank">input parameters</a> from `settings` block, where custom forms are described
-- `${env.*}` - all <a href="/1.6/creating-manifest/placeholders/#environment-placeholders" target="_balnk">environment placeholders</a>. Placeholders are available only in JPS manifests with `type` *install* -  `globals` block will be updated after an environment is created.
-- `${nodes.*}` - all <a href="/1.6/creating-manifest/placeholders/#node-placeholders" target="_balnk">node placeholders</a>. Node values in global placeholders will be available only after environment is created.
-- `${user.*}` - <a href="/1.6/creating-manifest/placeholders/#account-information" target="-blank">account placeholders</a> are available during all JPS installation process.
-- `${fn.*}` - <a href="/1.6/creating-manifest/placeholders/#function-placeholders" target="_blank">functional placeholders</a>  are available during all JPS installation process.
+- ###### `${settings.*}`
+  <a href="/creating-manifest/placeholders/#input-parameters" target="_blank">input parameters</a> from `settings` block, where custom forms are described
+- ###### `${env.*}`
+ all <a href="/creating-manifest/placeholders/#environment-placeholders" target="_balnk">environment placeholders</a>. Placeholders are available only in JPS manifests with `type` *install*- ###### `globals` block will be updated after an environment is created.
+- ###### `${nodes.*}`
+ all <a href="/creating-manifest/placeholders/#node-placeholders" target="_balnk">node placeholders</a>. Node values in global placeholders will be available only after environment is created.
+- ###### `${user.*}`
+ <a href="/creating-manifest/placeholders/#account-information" target="-blank">account placeholders</a> are available during all JPS installation process.
+- ###### `${fn.*}`
+ <a href="/creating-manifest/placeholders/#function-placeholders" target="_blank">functional placeholders</a>  are available during all JPS installation process.
 
 ## Function Placeholders
 
 These are the functions integrated inside Cloud Scripting:                               
 
-- `${fn.password}` - random value within the upper and lower cases. The default length value is *'10'*. 
-    The length can be passed as `${fn.password(max value)}`.   
-- `${fn.base64}` - *base64* encoding                   
+- ###### `${fn.password}`
+random value within the upper and lower cases. The default length value is *'10'*. The length can be passed as `${fn.password(max value)}`.
+- ###### `${fn.base64}`
+ *base64* encoding
 ```
 ${fn.base64(value)}
 ```
-- `${fn.md5}` - *md5* encoding               
+- ###### `${fn.md5}`
+ *md5* encoding
 ```
 ${fn.md5(value)}
 ```
-- `${fn.uuid}` - generates new Universally Unique Identifier     
-- `${fn.random}` - random value within the default length, comprising 7 digits  
+- ###### `${fn.uuid}`
+ generates new Universally Unique Identifier
+- ###### `${fn.random}`
+ random value within the default length, comprising 7 digits
 Here, either one or two values can be passed optionally:
     - `${fn.random(max)}` - random value to maximum value inclusively
     - `${fn.random(min,max)}` - random value between minimum and maximum values inclusively 
@@ -445,7 +552,7 @@ Each element has an index in the array.
 where:
 
 - `(i)` - array index, starting from *'0'*                     
-- `(key)` - node <a href="/1.6/creating-manifest/placeholders/#node-placeholders" target="_blank">parameters</a>                            
+- `(key)` - node <a href="/creating-manifest/placeholders/#node-placeholders" target="_blank">parameters</a>
 
 **The First and the Last Array Elements** 
 
@@ -458,21 +565,36 @@ Here, <b>*key*</b> is the node parameter.
 
 The values below can vary depending on a particular *nodeType*:              
 
-- `${HOME}` - for *couchdb*, *glassfish3*, *jetty6*, *nginx-ruby*, *nginx*, *nginxphp*, *tomcat6*,*tomcat7*, *tomee*    
-- `${WEBAPPS}` - for *apache2-ruby*, *apache2*, *jetty6*, *nginx-ruby*, *nginxphp*, *nodejs*, *tomcat6*, *tomcat7*, *tomee*    
-- `${JAVA_HOME}` - for *glassfish3*, *jetty6*, *maven3*, *tomcat6*, *tomcat7*, *tomee*   
-- `${JAVA_LIB}` - for *tomcat6*, *tomcat7*    
-- `${SYSTEM_CRON}` - for all native *nodeType*               
-- `${SYSTEM_ETC}`- for all *nodeType*    
-- `${SYSTEM_KEYS}` - for all native *nodeType*   
-- `${SERVER_CONF}` - for *apache2*, *glassfish3*, *jetty6*, *maven3*, *tomcat6*, *tomcat7*, *tomee*    
-- `${SERVER_CONF_D}` - for *apache2*, *memcached*, *nginx*, *nginxphp*    
-- `${SERVER_MODULES}` - for *apache2*, *glassfish3*, *jetty6*, *nginxphp*, *tomcat6*, *tomcat7*, *tomee*    
-- `${SERVER_SCRIPTS}` - for *couchdb*, *mariadb*, *mariadb10*, *mongodb*, *mysql5*, *postgres8*, *postgres9*    
-- `${SERVER_WEBROOT}` - for *apache2-ruby*, *apache2*, *jetty6*, *nginx-ruby*, *nginxphp*, *nodejs*, *tomcat6*, *tomcat7*, *tomee*    
-- `${SERVER_BACKUP}` - for *couchdb*, *mariadb*, *mariadb10*, *mongodb*, *mysql5*, *postgres8*, *postgres9*    
-- `${SERVER_LIBS}` - for *apache2*, *glassfish3*, *jetty6*, *nginxphp*, *tomcat6*, *tomcat7*, *tomee*    
-- `${SERVER_DATA}` - for *postgres8*, *postgres9*         
+- ###### `${HOME}`
+ for *couchdb*, *glassfish3*, *jetty6*, *nginx-ruby*, *nginx*, *nginxphp*, *tomcat6*,*tomcat7*, *tomee*
+- ###### `${WEBAPPS}`
+ for *apache2-ruby*, *apache2*, *jetty6*, *nginx-ruby*, *nginxphp*, *nodejs*, *tomcat6*, *tomcat7*, *tomee*
+- ###### `${JAVA_HOME}`
+ for *glassfish3*, *jetty6*, *maven3*, *tomcat6*, *tomcat7*, *tomee*
+- ###### `${JAVA_LIB}`
+ for *tomcat6*, *tomcat7*
+- ###### `${SYSTEM_CRON}`
+ for all native *nodeType*
+- ###### `${SYSTEM_ETC}`
+ for all *nodeType*
+- ###### `${SYSTEM_KEYS}`
+ for all native *nodeType*
+- ###### `${SERVER_CONF}`
+ for *apache2*, *glassfish3*, *jetty6*, *maven3*, *tomcat6*, *tomcat7*, *tomee*
+- ###### `${SERVER_CONF_D}`
+ for *apache2*, *memcached*, *nginx*, *nginxphp*
+- ###### `${SERVER_MODULES}`
+ for *apache2*, *glassfish3*, *jetty6*, *nginxphp*, *tomcat6*, *tomcat7*, *tomee*
+- ###### `${SERVER_SCRIPTS}`
+ for *couchdb*, *mariadb*, *mariadb10*, *mongodb*, *mysql5*, *postgres8*, *postgres9*
+- ###### `${SERVER_WEBROOT}`
+ for *apache2-ruby*, *apache2*, *jetty6*, *nginx-ruby*, *nginxphp*, *nodejs*, *tomcat6*, *tomcat7*, *tomee*
+- ###### `${SERVER_BACKUP}`
+ for *couchdb*, *mariadb*, *mariadb10*, *mongodb*, *mysql5*, *postgres8*, *postgres9*
+- ###### `${SERVER_LIBS}`
+ for *apache2*, *glassfish3*, *jetty6*, *nginxphp*, *tomcat6*, *tomcat7*, *tomee*
+- ###### `${SERVER_DATA}`
+ for *postgres8*, *postgres9*
 
 You can use the following placeholders, as well, with the definite *nodeType*:                               
 
@@ -487,7 +609,7 @@ You can use the following placeholders, as well, with the definite *nodeType*:
 - `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*  
 - `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*      
 
-Explore the full list of available <a href="/1.6/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> values within the linked page.                                                         
+Explore the full list of available <a href="/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> values within the linked page.
 
 The list of single placeholders:
 
@@ -596,14 +718,14 @@ The results on the screen below:
 <br>       
 <h2> What’s next?</h2>                    
 
-- See how to use <a href="/1.6/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                                
+- See how to use <a href="/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>
 
-- Read how to integrate your <a href="/1.6/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                      
+- Read how to integrate your <a href="/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>
 
-- Check how to create your custom <a href="/1.6/creating-manifest/addons/" target="_blank">Add-Ons</a>                                         
+- Check how to create your custom <a href="/creating-manifest/addons/" target="_blank">Add-Ons</a>
 
-- Find out how to handle <a href="/1.6/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>      
+- Find out how to handle <a href="/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>
 
-- Learn how to customize <a href="/1.6/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>
+- Learn how to customize <a href="/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>
 
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples

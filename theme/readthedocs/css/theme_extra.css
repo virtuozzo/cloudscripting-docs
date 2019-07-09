@@ -756,8 +756,8 @@ a:hover .buttons:after {
     display: flex;
 }
 
-.headers .h2-headers.big .columns .column {
-
+.headers .h2-headers .columns .column {
+    padding-left: 10px;
 }
 
 .headers .h2-headers.big .h3-headers {
