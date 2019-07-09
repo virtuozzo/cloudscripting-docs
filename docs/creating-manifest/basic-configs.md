@@ -890,4 +890,57 @@ onInstall:
 }
 ```
 @@!
+
+##JPS execution without environment
+ 
+The JPS manifest can be executed without binding to any environment. The envName parameter is not mandatory for API anymore. 
+@@@
+```yaml
+type: install
+name: "TEST: JE-22408 Add-on without environment"
+
+description: |
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod sapien eu risus venenatis, at faucibus dui cursus. Vestibulum a ipsum eget nibh aliquet vestibulum. Ut vestibulum ultrices sem quis ultricies. Pellentesque maximus nisl nec metus convallis egestas. Ut posuere leo quis semper tristique. In bibendum sem quis aliquet porttitor.
+
+startPage: https://jelastic.com/
+
+onInstall:
+  - log: test
+```
+``` json
+{
+  "type": "install",
+  "name": "TEST: JE-22408 Add-on without environment",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod sapien eu risus venenatis, at faucibus dui cursus. Vestibulum a ipsum eget nibh aliquet vestibulum. Ut vestibulum ultrices sem quis ultricies. Pellentesque maximus nisl nec metus convallis egestas. Ut posuere leo quis semper tristique. In bibendum sem quis aliquet porttitor.\n",
+  "startPage": "https://jelastic.com/",
+  "onInstall": [
+    {
+      "log": "test"
+    }
+  ]
+}
+```
+@@!
+  
+The JPS will be installed without creating the environment if you specify type: install in the manifest and do not specify the nodes.  
+In case there is a subscription for some kind of events and no environment specified in the manifest, the subscription will be ignored and no logging (SUBSCRIBE messages) should be displayed in a [console](/troubleshooting/#troubleshooting).  
+If the environment is not specified the list of the following actions can be performed:  
+- [install](/creating-manifest/actions/#install)  
+- [script](/creating-manifest/actions/#script)  
+- [api](/creating-manifest/actions/#api)  
+- [call action](/creating-manifest/actions/#call-action-with-parameters)  
+- [foreach](/creating-manifest/conditions-and-iterations/#foreach)  
+- [if](/creating-manifest/conditions-and-iterations/#conditions)  
+- [return](/creating-manifest/actions/#return)  
+- [set](/creating-manifest/actions/#set)  
+- [setGlobals](/creating-manifest/actions/#setglobals)  
+- [assert](/creating-manifest/actions/#assert)  
+- log  
+- [sleep](/creating-manifest/actions/#sleep)  
+  
+For the rest of the [actions](/creating-manifest/actions), an error will be displayed in the console:  
+{ "result": 11022, "error": "can't find node by the given parameters" }
+
+The error 11022 is ignored and gets to no crash report.
+
                         
