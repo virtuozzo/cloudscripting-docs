@@ -700,14 +700,24 @@ For example:
 - variable *MYSQL_ROOT_PASSWORD* from *sql* node is *DB_MYSQL_ROOT_PASSWORD* in *cp* node   
 - variable *IP_ADDRESS* from *memcached* node is *MEMCACHED_IP_ADDRESS* in *cp* node
 
-###Entry Points
+### Entry Points
 There is an ability to set custom entry points - the button *Open in Browser*, which can be clicked when JPS with type `install` is installed.
 ![open-in-browser.png](/img/open-in-browser.png)
 
 Entry Points can be set in `startPage` option. The default `startPage` value is an installed environment URL (even it hasn't been defined).
-Entry Points can include any general placeholders - which have been defined during environment installation.
+Entry Points can include any general placeholders - which have been defined during environment installation.  
+The *startPage* parameter can be specified for any *JPS* type with options as follows:  
+- for **type:install** with environment:  
+    - the **Open in browser** button is always displayed  
+    - the *startPage* parameter can be specified either relative or absolute link to the environment  
+- for **type:install** without environment:  
+    - the **Open in browser** button is displayed if the *startPage* parameter is specified in the manifest  
+    - the *startPage* parameter can be specified with absolute link only  
+- for **type:update**  
+    - the **Open in browser** button is displayed if the *startPage* parameter is specified in the manifest  
+    - the *startPage* parameter can be specified by absolute link or by link relative to the environment   
 
-For example:
+For example:  
 @@@
 ```yaml
 type: install
@@ -891,7 +901,7 @@ onInstall:
 ```
 @@!
 
-##JPS execution without environment
+## JPS execution without environment
  
 The JPS manifest can be executed without binding to any environment. The envName parameter is not mandatory for API anymore. 
 @@@
