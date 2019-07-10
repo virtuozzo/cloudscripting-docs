@@ -1635,7 +1635,109 @@ onAfterRemoveSSL:
 ```
 @@!
 
+### onBeforeInstallAddon  
+The event is executed before add-on installation  
 
+Event Placeholders:  
+
+-   `${event.params.}`:  
+    - `settings` - ***What is it***  
+    - `envGroups` - environment groups array  
+    - `displayName` - display name for an environment  
+    - `skipNodeEmails` - an ability to skip sending emails about creating nodes. Emails are related only to nodes where implemented reset password functionality  
+    - `source` - ***What is it***  
+    - `nodeGroup` - the defined node layer  
+    - `exportedFromEnv` - ***What is it***  
+    - `envName` - short domain name (without hosting provider URL)  
+    - `actionKey` - ***What is it***  
+    - `id` - add-on id  
+    - `lang` - ***What is it***  
+    - `region` - region, where an environment will be installed  
+    - `targetAppid`  - application identifier  
+-   `${event.response.}`: parameters are absent  
+
+### onAfterInstallAddon  
+The event is executed after add-on installation  
+  
+-   `${event.params.}`:  
+    - `settings` - ***What is it?***  
+    - `envGroups` - environment groups array  
+    - `displayName` - display name for an environment  
+    - `skipNodeEmails` - an ability to skip sending emails about creating nodes. Emails are related only to nodes where implemented reset password functionality  
+    - `source` - ***What is it?***  
+    - `nodeGroup` - the defined node layer  
+    - `exportedFromEnv` - ***What is it?***  
+    - `envName` - short domain name (without hosting provider URL)  
+    - `actionKey` - ***What is it?***  
+    - `id` - add-on id  
+    - `lang` - ***What is it?***  
+    - `region` - region, where an environment will be installed  
+    - `targetAppid`  - application identifier  
+-   `${event.response.}`:  
+    - `uniqueName` - installed add-on unique name  
+    - `appid` - unique environment *appid* at the Jelastic Platform - ***is it correct?***  
+    - `successText`- message that appears once action is successfully performed  
+  
+Subscription:  
+  
+@@@
+```yaml
+type: update  
+name: Test Add-on Events Subscription  
+  
+onBeforeInstallAddon [nodeGroup:cp, id:test123]:  
+  log: add-on  
+  ID: ${event.params.id}  
+  
+onAfterInstallAddon [nodeGroup:cp, id:test123]:  
+  log: add-on  
+  unique name: ${event.response.uniqueName}   
+  ```
+  ```json
+  {
+  "type": "update",
+  "name": "Test Add-on Events Subscription",
+  "onBeforeInstallAddon [nodeGroup:cp, id:test123]": {
+    "log": "add-on",
+    "ID": "${event.params.id}"
+  },
+  "onAfterInstallAddon [nodeGroup:cp, id:test123]": {
+    "log": "add-on",
+    "unique name": "${event.response.uniqueName}"
+  }
+}  
+```
+@@!
+
+Triggering:  
+@@@
+```yaml    
+type: update  
+name: Test Add-on Events Triggering
+
+targetNodes:
+  nodeGroup: cp
+
+id: test123
+
+onInstall:
+  log: triggers test
+```
+```json
+{
+  "type": "update",
+  "name": "Test Add-on Events Triggering",
+  "targetNodes": {
+    "nodeGroup": "cp"
+  },
+  "id": "test123",
+  "onInstall": {
+    "log": "triggers test"
+  }
+}
+```
+@@!
+  
 <br>
 
 ## What’s next?
