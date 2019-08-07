@@ -33,6 +33,8 @@ then
     sendErrorMailResponse
 else
     echo "OK";
+    [ ! -d "${WEBROOT}/backup" ] && mkdir ${WEBROOT}/backup;
+    cp -r ${WEBROOT}/site/* ${WEBROOT}/backup/
     ln -sfn ${GIT_CS_PATH}/site/ ${WEBROOT}/site
     curl -lsSL $API_REPO_URL"commits/"$BRANCH > test
     SHA=$(grep -Poi 'sha.{4}\K[0-9a-z]*' -m 1 test)
