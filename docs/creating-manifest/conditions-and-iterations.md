@@ -204,6 +204,204 @@ onInstall:
 ```
 @@!
 
+### **Else**
+
+In case the conditional statement should be complemented by the opposite comparison and respective action the ***else*** conditional operator can be accommodated.  
+
+@@@
+```yaml
+type: install
+name: 'TEST: JE-45385 [CS:Conditions] - add action ''else'''
+
+globals:
+  a: 1
+  b: 2
+
+onInstall:
+- log: "-- else condition test --"
+- if (false):
+    assert: false
+- else:
+    assert: true
+- if (globals.a === 1):
+    assert: true
+- else:
+    assert: false
+
+- log: "-- nested conditions test --"
+- if ('${globals.b}' === '2'):
+    if (false):
+      assert: false
+- else:
+    assert: false
+
+- log: "-- conditions position test --"
+- if (false):
+    assert: true
+- log: test
+- else:
+    assert: false
+
+- log: "-- invalid condition test --"
+- if ( ):
+    assert: false
+- else:
+    assert: false
+
+- log: "-- elif positive test  --"
+- if (globals.a == 2):
+    assert: false
+- elif (globals.a == 3):
+    assert: false
+- elif (globals.a == 1):
+    assert: true
+- elif (globals.a == 1):
+    assert: false
+- elif (globals.b == 2):
+    assert: false
+- else:
+    assert: false
+
+- log: "-- elif negative test  --"
+- if (globals.a == 1):
+    assert: true
+- elif (globals.a == 1):
+    assert: false
+- elif (globals.a == 1):
+    assert: false
+```
+``` json
+{
+  "type": "install",
+  "name": "TEST: JE-45385 [CS:Conditions] - add action 'else'",
+  "globals": {
+    "a": 1,
+    "b": 2
+  },
+  "onInstall": [
+    {
+      "log": "-- else condition test --"
+    },
+    {
+      "if (false)": {
+        "assert": false
+      }
+    },
+    {
+      "else": {
+        "assert": true
+      }
+    },
+    {
+      "if (globals.a === 1)": {
+        "assert": true
+      }
+    },
+    {
+      "else": {
+        "assert": false
+      }
+    },
+    {
+      "log": "-- nested conditions test --"
+    },
+    {
+      "if ('${globals.b}' === '2')": {
+        "if (false)": {
+          "assert": false
+        }
+      }
+    },
+    {
+      "else": {
+        "assert": false
+      }
+    },
+    {
+      "log": "-- conditions position test --"
+    },
+    {
+      "if (false)": {
+        "assert": true
+      }
+    },
+    {
+      "log": "test"
+    },
+    {
+      "else": {
+        "assert": false
+      }
+    },
+    {
+      "log": "-- invalid condition test --"
+    },
+    {
+      "if ( )": {
+        "assert": false
+      }
+    },
+    {
+      "else": {
+        "assert": false
+      }
+    },
+    {
+      "log": "-- elif positive test  --"
+    },
+    {
+      "if (globals.a == 2)": {
+        "assert": false
+      }
+    },
+    {
+      "elif (globals.a == 3)": {
+        "assert": false
+      }
+    },
+    {
+      "elif (globals.a == 1)": {
+        "assert": true
+      }
+    },
+    {
+      "elif (globals.a == 1)": {
+        "assert": false
+      }
+    },
+    {
+      "elif (globals.b == 2)": {
+        "assert": false
+      }
+    },
+    {
+      "else": {
+        "assert": false
+      }
+    },
+    {
+      "log": "-- elif negative test  --"
+    },
+    {
+      "if (globals.a == 1)": {
+        "assert": true
+      }
+    },
+    {
+      "elif (globals.a == 1)": {
+        "assert": false
+      }
+    },
+    {
+      "elif (globals.a == 1)": {
+        "assert": false
+      }
+    }
+  ]
+}
+```
+@@!
+
 ## Iterations
 
 ### ForEach
