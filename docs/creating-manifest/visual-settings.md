@@ -504,6 +504,7 @@ Radio elements grouping.
 fields:
   - type: radiolist
     caption: Radio List
+    name: customName
     values:
       value1: hello
       value2: world
@@ -515,6 +516,7 @@ fields:
     {
       "type": "radiolist",
       "caption": "Radio List",
+      "name": "customName",
       "values": {
         "value1": "hello",
         "value2": "world"
