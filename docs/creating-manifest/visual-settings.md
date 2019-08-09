@@ -1114,12 +1114,12 @@ fields:
 ```
 @@!
 
-where:
-- `caption` *[optional]* - field label
-- `region` *[optional]* - region name. The default value is default user's region.
-- `randomName` *[optional][boolean]* - autogenerate default value (e.g. env-1234567...). The default value is 'true'.
-- `showFullDomain` *[optional][boolean]* - show region's domain next to the env name.The default value is 'true'.
-- `dependsOn` *[optional]*- specifies dependency on *regionlist* field.
+where:  
+- `caption` *[optional]* - field label  
+- `region` *[optional]* - region name. The default value is default user's region  
+- `randomName` *[optional][boolean]* - autogenerate default value (e.g. env-1234567...). The default value is 'true'  
+- `showFullDomain` *[optional][boolean]* - show region's domain next to the env name.The default value is 'true'  
+- `dependsOn` *[optional]*- specifies dependency on *regionlist* field  
 
 The `dependsOn` property is used to handle the dependence between *envname* and *regionlist* parameters. Changing the Region field, the corresponding subdomain of the Environment field is revalidated and displayed respectively:
 

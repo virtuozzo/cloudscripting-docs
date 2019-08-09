@@ -1,9 +1,9 @@
-<div role="navigation" aria-label="breadcrumbs navigation">
+<div class="navigation" role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="{{ homepage_url }}">Docs v:{{ config.extra.current_version }}</a> &raquo;</li>
     {% if page.ancestors %}
       {% for parent in page.ancestors %}
-        {{ parent.title }} &raquo; {{ page.title }}
+        <span class="page">{{ parent.title }} &raquo; {{ page.title }}</span>
       {% endfor %}
     {% else %}
       {{ page.title }}
@@ -12,11 +12,12 @@
       <li class="wy-breadcrumbs-aside">
         {% if config.repo_url %}
           {% if config.repo_name == 'GitHub' %}
-            <a href="{{ config.repo_url }}{% if [page] %}{{ [page.input_path][0] }} {% endif %}" target="_blank" rel="noopener noreferrer nofollow" class="icon icon-github"> Edit on GitHub</a>
+            <a href="{{ config.repo_url }}{% if [page] %}{{ [page.input_path][0] }} {% endif %}" target="_blank" rel="noopener noreferrer nofollow" class="icon icon-github"><span> Edit on GitHub</span></a>
           {% elif config.repo_name == 'Bitbucket' %}
            <a href="{{ config.repo_url }}" class="icon icon-bitbucket">Edit on BitBucket</a>
           {% endif %}
         {% endif %}
+        {% include "bug-found.html" %}
       </li>
   </ul>
   <hr/>
