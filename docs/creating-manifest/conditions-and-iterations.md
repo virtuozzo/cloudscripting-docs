@@ -247,30 +247,8 @@ onInstall:
     assert: false
 - else:
     assert: false
-
-- log: "-- elif positive test  --"
-- if (globals.a == 2):
-    assert: false
-- elif (globals.a == 3):
-    assert: false
-- elif (globals.a == 1):
-    assert: true
-- elif (globals.a == 1):
-    assert: false
-- elif (globals.b == 2):
-    assert: false
-- else:
-    assert: false
-
-- log: "-- elif negative test  --"
-- if (globals.a == 1):
-    assert: true
-- elif (globals.a == 1):
-    assert: false
-- elif (globals.a == 1):
-    assert: false
 ```
-``` json
+```json
 {
   "type": "install",
   "name": "TEST: JE-45385 [CS:Conditions] - add action 'else'",
@@ -345,7 +323,58 @@ onInstall:
       "else": {
         "assert": false
       }
-    },
+    }
+  ]
+}
+```
+@@!
+
+### Elif
+
+An **elif** is a combination of ***if*** and ***else***. Similar to *else*, it extends the *if* statement to execute a different statement in case the original *if* expression evaluates to *FALSE*. However, unlike *else*, it will execute that alternative expression only if the *elif* conditional expression evaluates to *TRUE*. 
+There may be several *elif* within the same *if* statement. The first *elif* expression (if several exist) that evaluates to *TRUE* would be executed and the others will be skipped.  
+
+@@@
+```yaml
+type: install
+name: 'TEST: JE-45385 [CS:Conditions] - add action ''elif'''
+
+globals:
+  a: 1
+  b: 2
+
+onInstall:
+- log: "-- elif positive test  --"
+- if (globals.a == 2):
+    assert: false
+- elif (globals.a == 3):
+    assert: false
+- elif (globals.a == 1):
+    assert: true
+- elif (globals.a == 1):
+    assert: false
+- elif (globals.b == 2):
+    assert: false
+- else:
+    assert: false
+
+- log: "-- elif negative test  --"
+- if (globals.a == 1):
+    assert: true
+- elif (globals.a == 1):
+    assert: false
+- elif (globals.a == 1):
+    assert: false
+```
+``` json
+{
+  "type": "install",
+  "name": "TEST: JE-45385 [CS:Conditions] - add action 'elif'",
+  "globals": {
+    "a": 1,
+    "b": 2
+  },
+  "onInstall": [
     {
       "log": "-- elif positive test  --"
     },
