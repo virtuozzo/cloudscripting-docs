@@ -219,6 +219,7 @@ where:
 - `editable` *[optional][boolean]* - allows to input custom values. Default value is *'false'*
 - `default` *[optional]: key* - sets the *"key"* which *"value"* will be displayed by default
 - `forceSelection` *[optional][boolean]* - *'true'* restricts the selected value to one of the values in the list, *'false'* allows to set arbitrary text into the field. Default value is *' false'*.  
+  
 !!! note
     The *forceSelection* parameter is applied only in case the `editable` parameter was set to 'true', otherwise, it is ignored.  
 
