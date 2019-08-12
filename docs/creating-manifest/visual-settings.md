@@ -105,15 +105,15 @@ where:
     - `default` *[optional]* - default value for the input field
     - `caption` *[optional]* - field label
     - `placeholder` *[optional]* - used <a href="/reference/placeholders/" target="blank">placeholders</a>
-    - `required` *[optional]* - possible values are *'true'* & *'false'*. If left empty, default value is *'true'*.
-    - `regex` *[optional]* - constructor for testing JavaScript RegExp object that refers to the field value, during validation. If test fails, the field will be marked as invalid using *regexText*. The default value is *'null'*.
-    - `regexText` *[optional]* - displays error message in case of *regex* test failure during validation. The default value is *' '* (blank space).
+    - `required` *[optional]* - possible values are *'true'* & *'false'*. If left empty, default value is *'true'*
+    - `regex` *[optional]* - constructor for testing JavaScript RegExp object that refers to the field value, during validation. If test fails, the field will be marked as invalid using *regexText*. The default value is *'null'*
+    - `regexText` *[optional]* - displays error message in case of *regex* test failure during validation. The default value is *' '* (blank space)
     - `vtype` *[optional]* - validation type name. Possible values:
-        - `alpha` - keystroke filter mask applied to alpha input. The default value is *'/[a-z_]/i'*.
-        - `alphanum` - keystroke filter mask applied to alphanumeric input. The default value is *'/[a-z0-9_]/i'*.
-        - `email` - keystroke filter mask applied to email input. The default value is *'/[a-z0-9_.-+\'@]/i'*. See <a href="http://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.VTypes-method-email" target="_blank">appropriate method</a> for more information about complex email validation.
+        - `alpha` - keystroke filter mask applied to alpha input. The default value is *'/[a-z_]/i'*
+        - `alphanum` - keystroke filter mask applied to alphanumeric input. The default value is *'/[a-z0-9_]/i'*
+        - `email` - keystroke filter mask applied to email input. The default value is *'/[a-z0-9_.-+\'@]/i'*. See <a href="http://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.VTypes-method-email" target="_blank">appropriate method</a> for more information about complex email validation
         - `URL` - keystroke filter mask applied to URL input
-    - `vtypeText` *[optional]* - custom error message to be displayed instead of the default one, provided by *vtype* for this field. The default value is *' '* (blank space).
+    - `vtypeText` *[optional]* - custom error message to be displayed instead of the default one, provided by *vtype* for this field. The default value is *' '* (blank space)
 
 !!! note
     The *vtypeText* parameter is applied only in case the *vtype* value is set, otherwise, it is ignored.
@@ -147,7 +147,7 @@ fields:
 where:
 
 - `caption` *[optional]* - field label
-- `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*.
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
 
 ### text
 Multiline text field.
@@ -218,15 +218,17 @@ where:
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
 - `editable` *[optional][boolean]* - allows to input custom values. Default value is *'false'*
 - `default` *[optional]: key* - sets the *"key"* which *"value"* will be displayed by default
-- `forceSelection` *[optional][boolean]* - *'true'* restricts the selected value to one of the values in the list, *'false'* allows to set arbitrary text into the field. Default value is *' false'*.  
-  
-!!! note
-    The *forceSelection* parameter is applied only in case the `editable` parameter was set to 'true', otherwise, it is ignored.  
+- `forceSelection` *[optional][boolean]* - *'true'* restricts the selected value to one of the values in the list, *'false'* allows to set arbitrary text into the field. Default value is *' false'*  
+- `dependsOn` *[optional]* - specifies values dependence between two lists
+
+#### *list* *forceSelection* example
+
+The *forceSelection* parameter is applied only in case the `editable` parameter was set to 'true', otherwise, it is ignored.  
 
 @@@
 ```yaml
 type: install
-name: JE-47683 [CS:Visual Settings] - force selection for editable list
+name: [CS:Visual Settings] - force selection for editable list
 settings:
   fields:
     - type: list
@@ -241,7 +243,7 @@ settings:
 ```json
 {
   "type": "install",
-  "name": "JE-47683 [CS:Visual Settings] - force selection for editable list",
+  "name": "[CS:Visual Settings] - force selection for editable list",
   "settings": {
     "fields": [
       {
@@ -261,11 +263,9 @@ settings:
 ```
 @@!
 
-There is an ability to make one list being dependent from another with `dependsOn` property. 
+#### *list* *dependsOn* example
 
-- `dependsOn` *[optional]* - specifies values dependence between two lists.
-
-Thus, switching values in one *list*, the corresponding values are changed in another one. The values of the lists can be specified in non-strict and strict orders. 
+The `dependsOn` is an ability to make values in one list being dependent on another making switching the values in one list thus the corresponding values are picked up in another. The values of the lists can be specified in non-strict and strict orders. 
 
 Non-strict order example:
 
@@ -305,7 +305,7 @@ settings:
 ```json
 {
   "type": "install",
-  "name": "JE-40567 [Cloud Scripting:Visual Settings] - conditional filters for type \"list\"",
+  "name": "Conditional filters for type \"list\"",
   "settings": {
     "fields": [
       {
@@ -353,7 +353,7 @@ Strict order example:
 @@@
 ```yaml
 type: install
-name: JE-40567 [Cloud Scripting:Visual Settings] - conditional filters for type "list"
+name: Conditional filters for type "list"
 
 settings:
   fields:
@@ -395,7 +395,7 @@ settings:
 ```json
 {
   "type": "install",
-  "name": "JE-40567 [Cloud Scripting:Visual Settings] - conditional filters for type \"list\"",
+  "name": "Conditional filters for type \"list\"",
   "settings": {
     "fields": [
       {
@@ -496,7 +496,7 @@ where:
 
 - `caption` *[optional]* - field label
 - `value` - enables or disables checkbox
-- `hideLabel` *[optional][boolean]* - shows/hides field label. Default value is *'false'*.
+- `hideLabel` *[optional][boolean]* - shows/hides field label. Default value is *'false'*
 
 <!--
 ### checkboxlist
@@ -534,7 +534,7 @@ where:
 
 - `caption` *[optional]* - field label
 - `values` - checkboxes (*"key"*:*"value"*)
-- `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*.
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
 -->
 
 ### radiolist
@@ -572,7 +572,7 @@ where:
 
 - `caption` *[optional]* - field label
 - `values` - checkboxes (*"key"*:*"value"*)
-- `hideLabel` *[optional][boolean]* - shows/hides field label. Default value is *'false'*.
+- `hideLabel` *[optional][boolean]* - shows/hides field label. Default value is *'false'*
 
 ### radio-fieldset
 Grouping of the radio elements with <b>*showIf*</b> function.
@@ -643,7 +643,7 @@ where:
 - `default` *[optional]* - field selected upon opening the form
 - `values` - checkboxes (*"key"*:*"value"*)
 - `showIf` - conditional object that shows predefined elements by clicking on the *radio-fieldset* elements. Predefined elements can vary.
-- `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*.
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
 - `caption` *[optional]* - field label
 
 Also there is an ability to set an `values` order. It needs to be defined like an array of objects.
@@ -689,7 +689,7 @@ settings:
     - name: first
 
 dockerImage:
-  name: sych74/pokemongo-map
+  name: jelastic/pokemongo-map
   registry: ''
   username: ''
   password: ''
@@ -716,7 +716,7 @@ env: {}
     ]
   },
   "dockerImage": {
-    "name": "sych74/pokemongo-map",
+    "name": "jelastic/pokemongo-map",
     "registry": "",
     "username": "",
     "password": ""
@@ -807,10 +807,10 @@ fields:
 
 where:
 
-- `pack` *[optional]* - manages the way items are packed together. Default value is *'start'*. Possible values: *'start'*, *'center'* and *'end'*.
-- `align` *[optional]* - manages the way items are aligned. Default value is *'top'*. Possible values: *'top'*, *'middle'*, *'stretch'*, *'stretchmax'*.
-- `defaultMargins` *[optional]* - default margins for items. Default value is *'0'*.
-- `defaultPadding` *[optional]* - default paddings for items. Default value is *'0'*.
+- `pack` *[optional]* - manages the way items are packed together. Default value is *'start'*. Possible values: *'start'*, *'center'* and *'end'*
+- `align` *[optional]* - manages the way items are aligned. Default value is *'top'*. Possible values: *'top'*, *'middle'*, *'stretch'*, *'stretchmax'*
+- `defaultMargins` *[optional]* - default margins for items. Default value is *'0'*
+- `defaultPadding` *[optional]* - default paddings for items. Default value is *'0'*
 - `defaultFlex` *[optional]* - horizontal flex for items
 - `items` - elements
 
@@ -850,7 +850,7 @@ where:
 
 - `min` - minimum slider value
 - `max` - maximum slider value
-- `useTips` - displaying tips for the value. Default value is *'true'*.
+- `useTips` - displaying tips for the value. Default value is *'true'*
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field
 
@@ -885,7 +885,7 @@ where:
 
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field
-- `editable` *[optional][boolean]* - enables/disables the *envlist* field editing. Default value is *'false'*.
+- `editable` *[optional][boolean]* - enables/disables the *envlist* field editing. Default value is *'false'*
 - `valueField` *[optional][string]* - value from environment information, which will be sent to a server. Default value is *'domain'*. Available values are:
     - *iconCls* - CSS class
     - *isRunning* - checking whether environment status is *running*
@@ -1349,7 +1349,7 @@ where:
 
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field
-- `markup` - value to initialize the field's display. Default value is *'undefined'*.
+- `markup` - value to initialize the field's display. Default value is *'undefined'*
 
 ### spinner
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.
@@ -1430,7 +1430,7 @@ where:
 - `caption` *[optional]* - field label
 - `min` - minimum spinner value
 - `max` - maximum spinner value
-- `editable` *[optional] [boolean]* - enables/disables editing the *numberpicker* field. Default value is *'false'*.
+- `editable` *[optional] [boolean]* - enables/disables editing the *numberpicker* field. Default value is *'false'*
 
 ### hostpicker
 (*host-picker* is an alias)
@@ -1466,7 +1466,7 @@ where:
 
 - `name` *[optional]* - name of the field
 - `caption` *[optional]* - field label
-- `editable` *[optional] [boolean]* - enables/disables editing the *envlist* field. Default value is *'false'*.
+- `editable` *[optional] [boolean]* - enables/disables editing the *envlist* field. Default value is *'false'*
 - `valueField` *[optional][string]* - value from environment information, which will be sent to a server. Default value is *'domain'*. Available values are:
     - *iconCls* - CSS class
     - *isRunning* - checking whether environment status is *running*
