@@ -100,7 +100,7 @@ where:
         * `hostpicker` - drop-down menu with [environment hosts](#hostpicker)
         * `host-picker` - alias to `hostpicker`
         * `toggle` - [switcher](#toggle) between two values
-    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. See more info on <a href="https://www.w3.org/wiki/HTML/Elements/input#Point" target="_blank">type attribute</a>.
+    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. See more info on <a href="https://www.w3.org/wiki/HTML/Elements/input#Point" target="_blank">type attribute</a>
     - `name` - input field name, that can be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests
     - `default` *[optional]* - default value for the input field
     - `caption` *[optional]* - field label
@@ -218,12 +218,12 @@ where:
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
 - `editable` *[optional][boolean]* - allows to input custom values. Default value is *'false'*
 - `default` *[optional]: key* - sets the *"key"* which *"value"* will be displayed by default
-- `forceSelection` *[optional][boolean]* - *'true'* restricts the selected value to one of the values in the list, *'false'* allows to set arbitrary text into the field. Default value is *' false'*  
-- `dependsOn` *[optional]* - specifies values dependence between two lists
+- `forceSelection` *[optional][boolean]* - *'true'* restricts the selected value to one of the values in the list, *'false'* allows to set arbitrary text into the field. Default value is *' false'*. The *forceSelection* parameter is applied only in case the `editable` parameter was set to 'true', otherwise, it is ignored. See [example](#forceselection).  
+- `dependsOn` *[optional]* - specifies values dependence between two lists by switching the values in one list thus the corresponding values are picked up in another. The values of the lists can be specified in non-strict and strict orders. See [examples](#dependson).  
 
-#### *list* *forceSelection* example
+#### Advanced Examples
 
-The *forceSelection* parameter is applied only in case the `editable` parameter was set to 'true', otherwise, it is ignored.  
+##### ForceSelection
 
 @@@
 ```yaml
@@ -263,9 +263,7 @@ settings:
 ```
 @@!
 
-#### *list* *dependsOn* example
-
-The `dependsOn` is an ability to make values in one list being dependent on another making switching the values in one list thus the corresponding values are picked up in another. The values of the lists can be specified in non-strict and strict orders. 
+##### DependsOn
 
 Non-strict order example:
 
