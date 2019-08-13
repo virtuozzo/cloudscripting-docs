@@ -369,7 +369,7 @@ onInstall:
 ``` json
 {
   "type": "install",
-  "name": "TEST: JE-45385 [CS:Conditions] - add action 'elif'",
+  "name": "[CS:Conditions] - action 'elif'",
   "globals": {
     "a": 1,
     "b": 2
