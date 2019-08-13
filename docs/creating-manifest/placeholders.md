@@ -611,7 +611,7 @@ It is can be complemented with function placeholders *[${fn.compareEngine(versio
 @@@
 ```yaml
 type: install
-name: JE-43816 Ability co compare CS engine versions
+name: Ability co compare CS engine versions
 
 onInstall:
 - assert:
@@ -627,7 +627,7 @@ onInstall:
 ```json
 {
   "type": "install",
-  "name": "JE-43816 Ability co compare CS engine versions",
+  "name": "Ability co compare CS engine versions",
   "onInstall": [
     {
       "assert": [
