@@ -251,7 +251,7 @@ onInstall:
 ```json
 {
   "type": "install",
-  "name": "TEST: JE-45385 [CS:Conditions] - add action 'else'",
+  "name": "[CS:Conditions] - action 'else'",  
   "globals": {
     "a": 1,
     "b": 2
