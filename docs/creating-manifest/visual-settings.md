@@ -263,7 +263,7 @@ settings:
 ```json
 {
   "type": "install",
-  "name": "JE-40567 [Cloud Scripting:Visual Settings] - conditional filters for type \"list\"",
+  "name": "[Cloud Scripting:Visual Settings] - conditional filters for type \"list\"",
   "settings": {
     "fields": [
       {
@@ -311,7 +311,7 @@ Strict order example:
 @@@
 ```yaml
 type: install
-name: JE-40567 [Cloud Scripting:Visual Settings] - conditional filters for type "list"
+name: [Cloud Scripting:Visual Settings] - conditional filters for type "list"
 
 settings:
   fields:
@@ -353,7 +353,7 @@ settings:
 ```json
 {
   "type": "install",
-  "name": "JE-40567 [Cloud Scripting:Visual Settings] - conditional filters for type \"list\"",
+  "name": "[Cloud Scripting:Visual Settings] - conditional filters for type \"list\"",
   "settings": {
     "fields": [
       {
