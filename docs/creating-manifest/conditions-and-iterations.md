@@ -211,7 +211,7 @@ In case the conditional statement should be complemented by the opposite compari
 @@@
 ```yaml
 type: install
-name: 'TEST: JE-45385 [CS:Conditions] - add action ''else'''
+name: '[CS:Conditions] - action "else"'
 
 globals:
   a: 1
