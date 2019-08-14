@@ -96,26 +96,26 @@ success: object/string
 - `homepage` *[optional]* - link to any external application source
 - `categories` - categories available for manifests filtering                                                                        
 - `baseUrl` *[optional]* - custom <a href="#relative-links" target="_blank">relative links</a>                                       
-- `settings` *[optional]* - custom form with <a href="/1.6/creating-manifest/visual-settings/" target="_blank">predefined user input elements</a>
+- `settings` *[optional]* - custom form with <a href="../visual-settings/" target="_blank">predefined user input elements</a>
 - `targetRegions` *[optional]* - filtering available regions on Jelastic platform. Option will be used only with **type** `install`
     - `type` *[optional]* [array] - region's virtualization types
     - `name` *[optional]* [string] - text or JavaScript RegExp argument to filtering region's by name
 - `region` *[optional]* - region, where an environment will be installed. Option will be used only with **type** `install`
 `targetRegions` has a higher priority than `region`. So in case when both of options have been set regions will be filtered according to the `targetRegions` rules
 - `nodeGroupAlias` *[optional]* - an ability to set aliases for existed in environments *nodeGroup*
-- `nodes` - an array to describe information about nodes for an installation. Option will be used only with **type** `install`
-- `engine` *[optional]* - engine <a href="/1.6/creating-manifest/selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
-- `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with **type** `install` mode
-- `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with **type** `install` mode
-- `displayName` *[optional]* - display name for an environment. Required option for **type** `install`
+- `nodes` - an array to describe information about nodes for an installation. Option will be used only with **type** `install`.
+- `engine` *[optional]* - engine <a href="../selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
+- `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with **type** `install` mode.
+- `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with **type** `install` mode.
+- `displayName` *[optional]* - display name for an environment. Required option for **type** `install`.
 - `skipNodeEmails` *[optional]* - an ability to skip sending emails about creating nodes. Emails are related only to nodes where implemented reset password functionality
 - `appVersion` *[optional]* - custom version of an application
-- `onInstall` *[optional]* - <a href="/1.6/creating-manifest/events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
+- `onInstall` *[optional]* - <a href="../events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
 - `startPage` *[optional]* - an [entry point](/creating-manifest/basic-configs/#entry-points) to be opened via the **Open in browser** button through a successful installation message
-- `actions` *[optional]* - objects to describe all <a href="/1.6/creating-manifest/actions/#custom-actions" target="_blank">custom actions</a>
+- `actions` *[optional]* - objects to describe all <a href="../actions/#custom-actions" target="_blank">custom actions</a>
 - `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](/creating-manifest/visual-settings/#success-text-customization).
-- "..." - the list of <a href="/1.6/creating-manifest/events/" target="_blank">events</a> can be predefined before manifest is installed. More details 
+- "..." - the list of <a href="../events/" target="_blank">events</a> can be predefined before manifest is installed. More details 
 
 ##Environment Installation
 
@@ -125,11 +125,11 @@ The environment can be installed in case when the `type` parameter is set to **i
 
 The list of available parameters are:
 
-- `nodeType` *[required]* - the defined node type. The list of available stacks are <a href="/1.6/creating-manifest/selecting-containers/#supported-stacks" target="_blank">here</a> 
-- `cloudlets` *[optional]* - a number of dynamic cloudlets. The default value is 0. `flexible` is an alias
-- `fixedCloudlets` *[optional]* - amount of fixed cloudlets. The default value is 1
-- `count` *[optional]* - amount of nodes in one group. The default value is 1
-- `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any custom node group
+- `nodeType` *[required]* - the defined node type. The list of available stacks are <a href="../selecting-containers/#supported-stacks" target="_blank">here</a>. 
+- `cloudlets` *[optional]* - a number of dynamic cloudlets. The default value is 0. `flexible` is an alias. 
+- `fixedCloudlets` *[optional]* - amount of fixed cloudlets. The default value is 1.
+- `count` *[optional]* - amount of nodes in one group. The default value is 1.
+- `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any custom node group.
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*
 - `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`. Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](/creating-manifest/addons/)
@@ -848,7 +848,7 @@ If installation is being run from <a href="https://github.com/jelastic-jps" targ
 There are a list of JPS blocks which can use resources from **related** links:
 
 - `logo` - JPS application image is shown while jps installation
-- `script` - <a href="/1.6/creating-manifest/actions/#script" target="_blank">action</a>, for executing javascript and java scripts
+- `script` - <a href="../actions/#script" target="_blank">action</a>, for executing javascript and java scripts
 - `description` - information about JPS which is shown before install process
 - `success` - message after successful application installation
 
@@ -875,7 +875,7 @@ success: text.txt
 
 In the example above the text *text.txt* will be displayed in success email notification and in success window in Jelastic dashboard when JPS installation will be finished. If URL **https://example.com/text.txt** has any content then that content will be displayed.
 
-The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="/1.6/creating-manifest/actions/#cmd" target="_blank">*cmd*</a> and <a href="/1.6/creating-manifest/actions/#script" target="_blank">*script*</a> actions).                 
+The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="../actions/#cmd" target="_blank">*cmd*</a> and <a href="../actions/#script" target="_blank">*script*</a> actions).                 
 
 For example:
 @@@

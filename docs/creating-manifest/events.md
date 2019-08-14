@@ -1,6 +1,6 @@
 # Events
 
-Any <a href="/1.6/creating-manifest/actions/" target="_blank">action</a>, available to be performed by means of <a href="https://docs.jelastic.com/api/" target="_blank">API</a> (including <a href="/1.6/creating-manifest/custom-scripts/" target="_blank">custom scripts</a> running), should be bound to some event and executed as a result of this event occurrence.
+Any <a href="../actions/" target="_blank">action</a>, available to be performed by means of <a href="https://docs.jelastic.com/api/" target="_blank">API</a> (including <a href="../custom-scripts/" target="_blank">custom scripts</a> running), should be bound to some event and executed as a result of this event occurrence.
 
 Each event triggers a particular action on the required application's lifecycle stage. The entry point for executing any action is the [*onInstall*](#oninstall) event.
 
@@ -137,8 +137,8 @@ The event is executed once the *changeTopology* action is finished.
         - `redeployContainerDelay` - delay for container redeployment
         - `redeployContextDelay` - delay for context redeployment
         - `restartContainerDelay` - delay for container restart
-    - `nodes` - nodes array with detailed info about the topology change. Explore the full list of available <a href="/1.6/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
-    - `env` - environment information. Explore the full list of available <a href="/1.6/creating-manifest/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.
+    - `nodes` - nodes array with detailed info about the topology change. Explore the full list of available <a href="../placeholders/#node-placeholders" target="_blank">node placeholders</a>.
+    - `env` - environment information. Explore the full list of available <a href="../placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.
 
 ### onBeforeScaleOut
 
@@ -162,7 +162,7 @@ The event is executed after adding new node(s) to the existing node group. The *
     - `count` - number of nodes that are added
     - `nodeGroup` - node group that is scaled out
 - `${event.response.}`:
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/1.6/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="../placeholders/#node-placeholders" target="_blank">node placeholders</a>.
 
 ### onBeforeScaleIn
 
@@ -174,7 +174,7 @@ The event is executed before removing node(s) (i.e. scaling *in*) from the targe
     - `count` - number of nodes that are removed
     - `nodeGroup` - node group that is scaled in
 - `${event.response.}`:
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/1.6/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="../placeholders/#node-placeholders" target="_blank">node placeholders</a>.
 
 ### onAfterScaleIn
 
@@ -186,7 +186,7 @@ The event is executed after scaling *in* the corresponding node group. The *onAf
     - `count` - number of nodes that are removed
     - `nodeGroup` - node group that is scaled in
 - `${event.response.}`:
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/1.6/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="../placeholders/#node-placeholders" target="_blank">node placeholders</a>.
 
 ### onBeforeServiceScaleOut
 
@@ -812,8 +812,8 @@ The event is related to cloning environment (performed via the Jelastic dashboar
         - `redeployContainerDelay` - delay for container redeployment
         - `redeployContextDelay` - delay for context redeployment
         - `restartContainerDelay` - delay for container restart
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="/1.6/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>.
-    - `env` - environment information. Explore the full list of available <a href="/1.6/creating-manifest/placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="../placeholders/#node-placeholders" target="_blank">node placeholders</a>.
+    - `env` - environment information. Explore the full list of available <a href="../placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.
 
 ### onBeforeBuildProject
 
@@ -1316,7 +1316,7 @@ The *onAfterRemoveVolume* event is triggered after removing volumes from Docker 
 
 ### onBeforeInit   
 ### onBeforeInstall   
-It is possible to dynamically fill in the manifest fields using *onBeforeInit* and *onBeforeInstall* events.
+It is possible to dynamically fill in the manifest fields using *onBeforeInit* and *onBeforeInstall* events. All of  the JPS manifest fields inside *onBeforeInit* and *onBeforeInstall* can be accessed using **jps** variable.
 
 #### onBeforeInit
 The *onBeforeInit* event is executed:   
@@ -1472,7 +1472,129 @@ assert: "'${settings.custom_field}' == 'test'"
 The script outputs JS-object. The object contains code **result** and manifest customized field set in JSON.
 
 -   If the script has completed successfully with **result: 0**, then all the fields in the script response are applied to the manifest.  
--   In case the script has completed unsuccessfully with **result: 11041** along with message “**JPS manifest initialization error**”, the  attached object data provides the details about an error.
+-   In case the script has completed unsuccessfully with **result: 11041** along with message “**JPS manifest initialization error**”, the  attached object data provides the details about an error.  
+
+#### Accessing JPS manifest fields with *jps* variable  
+
+- onBeforeInit:
+
+@@@
+```yaml
+type: install
+name: Manifest availability in onBeforeInit
+
+baseUrl: https://example.com/
+  
+settings:
+  fields:
+    - type: string
+      caption: String
+      
+onBeforeInit: |  
+  return {
+    result: 0,
+    settings: {
+      fields: jps.settings.fields.concat([{
+        type: 'string',
+        caption: 'Base URL',
+        value: jps.baseUrl
+      }])
+    }
+  };
+```
+```json
+{
+  "type": "install",
+  "name": "Manifest availability in onBeforeInit",
+  "baseUrl": "https://example.com/",
+  "settings": {
+    "fields": [
+      {
+        "type": "string",
+        "caption": "String"
+      }
+    ]
+  },
+  "onBeforeInit": "return {result: 0, settings: { fields: jps.settings.fields.concat([{ type: 'string', caption: 'Base URL', value: jps.baseUrl}])}};"
+}
+```
+@@!
+
+simplified response example:  
+
+@@@
+```yaml
+type: install
+name: Manifest availability in onBeforeInit
+
+baseUrl: https://example.com/
+  
+settings:
+  fields:
+    - type: string
+      caption: String
+      
+onBeforeInit: |  
+  jps.settings.fields.push({
+        type: 'string',
+        caption: 'Base URL',
+        value: jps.baseUrl
+  });
+  
+  return jps;
+```
+```json
+{
+  "type": "install",
+  "name": "Manifest availability in onBeforeInit",
+  "baseUrl": "https://example.com/",
+  "settings": {
+    "fields": [
+      {
+        "type": "string",
+        "caption": "String"
+      }
+    ]
+  },
+  "onBeforeInit": "jps.settings.fields.push({type: 'string', caption: 'Base URL', value: jps.baseUrl}); return jps;"
+}
+```
+@@!
+  
+- onBeforeInstall:  
+
+@@@
+```yaml
+type: install
+name: Manifest availability in onBeforeInit
+
+nodes:
+  - nodeType: apache2
+    cloudlets: 8
+
+onBeforeInstall: |  
+  return {
+    result: 0,
+    nodes: jps.nodes.concat({
+      nodeType: 'nginx',
+      cloudlets: 8
+    })    
+  };
+```
+```json
+{
+  "type": "install",
+  "name": "Manifest availability in onBeforeInit",
+  "nodes": [
+    {
+      "nodeType": "apache2",
+      "cloudlets": 8
+    }
+  ],
+  "onBeforeInstall": "return {result: 0, nodes: jps.nodes.concat({ nodeType: 'nginx', cloudlets: 8})};"}
+```
+@@!
+
 
 ### onBeforeSwapExtDomains
 The event is executed before swapping the external domain names between two environments via API or Jelastic dashboard
@@ -1536,14 +1658,14 @@ Event Placeholders:
 @@@
 ```yaml
 type: update
-name: 'JE-43961 [CS] - add onBeforeBindSSL event'
+name: '[CS] - add onBeforeBindSSL event'
 onBeforeBindSSL: 
   log: before bind SSL
 ```
 ```json
 {
   "type": "update",
-  "name": "JE-43961 [CS] - add onBeforeBindSSL event",
+  "name": "[CS] - add onBeforeBindSSL event",
   "onBeforeBindSSL": {
     "log": "before bind SSL"
   }
@@ -1564,14 +1686,14 @@ Event Placeholders:
 @@@
 ```yaml
 type: update
-name: 'JE-43961 [CS] - add onAfterBindSSL event'
+name: '[CS] - add onAfterBindSSL event'
 onAfterBindSSL: 
   log: after bind SSL
 ```
 ```json
 {
   "type": "update",
-  "name": "JE-43961 [CS] - add onAfterBindSSL events",
+  "name": "[CS] - add onAfterBindSSL events",
   "onAfterBindSSL": {
     "log": "after bind SSL"
   }
@@ -1592,14 +1714,14 @@ Event Placeholders:
 @@@
 ```yaml
 type: update
-name: 'JE-43961 [CS] - add onBeforeRemoveSSL events'
+name: '[CS] - add onBeforeRemoveSSL events'
 onBeforeRemoveSSL: 
   log: before remove SSL
 ```
 ``` json
 {
   "type": "update",
-  "name": "JE-43961 [CS] - add onBeforeRemoveSSL events",
+  "name": "[CS] - add onBeforeRemoveSSL events",
   "onBeforeRemoveSSL": {
     "log": "before remove SSL"
   }
@@ -1620,14 +1742,14 @@ Event Placeholders:
 @@@
 ```yaml
 type: update
-name: 'JE-43961 [CS] - add onAfterRemoveSSL events'
+name: '[CS] - add onAfterRemoveSSL events'
 onAfterRemoveSSL: 
   log: after remove SSL
 ```
 ``` json
 {
   "type": "update",
-  "name": "JE-43961 [CS] - add onAfterRemoveSSL events",
+  "name": "[CS] - add onAfterRemoveSSL events",
   "onAfterRemoveSSL": {
     "log": "after remove SSL"
   }
@@ -1640,12 +1762,12 @@ onAfterRemoveSSL:
 
 ## What’s next?
 
-- Find out how to fetch parameters with <a href="/1.6/creating-manifest/placeholders/" target="_blank">Placeholders</a>
+- Find out how to fetch parameters with <a href="../placeholders/" target="_blank">Placeholders</a>
 
-- See how to use <a href="/1.6/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>
+- See how to use <a href="../conditions-and-iterations/">Conditions and Iterations</a>
 
-- Read how to integrate your <a href="/1.6/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>
+- Read how to integrate your <a href="../custom-scripts/" target="_blank">Custom Scripts</a>
 
-- Learn how to create your custom <a href="/1.6/creating-manifest/addons/" target="_blank">Add-Ons</a>
+- Learn how to create your custom <a href="../addons/" target="_blank">Add-Ons</a>
 
-- Check how to handle <a href="/1.6/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>
+- Check how to handle <a href="../handling-custom-responses/" target="_blank">Custom Responses</a>

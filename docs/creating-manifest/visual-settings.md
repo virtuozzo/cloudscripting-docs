@@ -1741,7 +1741,7 @@ It will be displayed after clicking the appropriate button for an add-on. Accord
 
 ![LoadingText](/img/LoadingText.jpg)
 
-- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the <a href="/1.6/creating-manifest/actions/#custom-actions" target="_blank">*actions*</a> section.
+- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the <a href="../actions/#custom-actions" target="_blank">*actions*</a> section.
 - `caption` - title of the button
 
 ![Caption](/img/Caption.jpg)
@@ -1815,7 +1815,7 @@ where:
 
 ![LogsPath](/img/LogsPath.jpg)
 
-- `logsNodeGroup` - nodeGroup <a href="/1.6/creating-manifest/selecting-containers/#predefined-nodegroup-values" target="_blank">layer</a> the logging path should be opened for
+- `logsNodeGroup` - nodeGroup <a href="../selecting-containers/#predefined-nodegroup-values" target="_blank">layer</a> the logging path should be opened for
 
 ## Custom Settings
 Settings section can include a few custom forms. Default settings form ID is *'main'*.
@@ -2013,7 +2013,7 @@ success:
 ```
 @@!
 
-Email notification also can be customized in <a href="/1.6/creating-manifest/handling-custom-responses/">custom responses</a>. In this case `email` value from handle custom response has a higher priority. For example:
+Email notification also can be customized in <a href="../handling-custom-responses/">custom responses</a>. In this case `email` value from handle custom response has a higher priority. For example:
 @@@
 ```yaml
 type: update
@@ -2043,7 +2043,7 @@ success: success!!
 
 In the last example above, the localization functionality is applied, which depends upon the Jelastic Platform selected language.
 
-Custom responses can be returned within <a href="/1.6/creating-manifest/actions/#return" target="_blank">`return`</a> or <a href="/1.6/creating-manifest/actions/#script" target="_blank">`script`</a> actions. More details about <a href="/1.6/creating-manifest/handling-custom-responses/" target="_blank">custom responses here</a>.
+Custom responses can be returned within <a href="../actions/#return" target="_blank">`return`</a> or <a href="../actions/#script" target="_blank">`script`</a> actions. More details about <a href="../handling-custom-responses/" target="_blank">custom responses here</a>.
 
 ## JPS installation without environment  
   
