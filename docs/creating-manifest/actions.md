@@ -609,6 +609,8 @@ writeFile:
   nodeId: number or string
   nodeGroup: string
   nodeType: string
+  path: string
+  body: string
 ```
 ``` json
 {
