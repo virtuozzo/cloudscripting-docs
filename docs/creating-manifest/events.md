@@ -1316,7 +1316,7 @@ The *onAfterRemoveVolume* event is triggered after removing volumes from Docker 
 
 ### onBeforeInit   
 ### onBeforeInstall   
-It is possible to dynamically fill in the manifest fields using *onBeforeInit* and *onBeforeInstall* events.
+It is possible to dynamically fill in the manifest fields using *onBeforeInit* and *onBeforeInstall* events. All of  the JPS manifest fields inside *onBeforeInit* and *onBeforeInstall* can be accessed using **jps** variable.
 
 #### onBeforeInit
 The *onBeforeInit* event is executed:   
@@ -1472,7 +1472,129 @@ assert: "'${settings.custom_field}' == 'test'"
 The script outputs JS-object. The object contains code **result** and manifest customized field set in JSON.
 
 -   If the script has completed successfully with **result: 0**, then all the fields in the script response are applied to the manifest.  
--   In case the script has completed unsuccessfully with **result: 11041** along with message “**JPS manifest initialization error**”, the  attached object data provides the details about an error.
+-   In case the script has completed unsuccessfully with **result: 11041** along with message “**JPS manifest initialization error**”, the  attached object data provides the details about an error.  
+
+#### Accessing JPS manifest fields with *jps* variable  
+
+- onBeforeInit:
+
+@@@
+```yaml
+type: install
+name: Manifest availability in onBeforeInit
+
+baseUrl: https://example.com/
+  
+settings:
+  fields:
+    - type: string
+      caption: String
+      
+onBeforeInit: |  
+  return {
+    result: 0,
+    settings: {
+      fields: jps.settings.fields.concat([{
+        type: 'string',
+        caption: 'Base URL',
+        value: jps.baseUrl
+      }])
+    }
+  };
+```
+```json
+{
+  "type": "install",
+  "name": "Manifest availability in onBeforeInit",
+  "baseUrl": "https://example.com/",
+  "settings": {
+    "fields": [
+      {
+        "type": "string",
+        "caption": "String"
+      }
+    ]
+  },
+  "onBeforeInit": "return {result: 0, settings: { fields: jps.settings.fields.concat([{ type: 'string', caption: 'Base URL', value: jps.baseUrl}])}};"
+}
+```
+@@!
+
+simplified response example:  
+
+@@@
+```yaml
+type: install
+name: Manifest availability in onBeforeInit
+
+baseUrl: https://example.com/
+  
+settings:
+  fields:
+    - type: string
+      caption: String
+      
+onBeforeInit: |  
+  jps.settings.fields.push({
+        type: 'string',
+        caption: 'Base URL',
+        value: jps.baseUrl
+  });
+  
+  return jps;
+```
+```json
+{
+  "type": "install",
+  "name": "Manifest availability in onBeforeInit",
+  "baseUrl": "https://example.com/",
+  "settings": {
+    "fields": [
+      {
+        "type": "string",
+        "caption": "String"
+      }
+    ]
+  },
+  "onBeforeInit": "jps.settings.fields.push({type: 'string', caption: 'Base URL', value: jps.baseUrl}); return jps;"
+}
+```
+@@!
+  
+- onBeforeInstall:  
+
+@@@
+```yaml
+type: install
+name: Manifest availability in onBeforeInit
+
+nodes:
+  - nodeType: apache2
+    cloudlets: 8
+
+onBeforeInstall: |  
+  return {
+    result: 0,
+    nodes: jps.nodes.concat({
+      nodeType: 'nginx',
+      cloudlets: 8
+    })    
+  };
+```
+```json
+{
+  "type": "install",
+  "name": "Manifest availability in onBeforeInit",
+  "nodes": [
+    {
+      "nodeType": "apache2",
+      "cloudlets": 8
+    }
+  ],
+  "onBeforeInstall": "return {result: 0, nodes: jps.nodes.concat({ nodeType: 'nginx', cloudlets: 8})};"}
+```
+@@!
+
 
 ### onBeforeSwapExtDomains
 The event is executed before swapping the external domain names between two environments via API or Jelastic dashboard
@@ -1536,14 +1658,14 @@ Event Placeholders:
 @@@
 ```yaml
 type: update
-name: 'JE-43961 [CS] - add onBeforeBindSSL event'
+name: '[CS] - add onBeforeBindSSL event'
 onBeforeBindSSL: 
   log: before bind SSL
 ```
 ```json
 {
   "type": "update",
-  "name": "JE-43961 [CS] - add onBeforeBindSSL event",
+  "name": "[CS] - add onBeforeBindSSL event",
   "onBeforeBindSSL": {
     "log": "before bind SSL"
   }
@@ -1564,14 +1686,14 @@ Event Placeholders:
 @@@
 ```yaml
 type: update
-name: 'JE-43961 [CS] - add onAfterBindSSL event'
+name: '[CS] - add onAfterBindSSL event'
 onAfterBindSSL: 
   log: after bind SSL
 ```
 ```json
 {
   "type": "update",
-  "name": "JE-43961 [CS] - add onAfterBindSSL events",
+  "name": "[CS] - add onAfterBindSSL events",
   "onAfterBindSSL": {
     "log": "after bind SSL"
   }
@@ -1592,14 +1714,14 @@ Event Placeholders:
 @@@
 ```yaml
 type: update
-name: 'JE-43961 [CS] - add onBeforeRemoveSSL events'
+name: '[CS] - add onBeforeRemoveSSL events'
 onBeforeRemoveSSL: 
   log: before remove SSL
 ```
 ``` json
 {
   "type": "update",
-  "name": "JE-43961 [CS] - add onBeforeRemoveSSL events",
+  "name": "[CS] - add onBeforeRemoveSSL events",
   "onBeforeRemoveSSL": {
     "log": "before remove SSL"
   }
@@ -1620,14 +1742,14 @@ Event Placeholders:
 @@@
 ```yaml
 type: update
-name: 'JE-43961 [CS] - add onAfterRemoveSSL events'
+name: '[CS] - add onAfterRemoveSSL events'
 onAfterRemoveSSL: 
   log: after remove SSL
 ```
 ``` json
 {
   "type": "update",
-  "name": "JE-43961 [CS] - add onAfterRemoveSSL events",
+  "name": "[CS] - add onAfterRemoveSSL events",
   "onAfterRemoveSSL": {
     "log": "after remove SSL"
   }
