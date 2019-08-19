@@ -132,7 +132,7 @@ The list of available parameters are:
 - `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any custom node group.
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.
-- `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`. Addons will be installed after environment installation but before `onInstall` action. [More details here](/creating-manifest/addons/)
+- `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`.  Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](/creating-manifest/addons/)
 - `tag` *[optional]* - an image tag for `dokerized` Jelastic templates with `nodeType` parameter. Full list of supported tag [here](/creating-manifest/selecting-containers/#dokerized-template-tags).
 - `scalingMode` *[optional]* - *stateless* or *stateful* [scaling](https://docs.jelastic.com/horizontal-scaling) mode, the possible values are *'NEW'* or *'CLONE'* respectively. The default value is *'CLONE'* for *nodeGroup* types: *bl,cp,vds*. For the rest of *nodeGroup* types the default value is *'NEW'*.
 - `diskLimit` *[optional]* - sets a storage size limit. The default value is equal to disk quota for current *nodeGroup*. It is measured in GB by default. The MB and TB can be used as well. Examples:
