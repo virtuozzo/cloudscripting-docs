@@ -30,7 +30,7 @@ onInstall:
 onAfterScaleOut [cp]:
   cmd [cp]: echo 'New Compute node has been added' >> /tmp/result.txt
 
-onAfterRestartNode [apache2]:
+onAfterRestartNode [nodeType:apache2]:
   cmd [cp]: echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> /tmp/result.txt
 
 onAfterResetNodePassword [${nodes.cp[0].id}]:
@@ -46,7 +46,7 @@ onAfterResetNodePassword [${nodes.cp[0].id}]:
   "onAfterScaleOut [cp]": {
     "cmd [cp]": "echo 'New Compute node has been added' >> /tmp/result.txt"
   },
-  "onAfterRestartNode [apache2]": {
+  "onAfterRestartNode [nodeType:apache2]": {
     "cmd [cp]": "echo 'Compute node with ID - ${events.response.nodeid} has been restarted' >> /tmp/result.txt"
   },
   "onAfterResetNodePassword [${nodes.cp[0].id}]": {
