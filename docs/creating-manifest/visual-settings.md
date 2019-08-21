@@ -1443,7 +1443,6 @@ fields:
     name: hostpicker
     caption: Hostpicker
     editable: true
-    valueField: host
 ```
 ``` json
 {
@@ -1452,8 +1451,7 @@ fields:
       "type": "hostpicker",
       "name": "hostpicker",
       "caption": "Hostpicker",
-      "editable": true,
-      "valueField": "host"
+      "editable": true
     }
   ]
 }
@@ -1465,12 +1463,6 @@ where:
 - `name` *[optional]* - name of the field
 - `caption` *[optional]* - field label
 - `editable` *[optional] [boolean]* - enables/disables editing the *envlist* field. Default value is *'false'*
-- `valueField` *[optional][string]* - value from environment information, which will be sent to a server. Default value is *'domain'*. Available values are:
-    - *iconCls* - CSS class
-    - *isRunning* - checking whether environment status is *running*
-    - *shortdomain* - short environment domain name (without platform URL)
-    - *displayName* - environment *displayName*
-    - *appid* - unique environment ID
 
 ### toggle
 Toggle element is a switch between two values.
