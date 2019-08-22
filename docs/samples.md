@@ -33,7 +33,7 @@
             Setting triggers for server horizontal scaling based on load
         </td>
     </tr>
-    <tr>
+  <!--  <tr>
         <td id="first-col">
             <a target="_blank" href="https://github.com/jelastic-jps/basic-examples/tree/master/using-docker-containers">Using Docker Containers</a>
         </td>
@@ -41,7 +41,7 @@
             Bundle of linked WordPress-Web and WordPress-DB Docker containers
         </td>
     </tr>
-    <tr>
+    <tr> -->
         <td id="first-col">
             <a target="_blank" href="https://github.com/jelastic-jps/wordpress-cluster">Application Clustering</a>
         </td>
