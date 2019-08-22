@@ -6,11 +6,11 @@ To give a try to Cloud Scripting right away, use a basic [Hello World](#hello-wo
 
 And to get up and ready with your own project, fulfill the following requirements:                                    
 
-- decide upon a <a href="/samples/" target="_blank">scenario</a> that will be delivered by means of CS                       
+- decide upon a [scenario](/samples/) that will be delivered by means of CS                       
 
-- define a set of <a href="creating-manifest/basic-configs/" target="_blank">properties</a>, essential for the proper application workflow                  
+- define a set of [properties](/creating-manifest/basic-configs/) properties</a>, essential for the proper application workflow                  
 
-- declare the required properties within your <a href="creating-manifest/basic-configs/" target="_blank">JPS manifest</a> file                      
+- declare the required properties within your [JPS manifest](/creating-manifest/basic-configs/) file                      
 
 - deploy the prepared manifest to a Platform via [import](#how-to-deploy-cs-solution-to-jelastic ) functionality                 
 
@@ -97,16 +97,16 @@ Just in the same way, you can build and run the solution you need - from frequen
 <br> 
 <h2> What’s next?</h2>                                     
 
-- <a href="creating-manifest/basic-configs/" target="_blank">Basic Configs</a> - learn the minimum basis of any JSP manifest and find out about the differences between *Install* and *Update* package types                                                         
+- [Basic Configs](/creating-manifest/basic-configs/) - learn the minimum basis of any JSP manifest and find out about the differences between *Install* and *Update* package types                                                         
 
-- <a href="creating-manifest/actions/" target="_blank">Actions</a> - define the required configurations and application behavior with a set of prescribed procedures                                                           
+- [Actions](/creating-manifest/actions/) - define the required configurations and application behavior with a set of prescribed procedures                                                           
 
-- <a href="creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a> - integrate your own scripts, written in either *Java*, *Javascript* or *PHP*, to subsequently execute them within containers                                                              
+- [Custom Scripts](/creating-manifest/custom-scripts/) - integrate your own scripts, written in either *Java*, *Javascript* or *PHP*, to subsequently execute them within containers                                                              
 
-- <a href="creating-manifest/events/" target="_blank">Events</a> - automate application workflow by binding actions to particular application lifecycle events                                                     
+- [Events](/creating-manifest/events/) - automate application workflow by binding actions to particular application lifecycle events                                                     
 
-- <a href="creating-manifest/visual-settings/" target="_blank">Visual Settings</a> - customize your package visual layout                                                             
+- [Visual Settings](/creating-manifest/visual-settings/) - customize your package visual layout                                                             
 
-- <a href="creating-manifest/placeholders/" target="_blank">Placeholders</a> - specify automatically substituted parameters for the required data to be fetched during installation                 
+- [Placeholders](/creating-manifest/placeholders/) - specify automatically substituted parameters for the required data to be fetched during installation                 
 
-- <a href="/troubleshooting/" target="_blank">Troubleshooting</a> - appeal to this guide if you face any issue while working with Cloud Scripting                                                                           
+- [Troubleshooting](/troubleshooting/) - appeal to this guide if you face any issue while working with Cloud Scripting                                                                           
