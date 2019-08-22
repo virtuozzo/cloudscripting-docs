@@ -238,27 +238,27 @@ Target containers, specified for the API methods execution can be passed by the 
 Restarting all compute nodes in the environment.
 @@@
 ```yaml
-api [cp]: jelastic.environment.control.RestartNodesByGroup
+api [cp]: jelastic.environment.control.RestartNodes
 ```
 ``` json
 {
-    "api [cp]" : "jelastic.environment.control.RestartNodesByGroup"
+    "api [cp]" : "jelastic.environment.control.RestartNodes"
 }
 ```
 @@!
 where:        
        
 - `api [cp]` - target node group for the API method execution (*[cp]*)                                                         
-- *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group              
+- *jelastic.environment.control.RestartNodes* - Jelastic API method for restarting nodes by group              
 
-This method (*jelastic.environment.control.RestartNodesByGroup*) can be simplified like shown in the next example.
+This method (*jelastic.environment.control.RestartNodes*) can be simplified like shown in the next example.
 @@@
 ```yaml
-api [cp]: environment.control.RestartNodesByGroup
+api [cp]: environment.control.RestartNodes
 ```
 ``` json
 {
-    "api [cp]" : "environment.control.RestartNodesByGroup"
+    "api [cp]" : "environment.control.RestartNodes"
 }
 ```
 @@!
@@ -266,12 +266,12 @@ api [cp]: environment.control.RestartNodesByGroup
 Below, you can find one more approach to specify a target node group for the API method execution.                                  
 @@@
 ```yaml
-api: jelastic.environment.control.RestartNodesByGroup,
+api: jelastic.environment.control.RestartNodes,
 nodeGroup: cp
 ```
 ``` json
 {
-    "api" : "jelastic.environment.control.RestartNodesByGroup",
+    "api" : "jelastic.environment.control.RestartNodes",
     "nodeGroup" : "cp"
 }
 ```
@@ -289,7 +289,7 @@ onInstall:
       params:
         nodeGroup: cp
         path: /tmp/exampleFile.txt
-    - method: environment.control.RestartNodesByGroup
+    - method: environment.control.RestartNodes
       params:
         nodeGroup: cp
 ```
@@ -305,7 +305,7 @@ onInstall:
                 "path": "/tmp/exampleFile.txt"
             }
         },{
-            "method": "environment.control.RestartNodesByGroup"
+            "method": "environment.control.RestartNodes"
             "params": {
                 "nodeGroup": "cp"
             }
@@ -315,7 +315,7 @@ onInstall:
 ```
 @@!
 
-In example above there are two api methods **Create** file and **RestartNodesByGroup**. Every method has their own set of parameters which they are required.
+In example above there are two api methods **Create** file and **RestartNodes**. Every method has their own set of parameters which they are required.
 
 The same parameters for all **methods** in one `action` can be set once. For example:
 @@@
@@ -328,7 +328,7 @@ onInstall:
     - method: environment.file.Create
       params:
         path: /tmp/exampleFile.txt
-    - method: environment.control.RestartNodesByGroup
+    - method: environment.control.RestartNodes
   nodeGroup: cp
 ```
 ```json
@@ -342,7 +342,7 @@ onInstall:
                 "path": "/tmp/exampleFIle.txt"
             }
         }, {
-            "method": "environment.control.RestartNodesByGroup"
+            "method": "environment.control.RestartNodes"
         }],
         "nodeGroup": "cp"
     }
