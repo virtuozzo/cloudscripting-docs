@@ -244,27 +244,27 @@ All of the nodes keywords and/or Node IDs can be passed as a list within one `ap
 Restarting all compute nodes in the environment.
 @@@
 ```yaml
-api [cp]: jelastic.environment.control.RestartNodesByGroup
+api [cp]: jelastic.environment.control.RestartNodes
 ```
 ``` json
 {
-    "api [cp]" : "jelastic.environment.control.RestartNodesByGroup"
+    "api [cp]" : "jelastic.environment.control.RestartNodes"
 }
 ```
 @@!
 where:        
        
 - `api [cp]` - target node group for the API method execution (*[cp]*)                                                         
-- *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group              
+- *jelastic.environment.control.RestartNodes* - Jelastic API method for restarting nodes by group              
 
-This method (*jelastic.environment.control.RestartNodesByGroup*) can be simplified like shown in the next example.
+This method (*jelastic.environment.control.RestartNodes*) can be simplified like shown in the next example.
 @@@
 ```yaml
-api [cp]: environment.control.RestartNodesByGroup
+api [cp]: environment.control.RestartNodes
 ```
 ``` json
 {
-    "api [cp]" : "environment.control.RestartNodesByGroup"
+    "api [cp]" : "environment.control.RestartNodes"
 }
 ```
 @@!
@@ -272,16 +272,16 @@ api [cp]: environment.control.RestartNodesByGroup
 Restarting all compute and load balancer nodes in the environment.  
 @@@
 ```yaml
-api [cp, bl]: environment.control.RestartNodesByGroup
+api [cp, bl]: environment.control.RestartNodes
 ```
 ``` json
 {
-    "api [cp, bl]" : "environment.control.RestartNodesByGroup"
+    "api [cp, bl]" : "environment.control.RestartNodes"
 }
 ```
 @@!
 
-Restarting all compute and load balancer nodes and specific node from another layer (e.g. *sqldb* node) in the environment. But, take into account that method *RestartNodesByGroup* doesn't support *nodeId* parameter and therefore is was replaced with *[RestartNodes](https://docs.jelastic.com/api/#!/api/environment.Control-method-RestartNodes)* method.   
+Restarting all compute and load balancer nodes and specific node from another layer (e.g. *sqldb* node) within one environment.      
 @@@
 ```yaml
 api [cp, bl, ${nodes.sqldb[0].id}]: environment.control.RestartNodes
@@ -293,7 +293,7 @@ api [cp, bl, ${nodes.sqldb[0].id}]: environment.control.RestartNodes
 ```
 @@!
 
-Synchronous action execution example within compute nodes layer using *isSequential* parameter.  
+Synchronous action execution example within compute node layer using *isSequential* parameter.  
 
 @@@
 ```yaml
@@ -302,7 +302,7 @@ name: Event Subscription Example
 
 onInstall:
   isSequential: true
-  api [cp]: env.control.RestartNodesByGroup
+  api [cp]: env.control.RestartNodes
 ```
 ``` json
 {
@@ -310,7 +310,7 @@ onInstall:
   "name": "Event Subscription Example",
   "onInstall": {
     "isSequential": true,
-    "api [cp]": "env.control.RestartNodesByGroup"
+    "api [cp]": "env.control.RestartNodes"
   }
 }
 ```
@@ -319,12 +319,12 @@ onInstall:
 Below, you can find one more approach to specify a target node group for the API method execution.                                  
 @@@
 ```yaml
-api: jelastic.environment.control.RestartNodesByGroup,
+api: jelastic.environment.control.RestartNodes,
 nodeGroup: cp
 ```
 ``` json
 {
-    "api" : "jelastic.environment.control.RestartNodesByGroup",
+    "api" : "jelastic.environment.control.RestartNodes",
     "nodeGroup" : "cp"
 }
 ```
@@ -342,7 +342,7 @@ onInstall:
       params:
         nodeGroup: cp
         path: /tmp/exampleFile.txt
-    - method: environment.control.RestartNodesByGroup
+    - method: environment.control.RestartNodes
       params:
         nodeGroup: cp
 ```
@@ -358,7 +358,7 @@ onInstall:
                 "path": "/tmp/exampleFile.txt"
             }
         },{
-            "method": "environment.control.RestartNodesByGroup"
+            "method": "environment.control.RestartNodes"
             "params": {
                 "nodeGroup": "cp"
             }
@@ -368,7 +368,7 @@ onInstall:
 ```
 @@!
 
-In example above there are two api methods **Create** file and **RestartNodesByGroup**. Every method has their own set of parameters which they are required.
+In example above there are two api methods **Create** file and **RestartNodes**. Every method has their own set of parameters which they are required.
 
 The same parameters for all **methods** in one `action` can be set once. For example:
 @@@
@@ -381,7 +381,7 @@ onInstall:
     - method: environment.file.Create
       params:
         path: /tmp/exampleFile.txt
-    - method: environment.control.RestartNodesByGroup
+    - method: environment.control.RestartNodes
   nodeGroup: cp
 ```
 ```json
@@ -395,7 +395,7 @@ onInstall:
                 "path": "/tmp/exampleFIle.txt"
             }
         }, {
-            "method": "environment.control.RestartNodesByGroup"
+            "method": "environment.control.RestartNodes"
         }],
         "nodeGroup": "cp"
     }
