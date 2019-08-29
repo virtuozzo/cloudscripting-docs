@@ -113,9 +113,9 @@ success: object/string
 - `onInstall` *[optional]* - <a href="../events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
 - `startPage` *[optional]* - an [entry point](/creating-manifest/basic-configs/#entry-points) to be opened via the **Open in browser** button through a successful installation message
 - `actions` *[optional]* - objects to describe all <a href="../actions/#custom-actions" target="_blank">custom actions</a>
-- `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation
+- `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation. More details [here](/creating-manifest/addons/)
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](/creating-manifest/visual-settings/#success-text-customization).
-- "..." - the list of <a href="../events/" target="_blank">events</a> can be predefined before manifest is installed. More details 
+- "..." - the list of <a href="../events/" target="_blank">events</a> can be predefined before manifest is installed.   
 
 ##Environment Installation
 
