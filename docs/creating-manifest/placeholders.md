@@ -6,27 +6,27 @@ Cloud Scripting supports a set of placeholders that can be used in any section o
 
 The following specific groups of placeholders are singled out: 
 
-- [Environment Placeholders](../placeholders/#environment-placeholders)           
+- [Environment Placeholders](placeholders/#environment-placeholders)           
 
-- [Node Placeholders](../placeholders/#node-placeholders)                 
+- [Node Placeholders](placeholders/#node-placeholders)                 
 
-- [Event Placeholders](../placeholders/#event-placeholders)                    
+- [Event Placeholders](placeholders/#event-placeholders)                    
 
-- [Account Information](../placeholders/#account-information)                 
+- [Account Information](placeholders/#account-information)                 
 
-- [Input Parameters](../placeholders/#input-parameters)                          
+- [Input Parameters](placeholders/#input-parameters)                          
 
-- [Action Placeholders](../placeholders/#action-placeholders)                  
+- [Action Placeholders](placeholders/#action-placeholders)                  
 
-- [UI Placeholders](../placeholders/#ui-placeholders)                     
+- [UI Placeholders](placeholders/#ui-placeholders)                     
 
-- [Custom Global Placeholders](../placeholders/#custom-global-placeholders)                               
+- [Custom Global Placeholders](placeholders/#custom-global-placeholders)                               
 
-- [Function Placeholders](../placeholders/#function-placeholders)                             
+- [Function Placeholders](placeholders/#function-placeholders)                             
 
-- [Array Placeholders](../placeholders/#array-placeholders)                                       
+- [Array Placeholders](placeholders/#array-placeholders)                                       
 
-- [File Path Placeholders](../placeholders/#file-path-placeholders)                                 
+- [File Path Placeholders](placeholders/#file-path-placeholders)                                 
 
 Placeholders like `env`, `nodes`, `targetNodes`, `response` are dynamically updated. They could be updated by their requests if they are required to be updated.
 
