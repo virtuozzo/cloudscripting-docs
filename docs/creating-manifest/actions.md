@@ -1943,7 +1943,7 @@ onInstall:
 ```
 @@!
 
-For more details about [*Custom Response*](/creating-manifest/handling-custom-responses/), visit the linked page.                                    
+For more details about [*Custom Response*](../handling-custom-responses/), visit the linked page.                                    
 
 All the other actions within the *onInstall* array are not executed after the *return* action.                
 @@@
