@@ -670,7 +670,7 @@ values:
 ```
 @@!
 
-### dockertag
+### dockertags
 Field for displaying Docker tags within the list element.
 
 ![text](/img/dockertag.jpg)
