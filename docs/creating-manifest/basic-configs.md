@@ -112,12 +112,13 @@ success: object/string
 - `appVersion` *[optional]* - custom version of an application
 - `onInstall` *[optional]* - <a href="../events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
 - `startPage` *[optional]* - an [entry point](../basic-configs/#entry-points) to be opened via the **Open in browser** button through a successful installation message
-- `actions` *[optional]* - objects to describe all <a href="../actions/#custom-actions" target="_blank">custom actions</a>
+- `actions` *[optional]* - objects to describe all <a href="../actions/#custom-actions" target="_blank">custom actions</
 - `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation. More details [here](../addons/)
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](../visual-settings/#success-text-customization).
-- "..." - the list of <a href="../events/" target="_blank">events</a> can be predefined before manifest is installed   
+- `mixins` *[optional]* - includes(mixes) the functionality and data from one manifest into another by URL or object. More details [here](../mixins/)
+- "..." - the list of <a href="../events/" target="_blank">events</a> can be predefined before manifest is installed  
 
-##Environment Installation
+## Environment Installation
 
 The environment can be installed in case when the `type` parameter is set to **install**. Then the set of nodes with their parameters should be defined also.
 
