@@ -111,10 +111,10 @@ success: object/string
 - `skipNodeEmails` *[optional]* - an ability to skip sending emails about creating nodes. Emails are related only to nodes where implemented reset password functionality
 - `appVersion` *[optional]* - custom version of an application
 - `onInstall` *[optional]* - <a href="../events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
-- `startPage` *[optional]* - an [entry point](../basic-configs/#entry-points) to be opened via the **Open in browser** button through a successful installation message
+- `startPage` *[optional]* - an [entry point](basic-configs/#entry-points) to be opened via the **Open in browser** button through a successful installation message
 - `actions` *[optional]* - objects to describe all <a href="../actions/#custom-actions" target="_blank">custom actions</
-- `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation. More details [here](../addons/)
-- `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](../visual-settings/#success-text-customization).
+- `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation. More details [here](addons/)
+- `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](visual-settings/#success-text-customization).
 - `mixins` *[optional]* - includes(mixes) the functionality and data from one manifest into another by URL or object. More details [here](mixins/)
 - "..." - the list of <a href="../events/" target="_blank">events</a> can be predefined before manifest is installed  
 
@@ -133,8 +133,8 @@ The list of available parameters are:
 - `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any custom node group.
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.
-- `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`.  Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](../addons/)
-- `tag` *[optional]* - an image tag for `dokerized` Jelastic templates with `nodeType` parameter. Full list of supported tag [here](../selecting-containers/#dokerized-template-tags).
+- `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`.  Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](addons/)
+- `tag` *[optional]* - an image tag for `dokerized` Jelastic templates with `nodeType` parameter. Full list of supported tag [here](selecting-containers/#dokerized-template-tags).
 - `scalingMode` *[optional]* - *stateless* or *stateful* [scaling](https://docs.jelastic.com/horizontal-scaling) mode, the possible values are *'NEW'* or *'CLONE'* respectively. The default value is *'CLONE'* for *nodeGroup* types: *bl,cp,vds*. For the rest of *nodeGroup* types the default value is *'NEW'*.
 - `diskLimit` *[optional]* - sets a storage size limit. The default value is equal to disk quota for current *nodeGroup*. It is measured in GB by default. The MB and TB can be used as well. Examples:
     - 10 = 10 GB
