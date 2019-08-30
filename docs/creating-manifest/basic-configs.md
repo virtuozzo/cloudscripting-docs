@@ -102,7 +102,7 @@ success: object/string
     - `name` *[optional]* [string] - text or JavaScript RegExp argument to filtering region's by name
 - `region` *[optional]* - region, where an environment will be installed. Option will be used only with **type** `install`.
 `targetRegions` has a higher priority than `region`. So in case when both of options have been set regions will be filtered according to the `targetRegions` rules
-- `nodeGroupAlias` *[optional]* - an ability to set aliases for existed in environments *nodeGroup*. Mode details [here](../selecting-containers/#nodegroup-aliases)
+- `nodeGroupAlias` *[optional]* - an ability to set aliases for existed in environments *nodeGroup*. Mode details [here](selecting-containers/#nodegroup-aliases)
 - `nodes` - an array to describe information about nodes for an installation. Option will be used only with **type** `install`
 - `engine` *[optional]* - engine <a href="../selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
 - `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with **type** `install` mode
@@ -115,7 +115,7 @@ success: object/string
 - `actions` *[optional]* - objects to describe all <a href="../actions/#custom-actions" target="_blank">custom actions</
 - `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation. More details [here](../addons/)
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](../visual-settings/#success-text-customization).
-- `mixins` *[optional]* - includes(mixes) the functionality and data from one manifest into another by URL or object. More details [here](../mixins/)
+- `mixins` *[optional]* - includes(mixes) the functionality and data from one manifest into another by URL or object. More details [here](mixins/)
 - "..." - the list of <a href="../events/" target="_blank">events</a> can be predefined before manifest is installed  
 
 ## Environment Installation
