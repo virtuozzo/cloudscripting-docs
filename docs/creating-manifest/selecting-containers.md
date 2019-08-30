@@ -269,7 +269,7 @@ The supported software stacks are categorized in the table below with specified 
 | vps, cache, build, proxysql, storage | centos6, centos7, ubuntu16-04, memcached, maven3, proxysql, storage, windows2008, windows2012                                                                                                                                | [Additional Stacks](https://docs.jelastic.com/software-stacks-versions#additional)   |
 
 !!! note
-    In case the root privileges are required within the certified template, it should be created as custom docker via [image](http://docs.cloudscripting.com/creating-manifest/basic-configs/#environment-installation) parameter. If so, take into account that some functionality/automation won’t be available such as Custom SSL, Managed Firewall, etc. To create custom docker follow the **Supported Tags Link** column to get the proper name of certified Jelastic docker images.
+    In case the root privileges are required within the certified template, it should be created as custom docker via [image](basic-configs/#environment-installation) parameter. If so, take into account that some functionality/automation won’t be available such as Custom SSL, Managed Firewall, etc. To create custom docker follow the **Supported Tags Link** column to get the proper name of certified Jelastic docker images.
 
 <a href="https://docs.jelastic.com/software-stacks-versions#engines">Engine versions</a>
 
