@@ -88,11 +88,11 @@ success: object/string
 ```
 @@!
 
-- `type` *[optional]* - type of the application installation. Available values are **install** and **update**. More details described above. 
-- `version` - *[optional]* - JPS type supported by the Jelastic Platform. See the <a href="/jelastic-cs-correspondence/" target="_blank">correspondence between version</a> page.
+- `type` *[optional]* - type of the application installation. Available values are **install** and **update**. More details described above 
+- `version` - *[optional]* - JPS type supported by the Jelastic Platform. See the <a href="/jelastic-cs-correspondence/" target="_blank">correspondence between version</a> page
 - `name` *[required]* - JPS custom name
 - `logo` *[optional]* - JPS image that will be displayed within custom add-ons
-- `description` - text string that describes a template. This section should always follow the template format version section.
+- `description` - text string that describes a template. This section should always follow the template format version section
 - `homepage` *[optional]* - link to any external application source
 - `categories` - categories available for manifests filtering                                                                        
 - `baseUrl` *[optional]* - custom <a href="#relative-links" target="_blank">relative links</a>                                       
@@ -101,22 +101,22 @@ success: object/string
     - `type` *[optional]* [array] - region's virtualization types
     - `name` *[optional]* [string] - text or JavaScript RegExp argument to filtering region's by name
 - `region` *[optional]* - region, where an environment will be installed. Option will be used only with **type** `install`.
-`targetRegions` has a higher priority than `region`. So in case when both of options have been set regions will be filtered according to the `targetRegions` rules.
-- `nodeGroupAlias` *[optional]* - an ability to set aliases for existed in environments *nodeGroup*
-- `nodes` - an array to describe information about nodes for an installation. Option will be used only with **type** `install`.
+`targetRegions` has a higher priority than `region`. So in case when both of options have been set regions will be filtered according to the `targetRegions` rules
+- `nodeGroupAlias` *[optional]* - an ability to set aliases for existed in environments *nodeGroup*. Mode details [here](../selecting-containers/#nodegroup-aliases)
+- `nodes` - an array to describe information about nodes for an installation. Option will be used only with **type** `install`
 - `engine` *[optional]* - engine <a href="../selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
-- `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with **type** `install` mode.
+- `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with **type** `install` mode
 - `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with **type** `install` mode.
-- `displayName` *[optional]* - display name for an environment. Required option for **type** `install`.
+- `displayName` *[optional]* - display name for an environment. Required option for **type** `install`
 - `skipNodeEmails` *[optional]* - an ability to skip sending emails about creating nodes. Emails are related only to nodes where implemented reset password functionality
 - `appVersion` *[optional]* - custom version of an application
 - `onInstall` *[optional]* - <a href="../events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
-- `startPage` *[optional]* - an [entry point](/creating-manifest/basic-configs/#entry-points) to be opened via the **Open in browser** button through a successful installation message
-- `actions` *[optional]* - objects to describe all <a href="../actions/#custom-actions" target="_blank">custom actions</a>
-- `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation
-- `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](/creating-manifest/visual-settings/#success-text-customization).
-- `mixins` *[optional]* - includes(mixes) the functionality and data from one manifest into another by URL or object. More details [here](../mixins/)   
-- "..." - the list of <a href="../events/" target="_blank">events</a> can be predefined before manifest is installed.   
+- `startPage` *[optional]* - an [entry point](../basic-configs/#entry-points) to be opened via the **Open in browser** button through a successful installation message
+- `actions` *[optional]* - objects to describe all <a href="../actions/#custom-actions" target="_blank">custom actions</
+- `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation. More details [here](../addons/)
+- `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](../visual-settings/#success-text-customization).
+- `mixins` *[optional]* - includes(mixes) the functionality and data from one manifest into another by URL or object. More details [here](../mixins/)
+- "..." - the list of <a href="../events/" target="_blank">events</a> can be predefined before manifest is installed  
 
 ## Environment Installation
 
@@ -133,8 +133,8 @@ The list of available parameters are:
 - `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any custom node group.
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.
-- `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`.  Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](/creating-manifest/addons/)
-- `tag` *[optional]* - an image tag for `dokerized` Jelastic templates with `nodeType` parameter. Full list of supported tag [here](/creating-manifest/selecting-containers/#dokerized-template-tags).
+- `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`.  Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](../addons/)
+- `tag` *[optional]* - an image tag for `dokerized` Jelastic templates with `nodeType` parameter. Full list of supported tag [here](../selecting-containers/#dokerized-template-tags).
 - `scalingMode` *[optional]* - *stateless* or *stateful* [scaling](https://docs.jelastic.com/horizontal-scaling) mode, the possible values are *'NEW'* or *'CLONE'* respectively. The default value is *'CLONE'* for *nodeGroup* types: *bl,cp,vds*. For the rest of *nodeGroup* types the default value is *'NEW'*.
 - `diskLimit` *[optional]* - sets a storage size limit. The default value is equal to disk quota for current *nodeGroup*. It is measured in GB by default. The MB and TB can be used as well. Examples:
     - 10 = 10 GB

@@ -670,7 +670,7 @@ values:
 ```
 @@!
 
-### dockertag
+### dockertags
 Field for displaying Docker tags within the list element.
 
 ![text](/img/dockertag.jpg)
@@ -1496,7 +1496,7 @@ where:
 - `value` *[boolean]* - enables/disables toggle value. Default value is *'false'*.
 
 ## Dynamic filling of the manifest fields
-Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit*  *onBeforeInstall*](/creating-manifest/events/#onbeforeinit) events.
+Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit*  *onBeforeInstall*](../events/#onbeforeinit) events.
 
 ## Target Nodes
 Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.                                
@@ -1742,7 +1742,7 @@ It will be displayed after clicking the appropriate button for an add-on. Accord
 
 - `href` *[optional]* - external link that is opened in a new browser tab and is executed only if the *settings* field is absent. In case of *href* execution, an *action* will not be carried out.
 
-Another sample with additional configurations where parameters can be enabled only if the [*settings*](/creating-manifest/visual-settings/#custom-settings) field is present.
+Another sample with additional configurations where parameters can be enabled only if the [*settings*](../visual-settings/#custom-settings) field is present.
 @@@
 ```yaml
 type: update
@@ -1890,7 +1890,7 @@ Here, the *main settings* form appears during installation process.
 ## Success Text Customization
 
 It is possible to customize the *success* text that is displayed upon successful installation either at the Dashboard, or via email notification.
-A success text can be defined as plain text or Markdown syntax. More details about Markdown syntax in Cloud Scripting [here](/creating-manifest/visual-settings/#markdown-description)
+A success text can be defined as plain text or Markdown syntax. More details about Markdown syntax in Cloud Scripting [here](../visual-settings/#markdown-description)
 
 - Setting relative to the *baseUrl* link that points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.
 @@@
@@ -2037,7 +2037,7 @@ Custom responses can be returned within <a href="../actions/#return" target="_bl
 
 ## Markdown Description
 
-Markdown is a light language with plain text formatting syntax. This language is supported by Cloud Scripting technology to describe a `description`, `success texts` or show [`custom response` texts](/creating-manifest/visual-settings/#success-text-customization).
+Markdown is a light language with plain text formatting syntax. This language is supported by Cloud Scripting technology to describe a `description`, `success texts` or show [`custom response` texts](../visual-settings/#success-text-customization).
 Cloud Scripting uses [CommonMark](http://commonmark.org/) implementation to convert Markdown syntax into html code.
 Therefore, there is a main supported Markdown tag list:
 
