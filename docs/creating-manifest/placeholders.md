@@ -24,6 +24,8 @@ The following specific groups of placeholders are singled out:
 
 - [Function Placeholders](placeholders/#function-placeholders)                             
 
+- [Data Processing Placeholders](placeholders/#data-processing-placeholders)                  
+
 - [Array Placeholders](placeholders/#array-placeholders)                                       
 
 - [File Path Placeholders](placeholders/#file-path-placeholders)                                 
@@ -418,6 +420,101 @@ globals:
 ```
 @@!
 Now, you can use <b>*${globals.pass}*</b> within the entire manifest.
+
+## Data Processing Placeholders
+
+Some data conversion routines can be done with the following placeholders:  
+- [toBase64()](#tobase64) - does data encoding into *Base64* format  
+- [fromBase64()](#frombase64) - decodes data from *Base64* format  
+- [md5()](#md5) - md5 hash generator  
+- [join](#join) - concatenates data provided as array of characters or objects  
+- [toJSON](#tojson) - converts array of of characters or objects into JSON format  
+- [contains](#contains) - allows to find word in the array of words or objects
+-[print](#print) - outputs an array of characters or objects to the console
+
+### toBase64
+Placeholder *toBase64* can be utilized as follows:   
+
+@@@
+```yaml
+type: install
+name: CS Placeholders - built-in data processing functions - toBase64
+
+globals:
+  test: test
+  
+onInstall:
+- assert: "'${globals.test.toBase64()}' == 'dGVzdA=='"
+- assert: "'${globals.unknown.toBase64()}' == ''"
+- set:
+    test2: test2
+- set:
+    test2: "${this.test2.toBase64()}"
+- assert: "'${this.test2}' == 'dGVzdDI='"
+```
+```json
+{
+  "type": "install",
+  "name": "CS Placeholders - built-in data processing functions - toBase64",
+  "globals": {
+    "test": "test"
+  },
+  "onInstall": [
+    {
+      "assert": "'${globals.test.toBase64()}' == 'dGVzdA=='"
+    },
+    {
+      "assert": "'${globals.unknown.toBase64()}' == ''"
+    },
+    {
+      "set": {
+        "test2": "test2"
+      }
+    },
+    {
+      "set": {
+        "test2": "${this.test2.toBase64()}"
+      }
+    },
+    {
+      "assert": "'${this.test2}' == 'dGVzdDI='"
+    }
+  ]
+}
+```
+@@!
+
+The result of the example execution in console:  
+```
+[17:43:32 CS.toBase64]: BEGIN INSTALLATION: CS Placeholders - built-in data processing functions - toBase64
+[17:43:33 CS.toBase64]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
+[17:43:34 CS.toBase64:1]: [SUCCESS] ASSERT: 'dGVzdA==' == 'dGVzdA=='
+[17:43:34 CS.toBase64:2]: [SUCCESS] ASSERT: '' == ''
+[17:43:35 CS.toBase64:3]: set:  {"test2":"test2"}
+[17:43:35 CS.toBase64:4]: set:  {"test2":"dGVzdDI="}
+[17:43:35 CS.toBase64:5]: [SUCCESS] ASSERT: 'dGVzdDI=' == 'dGVzdDI='
+[17:43:36 CS.toBase64]: END HANDLE EVENT: application/install
+[17:43:36 CS.toBase64]: END INSTALLATION: CS Placeholders - built-in data processing functions - toBase64  
+```
+### fromBase64
+
+
+### md5
+
+
+### join
+
+
+### toJSON
+
+
+### contains
+
+
+### print
+
+
+
 
 ## Array Placeholders
 
