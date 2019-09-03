@@ -424,17 +424,17 @@ Now, you can use <b>*${globals.pass}*</b> within the entire manifest.
 ## Data Processing Placeholders
 
 There are data conversion routines in Cloud Scripting which can be performed with specially developed *Data Processing Placeholders*:  
-- [toBase64()](#tobase64) - does data encoding into *Base64* format  
-- [fromBase64()](#frombase64) - decodes data from *Base64* format  
-- [md5()](#md5) - *md5* hash generator  
-- [join](#join) - concatenates data provided as array of characters or objects  
-- [toJSON](#tojson) - converts array of of characters or objects into JSON format  
-- [contains](#contains) - allows to find a word or object in the array of words or objects respectively   
-- [print](#print) - outputs an array of characters or objects to the [console](http://docs.cloudscripting.com/troubleshooting/#troubleshooting)  
+- [`${*.toBase64()}`](#${\*.tobase64()}) - does data encoding into *Base64* format  
+- [`${*.fromBase64()}`](#${\*.frombase64()}) - decodes data from *Base64* format  
+- [`${*.md5()}`](#${\*.md5()}) - *md5* hash generator  
+- [`${*.join()}`](#${\*.join()}) - concatenates data provided as array of words or objects  
+- [`${*.toJSON()}`](#${\*.tojson()}) - converts array of of words or objects into JSON format  
+- [`${*.contains()}`](#${\*.contains()}) - allows to find a word or object in the array of words or objects respectively   
+- [`${*.print()}`](#${\*.print()}) - outputs an array of words or objects to the [console](http://docs.cloudscripting.com/troubleshooting/#troubleshooting)  
 
-### toBase64
+### ${\*.toBase64()}
 
-Placeholder *toBase64* can be utilized as follows:   
+Placeholder *${\*.toBase64()}* can be utilized as follows:   
 
 @@@
 ```yaml
@@ -497,9 +497,9 @@ The result of the example execution in [console](http://docs.cloudscripting.com/
 [17:43:36 CS.toBase64]: END HANDLE EVENT: application/install
 [17:43:36 CS.toBase64]: END INSTALLATION: CS Placeholders - built-in data processing functions - toBase64  
 ```
-### fromBase64 
+### ${\*.fromBase64()} 
 
-Data decoding example from Base64 fromat to plain text:
+Data decoding example from Base64 format to plain text:
 
 @@@
 ```yaml
@@ -563,7 +563,7 @@ Compare the output with this:
 [08:13:42 CS:Placeholders.fromBase64]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - fromBase64
 ```
 
-### md5
+### ${\*.md5()}
 
 *md5* hash generation example:  
 
@@ -616,7 +616,7 @@ onInstall:
 ```
 @@!
 
-Check the output in the [console](http://docs.cloudscripting.com/troubleshooting/#troubleshooting):
+Check the output in the [console](http://docs.cloudscripting.com/troubleshooting/#troubleshooting):  
 ```
 [08:16:57 CS:Placeholders.md5]: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions] - md5
 [08:16:58 CS:Placeholders.md5]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
@@ -629,21 +629,365 @@ Check the output in the [console](http://docs.cloudscripting.com/troubleshooting
 [08:17:02 CS:Placeholders.md5]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - md5
 ```
 
-### join
+### ${\*.join()}
+
+The ${\*.join()} can be applied in case of array's elements should be concatenated with each other according to element filtering rule if any.
+The following example represents several joins:     
+
+@@@
+```yaml
+type: install
+name: CS:Placeholders - built-in data processing functions - join
+
+globals:
+  array: [1, 2, 3]
+  nestedArray : [{
+    array : [4, 5, 6]
+  }]
+  arrayOfObjects: [{ id: 7 }, { id : 8 }, { id : 9 }]
+  mixedArray: ["123", { id: 10 }]
+  mixedArray2: [{ id: 10 }, "123"]
+  mixedArray3: [{ id: 11 }, null, "456"]
+  
+onInstall:
+- assert: "'${globals.array.join()}' == '123'"
+- assert: "'${globals.array.join(,)}' == '1,2,3'"
+- assert: "'${globals.array.join(;)}' == '1;2;3'"
+- assert: "'${globals.nestedArray[0].array.join()}' == '456'"
+- assert: "'${globals.arrayOfObjects.join(id,)}' == '7,8,9'"
+- assert: "'${globals.arrayOfObjects.join(id,;)}' == '7;8;9'"
+- assert: "'${globals.arrayOfObjects.join(id, ;)}' == '7;8;9'"
+- assert: "'${globals.arrayOfObjects.join(id,\\,\\,)}' == '7,,8,,9'"
+- assert: "'${globals.arrayOfObjects.join(id, )}' == '7 8 9'"
+- assert: "'${globals.mixedArray.join(id, )}' == ' 10'"
+
+- value: "${globals.mixedArray2.join(id)}"
+  script: 'return { result: 0, success: (getParam(''value'') == ''{"id":10}id123'')};'
+- assert: "${response.success}"
+
+- assert: '''${globals.mixedArray2.join(;)}'' == ''{"id":10};123'''
+- assert: '''${globals.mixedArray2.join()}'' == ''{"id":10}123'''
+- assert: "'${globals.mixedArray3.join(id,#)}' == '11##'"
+- assert: "[${globals.array.join(\\,\\n)}].join(',') === '1,2,3'"
+```
+```json
+{
+  "type": "install",
+  "name": "CS:Placeholders - built-in data processing functions - join",
+  "globals": {
+    "array": [
+      1,
+      2,
+      3
+    ],
+    "nestedArray": [
+      {
+        "array": [
+          4,
+          5,
+          6
+        ]
+      }
+    ],
+    "arrayOfObjects": [
+      {
+        "id": 7
+      },
+      {
+        "id": 8
+      },
+      {
+        "id": 9
+      }
+    ],
+    "mixedArray": [
+      "123",
+      {
+        "id": 10
+      }
+    ],
+    "mixedArray2": [
+      {
+        "id": 10
+      },
+      "123"
+    ],
+    "mixedArray3": [
+      {
+        "id": 11
+      },
+      null,
+      "456"
+    ]
+  },
+  "onInstall": [
+    {
+      "assert": "'${globals.array.join()}' == '123'"
+    },
+    {
+      "assert": "'${globals.array.join(,)}' == '1,2,3'"
+    },
+    {
+      "assert": "'${globals.array.join(;)}' == '1;2;3'"
+    },
+    {
+      "assert": "'${globals.nestedArray[0].array.join()}' == '456'"
+    },
+    {
+      "assert": "'${globals.arrayOfObjects.join(id,)}' == '7,8,9'"
+    },
+    {
+      "assert": "'${globals.arrayOfObjects.join(id,;)}' == '7;8;9'"
+    },
+    {
+      "assert": "'${globals.arrayOfObjects.join(id, ;)}' == '7;8;9'"
+    },
+    {
+      "assert": "'${globals.arrayOfObjects.join(id,\\,\\,)}' == '7,,8,,9'"
+    },
+    {
+      "assert": "'${globals.arrayOfObjects.join(id, )}' == '7 8 9'"
+    },
+    {
+      "assert": "'${globals.mixedArray.join(id, )}' == ' 10'"
+    },
+    {
+      "value": "${globals.mixedArray2.join(id)}",
+      "script": "return { result: 0, success: (getParam('value') == '{\"id\":10}id123')};"
+    },
+    {
+      "assert": "${response.success}"
+    },
+    {
+      "assert": "'${globals.mixedArray2.join(;)}' == '{\"id\":10};123'"
+    },
+    {
+      "assert": "'${globals.mixedArray2.join()}' == '{\"id\":10}123'"
+    },
+    {
+      "assert": "'${globals.mixedArray3.join(id,#)}' == '11##'"
+    },
+    {
+      "assert": "[${globals.array.join(\\,\\n)}].join(',') === '1,2,3'"
+    }
+  ]
+}
+```
+@@!
+
+Console output:
+
+```
+[11:39:57 CS:Placeholders.join]: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions - join
+[11:39:58 CS:Placeholders.join]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
+[11:39:59 CS:Placeholders.join:1]: [SUCCESS] ASSERT: '123' == '123'
+[11:39:59 CS:Placeholders.join:2]: [SUCCESS] ASSERT: '1,2,3' == '1,2,3'
+[11:40:00 CS:Placeholders.join:3]: [SUCCESS] ASSERT: '1;2;3' == '1;2;3'
+[11:40:00 CS:Placeholders.join:4]: [SUCCESS] ASSERT: '456' == '456'
+[11:40:01 CS:Placeholders.join:5]: [SUCCESS] ASSERT: '7,8,9' == '7,8,9'
+[11:40:02 CS:Placeholders.join:6]: [SUCCESS] ASSERT: '7;8;9' == '7;8;9'
+[11:40:02 CS:Placeholders.join:7]: [SUCCESS] ASSERT: '7;8;9' == '7;8;9'
+[11:40:03 CS:Placeholders.join:8]: [SUCCESS] ASSERT: '7,,8,,9' == '7,,8,,9'
+[11:40:03 CS:Placeholders.join:9]: [SUCCESS] ASSERT: '7 8 9' == '7 8 9'
+[11:40:04 CS:Placeholders.join:10]: [SUCCESS] ASSERT: ' 10' == ' 10'
+[11:40:04 CS:Placeholders.join:12]: script:  {"body":"return { result: 0, success: (getParam('value') == '{\"id\":10}id123')};","value":"{\"id\":10}id123"}
+[11:40:04 CS:Placeholders.join:12]: script.response: {"result":0,"success":true}
+[11:40:05 CS:Placeholders.join:13]: [SUCCESS] ASSERT: true
+[11:40:05 CS:Placeholders.join:14]: [SUCCESS] ASSERT: '{"id":10};123' == '{"id":10};123'
+[11:40:06 CS:Placeholders.join:15]: [SUCCESS] ASSERT: '{"id":10}123' == '{"id":10}123'
+[11:40:06 CS:Placeholders.join:16]: [SUCCESS] ASSERT: '11##' == '11##'
+[11:40:07 CS:Placeholders.join:17]: [SUCCESS] ASSERT: [1,
+2,
+3].join(',') === '1,2,3'
+[11:40:07 CS:Placeholders.join]: END HANDLE EVENT: application/install
+[11:40:07 CS:Placeholders.join]: END INSTALLATION: CS:Placeholders - built-in data processing functions - join
+```
+
+### ${\*.toJSON()}
+
+This placeholder returns an array of words or objects in JSON format.  
+
+### ${\*.print()}
+
+Prints content of placeholders to the console.
+For example:   
+
+@@@
+```yaml
+type: install
+name: CS:Placeholders - built-in data processing functions- toJSON/print'
+  
+globals:
+  array: [1, 2, 3]   
+  object:
+    a: 1
+    b: 2
+    c: 3
+    
+onInstall:
+- assert: "'${globals.array.toJSON()}' == '[1,2,3]'"
+- assert: '''${globals.object.toJSON()}'' == ''{"a":1,"b":2,"c":3}'''
+- assert: "[${globals.array.toJSON(2)}].join('') == '1,2,3'"
+- assert: "'${globals.unknown.toJSON()}' == ''"
+- assert: "'${globals.unknown.print()}' == ''"
+- log: "${globals.print()}"
+```
+```json
+{
+  "type": "install",
+  "name": "CS:Placeholders - built-in data processing functions- toJSON/print'",
+  "globals": {
+    "array": [
+      1,
+      2,
+      3
+    ],
+    "object": {
+      "a": 1,
+      "b": 2,
+      "c": 3
+    }
+  },
+  "onInstall": [
+    {
+      "assert": "'${globals.array.toJSON()}' == '[1,2,3]'"
+    },
+    {
+      "assert": "'${globals.object.toJSON()}' == '{\"a\":1,\"b\":2,\"c\":3}'"
+    },
+    {
+      "assert": "[${globals.array.toJSON(2)}].join('') == '1,2,3'"
+    },
+    {
+      "assert": "'${globals.unknown.toJSON()}' == ''"
+    },
+    {
+      "assert": "'${globals.unknown.print()}' == ''"
+    },
+    {
+      "log": "${globals.print()}"
+    }
+  ]
+}
+```
+@@!
+
+Check the output for both placeholders ${\*.toJSON()} and ${\*.print()}:
+```
+[12:49:36 CS:Placeholders.toJSON/print']: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions- toJSON/print'
+[12:49:36 CS:Placeholders.toJSON/print']: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
+[12:49:37 CS:Placeholders.toJSON/print':1]: [SUCCESS] ASSERT: '[1,2,3]' == '[1,2,3]'
+[12:49:38 CS:Placeholders.toJSON/print':2]: [SUCCESS] ASSERT: '{"a":1,"b":2,"c":3}' == '{"a":1,"b":2,"c":3}'
+[12:49:38 CS:Placeholders.toJSON/print':3]: [SUCCESS] ASSERT: [[
+  1,
+  2,
+  3
+]].join('') == '1,2,3'
+[12:49:39 CS:Placeholders.toJSON/print':4]: [SUCCESS] ASSERT: '' == ''
+[12:49:39 CS:Placeholders.toJSON/print':5]: [SUCCESS] ASSERT: '' == ''
+[12:49:40 CS:Placeholders.toJSON/print':6]:> {
+  "array": [
+    1,
+    2,
+    3
+  ],
+  "object": {
+    "a": 1,
+    "b": 2,
+    "c": 3
+  }
+}
+[12:49:40 CS:Placeholders.toJSON/print']: END HANDLE EVENT: application/install
+[12:49:40 CS:Placeholders.toJSON/print']: END INSTALLATION: CS:Placeholders - built-in data processing functions- toJSON/print'
+```
 
 
+### ${\*.contains()}
 
-### toJSON
+This placeholder acts a regex that finds substring in a string.  
+For example:  
 
+@@@
+```yaml
+type: install
+name: CS:Placeholders - built-in data processing functions] - contains
 
+globals:
+  array: ["abc", "def", "ghi"]  
+  arrayOfObjects: [{"a": 1}, {"b": 2}, {"c": 3}, {"def": 4}] 
+  query: def
+  
+onInstall:
+- assert: "${globals.array.contains(def)}"
+- assert: "${globals.array.contains(jkl)} === false"
+- assert: "${globals.array.contains([globals.query])}"
+- assert: "${globals.array.contains([globals.array[0]])}"
+- assert: "${globals.arrayOfObjects.contains(b, 2)}"
+- assert: "${globals.unknown.contains(abc)} === false"
+```
+```json
+{
+  "type": "install",
+  "name": "CS:Placeholders - built-in data processing functions] - contains",
+  "globals": {
+    "array": [
+      "abc",
+      "def",
+      "ghi"
+    ],
+    "arrayOfObjects": [
+      {
+        "a": 1
+      },
+      {
+        "b": 2
+      },
+      {
+        "c": 3
+      },
+      {
+        "def": 4
+      }
+    ],
+    "query": "def"
+  },
+  "onInstall": [
+    {
+      "assert": "${globals.array.contains(def)}"
+    },
+    {
+      "assert": "${globals.array.contains(jkl)} === false"
+    },
+    {
+      "assert": "${globals.array.contains([globals.query])}"
+    },
+    {
+      "assert": "${globals.array.contains([globals.array[0]])}"
+    },
+    {
+      "assert": "${globals.arrayOfObjects.contains(b, 2)}"
+    },
+    {
+      "assert": "${globals.unknown.contains(abc)} === false"
+    }
+  ]
+}
+```
+@@!
 
-### contains
-
-
-### print
-
-
-
+The result of such regex action is a boolean value: *true* or *false*:
+```
+[14:33:59 CS:Placeholders.contains]: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions] - contains
+[14:34:00 CS:Placeholders.contains]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
+[14:34:01 CS:Placeholders.contains:1]: [SUCCESS] ASSERT: true
+[14:34:02 CS:Placeholders.contains:2]: [SUCCESS] ASSERT: false === false
+[14:34:03 CS:Placeholders.contains:3]: [SUCCESS] ASSERT: true
+[14:34:03 CS:Placeholders.contains:4]: [SUCCESS] ASSERT: true
+[14:34:04 CS:Placeholders.contains:5]: [SUCCESS] ASSERT: true
+[14:34:04 CS:Placeholders.contains:6]: [SUCCESS] ASSERT: false === false
+[14:34:04 CS:Placeholders.contains]: END HANDLE EVENT: application/install
+[14:34:05 CS:Placeholders.contains]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - contains
+```
 
 ## Array Placeholders
 
