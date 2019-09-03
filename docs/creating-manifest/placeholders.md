@@ -423,16 +423,17 @@ Now, you can use <b>*${globals.pass}*</b> within the entire manifest.
 
 ## Data Processing Placeholders
 
-Some data conversion routines can be done with the following placeholders:  
+There are data conversion routines in Cloud Scripting which can be performed with specially developed *Data Processing Placeholders*:  
 - [toBase64()](#tobase64) - does data encoding into *Base64* format  
 - [fromBase64()](#frombase64) - decodes data from *Base64* format  
-- [md5()](#md5) - md5 hash generator  
+- [md5()](#md5) - *md5* hash generator  
 - [join](#join) - concatenates data provided as array of characters or objects  
 - [toJSON](#tojson) - converts array of of characters or objects into JSON format  
-- [contains](#contains) - allows to find word in the array of words or objects
--[print](#print) - outputs an array of characters or objects to the console
+- [contains](#contains) - allows to find a word or object in the array of words or objects respectively   
+- [print](#print) - outputs an array of characters or objects to the [console](http://docs.cloudscripting.com/troubleshooting/#troubleshooting)  
 
 ### toBase64
+
 Placeholder *toBase64* can be utilized as follows:   
 
 @@@
@@ -484,7 +485,7 @@ onInstall:
 ```
 @@!
 
-The result of the example execution in console:  
+The result of the example execution in [console](http://docs.cloudscripting.com/troubleshooting/#troubleshooting):  
 ```
 [17:43:32 CS.toBase64]: BEGIN INSTALLATION: CS Placeholders - built-in data processing functions - toBase64
 [17:43:33 CS.toBase64]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
@@ -496,16 +497,144 @@ The result of the example execution in console:
 [17:43:36 CS.toBase64]: END HANDLE EVENT: application/install
 [17:43:36 CS.toBase64]: END INSTALLATION: CS Placeholders - built-in data processing functions - toBase64  
 ```
-### fromBase64
+### fromBase64 
 
+Data decoding example from Base64 fromat to plain text:
+
+@@@
+```yaml
+type: install
+name: CS:Placeholders - built-in data processing functions] - fromBase64
+
+globals:
+  test: dGVzdA==
+  
+onInstall:
+- assert: "'${globals.test.fromBase64()}' == 'test'"
+- assert: "'${globals.unknown.fromBase64()}' == ''"
+- set:
+    test2: dGVzdDI=
+- set:
+    test2: "${this.test2.fromBase64()}"
+- assert: "'${this.test2}' == 'test2'"
+```
+```json
+{
+  "type": "install",
+  "name": "CS:Placeholders - built-in data processing functions] - fromBase64",
+  "globals": {
+    "test": "dGVzdA=="
+  },
+  "onInstall": [
+    {
+      "assert": "'${globals.test.fromBase64()}' == 'test'"
+    },
+    {
+      "assert": "'${globals.unknown.fromBase64()}' == ''"
+    },
+    {
+      "set": {
+        "test2": "dGVzdDI="
+      }
+    },
+    {
+      "set": {
+        "test2": "${this.test2.fromBase64()}"
+      }
+    },
+    {
+      "assert": "'${this.test2}' == 'test2'"
+    }
+  ]
+}
+```
+@@!
+
+Compare the output with this:
+```
+[08:13:38 CS:Placeholders.fromBase64]: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions] - fromBase64
+[08:13:39 CS:Placeholders.fromBase64]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
+[08:13:40 CS:Placeholders.fromBase64:1]: [SUCCESS] ASSERT: 'test' == 'test'
+[08:13:40 CS:Placeholders.fromBase64:2]: [SUCCESS] ASSERT: '' == ''
+[08:13:41 CS:Placeholders.fromBase64:3]: set:  {"test2":"dGVzdDI="}
+[08:13:41 CS:Placeholders.fromBase64:4]: set:  {"test2":"test2"}
+[08:13:41 CS:Placeholders.fromBase64:5]: [SUCCESS] ASSERT: 'test2' == 'test2'
+[08:13:41 CS:Placeholders.fromBase64]: END HANDLE EVENT: application/install
+[08:13:42 CS:Placeholders.fromBase64]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - fromBase64
+```
 
 ### md5
 
+*md5* hash generation example:  
+
+@@@
+```yaml
+type: install
+name: CS:Placeholders - built-in data processing functions] - md5
+
+globals:
+  test: test
+  
+onInstall:
+- assert: "'${globals.test.md5()}' == '098f6bcd4621d373cade4e832627b4f6'"
+- assert: "'${globals.unknown.md5()}' == ''"
+- set:
+    test2: test2
+- set:
+    test2: "${this.test2.md5()}"
+- assert: "'${this.test2}' == 'ad0234829205b9033196ba818f7a872b'"
+```
+```json
+{
+  "type": "install",
+  "name": "CS:Placeholders - built-in data processing functions] - md5",
+  "globals": {
+    "test": "test"
+  },
+  "onInstall": [
+    {
+      "assert": "'${globals.test.md5()}' == '098f6bcd4621d373cade4e832627b4f6'"
+    },
+    {
+      "assert": "'${globals.unknown.md5()}' == ''"
+    },
+    {
+      "set": {
+        "test2": "test2"
+      }
+    },
+    {
+      "set": {
+        "test2": "${this.test2.md5()}"
+      }
+    },
+    {
+      "assert": "'${this.test2}' == 'ad0234829205b9033196ba818f7a872b'"
+    }
+  ]
+}
+```
+@@!
+
+Check the output in the [console](http://docs.cloudscripting.com/troubleshooting/#troubleshooting):
+```
+[08:16:57 CS:Placeholders.md5]: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions] - md5
+[08:16:58 CS:Placeholders.md5]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
+[08:16:59 CS:Placeholders.md5:1]: [SUCCESS] ASSERT: '098f6bcd4621d373cade4e832627b4f6' == '098f6bcd4621d373cade4e832627b4f6'
+[08:17:00 CS:Placeholders.md5:2]: [SUCCESS] ASSERT: '' == ''
+[08:17:00 CS:Placeholders.md5:3]: set:  {"test2":"test2"}
+[08:17:01 CS:Placeholders.md5:4]: set:  {"test2":"ad0234829205b9033196ba818f7a872b"}
+[08:17:01 CS:Placeholders.md5:5]: [SUCCESS] ASSERT: 'ad0234829205b9033196ba818f7a872b' == 'ad0234829205b9033196ba818f7a872b'
+[08:17:01 CS:Placeholders.md5]: END HANDLE EVENT: application/install
+[08:17:02 CS:Placeholders.md5]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - md5
+```
 
 ### join
 
 
+
 ### toJSON
+
 
 
 ### contains
