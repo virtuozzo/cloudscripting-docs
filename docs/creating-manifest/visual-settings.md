@@ -1503,7 +1503,14 @@ Ability to dynamically determine UI in JPS manifest is accessible via [*onBefore
 ## Target Nodes
 Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.                                
 
-Filtering for *targetNodes* can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.
+Filtering for *targetNodes* is performed by:   
+
+* object   
+
+* string   
+  
+**Object filtering** can be done by *nodeType*, *nodeGroup*, *dockerName* or *dockerTag*.  
+
 @@@
 ```yaml
 type: update
@@ -1555,53 +1562,196 @@ onInstall:
   }
 }
 ```
+@@!  
+There are two possible ways to define objects as *targetNodes*. E.g. for object *nodeGroup*:   
+First sets the required *nodeGroup* in an array:  
+@@@
+```yaml
+targetNodes: 
+  nodeGroup: [cp, bl]
+```
+```json
+{
+  "targetNodes": {
+    "nodeGroup": [
+      "cp",
+      "bl"
+    ]
+  }
+}
+```
 @@!
-There are two possible ways to define *targetNodes*.
-```
-"nodeType": ["..."] - to set the required nodeTypes in an array
 
-"nodeType": "..., ..." - to set the required nodeTypes being separated with commas
-```
+Second sets the required <em>nodeGroups</em> being separated with commas:  
 
-<b>Example</b>
+@@@
+```yaml
+targetNodes: 
+  nodeGroup: cp, bl
+```
+```json
+{
+  "targetNodes": {
+    "nodeGroup": "cp, bl"
+  }
+}
+```
+@@!
+  
+**String filtering** is performed by *nodeType* only and can be defined in an array or comma-separated list as well: 
+
+@@@
+```yaml
+targetNodes: [nginx, nginxphp] 
+```
+```json
+{
+  "targetNodes": [
+    "nginx",
+    "nginxphp"
+  ]
+}
+```
+@@!
+
+or  
+
+@@@
+```yaml
+targetNodes: nginx, nginxphp
+```
+```json
+{
+  "targetNodes": "nginx, nginxphp"
+}
+```
+@@!
+   
+**Example**
 
 Let’s suppose you have three environments with different topology.
 
-![target-nodes](/img/target-nodes.png)
+![target-nodes](/img/target-nodes-new.png)
 
-Within these environments, the *targetNodes* filtering for JPS installation can be performed with the next example.
+Within these environments, the same filtering of *targetNodes* for Add-On installation can be performed with the next examples.
+
+Object filtering example:  
+
 @@@
 ```yaml
 type: update
 name: targetNodes
 
 targetNodes:
-  nodeType: nginx, mysql5
+  nodeType: nginx, mysql
 
 onInstall:
-  createFile:
-    nodeGroup: cp
-    path: "/tmp/newFile"
+  cmd[nginx, mysql]: touch /tmp/newFile
 ```
 ``` json
 {
   "type": "update",
   "name": "targetNodes",
   "targetNodes": {
-    "nodeType": "nginx, mysql5"
+    "nodeType": "nginx, mysql"
   },
   "onInstall": {
-    "createFile": {
-      "nodeGroup": "cp",
-      "path": "/tmp/newFile"
-    }
+    "cmd[nginx, mysql]": "touch /tmp/newFile"
   }
 }
 ```
 @@!
-In this case, the filtering result will be the following.
 
-![TargetNodesFilter](/img/TargetNodesFilter.jpg)</center>
+String filtering example:  
+@@@
+```yaml
+type: update
+name: targetNodes
+
+targetNodes: nginx, mysql
+
+onInstall:
+  cmd[nginx, mysql]: touch /tmp/newFile
+```
+```json
+  {
+  "type": "update",
+  "name": "targetNodes",
+  "targetNodes": "nginx, mysql",
+  "onInstall": {
+    "cmd[nginx, mysql]": "touch /tmp/newFile"
+  }
+}
+```
+@@!
+
+In both these cases, the filtering result allows to install manifest on the environments that comprise either *nginx* load balancer node and/or *mysql* node. The other *nodeTypes* will be disabled for the installation on in any environment.  
+
+Nginx load balancer node is allowed.  
+![TargetNodesFilter](/img/target-nodes-nginx.png)</center>
+
+MySQL database node is allowed.  
+![TargetNodesFilter](/img/target-nodes-mysql.png)</center>
+
+No nodes fit  the filtering rule in the environment "Production".  
+![TargetNodesFilter](/img/target-nodes-production.png)</center>
+
+In order to perform manifest installation on all nodes in any environment the wildcard character __'*'__ can be used or its alias __any__.  
+
+@@@
+```yaml
+targetNodes: 
+  nodeGroup: '*'  
+```
+```json
+{
+  "targetNodes": {
+    "nodeGroup": "*"
+  }
+}
+```
+@@!
+
+or  
+
+@@@
+```yaml
+targetNodes: any  
+```
+```json
+{
+  "targetNodes": "any"
+}
+```
+@@!
+
+If the installation is required to be performed at the environment level avoiding installation on any node despite the *nodeGroup* parameter is defined the special value **none** is used.  
+@@@
+```yaml
+type: update
+name: targetNodes
+
+targetNodes: none
+
+onInstall:
+  cmd[nginx, mysql]: touch /tmp/newFile
+```
+```json
+  {
+  "type": "update",
+  "name": "targetNodes",
+  "targetNodes": "none",
+  "onInstall": {
+    "cmd[nginx, mysql]": "touch /tmp/newFile"
+  }
+}
+```
+@@!
+
+In this case *Nodes* field will be hidden.  
+
+![TargetNodesFilter](/img/target-nodes-none.png)</center>
+
 
 ## Custom Menus
 Menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](#custom-buttons).
