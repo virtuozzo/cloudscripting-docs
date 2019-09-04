@@ -1564,20 +1564,28 @@ onInstall:
 There are two possible ways to define objects as *targetNodes*. E.g. for object *nodeGroup*:  
 ```
 targetNodes: 
-  nodeGroup: [cp, bl] - sets the required *nodeGroups* in an array
-  
-targetNodes: 
-  nodeGroup: cp, bl - sets the required *nodeGroups* being separated with commas
+  nodeGroup: [cp, bl] - sets the required <em>nodeGroup</em> in an array
 ```
+
+or  
+
+```
+targetNodes: 
+  nodeGroup: cp, bl - sets the required <em>nodeGroups</em> being separated with commas  
+```  
   
 **String filtering** is performed by *nodeType* only and can be defined in an array or comma-separated list as well:  
 ```
-targetNodes: [nginx, nginxphp]  
-    
+targetNodes: [nginx, nginxphp] 
+```
+
+or  
+
+```
 targetNodes: nginx, nginxphp
 ```
 
-<b>Example</b>
+**Example**
 
 Let’s suppose you have three environments with different topology.
 
@@ -1586,6 +1594,7 @@ Let’s suppose you have three environments with different topology.
 Within these environments, the same filtering of *targetNodes* for Add-On installation can be performed with the next examples.
 
 Object filtering example:  
+
 @@@
 ```yaml
 type: update
@@ -1643,7 +1652,7 @@ MySQL database node is allowed.
 ![TargetNodesFilter](/img/target-nodes-mysql.png)</center>
 
 No nodes fit  the filtering rule in the environment "Production".  
-![TargetNodesFilter](/img/target-nodes-none.png)</center>
+![TargetNodesFilter](/img/target-nodes-production.png)</center>
 
 In order to perform manifest installation on all nodes in any environment the wildcard character __'*'__ can be used or its alias __any__.  
 
@@ -1651,9 +1660,11 @@ In order to perform manifest installation on all nodes in any environment the wi
 targetNodes: 
   nodeGroup: '*'  
 ```  
-or
+
+or  
+
 ```
-targetNodes: any
+targetNodes: any  
 ```
 
 If the installation is required to be performed at the environment level avoiding installation on any node despite the *nodeGroup* parameter is defined the special value **none** is used.  
@@ -1676,7 +1687,9 @@ onInstall:
     "cmd[nginx, mysql]": "touch /tmp/newFile"
   }
 }
-```  
+```
+@@!
+
 In this case *Nodes* field will be hidden.  
 
 ![TargetNodesFilter](/img/target-nodes-none.png)</center>
