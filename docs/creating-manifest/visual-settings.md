@@ -1504,8 +1504,8 @@ Ability to dynamically determine UI in JPS manifest is accessible via [*onBefore
 Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.                                
 
 Filtering for *targetNodes* is performed by:   
-- object   
-- string  
+* object   
+* string  
   
 **Object filtering** can be done by *nodeType*, *nodeGroup*, *dockerName* or *dockerTag*.  
 
