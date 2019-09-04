@@ -1561,30 +1561,70 @@ onInstall:
 }
 ```
 @@!  
-There are two possible ways to define objects as *targetNodes*. E.g. for object *nodeGroup*:  
-```
+There are two possible ways to define objects as *targetNodes*. E.g. for object *nodeGroup*:   
+First sets the required *nodeGroup* in an array:  
+@@@
+```yaml
 targetNodes: 
-  nodeGroup: [cp, bl] - sets the required <em>nodeGroup</em> in an array
+  nodeGroup: [cp, bl]
 ```
-
-or  
-
+```json
+{
+  "targetNodes": {
+    "nodeGroup": [
+      "cp",
+      "bl"
+    ]
+  }
+}
 ```
+@@!
+
+Second sets the required <em>nodeGroups</em> being separated with commas:  
+
+@@@
+```yaml
 targetNodes: 
-  nodeGroup: cp, bl - sets the required <em>nodeGroups</em> being separated with commas  
-```  
+  nodeGroup: cp, bl
+```
+```json
+{
+  "targetNodes": {
+    "nodeGroup": "cp, bl"
+  }
+}
+```
+@@!
   
-**String filtering** is performed by *nodeType* only and can be defined in an array or comma-separated list as well:  
-```
+**String filtering** is performed by *nodeType* only and can be defined in an array or comma-separated list as well: 
+
+@@@
+```yaml
 targetNodes: [nginx, nginxphp] 
 ```
+```json
+{
+  "targetNodes": [
+    "nginx",
+    "nginxphp"
+  ]
+}
+```
+@@!
 
 or  
 
-```
+@@@
+```yaml
 targetNodes: nginx, nginxphp
 ```
-
+```json
+{
+  "targetNodes": "nginx, nginxphp"
+}
+```
+@@!
+   
 **Example**
 
 Let’s suppose you have three environments with different topology.
@@ -1630,8 +1670,8 @@ targetNodes: nginx, mysql
 
 onInstall:
   cmd[nginx, mysql]: touch /tmp/newFile
-  ```
-  ```json
+```
+```json
   {
   "type": "update",
   "name": "targetNodes",
@@ -1656,16 +1696,32 @@ No nodes fit  the filtering rule in the environment "Production".
 
 In order to perform manifest installation on all nodes in any environment the wildcard character __'*'__ can be used or its alias __any__.  
 
-```
+@@@
+```yaml
 targetNodes: 
   nodeGroup: '*'  
-```  
+```
+```json
+{
+  "targetNodes": {
+    "nodeGroup": "*"
+  }
+}
+```
+@@!
 
 or  
 
-```
+@@@
+```yaml
 targetNodes: any  
 ```
+```json
+{
+  "targetNodes": "any"
+}
+```
+@@!
 
 If the installation is required to be performed at the environment level avoiding installation on any node despite the *nodeGroup* parameter is defined the special value **none** is used.  
 @@@
@@ -1677,8 +1733,8 @@ targetNodes: none
 
 onInstall:
   cmd[nginx, mysql]: touch /tmp/newFile
-  ```
-  ```json
+```
+```json
   {
   "type": "update",
   "name": "targetNodes",
