@@ -1507,7 +1507,7 @@ Filtering for *targetNodes* is performed by:
 - object   
 - string  
   
-**Object filtering** can be done by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.  
+**Object filtering** can be done by *nodeType*, *nodeGroup*, *dockerName* or *dockerTag*.  
 
 @@@
 ```yaml
