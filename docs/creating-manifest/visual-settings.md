@@ -1503,7 +1503,12 @@ Ability to dynamically determine UI in JPS manifest is accessible via [*onBefore
 ## Target Nodes
 Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.                                
 
-Filtering for *targetNodes* can be performed by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.
+Filtering for *targetNodes* is performed by:   
+- object   
+- string  
+  
+**Object filtering** can be done by *nodeType*, *nodeGroup*, *dockerOs*, *dockerName* or *dockerTag*.  
+
 @@@
 ```yaml
 type: update
@@ -1555,19 +1560,28 @@ onInstall:
   }
 }
 ```
-@@!
-There are two possible ways to define *targetNodes*.
+@@!  
+There are two possible ways to define objects as *targetNodes*. E.g. for object *nodeGroup*:  
 ```
-"nodeType": ["..."] - to set the required nodeTypes in an array
-
-"nodeType": "..., ..." - to set the required nodeTypes being separated with commas
+targetNodes: 
+  nodeGroup: [cp, bl] - sets the required *nodeGroups* in an array
+  
+targetNodes: 
+  nodeGroup: cp, bl - sets the required *nodeGroups* being separated with commas
+```
+  
+**String filtering** is performed by *nodeType* only and can be defined in an array or comma-separated list as well:  
+```
+targetNodes: [nginx, nginxphp]  
+    
+targetNodes: nginx, nginxphp
 ```
 
 <b>Example</b>
 
 Let’s suppose you have three environments with different topology.
 
-![target-nodes](/img/target-nodes.png)
+![target-nodes](/img/target-nodes-new.png)
 
 Within these environments, the *targetNodes* filtering for JPS installation can be performed with the next example.
 @@@
