@@ -1499,6 +1499,84 @@ where:
 - `value` *[boolean]* - enables/disables toggle value. Default value is *'false'*.   
 
 ### tooltip
+
+The field represents a question mark icon displaying the message in a popup on hover.
+Could be used inside **compositefield** in case field's **tooltip** property is not enough.   
+
+Properties:
+
+  * **text** [required] - a message to be displayed
+  * **x** [optional] - left coordinate of question mark icon in pixels. Applicable only for tooltips with target: label. Defaults to: 3
+  * **y** [optional] - top coordinate of question mark icon in pixels. Applicable only for tooltips with
+  * **minWidth** [optional] - The minimum width of the tip in pixels. Defaults to 45
+  * **maxWidth** [optional] - The maximum width of the tip in pixel. The maximum supported value is 500. Defaults to 400.
+  * **anchor** [optional] - aligns tooltip with question mark icon relative to the specified anchor points.  
+    The property sрould be specified as two anchor points separated by a dash. The first value is used as the tooltip's anchor point, and the second value is used as the question mark icon anchor point. Defaults to: **bl-t**.  
+
+**Available anchor points:**
+
+  * tl - the top left corner
+  * t - the center of the top edge
+  * tr - the top right corner
+  * l - the center of the left edge
+  * c - in the center of the element
+  * r - the center of the right edge
+  * bl - the bottom left corner
+  * b - the center of the bottom edge
+  * br - the bottom right corner
+
+In addition to the anchor points, the anchor parameter also supports the "**?**" character. If "*?*" is passed at the end of the position string (e.g. **l-r?**), the element will attempt to align as specified, but the position will be adjusted to constrain to the viewport if necessary. Note that the element being aligned might be swapped to align to a different position than that specified in order to enforce the viewport constraints.  
+
+**Example**
+@@@
+```yaml
+type: install
+name: Inline Tooltip
+
+settings:
+  fields:      
+    - type: compositefield
+      caption: Composite Field
+      items:
+        - type: string
+          placeholder: String
+          flex: 1          
+        - type: tooltip
+          text: Tooltip!
+```
+```json
+{
+  "type": "install",
+  "name": "Inline Tooltip",
+  "settings": {
+    "fields": [
+      {
+        "type": "compositefield",
+        "caption": "Composite Field",
+        "items": [
+          {
+            "type": "string",
+            "placeholder": "String",
+            "flex": 1
+          },
+          {
+            "type": "tooltip",
+            "text": "Tooltip!"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+@@!
+
+Result:  
+
+![Tooltip-string](/img/tooltip-field-inline.png)</center>
+
+
+#### tooltip option
 The **tooltip** option is common to all field types:  
 
 ```
