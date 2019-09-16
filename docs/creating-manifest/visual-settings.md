@@ -100,18 +100,19 @@ where:
         * `hostpicker` - drop-down menu with [environment hosts](#hostpicker)
         * `host-picker` - alias to `hostpicker`
         * `toggle` - [switcher](#toggle) between two values
-    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. See more info on <a href="https://www.w3.org/wiki/HTML/Elements/input#Point" target="_blank">type attribute</a>
+    - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. See more info on [type attribute](https://www.w3.org/wiki/HTML/Elements/input#Point)
     - `name` - input field name, that can be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests
     - `default` *[optional]* - default value for the input field
     - `caption` *[optional]* - field label
-    - `placeholder` *[optional]* - used <a href="/reference/placeholders/" target="blank">placeholders</a>
+    - `tooltip` *[optional]*[object/string] - the tooltip for the field. Can be a config object or string. See more info on [tooltip](#tooltip)
+    - `placeholder` *[optional]* - used [placeholders](placeholders/)
     - `required` *[optional]* - possible values are *'true'* & *'false'*. If left empty, default value is *'true'*
     - `regex` *[optional]* - constructor for testing JavaScript RegExp object that refers to the field value, during validation. If test fails, the field will be marked as invalid using *regexText*. The default value is *'null'*
     - `regexText` *[optional]* - displays error message in case of *regex* test failure during validation. The default value is *' '* (blank space)
     - `vtype` *[optional]* - validation type name. Possible values:
         - `alpha` - keystroke filter mask applied to alpha input. The default value is *'/[a-z_]/i'*
         - `alphanum` - keystroke filter mask applied to alphanumeric input. The default value is *'/[a-z0-9_]/i'*
-        - `email` - keystroke filter mask applied to email input. The default value is *'/[a-z0-9_.-+\'@]/i'*. See <a href="http://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.VTypes-method-email" target="_blank">appropriate method</a> for more information about complex email validation
+        - `email` - keystroke filter mask applied to email input. The default value is *'/[a-z0-9_.-+\'@]/i'*. See [appropriate method](http://docs.sencha.com/extjs/3.4.0/#!/api/Ext.form.VTypes-method-email) for more information about complex email validation
         - `URL` - keystroke filter mask applied to URL input
     - `vtypeText` *[optional]* - custom error message to be displayed instead of the default one, provided by *vtype* for this field. The default value is *' '* (blank space)
 
@@ -1495,7 +1496,193 @@ where:
 
 - `name` *[optional]* - name of the field
 - `caption` *[optional]* - field label
-- `value` *[boolean]* - enables/disables toggle value. Default value is *'false'*.
+- `value` *[boolean]* - enables/disables toggle value. Default value is *'false'*.   
+
+### tooltip
+The **tooltip** option is common to all field types:  
+
+```
+tooltip: object/string
+```
+
+The tooltip for the field. Can be a config object or string.
+
+**Tooltip config object**:  
+
+```
+ text: string or localization object  
+ x: number
+ y: number
+ target: string
+ minWidth: number
+ maxWidth: number
+ anchor: string
+ ```  
+ where:   
+ 
+   * text [required] - a message to be displayed  
+   * x [optional] - left coordinate of question mark icon in pixels. Applicable only for tooltips with target: label. Defaults to: 3  
+   * y [optional] - top coordinate of question mark icon in pixels. Applicable only for tooltips with target: label. Defaults to: 1  
+   * target [optional] - the location where the message text should display. Must be one of the following values:
+       * label - add a question mark icon to the right of the field label, displaying the message in a popup on hover. This is the default  
+       * side - display a tip containing the message when the field receives focus. The tip is displayed to the right of the field by default (the tip position could be changed using anchor property). Defaults to: label  
+   * minWidth [optional] - The minimum width of the tip in pixels. Defaults to 45  
+   * maxWidth [optional] - The maximum width of the tip in pixel. The maximum supported value is 500. Defaults to 400  
+   * anchor [optional] - aligns tooltip with target element (question mark icon or the field itself) relative to the specified anchor points  
+    The property sрould be specified as two anchor points separated by a dash. The first value is used as the tooltip's anchor point, and the second value is used as the target's anchor point (question mark icon or the field itself).  
+
+**Available anchor points:**
+
+   * **tl** - the top left corner  
+   * **t** - the center of the top edge  
+   * **tr** - the top right corner  
+   * **l** - the center of the left edge  
+   * **c** - in the center of the element  
+   * **r** - the center of the right edge  
+   * **bl** - the bottom left corner  
+   * **b** - the center of the bottom edge  
+   * **br** - the bottom right corner  
+
+In addition to the **anchor** points, the anchor parameter also supports the "**?**" character. If "*?*" is passed at the end of the position string (e.g. *l-r?*), the element will attempt to align as specified, but the position will be adjusted to constrain to the viewport if necessary. Note that the element being aligned might be swapped to align to a different position than that specified in order to enforce the viewport constraints.  
+
+**Default values:**
+
+   * *for target: label:* **bl-t**
+   * *for target: side:* **l-r**
+
+Instead of the **config object**, the tooltip could be added as a **string** which represents a default tooltip with custom message to be displayed.  
+
+**Examples:**
+
+  * Tooltips (default)  
+
+@@@
+```yaml
+type: install
+name: 'Tooltips (default)'
+
+settings:
+  fields:
+  - caption: String
+    type: string        
+    tooltip:  This is a string
+    ```
+    ```json
+    {
+  "type": "install",
+  "name": "Tooltips (default)",
+  "settings": {
+    "fields": [
+      {
+        "caption": "String",
+        "type": "string",
+        "tooltip": "This is a string"
+      }
+    ]
+  }
+}
+```
+@@!
+
+Result: 
+![Tooltip-string](/img/tooltip-string.png)</center>  
+
+  * Tooltips (target: side)  
+@@@
+```yaml
+type: install
+name: 'Tooltips (target: side)'
+
+settings:
+  fields:
+  - caption: String
+    type: string        
+    tooltip: 
+        target: side
+        text: This is a string
+```
+```json
+{
+  "type": "install",
+  "name": "Tooltips (target: side)",
+  "settings": {
+    "fields": [
+      {
+        "caption": "String",
+        "type": "string",
+        "tooltip": {
+          "target": "side",
+          "text": "This is a string"
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+Result:  
+![Tooltip-target-side](/img/tooltip-target-side.png)</center>  
+
+  * Tooltips Inside Composite Field   
+@@@
+```yaml
+type: install
+name: Tooltips Inside Composite Field
+
+settings:
+  fields:
+  - type: compositefield
+    caption: Composite Field
+    defaultMargins: 0 0 0 5
+    items: 
+      - type: checkbox
+        caption: Checkbox
+        tooltip: Checkbox!           
+        
+      - type: string 
+        placeholder: String
+        flex: 1
+        tooltip:
+          target: side
+          text: String!          
+
+```
+```json
+{
+  "type": "install",
+  "name": "Tooltips Inside Composite Field",
+  "settings": {
+    "fields": [
+      {
+        "type": "compositefield",
+        "caption": "Composite Field",
+        "defaultMargins": "0 0 0 5",
+        "items": [
+          {
+            "type": "checkbox",
+            "caption": "Checkbox",
+            "tooltip": "Checkbox!"
+          },
+          {
+            "type": "string",
+            "placeholder": "String",
+            "flex": 1,
+            "tooltip": {
+              "target": "side",
+              "text": "String!"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+@@!
+
+Result:  
+![Tooltip-composit-field](/img/tooltip-composit-field.png)</center>  
+
 
 ## Dynamic filling of the manifest fields
 Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit*  *onBeforeInstall*](events/#onbeforeinit) events.
