@@ -278,7 +278,132 @@ The supported software stacks are categorized in the table below with specified 
 |engine|java6<br>java7<br>java8<br>jdk-9<br>jdk-10<br>jdk-1.8.0_144<br>jdk-1.8.0_152|php5.3<br>php5.4<br>php5.5<br>php5.6<br>php7<br>php7.1.13<br>php7.1.7<br>php7.2.1|ruby1.9<br>ruby2.0<br>ruby2.1<br>ruby2.2<br>ruby2.3<br>ruby2.4.1|python2.7<br>python3.3<br>python3.4<br>python3.5|nodejs6.11.5<br>nodejs6.12.3<br>nodejs8.9.0<br>nodejs8.9.4<br>nodejs9.0.0<br>nodejs9.4.0|.NET 4|
 
 !!! note
-    The list of supported <a href="https://docs.jelastic.com/software-stacks-versions" target="_blank">software stacks</a> can vary depending on your Jelastic Platform version - it can be checked at your dashboard.              
+    The list of supported <a href="https://docs.jelastic.com/software-stacks-versions" target="_blank">software stacks</a> can vary depending on your Jelastic Platform version - it can be checked at your dashboard.    
+    
+## Selecting Hardware Hosts
+
+There is an ability in Jelastic PaaS to select the hardware for the user's application with the help of the [multi zones](https://ops-docs.jelastic.com/multi-zones) approach. If a user is aware all of the [labels](https://ops-docs.jelastic.com/multi-zones#host-labels) assigned for the hardware hosts within the platform he can decide which hosts across all of the available regions can be used to install the user's environment.  
+Hardware host selection is performed by **distribution** parameter which defines the logic in the [layer specifics](basic-configs/#nodes-definition), which consist of the following two options:  
+  * `zones` - sets a filter for allowed zones (groups of hosts custom-defined by labels) in the “{name}: {value}” format, e.g. zones: [{provider: azure}, {provider: amazon}]  
+  * `mode` - defines the behavior in case of the target zone unavailability  
+    * *SOFT* - the operation should proceed on the next zone/host defined by the multi zones algorithm (this option is used by default)  
+    * *STRICT* - the operation should be terminated with an error  
+ 
+ !!! note   
+    * the distribution is performed in the within of a single host group (i.e. user environment region)  
+    * the default zone *{name}* can be skipped when providing zones parameter, i.e. the *zones: [“a”, “b”]* and *zones: [{zone: a}, {zone: b}]* expressions are equal  
+    * if zones with two or more *{value}* are specified for a single *{name}*, hosts with either of these values will be allowed for distribution  
+    * if zones with two or more *{name}* are specified, only hosts with all these labels will be allowed for distribution  
+    * if zones are not specified, distribution is performed across all hosts   
+    * the maximum number of elements in zones is 10  
+    * the maximum number of unique *{value}* per each *{name}* is 20  
+
+For example, the distribution configured in the following package ensures nodes are created only on the hosts with the **disk: ssd** label.  
+
+ @@@
+ ```yaml
+ name: "multi-zone"
+type: install
+
+nodes:
+  nodeType: docker
+  fixedCloudlets: 1
+  flexibleCloudlets: 8
+  image: jelastic/tomcat:latest
+  count: 2
+  distribution:
+    mode: SOFT
+    zones: 
+    - disk: ssd
+```
+```json
+{
+  "name": "multi-zone",
+  "type": "install",
+  "nodes": {
+    "nodeType": "docker",
+    "fixedCloudlets": 1,
+    "flexibleCloudlets": 8,
+    "image": "jelastic/tomcat:latest",
+    "count": 2,
+    "distribution": {
+      "mode": "SOFT",
+      "zones": [
+        {
+          "disk": "ssd"
+        }
+      ]
+    }
+  }
+}
+```
+@@!
+
+The *zones* parameter can be provided dynamically defining pair of label name and value via user interface.  
+For example:  
+
+@@@
+```yaml
+name: "multi-zone"
+type: install
+
+settings:
+  fields:
+  - hideLabel: false
+    type: string
+    caption: Label name
+    name: labelname
+  - hideLabel: false
+    type: string
+    caption: Label value
+    name: labelvalue
+    
+nodes:
+  - nodeType: tomcat
+    cloudlets: 6
+    distribution:
+      mode: SOFT
+      zones: 
+      - "${settings.labelname}": "${settings.labelvalue}"
+```
+```json
+      {
+  "name": "multi-zone",
+  "type": "install",
+  "settings": {
+    "fields": [
+      {
+        "hideLabel": false,
+        "type": "string",
+        "caption": "Label name",
+        "name": "labelname"
+      },
+      {
+        "hideLabel": false,
+        "type": "string",
+        "caption": "Label value",
+        "name": "labelvalue"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "nodeType": "tomcat",
+      "cloudlets": 6,
+      "distribution": {
+        "mode": "SOFT",
+        "zones": [
+          {
+            "${settings.labelname}": "${settings.labelvalue}"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+@@!
+
 
 <h2>What’s next?</h2>
 
