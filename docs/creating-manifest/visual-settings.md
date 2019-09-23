@@ -675,7 +675,7 @@ values:
 ### dockertags
 Field for displaying **Docker tags** within the *[list](#list)* element.
 
-![text](/img/dockertag.jpg)
+![text](/img/dockertags.png)
 
 The *tags* of specific *nodeType* can be displayed like in the wizard with no acquiring from the server:   
 @@@
