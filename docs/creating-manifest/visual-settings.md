@@ -85,7 +85,7 @@ where:
 <!--        * `checkboxlist` - [checkbox](#checkboxlist) grouping -->
         * `radiolist` - [radio field](#radiolist) grouping
         * `radio-fieldset` - alias to `radiolist`
-        * `dockertags` - drop-down menu with a list of [docker tags](#dockertag)
+        * `dockertags` - drop-down menu with a list of [docker tags](#dockertags)
         * `compositefield` - [component](#compositefield) that comprises any available field
         * `slider` - [slider element](#slider) as a form field
         * `envlist` - [list of environments](#envlist) available for a corresponding account
