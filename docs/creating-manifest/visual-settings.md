@@ -673,69 +673,11 @@ values:
 @@!
 
 ### dockertags
-Field for displaying Docker tags within the list element.
+Field for displaying **Docker tags** within the *[list](#list)* element.
 
 ![text](/img/dockertag.jpg)
-@@@
-```yaml
-name: Cloud Scripting
 
-settings:
-  fields:
-  - type: dockertags
-    name: tag
-    values:
-    - name: latest
-    - name: first
-
-dockerImage:
-  name: jelastic/pokemongo-map
-  registry: ''
-  username: ''
-  password: ''
-
-env: {}
-```
-``` json
-{
-  "name": "Cloud Scripting",
-  "settings": {
-    "fields": [
-      {
-        "type": "dockertags",
-        "name": "tag",
-        "values": [
-          {
-            "name": "latest"
-          },
-          {
-            "name": "first"
-          }
-        ]
-      }
-    ]
-  },
-  "dockerImage": {
-    "name": "jelastic/pokemongo-map",
-    "registry": "",
-    "username": "",
-    "password": ""
-  },
-  "env": {}
-}
-```
-@@!
-
-where:
-
-- `name` *[required]* - should have the *'tag'* value
-- `values` *[required]* - Docker tag values (*name*: *"tag_name"* is required). By default, Docker image is pulled from the Docker Hub registry.
-- `dockerImage` - Docker image details
-   - `name` - *repository* is required
-   - `registry`, `username`, `password` [*optional*]
-- `env` - required object (can be empty)
-
-The tags can be displayed like in the wizard with no acquiring from the server:   
+The *tags* of specific *nodeType* can be displayed like in the wizard with no acquiring from the server:   
 @@@
 ```yaml
 type: install
@@ -763,6 +705,10 @@ settings:
 }
 ```
 @@!
+
+where:
+
+- `name` *[required]* - should have the *'tag'* value
 
 With an **image** parameter tags can be acquired from:  
 
