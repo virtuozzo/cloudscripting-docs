@@ -85,7 +85,7 @@ where:
 <!--        * `checkboxlist` - [checkbox](#checkboxlist) grouping -->
         * `radiolist` - [radio field](#radiolist) grouping
         * `radio-fieldset` - alias to `radiolist`
-        * `dockertags` - drop-down menu with a list of [docker tags](#dockertag)
+        * `dockertags` - drop-down menu with a list of [docker tags](#dockertags)
         * `compositefield` - [component](#compositefield) that comprises any available field
         * `slider` - [slider element](#slider) as a form field
         * `envlist` - [list of environments](#envlist) available for a corresponding account
@@ -734,6 +734,133 @@ where:
    - `name` - *repository* is required
    - `registry`, `username`, `password` [*optional*]
 - `env` - required object (can be empty)
+
+The tags can be displayed like in the wizard with no acquiring from the server:   
+@@@
+```yaml
+type: install
+name: Dockertags aquiring
+
+settings:
+  fields:
+    - type: dockertags      
+      nodeType: dockerengine
+      name: tag
+```
+```json
+{
+  "type": "install",
+  "name": "Dockertags aquiring",
+  "settings": {
+    "fields": [
+      {
+        "type": "dockertags",
+        "nodeType": "dockerengine",
+        "name": "tag"
+      }
+    ]
+  }
+}
+```
+@@!
+
+With an **image** parameter tags can be acquired from:  
+
+  * Docker Hub registry:  
+  @@@
+  ```yaml
+  type: install
+name: Dockertags aquiring
+
+settings:
+  fields:
+    - type: dockertags      
+      image: devbeta/docker-ce
+      name: tag
+```
+```json
+{
+  "type": "install",
+  "name": "Dockertags aquiring",
+  "settings": {
+    "fields": [
+      {
+        "type": "dockertags",
+        "image": "devbeta/docker-ce",
+        "name": "tag"
+      }
+    ]
+  }
+}
+```
+@@!
+  * Custom Registry:  
+@@@
+```yaml
+type: install
+name: Dockertags aquiring
+
+settings:
+  fields:
+    - type: dockertags      
+      image: 
+        registry: example.com/devbeta/docker-ce
+        user: admin
+        password: 123456
+        name: tag 
+```
+```json
+{
+  "type": "install",
+  "name": "Dockertags aquiring",
+  "settings": {
+    "fields": [
+      {
+        "type": "dockertags",
+        "image": {
+          "registry": "example.com/devbeta/docker-ce",
+          "user": "admin",
+          "password": 123456,
+          "name": "tag"
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
+An alias **nodetags** can be used instead of *dockertags* parameter:  
+
+@@@
+```yaml
+type: install
+name: Dockertags aquiring
+
+settings:
+  fields:
+    - type: nodetags      
+      nodeType: dockerengine
+      name: tag
+```
+```json
+{
+  "type": "install",
+  "name": "Dockertags aquiring",
+  "settings": {
+    "fields": [
+      {
+        "type": "nodetags",
+        "nodeType": "dockerengine",
+        "name": "tag"
+      }
+    ]
+  }
+}
+```
+@@!
+
+
 
 ### compositefield
 Compositefield is a container with specific functionality and structural components that constitute it as a block for application-oriented custom user interfaces.
