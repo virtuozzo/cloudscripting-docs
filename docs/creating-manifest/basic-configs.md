@@ -186,7 +186,7 @@ The service starts if:
 
 -   the container is scaled (starts at the newly added nodes)
 
--   the Restart button is pressed at the dashboard calling the [RrestartNodesByGroup](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartNodesByGroup) and [RestartNodeById](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartNodeById) API methods (only for native Docker containers)
+-   the Restart button is pressed at the dashboard calling the [RestartNodesByGroup](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartNodesByGroup) and [RestartNodeById](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartNodeById) API methods (only for native Docker containers)
 
 <!-- end of startService section -->
 <!-- RegionFiltering section -->
