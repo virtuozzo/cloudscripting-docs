@@ -894,7 +894,7 @@ where:
     - *shortdomain* - short environment domain name (without platform URL)
     - *displayName* - environment *displayName*
     - *appid* - unique environment ID
-- `disableInactive` *[optional][boolean]* - **false** allows selection of any environment regardless its status, **true** restricts selection of not running environments (environments with a status other than *Running* will be displayed as disabled without the ability to be selected). The default value is 'true'
+- `disableInactive` *[optional][boolean]* - '*false*' allows selection of any environment regardless its status, **true** restricts selection of not running environments (environments with a status other than *Running* will be displayed as disabled without the ability to be selected). The default value is '*true*'
 
 To perform actions on several environments the `multiSelect` option with related parameters should be used:
 
