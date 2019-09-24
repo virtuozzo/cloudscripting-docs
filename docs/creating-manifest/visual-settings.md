@@ -573,6 +573,94 @@ where:
 - `caption` *[optional]* - field label
 - `values` - checkboxes (*"key"*:*"value"*)
 - `hideLabel` *[optional][boolean]* - shows/hides field label. Default value is *'false'*
+- `columns` *[optional][String/Number/Array]* - Specifies the number of columns to be created when displaying grouped radio controls using automatic layout. This config can take several types of values:  
+  - '*auto*' : The controls will be rendered one per column in one row and the width of each column will be evenly distributed within the overall *radiolist* field width. This is the default.  
+  - *Number* : If you specify a number (e.g., 3) that number of columns will be created and all controls will be automatically distributed among them creating new row upon filling out the third column. Thus if you have specified as values the 6 controls you will have 3 columns and 2 rows of controls.  
+  - *Array* : Object. You can also specify an array of column widths, mixing integer (fixed width) and float (percentage width) values as needed (e.g., [100, .25, .75]). Any integer values will be rendered first, then any float values will be calculated as a percentage of the remaining space. It's not mandatory to make float values to add up to 1 (100%) although if you want the controls to take up the entire *radiolist* field you should do so. The number of columns is equal to the number of array elements. The new rows are created if number of values are higher than number of columns like for ***Number*** value type.
+Defaults to: 'auto'
+
+Example using *columns* parameter for value type *Number*:  
+
+@@@
+```yaml
+type: install
+name: CS:Visual Settings - columns for radiolist
+
+settings:
+  fields:
+    - type: displayfield
+      value: 'radiolist:'
+      hideLabel: true
+      
+    - type: radiolist
+      caption: 3 Columns
+      name: test1
+      value: value1
+      values:
+        - value: value1
+          caption: first
+        - value: value2
+          caption: second
+        - value: value3
+          caption: third
+        - value: value4
+          caption: fourth
+        - value: value5
+          caption: fifth
+        - value: value6
+          caption: sixth
+      columns: 3
+```
+```json
+{
+  "type": "install",
+  "name": "CS:Visual Settings - columns for radiolist",
+  "settings": {
+    "fields": [
+      {
+        "type": "displayfield",
+        "value": "radiolist:",
+        "hideLabel": true
+      },
+      {
+        "type": "radiolist",
+        "caption": "3 Columns",
+        "name": "test1",
+        "value": "value1",
+        "values": [
+          {
+            "value": "value1",
+            "caption": "first"
+          },
+          {
+            "value": "value2",
+            "caption": "second"
+          },
+          {
+            "value": "value3",
+            "caption": "third"
+          },
+          {
+            "value": "value4",
+            "caption": "fourth"
+          },
+          {
+            "value": "value5",
+            "caption": "fifth"
+          },
+          {
+            "value": "value6",
+            "caption": "sixth"
+          }
+        ],
+        "columns": 3
+      }
+    ]
+  }
+}
+```
+@@!
+
 
 ### radio-fieldset
 Grouping of the radio elements with <b>*showIf*</b> function.
