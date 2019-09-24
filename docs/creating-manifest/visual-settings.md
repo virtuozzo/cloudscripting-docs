@@ -866,6 +866,7 @@ fields:
     valueField: appid
     type: envlist
     name: envlist
+    disableInactive: false
 ```
 ``` json
 {
@@ -875,7 +876,8 @@ fields:
       "editable": true,
       "valueField": "appid",
       "type": "envlist",
-      "name": "envlist"
+      "name": "envlist",
+      "disableInactive": "false"
     }
   ]
 }
@@ -892,11 +894,11 @@ where:
     - *shortdomain* - short environment domain name (without platform URL)
     - *displayName* - environment *displayName*
     - *appid* - unique environment ID
+- `disableInactive` *[optional][boolean]* - **false** allows selection of any environment regardless its status, **true** restricts selection of not running environments (environments with a status other than *Running* will be displayed as disabled without the ability to be selected). The default value is 'true'
 
 To perform actions on several environments the `multiSelect` option with related parameters should be used:
 
 - `multiSelect` *[optional][boolean]* - provides an ability to choose several environment at once
-- `disableInactive` *[optional][boolean]* - an ability to chose inactive environments in combo. The default value is 'true'
 - `delimiter` *[optional][string]* - a delimiter character to separate list data items. The default value is a comma ','
 - `min` *[optional][number]* - minimum number of selected environments, required to begin installation
 - `max` *[optional][number]* - maximum number of selected environments, exceeding this number doesn’t allow to begin installation
