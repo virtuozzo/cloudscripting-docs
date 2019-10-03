@@ -7,7 +7,7 @@ copyright: Copyright &copy; Jelastic, Inc.
 #theme_center_lead: false
 
 theme_dir: './theme/readthedocs'
-repo_url: 'https://github.com/cloudscripting/docs/edit/1.7.6/docs/'
+repo_url: 'https://github.com/cloudscripting/docs/edit/1.7.7/docs/'
 
 markdown_extensions:
   - admonition
@@ -59,16 +59,14 @@ pages:
 
 extra:
   versions:
-    1.5.2: 5.4-b8
     1.6: 5.5
     1.6.1: 5.5-b3
     1.6.2: 5.6-b2
     1.6.3: 5.6-b4
-    1.6.4: 5.6-b8
     1.6.5: 5.6-b9
     1.7: 5.7-b1
     1.7.2: 5.7-b2
     1.7.3: 5.7-b3
     1.7.4: 5.7-b4
-    1.7.5: 5.7-b5
     1.7.6: 5.7-b6
+    1.7.7: 5.7-b7
