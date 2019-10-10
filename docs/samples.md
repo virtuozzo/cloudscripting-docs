@@ -169,14 +169,6 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/minecraft-server">Minecraft Server</a>
-        </td>
-        <td>
-            Personal Docker-based Minecraft server with auto-deploy
-        </td>
-    </tr>
-    <tr>
-        <td id="first-col">
             <a target="_blank" href="https://github.com/jelastic-jps/git-push-deploy">CI from Git Repo</a>
         </td>
         <td>
