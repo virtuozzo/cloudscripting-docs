@@ -1614,9 +1614,9 @@ sleep:
 
 ### install
 
-The *install* action allows to declare multiple installations within a single JPS manifest file. The action is available for the *install* and *update* installation types, therefore, it can initiate installation of both new environments and add-ons.                                 
+The *install* action allows to declare multiple installations within a single JPS manifest file in synchronous and asynchronous mode. The action is available for the *install* and *update* installation types, therefore, it can initiate installation of both new environments and add-ons.                                 
 
-The simplest record for `install` action is described like in example below:
+The simplest record for `install` action is described like in example below:  
 @@@
 ```yaml
 type: update
@@ -1634,10 +1634,10 @@ onInstall:
   }
 }
 ```
-@@!
+@@!  
 Therefore, the `install` action can be set by **string**.
 
-Also there is an ability to set a few external manifests inside one `install` action in one array. For example:
+Also there is an ability to set a few external manifests inside one `install` action in one array. Such a type of installation is performed asynchronously. For example:  
 @@@
 ```yaml
 type: update
@@ -1646,7 +1646,7 @@ name: Install action
 onInstall:
   install:
     - http://example.com/manifest.jps
-    - http://example.com/manifest2.jp
+    - http://example.com/manifest2.jps
 ```
 ```json
 {
@@ -1661,7 +1661,8 @@ onInstall:
 }
 ```
 @@!
-The next example describes installing the add-on via the external link (with the *update* installation type) with additional parameters.            
+
+The next example describes installing the add-on via the external link (with the *update* installation type) with additional parameters.   
 @@@
 ```yaml
 type: update
@@ -1688,12 +1689,127 @@ onInstall:
 }
 ```
 @@!
+
+You can install multiple add-ons via external links with additional parameters in both synchronous and asynchronous mode.  
+
+Synchronous installation. It can be used when the add-ons must be installed one by one since one add-on is dependant from another. 
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  - install:
+      jps: http://example.com/manifest1.jps
+      settings:
+        myparam: test1
+
+  - install:
+      jps: http://example.com/manifest2.jps
+      settings:
+        myparam: test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": [
+    {
+      "install": {
+        "jps": "http://example.com/manifest1.jps",
+        "settings": {
+          "myparam": "test1"
+        }
+      }
+    },
+    {
+      "install": {
+        "jps": "http://example.com/manifest2.jps",
+        "settings": {
+          "myparam": "test2"
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
+Asynchronous installation inside one `install` action in one array. So both manifests will be installing in parallel with own custom parameters.
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  install:
+    - jps: http://example.com/manifest1.jps
+      settings:
+        myparam: test1
+
+    - jps: http://example.com/manifest2.jps
+      settings:
+        myparam: test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install": [
+      {
+        "jps": "http://example.com/manifest1.jps",
+        "settings": {
+          "myparam": "test1"
+        }
+      },
+      {
+        "jps": "http://example.com/manifest2.jps",
+        "settings": {
+          "myparam": "test2"
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
 where:
 
 - `jps` - URL to your custom JPS manifest  
 - `settings` - user custom parameters           
 
-Installing the add-on from the local manifest file.
+The `nodeGroup` [filtering](../selecting-containers/#selector-types) can be applied to the `install` action in order to carry out addon installation on different [layers](https://docs.jelastic.com/paas-components-definition#layer) within one environment.  
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  install[cp,bl]:
+    jps: http://example.com/manifest.jps
+    log: Test Async Install By Node Group
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install[cp,bl]": {
+      "jps": "http://example.com/manifest.jps",
+      "log": "Test Async Install By Node Group"
+    }
+  }
+}
+```
+@@!  
+
+Installing the add-on from the local manifest file. 
+
 @@@
 ```yaml
 type: update
@@ -1722,6 +1838,102 @@ onInstall:
 }
 ```
 @@!
+
+You can install multiple add-ons from the local manifest in both synchronous and asynchronous mode.  
+
+Synchronous installation. It can be used when the add-ons must be installed one by one since one add-on is dependant from another.  
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  - install:
+      type: update
+      name: test1
+      onInstall:
+        log: install test1
+  - install:
+      type: update
+      name: test2
+      onInstall:
+        log: install test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": [
+    {
+      "install": {
+        "type": "update",
+        "name": "test1",
+        "onInstall": {
+          "log": "install test1"
+        }
+      }
+    },
+    {
+      "install": {
+        "type": "update",
+        "name": "test2",
+        "onInstall": {
+          "log": "install test2"
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
+Two addons asynchronous installation from the two local manifests inside one `install` action in one array. So both manifests will be installing in parallel.  
+
+@@@
+```yaml
+type: update
+name: Install action
+onInstall:
+  install:
+    - type: update
+      name: test1
+      onInstall:
+        log: install test1
+        
+    - type: update
+      name: test2
+      onInstall:
+        log: install test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": [
+    {
+      "install": {
+        "type": "update",
+        "name": "test1",
+        "onInstall": {
+          "log": "install test1"
+        }
+      }
+    },
+    {
+      "install": {
+        "type": "update",
+        "name": "test2",
+        "onInstall": {
+          "log": "install test2"
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
 where:
 
 - `onInstall` - entry point for performed actions                                 
@@ -1755,13 +1967,110 @@ onInstall:
 }
 ```
 @@!
+
+Multiple environment installations are also possible via external links in both synchronous and asynchronous mode.  
+
+Synchronous installation. It can be used when the environments must be installed one by one since one environment is dependant from another. 
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  - install:
+      jps: http://example.com/manifest1.jps
+      envName: env1-${fn.random}
+      settings:
+        myparam: test1
+
+  - install:
+      jps: http://example.com/manifest2.jps
+      envName: env2-${fn.random}
+      settings:
+        myparam: test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": [
+    {
+      "install": {
+        "jps": "http://example.com/manifest1.jps",
+        "envName": "env1-${fn.random}",
+        "settings": {
+          "myparam": "test1"
+        }
+      }
+    },
+    {
+      "install": {
+        "jps": "http://example.com/manifest2.jps",
+        "envName": "env2-${fn.random}",
+        "settings": {
+          "myparam": "test2"
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
+Asynchronous installation inside one `install` action in one array. So both manifests will be installing in parallel.
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  install:
+    - jps: http://example.com/manifest1.jps
+      envName: env1-${fn.random}
+      settings:
+        myparam: test1
+
+    - jps: http://example.com/manifest2.jps
+      envName: env2-${fn.random}
+      settings:
+        myparam: test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install": [
+      {
+        "jps": "http://example.com/manifest1.jps",
+        "envName": "env1-${fn.random}",
+        "settings": {
+          "myparam": "test1"
+        }
+      },
+      {
+        "jps": "http://example.com/manifest2.jps",
+        "envName": "env2-${fn.random}",
+        "settings": {
+          "myparam": "test2"
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
 where: 
 
 - `jps` - URL to your custom JPS manifest                    
 - `envName` - short domain name of a new environment                                   
-- `settings` - user <a href="../visual-settings/" target="_blank">custom form</a>                                               
+- `settings` - user [custom form](../visual-settings/)
 
 Installing the environment from the local manifest file.                      
+
 @@@
 ```yaml
 type: update
@@ -1801,9 +2110,147 @@ onInstall:
 }
 ```
 @@!
+
+You can install multiple environments from the local manifest in both synchronous and asynchronous mode.  
+
+Synchronous installation. It can be used when the environments must be installed one by one since one environments is dependant from another.  
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  - install:
+    	type: install
+    	region: dev1
+    	envName: env-${fn.random}
+    	name: test1
+    	nodes:
+      	nodeType: apache2
+      	cloudlets: 16
+    	onInstall: 
+      	log: install test1
+  - install:
+    	type: install
+    	region: dev2
+    	envName: env-${fn.random}
+    	name: test2
+    	nodes:
+      	nodeType: nginx
+      	cloudlets: 16
+    	onInstall: 
+      	log: install test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": [
+    {
+      "install": {
+        "type": "install",
+        "region": "dev1",
+        "envName": "env-${fn.random}",
+        "name": "test1",
+        "nodes": {
+          "nodeType": "apache2",
+          "cloudlets": 16
+        },
+        "onInstall": {
+          "log": "install test1"
+        }
+      }
+    },
+    {
+      "install": {
+        "type": "install",
+        "region": "dev2",
+        "envName": "env-${fn.random}",
+        "name": "test2",
+        "nodes": {
+          "nodeType": "nginx",
+          "cloudlets": 16
+        },
+        "onInstall": {
+          "log": "install test2"
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
+Asynchronous installation inside one `install` action in one array. So both manifests will be installing in parallel.
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  install:
+    - type: install
+    	region: dev1
+    	envName: env-${fn.random}
+    	name: test1
+    	nodes:
+      	  nodeType: apache2
+      	  cloudlets: 16
+    	onInstall: 
+      	  log: install test1
+    - type: install
+    	region: dev2
+    	envName: env-${fn.random}
+    	name: test2
+    	nodes:
+      	  nodeType: nginx
+      	  cloudlets: 16
+    	onInstall: 
+      	  log: install test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install": [
+      {
+        "type": "install",
+        "region": "dev1",
+        "envName": "env-${fn.random}",
+        "name": "test1",
+        "nodes": {
+          "nodeType": "apache2",
+          "cloudlets": 16
+        },
+        "onInstall": {
+          "log": "install test1"
+        }
+      },
+      {
+        "type": "install",
+        "region": "dev2",
+        "envName": "env-${fn.random}",
+        "name": "test2",
+        "nodes": {
+          "nodeType": "nginx",
+          "cloudlets": 16
+        },
+        "onInstall": {
+          "log": "install test2"
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
 where:
 
-- `region` - hardware node's <a href="https://docs.jelastic.com/environment-regions" target="_blank">region</a>                                               
+- `region` - hardware node's [region](https://docs.jelastic.com/environment-regions)  
 - `envName` - short domain name of a new environment                     
 - `name` - JPS name  
 - `nodes` - nodes description                                                           
