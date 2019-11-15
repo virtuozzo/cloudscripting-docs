@@ -51,7 +51,7 @@ Any container operation can be performed using a [*cmd*](#cmd) action. Moreover,
 
 ### cmd
 
-The *cmd* action executes <a href="https://docs.jelastic.com/ssh-overview" target="_blank">SSH</a> commands.             
+The *cmd* action executes *[commands](https://docs.jelastic.com/ssh-overview)* in synchronous and asynchronous modes. Within one container the *cmd* actions can be performed in synchronous mode only. Within one environment *cmd* actions can be performed asynchronously in case similar actions are required to be executed on different nodeGroups.
 <!--Available for all nodes.-->      
 
 **Example** 
@@ -81,7 +81,7 @@ where:
     - **user** - default system user with restricted permissions    
 - `sayYes` *[optional]* - parameter that enables or disables the usage of **yes** utility. The default value is *'true'*.                  
 
-The single SSH command can be passed in a string. For example, running a bash script from URL on all **Tomcat 6** nodes.                    
+The single SSH command can be passed in a string. For example, running a bash script from URL on all **Tomcat 6** nodes asynchronously.                    
 @@@
 ```yaml
 cmd [tomcat6]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
@@ -92,6 +92,31 @@ cmd [tomcat6]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
 }
 ```
 @@!
+
+The same action can be performed asynchronously on all nodes of specific *[nodeGroup](https://docs.jelastic.com/paas-components-definition#layer)* or several ones provided as the list: [cp, bl].  
+@@@
+```yaml
+cmd [cp, bl]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
+```
+``` json 
+{
+  "cmd [cp, bl]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
+}
+```
+@@!
+
+If necessary *cmd* action can be executed on all nodes of all available nodeGroups within one environment. Action will be performed asychronously as well.  
+@@@
+```yaml
+cmd [*]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
+```
+``` json 
+{
+  "cmd [*]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
+}
+```
+@@!
+
 
 The default `cmd` parameter is **commands**. It can be useful to set a several commands in the same `cmd` action. For example:
 
