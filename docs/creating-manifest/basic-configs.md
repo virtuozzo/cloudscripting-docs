@@ -141,6 +141,7 @@ The list of available parameters are:
     - 10G = 10GB
     - 100M = 100MB
     - 1T = 1TB
+- `distribution` *[optional]* - defines environment distribution across hardware hosts within the platform
 
 The following parameters are available for Docker nodes only:   
                        
