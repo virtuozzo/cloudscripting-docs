@@ -284,19 +284,19 @@ The supported software stacks are categorized in the table below with specified 
 
 There is an ability in Jelastic PaaS to select the hardware for the user's application with the help of the [multi zones](https://ops-docs.jelastic.com/multi-zones) approach. If a user is aware all of the [labels](https://ops-docs.jelastic.com/multi-zones#host-labels) assigned for the hardware hosts within the platform he can decide which hosts across all of the available regions can be used to install the user's environment.  
 Hardware host selection is performed by **distribution** parameter which defines the logic in the [layer specifics](basic-configs/#nodes-definition), which consist of the following two options:  
-  * `zones` - sets a filter for allowed zones (groups of hosts custom-defined by labels) in the “{name}: {value}” format, e.g. zones: [{provider: azure}, {provider: amazon}]  
-  * `mode` - defines the behavior in case of the target zone unavailability  
-    * *SOFT* - the operation should proceed on the next zone/host defined by the multi zones algorithm (this option is used by default)  
-    * *STRICT* - the operation should be terminated with an error  
- 
- !!! note
-    * the distribution is performed in the within of a single host group (i.e. user environment region)  
-    * the default zone *{name}* can be skipped when providing zones parameter, i.e. the *zones: [“a”, “b”]* and *zones: [{zone: a}, {zone: b}]* expressions are equal  
-    * if zones with two or more *{value}* are specified for a single *{name}*, hosts with either of these values will be allowed for distribution  
-    * if zones with two or more *{name}* are specified, only hosts with all these labels will be allowed for distribution  
-    * if zones are not specified, distribution is performed across all hosts   
-    * the maximum number of elements in zones is 10  
-    * the maximum number of unique *{value}* per each *{name}* is 20  
+- `zones` - sets a filter for allowed zones (groups of hosts custom-defined by labels) in the “{name}: {value}” format, e.g. zones: [{provider: azure}, {provider: amazon}]  
+- `mode` - defines the behavior in case of the target zone unavailability  
+    - *SOFT* - the operation should proceed on the next zone/host defined by the multi zones algorithm (this option is used by default)  
+    - *STRICT* - the operation should be terminated with an error  
+
+!!! note
+    - the distribution is performed in the within of a single host group (i.e. user environment region)  
+    - the default zone *{name}* can be skipped when providing zones parameter, i.e. the *zones: [“a”, “b”]* and *zones: [{zone: a}, {zone: b}]* expressions are equal  
+    - if zones with two or more *{value}* are specified for a single *{name}*, hosts with either of these values will be allowed for distribution  
+    - if zones with two or more *{name}* are specified, only hosts with all these labels will be allowed for distribution  
+    - if zones are not specified, distribution is performed across all hosts   
+    - the maximum number of elements in zones is 10  
+    - the maximum number of unique *{value}* per each *{name}* is 20    
 
 For example, the distribution configured in the following package ensures nodes are created only on the hosts with the **disk: ssd** label.  
 
