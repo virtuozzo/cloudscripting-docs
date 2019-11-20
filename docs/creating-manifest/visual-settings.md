@@ -1666,10 +1666,10 @@ Could be used inside **compositefield** in case field's **tooltip** property is 
 
 Properties:
 
-  - **text** [required] - a message to be displayed
-  - **minWidth** [optional] - The minimum width of the tip in pixels. Defaults to 45
-  - **maxWidth** [optional] - The maximum width of the tip in pixel. The maximum supported value is 500. Defaults to 400.
-  - **anchor** [optional] - aligns tooltip with question mark icon relative to the specified anchor points.  
+  - `text` [required] - a message to be displayed
+  - `minWidth` [optional] - The minimum width of the tip in pixels. Defaults to 45
+  - `maxWidth` [optional] - The maximum width of the tip in pixel. The maximum supported value is 500. Defaults to 400.
+  - `anchor` [optional] - aligns tooltip with question mark icon relative to the specified anchor points.  
     The property sрould be specified as two anchor points separated by a dash. The first value is used as the tooltip's anchor point, and the second value is used as the question mark icon anchor point. Defaults to: **bl-t**.  
 
 **Available anchor points:**
