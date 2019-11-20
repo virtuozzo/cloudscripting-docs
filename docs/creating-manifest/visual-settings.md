@@ -1506,8 +1506,6 @@ Could be used inside **compositefield** in case field's **tooltip** property is 
 Properties:
 
   * **text** [required] - a message to be displayed
-  * **x** [optional] - left coordinate of question mark icon in pixels. Applicable only for tooltips with target: label. Defaults to: 3
-  * **y** [optional] - top coordinate of question mark icon in pixels. Applicable only for tooltips with
   * **minWidth** [optional] - The minimum width of the tip in pixels. Defaults to 45
   * **maxWidth** [optional] - The maximum width of the tip in pixel. The maximum supported value is 500. Defaults to 400.
   * **anchor** [optional] - aligns tooltip with question mark icon relative to the specified anchor points.  
