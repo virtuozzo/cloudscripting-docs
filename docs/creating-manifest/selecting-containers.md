@@ -289,7 +289,7 @@ Hardware host selection is performed by **distribution** parameter which defines
     * *SOFT* - the operation should proceed on the next zone/host defined by the multi zones algorithm (this option is used by default)  
     * *STRICT* - the operation should be terminated with an error  
  
- !!! note   
+ !!! note
     * the distribution is performed in the within of a single host group (i.e. user environment region)  
     * the default zone *{name}* can be skipped when providing zones parameter, i.e. the *zones: [“a”, “b”]* and *zones: [{zone: a}, {zone: b}]* expressions are equal  
     * if zones with two or more *{value}* are specified for a single *{name}*, hosts with either of these values will be allowed for distribution  
