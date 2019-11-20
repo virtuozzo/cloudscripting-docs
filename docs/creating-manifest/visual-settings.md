@@ -1505,27 +1505,27 @@ Could be used inside **compositefield** in case field's **tooltip** property is 
 
 Properties:
 
-  * **text** [required] - a message to be displayed
-  * **minWidth** [optional] - The minimum width of the tip in pixels. Defaults to 45
-  * **maxWidth** [optional] - The maximum width of the tip in pixel. The maximum supported value is 500. Defaults to 400.
-  * **anchor** [optional] - aligns tooltip with question mark icon relative to the specified anchor points.  
+  - **text** [required] - a message to be displayed
+  - **minWidth** [optional] - The minimum width of the tip in pixels. Defaults to 45
+  - **maxWidth** [optional] - The maximum width of the tip in pixel. The maximum supported value is 500. Defaults to 400.
+  - **anchor** [optional] - aligns tooltip with question mark icon relative to the specified anchor points.  
     The property sрould be specified as two anchor points separated by a dash. The first value is used as the tooltip's anchor point, and the second value is used as the question mark icon anchor point. Defaults to: **bl-t**.  
 
 **Available anchor points:**
 
-  * tl - the top left corner
-  * t - the center of the top edge
-  * tr - the top right corner
-  * l - the center of the left edge
-  * c - in the center of the element
-  * r - the center of the right edge
-  * bl - the bottom left corner
-  * b - the center of the bottom edge
-  * br - the bottom right corner
+  - tl - the top left corner
+  - t - the center of the top edge
+  - tr - the top right corner
+  - l - the center of the left edge
+  - c - in the center of the element
+  - r - the center of the right edge
+  - bl - the bottom left corner
+  - b - the center of the bottom edge
+  - br - the bottom right corner
 
 In addition to the anchor points, the anchor parameter also supports the "**?**" character. If "*?*" is passed at the end of the position string (e.g. **l-r?**), the element will attempt to align as specified, but the position will be adjusted to constrain to the viewport if necessary. Note that the element being aligned might be swapped to align to a different position than that specified in order to enforce the viewport constraints.  
 
-**Example**
+**Example**  
 @@@
 ```yaml
 type: install
@@ -1574,7 +1574,8 @@ Result:
 ![Tooltip-string](/img/tooltip-field-inline.png)</center>
 
 
-#### tooltip option
+#### tooltip option   
+
 The **tooltip** option is common to all field types:  
 
 ```
@@ -1586,45 +1587,45 @@ The tooltip for the field. Can be a config object or string.
 **Tooltip config object**:  
 
 ```
- text: string or localization object  
- x: number
- y: number
- target: string
- minWidth: number
- maxWidth: number
- anchor: string
- ```  
+text: string or localization object  
+x: number
+y: number
+target: string
+minWidth: number
+maxWidth: number
+anchor: string
+```  
  where:   
  
-   * text [required] - a message to be displayed  
-   * x [optional] - left coordinate of question mark icon in pixels. Applicable only for tooltips with target: label. Defaults to: 3  
-   * y [optional] - top coordinate of question mark icon in pixels. Applicable only for tooltips with target: label. Defaults to: 1  
-   * target [optional] - the location where the message text should display. Must be one of the following values:
-       * label - add a question mark icon to the right of the field label, displaying the message in a popup on hover. This is the default  
-       * side - display a tip containing the message when the field receives focus. The tip is displayed to the right of the field by default (the tip position could be changed using anchor property). Defaults to: label  
-   * minWidth [optional] - The minimum width of the tip in pixels. Defaults to 45  
-   * maxWidth [optional] - The maximum width of the tip in pixel. The maximum supported value is 500. Defaults to 400  
-   * anchor [optional] - aligns tooltip with target element (question mark icon or the field itself) relative to the specified anchor points  
+  - text [required] - a message to be displayed  
+  -  x [optional] - left coordinate of question mark icon in pixels. Applicable only for tooltips with target: label. Defaults to: 3  
+  - y [optional] - top coordinate of question mark icon in pixels. Applicable only for tooltips with target: label. Defaults to: 1  
+  - target [optional] - the location where the message text should display. Must be one of the following values:
+     - label - add a question mark icon to the right of the field label, displaying the message in a popup on hover. This is the default  
+     - side - display a tip containing the message when the field receives focus. The tip is displayed to the right of the field by default (the tip position could be changed using anchor property). Defaults to: label  
+  - minWidth [optional] - The minimum width of the tip in pixels. Defaults to 45  
+  - maxWidth [optional] - The maximum width of the tip in pixel. The maximum supported value is 500. Defaults to 400  
+  - anchor [optional] - aligns tooltip with target element (question mark icon or the field itself) relative to the specified anchor points  
     The property sрould be specified as two anchor points separated by a dash. The first value is used as the tooltip's anchor point, and the second value is used as the target's anchor point (question mark icon or the field itself).  
 
 **Available anchor points:**
 
-   * **tl** - the top left corner  
-   * **t** - the center of the top edge  
-   * **tr** - the top right corner  
-   * **l** - the center of the left edge  
-   * **c** - in the center of the element  
-   * **r** - the center of the right edge  
-   * **bl** - the bottom left corner  
-   * **b** - the center of the bottom edge  
-   * **br** - the bottom right corner  
+  - **tl** - the top left corner  
+  - **t** - the center of the top edge  
+  - **tr** - the top right corner  
+  - **l** - the center of the left edge  
+  - **c** - in the center of the element  
+  - **r** - the center of the right edge  
+  - **bl** - the bottom left corner  
+  - **b** - the center of the bottom edge  
+  - **br** - the bottom right corner  
 
 In addition to the **anchor** points, the anchor parameter also supports the "**?**" character. If "*?*" is passed at the end of the position string (e.g. *l-r?*), the element will attempt to align as specified, but the position will be adjusted to constrain to the viewport if necessary. Note that the element being aligned might be swapped to align to a different position than that specified in order to enforce the viewport constraints.  
 
 **Default values:**
 
-   * *for target: label:* **bl-t**
-   * *for target: side:* **l-r**
+  - *for target: label:* **bl-t**
+  - *for target: side:* **l-r**
 
 Instead of the **config object**, the tooltip could be added as a **string** which represents a default tooltip with custom message to be displayed.  
 
@@ -1642,8 +1643,8 @@ settings:
   - caption: String
     type: string        
     tooltip:  This is a string
-    ```
-    ```json
+```
+```json
     {
   "type": "install",
   "name": "Tooltips (default)",
@@ -1663,7 +1664,8 @@ settings:
 Result: 
 ![Tooltip-string](/img/tooltip-string.png)</center>  
 
-  * Tooltips (target: side)  
+  - Tooltips (target: side)  
+  
 @@@
 ```yaml
 type: install
@@ -1700,6 +1702,7 @@ Result:
 ![Tooltip-target-side](/img/tooltip-target-side.png)</center>  
 
   * Tooltips Inside Composite Field   
+  
 @@@
 ```yaml
 type: install
