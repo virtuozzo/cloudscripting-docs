@@ -606,7 +606,10 @@ The *${engine}* placeholder returns the latest Cloud Scripting engine version th
 
 `${engine}` - CS engine version  
 
-It is can be complemented with function placeholders *[${fn.compareEngine(version)}](https://docs.cloudscripting.com/creating-manifest/placeholders/#function-placeholders)* and *[${fn.compare(version1, version2)}](https://docs.cloudscripting.com/creating-manifest/placeholders/#function-placeholders)* that can be used to determine whether JPS manifest is supported by the platform’s engine version or not.  
+In order to determine whether JPS manifest is supported or not the function placeholders can be used:
+
+- *[${fn.compareEngine(version)}](https://docs.cloudscripting.com/creating-manifest/placeholders/#function-placeholders)*   
+- *[${fn.compare(version1, version2)}](https://docs.cloudscripting.com/creating-manifest/placeholders/#function-placeholders)*    
 
 @@@
 ```yaml
@@ -645,6 +648,35 @@ onInstall:
 }
 ```
 @@!
+
+Another example how to check platform version:
+
+@@@
+```yaml
+type: install
+name: Ability co compare CS engine versions
+
+onInstall:
+  - system.service.GetVersion   
+  - if ('${fn.compare([response.version], 5.7)}' == 1):
+      log: not compatible version
+```
+```json
+{
+  "type": "install",
+  "name": "Ability co compare CS engine versions",
+  "onInstall": [
+    "system.service.GetVersion",
+    {
+      "if ('${fn.compare([response.version], 5.7)}' == 1)": {
+        "log": "not compatible version"
+      }
+    }
+  ]
+}
+```
+@@!
+
 
 <br>       
 <h2> What’s next?</h2>                    
