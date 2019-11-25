@@ -1763,17 +1763,9 @@ The event is executed before add-on installation
 Event Placeholders:  
 
 -   `${event.params.}`:  
-    - `settings` - ***What is it***  
-    - `envGroups` - environment groups array  
-    - `displayName` - display name for an environment  
-    - `skipNodeEmails` - an ability to skip sending emails about creating nodes. Emails are related only to nodes where implemented reset password functionality  
-    - `source` - ***What is it***  
-    - `nodeGroup` - the defined node layer  
-    - `exportedFromEnv` - ***What is it***  
-    - `envName` - short domain name (without hosting provider URL)  
-    - `actionKey` - ***What is it***  
+    - `settings` - custom form with predefined user input elements  
     - `id` - add-on id  
-    - `lang` - ***What is it***  
+    - `lang` - [user's language code](https://en.wikipedia.org/wiki/Language_code) which was used during the installation. Optional parameter  
     - `region` - region, where an environment will be installed  
     - `targetAppid`  - application identifier  
 -   `${event.response.}`: parameters are absent  
@@ -1782,22 +1774,14 @@ Event Placeholders:
 The event is executed after add-on installation  
   
 -   `${event.params.}`:  
-    - `settings` - ***What is it?***  
-    - `envGroups` - environment groups array  
-    - `displayName` - display name for an environment  
-    - `skipNodeEmails` - an ability to skip sending emails about creating nodes. Emails are related only to nodes where implemented reset password functionality  
-    - `source` - ***What is it?***  
-    - `nodeGroup` - the defined node layer  
-    - `exportedFromEnv` - ***What is it?***  
-    - `envName` - short domain name (without hosting provider URL)  
-    - `actionKey` - ***What is it?***  
+    - `settings` - custom form with predefined user input elements   
     - `id` - add-on id  
-    - `lang` - ***What is it?***  
+    - `lang` - [user's language code](https://en.wikipedia.org/wiki/Language_code) which was used during the installation. Optional parameter  
     - `region` - region, where an environment will be installed  
     - `targetAppid`  - application identifier  
 -   `${event.response.}`:  
     - `uniqueName` - installed add-on unique name  
-    - `appid` - unique environment *appid* at the Jelastic Platform - ***is it correct?***  
+    - `appid` - unique environment *appid* at the Jelastic Platform  
     - `successText`- message that appears once action is successfully performed  
   
 Subscription:  
