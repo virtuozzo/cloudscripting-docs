@@ -602,7 +602,7 @@ The results on the screen below:
 ![comparison](/img/comparison.png)
 
 ## Engine Placeholder
-The *${engine}* placeholder returns a Cloud Scripting engine version that is supported by the platform the manifest is executed on.  
+The *${engine}* placeholder returns the latest Cloud Scripting engine version that is supported by the platform the manifest is executed on.  
 
 `${engine}` - CS engine version  
 
