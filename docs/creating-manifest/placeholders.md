@@ -402,7 +402,7 @@ The function parameter can be passed from existing placeholders, for example:
 
 - `${fn.md5([fn.random])}` - *md5* encoding random password   
 - `${fn.base64([user.email])}` - *base64* encoding user email address  
-- `${fn.compareEngine(version)}` - compares, supported by the hoster platform, CS engine version with the given *version*.  	Returns result:  
+- `${fn.compareEngine(version)}` - compares the latest supported by the current platform CS engine version with the given *version*.  Returns result:  
 	0 - *version* equals CS engine version  
 	1 - CS engine version greater than *version*  
 	-1 - CS engine version less than *version*  
