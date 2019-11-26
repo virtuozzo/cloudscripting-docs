@@ -405,7 +405,8 @@ The function parameter can be passed from existing placeholders, for example:
 - `${fn.md5([fn.random])}` - *md5* encoding random password   
 - `${fn.base64([user.email])}` - *base64* encoding user email address  
 
-You can easily define function placeholders within the [custom global placeholders](#custom-global-placeholders), for example:
+You can easily define function placeholders within the [custom global placeholders](#custom-global-placeholders), for example:  
+
 @@@
 ```yaml
 globals:
@@ -419,6 +420,7 @@ globals:
 }
 ```
 @@!
+
 Now, you can use <b>*${globals.pass}*</b> within the entire manifest.
 
 ## Data Processing Placeholders
