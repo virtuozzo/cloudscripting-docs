@@ -552,7 +552,7 @@ onInstall:
 ```
 @@!
 
-Compare the output with this:
+The output in the [console](http://docs.cloudscripting.com/troubleshooting/#troubleshooting) should look like:
 ```
 [08:13:38 CS:Placeholders.fromBase64]: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions] - fromBase64
 [08:13:39 CS:Placeholders.fromBase64]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
