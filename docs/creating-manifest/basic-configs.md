@@ -159,7 +159,7 @@ The following parameters are available for Docker nodes only:
 
 #### count Parameter
 
-The number of nodes can be passed via any [field](../visual-settings/#fields) described in [visual-settings](../visual-settings/) section.
+The number of nodes can be passed via any field described in [visual-settings](../visual-settings/) section.
 For example the *radio-fieldset* can be utilized to pass the number of *nodes* to be installed within specified *nodeGroup*:  
 @@@
 ```yaml
