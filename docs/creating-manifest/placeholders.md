@@ -805,7 +805,7 @@ Console output:
 
 ### ${\*.toJSON()}
 
-This placeholder returns an array of words or objects in JSON format.  
+This placeholder returns structured data in JSON format. 
 
 ### ${\*.print()}
 
