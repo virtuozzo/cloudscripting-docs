@@ -975,7 +975,7 @@ onInstall:
 ```
 @@!
 
-The result of such regex action is a boolean value: *true* or *false*:
+The result of such action is a Boolean value: *true* or *false*:
 ```
 [14:33:59 CS:Placeholders.contains]: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions] - contains
 [14:34:00 CS:Placeholders.contains]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
