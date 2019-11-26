@@ -922,7 +922,7 @@ onInstall:
   "type": "install",
   "name": "Add-on without environment",
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod sapien eu risus venenatis, at faucibus dui cursus. Vestibulum a ipsum eget nibh aliquet vestibulum. Ut vestibulum ultrices sem quis ultricies. Pellentesque maximus nisl nec metus convallis egestas. Ut posuere leo quis semper tristique. In bibendum sem quis aliquet porttitor.\n",
-  "startPage": "https://jelastic.com/",
+  "startPage": "https://example.com/",
   "onInstall": [
     {
       "log": "test"
