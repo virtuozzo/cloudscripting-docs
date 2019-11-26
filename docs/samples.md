@@ -33,7 +33,7 @@
             Setting triggers for server horizontal scaling based on load
         </td>
     </tr>
-    <tr>
+  <!--  <tr>
         <td id="first-col">
             <a target="_blank" href="https://github.com/jelastic-jps/basic-examples/tree/master/using-docker-containers">Using Docker Containers</a>
         </td>
@@ -41,7 +41,7 @@
             Bundle of linked WordPress-Web and WordPress-DB Docker containers
         </td>
     </tr>
-    <tr>
+    <tr> -->
         <td id="first-col">
             <a target="_blank" href="https://github.com/jelastic-jps/wordpress-cluster">Application Clustering</a>
         </td>
@@ -165,14 +165,6 @@
         </td>
         <td>
             Java-based app server cluster with autoscaling and session replication
-        </td>
-    </tr>
-    <tr>
-        <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/minecraft-server">Minecraft Server</a>
-        </td>
-        <td>
-            Personal Docker-based Minecraft server with auto-deploy
         </td>
     </tr>
     <tr>

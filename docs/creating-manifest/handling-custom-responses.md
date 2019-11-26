@@ -101,7 +101,7 @@ onInstall:
 !!! note
     The *email* parameter is available only for the *success* response type. The email is delivered when an action is executed with the *success* response code.                         
 
-The <a href="../actions/#script" target="_blank">*script*</a> action. 
+The *[script](actions/#script)* action. 
 
 @@@
 ```yaml
@@ -110,7 +110,7 @@ name: response handlers
 
 onInstall:
   script: |
-    return {"result": "warning", "message": "Warning!","email": "string"
+    return {"result": "warning", "message": "Warning!","email": "string"}
 ```
 ```json
 {
@@ -123,9 +123,9 @@ onInstall:
 ```
 @@!
 
-The *message* and *email* parameters support all the available <a href="/reference/placeholders/" target="_blank">placeholders</a>. Thus, placeholders can be uploaded from any external source via the direct link or via the <a href="../basic-configs/#relative-links" target="_blank">baseUrl</a>.                          
+The *message* and *email* parameters support all the available [placeholders](placeholders/). Thus, placeholders can be uploaded from any external source via the direct link or via the [baseUrl](basic-configs/#relative-links).                          
 
-When a response code with the *success* installation type is returned, two response objects impose one another. And the *success* text from the *response* object has higher priority than the <a href="../visual-settings/#success-text-customization" target="_blank">*success*</a> text from the main manifest block.            
+When a response code with the *success* installation type is returned, two response objects impose one another. And the *success* text from the *response* object has higher priority than the *[success](visual-settings/#success-text-customization)* text from the main manifest block.            
 
 **Examples**                           
 

@@ -19,7 +19,7 @@ addons:
   - id: custom-addon-id
     name: Custom Addon
     onInstall:
-      api [cp]: environment.control.RestartNodesByGroup
+      api [cp]: environment.control.RestartNodes
 ```
 ```json
 {
@@ -38,14 +38,14 @@ addons:
     "id": "custom-addon-id",
     "name": "Custom Addon",
     "onInstall": {
-      "api [cp]": "environment.control.RestartNodesByGroup"
+      "api [cp]": "environment.control.RestartNodes"
     }
   }
 }
 ```
 @@!
 
-In the example above, the <a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> <b>*RestartNodesByGroup*</b> method is executed after the environment creation is completed. The compute node is restarted at the end of the manifest installation procedure. Herewith, the add-on is installed, if the *parent* manifest's installation type is *install*. When the add-on is installed, the **Add-ons** tab for the corresponding compute node becomes available at the dashboard.                                    
+In the example above, the <a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> <b>*RestartNodes*</b> method is executed after the environment creation is completed. The compute node is restarted at the end of the manifest installation procedure. Herewith, the add-on is installed, if the *parent* manifest's installation type is *install*. When the add-on is installed, the **Add-ons** tab for the corresponding compute node becomes available at the dashboard.                                    
 
 ![new-addon](/img/new-addon.png)                        
   

@@ -102,26 +102,27 @@ success: object/string
     - `name` *[optional]* [string] - text or JavaScript RegExp argument to filtering region's by name
 - `region` *[optional]* - region, where an environment will be installed. Option will be used only with **type** `install`
 `targetRegions` has a higher priority than `region`. So in case when both of options have been set regions will be filtered according to the `targetRegions` rules
-- `nodeGroupAlias` *[optional]* - an ability to set aliases for existed in environments *nodeGroup*
-- `nodes` - an array to describe information about nodes for an installation. Option will be used only with **type** `install`.
+- `nodeGroupAlias` *[optional]* - an ability to set aliases for existed in environments *nodeGroup*. Mode details [here](selecting-containers/#nodegroup-aliases)
+- `nodes` - an array to describe information about nodes for an installation. Option will be used only with **type** `install`
 - `engine` *[optional]* - engine <a href="../selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
-- `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with **type** `install` mode.
-- `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with **type** `install` mode.
-- `displayName` *[optional]* - display name for an environment. Required option for **type** `install`.
+- `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with **type** `install` mode
+- `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with **type** `install` mode
+- `displayName` *[optional]* - display name for an environment. Required option for **type** `install`
 - `skipNodeEmails` *[optional]* - an ability to skip sending emails about creating nodes. Emails are related only to nodes where implemented reset password functionality
 - `appVersion` *[optional]* - custom version of an application
 - `onInstall` *[optional]* - <a href="../events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
-- `startPage` *[optional]* - an [entry point](/creating-manifest/basic-configs/#entry-points) to be opened via the **Open in browser** button through a successful installation message
-- `actions` *[optional]* - objects to describe all <a href="../actions/#custom-actions" target="_blank">custom actions</a>
-- `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation
-- `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](/creating-manifest/visual-settings/#success-text-customization).
-- "..." - the list of <a href="../events/" target="_blank">events</a> can be predefined before manifest is installed. More details 
+- `startPage` *[optional]* - an [entry point](basic-configs/#entry-points) to be opened via the **Open in browser** button through a successful installation message
+- `actions` *[optional]* - objects to describe all <a href="../actions/#custom-actions" target="_blank">custom actions</
+- `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation. More details [here](addons/)
+- `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](visual-settings/#success-text-customization).
+- `mixins` *[optional]* - includes(mixes) the functionality and data from one manifest into another by URL or object. More details [here](mixins/)
+- "..." - the list of <a href="../events/" target="_blank">events</a> can be predefined before manifest is installed  
 
-##Environment Installation
+## Environment Installation
 
 The environment can be installed in case when the `type` parameter is set to **install**. Then the set of nodes with their parameters should be defined also.
 
-###Nodes Definition
+### Nodes Definition
 
 The list of available parameters are:
 
@@ -140,6 +141,7 @@ The list of available parameters are:
     - 10G = 10GB
     - 100M = 100MB
     - 1T = 1TB
+- `distribution` *[optional]* - defines environment distribution across hardware hosts within the platform
 
 The following parameters are available for Docker nodes only:   
                        
@@ -185,7 +187,7 @@ The service starts if:
 
 -   the container is scaled (starts at the newly added nodes)
 
--   the Restart button is pressed at the dashboard calling the [RrestartNodesByGroup](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartNodesByGroup) and [RestartNodeById](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartNodeById) API methods (only for native Docker containers)
+-   the Restart button is pressed at the dashboard calling the [RestartNodesByGroup](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartNodesByGroup) and [RestartNodeById](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartNodeById) API methods (only for native Docker containers)
 
 <!-- end of startService section -->
 <!-- RegionFiltering section -->
