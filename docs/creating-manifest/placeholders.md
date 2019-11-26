@@ -904,7 +904,7 @@ Check the output for both placeholders ${\*.toJSON()} and ${\*.print()}:
 
 ### ${\*.contains()}
 
-This placeholder acts a regex that finds substring in a string.  
+This placeholder is used for checking if the specified element exists in the given list or not.  
 For example:  
 
 @@@
