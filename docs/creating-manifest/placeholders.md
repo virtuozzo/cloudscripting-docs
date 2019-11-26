@@ -649,7 +649,7 @@ onInstall:
 ```
 @@!
 
-Another example how to check platform version:
+Another example how to check platform version compatibility:  
 
 @@@
 ```yaml
@@ -658,7 +658,7 @@ name: Ability co compare CS engine versions
 
 onInstall:
   - system.service.GetVersion   
-  - if ('${fn.compare([response.version], 5.7)}' == 1):
+  - if ('${fn.compare([response.version], 5.7)}' == -1):
       log: not compatible version
 ```
 ```json
