@@ -903,7 +903,7 @@ onInstall:
 
 ## JPS execution without environment
  
-The JPS manifest can be executed without binding to any environment. The envName parameter is not mandatory for API anymore. 
+The JPS manifest can be executed without binding to any environment.  
 @@@
 ```yaml
 type: install
