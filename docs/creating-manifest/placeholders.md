@@ -668,7 +668,7 @@ onInstall:
   "onInstall": [
     "system.service.GetVersion",
     {
-      "if ('${fn.compare([response.version], 5.7)}' == 1)": {
+      "if ('${fn.compare([response.version], 5.7)}' == -1)": {
         "log": "not compatible version"
       }
     }
