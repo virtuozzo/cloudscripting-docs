@@ -1,6 +1,6 @@
 # Actions
 
-Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="/1.6/creating-manifest/custom-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS, and Java scripts. Any action, available to be performed by means of API (including custom scripts running), should be bound to some <a href="/1.6/creating-manifest/events" target="_blank">event</a> and executed as a result of this event occurrence.                                                      
+Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="../custom-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS, and Java scripts. Any action, available to be performed by means of API (including custom scripts running), should be bound to some <a href="../events" target="_blank">event</a> and executed as a result of this event occurrence.                                                      
 
 With the help of actions you can achieve automation of the tasks related to:                
 
@@ -14,9 +14,9 @@ With the help of actions you can achieve automation of the tasks related to:
 
 The default workflow for any action execution is the following:                  
 
-- replacing <a href="/1.6/creating-manifest/placeholders" target="_blank">placeholders</a>                                     
+- replacing <a href="../placeholders" target="_blank">placeholders</a>                                     
 
-- getting a list of <a href="/1.6/creating-manifest/selecting-containers" target="_blank">target containers</a>                                                 
+- getting a list of <a href="../selecting-containers" target="_blank">target containers</a>                                                 
 
 - checking permissions                                     
 
@@ -36,7 +36,7 @@ Thus, the following specific groups of actions are singled out:
 
 ## Container Operations
 
-There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the <a href="/1.6/creating-manifest/selecting-containers" target="_blank"><em>Specifying Target Containers</em></a> page.                        
+There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the <a href="../selecting-containers" target="_blank"><em>Specifying Target Containers</em></a> page.                        
 
 Any container operation can be performed using a [*cmd*](#cmd) action. Moreover, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:       
 
@@ -51,7 +51,7 @@ Any container operation can be performed using a [*cmd*](#cmd) action. Moreover,
 
 ### cmd
 
-The *cmd* action executes <a href="https://docs.jelastic.com/ssh-overview" target="_blank">SSH</a> commands.             
+The *cmd* action executes *[commands](https://docs.jelastic.com/ssh-overview)* in synchronous and asynchronous modes. Within one container the *cmd* actions can be performed in synchronous mode only. Within one environment *cmd* actions can be performed asynchronously in case similar actions are required to be executed on different nodeGroups.
 <!--Available for all nodes.-->      
 
 **Example** 
@@ -81,7 +81,7 @@ where:
     - **user** - default system user with restricted permissions    
 - `sayYes` *[optional]* - parameter that enables or disables the usage of **yes** utility. The default value is *'true'*.                  
 
-The single SSH command can be passed in a string. For example, running a bash script from URL on all **Tomcat 6** nodes.                    
+The single SSH command can be passed in a string. For example, running a bash script from URL on all **Tomcat 6** nodes asynchronously.                    
 @@@
 ```yaml
 cmd [tomcat6]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
@@ -92,6 +92,31 @@ cmd [tomcat6]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
 }
 ```
 @@!
+
+The same action can be performed asynchronously on all nodes of specific *[nodeGroup](https://docs.jelastic.com/paas-components-definition#layer)* or several ones provided as the list: [cp, bl].  
+@@@
+```yaml
+cmd [cp, bl]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
+```
+``` json 
+{
+  "cmd [cp, bl]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
+}
+```
+@@!
+
+If necessary *cmd* action can be executed on all nodes of all available nodeGroups within one environment. Action will be performed asychronously as well.  
+@@@
+```yaml
+cmd [*]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
+```
+``` json 
+{
+  "cmd [*]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
+}
+```
+@@!
+
 
 The default `cmd` parameter is **commands**. It can be useful to set a several commands in the same `cmd` action. For example:
 
@@ -231,34 +256,34 @@ There are a number of parameters required by Jelastic API that are defined autom
 
 - *session* - unique session of a current user                                  
 
-Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be run on all nodes within a single <a href="/1.6/creating-manifest/selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="/1.6/creating-manifest/selecting-containers/#all-containers-by-type" target="_blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="/1.6/creating-manifest/selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required that is available either through the <a href="/1.6/creating-manifest/placeholders/#node-placeholders" target="_blank">node placeholders</a>, or a set of [custom action parameters](#action-placeholders) (*${this}*).                     
+Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be run on all nodes within a single <a href="../selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="../selecting-containers/#all-containers-by-type" target="_blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="../selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required that is available either through the <a href="../placeholders/#node-placeholders" target="_blank">node placeholders</a>, or a set of [custom action parameters](#action-placeholders) (*${this}*).                     
 
 **Examples**
 
 Restarting all compute nodes in the environment.
 @@@
 ```yaml
-api [cp]: jelastic.environment.control.RestartNodesByGroup
+api [cp]: jelastic.environment.control.RestartNodes
 ```
 ``` json
 {
-    "api [cp]" : "jelastic.environment.control.RestartNodesByGroup"
+    "api [cp]" : "jelastic.environment.control.RestartNodes"
 }
 ```
 @@!
 where:        
        
 - `api [cp]` - target node group for the API method execution (*[cp]*)                                                         
-- *jelastic.environment.control.RestartNodesByGroup* - Jelastic API method for restarting nodes by group              
+- *jelastic.environment.control.RestartNodes* - Jelastic API method for restarting nodes by group              
 
-This method (*jelastic.environment.control.RestartNodesByGroup*) can be simplified like shown in the next example.
+This method (*jelastic.environment.control.RestartNodes*) can be simplified like shown in the next example.
 @@@
 ```yaml
-api [cp]: environment.control.RestartNodesByGroup
+api [cp]: environment.control.RestartNodes
 ```
 ``` json
 {
-    "api [cp]" : "environment.control.RestartNodesByGroup"
+    "api [cp]" : "environment.control.RestartNodes"
 }
 ```
 @@!
@@ -266,12 +291,12 @@ api [cp]: environment.control.RestartNodesByGroup
 Below, you can find one more approach to specify a target node group for the API method execution.                                  
 @@@
 ```yaml
-api: jelastic.environment.control.RestartNodesByGroup,
+api: jelastic.environment.control.RestartNodes,
 nodeGroup: cp
 ```
 ``` json
 {
-    "api" : "jelastic.environment.control.RestartNodesByGroup",
+    "api" : "jelastic.environment.control.RestartNodes",
     "nodeGroup" : "cp"
 }
 ```
@@ -289,7 +314,7 @@ onInstall:
       params:
         nodeGroup: cp
         path: /tmp/exampleFile.txt
-    - method: environment.control.RestartNodesByGroup
+    - method: environment.control.RestartNodes
       params:
         nodeGroup: cp
 ```
@@ -305,7 +330,7 @@ onInstall:
                 "path": "/tmp/exampleFile.txt"
             }
         },{
-            "method": "environment.control.RestartNodesByGroup"
+            "method": "environment.control.RestartNodes"
             "params": {
                 "nodeGroup": "cp"
             }
@@ -315,7 +340,7 @@ onInstall:
 ```
 @@!
 
-In example above there are two api methods **Create** file and **RestartNodesByGroup**. Every method has their own set of parameters which they are required.
+In example above there are two api methods **Create** file and **RestartNodes**. Every method has their own set of parameters which they are required.
 
 The same parameters for all **methods** in one `action` can be set once. For example:
 @@@
@@ -328,7 +353,7 @@ onInstall:
     - method: environment.file.Create
       params:
         path: /tmp/exampleFile.txt
-    - method: environment.control.RestartNodesByGroup
+    - method: environment.control.RestartNodes
   nodeGroup: cp
 ```
 ```json
@@ -342,7 +367,7 @@ onInstall:
                 "path": "/tmp/exampleFIle.txt"
             }
         }, {
-            "method": "environment.control.RestartNodesByGroup"
+            "method": "environment.control.RestartNodes"
         }],
         "nodeGroup": "cp"
     }
@@ -609,6 +634,8 @@ writeFile:
   nodeId: number or string
   nodeGroup: string
   nodeType: string
+  path: string
+  body: string
 ```
 ``` json
 {
@@ -696,7 +723,7 @@ where:
 - `path` - path where a file is available               
 - `replacements` - list of replacements within the node's configuration files                        
     - `pattern` - regular expressions to find a string (e.g. *app\\.host\\.url\\s*=\\s*.**)                   
-    - `replacement` - you can use as a replacement any string value, including any combination of <a href="/1.6/creating-manifest/placeholders" target="_blank">placeholders</a>                                            
+    - `replacement` - you can use as a replacement any string value, including any combination of <a href="../placeholders" target="_blank">placeholders</a>                                            
 
 <!-- DeletePath -->
 <!-- RenamePath --> 
@@ -753,7 +780,7 @@ addNodes:
 @@!
 where:
 
-- `nodeType` *[required]* - parameter to specify <a href="/1.6/creating-manifest/selecting-containers/#predefined-nodetype-values" target="_blank">software stacks</a>. For Docker containers the *nodeType* value is **docker**.                                        
+- `nodeType` *[required]* - parameter to specify <a href="../selecting-containers/#supported-stacks" target="_blank">software stacks</a>. For Docker containers the *nodeType* value is **docker**.                                        
 - `extip` *[optional]* - attaching the external IP address to a container. The default value is *'false'*.                     
 - `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.                             
 - `flexibleCloudlets` *[optional]* - number of dynamic cloudlets. The default value is *'1'*.                           
@@ -988,7 +1015,7 @@ restartNodes:
 where:       
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)
-- `reboot` - flag which determines in which way node should be restarted. Positive value means the whole container should be restarted (the similar action to <a href="/1.6/creating-manifest/actions/#restartcontainers" target="_blank">`restartContainer`</a>), the negative one value means only main service in current container will be restarted (the similar action to <a href="/1.6/creating-manifest/actions/#restartservices" target="_blank">`restartService`</a>).
+- `reboot` - flag which determines in which way node should be restarted. Positive value means the whole container should be restarted (the similar action to <a href="../actions/#restartcontainers" target="_blank">`restartContainer`</a>), the negative one value means only main service in current container will be restarted (the similar action to <a href="../actions/#restartservices" target="_blank">`restartService`</a>).
 
 ### restartContainers
 
@@ -1179,7 +1206,7 @@ where:
 - `databaseName` - name of a database for a patch to be applied                    
 - `user` - username in a database, on behalf of which an application is used                                          
 - `password` - password in a database, on behalf of which an application is used                              
-- `patch` - SQL query or a link to it. It is used only for SQL databases. Here, the <a href="/1.6/creating-manifest/placeholders" target="_blank">placeholders</a> support is available.                    
+- `patch` - SQL query or a link to it. It is used only for SQL databases. Here, the <a href="../placeholders" target="_blank">placeholders</a> support is available.                    
 
 !!! note
     The action is executed only for *mysql5*, *mariadb*, and *mariadb10* containers.                         
@@ -1213,7 +1240,7 @@ onInstall:
 @@!
 
 A custom scripts can be set via external links instead of a **string**.  
-The example execution result is a <a href="/1.6/creating-manifest/handling-custom-responses/" target="_blank">response type</a> `error` with message *"Hello World!"*.
+The example execution result is a <a href="../handling-custom-responses/" target="_blank">response type</a> `error` with message *"Hello World!"*.
 The default action script type is `javascript`.
 
 There is an ability to define language type or pass custom parameters. In this case the `script` action should be describe like in example below:
@@ -1587,9 +1614,9 @@ sleep:
 
 ### install
 
-The *install* action allows to declare multiple installations within a single JPS manifest file. The action is available for the *install* and *update* installation types, therefore, it can initiate installation of both new environments and add-ons.                                 
+The *install* action allows to declare multiple installations within a single JPS manifest file in synchronous and asynchronous mode. The action is available for the *install* and *update* installation types, therefore, it can initiate installation of both new environments and add-ons.                                 
 
-The simplest record for `install` action is described like in example below:
+The simplest record for `install` action is described like in example below:  
 @@@
 ```yaml
 type: update
@@ -1607,10 +1634,10 @@ onInstall:
   }
 }
 ```
-@@!
+@@!  
 Therefore, the `install` action can be set by **string**.
 
-Also there is an ability to set a few external manifests inside one `install` action in one array. For example:
+Also there is an ability to set a few external manifests inside one `install` action in one array. Such a type of installation is performed asynchronously. For example:  
 @@@
 ```yaml
 type: update
@@ -1619,7 +1646,7 @@ name: Install action
 onInstall:
   install:
     - http://example.com/manifest.jps
-    - http://example.com/manifest2.jp
+    - http://example.com/manifest2.jps
 ```
 ```json
 {
@@ -1634,7 +1661,8 @@ onInstall:
 }
 ```
 @@!
-The next example describes installing the add-on via the external link (with the *update* installation type) with additional parameters.            
+
+The next example describes installing the add-on via the external link (with the *update* installation type) with additional parameters.   
 @@@
 ```yaml
 type: update
@@ -1661,12 +1689,127 @@ onInstall:
 }
 ```
 @@!
+
+You can install multiple add-ons via external links with additional parameters in both synchronous and asynchronous mode.  
+
+Synchronous installation. It can be used when the add-ons must be installed one by one since one add-on is dependant from another. 
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  - install:
+      jps: http://example.com/manifest1.jps
+      settings:
+        myparam: test1
+
+  - install:
+      jps: http://example.com/manifest2.jps
+      settings:
+        myparam: test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": [
+    {
+      "install": {
+        "jps": "http://example.com/manifest1.jps",
+        "settings": {
+          "myparam": "test1"
+        }
+      }
+    },
+    {
+      "install": {
+        "jps": "http://example.com/manifest2.jps",
+        "settings": {
+          "myparam": "test2"
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
+Asynchronous installation inside one `install` action in one array. So both manifests will be installing in parallel with own custom parameters.
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  install:
+    - jps: http://example.com/manifest1.jps
+      settings:
+        myparam: test1
+
+    - jps: http://example.com/manifest2.jps
+      settings:
+        myparam: test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install": [
+      {
+        "jps": "http://example.com/manifest1.jps",
+        "settings": {
+          "myparam": "test1"
+        }
+      },
+      {
+        "jps": "http://example.com/manifest2.jps",
+        "settings": {
+          "myparam": "test2"
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
 where:
 
 - `jps` - URL to your custom JPS manifest  
 - `settings` - user custom parameters           
 
-Installing the add-on from the local manifest file.
+The `nodeGroup` [filtering](../selecting-containers/#selector-types) can be applied to the `install` action in order to carry out addon installation on different [layers](https://docs.jelastic.com/paas-components-definition#layer) within one environment.  
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  install[cp,bl]:
+    jps: http://example.com/manifest.jps
+    log: Test Async Install By Node Group
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install[cp,bl]": {
+      "jps": "http://example.com/manifest.jps",
+      "log": "Test Async Install By Node Group"
+    }
+  }
+}
+```
+@@!  
+
+Installing the add-on from the local manifest file. 
+
 @@@
 ```yaml
 type: update
@@ -1695,6 +1838,102 @@ onInstall:
 }
 ```
 @@!
+
+You can install multiple add-ons from the local manifest in both synchronous and asynchronous mode.  
+
+Synchronous installation. It can be used when the add-ons must be installed one by one since one add-on is dependant from another.  
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  - install:
+      type: update
+      name: test1
+      onInstall:
+        log: install test1
+  - install:
+      type: update
+      name: test2
+      onInstall:
+        log: install test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": [
+    {
+      "install": {
+        "type": "update",
+        "name": "test1",
+        "onInstall": {
+          "log": "install test1"
+        }
+      }
+    },
+    {
+      "install": {
+        "type": "update",
+        "name": "test2",
+        "onInstall": {
+          "log": "install test2"
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
+Two addons asynchronous installation from the two local manifests inside one `install` action in one array. So both manifests will be installing in parallel.  
+
+@@@
+```yaml
+type: update
+name: Install action
+onInstall:
+  install:
+    - type: update
+      name: test1
+      onInstall:
+        log: install test1
+        
+    - type: update
+      name: test2
+      onInstall:
+        log: install test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": [
+    {
+      "install": {
+        "type": "update",
+        "name": "test1",
+        "onInstall": {
+          "log": "install test1"
+        }
+      }
+    },
+    {
+      "install": {
+        "type": "update",
+        "name": "test2",
+        "onInstall": {
+          "log": "install test2"
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
 where:
 
 - `onInstall` - entry point for performed actions                                 
@@ -1728,13 +1967,110 @@ onInstall:
 }
 ```
 @@!
+
+Multiple environment installations are also possible via external links in both synchronous and asynchronous mode.  
+
+Synchronous installation. It can be used when the environments must be installed one by one since one environment is dependant from another. 
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  - install:
+      jps: http://example.com/manifest1.jps
+      envName: env1-${fn.random}
+      settings:
+        myparam: test1
+
+  - install:
+      jps: http://example.com/manifest2.jps
+      envName: env2-${fn.random}
+      settings:
+        myparam: test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": [
+    {
+      "install": {
+        "jps": "http://example.com/manifest1.jps",
+        "envName": "env1-${fn.random}",
+        "settings": {
+          "myparam": "test1"
+        }
+      }
+    },
+    {
+      "install": {
+        "jps": "http://example.com/manifest2.jps",
+        "envName": "env2-${fn.random}",
+        "settings": {
+          "myparam": "test2"
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
+Asynchronous installation inside one `install` action in one array. So both manifests will be installing in parallel.
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  install:
+    - jps: http://example.com/manifest1.jps
+      envName: env1-${fn.random}
+      settings:
+        myparam: test1
+
+    - jps: http://example.com/manifest2.jps
+      envName: env2-${fn.random}
+      settings:
+        myparam: test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install": [
+      {
+        "jps": "http://example.com/manifest1.jps",
+        "envName": "env1-${fn.random}",
+        "settings": {
+          "myparam": "test1"
+        }
+      },
+      {
+        "jps": "http://example.com/manifest2.jps",
+        "envName": "env2-${fn.random}",
+        "settings": {
+          "myparam": "test2"
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
 where: 
 
 - `jps` - URL to your custom JPS manifest                    
 - `envName` - short domain name of a new environment                                   
-- `settings` - user <a href="/1.6/creating-manifest/visual-settings/" target="_blank">custom form</a>                                               
+- `settings` - user [custom form](../visual-settings/)
 
 Installing the environment from the local manifest file.                      
+
 @@@
 ```yaml
 type: update
@@ -1774,9 +2110,147 @@ onInstall:
 }
 ```
 @@!
+
+You can install multiple environments from the local manifest in both synchronous and asynchronous mode.  
+
+Synchronous installation. It can be used when the environments must be installed one by one since one environments is dependant from another.  
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  - install:
+    	type: install
+    	region: dev1
+    	envName: env-${fn.random}
+    	name: test1
+    	nodes:
+      	nodeType: apache2
+      	cloudlets: 16
+    	onInstall: 
+      	log: install test1
+  - install:
+    	type: install
+    	region: dev2
+    	envName: env-${fn.random}
+    	name: test2
+    	nodes:
+      	nodeType: nginx
+      	cloudlets: 16
+    	onInstall: 
+      	log: install test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": [
+    {
+      "install": {
+        "type": "install",
+        "region": "dev1",
+        "envName": "env-${fn.random}",
+        "name": "test1",
+        "nodes": {
+          "nodeType": "apache2",
+          "cloudlets": 16
+        },
+        "onInstall": {
+          "log": "install test1"
+        }
+      }
+    },
+    {
+      "install": {
+        "type": "install",
+        "region": "dev2",
+        "envName": "env-${fn.random}",
+        "name": "test2",
+        "nodes": {
+          "nodeType": "nginx",
+          "cloudlets": 16
+        },
+        "onInstall": {
+          "log": "install test2"
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
+Asynchronous installation inside one `install` action in one array. So both manifests will be installing in parallel.
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  install:
+    - type: install
+    	region: dev1
+    	envName: env-${fn.random}
+    	name: test1
+    	nodes:
+      	  nodeType: apache2
+      	  cloudlets: 16
+    	onInstall: 
+      	  log: install test1
+    - type: install
+    	region: dev2
+    	envName: env-${fn.random}
+    	name: test2
+    	nodes:
+      	  nodeType: nginx
+      	  cloudlets: 16
+    	onInstall: 
+      	  log: install test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install": [
+      {
+        "type": "install",
+        "region": "dev1",
+        "envName": "env-${fn.random}",
+        "name": "test1",
+        "nodes": {
+          "nodeType": "apache2",
+          "cloudlets": 16
+        },
+        "onInstall": {
+          "log": "install test1"
+        }
+      },
+      {
+        "type": "install",
+        "region": "dev2",
+        "envName": "env-${fn.random}",
+        "name": "test2",
+        "nodes": {
+          "nodeType": "nginx",
+          "cloudlets": 16
+        },
+        "onInstall": {
+          "log": "install test2"
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
 where:
 
-- `region` - hardware node's <a href="https://docs.jelastic.com/environment-regions" target="_blank">region</a>                                               
+- `region` - hardware node's [region](https://docs.jelastic.com/environment-regions)  
 - `envName` - short domain name of a new environment                     
 - `name` - JPS name  
 - `nodes` - nodes description                                                           
@@ -1785,7 +2259,7 @@ where:
 
 ### installAddon
 
-You can install a <a href="/1.6/creating-manifest/addons/" target="_blank">custom add-on</a> within another - *parent* manifest. By default, custom add-ons have the *update* installation type.                                      
+You can install a <a href="../addons/" target="_blank">custom add-on</a> within another - *parent* manifest. By default, custom add-ons have the *update* installation type.                                      
 
 Thus, the custom add-on can be installed to the:                                         
 
@@ -1855,7 +2329,7 @@ installAddon:
 
 The action `installAddon` has the default parameter called `id`. 
 
-For more details about the <a href="/1.6/creating-manifest/addons/" target="_blank">add-ons</a> installation, visit the linked page.                                              
+For more details about the <a href="../addons/" target="_blank">add-ons</a> installation, visit the linked page.                                              
 
 <!-- add example -->
 
@@ -1941,7 +2415,7 @@ onInstall:
 ```
 @@!
 
-For more details about [*Custom Response*](/creating-manifest/handling-custom-responses/), visit the linked page.                                    
+For more details about [*Custom Response*](handling-custom-responses/), visit the linked page.                                    
 
 All the other actions within the *onInstall* array are not executed after the *return* action.                
 @@@
@@ -2063,7 +2537,7 @@ actions:
 }
 ```
 @@!
-Therefore, the same custom actions can be reused for several times with different parameters. Moreover, any action can be targeted at a specific node by ID, at a particular layer (*nodeGroup*) or *nodeType*. For more details about <a href="/1.6/creating-manifest/selecting-containers/#types-of-selectors" target="_blank">*Node Selectors*</a>, visit the linked page.                             
+Therefore, the same custom actions can be reused for several times with different parameters. Moreover, any action can be targeted at a specific node by ID, at a particular layer (*nodeGroup*) or *nodeType*. For more details about <a href="../selecting-containers/#types-of-selectors" target="_blank">*Node Selectors*</a>, visit the linked page.                             
  
 ### Code Reuse
 
@@ -2214,14 +2688,14 @@ actions:
 <br>       
 <h2>What’s next?</h2>                   
 
-- See the <a href="/1.6/creating-manifest/events/" target="_blank">Events</a> list the actions can be bound to            
+- See the <a href="../events/" target="_blank">Events</a> list the actions can be bound to            
 
-- Find out the list of <a href="/1.6/creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching           
+- Find out the list of <a href="../placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching           
 
-- See how to use <a href="/1.6/creating-manifest/conditions-and-iterations/">Conditions and Iterations</a>                                  
+- See how to use <a href="../conditions-and-iterations/">Conditions and Iterations</a>                                  
 
-- Read how to integrate your <a href="/1.6/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                                               
+- Read how to integrate your <a href="../custom-scripts/" target="_blank">Custom Scripts</a>                                               
 
-- Learn how to customize <a href="/1.6/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                                    
+- Learn how to customize <a href="../visual-settings/" target="_blank">Visual Settings</a>                                    
 
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                                           

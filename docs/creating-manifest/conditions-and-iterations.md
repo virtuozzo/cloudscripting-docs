@@ -2,7 +2,7 @@
 
 ## Conditions    
 
-The main conditional statement is <b>*if*</b>. Within this parameter, all the available <a href="/1.6/creating-manifest/placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
+The main conditional statement is <b>*if*</b>. Within this parameter, all the available <a href="../placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
 
 For example
 ```
@@ -204,6 +204,233 @@ onInstall:
 ```
 @@!
 
+### **Else**
+
+In case the conditional statement should be complemented by the opposite comparison and respective action the ***else*** conditional operator can be accommodated.  
+
+@@@
+```yaml
+type: install
+name: '[CS:Conditions] - action "else"'
+
+globals:
+  a: 1
+  b: 2
+
+onInstall:
+- log: "-- else condition test --"
+- if (false):
+    assert: false
+- else:
+    assert: true
+- if (globals.a === 1):
+    assert: true
+- else:
+    assert: false
+
+- log: "-- nested conditions test --"
+- if ('${globals.b}' === '2'):
+    if (false):
+      assert: false
+- else:
+    assert: false
+
+- log: "-- conditions position test --"
+- if (false):
+    assert: true
+- log: test
+- else:
+    assert: false
+
+- log: "-- invalid condition test --"
+- if ( ):
+    assert: false
+- else:
+    assert: false
+```
+```json
+{
+  "type": "install",
+  "name": "[CS:Conditions] - action 'else'",  
+  "globals": {
+    "a": 1,
+    "b": 2
+  },
+  "onInstall": [
+    {
+      "log": "-- else condition test --"
+    },
+    {
+      "if (false)": {
+        "assert": false
+      }
+    },
+    {
+      "else": {
+        "assert": true
+      }
+    },
+    {
+      "if (globals.a === 1)": {
+        "assert": true
+      }
+    },
+    {
+      "else": {
+        "assert": false
+      }
+    },
+    {
+      "log": "-- nested conditions test --"
+    },
+    {
+      "if ('${globals.b}' === '2')": {
+        "if (false)": {
+          "assert": false
+        }
+      }
+    },
+    {
+      "else": {
+        "assert": false
+      }
+    },
+    {
+      "log": "-- conditions position test --"
+    },
+    {
+      "if (false)": {
+        "assert": true
+      }
+    },
+    {
+      "log": "test"
+    },
+    {
+      "else": {
+        "assert": false
+      }
+    },
+    {
+      "log": "-- invalid condition test --"
+    },
+    {
+      "if ( )": {
+        "assert": false
+      }
+    },
+    {
+      "else": {
+        "assert": false
+      }
+    }
+  ]
+}
+```
+@@!
+
+### Elif
+
+An **elif** is a combination of ***if*** and ***else***. Similar to *else*, it extends the *if* statement to execute a different statement in case the original *if* expression evaluates to *FALSE*. However, unlike *else*, it will execute that alternative expression only if the *elif* conditional expression evaluates to *TRUE*. 
+There may be several *elif* within the same *if* statement. The first *elif* expression (if several exist) that evaluates to *TRUE* would be executed and the others will be skipped.  
+
+@@@
+```yaml
+type: install
+name: '[CS:Conditions] - action "elif"'
+
+globals:
+  a: 1
+  b: 2
+
+onInstall:
+- log: "-- elif positive test  --"
+- if (globals.a == 2):
+    assert: false
+- elif (globals.a == 3):
+    assert: false
+- elif (globals.a == 1):
+    assert: true
+- elif (globals.a == 1):
+    assert: false
+- elif (globals.b == 2):
+    assert: false
+- else:
+    assert: false
+
+- log: "-- elif negative test  --"
+- if (globals.a == 1):
+    assert: true
+- elif (globals.a == 1):
+    assert: false
+- elif (globals.a == 1):
+    assert: false
+```
+``` json
+{
+  "type": "install",
+  "name": "[CS:Conditions] - action 'elif'",
+  "globals": {
+    "a": 1,
+    "b": 2
+  },
+  "onInstall": [
+    {
+      "log": "-- elif positive test  --"
+    },
+    {
+      "if (globals.a == 2)": {
+        "assert": false
+      }
+    },
+    {
+      "elif (globals.a == 3)": {
+        "assert": false
+      }
+    },
+    {
+      "elif (globals.a == 1)": {
+        "assert": true
+      }
+    },
+    {
+      "elif (globals.a == 1)": {
+        "assert": false
+      }
+    },
+    {
+      "elif (globals.b == 2)": {
+        "assert": false
+      }
+    },
+    {
+      "else": {
+        "assert": false
+      }
+    },
+    {
+      "log": "-- elif negative test  --"
+    },
+    {
+      "if (globals.a == 1)": {
+        "assert": true
+      }
+    },
+    {
+      "elif (globals.a == 1)": {
+        "assert": false
+      }
+    },
+    {
+      "elif (globals.a == 1)": {
+        "assert": false
+      }
+    }
+  ]
+}
+```
+@@!
+
 ## Iterations
 
 ### ForEach
@@ -246,10 +473,10 @@ this: {}
 @@!
 where:    
 
-- `settings` *[optional]* - values of the fields that are predefined within a <a href="/1.6/creating-manifest/visual-settings/" target="_blank">user settings form</a>          
-- `license [optional]` - link to fetch parameters that are specified within the <a href="/1.6/creating-manifest/visual-settings/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through the `$(license.{any_name}` <a href="/1.6/creating-manifest/placeholders/" target="_blank">placeholder</a>  within a manifest.       
-- `event [optional]` - object with <a href="/1.6/creating-manifest/events/" target="_blank">events</a> that can be of two types, triggering a particular <a href="/1.6/creating-manifest/actions/" target="_blank"> action</a> *before* or *after* the event execution       
-- `this [optional]` - object with parameters that are transmitted within the procedure body. See the full list of available<a href="/1.6/creating-manifest/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
+- `settings` *[optional]* - values of the fields that are predefined within a <a href="../visual-settings/" target="_blank">user settings form</a>          
+- `license [optional]` - link to fetch parameters that are specified within the <a href="../visual-settings/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through the `$(license.{any_name}` <a href="../placeholders/" target="_blank">placeholder</a>  within a manifest.       
+- `event [optional]` - object with <a href="../events/" target="_blank">events</a> that can be of two types, triggering a particular <a href="../actions/" target="_blank"> action</a> *before* or *after* the event execution       
+- `this [optional]` - object with parameters that are transmitted within the procedure body. See the full list of available<a href="../placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
 
 Iteration can be executed by <b>*env.nodes*</b>, <b>*nodes*</b>, <b>*env.contexts*</b>, and <b>*env.extdomains*</b> objects.                      
 
@@ -418,13 +645,13 @@ The **ForEach** execution is recorded in the user console <a href="/troubleshoot
 <br>
 <h2>What's next?</h2>        
 
-- Read how to integrate your <a href="/1.6/creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>                         
+- Read how to integrate your <a href="../custom-scripts/" target="_blank">Custom Scripts</a>                         
 
-- Learn how to сreate your custom <a href="/1.6/creating-manifest/addons/" target="_blank">Add-Ons</a>                                         
+- Learn how to сreate your custom <a href="../addons/" target="_blank">Add-Ons</a>                                         
 
-- Find out how to handle <a href="/1.6/creating-manifest/handling-custom-responses/" target="_blank">Custom Responses</a>                       
+- Find out how to handle <a href="../handling-custom-responses/" target="_blank">Custom Responses</a>                       
 
-- See how to customize <a href="/1.6/creating-manifest/visual-settings/" target="_blank">Visual Settings</a>                   
+- See how to customize <a href="../visual-settings/" target="_blank">Visual Settings</a>                   
 
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                           
 
