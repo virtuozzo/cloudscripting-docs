@@ -6,27 +6,27 @@ Cloud Scripting supports a set of placeholders that can be used in any section o
 
 The following specific groups of placeholders are singled out: 
 
-- [Environment Placeholders](/creating-manifest/placeholders/#environment-placeholders)           
+- [Environment Placeholders](placeholders/#environment-placeholders)           
 
-- [Node Placeholders](/creating-manifest/placeholders/#node-placeholders)                 
+- [Node Placeholders](placeholders/#node-placeholders)                 
 
-- [Event Placeholders](/creating-manifest/placeholders/#event-placeholders)                    
+- [Event Placeholders](placeholders/#event-placeholders)                    
 
-- [Account Information](/creating-manifest/placeholders/#account-information)                 
+- [Account Information](placeholders/#account-information)                 
 
-- [Input Parameters](/creating-manifest/placeholders/#input-parameters)                          
+- [Input Parameters](placeholders/#input-parameters)                          
 
-- [Action Placeholders](/creating-manifest/placeholders/#action-placeholders)                  
+- [Action Placeholders](placeholders/#action-placeholders)                  
 
-- [UI Placeholders](/creating-manifest/placeholders/#ui-placeholders)                     
+- [UI Placeholders](placeholders/#ui-placeholders)                     
 
-- [Custom Global Placeholders](/creating-manifest/placeholders/#custom-global-placeholders)                               
+- [Custom Global Placeholders](placeholders/#custom-global-placeholders)                               
 
-- [Function Placeholders](/creating-manifest/placeholders/#function-placeholders)                             
+- [Function Placeholders](placeholders/#function-placeholders)                             
 
-- [Array Placeholders](/creating-manifest/placeholders/#array-placeholders)                                       
+- [Array Placeholders](placeholders/#array-placeholders)                                       
 
-- [File Path Placeholders](/creating-manifest/placeholders/#file-path-placeholders)                                 
+- [File Path Placeholders](placeholders/#file-path-placeholders)                                 
 
 Placeholders like `env`, `nodes`, `targetNodes`, `response` are dynamically updated. They could be updated by their requests if they are required to be updated.
 
@@ -305,7 +305,7 @@ This is the list of placeholders that you can use to specify UI parameters.
 - `${env.domain}` - full domain name without protocol
 - `${env.appid}` - unique environment appid at the Jelastic Platform
 - `${baseUrl}` - user custom relative URL. More details about <a href="../basic-configs/#relative-links">Relative Links here</a>
-- `${platformUrl}` - hoster dashboard URL.
+- `${platformUrl}` - platform dashboard URL
 
 **Example**
 @@@
