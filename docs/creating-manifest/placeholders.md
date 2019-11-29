@@ -402,6 +402,14 @@ The function parameter can be passed from existing placeholders, for example:
 
 - `${fn.md5([fn.random])}` - *md5* encoding random password   
 - `${fn.base64([user.email])}` - *base64* encoding user email address  
+- `${fn.compareEngine(version)}` - compares the latest supported by the current platform CS engine version with the given *version*.  Returns result:  
+	0 - *version* equals CS engine version  
+	1 - CS engine version greater than *version*  
+	-1 - CS engine version less than *version*  
+- `${fn.compare(version1, version2)}` - compares two given versions separated by dots. Returns result:  
+	0 - *version1* equals *version2*  
+	1 - *version1* greater than *version2*  
+	-1 - *version1* less than *version2*  
 
 You can easily define function placeholders within the [custom global placeholders](#custom-global-placeholders), for example:
 @@@
@@ -592,6 +600,83 @@ onInstall:
 @@!
 The results on the screen below:
 ![comparison](/img/comparison.png)
+
+## Engine Placeholder
+The *${engine}* placeholder returns the latest Cloud Scripting engine version that is supported by the platform the manifest is executed on.  
+
+`${engine}` - CS engine version  
+
+In order to determine whether JPS manifest is supported or not the function placeholders can be used:
+
+- *[${fn.compareEngine(version)}](https://docs.cloudscripting.com/creating-manifest/placeholders/#function-placeholders)*   
+- *[${fn.compare(version1, version2)}](https://docs.cloudscripting.com/creating-manifest/placeholders/#function-placeholders)*    
+
+@@@
+```yaml
+type: install
+name: Ability co compare CS engine versions
+
+onInstall:
+- assert:
+  - "'${engine}'.split('.').length > 0"
+  - "'${fn.compare}' == 0"
+  - "'${fn.compare(5.4.1, 5.4.2)}' == -1"
+  - "'${fn.compare(5.5, 5.4.2)}' == 1"
+  - "'${fn.compare(5.4.0, 5.4.0.0)}' == 0"
+  - "'${fn.compareEngine}' == 0"
+  - "'${fn.compareEngine(1.5.1)}' == 1"
+  - "'${fn.compareEngine(1000000)}' == -1"
+```
+```json
+{
+  "type": "install",
+  "name": "Ability co compare CS engine versions",
+  "onInstall": [
+    {
+      "assert": [
+        "'${engine}'.split('.').length > 0",
+        "'${fn.compare}' == 0",
+        "'${fn.compare(5.4.1, 5.4.2)}' == -1",
+        "'${fn.compare(5.5, 5.4.2)}' == 1",
+        "'${fn.compare(5.4.0, 5.4.0.0)}' == 0",
+        "'${fn.compareEngine}' == 0",
+        "'${fn.compareEngine(1.5.1)}' == 1",
+        "'${fn.compareEngine(1000000)}' == -1"
+      ]
+    }
+  ]
+}
+```
+@@!
+
+Another example how to check platform version compatibility:  
+
+@@@
+```yaml
+type: install
+name: Ability co compare CS engine versions
+
+onInstall:
+  - system.service.GetVersion   
+  - if ('${fn.compare([response.version], 5.7)}' == -1):
+      log: not compatible version
+```
+```json
+{
+  "type": "install",
+  "name": "Ability co compare CS engine versions",
+  "onInstall": [
+    "system.service.GetVersion",
+    {
+      "if ('${fn.compare([response.version], 5.7)}' == -1)": {
+        "log": "not compatible version"
+      }
+    }
+  ]
+}
+```
+@@!
+
 
 <br>       
 <h2> What’s next?</h2>                    
