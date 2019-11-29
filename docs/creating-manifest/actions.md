@@ -246,7 +246,7 @@ cmd [nginx]:
    
 ### api
 
-Executing actions available by means of <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a>.     
+Executing actions available by means of [Jelastic Cloud API](http://docs.jelastic.com/api).  
 
 There are a number of parameters required by Jelastic API that are defined automatically:                            
 
@@ -256,7 +256,13 @@ There are a number of parameters required by Jelastic API that are defined autom
 
 - *session* - unique session of a current user                                  
 
-Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be run on all nodes within a single <a href="../selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="../selecting-containers/#all-containers-by-type" target="_blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="../selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required that is available either through the <a href="../placeholders/#node-placeholders" target="_blank">node placeholders</a>, or a set of [custom action parameters](#action-placeholders) (*${this}*).                     
+Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be run on all nodes within a single *[nodeGroup](../selecting-containers/#all-containers-by-group)* (i.e. layer) or *[nodeType](../selecting-containers/#all-containers-by-type)* asynchronously or in other words in parallel. Also, API methods can be run on a *[particular node(s)](../selecting-containers/#particular-container)*. In this case, the Node ID is required that is available either through the *[node placeholders](../placeholders/#node-placeholders)*, or a set of [custom action parameters](#action-placeholders) (*${this}*).   
+All of the nodes keywords and/or Node IDs can be passed as a list within one `api` action that allows to execute it asynchronously on all specified nodes. In case the action should be executed on all environment nodes you can use wildcards  `api[*]`.
+
+!!! note 
+    Passing nodes keywords and Node IDs within api action make sure the api method can take them as input parameters.   
+    Some api methods allow to control how to execute action within particular *nodeGroup* synchronously or asynchronously with help of **isSequential** parameter. In case *isSequential: true* the actions within *nodeGroup* executed on the nodes one by one according to their Node Ids(ascending).
+
 
 **Examples**
 
@@ -284,6 +290,53 @@ api [cp]: environment.control.RestartNodes
 ``` json
 {
     "api [cp]" : "environment.control.RestartNodes"
+}
+```
+@@!
+
+Restarting all compute and load balancer nodes in the environment.  
+@@@
+```yaml
+api [cp, bl]: environment.control.RestartNodes
+```
+``` json
+{
+    "api [cp, bl]" : "environment.control.RestartNodes"
+}
+```
+@@!
+
+Restarting all compute and load balancer nodes and specific node from another layer (e.g. *sqldb* node) within one environment.      
+@@@
+```yaml
+api [cp, bl, ${nodes.sqldb[0].id}]: environment.control.RestartNodes
+```
+``` json
+{
+    "api [cp, bl, ${nodes.sqldb[0].id}]" : "environment.control.RestartNodes"
+}
+```
+@@!
+
+Synchronous action execution example within compute node layer using *isSequential* parameter.  
+
+@@@
+```yaml
+type: update
+name: Event Subscription Example
+
+onInstall:
+  isSequential: true
+  api [cp]: env.control.RestartNodes
+```
+``` json
+{
+  "type": "update",
+  "name": "Event Subscription Example",
+  "onInstall": {
+    "isSequential": true,
+    "api [cp]": "env.control.RestartNodes"
+  }
 }
 ```
 @@!
