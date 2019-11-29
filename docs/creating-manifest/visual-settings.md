@@ -2183,6 +2183,233 @@ In this case *Nodes* field will be hidden.
 
 ![TargetNodesFilter](/img/target-nodes-none.png)</center>
 
+### showIf
+The **showIf** is an optional method that shows/hides additional fields depending on current field value.
+*showIf* represents an object of key/value pairs.
+Each **key** is a particular value of a field where *showIf* is set.  
+Each **value** is an array of Cloud Scripting supported fields.  
+
+A few usage examples with different fields.
+
+  * **list**
+
+@@@
+```yaml
+type: install
+name: ShowIf support with list field
+
+settings:
+  fields:    
+    - type: list
+      caption: List
+      value: first
+      values:
+        first: First
+        second: Second
+      showIf:
+        first:
+          - type: string
+            caption: First String
+        second:
+          - type: string
+            caption: Second String
+```
+```json
+{
+  "type": "install",
+  "name": "ShowIf support with list field",
+  "settings": {
+    "fields": [
+      {
+        "type": "list",
+        "caption": "List",
+        "value": "first",
+        "values": {
+          "first": "First",
+          "second": "Second"
+        },
+        "showIf": {
+          "first": [
+            {
+              "type": "string",
+              "caption": "First String"
+            }
+          ],
+          "second": [
+            {
+              "type": "string",
+              "caption": "Second String"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
+ * **string**
+@@@
+```yaml
+type: install
+name: ShowIf support with string field
+
+settings:    
+  fields:
+    - type: string
+      caption: String
+      placeholder: type 'custom'
+      showIf:
+        custom:
+          - type: string
+            caption: Custom
+```
+```json
+{
+  "type": "install",
+  "name": "ShowIf support with string field",
+  "settings": {
+    "fields": [
+      {
+        "type": "string",
+        "caption": "String",
+        "placeholder": "type 'custom'",
+        "showIf": {
+          "custom": [
+            {
+              "type": "string",
+              "caption": "Custom"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
+  * **toggle**
+  @@@
+  ```yaml
+  type: install
+name: ShowIf support with toggle field
+
+settings:    
+  fields:
+    - type: toggle
+      caption: Toggle      
+      showIf:
+        true:
+          - type: string
+            caption: String
+```
+```json
+{
+  "type": "install",
+  "name": "ShowIf support with toggle field",
+  "settings": {
+    "fields": [
+      {
+        "type": "toggle",
+        "caption": "Toggle",
+        "showIf": {
+          "true": [
+            {
+              "type": "string",
+              "caption": "String"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
+  * **envlist**. The **test.vip.jelastic.cloud** environment must exist to make triggering the *showIf*:
+@@@
+```yaml
+type: install
+name: ShowIf support with envlist
+
+settings:
+  fields:
+    - caption: Environments
+      type: envlist
+      showIf:
+        test.vip.jelastic.cloud: 
+          - type: string
+            caption: String
+```
+```json
+{
+  "type": "install",
+  "name": "ShowIf support with envlist",
+  "settings": {
+    "fields": [
+      {
+        "caption": "Environments",
+        "type": "envlist",
+        "showIf": {
+          "test.vip.jelastic.cloud": [
+            {
+              "type": "string",
+              "caption": "String"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
+In case *showIf* triggering is required by *Environment name* as a value:  
+
+@@@
+```yaml
+type: install
+name: ShowIf support with envlist
+
+settings:
+  fields:
+    - caption: Environments
+      type: envlist
+      valueField: shortdomain
+      showIf:
+        test: 
+          - type: string
+            caption: String
+```
+```json
+{
+  "type": "install",
+  "name": "ShowIf support with envlist",
+  "settings": {
+    "fields": [
+      {
+        "caption": "Environments",
+        "type": "envlist",
+        "valueField": "shortdomain",
+        "showIf": {
+          "test": [
+            {
+              "type": "string",
+              "caption": "String"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
 
 ## Custom Menus
 Menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](#custom-buttons).
