@@ -2290,10 +2290,10 @@ settings:
 ```
 @@!
 
-  * **toggle**
-  @@@
-  ```yaml
-  type: install
+ * **toggle**
+@@@
+```yaml
+type: install
 name: ShowIf support with toggle field
 
 settings:    
