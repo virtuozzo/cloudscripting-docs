@@ -2249,7 +2249,8 @@ settings:
 ```
 @@!
 
- * **string**
+  * **string**
+
 @@@
 ```yaml
 type: install
@@ -2289,8 +2290,10 @@ settings:
 }
 ```
 @@!
+  
 
- * **toggle**
+  * **toggle**
+
 @@@
 ```yaml
 type: install
@@ -2329,7 +2332,9 @@ settings:
 ```
 @@!
 
+  
   * **envlist**. The **test.vip.jelastic.cloud** environment must exist to make triggering the *showIf*:
+
 @@@
 ```yaml
 type: install
