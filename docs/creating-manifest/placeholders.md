@@ -507,7 +507,7 @@ The result of the example execution in [console](http://docs.cloudscripting.com/
 [17:43:36 CS.toBase64]: END HANDLE EVENT: application/install
 [17:43:36 CS.toBase64]: END INSTALLATION: CS Placeholders - built-in data processing functions - toBase64  
 ```
-  
+\  
 ### ${\*.fromBase64()} 
 
 Data decoding example from Base64 format to plain text:
@@ -573,7 +573,7 @@ The output in the [console](http://docs.cloudscripting.com/troubleshooting/#trou
 [08:13:41 CS:Placeholders.fromBase64]: END HANDLE EVENT: application/install
 [08:13:42 CS:Placeholders.fromBase64]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - fromBase64
 ```
-  
+\  
 ### ${\*.md5()}
 
 *md5* hash generation example:  
@@ -639,7 +639,7 @@ Check the output in the [console](http://docs.cloudscripting.com/troubleshooting
 [08:17:01 CS:Placeholders.md5]: END HANDLE EVENT: application/install
 [08:17:02 CS:Placeholders.md5]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - md5
 ```
-  
+\  
 ### ${\*.join()}
 
 The ${\*.join()} can be applied in case of array's elements should be concatenated with each other according to element filtering rule if any.
@@ -813,7 +813,7 @@ Console output:
 [11:40:07 CS:Placeholders.join]: END HANDLE EVENT: application/install
 [11:40:07 CS:Placeholders.join]: END INSTALLATION: CS:Placeholders - built-in data processing functions - join
 ```
-  
+\  
 ### ${\*.toJSON()}
 
 This placeholder returns structured data in JSON format. 
@@ -911,7 +911,7 @@ Check the output for both placeholders ${\*.toJSON()} and ${\*.print()}:
 [12:49:40 CS:Placeholders.toJSON/print']: END HANDLE EVENT: application/install
 [12:49:40 CS:Placeholders.toJSON/print']: END INSTALLATION: CS:Placeholders - built-in data processing functions- toJSON/print'
 ```
-  
+\  
 ### ${\*.contains()}
 
 This placeholder is used for checking if the specified element exists in the given list or not.  
@@ -998,7 +998,7 @@ The result of such action is a Boolean value: *true* or *false*:
 [14:34:04 CS:Placeholders.contains]: END HANDLE EVENT: application/install
 [14:34:05 CS:Placeholders.contains]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - contains
 ```
-  
+\  
 ## Array Placeholders
 
 Any array has a list of specific placeholders: array *length*, element by *ID*, the *first* and the *last* array elements.   
@@ -1013,7 +1013,7 @@ Any array length placeholder can be defined within a manifest.
 ${nodes.cp.length},
 ${nodes.bl.extips.length}
 ```
-  
+\  
 **Element by ID**    
 
 Each element has an index in the array. 
