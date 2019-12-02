@@ -24,7 +24,7 @@ name: any required name
 This is a mandatory body part of the application package, which includes the information about JPS name and the type of the application installation (the <b>*'install'*</b> mode initiates a new environment creation required for a deployment, the <b>*'update'*</b> mode performs actions on the existing environment).
 This basic string should be extended with the settings required by the application you are packing. The following configuration details are included beside the <b>*'type': " "*</b> parameter:
 
-##Manifest Overview
+## Manifest Overview
 
 There is a set of available parameters to define a manifest installation behaviour, custom description and design, application icons and success texts etc.
 
@@ -129,7 +129,7 @@ The list of available parameters are:
 - `nodeType` *[required]* - the defined node type. The list of available stacks are <a href="../selecting-containers/#supported-stacks" target="_blank">here</a>. 
 - `cloudlets` *[optional]* - a number of dynamic cloudlets. The default value is 0. `flexible` is an alias. 
 - `fixedCloudlets` *[optional]* - amount of fixed cloudlets. The default value is 1.
-- `count` *[optional]* - amount of nodes in one group. The default value is 1.
+- `count` *[optional]* - amount of nodes in one group. The default value is 1. To set up the parameter dynamically see an [example](#count-parameter).
 - `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any custom node group.
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.
@@ -141,6 +141,7 @@ The list of available parameters are:
     - 10G = 10GB
     - 100M = 100MB
     - 1T = 1TB
+- `distribution` *[optional]* - defines environment distribution across hardware hosts within the platform
 
 The following parameters are available for Docker nodes only:   
                        
@@ -156,7 +157,160 @@ The following parameters are available for Docker nodes only:
 <!-- startService section -->
 - `startService` *[optional]* - defines whether to run defined service or not. By default `true`
 
-### startService Parameter
+#### count Parameter
+
+The number of nodes can be passed via any field described in [visual-settings](../visual-settings/) section.
+For example the *radio-fieldset* can be utilized to pass the number of *nodes* to be installed within specified *nodeGroup*:  
+@@@
+```yaml
+jpsType: install
+name: MyNodes
+settings:
+  fields:
+  - caption: Arbitrary number of Nodes
+    type: radio-fieldset
+    name: mode
+    default: one
+    values:
+      one: 1 node
+      two: 2 nodes
+      three: 3 nodes
+    showIf:
+      one:
+      - inputType: hidden
+        type: string
+        name: nodes
+        default: 1
+      two:
+      - type: string
+        inputType: hidden
+        name: nodes
+        default: 2
+      three:
+      - type: string
+        inputType: hidden
+        name: nodes
+        default: 3
+nodes:
+  nodeType: apache2
+  nodeGroup: cp
+  count: "${settings.nodes}"
+```
+``` json
+{
+  "jpsType": "install",
+  "name": "MyNodes",
+  "settings": {
+    "fields": [
+      {
+        "caption": "Arbitrary number of Nodes",
+        "type": "radio-fieldset",
+        "name": "mode",
+        "default": "one",
+        "values": {
+          "one": "1 node",
+          "two": "2 nodes",
+          "three": "3 nodes"
+        },
+        "showIf": {
+          "one": [
+            {
+              "inputType": "hidden",
+              "type": "string",
+              "name": "nodes",
+              "default": 1
+            }
+          ],
+          "two": [
+            {
+              "type": "string",
+              "inputType": "hidden",
+              "name": "nodes",
+              "default": 2
+            }
+          ],
+          "three": [
+            {
+              "type": "string",
+              "inputType": "hidden",
+              "name": "nodes",
+              "default": 3
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "nodes": {
+    "nodeType": "apache2",
+    "nodeGroup": "cp",
+    "count": "${settings.nodes}"
+  }
+}
+```
+@@!
+
+Another example with *spinner* field:   
+
+@@@
+```yaml
+jpsType: install
+name: MyNodes
+settings:
+  fields:
+  - caption: Arbitrary number of Nodes
+    type: spinner
+    name: nodes
+    increment: 1
+    default: 1
+    min: 1
+  - caption: Cloudlets
+    type: spinner
+    name: cldts
+    increment: 2
+    default: 4
+    min: 4
+nodes:
+  nodeType: apache2
+  nodeGroup: cp
+  count: ${settings.nodes}
+  cloudlets: ${settings.cldts}
+  ```
+  ```json
+  {
+  "jpsType": "install",
+  "name": "MyNodes",
+  "settings": {
+    "fields": [
+      {
+        "caption": "Arbitrary number of Nodes",
+        "type": "spinner",
+        "name": "nodes",
+        "increment": 1,
+        "default": 1,
+        "min": 1
+      },
+      {
+        "caption": "Cloudlets",
+        "type": "spinner",
+        "name": "cldts",
+        "increment": 2,
+        "default": 4,
+        "min": 4
+      }
+    ]
+  },
+  "nodes": {
+    "nodeType": "apache2",
+    "nodeGroup": "cp",
+    "count": "${settings.nodes}",
+    "cloudlets": "${settings.cldts}"
+  }
+}
+```
+@@!
+
+#### startService Parameter
 
 The *startService* flag is responsible for a service launch and its addition to the autoload while container creation. By default, this parameter is enabled but can be deactivated by changing the *startService* value to false.
 
