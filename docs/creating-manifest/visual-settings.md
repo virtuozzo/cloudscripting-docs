@@ -677,7 +677,7 @@ Field for displaying **Docker tags** within the *[list](#list)* element.
 
 ![text](/img/dockertags.png)
 
-The *tags* of specific *nodeType* can be displayed like in the wizard with no acquiring from the server:   
+The *tags* of specific *nodeType* can be displayed like in the wizard above with no acquiring from the server:   
 @@@
 ```yaml
 type: install
@@ -686,7 +686,7 @@ name: Dockertags aquiring
 settings:
   fields:
     - type: dockertags      
-      nodeType: dockerengine
+      nodeType: tomcat
       name: tag
 ```
 ```json
@@ -697,7 +697,7 @@ settings:
     "fields": [
       {
         "type": "dockertags",
-        "nodeType": "dockerengine",
+        "nodeType": "tomcat",
         "name": "tag"
       }
     ]
@@ -713,15 +713,15 @@ where:
 With an **image** parameter tags can be acquired from:  
 
   * Docker Hub registry:  
-  @@@
-  ```yaml
-  type: install
+@@@
+```yaml
+type: install
 name: Dockertags aquiring
 
 settings:
   fields:
     - type: dockertags      
-      image: devbeta/docker-ce
+      image: jelastic/tomcat
       name: tag
 ```
 ```json
@@ -732,7 +732,7 @@ settings:
     "fields": [
       {
         "type": "dockertags",
-        "image": "devbeta/docker-ce",
+        "image": "jelastic/tomcat",
         "name": "tag"
       }
     ]
@@ -750,7 +750,7 @@ settings:
   fields:
     - type: dockertags      
       image: 
-        registry: example.com/devbeta/docker-ce
+        registry: example.com/dev/tomcat
         user: admin
         password: 123456
         name: tag 
@@ -764,7 +764,7 @@ settings:
       {
         "type": "dockertags",
         "image": {
-          "registry": "example.com/devbeta/docker-ce",
+          "registry": "example.com/dev/tomcat",
           "user": "admin",
           "password": 123456,
           "name": "tag"
@@ -786,7 +786,7 @@ name: Dockertags aquiring
 settings:
   fields:
     - type: nodetags      
-      nodeType: dockerengine
+      nodeType: tomcat
       name: tag
 ```
 ```json
@@ -797,7 +797,7 @@ settings:
     "fields": [
       {
         "type": "nodetags",
-        "nodeType": "dockerengine",
+        "nodeType": "tomcat",
         "name": "tag"
       }
     ]
