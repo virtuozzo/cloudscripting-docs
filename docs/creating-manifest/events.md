@@ -1764,7 +1764,7 @@ Event Placeholders:
 
 -   `${event.params.}`:  
     - `settings` - custom form with predefined user input elements  
-    - `id` - add-on id  
+    - `id` - unique add-on id  
     - `lang` - [user's language code](https://en.wikipedia.org/wiki/Language_code) which was used during the installation. Optional parameter  
     - `region` - region, where an environment will be installed  
     - `targetAppid`  - application identifier  
@@ -1775,7 +1775,7 @@ The event is executed after add-on installation
   
 -   `${event.params.}`:  
     - `settings` - custom form with predefined user input elements   
-    - `id` - add-on id  
+    - `id` - unique add-on id  
     - `lang` - [user's language code](https://en.wikipedia.org/wiki/Language_code) which was used during the installation. Optional parameter  
     - `region` - region, where an environment will be installed  
     - `targetAppid`  - application identifier  
@@ -1784,18 +1784,18 @@ The event is executed after add-on installation
     - `appid` - unique environment *appid* at the Jelastic Platform  
     - `successText`- message that appears once action is successfully performed  
   
-Subscription:  
+Events Subscription Example:  
   
 @@@
 ```yaml
 type: update  
 name: Test Add-on Events Subscription  
   
-onBeforeInstallAddon [nodeGroup:cp, id:test123]:  
+onBeforeInstallAddon [nodeGroup:cp, id:myaddon]:  
   log: add-on  
   ID: ${event.params.id}  
   
-onAfterInstallAddon [nodeGroup:cp, id:test123]:  
+onAfterInstallAddon [nodeGroup:cp, id:myaddon]:  
   log: add-on  
   unique name: ${event.response.uniqueName}   
   ```
@@ -1803,11 +1803,11 @@ onAfterInstallAddon [nodeGroup:cp, id:test123]:
   {
   "type": "update",
   "name": "Test Add-on Events Subscription",
-  "onBeforeInstallAddon [nodeGroup:cp, id:test123]": {
+  "onBeforeInstallAddon [nodeGroup:cp, id:myaddon": {
     "log": "add-on",
     "ID": "${event.params.id}"
   },
-  "onAfterInstallAddon [nodeGroup:cp, id:test123]": {
+  "onAfterInstallAddon [nodeGroup:cp, id:myaddon]": {
     "log": "add-on",
     "unique name": "${event.response.uniqueName}"
   }
@@ -1824,7 +1824,7 @@ name: Test Add-on Events Triggering
 targetNodes:
   nodeGroup: cp
 
-id: test123
+id: myaddon
 
 onInstall:
   log: triggers test
@@ -1836,7 +1836,7 @@ onInstall:
   "targetNodes": {
     "nodeGroup": "cp"
   },
-  "id": "test123",
+  "id": "myaddon",
   "onInstall": {
     "log": "triggers test"
   }
