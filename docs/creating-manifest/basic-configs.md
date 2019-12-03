@@ -275,8 +275,8 @@ nodes:
   nodeGroup: cp
   count: ${settings.nodes}
   cloudlets: ${settings.cldts}
-  ```
-  ```json
+```
+```json
   {
   "jpsType": "install",
   "name": "MyNodes",
