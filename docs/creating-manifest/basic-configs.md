@@ -100,13 +100,13 @@ success: object/string
 - `targetRegions` *[optional]* - filtering available regions on Jelastic platform. Option will be used only with **type** `install`
     - `type` *[optional]* [array] - region's virtualization types
     - `name` *[optional]* [string] - text or JavaScript RegExp argument to filtering region's by name
-- `region` *[optional]* - region, where an environment will be installed. Option will be used only with **type** `install`.
+- `region` *[optional]* - region, where an environment will be installed. Option will be used only with **type** `install`
 `targetRegions` has a higher priority than `region`. So in case when both of options have been set regions will be filtered according to the `targetRegions` rules
 - `nodeGroupAlias` *[optional]* - an ability to set aliases for existed in environments *nodeGroup*. Mode details [here](selecting-containers/#nodegroup-aliases)
 - `nodes` - an array to describe information about nodes for an installation. Option will be used only with **type** `install`
 - `engine` *[optional]* - engine <a href="../selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
 - `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with **type** `install` mode
-- `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with **type** `install` mode.
+- `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with **type** `install` mode
 - `displayName` *[optional]* - display name for an environment. Required option for **type** `install`
 - `skipNodeEmails` *[optional]* - an ability to skip sending emails about creating nodes. Emails are related only to nodes where implemented reset password functionality
 - `appVersion` *[optional]* - custom version of an application
@@ -132,10 +132,10 @@ The list of available parameters are:
 - `count` *[optional]* - amount of nodes in one group. The default value is 1. To set up the parameter dynamically see an [example](#count-parameter).
 - `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any custom node group.
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
-- `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*.
-- `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`.  Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](addons/)
-- `tag` *[optional]* - an image tag for `dokerized` Jelastic templates with `nodeType` parameter. Full list of supported tag [here](selecting-containers/#dokerized-template-tags).
-- `scalingMode` *[optional]* - *stateless* or *stateful* [scaling](https://docs.jelastic.com/horizontal-scaling) mode, the possible values are *'NEW'* or *'CLONE'* respectively. The default value is *'CLONE'* for *nodeGroup* types: *bl,cp,vds*. For the rest of *nodeGroup* types the default value is *'NEW'*.
+- `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*
+- `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`. Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](/creating-manifest/addons/)
+- `tag` *[optional]* - an image tag for `dokerized` Jelastic templates with `nodeType` parameter. Full list of supported tag [here](/creating-manifest/selecting-containers/#dokerized-template-tags)
+- `scalingMode` *[optional]* - *stateless* or *stateful* [scaling](https://docs.jelastic.com/horizontal-scaling) mode, the possible values are *'NEW'* or *'CLONE'* respectively. The default value is *'CLONE'* for *nodeGroup* types: *bl,cp,vds*. For the rest of *nodeGroup* types the default value is *'NEW'*
 - `diskLimit` *[optional]* - sets a storage size limit. The default value is equal to disk quota for current *nodeGroup*. It is measured in GB by default. The MB and TB can be used as well. Examples:
     - 10 = 10 GB
     - 10G = 10GB
@@ -855,14 +855,24 @@ For example:
 - variable *MYSQL_ROOT_PASSWORD* from *sql* node is *DB_MYSQL_ROOT_PASSWORD* in *cp* node   
 - variable *IP_ADDRESS* from *memcached* node is *MEMCACHED_IP_ADDRESS* in *cp* node
 
-###Entry Points
+### Entry Points
 There is an ability to set custom entry points - the button *Open in Browser*, which can be clicked when JPS with type `install` is installed.
 ![open-in-browser.png](/img/open-in-browser.png)
 
 Entry Points can be set in `startPage` option. The default `startPage` value is an installed environment URL (even it hasn't been defined).
-Entry Points can include any general placeholders - which have been defined during environment installation.
+Entry Points can include any general placeholders - which have been defined during environment installation.  
+The *startPage* parameter can be specified for any *JPS* type with options as follows:  
+- for **type:install** with environment:  
+    - the **Open in browser** button is always displayed  
+    - the *startPage* parameter can be specified either relative or absolute link to the environment  
+- for **type:install** without environment:  
+    - the **Open in browser** button is displayed if the *startPage* parameter is specified in the manifest  
+    - the *startPage* parameter can be specified with absolute link only  
+- for **type:update**  
+    - the **Open in browser** button is displayed if the *startPage* parameter is specified in the manifest  
+    - the *startPage* parameter can be specified by absolute link or by link relative to the environment   
 
-For example:
+For example:  
 @@@
 ```yaml
 type: install
@@ -930,6 +940,57 @@ skipNodeEmails: true
 ```
 @@!
 
+## JPS execution without environment
+ 
+The JPS manifest can be executed without binding to any environment.  
+@@@
+```yaml
+type: install
+name: "Add-on without environment"
+
+description: |
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod sapien eu risus venenatis, at faucibus dui cursus. Vestibulum a ipsum eget nibh aliquet vestibulum. Ut vestibulum ultrices sem quis ultricies. Pellentesque maximus nisl nec metus convallis egestas. Ut posuere leo quis semper tristique. In bibendum sem quis aliquet porttitor.
+
+startPage: https://example.com/
+
+onInstall:
+  - log: test
+```
+``` json
+{
+  "type": "install",
+  "name": "Add-on without environment",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod sapien eu risus venenatis, at faucibus dui cursus. Vestibulum a ipsum eget nibh aliquet vestibulum. Ut vestibulum ultrices sem quis ultricies. Pellentesque maximus nisl nec metus convallis egestas. Ut posuere leo quis semper tristique. In bibendum sem quis aliquet porttitor.\n",
+  "startPage": "https://example.com/",
+  "onInstall": [
+    {
+      "log": "test"
+    }
+  ]
+}
+```
+@@!
+  
+The JPS will be installed without creating the environment if you specify `type`: `install` in the manifest and do not specify the `nodes`.  
+In case there is a subscription for some kind of events and no environment specified in the manifest, the subscription will be ignored and no logging (SUBSCRIBE messages) should be displayed in a [console](/troubleshooting/#troubleshooting).  
+If the environment is not specified the list of the following actions can be performed:  
+- [install](/creating-manifest/actions/#install)  
+- [script](/creating-manifest/actions/#script)  
+- [api](/creating-manifest/actions/#api)  
+- [call action](/creating-manifest/actions/#call-action-with-parameters)  
+- [foreach](/creating-manifest/conditions-and-iterations/#foreach)  
+- [if](/creating-manifest/conditions-and-iterations/#conditions)  
+- [return](/creating-manifest/actions/#return)  
+- [set](/creating-manifest/actions/#set)  
+- [setGlobals](/creating-manifest/actions/#setglobals)  
+- [assert](/creating-manifest/actions/#assert)  
+- log  
+- [sleep](/creating-manifest/actions/#sleep)  
+  
+For the rest of the [actions](/creating-manifest/actions), an error will be displayed in the console:  
+{ "result": 11022, "error": "can't find node by the given parameters" }
+
+The error 11022 is ignored and gets to no crash report.
 
 ##Relative Links
 
@@ -1045,4 +1106,4 @@ onInstall:
 }
 ```
 @@!
-                        
+                       
