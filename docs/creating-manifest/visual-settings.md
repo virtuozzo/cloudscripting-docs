@@ -2856,11 +2856,11 @@ Custom responses can be returned within <a href="../actions/#return" target="_bl
   
 In case no environment is specified in the manifest, the installation dialog has no *Environment Name* and *Region* fields, but the *[custom settings](/creating-manifest/visual-settings/#custom-settings)* can be used and displayed.  
   
-![import-button.png](img/addon-wo-env.png)  
+![import-button.png](/img/addon-wo-env.png)  
   
 The installation process for such **type:install** manifest is accompanied by installation process dialog which displays **Deploying {name}** instead of: *Preparing environment*, *Deploying{name}*, *Configuring environment*.  
   
-![import-button.png](img/deploy-addon-wo-env.png)  
+![import-button.png](/img/deploy-addon-wo-env.png)  
   
 ## Markdown Description
 
