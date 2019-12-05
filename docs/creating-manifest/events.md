@@ -1618,6 +1618,38 @@ The event is executed after swapping the external domain names between two envir
     - `targetAppid` - "string" application identifier of the second environment
 -   `${event.response.}`:
     - `result` - result code. The successful action result is '0'
+    
+### onBeforeSwapExtIps
+The event is executed before swapping the external IPs between two environments via [API](https://docs.jelastic.com/api/#!/api/environment.Binder-method-SwapExtIps) or [Jelastic CLI](https://docs.jelastic.com/cli-ip-swap).
+
+**Event Placeholders:**
+
+-   `${event.params.}`:
+    - `session` - current user session
+    - `sourceNodeId` - source node of first IP 
+    - `targetNodeId` - target node of second IP
+    - `sourceIp` - first IP
+    - `targetIp` - second IP
+-   `${event.response.}`:
+    - `reason` - result code. The successful action result is '0'
+    - `result` - result code. The successful action result is '0'
+    - `source` - “string” error description
+
+### onAfterSwapExtIps
+The event is executed after swapping the external IPs between two environments via [API](https://docs.jelastic.com/api/#!/api/environment.Binder-method-SwapExtIps) or [Jelastic CLI](https://docs.jelastic.com/cli-ip-swap).
+
+**Event Placeholders:**
+
+-   `${event.params.}`:
+    - `session` - current user session
+    - `sourceNodeId` - source node of first IP 
+    - `targetNodeId` - target node of second IP
+    - `sourceIp` - first IP
+    - `targetIp` - second IP
+-   `${event.response.}`:
+    - `reason` - result code. The successful action result is '0'
+    - `result` - result code. The successful action result is '0'
+    - `source` - “string” error description
 
 ### onAfterConfirmTransfer
 The event is called upon user confirms changing of an environment ownership from one Jelastic account to another within a single hosting service provider. Confirmation occurs once user clicks on a link in an appropriate email.
