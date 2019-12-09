@@ -1397,10 +1397,8 @@ onInstall:
 ```
 @@!
 
+`nodeGroup` and `nodeId` filtering:   
 
-But unlike [`install`](#install), [`cmd`](#cmd), or [`api`](#api) actions, the `script` **cannot** use a mixture of different node identifications. For example:   
-
-`nodeGroup` and `nodeId` filtering:  
 @@@
 ```yaml
 type: update
