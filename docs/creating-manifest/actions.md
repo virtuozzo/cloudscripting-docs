@@ -1328,9 +1328,98 @@ where:
 - `type` *[optional]* - script type with the following possible values (the default value is *'js'*):                                          
     - `js` `(javascript)` an alias    
     - `java`      
-- `params` *[optional]* - script parameters. Can can be used in scripts like placeholder in example - *${this.greeting}*                               
+- `params` *[optional]* - script parameters. Can be used in scripts like placeholder in example - *${this.greeting}*   
 
-A `script` action provides an ability to execute Jelastic API in custom scripts. Therefore, it is easy to manage Jelastic environments by `scripts`.   
+It is possible to execute `script` action asynchronously using [node filtering](http://docs.cloudscripting.com/creating-manifest/selecting-containers/#selector-types). Thus this action can be performed in parallel on different nodes of the environment. For example:  
+
+`nodeId` filtering:  
+@@@
+```yaml
+type: update
+name: Execute scripts
+
+onInstall:
+  script [12345, 123456]: |
+    return { result: 0, nodeId: nodeId };
+```
+```json
+{
+  "type": "update",
+  "name": "Execute scripts",
+  "onInstall": {
+    "script [12345, 123456]": "return { result: 0, nodeId: nodeId };"
+  }
+}
+```
+@@!
+
+`nodeGroup` filtering:  
+@@@
+```yaml
+type: update
+name: Execute scripts
+
+onInstall:
+script [cp, bl]: |  
+  return { result: 0, nodeGroup: nodeGroup };
+```
+```json
+{
+  "type": "update",
+  "name": "Execute scripts",
+  "onInstall": {
+    "script [cp, bl]": "return { result: 0, nodeGroup: nodeGroup };"
+  }
+}
+```
+@@!
+
+
+all nodes filtering:  
+
+@@@
+```yaml
+type: update
+name: Execute scripts
+
+onInstall:
+  script [*]: |
+    return { result: 0, nodeId: nodeId };
+```
+```json
+{
+  "type": "update",
+  "name": "Execute scripts",
+  "onInstall": {
+    "script [*]": "return { result: 0, nodeId: nodeId };"
+  }
+}
+```
+@@!
+
+`nodeGroup` and `nodeId` filtering:   
+
+@@@
+```yaml
+type: update
+name: Execute scripts
+
+onInstall:
+script [cp, 12345]: |  
+  return { result: 0, nodeGroup: nodeGroup };
+```
+```json
+{
+  "type": "update",
+  "name": "Execute scripts",
+  "onInstall": {
+    "script [cp, 12345]": "return { result: 0, nodeGroup: nodeGroup };"
+  }
+}
+```
+@@!
+
+The `script` action provides an ability to execute Jelastic API in custom scripts. Therefore, it is easy to manage Jelastic environments by `scripts`.   
 There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certified by Jelastic team.
 
 !!! note
