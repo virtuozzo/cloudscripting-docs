@@ -1830,8 +1830,8 @@ onBeforeInstallAddon [nodeGroup:cp, id:myaddon]:
 onAfterInstallAddon [nodeGroup:cp, id:myaddon]:  
   log: add-on  
   unique name: ${event.response.uniqueName}   
-  ```
-  ```json
+```
+```json
   {
   "type": "update",
   "name": "Test Add-on Events Subscription",
