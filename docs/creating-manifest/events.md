@@ -128,7 +128,7 @@ The event is executed once the *changeTopology* action is finished.
     - `nodes` - nodes array with detailed info about the topology change
     - `env` - environment settings, e.g. *engine, ssl, ha, region* etc
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0"*.
+    - `result` - result code. The successful action result is *'0"*
     - `envGroups` - environment groups array
     - `right` - account right for environment
     - `nodeGroups` - node delays:
@@ -210,7 +210,7 @@ The event is executed after adding new container(s) to the existing node group. 
     - `nodeGroup` - node layer where event is executed
     - `count` - nodes count which have been added
 - `${event.response.}`
-    - `nodes` - nodes array which was added to the environment. All parameters from that array can be used in a same action as placeholders value. For example, placeholder *{event.response.nodes[0].url}* will be an address of first added node.
+    - `nodes` - nodes array which was added to the environment. All parameters from that array can be used in a same action as placeholders value. For example, placeholder *{event.response.nodes[0].url}* will be an address of first added node
 
 ### onAlert
 
@@ -355,7 +355,7 @@ The Jelastic engine sends an alert notification to the Cloud Scripting system wh
     - `nodeGroup` - *nodeGroup* where an alert is executed
     - `resourceType` - resource type that is monitored
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeRestartNode
 
@@ -388,7 +388,7 @@ The event is triggered after restarting a node. It is called subsequently upon t
 - `${event.response.}`:
     - `nodeid` - restarted node's identifier
     - `out` - success output message
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeDelete
 
@@ -479,7 +479,7 @@ There are the following available node groups:
     - `diskLimit` - current node disk limit
     - `startService` *[boolean]* - value to start main service in container
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeCloneNodes
 
@@ -662,7 +662,7 @@ The event is carried out after updating the VCS project. For a detailed guidance
     - `nodeid` *[optional]* - node unique identifier
     - `delay` *[optional]* - delay between deploys on nodes (in case if mode than two nodes in one nodeGroup are available).
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 
 ### onBeforeSetCloudletCount
@@ -698,7 +698,7 @@ The event is executed after setting cloudlet count, which implies changing the n
     - `env` - environment short domain name
     - `name` - environment display name
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeChangeEngine
 
@@ -725,7 +725,7 @@ The event is performed after changing the engine's version (e.g. from *php 7* to
     - `appid` - environment unique appid
     - `settings` - environment settings to change, i.e engine in the present case
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeStart
 
@@ -750,7 +750,7 @@ The event is related to starting environment (executed from the Jelastic dashboa
     - `appid` - environment unique appid
     - `env` - environment short domain name
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeStop
 
@@ -775,7 +775,7 @@ The event is related to stopping environment (executed from the Jelastic dashboa
     - `session` - current user session
     - `appid` - environment unique appid
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeClone
 
@@ -804,7 +804,7 @@ The event is related to cloning environment (performed via the Jelastic dashboar
     - `srcenv` - source environment, parent environment for clone.
     - `targetenv` - cloned environment name. The same value as `domain`
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
     - `envGroups` - environment groups array
     - `nodeGroups` - node delays:
         - `restartNodeDelay` - delay for node restart
@@ -845,7 +845,7 @@ The event is related to build project action and is triggered after it (executed
     - `nodeid` - environment name where action is executed
     - `projectid` - project unique identifier in Jelastic dashboard
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeDeploy
   
@@ -878,7 +878,7 @@ The event is bound to the *deploy* action, which is executed at the Jelastic das
     - `context` - context name
     - `archivename` - deployed context display name that is shown at the dashboard
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
     - `responses` - deploy result texts:
         - `result` - deploy result code for current node ID
         - `out` - deploy result text
@@ -908,7 +908,7 @@ The event is bound to resetting a password (executed at the Jelastic dashboard v
     - `appid` - environment unique appid
     - `nodeGroup` - predefined node group
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeRemoveNode
 
@@ -937,7 +937,7 @@ This event is executed after deleting node(s) from your environment.
     - `env` - the same value `envName`
     - `name` - environment display name
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeRestartContainer
 
@@ -972,7 +972,7 @@ This event is carried out after restarting container. The *onAfterRestartContain
     - `name` - environment display name
     - `nodeid` - node unique identifier where method is executed
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeMigrate
 
@@ -999,7 +999,7 @@ The event is related to <a href="https://docs.jelastic.com/environment-regions-m
     - `isOnline` *[boolean]* - online migration that causes no downtime, if set to *'true'*, therefore, setting it as *'false'* leads to the downtime
     - `hardwareNodeGroup` - predefined hard node group
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeRedeployContainer
 
@@ -1036,7 +1036,7 @@ This event is performed after the container redeployment. It is bound to the *re
     - `tag` - chosen tag for redeploy
     - `useExistingVolumes` - using volumes existing on nodes
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeLinkNodes
 
@@ -1079,7 +1079,7 @@ The event is executed after the *linkNodes* action. This event is run for each l
     - `env` - environment domain name
     - `isAutoRestart` *[boolean]* - auto restart after linking
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeUnlinkNodes
 
@@ -1122,7 +1122,7 @@ This event is executed after the *unLinkNodes* action and is run for each unlink
     - `env` - environment domain name
     - `isAutoRestart` *[boolean]* - auto restart after unlinking
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeSetEnvVars
 
@@ -1155,7 +1155,7 @@ The event is triggered after the *setEnvVars* action. It is executed for every D
     - `nodeid` - an alias, the same value as `nodeId`
     - `data` - variables set for a container
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeSetEntryPoint
 
@@ -1182,7 +1182,7 @@ This event is called after the *setEntryPoint* action. It is executed for every 
     - `nodeId` - current node identifier
     - `data` - entry point set for a container
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeSetRunCmd
 
@@ -1215,7 +1215,7 @@ The event is executed after the *setRunCmd* action. It is triggered for every Do
     - `nodeid` - an alias for `nodeId`
     - `data` - run cmd set for a container
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeStartService
 
@@ -1240,7 +1240,7 @@ This event is executed each time after running the Docker *RunCmd* commands.
     - `appid` - environment unique appid
     - `nodeId` - current node identifier
 - `${event.response.}`:
-    - `result` - result code. The successful action result is *'0'*.
+    - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeAddVolume
 
@@ -1789,7 +1789,93 @@ onAfterRemoveSSL:
 ```
 @@!
 
+### onBeforeInstallAddon  
+The event is executed before add-on installation  
 
+Event Placeholders:  
+
+-   `${event.params.}`:  
+    - `settings` - custom form with predefined user input elements  
+    - `id` - unique add-on id  
+    - `lang` - [user's language code](https://en.wikipedia.org/wiki/Language_code) which was used during the installation. Optional parameter  
+    - `region` - region, where an environment will be installed  
+    - `targetAppid`  - unique environment *appid* at the Jelastic Platform  
+-   `${event.response.}`: parameters are absent  
+
+### onAfterInstallAddon  
+The event is executed after add-on installation  
+  
+-   `${event.params.}`:  
+    - `settings` - custom form with predefined user input elements   
+    - `id` - unique add-on id  
+    - `lang` - [user's language code](https://en.wikipedia.org/wiki/Language_code) which was used during the installation. Optional parameter  
+    - `region` - region, where an environment will be installed  
+    - `targetAppid`  - unique environment *appid* at the Jelastic Platform  
+-   `${event.response.}`:  
+    - `uniqueName` - installed add-on unique name  
+    - `appid` - unique environment *appid* at the Jelastic Platform  
+    - `successText`- message that appears once action is successfully performed  
+  
+Events Subscription Example:  
+  
+@@@
+```yaml
+type: update  
+name: Test Add-on Events Subscription  
+  
+onBeforeInstallAddon [nodeGroup:cp, id:myaddon]:  
+  log: add-on  
+  ID: ${event.params.id}  
+  
+onAfterInstallAddon [nodeGroup:cp, id:myaddon]:  
+  log: add-on  
+  unique name: ${event.response.uniqueName}   
+  ```
+  ```json
+  {
+  "type": "update",
+  "name": "Test Add-on Events Subscription",
+  "onBeforeInstallAddon [nodeGroup:cp, id:myaddon": {
+    "log": "add-on",
+    "ID": "${event.params.id}"
+  },
+  "onAfterInstallAddon [nodeGroup:cp, id:myaddon]": {
+    "log": "add-on",
+    "unique name": "${event.response.uniqueName}"
+  }
+}  
+```
+@@!
+
+Triggering:  
+@@@
+```yaml    
+type: update  
+name: Test Add-on Events Triggering
+
+targetNodes:
+  nodeGroup: cp
+
+id: myaddon
+
+onInstall:
+  log: triggers test
+```
+```json
+{
+  "type": "update",
+  "name": "Test Add-on Events Triggering",
+  "targetNodes": {
+    "nodeGroup": "cp"
+  },
+  "id": "myaddon",
+  "onInstall": {
+    "log": "triggers test"
+  }
+}
+```
+@@!
+  
 <br>
 
 ## What’s next?
