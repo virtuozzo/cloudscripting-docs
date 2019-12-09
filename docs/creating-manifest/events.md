@@ -1778,7 +1778,7 @@ The event is executed after add-on installation
     - `id` - unique add-on id  
     - `lang` - [user's language code](https://en.wikipedia.org/wiki/Language_code) which was used during the installation. Optional parameter  
     - `region` - region, where an environment will be installed  
-    - `targetAppid`  - application identifier  
+    - `targetAppid`  - unique environment *appid* at the Jelastic Platform  
 -   `${event.response.}`:  
     - `uniqueName` - installed add-on unique name  
     - `appid` - unique environment *appid* at the Jelastic Platform  
