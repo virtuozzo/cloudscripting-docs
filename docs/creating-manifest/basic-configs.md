@@ -126,8 +126,8 @@ The environment can be installed in case when the `type` parameter is set to **i
 
 The list of available parameters are:
 
-- `nodeType` *[required]* - the defined node type. The list of available stacks are <a href="../selecting-containers/#supported-stacks" target="_blank">here</a>. 
-- `cloudlets` *[optional]* - a number of dynamic cloudlets. The default value is 0. `flexible` is an alias. 
+- `nodeType` *[required]* - the defined node type. The list of available stacks are <a href="../selecting-containers/#supported-stacks" target="_blank">here</a> 
+- `cloudlets` *[required]* - a number of dynamic cloudlets. The recommended value is 4. The value below can disable some services in the container 
 - `fixedCloudlets` *[optional]* - amount of fixed cloudlets. The default value is 1.
 - `count` *[optional]* - amount of nodes in one group. The default value is 1. To set up the parameter dynamically see an [example](#count-parameter).
 - `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any custom node group.
