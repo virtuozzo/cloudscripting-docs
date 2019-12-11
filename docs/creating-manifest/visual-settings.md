@@ -19,8 +19,6 @@ Cloud Scripting enables you to create a personalized solution by customizing the
 You can use the parameters from the following example to fetch your input data.
 @@@
 ```yaml
-type: update
-
 settings:
   prepopulate: URL
   fields:
@@ -44,7 +42,6 @@ settings:
 ```
 ``` json
 {
-  "type": "update",
   "settings": {
     "prepopulate": "URL",
     "fields": [
@@ -76,7 +73,7 @@ where:
 
 - `prepopulate` *[optional]* - link to a script, that will fetch default field values
 - `fields` - array of fields that will be displayed in a custom form
-    - `showIf` - shows/hides field by condition (applicable only to *radio-fieldset* field)
+    - `showIf` - shows/hides field by condition 
     - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:
         * `string` - [basic](#string) text field
         * `text`  - [multiline](#text) text field
