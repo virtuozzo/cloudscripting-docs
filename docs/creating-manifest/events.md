@@ -1878,7 +1878,7 @@ onInstall:
   
 <br>
 
-## What’s next?
+<h2>What’s next?</h2>
 
 - Find out how to fetch parameters with <a href="../placeholders/" target="_blank">Placeholders</a>
 
