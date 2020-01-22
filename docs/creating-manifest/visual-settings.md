@@ -709,6 +709,7 @@ settings:
 where:
 
 - `name` *[required]* - should have the *'tag'* value
+- `nodeType` *[required]* - defines the [*nodeType*](https://docs.cloudscripting.com/creating-manifest/basic-configs/#nodes-definition) the tags are aquired for
 
 With an **image** parameter tags can be acquired from:  
 
