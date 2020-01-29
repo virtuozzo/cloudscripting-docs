@@ -6,6 +6,7 @@ copyright: Copyright &copy; Jelastic, Inc.
 #:include_search true
 #theme_center_lead: false
 
+
 theme_dir: './theme/readthedocs'
 repo_url: 'https://github.com/cloudscripting/docs/edit/1.8.1/docs/'
 
