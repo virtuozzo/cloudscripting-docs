@@ -34,7 +34,7 @@ settings:
       vtypeText: string or localization object
       regex: string for RegExp constructor
       regexText: string or localization object
-      hideLabel: string
+      hideLabel: boolean
       id: string
       cls: string
       itemId: string     
