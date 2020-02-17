@@ -862,57 +862,37 @@ values:
  
 
 ### dockertags
-Field for displaying Docker tags within the list element.
+Field for displaying **Docker tags** within the *[list](#list)* element.
 
-![text](/img/dockertag.jpg)
+![text](/img/dockertags.png)
+
+The *tags* of specific *nodeType* can be displayed like in the wizard above with no acquiring from the server:   
 @@@
 ```yaml
-name: Cloud Scripting
+type: install
+name: Dockertags aquiring
 
 settings:
   fields:
-  - type: dockertags
-    name: tag
-    hidden: false
-    values:
-    - name: latest
-    - name: first
-
-dockerImage:
-  name: jelastic/pokemongo-map
-  registry: ''
-  username: ''
-  password: ''
-
-env: {}
+    - type: dockertags      
+      nodeType: tomcat
+      name: tag
+      hidden: false
 ```
-``` json
+```json
 {
-  "name": "Cloud Scripting",
+  "type": "install",
+  "name": "Dockertags aquiring",
   "settings": {
     "fields": [
       {
         "type": "dockertags",
+        "nodeType": "tomcat",
         "name": "tag",
-        "hidden": false,
-        "values": [
-          {
-            "name": "latest"
-          },
-          {
-            "name": "first"
-          }
-        ]
+        "hidden": false
       }
     ]
-  },
-  "dockerImage": {
-    "name": "jelastic/pokemongo-map",
-    "registry": "",
-    "username": "",
-    "password": ""
-  },
-  "env": {}
+  }
 }
 ```
 @@!
@@ -920,12 +900,105 @@ env: {}
 where:
 
 - `name` *[required]* - should have the *'tag'* value
-- `values` *[required]* - Docker tag values (*name*: *"tag_name"* is required). By default, Docker image is pulled from the Docker Hub registry.
-- `dockerImage` - Docker image details
-   - `name` - *repository* is required
-   - `registry`, `username`, `password` [*optional*]
-- `env` - required object (can be empty)
+- `nodeType` *[required]* - defines the [*nodeType*](https://docs.cloudscripting.com/creating-manifest/basic-configs/#nodes-definition) the tags are aquired for
 - `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
+
+With an **image** parameter tags can be acquired from:  
+
+  * Docker Hub registry:  
+@@@
+```yaml
+type: install
+name: Dockertags aquiring
+
+settings:
+  fields:
+    - type: dockertags      
+      image: jelastic/tomcat
+      name: tag
+```
+```json
+{
+  "type": "install",
+  "name": "Dockertags aquiring",
+  "settings": {
+    "fields": [
+      {
+        "type": "dockertags",
+        "image": "jelastic/tomcat",
+        "name": "tag"
+      }
+    ]
+  }
+}
+```
+@@!
+  * Custom Registry:  
+@@@
+```yaml
+type: install
+name: Dockertags aquiring
+
+settings:
+  fields:
+    - type: dockertags      
+      image: 
+        registry: example.com/dev/tomcat
+        user: admin
+        password: 123456
+        name: tag 
+```
+```json
+{
+  "type": "install",
+  "name": "Dockertags aquiring",
+  "settings": {
+    "fields": [
+      {
+        "type": "dockertags",
+        "image": {
+          "registry": "example.com/dev/tomcat",
+          "user": "admin",
+          "password": 123456,
+          "name": "tag"
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
+An alias **nodetags** can be used instead of *dockertags* parameter:  
+
+@@@
+```yaml
+type: install
+name: Dockertags aquiring
+
+settings:
+  fields:
+    - type: nodetags      
+      nodeType: tomcat
+      name: tag
+```
+```json
+{
+  "type": "install",
+  "name": "Dockertags aquiring",
+  "settings": {
+    "fields": [
+      {
+        "type": "nodetags",
+        "nodeType": "tomcat",
+        "name": "tag"
+      }
+    ]
+  }
+}
+```
+@@!
+
 
 ### compositefield
 Compositefield is a container with specific functionality and structural components that constitute it as a block for application-oriented custom user interfaces.
