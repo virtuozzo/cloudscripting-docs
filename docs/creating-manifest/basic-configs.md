@@ -55,6 +55,8 @@ startPage: string
 actions: array
 addons: array
 success: object/string
+mixins: array
+envGroups: array/string
 ...: object
 ```
 ``` json
@@ -83,6 +85,8 @@ success: object/string
   "actions": "array",
   "addons": "array",
   "success": "object/string",
+  "mixins": "array",
+  "envGroups": "array/string",
   "...": "object"
 }
 ```
@@ -116,7 +120,45 @@ success: object/string
 - `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation. More details [here](addons/)
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](visual-settings/#success-text-customization).
 - `mixins` *[optional]* - includes(mixes) the functionality and data from one manifest into another by URL or object. More details [here](mixins/)
+- `envGroups` *[optional]* [array] - specifies a new environment group(s) or existing one(s) the new environment will belong to. The parameter can be set up as a string or as an array of strings: *envGroups [“MyGroup”]* or *envGroups [“MyGroup”,”ParentGroup/ChildGroup”]*. See more regarding [environment groups management](https://docs.jelastic.com/environment-groups-management)
 - "..." - the list of <a href="../events/" target="_blank">events</a> can be predefined before manifest is installed  
+
+### envGroups
+
+New environment can be assigned to either one or several groups upon creation with *envGroups* parameter. In case the group defined in *envGroups* does not exist it will be created. For example:
+
+@@@
+```yaml
+type: install
+name: EnvGroup
+
+nodes:
+  nodeType: apache
+  cloudlets: 4
+envGroups: 
+  - Group1/Group2
+  - Group3
+```
+```json
+{
+  "type": "install",
+  "name": "EnvGroup",
+  "nodes": {
+    "nodeType": "apache",
+    "cloudlets": 4
+  },
+  "envGroups": [
+    "Group1/Group2",
+    "Group3"
+  ]
+}
+```
+@@!
+
+where:  
+*group1* - parent group for *group2*  
+*group2* - it is a group the created environment will belong to  
+*group3* - it is another group the created environment will belong to   
 
 ## Environment Installation
 
