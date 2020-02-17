@@ -933,8 +933,10 @@ settings:
 }
 ```
 @@!  
-  
-  * Custom Registry:  
+
+
+  * Custom Registry:   
+
 @@@
 ```yaml
 type: install
