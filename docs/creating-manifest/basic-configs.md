@@ -120,12 +120,12 @@ envGroups: array/string
 - `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation. More details [here](addons/)
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](visual-settings/#success-text-customization).
 - `mixins` *[optional]* - includes(mixes) the functionality and data from one manifest into another by URL or object. More details [here](mixins/)
-- `envGroups` *[optional]* [array] - specifies a new environment group(s) or existing one(s) the new environment will belong to. The parameter can be set up as a string or as an array of strings *envGroups [“MyGroup”]* or *envGroups [“MyGroup”,”ParentGroup/ChildGroup”]*. See more regarding [environment groups management](https://docs.jelastic.com/environment-groups-management)
+- `envGroups` *[optional]* [array] - specifies a new environment group(s) or existing one(s) the new environment will belong to. The parameter can be set up as a string or as an array of strings: *envGroups [“MyGroup”]* or *envGroups [“MyGroup”,”ParentGroup/ChildGroup”]*. See more regarding [environment groups management](https://docs.jelastic.com/environment-groups-management)
 - "..." - the list of <a href="../events/" target="_blank">events</a> can be predefined before manifest is installed  
 
 ### envGroups
 
-New environment can be assigned to either one or several groups upon creation with *${envGroups}* placeholder. In case the group defined in *${envGroups}* does not exist it will be created. For example:
+New environment can be assigned to either one or several groups upon creation with *envGroups* parameter. In case the group defined in *envGroups* does not exist it will be created. For example:
 
 @@@
 ```yaml
