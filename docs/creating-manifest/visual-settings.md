@@ -932,7 +932,8 @@ settings:
   }
 }
 ```
-@@!
+@@!  
+  
   * Custom Registry:  
 @@@
 ```yaml
