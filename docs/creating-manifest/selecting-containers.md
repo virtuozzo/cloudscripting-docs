@@ -261,12 +261,12 @@ In the example above JPS add-on with `type` *update* could be applied on any exi
 The supported software stacks are categorized in the table below with specified names and aliases that can be used within Cloud Scripting, as well as the links to the available tags.
 
 
-| nodeGroup                            | Supported nodeType Values and Aliases                                                                                                                                                                                        | Supported Tags Link |
+| nodeGroup                            | Supported nodeType Values (Aliases)                                                                                                                                                                                        | Supported Tags Link |
 |--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
-| bl                                   | nginx, varnish, haproxy, apache-lb, litespeedadc                                                                                                                                                                                           | [Load-Balancers](https://docs.jelastic.com/software-stacks-versions#lb)      |
-| cp                                   | tomcat7, tomcat8, tomee, glassfish, glassfish3, glassfish4, jetty, jetty6, jetty8, jetty9, smartfox-server, powerdns, railo4, wildfly, springboot, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs, iis8, litespeedphp | [Application Servers](https://docs.jelastic.com/software-stacks-versions#app-servers) |
-| sqldb, nosqldb                       | mysql, mysql5, mysql5-6, mariadb, mariadb10, postgres9, postgresql, percona, mssql, mongodb, mongodb2, couchdb, redis, redis3, redis4, cassandra, cassandra2, cassandra3, neo4j, neo4j2-1, neo4j3, orientDB, orientDB2       | [Databases](https://docs.jelastic.com/software-stacks-versions#databases)           |
-| vps, cache, build, proxysql, storage | centos6, centos7, ubuntu16-04, memcached, maven3, proxysql, storage, windows2008, windows2012                                                                                                                                | [Additional Stacks](https://docs.jelastic.com/software-stacks-versions#additional)   |
+| bl                                   | nginx-dockerized (nginx), varnish-dockerized (varnish), haproxy, apache-lb (apache-balancer), litespeedadc (litespeedadc2)                                                                                                                                                                                           | [Load-Balancers](https://docs.jelastic.com/software-stacks-versions#lb)      |
+| cp                                   | tomcat (tomcat7, tomcat85, tomcat9), tomee-dockerized(tomee), glassfish (glassfish3), glassfish4, jetty (jetty9), jetty6, jetty8, smartfox-server, powerdns, railo4, wildfly (wildfly10, wildfly11, wildfly12, wildfly13, wildfly14, wildfly15, wildfly16, wildfly17), springboot, apache (apache2), nginxphp-dockerized (nginxphp), apache-python (apache2-python), apache-ruby (apache2-ruby), nginxruby (nginx-ruby), nginxphp-redis, nodejs, iis8, litespeedphp | [Application Servers](https://docs.jelastic.com/software-stacks-versions#app-servers) |
+| sqldb, nosqldb                       | mysql (mysql5, mysql5-6), mariadb-dockerized (mariadb), mariadb10, postgresql (postgres9, postgres10, postgres11), perconadb (percona5.5, percona5.6, percona5.7), mssql, mongodb-dockerized(mongodb, mongodb2), couchbase, couchdb, redis (redis4, redis5), redis3, cassandra2, cassandra3, neo4j, neo4j2-1, neo4j3, orientDB, orientDB2       | [Databases](https://docs.jelastic.com/software-stacks-versions#databases)           |
+| vps, cache, build, proxysql, storage | centos6, centos7, ubuntu16-04, memcached-dockerized(memcached), maven(maven3), proxysql, storage, windows2008, windows2012                                                                                                                                | [Additional Stacks](https://docs.jelastic.com/software-stacks-versions#additional)   |
 
 !!! note
     In case the root privileges are required within the certified template, it should be created as custom docker via [image](basic-configs/#environment-installation) parameter. If so, take into account that some functionality/automation won’t be available such as Custom SSL, Managed Firewall, etc. To create custom docker follow the **Supported Tags Link** column to get the proper name of certified Jelastic docker images.
@@ -278,7 +278,136 @@ The supported software stacks are categorized in the table below with specified 
 |engine|java6<br>java7<br>java8<br>jdk-9<br>jdk-10<br>jdk-1.8.0_144<br>jdk-1.8.0_152|php5.3<br>php5.4<br>php5.5<br>php5.6<br>php7<br>php7.1.13<br>php7.1.7<br>php7.2.1|ruby1.9<br>ruby2.0<br>ruby2.1<br>ruby2.2<br>ruby2.3<br>ruby2.4.1|python2.7<br>python3.3<br>python3.4<br>python3.5|nodejs6.11.5<br>nodejs6.12.3<br>nodejs8.9.0<br>nodejs8.9.4<br>nodejs9.0.0<br>nodejs9.4.0|.NET 4|
 
 !!! note
-    The list of supported <a href="https://docs.jelastic.com/software-stacks-versions" target="_blank">software stacks</a> can vary depending on your Jelastic Platform version - it can be checked at your dashboard.              
+    The list of supported <a href="https://docs.jelastic.com/software-stacks-versions" target="_blank">software stacks</a> can vary depending on your Jelastic Platform version - it can be checked at your dashboard.    
+    
+## Selecting Hardware Hosts
+
+There is an ability in Jelastic PaaS to select the hardware for the user's application with the help of the [multi zones](https://ops-docs.jelastic.com/multi-zones) approach. If a user is aware all of the [labels](https://ops-docs.jelastic.com/multi-zones#host-labels) assigned for the hardware hosts within the platform he can decide which hosts across all of the available regions can be used to install the user's environment.  
+Hardware host selection is performed by **distribution** parameter which defines the logic in the [layer specifics](basic-configs/#nodes-definition), which consist of the following two options:  
+
+- `zones` - sets a filter for allowed zones (groups of hosts custom-defined by labels) in the “{name}: {value}” format, e.g. zones: [{provider: azure}, {provider: amazon}]  
+
+- `mode` - defines the behavior in case of the target zone unavailability  
+
+    - *SOFT* - the operation should proceed on the next zone/host defined by the multi zones algorithm (this option is used by default)  
+
+    - *STRICT* - the operation should be terminated with an error  
+
+!!! note
+    - the distribution is performed in the within of a single host group (i.e. user environment region)  
+    - the default zone *{name}* can be skipped when providing zones parameter, i.e. the *zones: [“a”, “b”]* and *zones: [{zone: a}, {zone: b}]* expressions are equal  
+    - if zones with two or more *{value}* are specified for a single *{name}*, hosts with either of these values will be allowed for distribution  
+    - if zones with two or more *{name}* are specified, only hosts with all these labels will be allowed for distribution  
+    - if zones are not specified, distribution is performed across all hosts   
+    - the maximum number of elements in zones is 10  
+    - the maximum number of unique *{value}* per each *{name}* is 20    
+
+For example, the distribution configured in the following package ensures nodes are created only on the hosts with the **disk: ssd** label.  
+
+@@@
+```yaml
+name: "multi-zone"
+type: install
+
+nodes:
+  nodeType: docker
+  fixedCloudlets: 1
+  flexibleCloudlets: 8
+  image: jelastic/tomcat:latest
+  count: 2
+  distribution:
+    mode: SOFT
+    zones: 
+    - disk: ssd
+```
+```json
+{
+  "name": "multi-zone",
+  "type": "install",
+  "nodes": {
+    "nodeType": "docker",
+    "fixedCloudlets": 1,
+    "flexibleCloudlets": 8,
+    "image": "jelastic/tomcat:latest",
+    "count": 2,
+    "distribution": {
+      "mode": "SOFT",
+      "zones": [
+        {
+          "disk": "ssd"
+        }
+      ]
+    }
+  }
+}
+```
+@@!
+
+The *zones* parameter can be provided dynamically defining pair of label name and value via user interface.  
+For example:  
+
+@@@
+```yaml
+name: "multi-zone"
+type: install
+
+settings:
+  fields:
+  - hideLabel: false
+    type: string
+    caption: Label name
+    name: labelname
+  - hideLabel: false
+    type: string
+    caption: Label value
+    name: labelvalue
+    
+nodes:
+  - nodeType: tomcat
+    cloudlets: 6
+    distribution:
+      mode: SOFT
+      zones: 
+      - "${settings.labelname}": "${settings.labelvalue}"
+```
+```json
+      {
+  "name": "multi-zone",
+  "type": "install",
+  "settings": {
+    "fields": [
+      {
+        "hideLabel": false,
+        "type": "string",
+        "caption": "Label name",
+        "name": "labelname"
+      },
+      {
+        "hideLabel": false,
+        "type": "string",
+        "caption": "Label value",
+        "name": "labelvalue"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "nodeType": "tomcat",
+      "cloudlets": 6,
+      "distribution": {
+        "mode": "SOFT",
+        "zones": [
+          {
+            "${settings.labelname}": "${settings.labelvalue}"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+@@!
+
 
 <h2>What’s next?</h2>
 

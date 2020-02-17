@@ -51,7 +51,7 @@ Any container operation can be performed using a [*cmd*](#cmd) action. Moreover,
 
 ### cmd
 
-The *cmd* action executes <a href="https://docs.jelastic.com/ssh-overview" target="_blank">SSH</a> commands.             
+The *cmd* action executes *[commands](https://docs.jelastic.com/ssh-overview)* in synchronous and asynchronous modes. Within one container the *cmd* actions can be performed in synchronous mode only. Within one environment *cmd* actions can be performed asynchronously in case similar actions are required to be executed on different nodeGroups.
 <!--Available for all nodes.-->      
 
 **Example** 
@@ -81,7 +81,7 @@ where:
     - **user** - default system user with restricted permissions    
 - `sayYes` *[optional]* - parameter that enables or disables the usage of **yes** utility. The default value is *'true'*.                  
 
-The single SSH command can be passed in a string. For example, running a bash script from URL on all **Tomcat 6** nodes.                    
+The single SSH command can be passed in a string. For example, running a bash script from URL on all **Tomcat 6** nodes asynchronously.                    
 @@@
 ```yaml
 cmd [tomcat6]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
@@ -92,6 +92,31 @@ cmd [tomcat6]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
 }
 ```
 @@!
+
+The same action can be performed asynchronously on all nodes of specific *[nodeGroup](https://docs.jelastic.com/paas-components-definition#layer)* or several ones provided as the list: [cp, bl].  
+@@@
+```yaml
+cmd [cp, bl]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
+```
+``` json 
+{
+  "cmd [cp, bl]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
+}
+```
+@@!
+
+If necessary *cmd* action can be executed on all nodes of all available nodeGroups within one environment. Action will be performed asychronously as well.  
+@@@
+```yaml
+cmd [*]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
+```
+``` json 
+{
+  "cmd [*]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
+}
+```
+@@!
+
 
 The default `cmd` parameter is **commands**. It can be useful to set a several commands in the same `cmd` action. For example:
 
@@ -221,7 +246,7 @@ cmd [nginx]:
    
 ### api
 
-Executing actions available by means of <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a>.     
+Executing actions available by means of [Jelastic Cloud API](http://docs.jelastic.com/api).  
 
 There are a number of parameters required by Jelastic API that are defined automatically:                            
 
@@ -231,7 +256,13 @@ There are a number of parameters required by Jelastic API that are defined autom
 
 - *session* - unique session of a current user                                  
 
-Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be run on all nodes within a single <a href="../selecting-containers/#all-containers-by-group" target="blank"><em>nodeGroup</em></a> (i.e. layer) or <a href="../selecting-containers/#all-containers-by-type" target="_blank"><em>nodeType</em></a>. Also, API methods can be run on a <a href="../selecting-containers/#particular-container" target="_blank">particular node</a>. In this case, the Node ID is required that is available either through the <a href="../placeholders/#node-placeholders" target="_blank">node placeholders</a>, or a set of [custom action parameters](#action-placeholders) (*${this}*).                     
+Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be run on all nodes within a single *[nodeGroup](../selecting-containers/#all-containers-by-group)* (i.e. layer) or *[nodeType](../selecting-containers/#all-containers-by-type)* asynchronously or in other words in parallel. Also, API methods can be run on a *[particular node(s)](../selecting-containers/#particular-container)*. In this case, the Node ID is required that is available either through the *[node placeholders](../placeholders/#node-placeholders)*, or a set of [custom action parameters](#action-placeholders) (*${this}*).   
+All of the nodes keywords and/or Node IDs can be passed as a list within one `api` action that allows to execute it asynchronously on all specified nodes. In case the action should be executed on all environment nodes you can use wildcards  `api[*]`.
+
+!!! note 
+    Passing nodes keywords and Node IDs within api action make sure the api method can take them as input parameters.   
+    Some api methods allow to control how to execute action within particular *nodeGroup* synchronously or asynchronously with help of **isSequential** parameter. In case *isSequential: true* the actions within *nodeGroup* executed on the nodes one by one according to their Node Ids(ascending).
+
 
 **Examples**
 
@@ -259,6 +290,53 @@ api [cp]: environment.control.RestartNodes
 ``` json
 {
     "api [cp]" : "environment.control.RestartNodes"
+}
+```
+@@!
+
+Restarting all compute and load balancer nodes in the environment.  
+@@@
+```yaml
+api [cp, bl]: environment.control.RestartNodes
+```
+``` json
+{
+    "api [cp, bl]" : "environment.control.RestartNodes"
+}
+```
+@@!
+
+Restarting all compute and load balancer nodes and specific node from another layer (e.g. *sqldb* node) within one environment.      
+@@@
+```yaml
+api [cp, bl, ${nodes.sqldb[0].id}]: environment.control.RestartNodes
+```
+``` json
+{
+    "api [cp, bl, ${nodes.sqldb[0].id}]" : "environment.control.RestartNodes"
+}
+```
+@@!
+
+Synchronous action execution example within compute node layer using *isSequential* parameter.  
+
+@@@
+```yaml
+type: update
+name: Event Subscription Example
+
+onInstall:
+  isSequential: true
+  api [cp]: env.control.RestartNodes
+```
+``` json
+{
+  "type": "update",
+  "name": "Event Subscription Example",
+  "onInstall": {
+    "isSequential": true,
+    "api [cp]": "env.control.RestartNodes"
+  }
 }
 ```
 @@!
@@ -1250,9 +1328,98 @@ where:
 - `type` *[optional]* - script type with the following possible values (the default value is *'js'*):                                          
     - `js` `(javascript)` an alias    
     - `java`      
-- `params` *[optional]* - script parameters. Can can be used in scripts like placeholder in example - *${this.greeting}*                               
+- `params` *[optional]* - script parameters. Can be used in scripts like placeholder in example - *${this.greeting}*   
 
-A `script` action provides an ability to execute Jelastic API in custom scripts. Therefore, it is easy to manage Jelastic environments by `scripts`.   
+It is possible to execute `script` action asynchronously using [node filtering](http://docs.cloudscripting.com/creating-manifest/selecting-containers/#selector-types). Thus this action can be performed in parallel on different nodes of the environment. For example:  
+
+`nodeId` filtering:  
+@@@
+```yaml
+type: update
+name: Execute scripts
+
+onInstall:
+  script [12345, 123456]: |
+    return { result: 0, nodeId: nodeId };
+```
+```json
+{
+  "type": "update",
+  "name": "Execute scripts",
+  "onInstall": {
+    "script [12345, 123456]": "return { result: 0, nodeId: nodeId };"
+  }
+}
+```
+@@!
+
+`nodeGroup` filtering:  
+@@@
+```yaml
+type: update
+name: Execute scripts
+
+onInstall:
+script [cp, bl]: |  
+  return { result: 0, nodeGroup: nodeGroup };
+```
+```json
+{
+  "type": "update",
+  "name": "Execute scripts",
+  "onInstall": {
+    "script [cp, bl]": "return { result: 0, nodeGroup: nodeGroup };"
+  }
+}
+```
+@@!
+
+
+all nodes filtering:  
+
+@@@
+```yaml
+type: update
+name: Execute scripts
+
+onInstall:
+  script [*]: |
+    return { result: 0, nodeId: nodeId };
+```
+```json
+{
+  "type": "update",
+  "name": "Execute scripts",
+  "onInstall": {
+    "script [*]": "return { result: 0, nodeId: nodeId };"
+  }
+}
+```
+@@!
+
+`nodeGroup` and `nodeId` filtering:   
+
+@@@
+```yaml
+type: update
+name: Execute scripts
+
+onInstall:
+script [cp, 12345]: |  
+  return { result: 0, nodeGroup: nodeGroup };
+```
+```json
+{
+  "type": "update",
+  "name": "Execute scripts",
+  "onInstall": {
+    "script [cp, 12345]": "return { result: 0, nodeGroup: nodeGroup };"
+  }
+}
+```
+@@!
+
+The `script` action provides an ability to execute Jelastic API in custom scripts. Therefore, it is easy to manage Jelastic environments by `scripts`.   
 There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certified by Jelastic team.
 
 !!! note
@@ -1589,9 +1756,9 @@ sleep:
 
 ### install
 
-The *install* action allows to declare multiple installations within a single JPS manifest file. The action is available for the *install* and *update* installation types, therefore, it can initiate installation of both new environments and add-ons.                                 
+The *install* action allows to declare multiple installations within a single JPS manifest file in synchronous and asynchronous mode. The action is available for the *install* and *update* installation types, therefore, it can initiate installation of both new environments and add-ons.                                 
 
-The simplest record for `install` action is described like in example below:
+The simplest record for `install` action is described like in example below:  
 @@@
 ```yaml
 type: update
@@ -1609,10 +1776,10 @@ onInstall:
   }
 }
 ```
-@@!
+@@!  
 Therefore, the `install` action can be set by **string**.
 
-Also there is an ability to set a few external manifests inside one `install` action in one array. For example:
+Also there is an ability to set a few external manifests inside one `install` action in one array. Such a type of installation is performed asynchronously. For example:  
 @@@
 ```yaml
 type: update
@@ -1621,7 +1788,7 @@ name: Install action
 onInstall:
   install:
     - http://example.com/manifest.jps
-    - http://example.com/manifest2.jp
+    - http://example.com/manifest2.jps
 ```
 ```json
 {
@@ -1636,7 +1803,8 @@ onInstall:
 }
 ```
 @@!
-The next example describes installing the add-on via the external link (with the *update* installation type) with additional parameters.            
+
+The next example describes installing the add-on via the external link (with the *update* installation type) with additional parameters.   
 @@@
 ```yaml
 type: update
@@ -1663,12 +1831,127 @@ onInstall:
 }
 ```
 @@!
+
+You can install multiple add-ons via external links with additional parameters in both synchronous and asynchronous mode.  
+
+Synchronous installation. It can be used when the add-ons must be installed one by one since one add-on is dependant from another. 
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  - install:
+      jps: http://example.com/manifest1.jps
+      settings:
+        myparam: test1
+
+  - install:
+      jps: http://example.com/manifest2.jps
+      settings:
+        myparam: test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": [
+    {
+      "install": {
+        "jps": "http://example.com/manifest1.jps",
+        "settings": {
+          "myparam": "test1"
+        }
+      }
+    },
+    {
+      "install": {
+        "jps": "http://example.com/manifest2.jps",
+        "settings": {
+          "myparam": "test2"
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
+Asynchronous installation inside one `install` action in one array. So both manifests will be installing in parallel with own custom parameters.
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  install:
+    - jps: http://example.com/manifest1.jps
+      settings:
+        myparam: test1
+
+    - jps: http://example.com/manifest2.jps
+      settings:
+        myparam: test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install": [
+      {
+        "jps": "http://example.com/manifest1.jps",
+        "settings": {
+          "myparam": "test1"
+        }
+      },
+      {
+        "jps": "http://example.com/manifest2.jps",
+        "settings": {
+          "myparam": "test2"
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
 where:
 
 - `jps` - URL to your custom JPS manifest  
 - `settings` - user custom parameters           
 
-Installing the add-on from the local manifest file.
+The `nodeGroup` [filtering](../selecting-containers/#selector-types) can be applied to the `install` action in order to carry out addon installation on different [layers](https://docs.jelastic.com/paas-components-definition#layer) within one environment.  
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  install[cp,bl]:
+    jps: http://example.com/manifest.jps
+    log: Test Async Install By Node Group
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install[cp,bl]": {
+      "jps": "http://example.com/manifest.jps",
+      "log": "Test Async Install By Node Group"
+    }
+  }
+}
+```
+@@!  
+
+Installing the add-on from the local manifest file. 
+
 @@@
 ```yaml
 type: update
@@ -1697,6 +1980,102 @@ onInstall:
 }
 ```
 @@!
+
+You can install multiple add-ons from the local manifest in both synchronous and asynchronous mode.  
+
+Synchronous installation. It can be used when the add-ons must be installed one by one since one add-on is dependant from another.  
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  - install:
+      type: update
+      name: test1
+      onInstall:
+        log: install test1
+  - install:
+      type: update
+      name: test2
+      onInstall:
+        log: install test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": [
+    {
+      "install": {
+        "type": "update",
+        "name": "test1",
+        "onInstall": {
+          "log": "install test1"
+        }
+      }
+    },
+    {
+      "install": {
+        "type": "update",
+        "name": "test2",
+        "onInstall": {
+          "log": "install test2"
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
+Two addons asynchronous installation from the two local manifests inside one `install` action in one array. So both manifests will be installing in parallel.  
+
+@@@
+```yaml
+type: update
+name: Install action
+onInstall:
+  install:
+    - type: update
+      name: test1
+      onInstall:
+        log: install test1
+        
+    - type: update
+      name: test2
+      onInstall:
+        log: install test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": [
+    {
+      "install": {
+        "type": "update",
+        "name": "test1",
+        "onInstall": {
+          "log": "install test1"
+        }
+      }
+    },
+    {
+      "install": {
+        "type": "update",
+        "name": "test2",
+        "onInstall": {
+          "log": "install test2"
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
 where:
 
 - `onInstall` - entry point for performed actions                                 
@@ -1730,13 +2109,110 @@ onInstall:
 }
 ```
 @@!
+
+Multiple environment installations are also possible via external links in both synchronous and asynchronous mode.  
+
+Synchronous installation. It can be used when the environments must be installed one by one since one environment is dependant from another. 
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  - install:
+      jps: http://example.com/manifest1.jps
+      envName: env1-${fn.random}
+      settings:
+        myparam: test1
+
+  - install:
+      jps: http://example.com/manifest2.jps
+      envName: env2-${fn.random}
+      settings:
+        myparam: test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": [
+    {
+      "install": {
+        "jps": "http://example.com/manifest1.jps",
+        "envName": "env1-${fn.random}",
+        "settings": {
+          "myparam": "test1"
+        }
+      }
+    },
+    {
+      "install": {
+        "jps": "http://example.com/manifest2.jps",
+        "envName": "env2-${fn.random}",
+        "settings": {
+          "myparam": "test2"
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
+Asynchronous installation inside one `install` action in one array. So both manifests will be installing in parallel.
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  install:
+    - jps: http://example.com/manifest1.jps
+      envName: env1-${fn.random}
+      settings:
+        myparam: test1
+
+    - jps: http://example.com/manifest2.jps
+      envName: env2-${fn.random}
+      settings:
+        myparam: test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install": [
+      {
+        "jps": "http://example.com/manifest1.jps",
+        "envName": "env1-${fn.random}",
+        "settings": {
+          "myparam": "test1"
+        }
+      },
+      {
+        "jps": "http://example.com/manifest2.jps",
+        "envName": "env2-${fn.random}",
+        "settings": {
+          "myparam": "test2"
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
 where: 
 
 - `jps` - URL to your custom JPS manifest                    
 - `envName` - short domain name of a new environment                                   
-- `settings` - user <a href="../visual-settings/" target="_blank">custom form</a>                                               
+- `settings` - user [custom form](../visual-settings/)
 
 Installing the environment from the local manifest file.                      
+
 @@@
 ```yaml
 type: update
@@ -1776,9 +2252,147 @@ onInstall:
 }
 ```
 @@!
+
+You can install multiple environments from the local manifest in both synchronous and asynchronous mode.  
+
+Synchronous installation. It can be used when the environments must be installed one by one since one environments is dependant from another.  
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  - install:
+    	type: install
+    	region: dev1
+    	envName: env-${fn.random}
+    	name: test1
+    	nodes:
+      	nodeType: apache2
+      	cloudlets: 16
+    	onInstall: 
+      	log: install test1
+  - install:
+    	type: install
+    	region: dev2
+    	envName: env-${fn.random}
+    	name: test2
+    	nodes:
+      	nodeType: nginx
+      	cloudlets: 16
+    	onInstall: 
+      	log: install test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": [
+    {
+      "install": {
+        "type": "install",
+        "region": "dev1",
+        "envName": "env-${fn.random}",
+        "name": "test1",
+        "nodes": {
+          "nodeType": "apache2",
+          "cloudlets": 16
+        },
+        "onInstall": {
+          "log": "install test1"
+        }
+      }
+    },
+    {
+      "install": {
+        "type": "install",
+        "region": "dev2",
+        "envName": "env-${fn.random}",
+        "name": "test2",
+        "nodes": {
+          "nodeType": "nginx",
+          "cloudlets": 16
+        },
+        "onInstall": {
+          "log": "install test2"
+        }
+      }
+    }
+  ]
+}
+```
+@@!
+
+Asynchronous installation inside one `install` action in one array. So both manifests will be installing in parallel.
+
+@@@
+```yaml
+type: update
+name: Install action
+
+onInstall:
+  install:
+    - type: install
+    	region: dev1
+    	envName: env-${fn.random}
+    	name: test1
+    	nodes:
+      	  nodeType: apache2
+      	  cloudlets: 16
+    	onInstall: 
+      	  log: install test1
+    - type: install
+    	region: dev2
+    	envName: env-${fn.random}
+    	name: test2
+    	nodes:
+      	  nodeType: nginx
+      	  cloudlets: 16
+    	onInstall: 
+      	  log: install test2
+```
+``` json
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install": [
+      {
+        "type": "install",
+        "region": "dev1",
+        "envName": "env-${fn.random}",
+        "name": "test1",
+        "nodes": {
+          "nodeType": "apache2",
+          "cloudlets": 16
+        },
+        "onInstall": {
+          "log": "install test1"
+        }
+      },
+      {
+        "type": "install",
+        "region": "dev2",
+        "envName": "env-${fn.random}",
+        "name": "test2",
+        "nodes": {
+          "nodeType": "nginx",
+          "cloudlets": 16
+        },
+        "onInstall": {
+          "log": "install test2"
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
 where:
 
-- `region` - hardware node's <a href="https://docs.jelastic.com/environment-regions" target="_blank">region</a>                                               
+- `region` - hardware node's [region](https://docs.jelastic.com/environment-regions)  
 - `envName` - short domain name of a new environment                     
 - `name` - JPS name  
 - `nodes` - nodes description                                                           
