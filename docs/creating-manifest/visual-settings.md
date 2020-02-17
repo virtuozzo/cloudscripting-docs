@@ -906,6 +906,7 @@ where:
 With an **image** parameter tags can be acquired from:  
 
   * Docker Hub registry:  
+
 @@@
 ```yaml
 type: install
@@ -933,8 +934,7 @@ settings:
 }
 ```
 @@!  
-
-
+  
   * Custom Registry:   
 
 @@@
