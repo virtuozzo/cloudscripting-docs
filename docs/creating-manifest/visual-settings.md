@@ -108,6 +108,7 @@ where:
     - `required` *[optional]* - possible values are *'true'* & *'false'*. If left empty, default value is *'true'*
     - `regex` *[optional]* - constructor for testing JavaScript RegExp object that refers to the field value, during validation. If test fails, the field will be marked as invalid using *regexText*. The default value is *'null'*
     - `regexText` *[optional]* - displays error message in case of *regex* test failure during validation. The default value is *' '* (blank space)
+    - `hideLabel` *[optional]*[boolean] - shows/hides field label. Default value is *'false'*
     - `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'* 
     - `vtype` *[optional]* - validation type name. Possible values:
         - `alpha` - keystroke filter mask applied to alpha input. The default value is *'/[a-z_]/i'*
