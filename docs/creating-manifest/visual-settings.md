@@ -35,6 +35,7 @@ settings:
       regex: string for RegExp constructor
       regexText: string or localization object
       hideLabel: boolean
+      hidden: boolean
       id: string
       cls: string
       itemId: string     
@@ -59,6 +60,7 @@ settings:
         "regex": "string for RegExp constructor",
         "regexText": "string or localization object",
         "hideLabel": "boolean",
+        "hidden": "boolean",
         "id": "string",
         "cls": "string",
         "itemId": "string"
@@ -107,6 +109,7 @@ where:
     - `regex` *[optional]* - constructor for testing JavaScript RegExp object that refers to the field value, during validation. If test fails, the field will be marked as invalid using *regexText*. The default value is *'null'*
     - `regexText` *[optional]* - displays error message in case of *regex* test failure during validation. The default value is *' '* (blank space)
     - `hideLabel` *[optional]*[boolean] - shows/hides field label. Default value is *'false'*
+    - `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'* 
     - `vtype` *[optional]* - validation type name. Possible values:
         - `alpha` - keystroke filter mask applied to alpha input. The default value is *'/[a-z_]/i'*
         - `alphanum` - keystroke filter mask applied to alphanumeric input. The default value is *'/[a-z0-9_]/i'*
@@ -125,6 +128,7 @@ Basic text field.
 ```yaml
 fields:
   - hideLabel: false
+    hidden: false
     type: string
     caption: string
     name: customString
@@ -134,6 +138,7 @@ fields:
   "fields": [
     {
       "hideLabel": false,
+      "hidden": false,
       "type": "string",
       "caption": "string",
       "name": "customString"
@@ -147,6 +152,7 @@ where:
 
 - `caption` *[optional]* - field label
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
+- `hidden` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*.
 
 ### text
 Multiline text field.
@@ -158,6 +164,7 @@ fields:
   - type: text
     caption: string
     hideLabel: false
+    hidden: false
 ```
 ```json
 {
@@ -165,7 +172,8 @@ fields:
     {
       "type": "string",
       "caption": "string",
-      "hideLabel": false
+      "hideLabel": false,
+      "hidden": false
     }
   ]
 }
@@ -175,7 +183,8 @@ fields:
 where:
 
 - `caption` *[optional]* - field label
-- `hideLabel`*[optional] [boolean]* - hides field label. Default value is *'false'*.
+- `hideLabel`*[optional] [boolean]* - hides field label. Default value is *'false'*
+- `hidden` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*.
 
 ### list
 Drop-down list and a single-line textbox.
@@ -190,6 +199,7 @@ fields:
       value1: hello
       value2: world
     hideLabel: false
+    hidden: false
     editable: true
 ```
 ``` json
@@ -203,6 +213,7 @@ fields:
         "value2": "world"
       },
       "hideLabel": false,
+      "hidden": false,
       "editable": true
     }
   ]
@@ -215,6 +226,7 @@ where:
 - `caption` *[optional]* - field label
 - `values` - objects values (*"key"*:*"value"*)
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
+- `hidden` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
 - `editable` *[optional][boolean]* - allows to input custom values. Default value is *'false'*
 - `default` *[optional]: key* - sets the *"key"* which *"value"* will be displayed by default
 - `forceSelection` *[optional][boolean]* - *'true'* restricts the selected value to one of the values in the list, *'false'* allows to set arbitrary text into the field. Default value is *' false'*. The *forceSelection* parameter is applied only in case the `editable` parameter was set to 'true', otherwise, it is ignored. See [example](#forceselection)  
@@ -476,6 +488,7 @@ fields:
     caption: string
     value: true
     hideLabel: false
+    hidden: false
 ```
 ``` json
 {
@@ -484,7 +497,8 @@ fields:
       "type": "checkbox",
       "caption": "string",
       "value": true,
-      "hideLabel": false
+      "hideLabel": false,
+      "hidden": false
     }
   ]
 }
@@ -496,6 +510,7 @@ where:
 - `caption` *[optional]* - field label
 - `value` - enables or disables checkbox
 - `hideLabel` *[optional][boolean]* - shows/hides field label. Default value is *'false'*
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
 
 <!--
 ### checkboxlist
@@ -511,6 +526,7 @@ fields:
       value1: hello
       value2: world
     hideLabel: false
+    hidden: false
 ```
 ``` json
 {
@@ -522,7 +538,8 @@ fields:
         "value1": "hello",
         "value2": "world"
       },
-      "hideLabel": false
+      "hideLabel": false,
+      "hidden": false
     }
   ]
 }
@@ -534,6 +551,7 @@ where:
 - `caption` *[optional]* - field label
 - `values` - checkboxes (*"key"*:*"value"*)
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
 -->
 
 ### radiolist
@@ -550,6 +568,7 @@ fields:
       value1: hello
       value2: world
     hideLabel: false
+    hidden: false
 ```
 ``` json
 {
@@ -562,7 +581,8 @@ fields:
         "value1": "hello",
         "value2": "world"
       },
-      "hideLabel": false
+      "hideLabel": false,
+      "hidden": false
     }
   ]
 }
@@ -574,6 +594,7 @@ where:
 - `caption` *[optional]* - field label
 - `values` - checkboxes (*"key"*:*"value"*)
 - `hideLabel` *[optional][boolean]* - shows/hides field label. Default value is *'false'* 
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
   
 There is an ability to arrange controls with **columns** parameter.  
 
@@ -678,6 +699,7 @@ Grouping of the radio elements with <b>*showIf*</b> function.
 fields:
   - type: radio-fieldset
     name: customName
+    hidden: false
     default: '1'
     values:
       1: hello
@@ -700,6 +722,7 @@ fields:
     {
       "type": "radio-fieldset",
       "name": "customName",
+      "hidden": false,
       "default": "1",
       "values": {
         "1": "hello",
@@ -734,9 +757,10 @@ where:
 - `name` *[required]* - name of the *radio-fieldset* element (for other elements it’s not required)
 - `default` *[optional]* - field selected upon opening the form
 - `values` - checkboxes (*"key"*:*"value"*)
-- `showIf` - conditional object that shows predefined elements by clicking on the *radio-fieldset* elements. Predefined elements can vary.
+- `showIf` - conditional object that shows predefined elements by clicking on the *radio-fieldset* elements. Predefined elements can vary
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
-- `caption` *[optional]* - field label  
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
+- `caption` *[optional]* - field label.  
   
 There is an ability to arrange controls with **columns** parameter.  
 
@@ -753,6 +777,7 @@ Example above can be modified like:
 fields:
   - type: radio-fieldset
     name: customName
+    hidden: false
     default: '1'
     values:
       1: hello
@@ -776,6 +801,7 @@ fields:
     {
       "type": "radio-fieldset",
       "name": "customName",
+      "hidden": false,
       "default": "1",
       "values": {
         "1": "hello",
@@ -837,55 +863,37 @@ values:
  
 
 ### dockertags
-Field for displaying Docker tags within the list element.
+Field for displaying **Docker tags** within the *[list](#list)* element.
 
-![text](/img/dockertag.jpg)
+![text](/img/dockertags.png)
+
+The *tags* of specific *nodeType* can be displayed like in the wizard above with no acquiring from the server:   
 @@@
 ```yaml
-name: Cloud Scripting
+type: install
+name: Dockertags aquiring
 
 settings:
   fields:
-  - type: dockertags
-    name: tag
-    values:
-    - name: latest
-    - name: first
-
-dockerImage:
-  name: jelastic/pokemongo-map
-  registry: ''
-  username: ''
-  password: ''
-
-env: {}
+    - type: dockertags      
+      nodeType: tomcat
+      name: tag
+      hidden: false
 ```
-``` json
+```json
 {
-  "name": "Cloud Scripting",
+  "type": "install",
+  "name": "Dockertags aquiring",
   "settings": {
     "fields": [
       {
         "type": "dockertags",
+        "nodeType": "tomcat",
         "name": "tag",
-        "values": [
-          {
-            "name": "latest"
-          },
-          {
-            "name": "first"
-          }
-        ]
+        "hidden": false
       }
     ]
-  },
-  "dockerImage": {
-    "name": "jelastic/pokemongo-map",
-    "registry": "",
-    "username": "",
-    "password": ""
-  },
-  "env": {}
+  }
 }
 ```
 @@!
@@ -893,11 +901,108 @@ env: {}
 where:
 
 - `name` *[required]* - should have the *'tag'* value
-- `values` *[required]* - Docker tag values (*name*: *"tag_name"* is required). By default, Docker image is pulled from the Docker Hub registry.
-- `dockerImage` - Docker image details
-   - `name` - *repository* is required
-   - `registry`, `username`, `password` [*optional*]
-- `env` - required object (can be empty)
+- `nodeType` *[required]* - defines the [*nodeType*](https://docs.cloudscripting.com/creating-manifest/basic-configs/#nodes-definition) the tags are aquired for
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
+
+With an **image** parameter tags can be acquired from:  
+
+  * Docker Hub registry:  
+
+@@@
+```yaml
+type: install
+name: Dockertags aquiring
+
+settings:
+  fields:
+    - type: dockertags      
+      image: jelastic/tomcat
+      name: tag
+```
+```json
+{
+  "type": "install",
+  "name": "Dockertags aquiring",
+  "settings": {
+    "fields": [
+      {
+        "type": "dockertags",
+        "image": "jelastic/tomcat",
+        "name": "tag"
+      }
+    ]
+  }
+}
+```
+@@!  
+  
+  * Custom Registry:   
+
+@@@
+```yaml
+type: install
+name: Dockertags aquiring
+
+settings:
+  fields:
+    - type: dockertags      
+      image: 
+        registry: example.com/dev/tomcat
+        user: admin
+        password: 123456
+        name: tag 
+```
+```json
+{
+  "type": "install",
+  "name": "Dockertags aquiring",
+  "settings": {
+    "fields": [
+      {
+        "type": "dockertags",
+        "image": {
+          "registry": "example.com/dev/tomcat",
+          "user": "admin",
+          "password": 123456,
+          "name": "tag"
+        }
+      }
+    ]
+  }
+}
+```
+@@!
+
+An alias **nodetags** can be used instead of *dockertags* parameter:  
+
+@@@
+```yaml
+type: install
+name: Dockertags aquiring
+
+settings:
+  fields:
+    - type: nodetags      
+      nodeType: tomcat
+      name: tag
+```
+```json
+{
+  "type": "install",
+  "name": "Dockertags aquiring",
+  "settings": {
+    "fields": [
+      {
+        "type": "nodetags",
+        "nodeType": "tomcat",
+        "name": "tag"
+      }
+    ]
+  }
+}
+```
+@@!
+
 
 ### compositefield
 Compositefield is a container with specific functionality and structural components that constitute it as a block for application-oriented custom user interfaces.
@@ -918,16 +1023,20 @@ fields:
     caption: Compositefield
     type: compositefield
     name: compositefield
+    hidden: false
     items:
       - name: checkbox
         value: true
         type: checkbox
+        hidden: false
       - width: 50
         name: first
         type: string
+        hidden: false
       - width: 100
         name: latest
         type: string
+        hidden: false
 ```
 ``` json
 {
@@ -946,21 +1055,25 @@ fields:
       "caption": "Compositefield",
       "type": "compositefield",
       "name": "compositefield",
+      "hidden": false,
       "items": [
         {
           "name": "checkbox",
           "value": true,
-          "type": "checkbox"
+          "type": "checkbox",
+          "hidden": false
         },
         {
           "width": 50,
           "name": "first",
-          "type": "string"
+          "type": "string",
+          "hidden": false
         },
         {
           "width": 100,
           "name": "latest",
-          "type": "string"
+          "type": "string",
+          "hidden": false
         }
       ]
     }
@@ -977,6 +1090,7 @@ where:
 - `defaultPadding` *[optional]* - default paddings for items. Default value is *'0'*
 - `defaultFlex` *[optional]* - horizontal flex for items
 - `items` - elements
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
 
 ### slider
 Slider element as a form field.
@@ -992,6 +1106,7 @@ fields:
     caption: Slider
     type: slider
     name: slider
+    hidden: false
 ```
 ``` json
 {
@@ -1003,7 +1118,8 @@ fields:
       "useTips": true,
       "caption": "Slider",
       "type": "slider",
-      "name": "slider"
+      "name": "slider",
+      "hidden": false
     }
   ]
 }
@@ -1017,6 +1133,7 @@ where:
 - `useTips` - displaying tips for the value. Default value is *'true'*
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
 
 ### envlist
 Account environments list expanded within a drop-down element.
@@ -1030,6 +1147,7 @@ fields:
     valueField: appid
     type: envlist
     name: envlist
+    hidden: false
     disableInactive: false
 ```
 ``` json
@@ -1041,6 +1159,7 @@ fields:
       "valueField": "appid",
       "type": "envlist",
       "name": "envlist",
+      "hidden": false,
       "disableInactive": "false"
     }
   ]
@@ -1059,6 +1178,7 @@ where:
     - *displayName* - environment *displayName*
     - *appid* - unique environment ID
 - `disableInactive` *[optional][boolean]* - '*false*' allows selection of any environment regardless its status, **true** restricts selection of not running environments (environments with a status other than *Running* will be displayed as disabled without the ability to be selected). The default value is '*true*'
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*  
 
 To perform actions on several environments the `multiSelect` option with related parameters should be used:
 
@@ -1125,6 +1245,7 @@ fields:
     disableInactive: true
     selectFirstAvailable: true
     message: unavailable region
+    hidden: false
     filter:
       type: ["vz6", "vz7"]
       name: .*-eu
@@ -1147,6 +1268,7 @@ fields:
       "disableInactive": true,
       "selectFirstAvailable": true,
       "message": "unavailable region",
+      "hidden": false,
       "filter": {
         "type": [
           "vz6",
@@ -1174,6 +1296,7 @@ where:
 - `disableInactive` [boolean] - an ability to chose inactive regions in combo. The default value is *'true'*
 - `selectFirstAvailable` - displaying a first available region in combo
 - `message` *[optional] [string]* - text to display after hover on disabled regions on expanded combo
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'* 
 - `filter` *[optional]:
     - `type` - filtering regions by virtualization types in combo [possible options: PVC, PCS_STORAGE, VZ6, VZ7], `vzTypes` is an alias.
     - `vzTypes` - virtualization types
@@ -1304,7 +1427,8 @@ fields:
   - caption: Env Name    
     type: envname
     randomName: true
-    showFullDomain: true,
+    showFullDomain: true
+    hidden: false
     dependsOn: regionFieldName
 ```
 ```json
@@ -1314,7 +1438,8 @@ fields:
       "caption": "Env Name",
       "type": "envname",
       "randomName": true,
-      "showFullDomain": "true,",
+      "showFullDomain": true,
+      "hidden": false
       "dependsOn": "regionFieldName"
     }
   ]
@@ -1327,6 +1452,7 @@ where:
 - `region` *[optional]* - region name. The default value is default user's region  
 - `randomName` *[optional][boolean]* - autogenerate default value (e.g. env-1234567...). The default value is 'true'  
 - `showFullDomain` *[optional][boolean]* - show region's domain next to the env name.The default value is 'true'  
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*  
 - `dependsOn` *[optional]*- specifies dependency on *regionlist* field  
 
 The `dependsOn` property is used to handle the dependence between *envname* and *regionlist* parameters. Changing the Region field, the corresponding subdomain of the Environment field is revalidated and displayed respectively:
@@ -1496,6 +1622,7 @@ fields:
     type: displayfield
     name: displayfield
     markup: display
+    hidden: false
 ```
 ``` json
 {
@@ -1504,7 +1631,8 @@ fields:
       "caption": "Displayfield",
       "type": "displayfield",
       "name": "displayfield",
-      "markup": "display"
+      "markup": "display",
+      "hidden": false
     }
   ]
 }
@@ -1516,6 +1644,7 @@ where:
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field
 - `markup` - value to initialize the field's display. Default value is *'undefined'*
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'* 
 
 ### spinner
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.
@@ -1531,6 +1660,7 @@ fields:
     max: 10
     increment: 2
     decimalPrecision: ''
+    hidden: false
 ```
 ``` json
 {
@@ -1542,7 +1672,8 @@ fields:
       "min": 1,
       "max": 10,
       "increment": 2,
-      "decimalPrecision": ""
+      "decimalPrecision": "",
+      "hidden": false
     }
   ]
 }
@@ -1557,6 +1688,7 @@ where:
 - `max` - maximum spinner value
 - `increment` - increment value
 - `decimalPrecision` - precision value
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
 
 ### numberpicker
 (*number-picker* is an alias)
@@ -1573,6 +1705,7 @@ fields:
     min: 3
     max: 10
     editable: true
+    hidden: false
 ```
 ``` json
 {
@@ -1583,7 +1716,8 @@ fields:
       "caption": "Numberpicker",
       "min": 3,
       "max": 10,
-      "editable": true
+      "editable": true,
+      "hidden": false
     }
   ]
 }
@@ -1597,6 +1731,7 @@ where:
 - `min` - minimum spinner value
 - `max` - maximum spinner value
 - `editable` *[optional] [boolean]* - enables/disables editing the *numberpicker* field. Default value is *'false'*
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
 
 ### hostpicker
 (*host-picker* is an alias)
@@ -1611,6 +1746,7 @@ fields:
     name: hostpicker
     caption: Hostpicker
     editable: true
+    hidden: false
 ```
 ``` json
 {
@@ -1619,7 +1755,8 @@ fields:
       "type": "hostpicker",
       "name": "hostpicker",
       "caption": "Hostpicker",
-      "editable": true
+      "editable": true,
+      "hidden": false
     }
   ]
 }
@@ -1631,6 +1768,7 @@ where:
 - `name` *[optional]* - name of the field
 - `caption` *[optional]* - field label
 - `editable` *[optional] [boolean]* - enables/disables editing the *envlist* field. Default value is *'false'*
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
 
 ### toggle
 Toggle element is a switch between two values.
@@ -1643,6 +1781,7 @@ fields:
     name: toggle
     caption: Toggle
     value: true
+    hidden: false
 ```
 ``` json
 {
@@ -1651,7 +1790,8 @@ fields:
       "type": "toggle",
       "name": "toggle",
       "caption": "Toggle",
-      "value": true
+      "value": true,
+      "hidden": false
     }
   ]
 }
@@ -1661,7 +1801,8 @@ where:
 
 - `name` *[optional]* - name of the field
 - `caption` *[optional]* - field label
-- `value` *[boolean]* - enables/disables toggle value. Default value is *'false'*.   
+- `value` *[boolean]* - enables/disables toggle value. Default value is *'false'*
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*  
 
 ### tooltip
   
@@ -1706,6 +1847,7 @@ settings:
           flex: 1          
         - type: tooltip
           text: Tooltip!
+          hidden: false
 ```
 ```json
 {
@@ -1724,7 +1866,8 @@ settings:
           },
           {
             "type": "tooltip",
-            "text": "Tooltip!"
+            "text": "Tooltip!",
+            "hidden": false
           }
         ]
       }
@@ -1759,6 +1902,7 @@ target: string
 minWidth: number
 maxWidth: number
 anchor: string
+hidden: boolean
 ```  
  where:   
  
@@ -1770,7 +1914,8 @@ anchor: string
      - `side` - display a tip containing the message when the field receives focus. The tip is displayed to the right of the field by default (the tip position could be changed using anchor property). Defaults to: label  
   - `minWidth` [optional] - The minimum width of the tip in pixels. Defaults to 45  
   - `maxWidth` [optional] - The maximum width of the tip in pixel. The maximum supported value is 500. Defaults to 400  
-  - `anchor` [optional] - aligns tooltip with target element (question mark icon or the field itself) relative to the specified anchor points  
+  - `anchor` [optional] - aligns tooltip with target element (question mark icon or the field itself) relative to the specified anchor points 
+  - `hidden` *[optional]*[boolean] - shows/hides tooltip sign. Default value is *'false'* 
     The property sрould be specified as two anchor points separated by a dash. The first value is used as the tooltip's anchor point, and the second value is used as the target's anchor point (question mark icon or the field itself).  
 
 **Available anchor points:**

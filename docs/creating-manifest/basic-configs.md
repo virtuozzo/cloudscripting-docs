@@ -918,24 +918,73 @@ startPage: ${env.url}customDirectory/
 
 ###Skip Node Emails
 
-By default in Jelastic, a user is informed via email about adding new nodes into environments. In Cloud Scripting there is an ability set an option to skip these emails upon environment creation. This option does not affect the email notification upon node addition by scaling.
-For example:
+By default in Jelastic, a user is informed via email about adding new nodes into environments. In Cloud Scripting there is an ability to set an option to skip these emails upon environment creation:  
+- globally for all *nodeTypes*
+- for specific *nodeTypes*
+This option does not affect the email notification upon node addition by scaling.   
+  
+For all *nodeTypes* in the environment:  
+
 @@@
 ```yaml
 type: install
 name: skipNodeEmails
 nodes:
-  nodeType: mysql5
+  - nodeType: redis
+    cloudlets: 4
+  - nodeType: mysql
+    cloudlets: 4
 skipNodeEmails: true
 ```
 ```json
 {
   "type": "install",
   "name": "skipNodeEmails",
-  "nodes": {
-    "nodeType": "mysql5"
-  },
+  "nodes": [
+    {
+      "nodeType": "redis",
+      "cloudlets": 4
+    },
+    {
+      "nodeType": "mysql",
+      "cloudlets": 4
+    }
+  ],
   "skipNodeEmails": true
+}
+```
+@@!
+
+For specific *nodeTypes*:  
+
+@@@
+```yaml
+type: install
+name: skipNodeEmails
+nodes:
+  - nodeType: redis
+    cloudlets: 4
+    skipNodeEmails: true
+  - nodeType: mysql
+    cloudlets: 4
+    skipNodeEmails: false
+```
+```json
+{
+  "type": "install",
+  "name": "skipNodeEmails",
+  "nodes": [
+    {
+      "nodeType": "redis",
+      "cloudlets": 4,
+      "skipNodeEmails": true
+    },
+    {
+      "nodeType": "mysql",
+      "cloudlets": 4,
+      "skipNodeEmails": false
+    }
+  ]
 }
 ```
 @@!
