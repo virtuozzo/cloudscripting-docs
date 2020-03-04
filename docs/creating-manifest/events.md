@@ -886,7 +886,7 @@ The event is bound to the *deploy* action, which is executed at the Jelastic das
 
 ### onBeforeResetNodePassword
 
-The event is bound to resetting a password (executed at the Jelastic dashboard via the **Reset password** button) and is triggered before it.
+The event is bound to resetting a container defaulot user password (executed at the Jelastic dashboard for `vds` nodeGroup via the **Reset password** button or via API methods ResetNodePassword, ResetNodePasswordByID, ResetNodePasswordByGroup) and is triggered before it.  
 
 **Event Placeholders:**
 
@@ -899,7 +899,48 @@ The event is bound to resetting a password (executed at the Jelastic dashboard v
 
 ### onAfterResetNodePassword
 
-The event is bound to resetting a password (executed at the Jelastic dashboard via the **Reset password** button) and is triggered after it.
+The event is bound to resetting a container defaulot user password (executed at the Jelastic dashboard for `vds` nodeGroup via the **Reset password** button or via API methods ResetNodePassword, ResetNodePasswordByID, ResetNodePasswordByGroup) and is triggered before it.  
+
+**Event Placeholders:**
+
+- `${event.params.}`:
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `nodeGroup` - predefined node group
+- `${event.response.}`:
+    - `result` - result code. The successful action result is *'0'*
+
+### onBeforeResetServicePassword
+
+The event is bound to resetting a container main service password (executed at the Jelastic dashboard via the **Reset password** button) and is triggered before it. The event is applicable for services that have an Admin Panel enabled by default for the specific nodeType. These templates are:  
+
+| nodeGroup  | nodeType            |
+|------------|---------------------|
+| bl         | litespeedadc        |
+| cp         | litespeedphp        |
+| sqldb      | (all *nodeTypes*)   |
+| nosqldb    | (all *nodeTypes*)   |
+  
+
+**Event Placeholders:**
+
+- `${event.params.}`:
+    - `session` - current user session
+    - `appid` - environment unique appid
+    - `nodeGroup` - predefined node group
+- `${event.response.}`:
+    - `result` - parameters are absent
+
+### onAfterResetServicePassword
+
+The event is bound to resetting a container main service password (executed at the Jelastic dashboard via the **Reset password** button) and is triggered before it. The event is applicable for services that have an Admin Panel enabled by default for the specific nodeType. These templates are:  
+
+| nodeGroup  | nodeType            |
+|------------|---------------------|
+| bl         | litespeedadc        |
+| cp         | litespeedphp        |
+| sqldb      | (all *nodeTypes*)   |
+| nosqldb    | (all *nodeTypes*)   |
 
 **Event Placeholders:**
 
