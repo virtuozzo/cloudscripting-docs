@@ -2077,7 +2077,7 @@ Result:
 Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit*  *onBeforeInstall*](events/#onbeforeinit) events.
 
 ## Target Nodes
-Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.                                
+Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type and applicable to *nodeType* only and not applicable to its *alias* (see carefully in [Supported Stacks](https://docs.cloudscripting.com/creating-manifest/selecting-containers/#supported-stacks) section).  
 
 Filtering for *targetNodes* is performed by:   
 
