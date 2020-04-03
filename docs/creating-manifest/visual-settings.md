@@ -221,10 +221,6 @@ fields:
 }
 ```
 @@!
-
-!!! note
-
-      Take into account that behaviour can differ by using *cls: x-form-field-wrap* class depending on the web browser you use.
       
 
 ### list
