@@ -2077,7 +2077,7 @@ Result:
 Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit*  *onBeforeInstall*](events/#onbeforeinit) events.
 
 ## Target Nodes
-Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.                                
+Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.  
 
 Filtering for *targetNodes* is performed by:   
 
@@ -2173,7 +2173,7 @@ targetNodes:
 }
 ```
 @@!
-  
+
 **String filtering** is performed by *nodeType* only and can be defined in an array or comma-separated list as well: 
 
 @@@
@@ -2327,6 +2327,10 @@ onInstall:
 In this case *Nodes* field will be hidden.  
 
 ![TargetNodesFilter](/img/target-nodes-none.png)</center>
+  
+!!! note
+
+      In case of filtering by *nodeType* its *alias* cannot be used. See carefully list of available *nodeTypes* and their *aliases* in [Supported Stacks](https://docs.cloudscripting.com/creating-manifest/selecting-containers/#supported-stacks) section.  
 
 ### showIf
 The **showIf** is an optional method that shows/hides additional fields depending on current field value.
