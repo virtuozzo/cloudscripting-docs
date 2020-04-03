@@ -165,6 +165,8 @@ fields:
     caption: string
     hideLabel: false
     hidden: false
+    height: 200
+    width: 200
 ```
 ```json
 {
@@ -173,7 +175,9 @@ fields:
       "type": "string",
       "caption": "string",
       "hideLabel": false,
-      "hidden": false
+      "hidden": false,
+      "height": 200,
+      "width": 200
     }
   ]
 }
@@ -184,7 +188,44 @@ where:
 
 - `caption` *[optional]* - field label
 - `hideLabel`*[optional] [boolean]* - hides field label. Default value is *'false'*
-- `hidden` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*.
+- `hidden` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
+- `height` *[optional]* - height of the text field in pixels. default value is 60.
+- `width` *[optional]* - width of the text field in pixels. default value is 445.
+
+By default within the *text* field an automatic text wrapping is enabled. It can be disabled by specifying *cls: x-form-field-wrap* class.
+
+@@@
+```yaml
+fields:
+  - type: text
+    caption: string
+    hideLabel: false
+    hidden: false
+    height: 200
+    width: 200
+    cls: x-form-field-wrap
+```
+```json
+{
+  "fields": [
+    {
+      "type": "string",
+      "caption": "string",
+      "hideLabel": false,
+      "hidden": false,
+      "height": 200,
+      "width": 200,
+      "cls": "x-form-field-wrap"
+    }
+  ]
+}
+```
+@@!
+
+!!! note
+
+      Take into account that behaviour can differ by using *cls: x-form-field-wrap* class depending on the web browser you use.
+      
 
 ### list
 Drop-down list and a single-line textbox.
@@ -1728,8 +1769,8 @@ where:
 
 - `name` *[optional]* - name of the field
 - `caption` *[optional]* - field label
-- `min` - minimum spinner value
-- `max` - maximum spinner value
+- `min` - minimum numberpicker value
+- `max` - maximum numberpicker value
 - `editable` *[optional] [boolean]* - enables/disables editing the *numberpicker* field. Default value is *'false'*
 - `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
 
