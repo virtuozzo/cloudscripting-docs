@@ -886,7 +886,7 @@ The event is bound to the *deploy* action, which is executed at the Jelastic das
 
 ### onBeforeResetNodePassword
 
-The event is bound to resetting a container defaulot user password (executed at the Jelastic dashboard for `vds` nodeGroup via the **Reset password** button or via API methods ResetNodePassword, ResetNodePasswordByID, ResetNodePasswordByGroup) and is triggered before it.  
+The event is bound to resetting a container default user password (executed at the Jelastic dashboard for `vds` nodeGroup via the **Reset password** button or via API methods ResetNodePassword, ResetNodePasswordByID, ResetNodePasswordByGroup) and is triggered before it.  
 
 **Event Placeholders:**
 
