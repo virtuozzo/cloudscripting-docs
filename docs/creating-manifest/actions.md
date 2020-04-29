@@ -790,6 +790,7 @@ The present section introduces actions that are provided for managing the topolo
 ```yaml
 addNodes:
   - nodeType: string
+    nodeGroup: string
     extip: boolean
     fixedCloudlets: number
     flexibleCloudlets: number
@@ -811,6 +812,7 @@ addNodes:
   "addNodes": [
     {
       "nodeType": "string",
+      "nodeGroup": "string",
       "extip": "boolean",      
       "fixedCloudlets": "number",
       "flexibleCloudlets": "number",
@@ -833,7 +835,8 @@ addNodes:
 @@!
 where:
 
-- `nodeType` *[required]* - parameter to specify <a href="../selecting-containers/#supported-stacks" target="_blank">software stacks</a>. For Docker containers the *nodeType* value is **docker**.                               - `nodeGroup` *[optional]* - the defined node layer.           
+- `nodeType` *[required]* - parameter to specify <a href="../selecting-containers/#supported-stacks" target="_blank">software stacks</a>. For Docker containers the *nodeType* value is **docker**.
+- `nodeGroup` *[optional]* - the defined node layer.           
 - `extip` *[optional]* - attaching the external IP address to a container. The default value is *'false'*.                     
 - `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.                             
 - `flexibleCloudlets` *[optional]* - number of dynamic cloudlets. The default value is *'1'*.                           
