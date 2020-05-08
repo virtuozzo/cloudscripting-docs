@@ -803,7 +803,6 @@ addNodes:
     dockerLinks: sourceNodeGroup:alias
     dockerEnvVars: object
     dockerVolumes: array
-    volumeMounts: object
     dockerRunCmd: array
     dockerEntryPoint: object
 ```
@@ -825,7 +824,6 @@ addNodes:
       "dockerLinks": "sourceNodeGroup:alias",
       "dockerEnvVars": "object",
       "dockerVolumes": "array",
-      "volumeMounts": "object",
       "dockerRunCmd": "array",
       "dockerEntryPoint": "object"
     }
@@ -851,8 +849,7 @@ where:
     - `sourceNodeGroup` - source node to be linked with another node                                
     - `alias` - prefix alias for linked variables                         
 - `dockerEnvVars` *[optional]* - Docker environment variables                        
-- `dockerVolumes` *[optional]* - Docker node volumes               
-- `volumeMounts` *[optional]* - Docker external volumes mounts                             
+- `dockerVolumes` *[optional]* - Docker node volumes                          
 - `dockerRunCmd` *[optional]* - Docker run configs                            
 - `dockerEntryPoint` *[optional]* - Docker entry points                                          
 
