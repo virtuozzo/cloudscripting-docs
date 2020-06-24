@@ -8,7 +8,7 @@ copyright: Copyright &copy; Jelastic, Inc.
 
 
 theme_dir: './theme/readthedocs'
-repo_url: 'https://github.com/cloudscripting/docs/edit/1.8.4/docs/'
+repo_url: 'https://github.com/cloudscripting/docs/edit/master/docs/'
 
 markdown_extensions:
   - admonition
