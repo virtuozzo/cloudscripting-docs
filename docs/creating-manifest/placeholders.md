@@ -1130,8 +1130,7 @@ onInstall:
     empty: ''
 - assert:
   - "'${unknown:defaultValue}' === 'defaultValue'"
-  - "'${unknown:[fn.password(7)]}'.length === 7"
-  - "'${unknown:[this.custom]:[this.custom]}' === 'test'"
+  - "'${unknown:[fn.password(7)]}'.length === 7"  
   - "'${unknown:[fn.password([this.length])]}'.length === 7"
   - "'${unknown:[this.custom]}' === 'test'"
   - "'${unknown:[this.empty]}' === ''"
@@ -1156,8 +1155,7 @@ onInstall:
     {
       "assert": [
         "'${unknown:defaultValue}' === 'defaultValue'",
-        "'${unknown:[fn.password(7)]}'.length === 7",
-        "'${unknown:[this.custom]:[this.custom]}' === 'test'",
+        "'${unknown:[fn.password(7)]}'.length === 7",        
         "'${unknown:[fn.password([this.length])]}'.length === 7",
         "'${unknown:[this.custom]}' === 'test'",
         "'${unknown:[this.empty]}' === ''",
@@ -1171,7 +1169,7 @@ onInstall:
 ```
 @@!
 The results on the screen below:
-![comparison](/img/comparison.png)
+![comparison](/img/default_placeholder_value.png)
 
 ## Engine Placeholder
 The *${engine}* placeholder returns the latest Cloud Scripting engine version that is supported by the platform the manifest is executed on.  
