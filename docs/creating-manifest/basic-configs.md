@@ -185,7 +185,7 @@ The list of available parameters are:
     - 1T = 1TB
 - `distribution` *[optional]* - defines environment distribution across hardware hosts within the platform
 
-The following parameters are available for Docker nodes only:   
+The following parameters are available for Docker and Docker-based nodes only:   
                        
 - `image` *[optional]* - name and tag of Docker image                            
 - `links` *[optional]* - Docker links                         
