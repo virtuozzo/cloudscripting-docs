@@ -177,7 +177,7 @@ The list of available parameters are:
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*
 - `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`. Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](/creating-manifest/addons/)
 - `tag` *[optional]* - an image tag for `dokerized` Jelastic templates with `nodeType` parameter. Full list of supported tag [here](/creating-manifest/selecting-containers/#dokerized-template-tags)
-- `scalingMode` *[optional]* - *stateless* or *stateful* [scaling](https://docs.jelastic.com/horizontal-scaling) mode, the possible values are *'NEW'* or *'CLONE'* respectively. The default value is *'CLONE'* for *nodeGroup* types: *bl,cp,vds*. For the rest of *nodeGroup* types the default value is *'NEW'*
+- `scalingMode` *[optional]* - *stateless* or *stateful* [scaling](https://docs.jelastic.com/horizontal-scaling) mode, the possible values are *'STATELESS'* or *'STATEFUL'* respectively. The default value is *'STATEFUL'* for *nodeGroup* types: *bl,cp,vds*. For the rest of *nodeGroup* types the default value is *'STATELESS'*
 - `diskLimit` *[optional]* - sets a storage size limit. The default value is equal to disk quota for current *nodeGroup*. It is measured in GB by default. The MB and TB can be used as well. Examples:
     - 10 = 10 GB
     - 10G = 10GB
@@ -602,7 +602,7 @@ The *targetRegions* option has multiple additional parameters for filtering the 
 
 
 <!--##Docker Actions-->
-###Nodes Actions
+### Nodes Actions
 
 Specific Cloud Scripting actions for Docker containers include operations of *volumes*, *links* and *environment variables* management.
 <br>
