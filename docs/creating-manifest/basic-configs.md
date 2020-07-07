@@ -450,7 +450,7 @@ nodes:
 @@!  
   
   
-![autoclustering-switch](/img/autoclustering-cluster-default.png)  
+![autoclustering-switch](/img/autoclustering-mysql.png)  
  
   * *object* - this is applicable for *mysql*/*mariadb* `nodeType` only. Object contains multiple options can be passed as configuration paramters:   
     * `scheme` *[optional]* - configures database [replication scheme](https://jelastic.com/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/) for:  
