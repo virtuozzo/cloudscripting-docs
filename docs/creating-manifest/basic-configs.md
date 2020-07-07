@@ -512,6 +512,54 @@ https://app.jelastic.com/1.0/environment/control/rest/applynodegroupdata?data={"
 ```
 In case deploy is not supported an error code is logged: *DEPLOY_IS_NOT_SUPPORTED = 2550  *
 
+### Validation
+
+The validation parameter allows to:  
+  * specify maximum number of nodes in the layer
+  * specify minimum number of nodes in the layer
+  * set up a *[scalilngMode](https://docs.cloudscripting.com/creating-manifest/basic-configs/#nodes-definition)* parameter for the layer
+    
+Once the validation parameters were aplied to respective environment parameters via jps manifest, you won't be able to change them in the wizard.  
+ 
+Following example shows how to restrict a scaling limit of worker nodes between 3 and 5 for Payara Cluster:  
+
+@@@
+```yaml
+type: install
+name: Validation
+nodes:
+ nodeType: payara
+ cloudlets: 6
+ count: 3
+ validation:
+   minCount: 3
+   maxCount: 5
+ cluster: true
+```
+```json
+{
+  "type": "install",
+  "name": "Validation",
+  "nodes": {
+    "nodeType": "payara",
+    "cloudlets": 6,
+    "count": 3,
+    "validation": {
+      "minCount": 3,
+      "maxCount": 5
+    },
+    "cluster": true
+  }
+}
+```
+@@!  
+
+Respectively trying to decrease below 3 the number of worker nodes in the wizard the corresponding warning will be displayed:  
+
+![validation-min](/img/autoclustering-min-count.png)
+
+In case `minCount` is equal to `maxCount` parameter the scaling is inaccessible for the layer.
+
 <!-- RegionFiltering section -->
 ### Regions Filtering
 
