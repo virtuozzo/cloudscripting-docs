@@ -200,8 +200,8 @@ The following parameters are available for Docker and Docker-based nodes only:
 - `startService` *[optional]* - defines whether to run defined service or not. By default `true`
 - `cluster` *[optional]* - enables auto-clustering functionality for specific stacks. [Learn more](#Cluster)  
 - `validation` *[optional]* - validates, sets, and limits node creation parameters in the layer. [Learn more](#Validation)  
-- `adminUrl` *[optional]* - allows to override default web administration interface URL via *nodeGroup* settings for the *nodeTypes* that support such administration interface. Such *nodeTypes* are *mysql, mariadb-dockerized, postgresql, mongodb-dockerized, litespeedadc, litespeedphp, postgresql, couchbase, redis*, *glassfish*, *wildfly*, *payara* .  It is applied to all nodes of the layer   
-- `isClusterSupport` *[optional]* - allows to override clustering support through the nodeGroup settings and it is applied to all nodes of the layer. If the setting is not used the default value is applied. At the moment, it may be applicable to the templates with label “clusterEnabled = 1”. And setting can be used to hide the *Auto-Clustering* field for a DAS node
+- `adminUrl` *[optional]* - allows to override default web administration interface URL for the *nodeTypes* that support such administration interface and it's applied to all nodes of the layer. Such *nodeTypes* are *mysql, mariadb-dockerized, postgresql, mongodb-dockerized, litespeedadc, litespeedphp, couchbase, redis*, *glassfish*, *wildfly*, *payara* 
+- `isClusterSupport` *[optional]* - allows to override clustering support and it's applied to all nodes of the layer. If the setting is not used the default value is applied. At the moment, it may be applicable to the templates with label “clusterEnabled = 1”. And setting can be used to hide the *Auto-Clustering* field for a DAS node
 - `isRedeploySupport` *[optional]* - The [redeploy](https://docs.jelastic.com/container-redeploy/) can be disabled through the *nodeGroup* settings for the layer with parameter `isRedeploySupport`: *false*. It is applicable to the all nodes of the layer. Respectively the **Redeploy** button gets hidden in the dashboard
 - `isDeploySupport` *[optional]* - Deployment can be disabled for a *nodeGroup* via the `isDeploySupport`: *false* parameter. You can invoke it through the API method [environment.control.ApplyNodeGroupData](https://docs.jelastic.com/api/#!/api/environment.Control-method-ApplyNodeGroupData). See [example](#isdeploysupport)  
 - `isResetServicePassword` *[optional]* - hides the password reset button on the UI. Possible values:  
@@ -399,13 +399,12 @@ The service starts if:
 #### Cluster
 
 In Jelastic the following *nodeTypes* can be clusterized with help of built-in **Auto-Сlustering** feature:  
-  * *mysql*, *mariadb-dockerized*, *postgresql*
-  * *glassfish*, *wildfly*, *payara*  
-  * *couchbase*, *mongodb-dockerized* 
+  * Application Servers: *glassfish*, *wildfly*, *payara*  
+  * SQL Databases: *mysql*, *mariadb-dockerized*, *postgresql*
+  * NoSQL Databases: *couchbase*, *mongodb-dockerized* 
 
-*Auto-Clustering* can be enabled either using *Auto-Clustering* switch at the dashboard:  
+*Auto-Clustering* can be enabled via `cluster` parameter or using *Auto-Clustering* switch at the dashboard:  
 ![autoclustering-switch](/img/autoclustering-switch.png)  
-or via jps manifest with `cluster` parameter.  
 
 #### cluster parameter
 
@@ -430,8 +429,6 @@ name: Auto-Cluster
 nodes:
   - nodeType: payara
     cluster: true
-    cloudlets: 6
-    count: 4
 ```
 ```json
 {
@@ -440,9 +437,7 @@ nodes:
   "nodes": [
     {
       "nodeType": "payara",
-      "cluster": true,
-      "cloudlets": 6,
-      "count": 4
+      "cluster": true
     }
   ]
 }
@@ -452,10 +447,10 @@ nodes:
   
 ![autoclustering-switch](/img/autoclustering-mysql.png)  
  
-  * *object* - this is applicable for *mysql*/*mariadb* `nodeType` only. Object contains multiple options can be passed as configuration paramters:   
+  * *object* - this is applicable for *mysql*/*mariadb* `nodeType` only. Object contains multiple options can be passed as configuration parameters:   
     * `scheme` *[optional]* - configures database [replication scheme](https://jelastic.com/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/) for:  
-      * `mysql` - **slave**(Master-Slave), **master**(Master-Master), **single**(Single Primary Group Replication), **multi**(Multi Primary Group Replication)  
-      * `mariadb` - **slave**(Master-Slave), **master**(Master-Master), **galera**(Galera Cluster)  
+      * `mysql` - **slave** (Master-Slave), **master** (Master-Master), **single** (Single Primary Group Replication), **multi** (Multi Primary Group Replication)  
+      * `mariadb` - **slave** (Master-Slave), **master** (Master-Master), **galera** (Galera Cluster)  
     * `is_proxysql` *[optional][boolean]* - *'true'* adds a **proxysql** load balancer layer to the topology and configures it as an entry point to the database cluster  
     * `db_user` *[optional]* - sets up a database username. If not defined the system will generate one by default  
     * `db_pass` *[optional]* - sets up a password for `db_user`. If not defined the system will generate one by default  
@@ -477,8 +472,6 @@ nodes:
       is_proxysql: true
       db_user: "mydbuser"
       db_pass: "mydbpasswd"
-    cloudlets: 6
-    count: 2
 ```
 ```json
 {
@@ -492,9 +485,7 @@ nodes:
         "is_proxysql": true,
         "db_user": "mydbuser",
         "db_pass": "mydbpasswd"
-      },
-      "cloudlets": 6,
-      "count": 2
+      }
     }
   ]
 }
@@ -514,12 +505,12 @@ In case deploy is not supported an error code is logged: *DEPLOY_IS_NOT_SUPPORTE
 
 ### Validation
 
-The validation parameter allows to:  
-  * specify maximum number of nodes in the layer
-  * specify minimum number of nodes in the layer
-  * set up a *[scalilngMode](https://docs.cloudscripting.com/creating-manifest/basic-configs/#nodes-definition)* parameter for the layer
+The validation parameter properties allows to:  
+  * minCount - specify minimum number of nodes in the layer
+  * maxCount - specify maximum number of nodes in the layer
+  * scalingMode - set up a *[scalingMode](https://docs.cloudscripting.com/creating-manifest/basic-configs/#nodes-definition)* parameter for the layer
     
-Once the validation parameters were aplied to respective environment parameters via jps manifest, you won't be able to change them in the wizard.  
+Once the validation parameters were applied to respective environment parameters via jps manifest, you won't be able to change them.  
  
 Following example shows how to restrict a scaling limit of worker nodes between 3 and 5 for Payara Cluster:  
 
@@ -528,13 +519,11 @@ Following example shows how to restrict a scaling limit of worker nodes between 
 type: install
 name: Validation
 nodes:
- nodeType: payara
- cloudlets: 6
- count: 3
+ nodeType: payara     
+ cluster: true
  validation:
    minCount: 3
-   maxCount: 5
- cluster: true
+   maxCount: 5 
 ```
 ```json
 {
@@ -542,13 +531,11 @@ nodes:
   "name": "Validation",
   "nodes": {
     "nodeType": "payara",
-    "cloudlets": 6,
-    "count": 3,
+    "cluster": true,
     "validation": {
       "minCount": 3,
       "maxCount": 5
-    },
-    "cluster": true
+    }    
   }
 }
 ```
