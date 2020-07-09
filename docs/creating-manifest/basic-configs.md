@@ -200,11 +200,11 @@ The following parameters are available for Docker and Docker-based nodes only:
 - `startService` *[optional]* - defines whether to run defined service or not. By default `true`
 - `cluster` *[optional]* - enables auto-clustering functionality for specific stacks. [Learn more](#Cluster)  
 - `validation` *[optional]* - validates, sets, and limits node creation parameters in the layer. [Learn more](#Validation)  
-- `adminUrl` *[optional]* - allows to override default web administration interface URL for the *nodeTypes* that support such administration interface and it's applied to all nodes of the layer. Such *nodeTypes* are *mysql, mariadb-dockerized, postgresql, mongodb-dockerized, litespeedadc, litespeedphp, couchbase, redis*, *glassfish*, *wildfly*, *payara* 
-- `isClusterSupport` *[optional]* - allows to override clustering support and it's applied to all nodes of the layer. If the setting is not used the default value is applied. At the moment, it may be applicable to the templates with label “clusterEnabled = 1”. And setting can be used to hide the *Auto-Clustering* field for a DAS node
-- `isRedeploySupport` *[optional]* - The [redeploy](https://docs.jelastic.com/container-redeploy/) can be disabled through the *nodeGroup* settings for the layer with parameter `isRedeploySupport`: *false*. It is applicable to the all nodes of the layer. Respectively the **Redeploy** button gets hidden in the dashboard
-- `isDeploySupport` *[optional]* - Deployment can be disabled for a *nodeGroup* via the `isDeploySupport`: *false* parameter. You can invoke it through the API method [environment.control.ApplyNodeGroupData](https://docs.jelastic.com/api/#!/api/environment.Control-method-ApplyNodeGroupData). See [example](#isdeploysupport)  
-- `isResetServicePassword` *[optional]* - hides the password reset button on the UI. Possible values:  
+- `adminUrl` *[optional]* - allows to override default web administration interface URL for the *nodeTypes* that support such administration interface and it's applied to all nodes of the layer. Such *nodeTypes* are *mysql, mariadb-dockerized, postgresql, mongodb-dockerized, litespeedadc, litespeedphp, couchbase, redis*, *glassfish*, *wildfly*, *payara*. The setting is stored in *nodeGroup* settings and can be overridden via API 
+- `isClusterSupport` *[optional]* - allows to override clustering support and it's applied to all nodes of the layer. If the setting is not used the default value is applied. At the moment, it may be applicable to the templates with label “clusterEnabled = 1”. And setting can be used to hide the *Auto-Clustering* field for a DAS node. The setting is stored in *nodeGroup* settings and can be overridden via API
+- `isRedeploySupport` *[optional]*[boolean] - disables [redeploy](https://docs.jelastic.com/container-redeploy/) functionality through the *nodeGroup* settings. It is applicable to the all nodes of the layer. Respectively the **Redeploy** button gets hidden in the dashboard. The setting is stored in *nodeGroup* settings and can be overridden via API
+- `isDeploySupport` *[optional]*[boolean] - disables deployment  through the *nodeGroup* settings. The setting is stored in *nodeGroup* settings and can be overridden via API  
+- `isResetServicePassword` *[optional]* - hides the password reset button on the UI. The setting is stored in *nodeGroup* settings and can be overridden via API. Possible values:  
     - *false* - hides buttons at all levels
     - *NODE* - displays buttons only at the level of the nodes (containers)
     - *NODEGROUP* - displays buttons only at the *nodeGroup* level
@@ -454,9 +454,8 @@ nodes:
     * `is_proxysql` *[optional][boolean]* - *'true'* adds a **proxysql** load balancer layer to the topology and configures it as an entry point to the database cluster  
     * `db_user` *[optional]* - sets up a database username. If not defined the system will generate one by default  
     * `db_pass` *[optional]* - sets up a password for `db_user`. If not defined the system will generate one by default  
-    * `jps` *[optional]* - overrides default cluster configuration steps with custom ones stated in the jps manifest  
-      * `settings` - provides user's configuration parameters to the custom `jps` manifest
-      
+  
+A [cluster configuration object](basic-configs/autoclustering) should be passed to the `cluster` field to enable custom auto-clustering
 
 *Master-Master* replication topology with ProxySQL node as the entry point:  
   
@@ -492,6 +491,8 @@ nodes:
 ```
 @@!  
 
+Once the cluster parameters were applied to respective layer, you won't be able to change them.
+
 ### isDeploySupport
 
 You can invoke it through the API method environment.control.ApplyNodeGroupData.
@@ -505,12 +506,11 @@ In case deploy is not supported an error code is logged: *DEPLOY_IS_NOT_SUPPORTE
 
 ### Validation
 
-The validation parameter properties allows to:  
+The validation parameter properties allow to:  
   * minCount - specify minimum number of nodes in the layer
   * maxCount - specify maximum number of nodes in the layer
   * scalingMode - set up a *[scalingMode](https://docs.cloudscripting.com/creating-manifest/basic-configs/#nodes-definition)* parameter for the layer
-    
-Once the validation parameters were applied to respective environment parameters via jps manifest, you won't be able to change them.  
+      
  
 Following example shows how to restrict a scaling limit of worker nodes between 3 and 5 for Payara Cluster:  
 
@@ -546,6 +546,7 @@ Respectively trying to decrease below 3 the number of worker nodes in the wizard
 ![validation-min](/img/autoclustering-min-count.png)
 
 In case `minCount` is equal to `maxCount` parameter the scaling is inaccessible for the layer.
+The setting is stored in *nodeGroup* settings and can be overridden via API.
 
 <!-- RegionFiltering section -->
 ### Regions Filtering
