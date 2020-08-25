@@ -116,7 +116,7 @@ envGroups: array/string
 - `appVersion` *[optional]* - custom version of an application
 - `onInstall` *[optional]* - <a href="../events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
 - `startPage` *[optional]* - an [entry point](basic-configs/#entry-points) to be opened via the **Open in browser** button through a successful installation message
-- `actions` *[optional]* - objects to describe all <a href="../actions/#custom-actions" target="_blank">custom actions</
+- `actions` *[optional]* - objects to describe all <a href="../actions/#custom-actions" target="_blank">custom actions</a>
 - `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation. More details [here](addons/)
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](visual-settings/#success-text-customization).
 - `mixins` *[optional]* - includes(mixes) the functionality and data from one manifest into another by URL or object. More details [here](mixins/)
