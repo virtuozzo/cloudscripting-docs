@@ -200,11 +200,11 @@ The following parameters are available for Docker and Docker-based nodes only:
 - `startService` *[optional]* - defines whether to run defined service or not. By default `true`
 - `cluster` *[optional]* - enables auto-clustering functionality for specific stacks. [Learn more](#Cluster)  
 - `validation` *[optional]* - validates, sets, and limits node creation parameters in the layer. [Learn more](#Validation)  
-- `adminUrl` *[optional]* - allows to override default web administration interface URL for the *nodeTypes* that support such administration interface and it's applied to all nodes of the layer. Such *nodeTypes* are *[MySQL, MariaDB](https://jelastic.com/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/)*, *[PostgreSQL](https://jelastic.com/blog/postgresql-auto-clustering-master-slave-replication/)*, *[MongoDB](https://jelastic.com/blog/mongodb-auto-clustering/)*, *[LiteSpeed ADC](https://jelastic.com/blog/litespeed-web-adc-load-balancing/)*, *[LiteSpeed Web Server](https://jelastic.com/blog/litespeed-web-server/)*, *[Couchbase](https://jelastic.com/blog/auto-scalable-couchbase-cluster-in-docker-containers/)*, *[Redis](https://docs.jelastic.com/redis/)*, *[GlassFish](https://jelastic.com/blog/glassfish-payara-auto-clustering-cloud-hosting/)*, *[WildFly](https://jelastic.com/blog/wildfly-managed-domain-in-containers-auto-micro-clustering-and-scaling/)*, *[Payara](https://jelastic.com/blog/glassfish-payara-auto-clustering-cloud-hosting/)*. The setting is stored in *nodeGroup* settings and can be overridden via API 
-- `isClusterSupport` *[optional]* - allows to override clustering support and it's applied to all nodes of the layer. If the setting is not used the default value is applied. At the moment, it may be applicable to the templates with label “clusterEnabled = 1”. And setting can be used to hide the *Auto-Clustering* field for a DAS node. The setting is stored in *nodeGroup* settings and can be overridden via API
-- `isRedeploySupport` *[optional]*[boolean] - disables [redeploy](https://docs.jelastic.com/container-redeploy/) functionality through the *nodeGroup* settings. It is applicable to the all nodes of the layer. Respectively the **Redeploy** button gets hidden in the dashboard. The setting is stored in *nodeGroup* settings and can be overridden via API
-- `isDeploySupport` *[optional]*[boolean] - disables deployment  through the *nodeGroup* settings. The setting is stored in *nodeGroup* settings and can be overridden via API  
-- `isResetServicePassword` *[optional]* - hides the password reset button on the UI. The setting is stored in *nodeGroup* settings and can be overridden via API. Possible values:  
+- `adminUrl` *[optional]* - allows to override default web administration interface URL for the *nodeTypes* that support such administration interface and it's applied to all nodes of the layer. Such *nodeTypes* are *[MySQL, MariaDB](https://jelastic.com/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/)*, *[PostgreSQL](https://jelastic.com/blog/postgresql-auto-clustering-master-slave-replication/)*, *[MongoDB](https://jelastic.com/blog/mongodb-auto-clustering/)*, *[LiteSpeed ADC](https://jelastic.com/blog/litespeed-web-adc-load-balancing/)*, *[LiteSpeed Web Server](https://jelastic.com/blog/litespeed-web-server/)*, *[Couchbase](https://jelastic.com/blog/auto-scalable-couchbase-cluster-in-docker-containers/)*, *[Redis](https://docs.jelastic.com/redis/)*, *[GlassFish](https://jelastic.com/blog/glassfish-payara-auto-clustering-cloud-hosting/)*, *[WildFly](https://jelastic.com/blog/wildfly-managed-domain-in-containers-auto-micro-clustering-and-scaling/)*, *[Payara](https://jelastic.com/blog/glassfish-payara-auto-clustering-cloud-hosting/)*. The setting is stored in *nodeGroup* settings and can be [overridden via API](#update-node-group) 
+- `isClusterSupport` *[optional]* - allows to override clustering support and it's applied to all nodes of the layer. If the setting is not used the default value is applied. At the moment, it may be applicable to the templates with label “clusterEnabled = 1”. And setting can be used to hide the *Auto-Clustering* field for a DAS node. The setting is stored in *nodeGroup* settings and can be [overridden via API](#update-node-group)
+- `isRedeploySupport` *[optional]*[boolean] - disables [redeploy](https://docs.jelastic.com/container-redeploy/) functionality through the *nodeGroup* settings. It is applicable to the all nodes of the layer. Respectively the **Redeploy** button gets hidden in the dashboard. The setting is stored in *nodeGroup* settings and can be [overridden via API](#update-node-group)
+- `isDeploySupport` *[optional]*[boolean] - disables deployment  through the *nodeGroup* settings. The setting is stored in *nodeGroup* settings and can be [overridden via API](#update-node-group)  
+- `isResetServicePassword` *[optional]* - hides the password reset button on the UI. The setting is stored in *nodeGroup* settings and can be [overridden via API](#update-node-group). Possible values:  
     - *false* - hides buttons at all levels
     - *NODE* - displays buttons only at the level of the nodes (containers)
     - *NODEGROUP* - displays buttons only at the *nodeGroup* level
@@ -492,17 +492,6 @@ nodes:
 @@!  
 
 Once the cluster parameters were applied to respective layer, you won't be able to change them.
-
-### isDeploySupport
-
-You can invoke it through the API method environment.control.ApplyNodeGroupData.
-
-For example:
-
-```
-https://app.jelastic.com/1.0/environment/control/rest/applynodegroupdata?data={"isDeploySupport":false}&envName=env-1&session=1dx1d2eb8c6b29cddfb28cfd4e93f80c15c&nodeGroup=cp  
-```
-In case deploy is not supported an error code is logged: *DEPLOY_IS_NOT_SUPPORTED = 2550  *
 
 ### Validation
 
@@ -1193,6 +1182,16 @@ nodes:
 }
 ```
 @@!
+
+### Update nodeGroup settings
+
+You can update *nodeGroup* settings through the API method [environment.control.ApplyNodeGroupData](https://docs.jelastic.com/api/#!/api/environment.Control-method-ApplyNodeGroupData).
+
+For example:
+
+```
+https://app.jelastic.com/1.0/environment/control/rest/applynodegroupdata?data={"isDeploySupport":false}&envName=env-1&session=1dx1d2eb8c6b29cddfb28cfd4e93f80c15c&nodeGroup=cp  
+```
 
 ## JPS execution without environment
  
