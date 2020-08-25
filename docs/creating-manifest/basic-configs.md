@@ -198,7 +198,7 @@ The following parameters are available for Docker nodes only:
 - `entrypoint` *[optional]* - Docker entry points
 <!-- startService section -->
 - `startService` *[optional]* - defines whether to run defined service or not. By default `true`
-- `isSLBAccessEnabled` *[optional]{boolean}* - enables/disables access to the node or respective nodeGroup through Shared Load Balancer. By default `true`  
+- `isSLBAccessEnabled` *[optional]{boolean}* - enables/disables access to the node or respective nodeGroup through [Shared Load Balancer](https://docs.jelastic.com/shared-load-balancer/#deny-access-via-shared-load-balancer). By default `true`  
 
 #### count Parameter
 
