@@ -1195,7 +1195,8 @@ For example:
 ```
 https://app.jelastic.com/1.0/environment/control/rest/applynodegroupdata?data={"isDeploySupport":false}&envName=env-1&session=1dx1d2eb8c6b29cddfb28cfd4e93f80c15c&nodeGroup=cp  
 ```
-
+  
+<br>
 ## JPS execution without environment
  
 The JPS manifest can be executed without binding to any environment.  
