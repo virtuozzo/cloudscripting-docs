@@ -455,7 +455,7 @@ nodes:
     * `db_user` *[optional]* - sets up a database username. If not defined the system will generate one by default  
     * `db_pass` *[optional]* - sets up a password for `db_user`. If not defined the system will generate one by default  
   
-A [cluster configuration object](basic-configs/autoclustering) should be passed to the `cluster` field to enable custom auto-clustering
+A [cluster configuration object](https://ops-docs.jelastic.com/auto-clustering-templates/#clusterization-package) should be passed to the `cluster` field to enable custom auto-clustering
 
 *Master-Master* replication topology with ProxySQL node as the entry point:  
   
