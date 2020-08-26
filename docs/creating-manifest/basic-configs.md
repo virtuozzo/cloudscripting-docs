@@ -398,7 +398,7 @@ The service starts if:
 
 #### Cluster
 
-In Jelastic the following *nodeTypes* can be clusterized with help of built-in **Auto-Сlustering** feature:  
+In Jelastic the following *nodeTypes* can be clusterized with help of built-in [Auto-Сlustering feature](https://ops-docs.jelastic.com/auto-clustering-templates/):  
   * Application Servers: GlassFish, WildFly, Payara  
   * SQL Databases: MySQL, MariaDB, PostgreSQL
   * NoSQL Databases: Couchbase, MongoDB 
