@@ -447,7 +447,7 @@ nodes:
   
 ![autoclustering-switch](/img/autoclustering-mysql.png)  
  
-  * *object* - this is applicable for *sqldb*(*mysql*/*mariadb*). Object contains multiple options can be passed as configuration parameters:   
+  * *object* - this is applicable for MySQL/MariaDB only. Object contains multiple options can be passed as configuration parameters:   
     * `scheme` *[optional]* - configures database [replication scheme](https://jelastic.com/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/) for:  
       * `mysql` - **slave** (Master-Slave), **master** (Master-Master), **single** (Single Primary Group Replication), **multi** (Multi Primary Group Replication)  
       * `mariadb` - **slave** (Master-Slave), **master** (Master-Master), **galera** (Galera Cluster)  
