@@ -399,9 +399,9 @@ The service starts if:
 #### Cluster
 
 In Jelastic the following *nodeTypes* can be clusterized with help of built-in **Auto-Сlustering** feature:  
-  * Application Servers: *glassfish*, *wildfly*, *payara*  
-  * SQL Databases: *mysql*, *mariadb-dockerized*, *postgresql*
-  * NoSQL Databases: *couchbase*, *mongodb-dockerized* 
+  * cp: *glassfish*, *wildfly*, *payara*  
+  * sqldb: *mysql*, *mariadb-dockerized*, *postgresql*
+  * nosqldb: *couchbase*, *mongodb-dockerized* 
 
 *Auto-Clustering* can be enabled via `cluster` parameter or using *Auto-Clustering* switch at the dashboard:  
 ![autoclustering-switch](/img/autoclustering-switch.png)  
