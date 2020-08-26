@@ -500,6 +500,7 @@ Once the cluster parameters were applied to respective layer, you won't be able 
 ### Validation
 
 The validation parameter properties allow to:  
+
   * minCount - specify minimum number of nodes in the layer
   * maxCount - specify maximum number of nodes in the layer
   * scalingMode - set up a *[scalingMode](https://docs.cloudscripting.com/creating-manifest/basic-configs/#nodes-definition)* parameter for the layer
