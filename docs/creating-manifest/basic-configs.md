@@ -448,8 +448,6 @@ nodes:
 ```
 @@!  
   
-  
-![autoclustering-switch](/img/autoclustering-mysql.png)  
  
   * *object* - this is applicable for MySQL/MariaDB only. Object contains multiple options can be passed as configuration parameters:   
     * `scheme` *[optional]* - configures database [replication scheme](https://jelastic.com/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/) for:  
@@ -461,7 +459,7 @@ nodes:
   
 A [cluster configuration object](https://ops-docs.jelastic.com/auto-clustering-templates/#clusterization-package) should be passed to the `cluster` field to enable custom auto-clustering
 
-*Master-Master* replication topology example with ProxySQL node as the entry point:  
+For example *Master-Master* replication topology with ProxySQL node as the entry point:  
   
 @@@
 ```yaml
@@ -494,6 +492,8 @@ nodes:
 }
 ```
 @@!  
+
+![autoclustering-mysql](/img/autoclustering-mysql.png)  
 
 Once the cluster parameters were applied to respective layer, you won't be able to change them.
 
