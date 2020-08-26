@@ -511,8 +511,7 @@ Following example shows how to restrict a scaling limit of worker nodes between 
 type: install
 name: Validation
 nodes:
- nodeType: payara     
- cluster: true
+ nodeType: payara
  validation:
    minCount: 3
    maxCount: 5 
@@ -523,7 +522,6 @@ nodes:
   "name": "Validation",
   "nodes": {
     "nodeType": "payara",
-    "cluster": true,
     "validation": {
       "minCount": 3,
       "maxCount": 5
