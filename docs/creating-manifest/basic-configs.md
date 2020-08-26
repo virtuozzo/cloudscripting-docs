@@ -198,8 +198,8 @@ The following parameters are available for Docker and Docker-based nodes only:
 - `entrypoint` *[optional]* - Docker entry points
 <!-- startService section -->
 - `startService` *[optional]* - defines whether to run defined service or not. By default `true`
-- `cluster` *[optional]* - enables auto-clustering functionality for specific stacks. [Learn more](#Cluster)  
-- `validation` *[optional]* - validates, sets, and limits node creation parameters in the layer. [Learn more](#Validation)  
+- `cluster` *[optional]* - enables auto-clustering functionality for specific stacks. [Learn more](#cluster)  
+- `validation` *[optional]* - validates, sets, and limits node creation parameters in the layer. [Learn more](#validation)  
 - `adminUrl` *[optional]* - allows to override default web administration interface URL for the *nodeTypes* that support such administration interface and it's applied to all nodes of the layer. Such *nodeTypes* are *[MySQL, MariaDB](https://jelastic.com/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/)*, *[PostgreSQL](https://jelastic.com/blog/postgresql-auto-clustering-master-slave-replication/)*, *[MongoDB](https://jelastic.com/blog/mongodb-auto-clustering/)*, *[LiteSpeed ADC](https://jelastic.com/blog/litespeed-web-adc-load-balancing/)*, *[LiteSpeed Web Server](https://jelastic.com/blog/litespeed-web-server/)*, *[Couchbase](https://jelastic.com/blog/auto-scalable-couchbase-cluster-in-docker-containers/)*, *[Redis](https://docs.jelastic.com/redis/)*, *[GlassFish](https://jelastic.com/blog/glassfish-payara-auto-clustering-cloud-hosting/)*, *[WildFly](https://jelastic.com/blog/wildfly-managed-domain-in-containers-auto-micro-clustering-and-scaling/)*, *[Payara](https://jelastic.com/blog/glassfish-payara-auto-clustering-cloud-hosting/)*. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings) 
 - `isClusterSupport` *[optional]* - allows to override clustering support and it's applied to all nodes of the layer. If the setting is not used the default value is applied. At the moment, it may be applicable to the templates with label “clusterEnabled = 1”. And setting can be used to hide the *Auto-Clustering* field for a DAS node. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)
 - `isRedeploySupport` *[optional]*[boolean] - disables [redeploy](https://docs.jelastic.com/container-redeploy/) functionality through the *nodeGroup* settings. It is applicable to the all nodes of the layer. Respectively the **Redeploy** button gets hidden in the dashboard. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)
@@ -401,6 +401,7 @@ The service starts if:
 #### Cluster
 
 In Jelastic the following *nodeTypes* can be clusterized with help of built-in [Auto-Сlustering feature](https://ops-docs.jelastic.com/auto-clustering-templates/):  
+
   * Application Servers: GlassFish, WildFly, Payara  
   * SQL Databases: MySQL, MariaDB, PostgreSQL
   * NoSQL Databases: Couchbase, MongoDB 
@@ -411,6 +412,7 @@ In Jelastic the following *nodeTypes* can be clusterized with help of built-in [
 #### cluster parameter
 
 To enable *Auto-Clustering* the `cluster` parameter is used as:  
+
   * *boolean* value - *true* invokes cluster creation with default configuration parameters  
   
 !!! note 
@@ -459,7 +461,7 @@ nodes:
   
 A [cluster configuration object](https://ops-docs.jelastic.com/auto-clustering-templates/#clusterization-package) should be passed to the `cluster` field to enable custom auto-clustering
 
-*Master-Master* replication topology with ProxySQL node as the entry point:  
+*Master-Master* replication topology example with ProxySQL node as the entry point:  
   
 @@@
 ```yaml
