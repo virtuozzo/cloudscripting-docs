@@ -399,9 +399,9 @@ The service starts if:
 #### Cluster
 
 In Jelastic the following *nodeTypes* can be clusterized with help of built-in **Auto-Сlustering** feature:  
-  * cp: *glassfish*, *wildfly*, *payara*  
-  * sqldb: *mysql*, *mariadb-dockerized*, *postgresql*
-  * nosqldb: *couchbase*, *mongodb-dockerized* 
+  * **cp**: *glassfish*, *wildfly*, *payara*  
+  * **sqldb**: *mysql*, *mariadb-dockerized*, *postgresql*
+  * **nosqldb**: *couchbase*, *mongodb-dockerized* 
 
 *Auto-Clustering* can be enabled via `cluster` parameter or using *Auto-Clustering* switch at the dashboard:  
 ![autoclustering-switch](/img/autoclustering-switch.png)  
@@ -411,13 +411,16 @@ In Jelastic the following *nodeTypes* can be clusterized with help of built-in *
 To enable *Auto-Clustering* the `cluster` parameter is used as:  
   * *boolean* value - *true* invokes cluster creation with default configuration parameters  
   
-  !!!note  
-  
-    * Default topology that will be created for the nodeTypes *mysql* and *mariadb-dockerized* is **[master-slave](https://jelastic.com/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/)** replication cluster with 2 nodes of HA ProxySQL load balancer in front of.  
-    * In case of nodeType *postgresql* there is only one topology available - **[master-slave](https://jelastic.com/blog/postgresql-auto-clustering-master-slave-replication/).  
-    * The *wildfly* cluster is created in [Managed Domain Mode](https://jelastic.com/blog/wildfly-managed-domain-in-containers-auto-micro-clustering-and-scaling/) with topology that comrises one Domain Controller node and Worker nodes. Number of Worker nodes is defined by *[count](basic-configs/#nodes-definition)* parameter.  
-    * The *payara*/*glassfish* cluster is created with topology that comrises one [DAS node and Worker nodes](https://jelastic.com/blog/glassfish-payara-auto-clustering-cloud-hosting/). Number of Worker nodes is defined by *[count](basic-configs/#nodes-definition)* parameter.  
-    * The *mongodb* cluster is created as **[replica-set](https://jelastic.com/blog/mongodb-replica-set-master-slave-failover/)** with topology that comrises tree nodes one *Primary* and two *Secondary* nodes.      
+Default topology that will be created:  
+  * *sqldb*:  
+     * for *mysql*/*mariadb-dockerized* is [master-slave](https://jelastic.com/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/) replication cluster with 2 nodes of HA ProxySQL load balancer in front of  
+     * for *postgresql* is [master-slave](https://jelastic.com/blog/postgresql-auto-clustering-master-slave-replication/)  
+   * *cp*:  
+     * *wildfly* is created in [Managed Domain Mode](https://jelastic.com/blog/wildfly-managed-domain-in-containers-auto-micro-clustering-and-scaling/) with one Domain Controller node and Worker nodes. Number of Worker nodes is defined by *[count](basic-configs/#nodes-definition)* parameter.  
+     * *payara*/*glassfish* is created with topology that comrises one [DAS node and Worker nodes](https://jelastic.com/blog/glassfish-payara-auto-clustering-cloud-hosting/). Number of Worker nodes is defined by *[count](basic-configs/#nodes-definition)* parameter  
+   * *nosqldb*:
+     * *mongodb* is created as *[replica-set](https://jelastic.com/blog/mongodb-replica-set-master-slave-failover/)* with topology that comrises tree nodes one *Primary* and two *Secondary* nodes.   
+     * *couchbase* is created as [cluster with 3 interconnected Couchbase containers](https://jelastic.com/blog/auto-scalable-couchbase-cluster-in-docker-containers/) 
    
 For example:  
 
