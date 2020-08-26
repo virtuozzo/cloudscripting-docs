@@ -116,7 +116,7 @@ envGroups: array/string
 - `appVersion` *[optional]* - custom version of an application
 - `onInstall` *[optional]* - <a href="../events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
 - `startPage` *[optional]* - an [entry point](basic-configs/#entry-points) to be opened via the **Open in browser** button through a successful installation message
-- `actions` *[optional]* - objects to describe all <a href="../actions/#custom-actions" target="_blank">custom actions</
+- `actions` *[optional]* - objects to describe all <a href="../actions/#custom-actions" target="_blank">custom actions</a>
 - `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation. More details [here](addons/)
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](visual-settings/#success-text-customization).
 - `mixins` *[optional]* - includes(mixes) the functionality and data from one manifest into another by URL or object. More details [here](mixins/)
@@ -177,7 +177,7 @@ The list of available parameters are:
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*
 - `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`. Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](/creating-manifest/addons/)
 - `tag` *[optional]* - an image tag for `dokerized` Jelastic templates with `nodeType` parameter. Full list of supported tag [here](/creating-manifest/selecting-containers/#dokerized-template-tags)
-- `scalingMode` *[optional]* - *stateless* or *stateful* [scaling](https://docs.jelastic.com/horizontal-scaling) mode, the possible values are *'NEW'* or *'CLONE'* respectively. The default value is *'CLONE'* for *nodeGroup* types: *bl,cp,vds*. For the rest of *nodeGroup* types the default value is *'NEW'*
+- `scalingMode` *[optional]* - *stateless* or *stateful* [scaling](https://docs.jelastic.com/horizontal-scaling) mode, the possible values are *'STATELESS'* or *'STATEFUL'* respectively. The default value is *'STATEFUL'* for *nodeGroup* types: *bl,cp,vds*. For the rest of *nodeGroup* types the default value is *'STATELESS'*
 - `diskLimit` *[optional]* - sets a storage size limit. The default value is equal to disk quota for current *nodeGroup*. It is measured in GB by default. The MB and TB can be used as well. Examples:
     - 10 = 10 GB
     - 10G = 10GB
@@ -185,7 +185,7 @@ The list of available parameters are:
     - 1T = 1TB
 - `distribution` *[optional]* - defines environment distribution across hardware hosts within the platform
 
-The following parameters are available for Docker nodes only:   
+The following parameters are available for Docker and Docker-based nodes only:   
                        
 - `image` *[optional]* - name and tag of Docker image                            
 - `links` *[optional]* - Docker links                         
@@ -198,7 +198,18 @@ The following parameters are available for Docker nodes only:
 - `entrypoint` *[optional]* - Docker entry points
 <!-- startService section -->
 - `startService` *[optional]* - defines whether to run defined service or not. By default `true`
+- `cluster` *[optional]* - enables auto-clustering functionality for specific stacks. [Learn more](#Cluster)  
+- `validation` *[optional]* - validates, sets, and limits node creation parameters in the layer. [Learn more](#Validation)  
+- `adminUrl` *[optional]* - allows to override default web administration interface URL for the *nodeTypes* that support such administration interface and it's applied to all nodes of the layer. Such *nodeTypes* are *[MySQL, MariaDB](https://jelastic.com/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/)*, *[PostgreSQL](https://jelastic.com/blog/postgresql-auto-clustering-master-slave-replication/)*, *[MongoDB](https://jelastic.com/blog/mongodb-auto-clustering/)*, *[LiteSpeed ADC](https://jelastic.com/blog/litespeed-web-adc-load-balancing/)*, *[LiteSpeed Web Server](https://jelastic.com/blog/litespeed-web-server/)*, *[Couchbase](https://jelastic.com/blog/auto-scalable-couchbase-cluster-in-docker-containers/)*, *[Redis](https://docs.jelastic.com/redis/)*, *[GlassFish](https://jelastic.com/blog/glassfish-payara-auto-clustering-cloud-hosting/)*, *[WildFly](https://jelastic.com/blog/wildfly-managed-domain-in-containers-auto-micro-clustering-and-scaling/)*, *[Payara](https://jelastic.com/blog/glassfish-payara-auto-clustering-cloud-hosting/)*. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings) 
+- `isClusterSupport` *[optional]* - allows to override clustering support and it's applied to all nodes of the layer. If the setting is not used the default value is applied. At the moment, it may be applicable to the templates with label “clusterEnabled = 1”. And setting can be used to hide the *Auto-Clustering* field for a DAS node. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)
+- `isRedeploySupport` *[optional]*[boolean] - disables [redeploy](https://docs.jelastic.com/container-redeploy/) functionality through the *nodeGroup* settings. It is applicable to the all nodes of the layer. Respectively the **Redeploy** button gets hidden in the dashboard. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)
+- `isDeploySupport` *[optional]*[boolean] - disables deployment  through the *nodeGroup* settings. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)  
+- `isResetServicePassword` *[optional]* - hides the password reset button on the UI. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings). Possible values:  
+    - *false* - hides buttons at all levels
+    - *NODE* - displays buttons only at the level of the nodes (containers)
+    - *NODEGROUP* - displays buttons only at the *nodeGroup* level
 - `isSLBAccessEnabled` *[optional]{boolean}* - enables/disables access to the node or respective *nodeGroup* through the [Shared Load Balancer](https://docs.jelastic.com/shared-load-balancer/#deny-access-via-shared-load-balancer). By default `true`  
+
 
 #### count Parameter
 
@@ -386,6 +397,146 @@ The service starts if:
 -   the Restart button is pressed at the dashboard calling the [RestartNodesByGroup](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartNodesByGroup) and [RestartNodeById](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartNodeById) API methods (only for native Docker containers)
 
 <!-- end of startService section -->
+
+#### Cluster
+
+In Jelastic the following *nodeTypes* can be clusterized with help of built-in [Auto-Сlustering feature](https://ops-docs.jelastic.com/auto-clustering-templates/):  
+  * Application Servers: GlassFish, WildFly, Payara  
+  * SQL Databases: MySQL, MariaDB, PostgreSQL
+  * NoSQL Databases: Couchbase, MongoDB 
+
+*Auto-Clustering* can be enabled via `cluster` parameter or using *Auto-Clustering* switch at the dashboard:  
+![autoclustering-switch](/img/autoclustering-switch.png)  
+
+#### cluster parameter
+
+To enable *Auto-Clustering* the `cluster` parameter is used as:  
+  * *boolean* value - *true* invokes cluster creation with default configuration parameters  
+  
+!!! note 
+    - Default topology that will be created for the MySQL and MariaDB is [master-slave](https://jelastic.com/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/) replication cluster with 2 nodes of HA ProxySQL load balancer in front of
+    - In case of PostgreSQL there is only one topology available - [master-slave](https://jelastic.com/blog/postgresql-auto-clustering-master-slave-replication/) 
+    - The WildFly cluster is created in [Managed Domain Mode](https://jelastic.com/blog/wildfly-managed-domain-in-containers-auto-micro-clustering-and-scaling/) with topology that comrises one Domain Controller node and Worker nodes. Number of Worker nodes is defined by *[count](basic-configs/#nodes-definition)* parameter  	        
+    - The Payara/GlassFish cluster is created with topology that comrises one [DAS node and Worker nodes](https://jelastic.com/blog/glassfish-payara-auto-clustering-cloud-hosting/). Number of Worker nodes is defined by *[count](basic-configs/#nodes-definition)* parameter  	 
+    - The MongoDB cluster is created as [replica-set](https://jelastic.com/blog/mongodb-replica-set-master-slave-failover/) with topology that comrises tree nodes one *Primary* and two *Secondary* nodes.  
+    - The Couchbase is created as [cluster with 3 interconnected Couchbase containers](https://jelastic.com/blog/auto-scalable-couchbase-cluster-in-docker-containers/) 
+   
+For example:  
+
+@@@
+```yaml
+type: install
+name: Auto-Cluster
+
+nodes:
+  - nodeType: payara
+    cluster: true
+```
+```json
+{
+  "type": "install",
+  "name": "Auto-Cluster",
+  "nodes": [
+    {
+      "nodeType": "payara",
+      "cluster": true
+    }
+  ]
+}
+```
+@@!  
+  
+  
+![autoclustering-switch](/img/autoclustering-mysql.png)  
+ 
+  * *object* - this is applicable for MySQL/MariaDB only. Object contains multiple options can be passed as configuration parameters:   
+    * `scheme` *[optional]* - configures database [replication scheme](https://jelastic.com/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/) for:  
+      * `mysql` - **slave** (Master-Slave), **master** (Master-Master), **single** (Single Primary Group Replication), **multi** (Multi Primary Group Replication)  
+      * `mariadb` - **slave** (Master-Slave), **master** (Master-Master), **galera** (Galera Cluster)  
+    * `is_proxysql` *[optional][boolean]* - *'true'* adds a ProxySQL load balancer layer to the topology and configures it as an entry point to the database cluster  
+    * `db_user` *[optional]* - sets up a database username. If not defined the system will generate one by default  
+    * `db_pass` *[optional]* - sets up a password for `db_user`. If not defined the system will generate one by default  
+  
+A [cluster configuration object](https://ops-docs.jelastic.com/auto-clustering-templates/#clusterization-package) should be passed to the `cluster` field to enable custom auto-clustering
+
+*Master-Master* replication topology with ProxySQL node as the entry point:  
+  
+@@@
+```yaml
+type: install
+name: Auto-Cluster
+
+nodes:
+  - nodeType: mysql
+    cluster:
+      scheme: master
+      is_proxysql: true
+      db_user: "mydbuser"
+      db_pass: "mydbpasswd"
+```
+```json
+{
+  "type": "install",
+  "name": "Auto-Cluster",
+  "nodes": [
+    {
+      "nodeType": "mysql",
+      "cluster": {
+        "scheme": "master",
+        "is_proxysql": true,
+        "db_user": "mydbuser",
+        "db_pass": "mydbpasswd"
+      }
+    }
+  ]
+}
+```
+@@!  
+
+Once the cluster parameters were applied to respective layer, you won't be able to change them.
+
+### Validation
+
+The validation parameter properties allow to:  
+  * minCount - specify minimum number of nodes in the layer
+  * maxCount - specify maximum number of nodes in the layer
+  * scalingMode - set up a *[scalingMode](https://docs.cloudscripting.com/creating-manifest/basic-configs/#nodes-definition)* parameter for the layer
+      
+ 
+Following example shows how to restrict a scaling limit of worker nodes between 3 and 5 for Payara Cluster:  
+
+@@@
+```yaml
+type: install
+name: Validation
+nodes:
+ nodeType: payara
+ validation:
+   minCount: 3
+   maxCount: 5 
+```
+```json
+{
+  "type": "install",
+  "name": "Validation",
+  "nodes": {
+    "nodeType": "payara",
+    "validation": {
+      "minCount": 3,
+      "maxCount": 5
+    }    
+  }
+}
+```
+@@!  
+
+Respectively trying to decrease below 3 the number of worker nodes in the wizard the corresponding warning will be displayed:  
+
+![validation-min](/img/autoclustering-min-count.png)
+
+In case `minCount` is equal to `maxCount` parameter the scaling is inaccessible for the layer.
+The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings).
+
 <!-- RegionFiltering section -->
 ### Regions Filtering
 
@@ -428,7 +579,7 @@ The *targetRegions* option has multiple additional parameters for filtering the 
 
 
 <!--##Docker Actions-->
-###Nodes Actions
+### Nodes Actions
 
 Specific Cloud Scripting actions for Docker containers include operations of *volumes*, *links* and *environment variables* management.
 <br>
@@ -1031,6 +1182,16 @@ nodes:
 }
 ```
 @@!
+
+### Update nodeGroup settings
+
+You can update *nodeGroup* settings through the API method [environment.control.ApplyNodeGroupData](https://docs.jelastic.com/api/#!/api/environment.Control-method-ApplyNodeGroupData).
+
+For example:
+
+```
+https://app.jelastic.com/1.0/environment/control/rest/applynodegroupdata?data={"isDeploySupport":false}&envName=env-1&session=1dx1d2eb8c6b29cddfb28cfd4e93f80c15c&nodeGroup=cp  
+```
 
 ## JPS execution without environment
  
