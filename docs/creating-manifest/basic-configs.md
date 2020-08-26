@@ -208,6 +208,8 @@ The following parameters are available for Docker and Docker-based nodes only:
     - *false* - hides buttons at all levels
     - *NODE* - displays buttons only at the level of the nodes (containers)
     - *NODEGROUP* - displays buttons only at the *nodeGroup* level
+- `isSLBAccessEnabled` *[optional]{boolean}* - enables/disables access to the node or respective *nodeGroup* through the [Shared Load Balancer](https://docs.jelastic.com/shared-load-balancer/#deny-access-via-shared-load-balancer). By default `true`  
+
 
 #### count Parameter
 
