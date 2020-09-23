@@ -1262,8 +1262,8 @@ where:
 - `patch` - SQL query or a link to it. It is used only for SQL databases. Here, the <a href="../placeholders" target="_blank">placeholders</a> support is available.                    
 
 !!! note
-    The action is executed only for *mysql5*, *mariadb*, and *mariadb10* containers.                         
-
+    The action is executed only for *mysql5*, *mariadb*, and *mariadb10* containers.  
+    
 ## User-Defined Operations
 
 The current section provides data on the user-defined actions.                        
@@ -2827,6 +2827,91 @@ actions:
 }
 ```
 @@!
+
+### stopEvent
+
+Any triggered [event](events) execution can be stopped and action can be accompanied with message displayed at right top corner.  
+For example:
+
+@@@
+```yaml
+type: install
+name: stopEvent Test
+
+settings:
+  fields:
+    type: checkbox
+    name: restart
+    caption: App Server Restart Allow
+    default: true
+    
+nodes:
+  - nodeType: apache2
+    nodeGroup: cp
+    count: 1
+    cloudlets: 4
+  - nodeType: nginx
+    nodeGroup: bl
+    count: 1
+    cloudlets: 4
+  
+onBeforeRestartNode[cp]:
+  if ( ${settings.restart} == false ):
+      stopEvent:
+        type: warning
+        message: Restart is prohibited. 
+```
+```json
+{
+  "type": "install",
+  "name": "stopEvent Test",
+  "settings": {
+    "fields": {
+      "type": "checkbox",
+      "name": "restart",
+      "caption": "App Server Restart Allow",
+      "default": true
+    }
+  },
+  "nodes": [
+    {
+      "nodeType": "apache2",
+      "nodeGroup": "cp",
+      "count": 1,
+      "cloudlets": 4
+    },
+    {
+      "nodeType": "nginx",
+      "nodeGroup": "bl",
+      "count": 1,
+      "cloudlets": 4
+    }
+  ],
+  "onBeforeRestartNode[cp]": {
+    "if ( ${settings.restart} == false )": {
+      "stopEvent": {
+        "type": "warning",
+        "message": "Restart is prohibited."
+      }
+    }
+  }
+}
+@@!
+
+where:  
+
+- `type` *[string]* - message type to be displayed:
+	- **error**  
+	![stopEvent-error](/img/stopevent-error.png)
+	- **warning** 
+	![stopEvent-error](/img/stopevent-warning.png)
+- `message` *[string]* - text of the message  
+
+Once the *stopEvent* action is executed it outputs an error to the console. 
+For example:
+![stopEvent-console](/img/stopevent-console.png)
+
+
 <br>       
 <h2>What’s next?</h2>                   
 
