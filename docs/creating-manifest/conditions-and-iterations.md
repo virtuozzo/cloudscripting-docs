@@ -455,7 +455,7 @@ onInstall:
 - if (globals.a == 2 || globals.a == 3 || globals.a == 1):
     assert: true
 ```
-```
+```json
 {
    "type": "install",
    "name": "[CS:Conditions] - action single line \"if\"",
