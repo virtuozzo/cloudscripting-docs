@@ -204,7 +204,7 @@ onInstall:
 ```
 @@!
 
-### **Else**
+### Else
 
 In case the conditional statement should be complemented by the opposite comparison and respective action the ***else*** conditional operator can be accommodated.  
 
@@ -430,6 +430,61 @@ onInstall:
 }
 ```
 @@!
+
+### Single line *if* statement
+
+Another ***if-else*** combination can be represented as a single ***if*** statement when multiple conditions are required to be checked and the statements nesting is not mandatory.
+It is applicable if any condition or all of the conditions in the statement may lead to the same outcome. 
+For example:
+
+@@@
+```yaml
+type: install
+name: '[CS:Conditions] - action single line "if"'
+
+globals:
+  a: 1
+  b: 2
+
+onInstall:
+- log: "-- single line if test --"
+- if ((globals.b == 2) && (globals.a == 1) && (globals.a == 1)):
+    assert: true
+    
+- log: "-- another single line if test --"
+- if (globals.a == 2 || globals.a == 3 || globals.a == 1):
+    assert: true
+```
+```
+{
+   "type": "install",
+   "name": "[CS:Conditions] - action single line \"if\"",
+   "globals": {
+      "a": 1,
+      "b": 2
+   },
+   "onInstall": [
+      {
+         "log": "-- single line if test --"
+      },
+      {
+         "if ((globals.b == 2) && (globals.a == 1) && (globals.a == 1))": {
+            "assert": true
+         }
+      },
+      {
+         "log": "-- another single line if test --"
+      },
+      {
+         "if (globals.a == 2 || globals.a == 3 || globals.a == 1)": {
+            "assert": true
+         }
+      }
+   ]
+}
+```
+@@!
+
 
 ## Iterations
 
