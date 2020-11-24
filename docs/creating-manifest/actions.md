@@ -2832,7 +2832,6 @@ actions:
 
 Any triggered [event](events) execution can be stopped and action can be accompanied with message displayed at right top corner.  
 For example:
-
 @@@
 ```yaml
 type: install
@@ -2861,7 +2860,7 @@ onBeforeRestartNode[cp]:
         type: warning
         message: Restart is prohibited. 
 ```
-```json
+``` json
 {
   "type": "install",
   "name": "stopEvent Test",
@@ -2896,6 +2895,7 @@ onBeforeRestartNode[cp]:
     }
   }
 }
+```
 @@!
 
 where:  
@@ -2903,7 +2903,7 @@ where:
 - `type` *[string]* - message type to be displayed:
 	- **error**  
 	![stopEvent-error](/img/stopevent-error.png)
-	- **warning** 
+	- **warning**  
 	![stopEvent-error](/img/stopevent-warning.png)
 - `message` *[string]* - text of the message  
 
