@@ -400,11 +400,12 @@ The service starts if:
 
 #### Cluster
 
-In Jelastic the following *nodeTypes* can be clusterized with help of built-in [Auto-Сlustering feature](https://ops-docs.jelastic.com/auto-clustering-templates/):  
+In Jelastic the following *[nodeTypes](https://docs.cloudscripting.com/creating-manifest/selecting-containers/#supported-stacks)* can be clusterized with help of built-in [Auto-Сlustering feature](https://ops-docs.jelastic.com/auto-clustering-templates/):  
 
   * Application Servers: GlassFish, WildFly, Payara  
   * SQL Databases: MySQL, MariaDB, PostgreSQL
   * NoSQL Databases: Couchbase, MongoDB 
+  * Storage Server: Shared Storage Container  
 
 *Auto-Clustering* can be enabled via `cluster` parameter or using *Auto-Clustering* switch at the dashboard:  
 ![autoclustering-switch](/img/autoclustering-switch.png)  
@@ -419,9 +420,10 @@ To enable *Auto-Clustering* the `cluster` parameter is used as:
     - Default topology that will be created for the MySQL and MariaDB is [master-slave](https://jelastic.com/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/) replication cluster with 2 nodes of HA ProxySQL load balancer in front of
     - In case of PostgreSQL there is only one topology available - [master-slave](https://jelastic.com/blog/postgresql-auto-clustering-master-slave-replication/) 
     - The WildFly cluster is created in [Managed Domain Mode](https://jelastic.com/blog/wildfly-managed-domain-in-containers-auto-micro-clustering-and-scaling/) with topology that comrises one Domain Controller node and Worker nodes. Number of Worker nodes is defined by *[count](basic-configs/#nodes-definition)* parameter  	        
-    - The Payara/GlassFish cluster is created with topology that comrises one [DAS node and Worker nodes](https://jelastic.com/blog/glassfish-payara-auto-clustering-cloud-hosting/). Number of Worker nodes is defined by *[count](basic-configs/#nodes-definition)* parameter  	 
-    - The MongoDB cluster is created as [replica-set](https://jelastic.com/blog/mongodb-replica-set-master-slave-failover/) with topology that comrises tree nodes one *Primary* and two *Secondary* nodes.  
-    - The Couchbase is created as [cluster with 3 interconnected Couchbase containers](https://jelastic.com/blog/auto-scalable-couchbase-cluster-in-docker-containers/) 
+    - The Payara/GlassFish cluster is created with topology that comrises one [DAS node and Worker nodes](https://jelastic.com/blog/glassfish-payara-auto-clustering-cloud-hosting/). Number of Worker nodes is defined by *[count](basic-configs/#nodes-definition)* parameter   
+    - The MongoDB cluster is created as [replica-set](https://jelastic.com/blog/mongodb-replica-set-master-slave-failover/) with topology that comrises tree nodes one *Primary* and two *Secondary* nodes   
+    - The Couchbase is created as [cluster with 3 interconnected Couchbase containers](https://jelastic.com/blog/auto-scalable-couchbase-cluster-in-docker-containers/)   
+    - The Storage cluster is based on scalable network filesystem [GlusterFS](https://www.gluster.org/). The default cluster topology comprises 3 storage nodes  
    
 For example:  
 
