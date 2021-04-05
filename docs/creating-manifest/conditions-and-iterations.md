@@ -1,5 +1,47 @@
 # Control Flows: Conditions and Iterations
 
+**Comparison** and **Logical** operators are used in *conditional* statements and serve to test for `ture` or `false`.
+
+## Comparison Operators
+
+The Comparison operators are used in logical statements to determine equality or difference between variables or values.
+
+Let's assume that `x = 5`. The table below explains the comparison operators:
+
+| Operator           | Description                         | Comparing |  Returns |
+|--------------------|-------------------------------------|-----------|----------|
+| ==                 | equal to                            | x == 8    | false    |
+| ==                 | equal to                            | x == 5    | true     |
+| ==                 | equal to                            | x == "5"  | true     |
+|                    |                                     |           |          |
+| ===                | equal value and equal type          | x === 5   | true     |
+| ===                | equal value and equal type          | x === "5" | false    |
+|                    |                                     |           |          |
+| !=                 | not equal                           | x != 8    | true     |
+|                    |                                     |           |          |
+| !==                | not equal value or not equal type   | x !== 5   | false    |
+| !==                | not equal value or not equal type   | x !== "5" | true     |
+| !==                | not equal value or not equal type   | x !== 8   | true     |
+|                    |                                     |           |          |
+| >                  | grater than                         | x > 8     | false    |
+| <                  | less than                           | x < 8     | true     |
+| >=                 | grater than or equal to             | x >= 8    | false    |
+| <=                 | less than or equal to               | x <= 8    | true     |
+
+## Logical Operators
+
+The logical operators are used to determine the logic between variables or values. Let's take that `x = 6` and `y = 3`. The table below explains the logical operators:
+
+| Operator           | Description                         | Example                      |
+|--------------------|-------------------------------------|------------------------------|
+| &&                 | and                                 | (x < 10 && y > 1) is true    |
+| ==                 | or                                  | (x == 5 || y == 5) is false  |
+| ==                 | not                                 | !(x == y) is true            |
+
+
+
+
+
 ## Conditions    
 
 The main conditional statement is <b>*if*</b>. Within this parameter, all the available <a href="../placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
