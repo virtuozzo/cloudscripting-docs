@@ -275,7 +275,7 @@ The supported software stacks are categorized in the table below with specified 
 
 |Stacks|Java|PHP|Ruby|Python|Nodejs|ii8|
 |--------|----------|-----------|-----------|--------|---------|---------|
-|engine|java6<br>java7<br>java8<br>jdk-9<br>jdk-10<br>jdk-1.8.0_144<br>jdk-1.8.0_152|php5.3<br>php5.4<br>php5.5<br>php5.6<br>php7<br>php7.1.13<br>php7.1.7<br>php7.2.1|ruby1.9<br>ruby2.0<br>ruby2.1<br>ruby2.2<br>ruby2.3<br>ruby2.4.1|python2.7<br>python3.3<br>python3.4<br>python3.5|nodejs6.11.5<br>nodejs6.12.3<br>nodejs8.9.0<br>nodejs8.9.4<br>nodejs9.0.0<br>nodejs9.4.0|.NET 4|
+|engine|java7<br>java8<br>jdk-9<br>jdk-10<br>jdk-1.8.0_144<br>jdk-1.8.0_152|php7.3<br>php7.4<br>php8.0|ruby2.5<br>ruby2.6<br>ruby2.7<br>ruby3.0|python3.6<br>python3.7<br>python3.8<br>python3.9|nodejs10.24.1<br>nodejs12.22.1<br>nodejs14.16.1<br>nodejs15.14.0|.NET 4|
 
 !!! note
     The list of supported <a href="https://docs.jelastic.com/software-stacks-versions" target="_blank">software stacks</a> can vary depending on your Jelastic Platform version - it can be checked at your dashboard.    
