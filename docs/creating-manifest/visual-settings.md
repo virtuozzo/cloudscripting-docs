@@ -81,7 +81,7 @@ where:
         * `text`  - [multiline](#text) text field
         * `list` - drop-down menu with [textboxes](#list)
         * `checkbox` - [single checkbox](#checkbox) field
-<!--        * `checkboxlist` - [checkbox](#checkboxlist) grouping -->
+        * `checkboxlist` - [checkbox](#checkboxlist) grouping
         * `radiolist` - [radio field](#radiolist) grouping
         * `radio-fieldset` - alias to `radiolist`
         * `dockertags` - drop-down menu with a list of [docker tags](#dockertags)
@@ -554,47 +554,72 @@ where:
 - `hideLabel` *[optional][boolean]* - shows/hides field label. Default value is *'false'*
 - `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
 
-<!--
 ### checkboxlist
 Checkbox grouping.
 
-![text](/img/checkboxlist.jpg)
+![text](/img/checkboxlist.jpg)  
+
 @@@
 ```yaml
-fields:
-  - type: checkboxlist
-    caption: Checkbox List
-    values:
-      value1: hello
-      value2: world
-    hideLabel: false
-    hidden: false
+    - type: checkboxlist
+      caption: Options
+      name: options
+      columns: 2
+      values:
+        - name: option1
+          caption: Option 1
+          value: false
+          
+        - name: option2
+          caption: Option 2
+          value: true
+        
+        - name: option3
+          caption: Option 3
+          value: true
 ```
 ``` json
-{
-  "fields": [
-    {
-      "type": "checkboxlist",
-      "caption": "Checkbox List",
-      "values": {
-        "value1": "hello",
-        "value2": "world"
+[
+  {
+    "type": "checkboxlist",
+    "caption": "Options",
+    "name": "options",
+    "columns": 2,
+    "values": [
+      {
+        "name": "option1",
+        "caption": "Option 1",
+        "value": false
       },
-      "hideLabel": false,
-      "hidden": false
-    }
-  ]
-}
+      {
+        "name": "option2",
+        "caption": "Option 2",
+        "value": true
+      },
+      {
+        "name": "option3",
+        "caption": "Option 3",
+        "value": true
+      }
+    ]
+  }
+]
 ```
 @@!
 
-where:
+This example returns values as follows:
+
+*{ "options": "option2,option3", "option1": false, "option2": true, "option3": true }*
+
+Field parameters:
 
 - `caption` *[optional]* - field label
 - `values` - checkboxes (*"key"*:*"value"*)
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
--->
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
+- `delimiter` *[optional][string]* - a delimiter character to separate list data items. The default value is a comma ','
+- `columns` *[optional][Number]* - specifies the number of columns to be created when displaying grouped checkboxlist controls using automatic layout. The default value is 1.
+
 
 ### radiolist
 Radio elements grouping.
