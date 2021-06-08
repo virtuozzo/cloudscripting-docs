@@ -12,11 +12,6 @@ EMAILS=""
 CHANNEL_ID="CKYECANDP"
 #"DBS19HYHK"- test
 SLACK_CS_TOKEN=""
-#"xoxp-
-# 393406286165-
-# 400941316103-
-# 691033460582-
-# c29d4af55af7f9df5c2b53d5e0402630"
 
 function getLatestVersion() {
     str=$(cat ${GIT_CS_PATH}/mkdocs.yml  | tail -1 | grep -Eo '(.*):');
