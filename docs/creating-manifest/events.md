@@ -1366,8 +1366,6 @@ The *onBeforeInit* event is executed:
    installation dialog in the dashboard   
 -   on application installation
 
-
-Placeholders do not work inside *onBeforeInit*, since even *globals* can be defined dynamically.
 You can override all the parameters of the manifest, except for:
 
 -   `type`
