@@ -1372,6 +1372,65 @@ You can override all the parameters of the manifest, except for:
 -   `name`
 -   `baseUrl`
 
+The *GetAppInfo* method has **ownerUid** parameter which allows to define a collaborator's account. Parameter is applied if the [owner](visual-settings/#owner) field is added to manifest. The [account](placeholders/#account-placeholders) and [quota](placeholders/#quota-placeholders) placeholders will be filled in depending on defined account.
+
+For example:
+
+@@@
+```yaml
+type: install
+name: Account And Quota Placeholders
+settings:
+  fields: 
+    - type: owner
+      caption: Owner
+      name: ownerUid
+  onBeforeInit: |
+     settings.fields.push({
+       type: "string",
+       caption: "Account",
+       name: "email",
+       value: "${account.email}"
+     }, {
+       type: "string",
+      caption: "Cloudlets",
+      name: "cloudlets",
+      value: "${quota.environment.maxcloudletsperrec}"
+     });
+     return settings;
+```
+```json
+{
+  "type": "install",
+  "name": "Account And Quota Placeholders",
+  "settings": {
+    "fields": [
+    {
+    "type": "owner",
+    "caption": "Owner",
+    "name": "ownerUid"
+    }
+    ],
+    "onBeforeInit": [
+        "settings.fields.push({",
+        "  type: 'string',",
+        "  caption: 'Account',",
+        "  name: 'email',",
+        "  value: '${account.email}'",
+        "},",
+        "{",
+        "  type: 'string',",
+        "  caption: 'Cloudlets',",
+        "  name: 'cloudlets',",
+        "  value: '${quota.environment.maxcloudletsperrec}'",
+        "});",
+        "return settings;"
+        ]
+  }
+}
+```
+@@!
+
 #### onBeforeInstall
 The *onBeforeInstall* event is executed before application installation but after *onBeforeInit*.
 The placeholders **\${globals.}** and **\${settings.}** can be used within *onBeforeInstall*. All of the manifest parameters can be overridden, except for:
