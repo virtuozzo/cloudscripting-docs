@@ -2139,6 +2139,34 @@ settings:
 Result:  
 ![Tooltip-composit-field](/img/tooltip-composit-field.png)</center>  
 
+### owner
+
+This field allows you to add the possibility of collaboration for packages with **type: install** without section nodes when installing environments in nested manifests.
+
+@@@
+```yaml
+- type: owner
+  caption: Owner
+  name: ownerUid
+```
+```json
+[
+  {
+    "type": "owner",
+    "caption": "Owner",
+    "name": "ownerUid"
+  }
+]
+```
+@@!
+
+![owner-field](/img/owner-field.png)
+
+The field is not displayed if there are no users defined in **Shared with Me**.
+
+![shared-with-me](/img/shared-with-me.png)
+
+Changing the *Owner* field value results in the data will be re-rerquested with *GetAppInfo* method and form re-rendered in case there is [onBeforeInit](events/#onbeforeinit) in the mainifest. Re-rendering will be performed according to the account and quotas of collaborator.
 
 ## Dynamic filling of the manifest fields
 Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit*  *onBeforeInstall*](events/#onbeforeinit) events.
