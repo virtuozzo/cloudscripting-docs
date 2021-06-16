@@ -1278,7 +1278,7 @@ To ensure ability to process user's quotas and collaboration the following `${ac
 Placeholders *${account.(key)}* are initialized on demand, that is, only if they are used and only at the moment they are required.
 Placeholder values are filled in depending on which user the installation is carried out for. That is, the placeholders will be filled with values for the collaborator selected during installation.  
 
-## Quotas Placeholders
+## Quota Placeholders
 
 To ensure ability to process user's quotas and collaboration the following `${quota.(key)` and `${quota.data.(key)}` placeholders are available:
 
