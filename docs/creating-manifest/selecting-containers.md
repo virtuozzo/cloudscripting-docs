@@ -273,9 +273,9 @@ The supported software stacks are categorized in the table below with specified 
 
 <a href="https://docs.jelastic.com/software-stacks-versions#engines">Engine versions</a>
 
-|Stacks|Java|PHP|Ruby|Python|Nodejs|ii8|
-|--------|----------|-----------|-----------|--------|---------|---------|
-|engine|jdk7<br>jdk8<br>jdk11<br>openj98<br>openj911<br>openj916<br>openjdk7<br>openjdk8<br>openjdk11<br>openjdk14<br>openjdk15<br>openjdk16<br>openjdk17<br>adoptopenjdk8<br>adoptopenjdk11<br>adoptopenjdk16<br>correttojdk8<br>correttojdk11<br>correttojdk15<br>correttojdk16<br>libericajdk8<br>libericajdk11<br>libericajdk14<br>libericajdk15<br>libericajdk16<br>zulujdk7<br>zulujdk8<br>zulujdk11<br>zulujdk13<br>zulujdk14<br>zulujdk15<br>zulujdk16<br>|php7.3<br>php7.4<br>php8.0|ruby2.5<br>ruby2.6<br>ruby2.7<br>ruby3.0|python3.6<br>python3.7<br>python3.8<br>python3.9|nodejs10.24.1<br>nodejs12.22.1<br>nodejs14.17.0<br>nodejs15.14.0<br>nodejs16.2.0|.NET 5|
+|Stacks|Java|PHP|Ruby|Python|Nodejs|ii8|Go|
+|--------|----------|-----------|-----------|--------|---------|---------|---------|
+|engine|graalvm8<br>dragonwell8<br>java8<br>java11<br>openj98<br>openj911<br>openj916<br>openjdk7<br>openjdk8<br>openjdk11<br>openjdk14<br>openjdk15<br>openjdk16<br>openjdk17<br>adoptopenjdk8<br>adoptopenjdk11<br>adoptopenjdk16<br>correttojdk8<br>correttojdk11<br>correttojdk15<br>correttojdk16<br>libericajdk8<br>libericajdk11<br>libericajdk14<br>libericajdk15<br>libericajdk16<br>zulujdk7<br>zulujdk8<br>zulujdk11<br>zulujdk13<br>zulujdk14<br>zulujdk15<br>zulujdk16<br>|php7.3<br>php7.4<br>php8.0|ruby2.5<br>ruby2.6<br>ruby2.7<br>ruby3.0|python3.6<br>python3.7<br>python3.8<br>python3.9|nodejs12-supervisor<br>nodejs14-supervisor<br>nodejs15-supervisor<br>nodejs16-supervisor|dotnet3<br>dotnet5|go|
 
 !!! note
     The list of supported <a href="https://docs.jelastic.com/software-stacks-versions" target="_blank">software stacks</a> can vary depending on your Jelastic Platform version - it can be checked at your dashboard.    
