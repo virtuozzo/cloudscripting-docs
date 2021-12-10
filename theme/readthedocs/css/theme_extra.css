@@ -291,6 +291,7 @@ pre code.example {
 #cs td, #jel td {
    text-align: center;
    font-size: 13px;
+   padding: 8px 8px;
 }
 
 /*
