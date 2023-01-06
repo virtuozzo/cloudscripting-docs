@@ -273,7 +273,7 @@ The supported software stacks are categorized in the table below with specified 
 
 <a href="https://docs.jelastic.com/software-stacks-versions#engines">Engine versions</a>
 
-|Stacks|Java|PHP|Ruby|Python|Nodejs|ii8|Go|
+|Stacks|Java|PHP|Ruby|Python|Nodejs|.NET|Go|
 |--------|----------|-----------|-----------|--------|---------|---------|---------|
 |engine|adoptopenjdk-8 <br>adoptopenjdk-11 <br>adoptopenjdk-13 <br>adoptopenjdk-14 <br>adoptopenjdk-15 <br>adoptopenjdk-16 <br>correttojdk-8 <br>correttojdk-11 <br>correttojdk-15 <br>correttojdk-16 <br>correttojdk-17 <br>correttojdk-18 <br>correttojdk-19 <br>dragonwell-8 <br>graalvm-19 <br>graalvm-21 <br>graalvm-22 <br>jdk-8 <br>jdk-11 <br>openj9-8 <br>openj9-11 <br>openj9-14 <br>openj9-15 <br>openj9-16 <br>openjdk-8 <br>openjdk-11 <br>openjdk-13 <br>openjdk-14 <br>openjdk-15 <br>openjdk-16 <br>openjdk-17 <br>openjdk-18 <br>openjdk-19 <br>openjdk-20 <br>openjdk-21 <br>temurinjdk-8 <br>temurinjdk-11 <br>temurinjdk-17 <br>temurinjdk-18 <br>temurinjdk-19 <br>zulujdk-8 <br>zulujdk-11 <br>zulujdk-13 <br>zulujdk-14 <br>zulujdk-15 <br>zulujdk-16 <br>zulujdk-17 <br>zulujdk-18 <br>zulujdk-19<br>|php7.4<br>php8.0<br>php8.1|ruby2.7<br>ruby3.0<br>ruby3.1<br>|python3.6<br>python3.7<br>python3.8<br>python3.9<br>python3.10<br>python3.11<br>|nodejs14-npm <br>nodejs14-forever <br>nodejs14-pm2 <br>nodejs14-supervisor <br>nodejs16-npm <br>nodejs16-forever <br>nodejs16-pm2 <br>nodejs16-supervisor<br>|dotnet3 <br>dotnet5 <br>dotnet6 <br>dotnet7|go14 <br>go15 <br>go16 <br>go17 <br>go18 <br>go19 <br>|
 
