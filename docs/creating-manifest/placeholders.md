@@ -34,7 +34,7 @@ The following specific groups of placeholders are singled out:
                            
 - [Account Placeholders](placeholders/#account-placeholders)
 
-- [Quota Placeholders](placeholders/#account-placeholders)
+- [Quota Placeholders](placeholders/#quota-placeholders)
 
 Placeholders like `env`, `nodes`, `targetNodes`, `response` are dynamically updated. They could be updated by their requests if they are required to be updated.
 
