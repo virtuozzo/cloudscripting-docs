@@ -1,6 +1,6 @@
 # Basic Configs
 
-The JPS manifest is a file with <b>*.json*</b> extension, which contains an appropriate code written in JSON format. This manifest file includes the links to the web only dependencies. This file can be named as you require. 
+The JPS manifest is a file with <b>*.jps*</b> extension, with code written in JSON or YAML format. This manifest file includes the links to the web only dependencies. This file can be named as you require. 
 
 The code should contain a set of strings needed for a successful installation of an application. The basis of the code is represented by the following string:
 @@@
