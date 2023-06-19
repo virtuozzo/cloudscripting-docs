@@ -1291,7 +1291,7 @@ To ensure ability to process user's quotas and collaboration the following `${qu
     - `${quota.data.environment.maxcloudletsperrec.quota.description}`  
     - `${quota.data.environment.maxcloudletsperrec.quota.id}`   
     - `${quota.data.environment.maxcloudletsperrec.type}`  
-    - `${quota.data.environment.maxcloudletsperrec.value}  
+    - `${quota.data.environment.maxcloudletsperrec.value}`  
     - ...  
     
 Placeholders `${quota.(key)}` are initialized on demand, that is, only if they are used and only at the moment they are required.
