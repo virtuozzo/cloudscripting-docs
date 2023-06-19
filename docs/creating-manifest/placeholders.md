@@ -28,7 +28,13 @@ The following specific groups of placeholders are singled out:
 
 - [Array Placeholders](placeholders/#array-placeholders)                                       
 
-- [File Path Placeholders](placeholders/#file-path-placeholders)                                 
+- [File Path Placeholders](placeholders/#file-path-placeholders)      
+                           
+- [Engine Placeholder](placeholders/#engine-placeholder)      
+                           
+- [Account Placeholders](placeholders/#account-placeholders)
+
+- [Quota Placeholders](placeholders/#quota-placeholders)
 
 Placeholders like `env`, `nodes`, `targetNodes`, `response` are dynamically updated. They could be updated by their requests if they are required to be updated.
 
@@ -1243,6 +1249,106 @@ onInstall:
       }
     }
   ]
+}
+```
+@@!
+
+## Account Placeholders
+
+To ensure ability to process user's quotas and collaboration the following `${account.(key)}` placeholders are available:
+
+- `${account.}`  
+    - `${account.groupType}`
+    - `${account.bonus}`
+    - `${account.hardNodeGroups}` 
+    - `${account.createdOn}`
+    - `${account.updatedGroupOn}`
+    - `${account.defaultHardNodeGroup}`
+    - `${account.uid}`
+    - `${account.isCommerial}`
+    - `${account.balance}`
+    - `${account.isRegistered}`
+    - `${account.updatedStatusOn}`
+    - `${account.status}`
+    - `${account.group}`
+    - `${account.email}`
+
+Placeholders *${account.(key)}* are initialized on demand, that is, only if they are used and only at the moment they are required.
+Placeholder values are filled in depending on which user the installation is carried out for. That is, the placeholders will be filled with values for the collaborator selected during installation.  
+
+## Quota Placeholders
+
+To ensure ability to process user's quotas and collaboration the following `${quota.(key)` and `${quota.data.(key)}` placeholders are available:
+
+- `${quota.}`  
+    - `${quota.maxcloudletsperrec}`
+    - `${quota.maxcount}`
+    - `${quota.disk.iolimit}`
+    - ...
+   
+- `${quota.data.}`  
+    - `${quota.data.environment.maxcloudletsperrec.quota.name}`  
+    - `${quota.data.environment.maxcloudletsperrec.quota.description}`  
+    - `${quota.data.environment.maxcloudletsperrec.quota.id}`   
+    - `${quota.data.environment.maxcloudletsperrec.type}`  
+    - `${quota.data.environment.maxcloudletsperrec.value}  
+    - ...  
+    
+Placeholders `${quota.(key)}` are initialized on demand, that is, only if they are used and only at the moment they are required.
+Placeholder values are filled in depending on which user the installation is carried out for. That is, the placeholders will be filled with values for the collaborator selected during installation.  
+
+Placeholders `${quota.(key)}` are filled with quota values, where **key** is the name of the quota (for example: *${quota.environment.maxcloudletsperrec}*).  
+
+Placeholders `${quota.data.(key)}` allow you to get quota data (for example, *type: ${quota.data.environment.maxcloudletsperrec.type}*).
+
+Example:
+
+@@@
+```yaml
+type: install
+name: Account And Quota Placeholders
+
+settings:
+  fields: []
+  
+  onBeforeInit: |
+    settings.fields.push({
+      type: "string",
+      caption: "Account",
+      name: "email",
+      value: "${account.email}"
+    }, {
+      type: "string",
+      caption: "Cloudlets",
+      name: "cloudlets",
+      value: "${quota.environment.maxcloudletsperrec}"
+    });
+    return settings;
+```
+```json
+{
+  "type": "install",
+  "name": "Account And Quota Placeholders",
+  "settings": {
+    "fields": [
+
+    ],
+    "onBeforeInit": [
+        "settings.fields.push({",
+        "  type: 'string',",
+        "  caption: 'Account',",
+        "  name: 'email',",
+        "  value: '${account.email}'",
+        "},",
+        "{",
+        "  type: 'string',",
+        "  caption: 'Cloudlets',",
+        "  name: 'cloudlets',",
+        "  value: '${quota.environment.maxcloudletsperrec}'",
+        "});",
+        "return settings;"
+        ]
+  }
 }
 ```
 @@!
