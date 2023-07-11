@@ -2,7 +2,7 @@
 
 1. Clone this repo and run installation script:
 ```
-git clone https://github.com/cloudscripting/docs.git
+git clone https://github.com/virtuozzo/docs.git
 cd docs
 sudo ./install.sh
 ```
