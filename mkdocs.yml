@@ -8,7 +8,7 @@ copyright: Copyright &copy; Virtuozzo, Inc.
 
 
 theme_dir: './theme/readthedocs'
-repo_url: 'https://github.com/cloudscripting/docs/edit/master/docs/'
+repo_url: 'https://github.com/virtuozzo/docs/edit/master/docs/'
 
 markdown_extensions:
   - admonition
