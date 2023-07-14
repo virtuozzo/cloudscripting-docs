@@ -2035,6 +2035,59 @@ This event provides a possibility to execute actions required to adjust a subscr
 - `${event.response.}`:
   - `result` - result code. The successful action result is '0'
 
+### onCustomNodeEvent
+This event is executed when the **environment > Node > SendEvent** API method is called with the `eventName=CUSTOM_NODE_EVENT` parameter.
+  
+**Event Placeholders:**
+
+- `${event.params.}`:
+  - `NODE_NAME` - target container name
+  - `NODE_GROUP` - unique identifier of the target node group (layer), e.g. "cp" for the default application server layer
+  - `ENV_INFO` - environment iformation
+  - `name` - name of the event (for filtering)
+  - `ENV_NAME` - target environment name
+  - `NODE_ID` - unique identifier if the target node
+  - `USER_NAME` - target user name (email)
+  - `envName` - target environment name
+  - `nodeId` - unique identifier if the target node
+- `${event.response.}`:
+  - `result` - result code. The successful action result is '0'
+
+Events Subscription Example:  
+  
+@@@
+```yaml
+type: update
+name: Test Custom Node Events
+targetNodes: any
+
+onCustomNodeEvent [name:test]:
+  log: "filter by custom parameter. Event: ${event}"
+
+onCustomNodeEvent [${targetNodes.nodeGroup}]:
+  log: "filter by nodeGroup. Event: ${event}"
+```
+```json
+{
+  "type": "update",
+  "name": "Test Custom Node Events",
+  "targetNodes": "any",
+  "onCustomNodeEvent [name:test]": {
+    "log": "filter by custom parameter. Event: ${event}"
+  },
+  "onCustomNodeEvent [${targetNodes.nodeGroup}]": {
+    "log": "filter by nodeGroup. Event: ${event}"
+  }
+}
+```
+@@!
+
+Triggering:  
+
+```
+jem api apicall [PLATFORM_DOMAIN]/1.0/environment/node/rest/sendevent --data-urlencode params={"name":"test1"}
+```
+
 <br>
 
 <h2>What’s next?</h2>
