@@ -1973,7 +1973,68 @@ onInstall:
 }
 ```
 @@!
+
+### onBeforeMoveProduct
+The event is executed before switching subscriptions (migrating a subscription item to a different service plan).
+
+**Event Placeholders:**
+
+- `${event.params.}`:
+  - `subscriptionid` - unique identifier of the source subscription
+  - `itemid` - unique identifier of the source subscription item
+  - `itemresourceid` - unique identifier of the source subscription item resource
+  - `itemresourceuniquename` - name of the source subscription item resource
+  - `serviceplanid` - unique identifier of the source service plan
+  - `productname` - name of the source subscription product
+  - `serviceplanname` - name of the source service plan
+  - `targetsubscriptionid` - unique identifier of the target subscription
+  - `targetitemid` - unique identifier of the target subscription item
+  - `targetserviceplanid` - unique identifier of the target service plan
+  - `targetproductname` - name of the target subscription product
+  - `targetserviceplanname` - name of the target service plan
+- `${event.response.}`:
+  - `result` - result code. The successful action result is '0'
+
+### onAfterMoveProduct
+The event is executed after switching subscriptions (migrating a subscription item to a different service plan).
   
+**Event Placeholders:**
+
+- `${event.params.}`:
+  - `subscriptionid` - unique identifier of the source subscription
+  - `itemid` - unique identifier of the source subscription item
+  - `itemresourceid` - unique identifier of the source subscription item resource
+  - `itemresourceuniquename` - name of the source subscription item resource
+  - `serviceplanid` - unique identifier of the source service plan
+  - `productname` - name of the source subscription product
+  - `serviceplanname` - name of the source service plan
+  - `targetsubscriptionid` - unique identifier of the target subscription
+  - `targetitemid` - unique identifier of the target subscription item
+  - `targetserviceplanid` - unique identifier of the target service plan
+  - `targetproductname` - name of the target subscription product
+  - `targetserviceplanname` - name of the target service plan
+- `${event.response.}`:
+  - `result` - result code. The successful action result is '0'
+
+### onApplySubscriptionSettings
+This event provides a possibility to execute actions required to adjust a subscription item after migration to a different service plan.
+  
+**Event Placeholders:**
+
+- `${event.params.}`:
+  - `subscriptionId` - unique identifier of the source subscription
+  - `subscriptionItemId` - unique identifier of the source subscription item
+  - `subscriptionItemResourceId` - unique identifier of the source subscription item resource
+  - `servicePlanId` - unique identifier of the source service plan
+  - `appUniqueName` - name of the source subscription item resource
+  - `targetAppid` - unique identifier of the target application
+  - `settings` - JSON object with custom settings provided for subscription item adjustment
+  - `servicePlanData` - JSON object with target service plan data
+  - `overrideRegions` - defines whether to configure the service plan's regions differently from the user group's default ones (true) or not (false)
+  - `regionPricing` - JSON object with a list of available regions and custom pricing models for them
+- `${event.response.}`:
+  - `result` - result code. The successful action result is '0'
+
 <br>
 
 <h2>What’s next?</h2>
