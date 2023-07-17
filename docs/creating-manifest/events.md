@@ -2043,13 +2043,13 @@ This event is executed when the **environment > Node > SendEvent** API method is
 - `${event.params.}`:
   - `NODE_NAME` - target container name
   - `NODE_GROUP` - unique identifier of the target node group (layer), e.g. "cp" for the default application server layer
-  - `ENV_INFO` - environment iformation
+  - `ENV_INFO` - environment information
   - `name` - name of the event (for filtering)
   - `ENV_NAME` - target environment name
-  - `NODE_ID` - unique identifier if the target node
+  - `NODE_ID` - unique identifier of the target node
   - `USER_NAME` - target user name (email)
   - `envName` - target environment name
-  - `nodeId` - unique identifier if the target node
+  - `nodeId` - unique identifier of the target node
 - `${event.response.}`:
   - `result` - result code. The successful action result is '0'
 
@@ -2085,7 +2085,13 @@ onCustomNodeEvent [${targetNodes.nodeGroup}]:
 Triggering:  
 
 ```
-jem api apicall [PLATFORM_DOMAIN]/1.0/environment/node/rest/sendevent --data-urlencode params={"name":"test1"}
+curl --location --request POST ‘https://{platformDomain}/1.0/environment/node/rest/sendevent’ --data-urlencode ‘params=\{“name”: “test”}’
+```
+
+or
+
+```
+jem api apicall [API_DOMAIN]/1.0/environment/node/rest/sendevent --data-urlencode params={"name":"test"}
 ```
 
 <br>
