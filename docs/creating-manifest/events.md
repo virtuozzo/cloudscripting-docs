@@ -2022,14 +2022,14 @@ This event provides a possibility to execute actions required to adjust a subscr
 **Event Placeholders:**
 
 - `${event.params.}`:
-  - `subscriptionId` - unique identifier of the source subscription
-  - `subscriptionItemId` - unique identifier of the source subscription item
-  - `subscriptionItemResourceId` - unique identifier of the source subscription item resource
-  - `servicePlanId` - unique identifier of the source service plan
-  - `appUniqueName` - name of the source subscription item resource
-  - `targetAppid` - unique identifier of the target application
+  - `subscriptionId` - unique identifier of the new subscription
+  - `subscriptionItemId` - unique identifier of the new subscription item
+  - `subscriptionItemResourceId` - unique identifier of the new subscription item resource
+  - `servicePlanId` - unique identifier of the new service plan
+  - `appUniqueName` - unique identifier of the package installation in the platform's Marketplace
+  - `targetAppid` - unique identifier of the related environment(s)
   - `settings` - JSON object with custom settings provided for subscription item adjustment
-  - `servicePlanData` - JSON object with target service plan data
+  - `servicePlanData` - JSON object with new service plan data
   - `overrideRegions` - defines whether to configure the service plan's regions differently from the user group's default ones (true) or not (false)
   - `regionPricing` - JSON object with a list of available regions and custom pricing models for them
 - `${event.response.}`:
