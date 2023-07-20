@@ -1973,7 +1973,127 @@ onInstall:
 }
 ```
 @@!
+
+### onBeforeMoveProduct
+The event is executed before switching subscriptions (migrating a subscription item to a different service plan).
+
+**Event Placeholders:**
+
+- `${event.params.}`:
+  - `subscriptionid` - unique identifier of the source subscription
+  - `itemid` - unique identifier of the source subscription item
+  - `itemresourceid` - unique identifier of the source subscription item resource
+  - `itemresourceuniquename` - name of the source subscription item resource
+  - `serviceplanid` - unique identifier of the source service plan
+  - `productname` - name of the source subscription product
+  - `serviceplanname` - name of the source service plan
+  - `targetsubscriptionid` - unique identifier of the target subscription
+  - `targetitemid` - unique identifier of the target subscription item
+  - `targetserviceplanid` - unique identifier of the target service plan
+  - `targetproductname` - name of the target subscription product
+  - `targetserviceplanname` - name of the target service plan
+- `${event.response.}`:
+  - `result` - result code. The successful action result is '0'
+
+### onAfterMoveProduct
+The event is executed after switching subscriptions (migrating a subscription item to a different service plan).
   
+**Event Placeholders:**
+
+- `${event.params.}`:
+  - `subscriptionid` - unique identifier of the source subscription
+  - `itemid` - unique identifier of the source subscription item
+  - `itemresourceid` - unique identifier of the source subscription item resource
+  - `itemresourceuniquename` - name of the source subscription item resource
+  - `serviceplanid` - unique identifier of the source service plan
+  - `productname` - name of the source subscription product
+  - `serviceplanname` - name of the source service plan
+  - `targetsubscriptionid` - unique identifier of the target subscription
+  - `targetitemid` - unique identifier of the target subscription item
+  - `targetserviceplanid` - unique identifier of the target service plan
+  - `targetproductname` - name of the target subscription product
+  - `targetserviceplanname` - name of the target service plan
+- `${event.response.}`:
+  - `result` - result code. The successful action result is '0'
+
+### onApplySubscriptionSettings
+This event provides a possibility to execute actions required to adjust a subscription item after migration to a different service plan.
+  
+**Event Placeholders:**
+
+- `${event.params.}`:
+  - `subscriptionId` - unique identifier of the new subscription
+  - `subscriptionItemId` - unique identifier of the new subscription item
+  - `subscriptionItemResourceId` - unique identifier of the new subscription item resource
+  - `servicePlanId` - unique identifier of the new service plan
+  - `appUniqueName` - unique identifier of the package installation in the platform's Marketplace
+  - `targetAppid` - unique identifier of the related environment(s)
+  - `settings` - JSON object with custom settings provided for subscription item adjustment
+  - `servicePlanData` - JSON object with new service plan data
+  - `overrideRegions` - defines whether to configure the service plan's regions differently from the user group's default ones (true) or not (false)
+  - `regionPricing` - JSON object with a list of available regions and custom pricing models for them
+- `${event.response.}`:
+  - `result` - result code. The successful action result is '0'
+
+### onCustomNodeEvent
+This event is executed when the **environment > Node > SendEvent** API method is called with the `eventName=CUSTOM_NODE_EVENT` parameter.
+  
+**Event Placeholders:**
+
+- `${event.params.}`:
+  - `NODE_NAME` - target container name
+  - `NODE_GROUP` - unique identifier of the target node group (layer), e.g. "cp" for the default application server layer
+  - `ENV_INFO` - environment information
+  - `name` - name of the event (for filtering)
+  - `ENV_NAME` - target environment name
+  - `NODE_ID` - unique identifier of the target node
+  - `USER_NAME` - target user name (email)
+  - `envName` - target environment name
+  - `nodeId` - unique identifier of the target node
+- `${event.response.}`:
+  - `result` - result code. The successful action result is '0'
+
+Events Subscription Example:  
+  
+@@@
+```yaml
+type: update
+name: Test Custom Node Events
+targetNodes: any
+
+onCustomNodeEvent [name:test]:
+  log: "filter by custom parameter. Event: ${event}"
+
+onCustomNodeEvent [${targetNodes.nodeGroup}]:
+  log: "filter by nodeGroup. Event: ${event}"
+```
+```json
+{
+  "type": "update",
+  "name": "Test Custom Node Events",
+  "targetNodes": "any",
+  "onCustomNodeEvent [name:test]": {
+    "log": "filter by custom parameter. Event: ${event}"
+  },
+  "onCustomNodeEvent [${targetNodes.nodeGroup}]": {
+    "log": "filter by nodeGroup. Event: ${event}"
+  }
+}
+```
+@@!
+
+Triggering:  
+
+```
+curl --location --request POST ‘https://{platformDomain}/1.0/environment/node/rest/sendevent’ --data-urlencode ‘params=\{“name”: “test”}’
+```
+
+or
+
+```
+jem api apicall [API_DOMAIN]/1.0/environment/node/rest/sendevent --data-urlencode params={"name":"test"}
+```
+
 <br>
 
 <h2>What’s next?</h2>
