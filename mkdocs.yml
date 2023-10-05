@@ -56,7 +56,7 @@ pages:
 
 - Troubleshooting: troubleshooting.md
 
-- CS vs Jelastic Versions: jelastic-cs-correspondence.md
+- CS vs Virtuozzo PaaS Versions: virtuozzo-cs-correspondence.md
 
 extra:
   versions:

@@ -12,7 +12,7 @@ And to get up and ready with your own project, fulfill the following requirement
 
 - declare the required properties within your [JPS manifest](/creating-manifest/basic-configs/) file                      
 
-- deploy the prepared manifest to a Platform via [import](#how-to-deploy-cs-solution-to-jelastic ) functionality                 
+- deploy the prepared manifest to a Platform via [import](#how-to-deploy-cs-solution-to-virtuozzo ) functionality                 
 
 ## Hello World Manifest Example                      
 
@@ -55,9 +55,9 @@ onInstall:
 
 The current manifest states to create a new environment, handled with **Apache 2** application server on top of **PHP 5.4** engine. After that, the platform will fetch the archive with Hello World app from the specified URL and deploy it to the Apache **ROOT** context.                                   
 
-## How to Deploy CS Solution to Jelastic 
+## How to Deploy CS Solution to Virtuozzo 
 
-In order to give a try to *Hello World* sample from above (or deploy your own application), enter your <a href="https://jelastic.cloud/" target="_blank">Jelastic Platform</a> account and perform the following steps.                    
+In order to give a try to *Hello World* sample from above (or deploy your own application), enter your <a href="https://www.virtuozzo.com/application-platform-partners/" target="_blank">Virtuozzo PaaS Platform</a> account and perform the following steps.                    
 
 1.&nbsp;Click the **Import** button at the top pane of the dashboard.                                             
 
@@ -68,11 +68,11 @@ In order to give a try to *Hello World* sample from above (or deploy your own ap
 ![import-manifest.png](img/import-manifest.png)               
 
 !!! note
-    **Tip:** Subsequently, you can use this editor to adjust your manifest code on a fly. Clicking on the **Examples** string nearby will redirect you to <a href="https://github.com/jelastic-jps" target="_blank">Jelastic JPS Collection</a> with numerous ready-to-go solutions (just import the link to the appropriate *manifest.jps* file to fetch the required one). Also, two more options for JPS deployment are available here:<ul><li><b>*Local File*</b> - to upload the locally stored manifest</li><li><b>*URL*</b> - to specify direct link to the required file</li></ul>        
+    **Tip:** Subsequently, you can use this editor to adjust your manifest code on a fly. Clicking on the **Examples** string nearby will redirect you to <a href="https://github.com/jelastic-jps" target="_blank">Virtuozzo PaaS JPS Collection</a> with numerous ready-to-go solutions (just import the link to the appropriate *manifest.jps* file to fetch the required one). Also, two more options for JPS deployment are available here:<ul><li><b>*Local File*</b> - to upload the locally stored manifest</li><li><b>*URL*</b> - to specify direct link to the required file</li></ul>        
 
 To proceed, click on **Import** in the bottom-right corner.                   
 
-3.&nbsp;Within the installation confirmation window, specify domain name for a new **Environment**, set a **Display Name** (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>) for it and select the preferred <a href="https://docs.jelastic.com/environment-regions" target="_blank">region</a> (if available).                  
+3.&nbsp;Within the installation confirmation window, specify domain name for a new **Environment**, set a **Display Name** (i.e. <a href="https://www.virtuozzo.com/application-platform-docs/environment-aliases/" target="_blank">alias</a>) for it and select the preferred <a href="https://www.virtuozzo.com/application-platform-docs/environment-regions/" target="_blank">region</a> (if available).                  
 
 ![hello-world.png](img/hello-world.png)                                        
 
@@ -92,7 +92,7 @@ Just in the same way, you can build and run the solution you need - from frequen
 
 - Leverage <a href="https://github.com/" target="_blank">GitHub</a> to store and manage your projects, manifests and scripts all together                              
 
-- Explore <a href="/samples/" target="_blank">Jelastic Samples</a> to benefit on preliminary composed operation and package examples                            
+- Explore <a href="/samples/" target="_blank">Virtuozzo PaaS Samples</a> to benefit on preliminary composed operation and package examples                            
 
 <br> 
 <h2> What’s next?</h2>                                     

@@ -120,8 +120,8 @@
 			}
 		],
 		"success": {
-			"text": "Below you will find your admin panel link, username and password.</br></br> <table style='font-size:13px; border: none;'><tr><td>Admin panel URL:</td><td style='padding-left: 10px;'><a href='${env.protocol}://${env.domain}/share/' target='_blank'>${env.protocol}://${env.domain}/share/</a></td></tr>  <tr><td>Admin name:</td><td style='padding-left: 10px;'>admin</td></tr><tr><td>Password:</td><td style='padding-left: 10px;'>admin</td></tr></table></br>To bind a custom domain name with your Alfresco please refer to the steps described in Jelastic <a href='http://docs.jelastic.com/custom-domains' target='_blank'>documentation</a>",
-			"email": "Below you will find your admin panel link, username and password.</br></br> <table style='font-size:13px; border: none;'><tr><td>Admin panel URL:</td><td style='padding-left: 10px;'><a href='${env.protocol}://${env.domain}/share/' target='_blank'>${env.protocol}://${env.domain}/share/</a></td></tr>  <tr><td>Admin name:</td><td style='padding-left: 10px;'>admin</td></tr><tr><td>Password:</td><td style='padding-left: 10px;'>admin</td></tr></table></br>To bind a custom domain name with your Alfresco please refer to the steps described in Jelastic <a href='http://docs.jelastic.com/custom-domains' target='_blank'>documentation</a>"
+			"text": "Below you will find your admin panel link, username and password.</br></br> <table style='font-size:13px; border: none;'><tr><td>Admin panel URL:</td><td style='padding-left: 10px;'><a href='${env.protocol}://${env.domain}/share/' target='_blank'>${env.protocol}://${env.domain}/share/</a></td></tr>  <tr><td>Admin name:</td><td style='padding-left: 10px;'>admin</td></tr><tr><td>Password:</td><td style='padding-left: 10px;'>admin</td></tr></table></br>To bind a custom domain name with your Alfresco please refer to the steps described in Virtuozzo PaaS <a href='https://www.virtuozzo.com/application-platform-docs/custom-domains/' target='_blank'>documentation</a>",
+			"email": "Below you will find your admin panel link, username and password.</br></br> <table style='font-size:13px; border: none;'><tr><td>Admin panel URL:</td><td style='padding-left: 10px;'><a href='${env.protocol}://${env.domain}/share/' target='_blank'>${env.protocol}://${env.domain}/share/</a></td></tr>  <tr><td>Admin name:</td><td style='padding-left: 10px;'>admin</td></tr><tr><td>Password:</td><td style='padding-left: 10px;'>admin</td></tr></table></br>To bind a custom domain name with your Alfresco please refer to the steps described in Virtuozzo PaaS <a href='https://www.virtuozzo.com/application-platform-docs/custom-domains/' target='_blank'>documentation</a>"
 		}
 	}
 }
@@ -163,10 +163,10 @@ function configureAppSettings(oClonedEnvInfo) {
     });
 
     // adjust old database connection string with parameters of the cloned one
-    oResp = jelastic.env.file.ReplaceInBody(CLONED_ENV_APPID, session, APP_CONFIG_FILE_PATH, "db.url=jdbc:mysql://.*", "db.url=jdbc:mysql://" + sDbAddress + "/alfresco?useUnicode=yes\\&characterEncoding=UTF-8", "", NODE_TYPE_CP);
+    oResp = api.env.file.ReplaceInBody(CLONED_ENV_APPID, session, APP_CONFIG_FILE_PATH, "db.url=jdbc:mysql://.*", "db.url=jdbc:mysql://" + sDbAddress + "/alfresco?useUnicode=yes\\&characterEncoding=UTF-8", "", NODE_TYPE_CP);
 
     // replace environment URL with the cloned one
-return jelastic.env.file.ReplaceInBody(CLONED_ENV_APPID, session, APP_INDEX_FILE_PATH, SOURCE_ENV_URL, oClonedEnvInfo.url, "", NODE_TYPE_CP);
+return api.env.file.ReplaceInBody(CLONED_ENV_APPID, session, APP_INDEX_FILE_PATH, SOURCE_ENV_URL, oClonedEnvInfo.url, "", NODE_TYPE_CP);
 }
 
 /**
@@ -177,7 +177,7 @@ return jelastic.env.file.ReplaceInBody(CLONED_ENV_APPID, session, APP_INDEX_FILE
  */
 function migrateEnv(oClonedEnvInfo) {
     // migrate environment API to another hardware node group
-    return jelastic.env.control.Migrate(CLONED_ENV_APPID, session, HN_GROUP_PROFIT_BRICKS, true);
+    return api.env.control.Migrate(CLONED_ENV_APPID, session, HN_GROUP_PROFIT_BRICKS, true);
 }
 
 /**
@@ -191,7 +191,7 @@ function processEnvironment() {
 
     // Get meta information of the new environment.
     // Meta information includes all the data about environment, comprised nodes and their properties
-     oClonedEnvInfo = jelastic.env.control.GetEnvInfo(CLONED_ENV_APPID, session);
+     oClonedEnvInfo = api.env.control.GetEnvInfo(CLONED_ENV_APPID, session);
 
     if (oClonedEnvInfo.result !== 0) {
         return oClonedEnvInfo;
@@ -212,7 +212,7 @@ function processEnvironment() {
     }
 */
     // Get meta information of the new environment after migrating into new region.
-    oClonedEnvInfo = jelastic.env.control.GetEnvInfo(CLONED_ENV_APPID, session);
+    oClonedEnvInfo = api.env.control.GetEnvInfo(CLONED_ENV_APPID, session);
 
     if (oClonedEnvInfo.result !== 0) {
         return oClonedEnvInfo;
@@ -221,7 +221,7 @@ function processEnvironment() {
     // apply new configurations according to the migrated environment properties
     oResp =  configureAppSettings(oClonedEnvInfo);
 
-    return jelastic.env.binder.SwapExtDomains(APPID, session, CLONED_ENV_APPID);
+    return api.env.binder.SwapExtDomains(APPID, session, CLONED_ENV_APPID);
 }
 
 return processEnvironment();

@@ -22,4 +22,4 @@ The major improvements were applied to the <a href="creating-manifest/visual-set
 <br>
 <h2> What's next?</h2>    
 
-- Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>             
+- Find out the correspondence between <a href="/virtuozzo-cs-correspondence/" target="_blank">CS & Virtuozzo PaaS Versions</a>             

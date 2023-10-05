@@ -49,5 +49,5 @@ function generateEnvName(sPrefix) {
     return sPrefix + parseInt(Math.random() * 100000, 10);
 }
 
-return jelastic.env.control.CreateEnvironment(sAppid, sSession, sActionkey, oEnv, oNodes);
+return api.env.control.CreateEnvironment(sAppid, sSession, sActionkey, oEnv, oNodes);
 ```

@@ -83,7 +83,7 @@ Below you can find the graphs that list actions with adjoining events. Every act
 
       The <b>*createEnvironment*</b> action does not have any adjoining events, because events are bound after the environment creation.
 
-The <b>*changeTopology*</b> actions are considered quite time-consuming while being performed via the Jelastic dashboard, therefore, you can automate their workflow with the following CS actions and related events.
+The <b>*changeTopology*</b> actions are considered quite time-consuming while being performed via the Virtuozzo PaaS dashboard, therefore, you can automate their workflow with the following CS actions and related events.
 
 <center><img style="height: 900px; padding-right: 69px" src="/img/changeTopologySequence.png" alt="change topology sequence icon" /></center>
 
@@ -99,13 +99,13 @@ The <b>*onInstall*</b> event is the entry point for executing any action. If the
 
 ### onUninstall
 
-The <b>*onUninstall*</b> event can be called from the **Add-ons** tab at the Jelastic dashboard. This event is aimed at removing data accumulated through actions that are triggered by the <b>*onInstall*</b> event.
+The <b>*onUninstall*</b> event can be called from the **Add-ons** tab at the Virtuozzo PaaS dashboard. This event is aimed at removing data accumulated through actions that are triggered by the <b>*onInstall*</b> event.
 
 ![uninstall](/img/uninstall.png)
 
 ### onBeforeChangeTopology
 
-The event is executed before changing environment topology via the Jelastic dashboard.
+The event is executed before changing environment topology via the Virtuozzo PaaS dashboard.
 
 **Event Placeholders:**
 
@@ -142,7 +142,7 @@ The event is executed once the *changeTopology* action is finished.
 
 ### onBeforeScaleOut
 
-The event is executed before adding new node(s) (i.e. scaling *out*) to the existing node group (layer). Scaling in/out can be performed either through <a href="https://docs.jelastic.com/jelastic-dashboard-guide#change-topology" target="_blank">changing topology</a> or <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">auto horizontal scaling</a> functionality. The *onBeforeScaleOut* event is run once for each layer upon any node count change.
+The event is executed before adding new node(s) (i.e. scaling *out*) to the existing node group (layer). Scaling in/out can be performed either through <a href="https://www.virtuozzo.com/application-platform-docs/dashboard-guide/#change-topology" target="_blank">changing topology</a> or <a href="https://www.virtuozzo.com/application-platform-docs/automatic-horizontal-scaling/" target="_blank">auto horizontal scaling</a> functionality. The *onBeforeScaleOut* event is run once for each layer upon any node count change.
 
 **Event Placeholders:**
 
@@ -214,7 +214,7 @@ The event is executed after adding new container(s) to the existing node group. 
 
 ### onAlert
 
-This event provides a possibility to bind actions to <a href="https://docs.jelastic.com/load-alerts" target="_blank">Load Alerts</a> and <a href="https://docs.jelastic.com/automatic-horizontal-scaling" target="_blank">Automatic Horizontal Scaling Alerts</a> that are configured through the Jelastic triggers.
+This event provides a possibility to bind actions to <a href="https://www.virtuozzo.com/application-platform-docs/load-alerts/" target="_blank">Load Alerts</a> and <a href="https://www.virtuozzo.com/application-platform-docs/automatic-horizontal-scaling/" target="_blank">Automatic Horizontal Scaling Alerts</a> that are configured through the Virtuozzo PaaS triggers.
 
 These monitoring triggers are based on the usage of the following resource types:
 
@@ -331,7 +331,7 @@ onInstall:
 ```
 @@!
 
-This example involves execution of the Jelastic API *addTrigger* method with a set of required parameters:
+This example involves execution of the Virtuozzo PaaS API *addTrigger* method with a set of required parameters:
 
 - `name` - name of a notification trigger
 - `nodeGroup` - target node group (you can apply trigger to any node group within the chosen environment)
@@ -346,7 +346,7 @@ This example involves execution of the Jelastic API *addTrigger* method with a s
     - `customData`:
         - `notify`- alert notification sent to a user via email
 
-The Jelastic engine sends an alert notification to the Cloud Scripting system when the appropriate trigger is invoked. Therefore, the *onAlert* event provides a possibility to bind actions to alert notifications and execute custom actions.
+The Virtuozzo PaaS engine sends an alert notification to the Cloud Scripting system when the appropriate trigger is invoked. Therefore, the *onAlert* event provides a possibility to bind actions to alert notifications and execute custom actions.
 
 **Event Placeholders:**
 
@@ -627,7 +627,7 @@ The event is executed after detaching the external IP address. The *onAfterDetac
 
 ### onBeforeUpdateVcsProject
 
-The event is carried out before updating the VCS project. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a>, refer to the linked page.
+The event is carried out before updating the VCS project. For a detailed guidance on the <a href="https://www.virtuozzo.com/application-platform-docs/cli-vcs-deploy/" target="_blank">VCS project deployment</a>, refer to the linked page.
 
 **Event Placeholders:**
 
@@ -646,7 +646,7 @@ The event is carried out before updating the VCS project. For a detailed guidanc
 
 ### onAfterUpdateVcsProject
 
-The event is carried out after updating the VCS project. For a detailed guidance on the <a href="https://docs.jelastic.com/cli-vcs-deploy" target="_blank">VCS project deployment</a>, refer to the linked page.
+The event is carried out after updating the VCS project. For a detailed guidance on the <a href="https://www.virtuozzo.com/application-platform-docs/cli-vcs-deploy/" target="_blank">VCS project deployment</a>, refer to the linked page.
 
 **Event Placeholders:**
 
@@ -729,7 +729,7 @@ The event is performed after changing the engine's version (e.g. from *php 7* to
 
 ### onBeforeStart
 
-The event is related to starting environment (executed from the Jelastic dashboard) and is triggered before it.
+The event is related to starting environment (executed from the Virtuozzo PaaS dashboard) and is triggered before it.
 
 **Event Placeholders:**
 
@@ -741,7 +741,7 @@ The event is related to starting environment (executed from the Jelastic dashboa
 
 ### onAfterStart
 
-The event is related to starting environment (executed from the Jelastic dashboard) and is triggered after it.
+The event is related to starting environment (executed from the Virtuozzo PaaS dashboard) and is triggered after it.
 
 **Event Placeholders:**
 
@@ -754,7 +754,7 @@ The event is related to starting environment (executed from the Jelastic dashboa
 
 ### onBeforeStop
 
-The event is related to stopping environment (executed from the Jelastic dashboard) and is triggered before it.
+The event is related to stopping environment (executed from the Virtuozzo PaaS dashboard) and is triggered before it.
 
 **Event Placeholders:**
 
@@ -767,7 +767,7 @@ The event is related to stopping environment (executed from the Jelastic dashboa
 
 ### onAfterStop
 
-The event is related to stopping environment (executed from the Jelastic dashboard) and is triggered after it.
+The event is related to stopping environment (executed from the Virtuozzo PaaS dashboard) and is triggered after it.
 
 **Event Placeholders:**
 
@@ -779,7 +779,7 @@ The event is related to stopping environment (executed from the Jelastic dashboa
 
 ### onBeforeClone
 
-The event is related to cloning environment (performed via the Jelastic dashboard by means of the same-named button) and is triggered before it.
+The event is related to cloning environment (performed via the Virtuozzo PaaS dashboard by means of the same-named button) and is triggered before it.
 
 **Event Placeholders:**
 
@@ -793,7 +793,7 @@ The event is related to cloning environment (performed via the Jelastic dashboar
 
 ### onAfterClone
 
-The event is related to cloning environment (performed via the Jelastic dashboard by means of the same-named button) and is triggered after it.
+The event is related to cloning environment (performed via the Virtuozzo PaaS dashboard by means of the same-named button) and is triggered after it.
 
 **Event Placeholders:**
 
@@ -817,39 +817,39 @@ The event is related to cloning environment (performed via the Jelastic dashboar
 
 ### onBeforeBuildProject
 
-The event is related to build project action and is triggered before it (executed from the Jelastic dashboard).
+The event is related to build project action and is triggered before it (executed from the Virtuozzo PaaS dashboard).
 
 **Event Placeholders:**
 
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
-    - `project` - project name in Jelastic dashboard
+    - `project` - project name in Virtuozzo PaaS dashboard
     - `env` - environment name where action is executed
     - `nodeid` - environment name where action is executed
-    - `projectid` - project unique identifier in Jelastic dashboard
+    - `projectid` - project unique identifier in Virtuozzo PaaS dashboard
 - `${event.response.}`:
     - `result` - parameters are absent
 
 ### onAfterBuildProject
 
-The event is related to build project action and is triggered after it (executed from the Jelastic dashboard).
+The event is related to build project action and is triggered after it (executed from the Virtuozzo PaaS dashboard).
 
 **Event Placeholders:**
 
 - `${event.params.}`:
     - `session` - current user session
     - `appid` - environment unique appid
-    - `project` - project name in Jelastic dashboard
+    - `project` - project name in Virtuozzo PaaS dashboard
     - `env` - environment name where action is executed
     - `nodeid` - environment name where action is executed
-    - `projectid` - project unique identifier in Jelastic dashboard
+    - `projectid` - project unique identifier in Virtuozzo PaaS dashboard
 - `${event.response.}`:
     - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeDeploy
   
-The event is bound to the *deploy* action, which is executed at the Jelastic dashboard by deploying any context (i.e. archive with a compressed app) to the environment, and is triggered before it (viz. *deploy* action).
+The event is bound to the *deploy* action, which is executed at the Virtuozzo PaaS dashboard by deploying any context (i.e. archive with a compressed app) to the environment, and is triggered before it (viz. *deploy* action).
 
 
 **Event Placeholders:**
@@ -866,7 +866,7 @@ The event is bound to the *deploy* action, which is executed at the Jelastic das
 
 ### onAfterDeploy
 
-The event is bound to the *deploy* action, which is executed at the Jelastic dashboard by deploying any context (i.e. archive with a compressed app) to the environment, and is triggered after it (viz. *deploy* action).
+The event is bound to the *deploy* action, which is executed at the Virtuozzo PaaS dashboard by deploying any context (i.e. archive with a compressed app) to the environment, and is triggered after it (viz. *deploy* action).
 
 **Event Placeholders:**
 
@@ -886,7 +886,7 @@ The event is bound to the *deploy* action, which is executed at the Jelastic das
 
 ### onBeforeResetNodePassword
 
-The event is bound to resetting a container default user password (executed at the Jelastic dashboard for `vds` nodeGroup via the **Reset password** button or via API methods ResetNodePassword, ResetNodePasswordByID, ResetNodePasswordByGroup) and is triggered before it.  
+The event is bound to resetting a container default user password (executed at the Virtuozzo PaaS dashboard for `vds` nodeGroup via the **Reset password** button or via API methods ResetNodePassword, ResetNodePasswordByID, ResetNodePasswordByGroup) and is triggered before it.  
 
 **Event Placeholders:**
 
@@ -899,7 +899,7 @@ The event is bound to resetting a container default user password (executed at t
 
 ### onAfterResetNodePassword
 
-The event is bound to resetting a container default user password (executed at the Jelastic dashboard for `vds` nodeGroup via the **Reset password** button or via API methods ResetNodePassword, ResetNodePasswordByID, ResetNodePasswordByGroup) and is triggered before it.  
+The event is bound to resetting a container default user password (executed at the Virtuozzo PaaS dashboard for `vds` nodeGroup via the **Reset password** button or via API methods ResetNodePassword, ResetNodePasswordByID, ResetNodePasswordByGroup) and is triggered before it.  
 
 **Event Placeholders:**
 
@@ -912,7 +912,7 @@ The event is bound to resetting a container default user password (executed at t
 
 ### onBeforeResetServicePassword
 
-The event is bound to resetting a container main service password (executed at the Jelastic dashboard via the **Reset password** button) and is triggered before it. The event is applicable for services that have an Admin Panel enabled by default for the specific nodeType. These templates are:  
+The event is bound to resetting a container main service password (executed at the Virtuozzo PaaS dashboard via the **Reset password** button) and is triggered before it. The event is applicable for services that have an Admin Panel enabled by default for the specific nodeType. These templates are:  
 
 | nodeGroup  | nodeType            |
 |------------|---------------------|
@@ -933,7 +933,7 @@ The event is bound to resetting a container main service password (executed at t
 
 ### onAfterResetServicePassword
 
-The event is bound to resetting a container main service password (executed at the Jelastic dashboard via the **Reset password** button) and is triggered before it. The event is applicable for services that have an Admin Panel enabled by default for the specific nodeType. These templates are:  
+The event is bound to resetting a container main service password (executed at the Virtuozzo PaaS dashboard via the **Reset password** button) and is triggered before it. The event is applicable for services that have an Admin Panel enabled by default for the specific nodeType. These templates are:  
 
 | nodeGroup  | nodeType            |
 |------------|---------------------|
@@ -1017,7 +1017,7 @@ This event is carried out after restarting container. The *onAfterRestartContain
 
 ### onBeforeMigrate
 
-The event is related to the <a href="https://docs.jelastic.com/environment-regions-migration" target="_blank">*migrating environment*</a> action and is called before it.
+The event is related to the <a href="https://www.virtuozzo.com/application-platform-docs/environment-regions-migration/" target="_blank">*migrating environment*</a> action and is called before it.
 
 **Event Placeholders:**
 
@@ -1030,7 +1030,7 @@ The event is related to the <a href="https://docs.jelastic.com/environment-regio
 
 ### onAfterMigrate
 
-The event is related to <a href="https://docs.jelastic.com/environment-regions-migration" target="_blank">*migrating environment*</a> and is called after it.
+The event is related to <a href="https://www.virtuozzo.com/application-platform-docs/environment-regions-migration/" target="_blank">*migrating environment*</a> and is called after it.
 
 **Event Placeholders:**
 
@@ -1695,7 +1695,7 @@ onBeforeInstall: |
 
 
 ### onBeforeSwapExtDomains
-The event is executed before swapping the external domain names between two environments via API or Jelastic dashboard
+The event is executed before swapping the external domain names between two environments via API or Virtuozzo PaaS dashboard
 
 **Event Placeholders:**
 
@@ -1706,7 +1706,7 @@ The event is executed before swapping the external domain names between two envi
 -   `${event.response.}`:  parameters are absent
 
 ### onAfterSwapExtDomains
-The event is executed after swapping the external domain names between two environments via API or Jelastic dashboard.
+The event is executed after swapping the external domain names between two environments via API or Virtuozzo PaaS dashboard.
 
 **Event Placeholders:**
 
@@ -1750,7 +1750,7 @@ The event is executed after swapping the external IPs between two environments v
     - `source` - “string” error description
 
 ### onAfterConfirmTransfer
-The event is called upon user confirms changing of an environment ownership from one Jelastic account to another within a single hosting service provider. Confirmation occurs once user clicks on a link in an appropriate email.
+The event is called upon user confirms changing of an environment ownership from one Virtuozzo PaaS account to another within a single hosting service provider. Confirmation occurs once user clicks on a link in an appropriate email.
 
 Event subscription example:
 
@@ -1897,7 +1897,7 @@ Event Placeholders:
     - `id` - unique add-on id  
     - `lang` - [user's language code](https://en.wikipedia.org/wiki/Language_code) which was used during the installation. Optional parameter  
     - `region` - region, where an environment will be installed  
-    - `targetAppid`  - unique environment *appid* at the Jelastic Platform  
+    - `targetAppid`  - unique environment *appid* at the Virtuozzo Platform  
 -   `${event.response.}`: parameters are absent  
 
 ### onAfterInstallAddon  
@@ -1908,10 +1908,10 @@ The event is executed after add-on installation
     - `id` - unique add-on id  
     - `lang` - [user's language code](https://en.wikipedia.org/wiki/Language_code) which was used during the installation. Optional parameter  
     - `region` - region, where an environment will be installed  
-    - `targetAppid`  - unique environment *appid* at the Jelastic Platform  
+    - `targetAppid`  - unique environment *appid* at the Virtuozzo Platform  
 -   `${event.response.}`:  
     - `uniqueName` - installed add-on unique name  
-    - `appid` - unique environment *appid* at the Jelastic Platform  
+    - `appid` - unique environment *appid* at the Virtuozzo Platform  
     - `successText`- message that appears once action is successfully performed  
   
 Events Subscription Example:  

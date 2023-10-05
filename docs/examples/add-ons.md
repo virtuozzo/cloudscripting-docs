@@ -3,7 +3,7 @@
 ##Free SSL Let’s Encrypt Add-On
 
 Add-on to secure application with custom SSL for free.  
-Let’s Encrypt Add-on for Automatic SSL Configuration of Your Jelastic Environment.  
+Let’s Encrypt Add-on for Automatic SSL Configuration of Your Virtuozzo PaaS Environment.  
 This add-on allows to configure SSL for:
 
  - Internal environment address
@@ -42,7 +42,7 @@ This add-on allows to configure SSL for:
   "homepage": "https://github.com/jelastic-jps/lets-encrypt",
   "logo": "https://raw.githubusercontent.com/jelastic-jps/lets-encrypt/master/images/lets-encrypt.png",
   "description": {
-    "text": "<div class='description'><b>Let's Encrypt</b> is a free and open Certificate Authority (CA), aimed to simplify and automate processes of browser-trusted SSL certificates issuing and appliance.</div><div class='description'><u>Supported stacks:</u> All Jelastic certified container templates except of Jetty 8/9, JBoss/WildFly, Node.js, Apache-Python, Varnish and Docker containers (coming soon)</div><div class='warning-lower'><b>Note</b> that Public IP address(es) will be automatically attached to all nodes within the entry point environment layer (i.e. either application server or load balancer).<br></div>",
+    "text": "<div class='description'><b>Let's Encrypt</b> is a free and open Certificate Authority (CA), aimed to simplify and automate processes of browser-trusted SSL certificates issuing and appliance.</div><div class='description'><u>Supported stacks:</u> All Virtuozzo PaaS certified container templates except of Jetty 8/9, JBoss/WildFly, Node.js, Apache-Python, Varnish and Docker containers (coming soon)</div><div class='warning-lower'><b>Note</b> that Public IP address(es) will be automatically attached to all nodes within the entry point environment layer (i.e. either application server or load balancer).<br></div>",
     "short": "Free tool to configure support of secured SSL connection for an environment, by either internal or custom domain name."
   },
   "onInstall": [
@@ -65,7 +65,7 @@ This add-on allows to configure SSL for:
     },
     {
       "callScript": {
-        "script": "var p = eval('(' + jelastic.dev.apps.GetApp('${env.appid}').description + ')'); p['${this.action}']=1; return jelastic.dev.scripting.Eval(p.script, p)"
+        "script": "var p = eval('(' + api.dev.apps.GetApp('${env.appid}').description + ')'); p['${this.action}']=1; return api.dev.scripting.Eval(p.script, p)"
       }
     }
   ],
@@ -114,11 +114,11 @@ This add-on allows to configure SSL for:
       }
     ]
   },
-  "success": "<div class='description'>Your Let’s Encrypt SSL certificate(s) will remain valid for 90 days. To avoid their expiration, use the Update option at add-on’s panel (you'll get the appropriate email notification beforehand).</div><div class='description'>Starting with 4.9.5 Jelastic version, this operation is handled by the system automatically.</div><br><div>Useful links:</div><div><a href='https://github.com/jelastic-jps/lets-encrypt#how-to-renew-ssl-certificate' target='_blank'>How to renew SSL certificate</div><div><a href='https://docs.jelastic.com/custom-domain-via-cname'target='_blank'>How to bind custom domain via CNAME</a></div><div><a href='https://docs.jelastic.com/custom-domain-via-arecord' target='_blank'>How to bind custom domain via A Record</a></div>"
+  "success": "<div class='description'>Your Let’s Encrypt SSL certificate(s) will remain valid for 90 days. To avoid their expiration, use the Update option at add-on’s panel (you'll get the appropriate email notification beforehand).</div><div class='description'>Starting with 4.9.5 Virtuozzo PaaS version, this operation is handled by the system automatically.</div><br><div>Useful links:</div><div><a href='https://github.com/jelastic-jps/lets-encrypt#how-to-renew-ssl-certificate' target='_blank'>How to renew SSL certificate</div><div><a href='https://docs.jelastic.com/custom-domain-via-cname'target='_blank'>How to bind custom domain via CNAME</a></div><div><a href='https://docs.jelastic.com/custom-domain-via-arecord' target='_blank'>How to bind custom domain via A Record</a></div>"
 }
 ```
 
-##Jelastic Fail2Ban Add-on
+##Virtuozzo PaaS Fail2Ban Add-on
 
 Add-on for advanced application security with automated firewall rules tuning.  
 Fail2Ban is an intrusion prevention software framework that protects computer servers from brute-force attacks.
@@ -129,7 +129,7 @@ Type of nodes this add-on can be applied to:
 - Load Balancing (bl)
 - Database server (db)
 
-In order to get this solution instantly deployed, click the "Get It Hosted Now" button, specify your email address within the widget, choose one of the [Jelastic Public Cloud providers](https://jelastic.cloud) and press Install.
+In order to get this solution instantly deployed, click the "Get It Hosted Now" button, specify your email address within the widget, choose one of the [Virtuozzo PaaS Public Cloud providers](https://www.virtuozzo.com/application-platform-partners/) and press Install.
 
 [![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Ffail2ban%2Fraw%2Fmaster%2Fmanifest.jps)
 
@@ -212,7 +212,7 @@ In order to get this solution instantly deployed, click the "Get It Hosted Now" 
       }
     }
   },
-  "success": "Addon was successufully installed with default Jelastic configuration. If you desire to set custom behaviour for your environment - please please refer to <a href='${globals.documentationLink}' target='_blank'>ducumentation</a>"
+  "success": "Addon was successufully installed with default Virtuozzo PaaS configuration. If you desire to set custom behaviour for your environment - please please refer to <a href='${globals.documentationLink}' target='_blank'>ducumentation</a>"
 }
 ```
 
@@ -228,11 +228,11 @@ Type of nodes this add-on can be applied to:
 - Tomcat 6
 - TomEE
 
-In order to get this solution instantly deployed, click the "Get It Hosted Now" button, specify your email address within the widget, choose one of the [Jelastic Public Cloud providers](https://jelastic.cloud) and press Install.
+In order to get this solution instantly deployed, click the "Get It Hosted Now" button, specify your email address within the widget, choose one of the [Virtuozzo PaaS Public Cloud providers](https://www.virtuozzo.com/application-platform-partners/) and press Install.
 
 [![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fmanagecat%2Fraw%2Fmaster%2Fmanifest.jps)
 
-To deploy this package to Jelastic Private Cloud, import [this JPS manifest](../../raw/master/manifest.jps) within your dashboard ([detailed instruction](https://docs.jelastic.com/environment-export-import#import)).
+To deploy this package to Virtuozzo PaaS Private Cloud, import [this JPS manifest](../../raw/master/manifest.jps) within your dashboard ([detailed instruction](https://www.virtuozzo.com/application-platform-docs/environment-import/)).
 
 ``` json
 {

@@ -95,16 +95,16 @@ This is the list of placeholders that you can use within the nodes section (*{no
     - `(key)` - name of the applied parameter, according to the following list:
         - `address` - internal or external IP address                               
         - `adminUrl` - full URL address with protocol   
-        - `canBeExported` *[boolean]* - Jelastic <a href="https://docs.jelastic.com/environment-export-import" target="_blank">Export</a> feature       
+        - `canBeExported` *[boolean]* - Virtuozzo PaaS <a href="https://www.virtuozzo.com/application-platform-docs/environment-export-import/" target="_blank">Export</a> feature       
         - `bandwidthLimit` - node bandwidth limit   
         - `contextValidatorRegex` - validation for context names    
         - `diskIopsLimit` - IOPS limitation quota   
         - `addons.length` - number of available add-ons at the selected node
         - `diskLimit` - hardware node disk space quota in MB 
-        - `endpoints` [*array indexes*] - <a href="https://docs.jelastic.com/endpoints" target="_blank">endpoints</a> functionality                              
+        - `endpoints` [*array indexes*] - <a href="https://www.virtuozzo.com/application-platform-docs/endpoints/" target="_blank">endpoints</a> functionality                              
             - `domain` - full domain name of the node the endpoint is being set for                  
             - `id` - node ID  
-            - `name` - title for the new endpoint (can be either custom or <a href="https://docs.jelastic.com/endpoints#preconfigured" target="_blank">predefined</a>)                         
+            - `name` - title for the new endpoint (can be either custom or <a href="https://www.virtuozzo.com/application-platform-docs/endpoints/#preconfigured" target="_blank">predefined</a>)                         
             - `privatePort` - preferred local node port              
             - `publicPort` - private (dynamic) port used for mapping                                         
             - `protocol` - protocol type (currently, only TCP is provided)             
@@ -146,7 +146,7 @@ This is the list of placeholders that you can use within the nodes section (*{no
             - `type` - engine type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
             - `vcsSupport` - supporting VCS in a container  
             - `version` - engine version   
-        - `packages` [*array*] - packages with add-ons installed over the corresponding nodes (e.g. <a href="https://docs.jelastic.com/ftp-ftps-support" target="_blank">FTP</a> add-on)                              
+        - `packages` [*array*] - packages with add-ons installed over the corresponding nodes (e.g. <a href="https://www.virtuozzo.com/application-platform-docs/ftp-ftps-support/" target="_blank">FTP</a> add-on)                              
             - `description` - package description                                       
             - `documentationurl` - redirect to page(s) with more info on the particular add-on                          
             - `iconurl` - add-on logo                                               
@@ -174,7 +174,7 @@ Learn more about the event placeholders within the <a href="../events" target="_
 
 This is the list of placeholders that you can use to specify account information.                                                                       
 
-- `${user.uid}` - user ID at the Jelastic Platform               
+- `${user.uid}` - user ID at the Virtuozzo PaaS Platform               
 - `${user.email}` - user email address      
 - `${user.appPassword}` - random value that can be used to set application passwords       
 - `${user.name}` - email address value (same as `${user.email}`)       
@@ -308,10 +308,10 @@ In case if an argument is an array of strings the executed custom action will be
 
 This is the list of placeholders that you can use to specify UI parameters.                              
 
-- `${user.uid}` - user ID at the Jelastic Platform
+- `${user.uid}` - user ID at the Virtuozzo PaaS Platform
 - `${user.email}` - user email address
 - `${env.domain}` - full domain name without protocol
-- `${env.appid}` - unique environment appid at the Jelastic Platform
+- `${env.appid}` - unique environment appid at the Virtuozzo PaaS Platform
 - `${baseUrl}` - user custom relative URL. More details about <a href="../basic-configs/#relative-links">Relative Links here</a>
 - `${platformUrl}` - platform dashboard URL
 

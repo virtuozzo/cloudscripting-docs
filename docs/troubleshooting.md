@@ -2,11 +2,11 @@
 
 Run into trouble with Cloud Scripting? Here are some helpful tips and specific suggestions for troubleshooting as follows:                             
 
-* Log in to your Jelastic dashboard and open the link of the following type in a new browser tab.                            
+* Log in to your Virtuozzo PaaS dashboard and open the link of the following type in a new browser tab.                            
 
     *http://app.{HOSTER_URL}/console/*                       
     
-    Here, substitute <b>*{HOSTER_URL}*</b>  with the platform domain of your hosting provider (see the last column of the table within the <a href="https://docs.jelastic.com/jelastic-hoster-info" target="_blank">Hosters Info</a> page).                                           
+    Here, substitute <b>*{HOSTER_URL}*</b>  with the platform domain of your hosting provider (see the last column of the table within the <a href="https://www.virtuozzo.com/application-platform-docs/paas-hosting-providers/" target="_blank">Hosters Info</a> page).                                           
 
 * In the opened browser tab, you will see the Cloud Scripting execution log.                                                               
     
@@ -168,7 +168,7 @@ install:
 
 - with parameter of API request:  
 ```
-jelastic.marketplace.jps.Install({
+api.marketplace.jps.Install({
   jps: "https://example.com/manifest.jps",
   loggerName: "Test 1"
 });
@@ -213,7 +213,7 @@ onInstall:
 
 - Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                    
 
-- Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>          
+- Find out the correspondence between <a href="/virtuozzo-cs-correspondence/" target="_blank">CS & Virtuozzo PaaS Versions</a>          
 
 
 <!--## Logging-->

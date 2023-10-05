@@ -80,7 +80,7 @@ oData = {
   ]
 };
 
-oRespTurnOn = jelastic.env.trigger.AddTrigger(APPID, session, oData);
+oRespTurnOn = api.env.trigger.AddTrigger(APPID, session, oData);
 
 if (oRespTurnOn.result != 0) {
     return oRespTurnOn;
@@ -109,7 +109,7 @@ oData = {
   ]
 };
 
-oRespTurnOff = jelastic.env.trigger.AddTrigger(APPID, session, oData);
+oRespTurnOff = api.env.trigger.AddTrigger(APPID, session, oData);
 
 return oRespTurnOff;
 ```

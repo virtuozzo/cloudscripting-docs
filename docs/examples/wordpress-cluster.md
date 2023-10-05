@@ -414,7 +414,7 @@
       }
     }
   ],
-  "success": "Below you will find your admin panel link, username and password.</br></br> <table style='font-size:13px; border: none;'><tr><td>Admin panel URL:</td><td style='padding-left: 10px;'><a href='${env.protocol}://${env.domain}/wp-admin/' target='_blank'>${env.protocol}://${env.domain}/wp-admin/</a></td></tr>  <tr><td>Admin name:</td><td style='padding-left: 10px;'>admin</td></tr><tr><td>Password:</td><td style='padding-left: 10px;'>${user.appPassword}</td></tr></table></br>To add custom domain name for your Wordpress installation follow the steps described in our <a href='http://docs.jelastic.com/custom-domains' target='_blank'>documentation</a>"
+  "success": "Below you will find your admin panel link, username and password.</br></br> <table style='font-size:13px; border: none;'><tr><td>Admin panel URL:</td><td style='padding-left: 10px;'><a href='${env.protocol}://${env.domain}/wp-admin/' target='_blank'>${env.protocol}://${env.domain}/wp-admin/</a></td></tr>  <tr><td>Admin name:</td><td style='padding-left: 10px;'>admin</td></tr><tr><td>Password:</td><td style='padding-left: 10px;'>${user.appPassword}</td></tr></table></br>To add custom domain name for your Wordpress installation follow the steps described in our <a href='https://www.virtuozzo.com/application-platform-docs/custom-domains/' target='_blank'>documentation</a>"
 }
 ```
 
@@ -434,7 +434,7 @@ var NODE_MISSION_COMPUTE = "cp",
     isEvenNode,
     envInfoResponse;
 
-envInfoResponse = jelastic.env.control.getEnvInfo();
+envInfoResponse = api.env.control.getEnvInfo();
 
 if (!envInfoResponse.isOK()) {
     return envInfoResponse;
@@ -520,7 +520,7 @@ END
 var APPID = getParam("TARGET_APPID");
 var SESSION = getParam("session");
 
-oRespTurnOn = jelastic.env.trigger.AddTrigger({
+oRespTurnOn = api.env.trigger.AddTrigger({
     data : {
         "isEnabled": true,
         "name": "hs-add-nginx",
@@ -548,7 +548,7 @@ if (oRespTurnOn.result != 0) {
     return oRespTurnOn;
 }
 
-oRespTurnOff = jelastic.env.trigger.addTrigger({
+oRespTurnOff = api.env.trigger.addTrigger({
     data : {
         "isEnabled": true,
         "name": "hs-remove-nginx",
@@ -596,7 +596,7 @@ var sPath = "${nginxphp.SERVER_WEBROOT}/ROOT/db-config.php",
     envInfoResponse,
     isEventNode;
 
-envInfoResponse = jelastic.env.control.getEnvInfo();
+envInfoResponse = api.env.control.getEnvInfo();
 
 if (!envInfoResponse.isOK()) {
     return envInfoResponse;
@@ -663,7 +663,7 @@ var NODE_MISSION_COMPUTE = "cp",
     env,
     envInfoResponse;
 
-envInfoResponse = jelastic.env.control.getEnvInfo();
+envInfoResponse = api.env.control.getEnvInfo();
 
 if (!envInfoResponse.isOK()) {
     return envInfoResponse;
@@ -715,7 +715,7 @@ var env;
 var lenghtCP;
 var envInfoResponse;
 
-envInfoResponse = jelastic.env.control.getEnvInfo();
+envInfoResponse = api.env.control.getEnvInfo();
 
 if (!envInfoResponse.isOK()) {
     return envInfoResponse;

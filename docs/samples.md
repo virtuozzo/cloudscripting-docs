@@ -132,7 +132,7 @@
     
 ### Complex Ready-to-Go Solutions
 
-<p dir="ltr" style="text-align: justify;">Jelastic also provides you with a set of ready-to-go preconfigured CS packages for some of the most popular solutions’ deployment and CI/CD integration. All of them can be used without any additional changes and provide all of the options for being properly tuned according to your needs.</p>
+<p dir="ltr" style="text-align: justify;">Virtuozzo PaaS also provides you with a set of ready-to-go preconfigured CS packages for some of the most popular solutions’ deployment and CI/CD integration. All of them can be used without any additional changes and provide all of the options for being properly tuned according to your needs.</p>
 
 <table id="bs-pr">
     <tr>
@@ -225,4 +225,4 @@
 
 - Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                                      
 
-- Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>                                              
+- Find out the correspondence between <a href="/virtuozzo-cs-correspondence/" target="_blank">CS & Virtuozzo PaaS Versions</a>                                              

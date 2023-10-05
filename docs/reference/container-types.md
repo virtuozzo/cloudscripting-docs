@@ -75,7 +75,7 @@ where:
 
 <b>Predefined *nodeGroup* values</b>                 
 
-Jelastic platform supports the following predefined *nodeGroup* values:                         
+Virtuozzo PaaS platform supports the following predefined *nodeGroup* values:                         
 
 - **lb** (for load balancers) - *nginx, varnish, haproxy, apache-lb*                     
 - **cp** (for compute nodes) - *tomcat6, tomcat7, tomcat8, tomee, glassfish3, glassfish4, jetty6, jetty8, jetty9, jboss7, smartfox-server, powerdns, railo4, wildfly, wildfly9, wildfly10, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs, iis8*                     
@@ -88,7 +88,7 @@ Jelastic platform supports the following predefined *nodeGroup* values:
 
 ## Containers by Types (*nodeType*)
 
-Jelastic Platform supports the following software stacks:         
+Virtuozzo PaaS Platform supports the following software stacks:         
 
 - **Compute nodes:**                  
     - *Java*                
@@ -146,9 +146,9 @@ Jelastic Platform supports the following software stacks:
 - **Docker containers:**                               
      - `docker`                       
 
-##Jelastic Native Container Types
+##Virtuozzo PaaS Native Container Types
 
-Jelastic native software stacks include the following containers:                  
+Virtuozzo PaaS native software stacks include the following containers:                  
 
 - **Compute nodes:**                            
     - *Java*               
@@ -223,4 +223,4 @@ The following section deals with supported engine versions and their availabilit
 |engine  |*nodejs0.10*<br>*nodejs0.12*<br>*nodejs4.3*<br>*nodejs5.6*|
 
 !!! note
-    > The list of supported <a href="https://docs.jelastic.com/software-stacks-versions" targer="_blank">software stacks</a> can vary depending on your Jelastic platform version - it can be checked at your dashboard.  
+    > The list of supported <a href="https://www.virtuozzo.com/application-platform-docs/software-stacks-versions/" targer="_blank">software stacks</a> can vary depending on your Vrituozzo PaaS platform version - it can be checked at your dashboard.  

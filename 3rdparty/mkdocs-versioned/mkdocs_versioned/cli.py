@@ -46,7 +46,7 @@ def _build(cfg, pathspec, branches, versions, site_dir=None):
         'extra': {
             'current_version': pathspec,
             'all_versions': branches,
-            'all_jel_versions': versions,
+            'all_virt_versions': versions,
         }
     }
 
@@ -133,25 +133,25 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
     versions = default_config.get("extra").get("versions")
 
     formatedCSVersions = {}
-    jelasticVersions = []
+    virtuozzoVersions = []
 
     for version in versions:
         formatedCSVersions[unicode(version)] = versions[version]
 
     if formatedCSVersions is not None:
         release_branches = formatedCSVersions.keys()
-        jelasticVersions = formatedCSVersions.values()
+        virtuozzoVersions = formatedCSVersions.values()
 
     if release_branches is not None:
         release_branches = sorted(release_branches, key=functools.cmp_to_key(version_compare))
-        jelasticVersions = sorted(jelasticVersions, key=functools.cmp_to_key(version_compare))
+        virtuozzoVersions = sorted(virtuozzoVersions, key=functools.cmp_to_key(version_compare))
 
         default_version = next(iter(release_branches), None)# release_branches[-1]
 
         print("Default version %s", default_version)
         print("Building %s to /", default_version)
 
-        _build(default_config, default_version, release_branches, jelasticVersions)
+        _build(default_config, default_version, release_branches, virtuozzoVersions)
 
         for branch in release_branches:
             if branch in all_branch_names: #branch != default_version and
@@ -166,7 +166,7 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
                 site_dir = "{0}".format(branch)
                 log.info("Building %s to /%s", branch, "site/" + site_dir)
                 print("Building %s to /%s", branch, "site/" + site_dir)
-                _build(_load_config(config_file, strict, site_dir), branch, release_branches, jelasticVersions, "site/" + site_dir)
+                _build(_load_config(config_file, strict, site_dir), branch, release_branches, virtuozzoVersions, "site/" + site_dir)
 
         # print("Selected Branches %s", default_config.get("versions").get("releases"))
 

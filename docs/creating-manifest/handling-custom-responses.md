@@ -1,6 +1,6 @@
 ## Handling Custom Responses
 
-The Cloud Scripting engine provides functionality to handle custom responses. This functionality is related to the action result codes that can be located within the <a href="/troubleshooting/" target="_blank">Jelastic Console Log Panel</a> upon a corresponding action execution.                      
+The Cloud Scripting engine provides functionality to handle custom responses. This functionality is related to the action result codes that can be located within the <a href="/troubleshooting/" target="_blank">Virtuozzo PaaS Console Log Panel</a> upon a corresponding action execution.                      
 
 There are the following types of pop-up windows that emerge while custom responses are being handled:                    
 
@@ -129,7 +129,7 @@ When a response code with the *success* installation type is returned, two respo
 
 **Examples**                           
 
-Here, the result code is with the *success* installation type, the message is '*Hello!!*' will be displayed at Jelastic dashboard, and the email message is '*success!!*' will be sent.
+Here, the result code is with the *success* installation type, the message is '*Hello!!*' will be displayed at Virtuozzo PaaS dashboard, and the email message is '*success!!*' will be sent.
 @@@
 ```yaml
 type: update
@@ -174,7 +174,7 @@ success: success!!
 }
 ```
 @@!
-The result message text can be localized according to the languages, available within the Jelastic Platform.                   
+The result message text can be localized according to the languages, available within the Virtuozzo PaaS Platform.                   
 @@@
 ```yaml
 type: warning
@@ -359,4 +359,4 @@ The final *success* form is similar to the following one.
 
 - Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                                  
 
-- Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>                 
+- Find out the correspondence between <a href="/virtuozzo-cs-correspondence/" target="_blank">CS & Virtuozzo PaaS Versions</a>                 

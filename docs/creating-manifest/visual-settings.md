@@ -1607,7 +1607,7 @@ where:
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field
 - `buttonText` *[optional]* - button label
-- `url` *[optional]* - external source URL. The default link is to the current Jelastic Dashboard. New popup window is opened only via POST request.
+- `url` *[optional]* - external source URL. The default link is to the current Virtuozzo PaaS Dashboard. New popup window is opened only via POST request.
 - `popupWidth` *[optional]* - width in pixels
 - `popupHeight` *[optional]* - height in pixels
 - `popupCallbackEvent` - event handler
@@ -1669,7 +1669,7 @@ http://{Jelastic_Platform_URL} + "fireevent?event=click&value=hello"
 ```
 where:
 
-- `Jelastic_Platform_URL` - Jelastic Dashboard URL where manifest is executed
+- `Jelastic_Platform_URL` - Virtuozzo PaaS Dashboard URL where manifest is executed
 - `click` - event name which is handled in manifest in `popupCallbackEvent` parameter
 - `value` - type is **string**. The `textfield` will be filled by it when button "Open" will be applied.
 
@@ -3087,7 +3087,7 @@ success: success!!
 ```
 @@!
 
-In the last example above, the localization functionality is applied, which depends upon the Jelastic Platform selected language.
+In the last example above, the localization functionality is applied, which depends upon the Virtuozzo PaaS selected language.
 
 Custom responses can be returned within <a href="../actions/#return" target="_blank">`return`</a> or <a href="../actions/#script" target="_blank">`script`</a> actions. More details about <a href="../handling-custom-responses/" target="_blank">custom responses here</a>.
 
@@ -3107,21 +3107,21 @@ Markdown is a light language with plain text formatting syntax. This language is
 Cloud Scripting uses [CommonMark](http://commonmark.org/) implementation to convert Markdown syntax into html code.
 Therefore, there is a main supported Markdown tag list:
 
-Style 1                            |Style 2 | Result|
--------                                 |----------|------
-\*Italic\*                            |\_Italic\_|*Italic*
-\*\*Bold\*\*                            |\_\_Bold\_\_|**Bold**
-\# Heading 1                           | Heading 1<br>\=\=\=\=\=\=\=\=\=  | <h1 class='default'>Heading 1</h1>
-\#\# Heading 2                          | Heading 2<br>\-\-\-\-\-\-\-\-\-\-\-\-| <h2 class='default'>Heading 2</h2>
-\[Link](https://jelastic.com)          |[Link][1]<br>.<br>.<br>.<br>[1]: https://jelastic.com|[jelastic.com URL](https://jelastic.com)
-\!\[Image](https://example.com/logo.png)|![Image][1]<br>.<br>.<br>.<br>[1]: https://example.com/logo.png|![Image](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)
-\> Blockquote                          ||![blockquote](/img/markdown_blockquote.jpg) Blockquote
-A paragraph.<br>  <br>A paragraph after 1 blank line.||A paragraph.<br><br>A paragraph after 1 blank line.
-\* List<br>\* List|\- List<br>\- List|* List<br>* List
-1\. One<br>2\. Two<br>3\. Three| 1\) One<br>2\) Two<br>3\) Three|1. One<br>2. Two<br>3. Three
-Horizontal Rule<br>\-\-\-|Horizontal Rule<br>\*\*\*|Horizontal Rule<br>![horizontal-rule](/img/markdown_horizontal-rule.jpg)
-\`\`Inline code\`\` with backticks|| ![Inline code](/img/markdown_inline-code.jpg) with backticks
-\`\`\`<br>print '3 backticks <br>or3 tildes'<br>\`\`\`|\~\~\~\~<br>print '3 backticks<br> or 3 tildes'<br>\~\~\~\~|![Block code](/img/markdown_block-code.jpg)
+Style 1                            | Style 2                                                         | Result|
+-------                                 |-----------------------------------------------------------------|------
+\*Italic\*                            | \_Italic\_                                                      |*Italic*
+\*\*Bold\*\*                            | \_\_Bold\_\_                                                    |**Bold**
+\# Heading 1                           | Heading 1<br>\=\=\=\=\=\=\=\=\=                                 | <h1 class='default'>Heading 1</h1>
+\#\# Heading 2                          | Heading 2<br>\-\-\-\-\-\-\-\-\-\-\-\-                           | <h2 class='default'>Heading 2</h2>
+\[Link](https://virtuozzo.com)          | [Link][1]<br>.<br>.<br>.<br>[1]: https://virtuozzo.com          |[virtuozzo.com URL](https://virtuozzo.com)
+\!\[Image](https://example.com/logo.png)| ![Image][1]<br>.<br>.<br>.<br>[1]: https://example.com/logo.png |![Image](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)
+\> Blockquote                          |                                                                 |![blockquote](/img/markdown_blockquote.jpg) Blockquote
+A paragraph.<br>  <br>A paragraph after 1 blank line.|                                                                 |A paragraph.<br><br>A paragraph after 1 blank line.
+\* List<br>\* List| \- List<br>\- List                                              |* List<br>* List
+1\. One<br>2\. Two<br>3\. Three| 1\) One<br>2\) Two<br>3\) Three                                 |1. One<br>2. Two<br>3. Three
+Horizontal Rule<br>\-\-\-| Horizontal Rule<br>\*\*\*                                       |Horizontal Rule<br>![horizontal-rule](/img/markdown_horizontal-rule.jpg)
+\`\`Inline code\`\` with backticks|                                                                 | ![Inline code](/img/markdown_inline-code.jpg) with backticks
+\`\`\`<br>print '3 backticks <br>or3 tildes'<br>\`\`\`| \~\~\~\~<br>print '3 backticks<br> or 3 tildes'<br>\~\~\~\~     |![Block code](/img/markdown_block-code.jpg)
 
 The elements visualization can be found on the screen below:
 ![markdown_tags](/img/markdown_tags.jpg)
@@ -3140,7 +3140,7 @@ description: |
   ## This is H2
   ##### This is H6
 
-  [jelastic.com URL](https://jelastic.com)
+  [virtuozzo.com URL](https://virtuozzo.com)
 
   ![Jelastic](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)
 
@@ -3162,8 +3162,8 @@ description: |
 {
     "type": "update",
     "name": "Markdown tags",
-    "description": "*Italic* or _Italic_    \n**Bold** or __Bold__  \n\n# This is H1   \n## This is H2  \n##### This is H6  \n\n[jelastic.com URL](https://jelastic.com)  \n\n![Jelastic](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)  \n\n> Blockquote  \n\n* List  \n\n---  \n\n`Inline code` with backticks   \n\n```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
 }
+"description": "*Italic* or _Italic_    \n**Bold** or __Bold__  \n\n# This is H1   \n## This is H2  \n##### This is H6  \n\n[virtuozzo.com URL](https://virtuozzo.com)  \n\n![Virtuozzo PaaS](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)  \n\n> Blockquote  \n\n* List  \n\n---  \n\n`Inline code` with backticks   \n\n```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
 ```
 @@!
 
@@ -3178,5 +3178,5 @@ More details about Markdown implementation can be found in CommonMark specificat
 
 - Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements
 
-- Find out the correspondence between <a href="/jelastic-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>
+- Find out the correspondence between <a href="/virtuozzo-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>
 

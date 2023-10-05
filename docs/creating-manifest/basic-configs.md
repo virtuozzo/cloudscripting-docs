@@ -93,7 +93,7 @@ envGroups: array/string
 @@!
 
 - `type` *[optional]* - type of the application installation. Available values are **install** and **update**. More details described above 
-- `version` - *[optional]* - JPS type supported by the Jelastic Platform. See the <a href="/jelastic-cs-correspondence/" target="_blank">correspondence between version</a> page
+- `version` - *[optional]* - JPS type supported by the Virtuozzo PaaS Platform. See the <a href="/virtuozzo-cs-correspondence/" target="_blank">correspondence between version</a> page
 - `name` *[required]* - JPS custom name
 - `logo` *[optional]* - JPS image that will be displayed within custom add-ons
 - `description` - text string that describes a template. This section should always follow the template format version section
@@ -101,7 +101,7 @@ envGroups: array/string
 - `categories` - categories available for manifests filtering                                                                        
 - `baseUrl` *[optional]* - custom <a href="#relative-links" target="_blank">relative links</a>                                       
 - `settings` *[optional]* - custom form with <a href="../visual-settings/" target="_blank">predefined user input elements</a>
-- `targetRegions` *[optional]* - filtering available regions on Jelastic platform. Option will be used only with **type** `install`
+- `targetRegions` *[optional]* - filtering available regions on Virtuozzo PaaS platform. Option will be used only with **type** `install`
     - `type` *[optional]* [array] - region's virtualization types
     - `name` *[optional]* [string] - text or JavaScript RegExp argument to filtering region's by name
 - `region` *[optional]* - region, where an environment will be installed. Option will be used only with **type** `install`
@@ -120,7 +120,7 @@ envGroups: array/string
 - `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation. More details [here](addons/)
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](visual-settings/#success-text-customization).
 - `mixins` *[optional]* - includes(mixes) the functionality and data from one manifest into another by URL or object. More details [here](mixins/)
-- `envGroups` *[optional]* [array] - specifies a new environment group(s) or existing one(s) the new environment will belong to. The parameter can be set up as a string or as an array of strings: *envGroups [“MyGroup”]* or *envGroups [“MyGroup”,”ParentGroup/ChildGroup”]*. See more regarding [environment groups management](https://docs.jelastic.com/environment-groups-management)
+- `envGroups` *[optional]* [array] - specifies a new environment group(s) or existing one(s) the new environment will belong to. The parameter can be set up as a string or as an array of strings: *envGroups [“MyGroup”]* or *envGroups [“MyGroup”,”ParentGroup/ChildGroup”]*. See more regarding [environment groups management](https://www.virtuozzo.com/application-platform-docs/environment-groups-management/)
 - "..." - the list of <a href="../events/" target="_blank">events</a> can be predefined before manifest is installed  
 
 ### envGroups
@@ -173,11 +173,11 @@ The list of available parameters are:
 - `fixedCloudlets` *[optional]* - amount of fixed cloudlets. The default value is 1.
 - `count` *[optional]* - amount of nodes in one group. The default value is 1. To set up the parameter dynamically see an [example](#count-parameter).
 - `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any custom node group.
-- `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
+- `displayName` *[optional]* - node's display name (i.e. <a href="https://www.virtuozzo.com/application-platform-docs/environment-aliases/" target="_blank">alias</a>)                                         
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*
 - `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`. Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](/creating-manifest/addons/)
-- `tag` *[optional]* - an image tag for `dokerized` Jelastic templates with `nodeType` parameter. Full list of supported tag [here](/creating-manifest/selecting-containers/#dokerized-template-tags)
-- `scalingMode` *[optional]* - *stateless* or *stateful* [scaling](https://docs.jelastic.com/horizontal-scaling) mode, the possible values are *'STATELESS'* or *'STATEFUL'* respectively. The default value is *'STATEFUL'* for *nodeGroup* types: *bl,cp,vds*. For the rest of *nodeGroup* types the default value is *'STATELESS'*
+- `tag` *[optional]* - an image tag for `dokerized` Virtuozzo PaaS templates with `nodeType` parameter. Full list of supported tag [here](/creating-manifest/selecting-containers/#dokerized-template-tags)
+- `scalingMode` *[optional]* - *stateless* or *stateful* [scaling](https://www.virtuozzo.com/application-platform-docs/horizontal-scaling/) mode, the possible values are *'STATELESS'* or *'STATEFUL'* respectively. The default value is *'STATEFUL'* for *nodeGroup* types: *bl,cp,vds*. For the rest of *nodeGroup* types the default value is *'STATELESS'*
 - `diskLimit` *[optional]* - sets a storage size limit. The default value is equal to disk quota for current *nodeGroup*. It is measured in GB by default. The MB and TB can be used as well. Examples:
     - 10 = 10 GB
     - 10G = 10GB
@@ -200,15 +200,15 @@ The following parameters are available for Docker and Docker-based nodes only:
 - `startService` *[optional]* - defines whether to run defined service or not. By default `true`
 - `cluster` *[optional]* - enables auto-clustering functionality for specific stacks. [Learn more](#cluster)  
 - `validation` *[optional]* - validates, sets, and limits node creation parameters in the layer. [Learn more](#validation)  
-- `adminUrl` *[optional]* - allows to override default web administration interface URL for the *nodeTypes* that support such administration interface and it's applied to all nodes of the layer. Such *nodeTypes* are *[MySQL, MariaDB](https://jelastic.com/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/)*, *[PostgreSQL](https://jelastic.com/blog/postgresql-auto-clustering-master-slave-replication/)*, *[MongoDB](https://jelastic.com/blog/mongodb-auto-clustering/)*, *[LiteSpeed ADC](https://jelastic.com/blog/litespeed-web-adc-load-balancing/)*, *[LiteSpeed Web Server](https://jelastic.com/blog/litespeed-web-server/)*, *[Couchbase](https://jelastic.com/blog/auto-scalable-couchbase-cluster-in-docker-containers/)*, *[Redis](https://docs.jelastic.com/redis/)*, *[GlassFish](https://jelastic.com/blog/glassfish-payara-auto-clustering-cloud-hosting/)*, *[WildFly](https://jelastic.com/blog/wildfly-managed-domain-in-containers-auto-micro-clustering-and-scaling/)*, *[Payara](https://jelastic.com/blog/glassfish-payara-auto-clustering-cloud-hosting/)*. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings) 
+- `adminUrl` *[optional]* - allows to override default web administration interface URL for the *nodeTypes* that support such administration interface and it's applied to all nodes of the layer. Such *nodeTypes* are *[MySQL, MariaDB](https://www.virtuozzo.com/company/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/)*, *[PostgreSQL](https://www.virtuozzo.com/company/blog/postgresql-auto-clustering-master-slave-replication/)*, *[MongoDB](https://www.virtuozzo.com/company/blog/mongodb-auto-clustering/)*, *[LiteSpeed ADC](https://www.virtuozzo.com/company/blog/litespeed-web-adc-load-balancing/)*, *[LiteSpeed Web Server](https://www.virtuozzo.com/company/blog/litespeed-web-server/)*, *[Couchbase](https://www.virtuozzo.com/company/blog/auto-scalable-couchbase-cluster-in-docker-containers/)*, *[Redis](https://www.virtuozzo.com/application-platform-docs/redis/)*, *[GlassFish](https://www.virtuozzo.com/company/blog/glassfish-payara-clustering-automated/)*, *[WildFly](https://www.virtuozzo.com/company/blog/wildfly-managed-domain-automatic-clustering-scaling/)*, *[Payara](https://www.virtuozzo.com/company/blog/glassfish-payara-clustering-automated/)*. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings) 
 - `isClusterSupport` *[optional]* - allows to override clustering support and it's applied to all nodes of the layer. If the setting is not used the default value is applied. At the moment, it may be applicable to the templates with label “clusterEnabled = 1”. And setting can be used to hide the *Auto-Clustering* field for a DAS node. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)
-- `isRedeploySupport` *[optional]*[boolean] - disables [redeploy](https://docs.jelastic.com/container-redeploy/) functionality through the *nodeGroup* settings. It is applicable to the all nodes of the layer. Respectively the **Redeploy** button gets hidden in the dashboard. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)
+- `isRedeploySupport` *[optional]*[boolean] - disables [redeploy](https://www.virtuozzo.com/application-platform-docs/container-redeploy/) functionality through the *nodeGroup* settings. It is applicable to the all nodes of the layer. Respectively the **Redeploy** button gets hidden in the dashboard. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)
 - `isDeploySupport` *[optional]*[boolean] - disables deployment  through the *nodeGroup* settings. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)  
 - `isResetServicePassword` *[optional]* - hides the password reset button on the UI. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings). Possible values:  
     - *false* - hides buttons at all levels
     - *NODE* - displays buttons only at the level of the nodes (containers)
     - *NODEGROUP* - displays buttons only at the *nodeGroup* level
-- `isSLBAccessEnabled` *[optional]{boolean}* - enables/disables access to the node or respective *nodeGroup* through the [Shared Load Balancer](https://docs.jelastic.com/shared-load-balancer/#deny-access-via-shared-load-balancer). By default `true`  
+- `isSLBAccessEnabled` *[optional]{boolean}* - enables/disables access to the node or respective *nodeGroup* through the [Shared Load Balancer](https://www.virtuozzo.com/application-platform-docs/shared-load-balancer/#deny-access-via-shared-load-balancer). By default `true`  
 
 
 #### count Parameter
@@ -400,7 +400,7 @@ The service starts if:
 
 #### Cluster
 
-In Jelastic the following *[nodeTypes](https://docs.cloudscripting.com/creating-manifest/selecting-containers/#supported-stacks)* can be clusterized with help of built-in [Auto-Сlustering feature](https://ops-docs.jelastic.com/auto-clustering-templates/):  
+In Virtuozzo PaaS the following *[nodeTypes](https://docs.cloudscripting.com/creating-manifest/selecting-containers/#supported-stacks)* can be clusterized with help of built-in [Auto-Сlustering feature](https://www.virtuozzo.com/application-platform-ops-docs/auto-clustering-templates/):  
 
   * Application Servers: GlassFish, WildFly, Payara  
   * SQL Databases: MySQL, MariaDB, PostgreSQL
@@ -417,12 +417,12 @@ To enable *Auto-Clustering* the `cluster` parameter is used as:
   * *boolean* value - *true* invokes cluster creation with default configuration parameters  
   
 !!! note 
-    - Default topology that will be created for the MySQL and MariaDB is [master-slave](https://jelastic.com/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/) replication cluster with 2 nodes of HA ProxySQL load balancer in front of
-    - In case of PostgreSQL there is only one topology available - [master-slave](https://jelastic.com/blog/postgresql-auto-clustering-master-slave-replication/) 
-    - The WildFly cluster is created in [Managed Domain Mode](https://jelastic.com/blog/wildfly-managed-domain-in-containers-auto-micro-clustering-and-scaling/) with topology that comrises one Domain Controller node and Worker nodes. Number of Worker nodes is defined by *[count](basic-configs/#nodes-definition)* parameter  	        
-    - The Payara/GlassFish cluster is created with topology that comrises one [DAS node and Worker nodes](https://jelastic.com/blog/glassfish-payara-auto-clustering-cloud-hosting/). Number of Worker nodes is defined by *[count](basic-configs/#nodes-definition)* parameter   
-    - The MongoDB cluster is created as [replica-set](https://jelastic.com/blog/mongodb-replica-set-master-slave-failover/) with topology that comrises tree nodes one *Primary* and two *Secondary* nodes   
-    - The Couchbase is created as [cluster with 3 interconnected Couchbase containers](https://jelastic.com/blog/auto-scalable-couchbase-cluster-in-docker-containers/)   
+    - Default topology that will be created for the MySQL and MariaDB is [master-slave](https://www.virtuozzo.com/company/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/) replication cluster with 2 nodes of HA ProxySQL load balancer in front of
+    - In case of PostgreSQL there is only one topology available - [master-slave](https://www.virtuozzo.com/company/blog/postgresql-auto-clustering-master-slave-replication/) 
+    - The WildFly cluster is created in [Managed Domain Mode](https://www.virtuozzo.com/company/blog/wildfly-managed-domain-automatic-clustering-scaling/) with topology that comrises one Domain Controller node and Worker nodes. Number of Worker nodes is defined by *[count](basic-configs/#nodes-definition)* parameter  	        
+    - The Payara/GlassFish cluster is created with topology that comrises one [DAS node and Worker nodes](https://www.virtuozzo.com/company/blog/glassfish-payara-clustering-automated/). Number of Worker nodes is defined by *[count](basic-configs/#nodes-definition)* parameter   
+    - The MongoDB cluster is created as [replica-set](https://www.virtuozzo.com/company/blog/mongodb-replica-set-master-slave-failover/) with topology that comrises tree nodes one *Primary* and two *Secondary* nodes   
+    - The Couchbase is created as [cluster with 3 interconnected Couchbase containers](https://www.virtuozzo.com/company/blog/auto-scalable-couchbase-cluster-in-docker-containers/)   
     - The Storage cluster is based on scalable network filesystem [GlusterFS](https://www.gluster.org/). The default cluster topology comprises 3 storage nodes  
    
 For example:  
@@ -452,14 +452,14 @@ nodes:
   
  
   * *object* - this is applicable for MySQL/MariaDB only. Object contains multiple options can be passed as configuration parameters:   
-    * `scheme` *[optional]* - configures database [replication scheme](https://jelastic.com/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/) for:  
+    * `scheme` *[optional]* - configures database [replication scheme](https://www.virtuozzo.com/company/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/) for:  
       * `mysql` - **slave** (Master-Slave), **master** (Master-Master), **single** (Single Primary Group Replication), **multi** (Multi Primary Group Replication)  
       * `mariadb` - **slave** (Master-Slave), **master** (Master-Master), **galera** (Galera Cluster)  
     * `is_proxysql` *[optional][boolean]* - *'true'* adds a ProxySQL load balancer layer to the topology and configures it as an entry point to the database cluster  
     * `db_user` *[optional]* - sets up a database username. If not defined the system will generate one by default  
     * `db_pass` *[optional]* - sets up a password for `db_user`. If not defined the system will generate one by default  
   
-A [cluster configuration object](https://ops-docs.jelastic.com/auto-clustering-templates/#clusterization-package) should be passed to the `cluster` field to enable custom auto-clustering
+A [cluster configuration object](https://www.virtuozzo.com/application-platform-ops-docs/auto-clustering-templates/#clusterization-package) should be passed to the `cluster` field to enable custom auto-clustering
 
 For example *Master-Master* replication topology with ProxySQL node as the entry point:  
   
@@ -545,7 +545,7 @@ The setting is stored in *nodeGroup* settings and [can be overridden via API](#u
 <!-- RegionFiltering section -->
 ### Regions Filtering
 
-Jelastic provides a possibility to use multiple availability regions within a single PaaS installation. The number of hardware regions depends on user account and hosting provider. 
+Virtuozzo PaaS provides a possibility to use multiple availability regions within a single PaaS installation. The number of hardware regions depends on user account and hosting provider. 
 
 If multiple regions are available, the environment will be created at one that is chosen based on the following filtering rules:  
 
@@ -680,7 +680,7 @@ Here:
 - `/example-path` - path to place the volume at a target node  
 - `sourcePath` *[optional]* - default value that repeats volume path (*/example-path* in our sample)
 - `sourceNodeId` -  node identifier the volume should be mounted from (optional, in case of the `sourceNodeGroup` parameter using)       
-- `sourceHost` *[optional]* - parameter for <a href="https://docs.jelastic.com/configure-external-nfs-server" target="_blank">external mounts</a> usage
+- `sourceHost` *[optional]* - parameter for <a href="https://www.virtuozzo.com/application-platform-docs/configure-external-nfs-server/" target="_blank">external mounts</a> usage
 - `readOnly` - defines write data permissions at source node, the default value is `false`   
 - `sourceNodeGroup` - any available *nodeGroup* within a source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.    
 
@@ -856,7 +856,7 @@ where:
 
 #### Environment Variables
 
-Docker environment <a href="https://docs.jelastic.com/docker-variables" target="_blank">variable</a> is an optional topology object. The *env* instruction allows to set the required environment variables to specified values. 
+Docker environment <a href="https://www.virtuozzo.com/application-platform-docs/container-variables/" target="_blank">variable</a> is an optional topology object. The *env* instruction allows to set the required environment variables to specified values. 
 @@@
 ```yaml
 type: install
@@ -887,7 +887,7 @@ nodes:
 ```
 @@!
 
-Environment variables can manage to control nodes availability from outside to the platform. <a href="https://docs.jelastic.com/setting-custom-firewall" target="_blank">Jelastic Container Firewall</a> feature was implemented in Jelastic version 5.4 and new firewall rules can be set during creating new environment.<br>
+Environment variables can manage to control nodes availability from outside to the platform. <a href="https://www.virtuozzo.com/application-platform-docs/custom-firewall/" target="_blank">Virtuozzo PaaS Container Firewall</a> feature was implemented in Virtuozzo PaaS version 5.4 and new firewall rules can be set during creating new environment.<br>
  The reserved environment variable for this option is - **JELASTIC_PORTS**. This parameter defines which ports will be added in *inbound* rules. All rules in this case will be added for both protocols (**TCP/UDP**).
 
 @@@
@@ -917,7 +917,7 @@ nodes:
 All ports for output traffic are opened by default.
 
 Another one reserved environment variables is **ON_ENV_INSTALL**. This variable is responsible for executing new JPS installation after new nodeGroup (layer of nodes) has been created.<br>
-This variable for **nodeGroup** can be set in JPS or via dashboard. More info about Docker configuration is Jelastic dashboard <a href="https://docs.jelastic.com/docker-configuration" target="_blank">here</a>.
+This variable for **nodeGroup** can be set in JPS or via dashboard. More info about Docker configuration is Virtuozzo PaaS dashboard <a href="https://www.virtuozzo.com/application-platform-docs/container-configuration/" target="_blank">here</a>.
 
 !!! note
     > By default in manifest from the **ON_ENV_INSTALL** variable *\${settings.nodeGroup}* placeholder is defined. It will be a nodeGroup value where this manifest is executed.
@@ -989,7 +989,7 @@ Any number of custom parameters in *settings* can be set.
 
 #### Links
 
-Docker <a href="https://docs.jelastic.com/docker-links" target="_blank">links</a> option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
+Docker <a href="https://www.virtuozzo.com/application-platform-docs/container-links/" target="_blank">links</a> option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
 <br>
 
 The example below illustrates the way to link *sql* and *memcached* nodes to *cp* container.
@@ -1117,7 +1117,7 @@ startPage: ${env.url}customDirectory/
 
 ###Skip Node Emails
 
-By default in Jelastic, a user is informed via email about adding new nodes into environments. In Cloud Scripting there is an ability to set an option to skip these emails upon environment creation:  
+By default in Virtuozzo PaaS, a user is informed via email about adding new nodes into environments. In Cloud Scripting there is an ability to set an option to skip these emails upon environment creation:  
 - globally for all *nodeTypes*
 - for specific *nodeTypes*
 This option does not affect the email notification upon node addition by scaling.   
@@ -1253,10 +1253,10 @@ The error 11022 is ignored and gets to no crash report.
 
 ##Relative Links
 
-The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the <b>*baseUrl*</b> parameter or specified while <a href="https://docs.jelastic.com/environment-export-import" target="_blank">importing</a> a corresponding JPS file via the Jelastic dashboard.          
+The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the <b>*baseUrl*</b> parameter or specified while <a href="https://www.virtuozzo.com/application-platform-docs/environment-export-import/" target="_blank">importing</a> a corresponding JPS file via the Virtuozzo PaaS dashboard.          
 
 !!! note
-    > The *baseUrl* value declared within the manifest has higher priority than installation via URL (i.e. <a href="https://docs.jelastic.com/environment-export-import" target="_blank">Import</a>).                
+    > The *baseUrl* value declared within the manifest has higher priority than installation via URL (i.e. <a href="https://www.virtuozzo.com/application-platform-docs/environment-export-import/" target="_blank">Import</a>).                
 
 **Example**
 @@@
@@ -1289,7 +1289,7 @@ success: README.md
 ```
 @@!
 
-In case of the manifest installation via URL by means of the Jelastic **Import** functionality, the `baseUrl` placeholder will be defined if the specified path is set as in the example below:      
+In case of the manifest installation via URL by means of the Virtuozzo PaaS **Import** functionality, the `baseUrl` placeholder will be defined if the specified path is set as in the example below:      
   
 ```
 ${baseUrl}/manifest.jps
@@ -1338,7 +1338,7 @@ success: text.txt
 ```
 @@!
 
-In the example above the text *text.txt* will be displayed in success email notification and in success window in Jelastic dashboard when JPS installation will be finished. If URL **https://example.com/text.txt** has any content then that content will be displayed.
+In the example above the text *text.txt* will be displayed in success email notification and in success window in Virtuozzo PaaS dashboard when JPS installation will be finished. If URL **https://example.com/text.txt** has any content then that content will be displayed.
 
 The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="../actions/#cmd" target="_blank">*cmd*</a> and <a href="../actions/#script" target="_blank">*script*</a> actions).                 
 

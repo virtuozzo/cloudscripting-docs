@@ -51,7 +51,7 @@ Any container operation can be performed using a [*cmd*](#cmd) action. Moreover,
 
 ### cmd
 
-The *cmd* action executes *[commands](https://docs.jelastic.com/ssh-overview)* in synchronous and asynchronous modes. Within one container the *cmd* actions can be performed in synchronous mode only. Within one environment *cmd* actions can be performed asynchronously in case similar actions are required to be executed on different nodeGroups.
+The *cmd* action executes *[commands](https://www.virtuozzo.com/application-platform-docs/ssh-gate/)* in synchronous and asynchronous modes. Within one container the *cmd* actions can be performed in synchronous mode only. Within one environment *cmd* actions can be performed asynchronously in case similar actions are required to be executed on different nodeGroups.
 <!--Available for all nodes.-->      
 
 **Example** 
@@ -93,7 +93,7 @@ cmd [tomcat6]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
 ```
 @@!
 
-The same action can be performed asynchronously on all nodes of specific *[nodeGroup](https://docs.jelastic.com/paas-components-definition#layer)* or several ones provided as the list: [cp, bl].  
+The same action can be performed asynchronously on all nodes of specific *[nodeGroup](https://www.virtuozzo.com/application-platform-docs/paas-components-definition/#layer)* or several ones provided as the list: [cp, bl].  
 @@@
 ```yaml
 cmd [cp, bl]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
@@ -246,9 +246,9 @@ cmd [nginx]:
    
 ### api
 
-Executing actions available by means of [Jelastic Cloud API](http://docs.jelastic.com/api).  
+Executing actions available by means of [Virtuozzo PaaS Cloud API](http://docs.jelastic.com/api).  
 
-There are a number of parameters required by Jelastic API that are defined automatically:                            
+There are a number of parameters required by Virtuozzo PaaS API that are defined automatically:                            
 
 - *envName* - environment domain name where the API method is executed             
 
@@ -269,20 +269,20 @@ All of the nodes keywords and/or Node IDs can be passed as a list within one `ap
 Restarting all compute nodes in the environment.
 @@@
 ```yaml
-api [cp]: jelastic.environment.control.RestartNodes
+api [cp]: api.environment.control.RestartNodes
 ```
 ``` json
 {
-    "api [cp]" : "jelastic.environment.control.RestartNodes"
+    "api [cp]" : "api.environment.control.RestartNodes"
 }
 ```
 @@!
 where:        
        
 - `api [cp]` - target node group for the API method execution (*[cp]*)                                                         
-- *jelastic.environment.control.RestartNodes* - Jelastic API method for restarting nodes by group              
+- *api.environment.control.RestartNodes* - Virtuozzo PaaS API method for restarting nodes by group              
 
-This method (*jelastic.environment.control.RestartNodes*) can be simplified like shown in the next example.
+This method (*api.environment.control.RestartNodes*) can be simplified like shown in the next example.
 @@@
 ```yaml
 api [cp]: environment.control.RestartNodes
@@ -344,12 +344,12 @@ onInstall:
 Below, you can find one more approach to specify a target node group for the API method execution.                                  
 @@@
 ```yaml
-api: jelastic.environment.control.RestartNodes,
+api: api.environment.control.RestartNodes,
 nodeGroup: cp
 ```
 ``` json
 {
-    "api" : "jelastic.environment.control.RestartNodes",
+    "api" : "api.environment.control.RestartNodes",
     "nodeGroup" : "cp"
 }
 ```
@@ -838,8 +838,8 @@ where:
 - `extip` *[optional]* - attaching the external IP address to a container. The default value is *'false'*.                     
 - `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.                             
 - `flexibleCloudlets` *[optional]* - number of dynamic cloudlets. The default value is *'1'*.                           
-- `displayName` *[optional]* - node's display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                         
-    The following parameters are required for <a href="https://docs.jelastic.com/dockers-overview" target="_blank">Docker</a> containers only:                                    
+- `displayName` *[optional]* - node's display name (i.e. <a href="https://www.virtuozzo.com/application-platform-docs/environment-aliases/" target="_blank">alias</a>)                                         
+    The following parameters are required for <a href="https://www.virtuozzo.com/application-platform-docs/container-types/" target="_blank">Docker</a> containers only:                                    
 - `dockerName` *[optional]* - name and tag of Docker image
 - `registryUrl` *[optional]* - custom Docker registry
 - `registryUser` *[optional]* - Docker registry username
@@ -870,7 +870,7 @@ setNodeDisplayName [nodeId, nodeGroup, nodeType]: string
 where:   
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                   
-- `string` - node’s display name (i.e. <a href="https://docs.jelastic.com/environment-aliases" target="_blank">alias</a>)                                                                        
+- `string` - node’s display name (i.e. <a href="https://www.virtuozzo.com/application-platform-docs/environment-aliases/" target="_blank">alias</a>)                                                                        
 
 The action `setNodeDisplayName` has the default parameter called **displayName**. It is useful to set display name for few node layers in the same `action`. For example:
 @@@
@@ -1419,11 +1419,11 @@ script [cp, 12345]: |
 ```
 @@!
 
-The `script` action provides an ability to execute Jelastic API in custom scripts. Therefore, it is easy to manage Jelastic environments by `scripts`.   
-There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certified by Jelastic team.
+The `script` action provides an ability to execute Virtuozzo PaaS API in custom scripts. Therefore, it is easy to manage Virtuozzo PaaS environments by `scripts`.   
+There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certified by Virtuozzo PaaS team.
 
 !!! note
-    Learn more about using <a href="http://docs.jelastic.com/api" target="_blank">Jelastic Cloud API</a>.    
+    Learn more about using <a href="http://docs.jelastic.com/api" target="_blank">Virtuozzo PaaS Cloud API</a>.    
 
 ### setGlobals
 
@@ -1924,7 +1924,7 @@ where:
 - `jps` - URL to your custom JPS manifest  
 - `settings` - user custom parameters           
 
-The `nodeGroup` [filtering](../selecting-containers/#selector-types) can be applied to the `install` action in order to carry out addon installation on different [layers](https://docs.jelastic.com/paas-components-definition#layer) within one environment.  
+The `nodeGroup` [filtering](../selecting-containers/#selector-types) can be applied to the `install` action in order to carry out addon installation on different [layers](https://www.virtuozzo.com/application-platform-docs/paas-components-definition/#layer) within one environment.  
 
 @@@
 ```yaml
@@ -2392,7 +2392,7 @@ onInstall:
 
 where:
 
-- `region` - hardware node's [region](https://docs.jelastic.com/environment-regions)  
+- `region` - hardware node's [region](https://www.virtuozzo.com/application-platform-docs/environment-regions/)  
 - `envName` - short domain name of a new environment                     
 - `name` - JPS name  
 - `nodes` - nodes description                                                           
@@ -2448,7 +2448,7 @@ where:
 
 - `id` - identifier of a custom add-on                           
 
-You can locate the installed add-ons within the **Add-ons** tab at the Jelastic dashboard. 
+You can locate the installed add-ons within the **Add-ons** tab at the Virtuozzo PaaS dashboard. 
 
 ![new-addon](/img/new-addon.png)
 
@@ -2527,7 +2527,7 @@ onInstall:
 ```
 @@!
 
-The result window also returns the compute node's unique identifier at Jelastic Platform.                                                
+The result window also returns the compute node's unique identifier at Virtuozzo PaaS Platform.                                                
 ![returnNodeId](/img/returnNodeId.jpg)
 
 If the action returns an object, a response code can be redefined. So the *message* or *result* code parameters are required in the *return* object. Herewith, a zero (0) *result* code is not passed to the response code.        
