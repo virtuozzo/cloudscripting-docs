@@ -1607,7 +1607,7 @@ where:
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field
 - `buttonText` *[optional]* - button label
-- `url` *[optional]* - external source URL. The default link is to the current Virtuozzo PaaS Dashboard. New popup window is opened only via POST request.
+- `url` *[optional]* - external source URL. The default link is to the current Virtuozzo Application Platform Dashboard. New popup window is opened only via POST request.
 - `popupWidth` *[optional]* - width in pixels
 - `popupHeight` *[optional]* - height in pixels
 - `popupCallbackEvent` - event handler
@@ -1669,7 +1669,7 @@ http://{Jelastic_Platform_URL} + "fireevent?event=click&value=hello"
 ```
 where:
 
-- `Jelastic_Platform_URL` - Virtuozzo PaaS Dashboard URL where manifest is executed
+- `Jelastic_Platform_URL` - Virtuozzo Application Platform Dashboard URL where manifest is executed
 - `click` - event name which is handled in manifest in `popupCallbackEvent` parameter
 - `value` - type is **string**. The `textfield` will be filled by it when button "Open" will be applied.
 
@@ -3087,7 +3087,7 @@ success: success!!
 ```
 @@!
 
-In the last example above, the localization functionality is applied, which depends upon the Virtuozzo PaaS selected language.
+In the last example above, the localization functionality is applied, which depends upon the Virtuozzo Application Platform selected language.
 
 Custom responses can be returned within <a href="../actions/#return" target="_blank">`return`</a> or <a href="../actions/#script" target="_blank">`script`</a> actions. More details about <a href="../handling-custom-responses/" target="_blank">custom responses here</a>.
 
@@ -3163,7 +3163,7 @@ description: |
     "type": "update",
     "name": "Markdown tags",
 }
-"description": "*Italic* or _Italic_    \n**Bold** or __Bold__  \n\n# This is H1   \n## This is H2  \n##### This is H6  \n\n[virtuozzo.com URL](https://virtuozzo.com)  \n\n![Virtuozzo PaaS](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)  \n\n> Blockquote  \n\n* List  \n\n---  \n\n`Inline code` with backticks   \n\n```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
+"description": "*Italic* or _Italic_    \n**Bold** or __Bold__  \n\n# This is H1   \n## This is H2  \n##### This is H6  \n\n[virtuozzo.com URL](https://virtuozzo.com)  \n\n![Virtuozzo Application Platform](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)  \n\n> Blockquote  \n\n* List  \n\n---  \n\n`Inline code` with backticks   \n\n```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
 ```
 @@!
 

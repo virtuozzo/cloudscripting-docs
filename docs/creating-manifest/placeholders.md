@@ -95,7 +95,7 @@ This is the list of placeholders that you can use within the nodes section (*{no
     - `(key)` - name of the applied parameter, according to the following list:
         - `address` - internal or external IP address                               
         - `adminUrl` - full URL address with protocol   
-        - `canBeExported` *[boolean]* - Virtuozzo PaaS <a href="https://www.virtuozzo.com/application-platform-docs/environment-export-import/" target="_blank">Export</a> feature       
+        - `canBeExported` *[boolean]* - Virtuozzo Application Platform <a href="https://www.virtuozzo.com/application-platform-docs/environment-export-import/" target="_blank">Export</a> feature       
         - `bandwidthLimit` - node bandwidth limit   
         - `contextValidatorRegex` - validation for context names    
         - `diskIopsLimit` - IOPS limitation quota   
@@ -174,7 +174,7 @@ Learn more about the event placeholders within the <a href="../events" target="_
 
 This is the list of placeholders that you can use to specify account information.                                                                       
 
-- `${user.uid}` - user ID at the Virtuozzo PaaS Platform               
+- `${user.uid}` - user ID at the Virtuozzo Application Platform               
 - `${user.email}` - user email address      
 - `${user.appPassword}` - random value that can be used to set application passwords       
 - `${user.name}` - email address value (same as `${user.email}`)       
@@ -308,10 +308,10 @@ In case if an argument is an array of strings the executed custom action will be
 
 This is the list of placeholders that you can use to specify UI parameters.                              
 
-- `${user.uid}` - user ID at the Virtuozzo PaaS Platform
+- `${user.uid}` - user ID at the Virtuozzo Application Platform
 - `${user.email}` - user email address
 - `${env.domain}` - full domain name without protocol
-- `${env.appid}` - unique environment appid at the Virtuozzo PaaS Platform
+- `${env.appid}` - unique environment appid at the Virtuozzo Application Platform
 - `${baseUrl}` - user custom relative URL. More details about <a href="../basic-configs/#relative-links">Relative Links here</a>
 - `${platformUrl}` - platform dashboard URL
 

@@ -93,7 +93,7 @@ envGroups: array/string
 @@!
 
 - `type` *[optional]* - type of the application installation. Available values are **install** and **update**. More details described above 
-- `version` - *[optional]* - JPS type supported by the Virtuozzo PaaS Platform. See the <a href="/virtuozzo-cs-correspondence/" target="_blank">correspondence between version</a> page
+- `version` - *[optional]* - JPS type supported by the Virtuozzo Application Platform. See the <a href="/virtuozzo-cs-correspondence/" target="_blank">correspondence between version</a> page
 - `name` *[required]* - JPS custom name
 - `logo` *[optional]* - JPS image that will be displayed within custom add-ons
 - `description` - text string that describes a template. This section should always follow the template format version section
@@ -101,7 +101,7 @@ envGroups: array/string
 - `categories` - categories available for manifests filtering                                                                        
 - `baseUrl` *[optional]* - custom <a href="#relative-links" target="_blank">relative links</a>                                       
 - `settings` *[optional]* - custom form with <a href="../visual-settings/" target="_blank">predefined user input elements</a>
-- `targetRegions` *[optional]* - filtering available regions on Virtuozzo PaaS platform. Option will be used only with **type** `install`
+- `targetRegions` *[optional]* - filtering available regions on Virtuozzo Application Platform. Option will be used only with **type** `install`
     - `type` *[optional]* [array] - region's virtualization types
     - `name` *[optional]* [string] - text or JavaScript RegExp argument to filtering region's by name
 - `region` *[optional]* - region, where an environment will be installed. Option will be used only with **type** `install`
@@ -176,7 +176,7 @@ The list of available parameters are:
 - `displayName` *[optional]* - node's display name (i.e. <a href="https://www.virtuozzo.com/application-platform-docs/environment-aliases/" target="_blank">alias</a>)                                         
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*
 - `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`. Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](/creating-manifest/addons/)
-- `tag` *[optional]* - an image tag for `dokerized` Virtuozzo PaaS templates with `nodeType` parameter. Full list of supported tag [here](/creating-manifest/selecting-containers/#dokerized-template-tags)
+- `tag` *[optional]* - an image tag for `dokerized` Virtuozzo Application Platform templates with `nodeType` parameter. Full list of supported tag [here](/creating-manifest/selecting-containers/#dokerized-template-tags)
 - `scalingMode` *[optional]* - *stateless* or *stateful* [scaling](https://www.virtuozzo.com/application-platform-docs/horizontal-scaling/) mode, the possible values are *'STATELESS'* or *'STATEFUL'* respectively. The default value is *'STATEFUL'* for *nodeGroup* types: *bl,cp,vds*. For the rest of *nodeGroup* types the default value is *'STATELESS'*
 - `diskLimit` *[optional]* - sets a storage size limit. The default value is equal to disk quota for current *nodeGroup*. It is measured in GB by default. The MB and TB can be used as well. Examples:
     - 10 = 10 GB
@@ -400,7 +400,7 @@ The service starts if:
 
 #### Cluster
 
-In Virtuozzo PaaS the following *[nodeTypes](https://docs.cloudscripting.com/creating-manifest/selecting-containers/#supported-stacks)* can be clusterized with help of built-in [Auto-Сlustering feature](https://www.virtuozzo.com/application-platform-ops-docs/auto-clustering-templates/):  
+In Virtuozzo Application Platform the following *[nodeTypes](https://docs.cloudscripting.com/creating-manifest/selecting-containers/#supported-stacks)* can be clusterized with help of built-in [Auto-Сlustering feature](https://www.virtuozzo.com/application-platform-ops-docs/auto-clustering-templates/):  
 
   * Application Servers: GlassFish, WildFly, Payara  
   * SQL Databases: MySQL, MariaDB, PostgreSQL
@@ -545,7 +545,7 @@ The setting is stored in *nodeGroup* settings and [can be overridden via API](#u
 <!-- RegionFiltering section -->
 ### Regions Filtering
 
-Virtuozzo PaaS provides a possibility to use multiple availability regions within a single PaaS installation. The number of hardware regions depends on user account and hosting provider. 
+Virtuozzo Application Platform provides a possibility to use multiple availability regions within a single PaaS installation. The number of hardware regions depends on user account and hosting provider. 
 
 If multiple regions are available, the environment will be created at one that is chosen based on the following filtering rules:  
 
@@ -887,7 +887,7 @@ nodes:
 ```
 @@!
 
-Environment variables can manage to control nodes availability from outside to the platform. <a href="https://www.virtuozzo.com/application-platform-docs/custom-firewall/" target="_blank">Virtuozzo PaaS Container Firewall</a> feature was implemented in Virtuozzo PaaS version 5.4 and new firewall rules can be set during creating new environment.<br>
+Environment variables can manage to control nodes availability from outside to the platform. <a href="https://www.virtuozzo.com/application-platform-docs/custom-firewall/" target="_blank">Virtuozzo Application Platform Container Firewall</a> feature was implemented in Virtuozzo Application Platform version 5.4 and new firewall rules can be set during creating new environment.<br>
  The reserved environment variable for this option is - **JELASTIC_PORTS**. This parameter defines which ports will be added in *inbound* rules. All rules in this case will be added for both protocols (**TCP/UDP**).
 
 @@@
@@ -917,7 +917,7 @@ nodes:
 All ports for output traffic are opened by default.
 
 Another one reserved environment variables is **ON_ENV_INSTALL**. This variable is responsible for executing new JPS installation after new nodeGroup (layer of nodes) has been created.<br>
-This variable for **nodeGroup** can be set in JPS or via dashboard. More info about Docker configuration is Virtuozzo PaaS dashboard <a href="https://www.virtuozzo.com/application-platform-docs/container-configuration/" target="_blank">here</a>.
+This variable for **nodeGroup** can be set in JPS or via dashboard. More info about Docker configuration is Virtuozzo Application Platform dashboard <a href="https://www.virtuozzo.com/application-platform-docs/container-configuration/" target="_blank">here</a>.
 
 !!! note
     > By default in manifest from the **ON_ENV_INSTALL** variable *\${settings.nodeGroup}* placeholder is defined. It will be a nodeGroup value where this manifest is executed.
@@ -1117,7 +1117,7 @@ startPage: ${env.url}customDirectory/
 
 ###Skip Node Emails
 
-By default in Virtuozzo PaaS, a user is informed via email about adding new nodes into environments. In Cloud Scripting there is an ability to set an option to skip these emails upon environment creation:  
+By default in Virtuozzo Application Platform, a user is informed via email about adding new nodes into environments. In Cloud Scripting there is an ability to set an option to skip these emails upon environment creation:  
 - globally for all *nodeTypes*
 - for specific *nodeTypes*
 This option does not affect the email notification upon node addition by scaling.   
@@ -1253,7 +1253,7 @@ The error 11022 is ignored and gets to no crash report.
 
 ##Relative Links
 
-The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the <b>*baseUrl*</b> parameter or specified while <a href="https://www.virtuozzo.com/application-platform-docs/environment-export-import/" target="_blank">importing</a> a corresponding JPS file via the Virtuozzo PaaS dashboard.          
+The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the <b>*baseUrl*</b> parameter or specified while <a href="https://www.virtuozzo.com/application-platform-docs/environment-export-import/" target="_blank">importing</a> a corresponding JPS file via the Virtuozzo Application Platform dashboard.          
 
 !!! note
     > The *baseUrl* value declared within the manifest has higher priority than installation via URL (i.e. <a href="https://www.virtuozzo.com/application-platform-docs/environment-export-import/" target="_blank">Import</a>).                
@@ -1289,7 +1289,7 @@ success: README.md
 ```
 @@!
 
-In case of the manifest installation via URL by means of the Virtuozzo PaaS **Import** functionality, the `baseUrl` placeholder will be defined if the specified path is set as in the example below:      
+In case of the manifest installation via URL by means of the Virtuozzo Application Platform **Import** functionality, the `baseUrl` placeholder will be defined if the specified path is set as in the example below:      
   
 ```
 ${baseUrl}/manifest.jps
@@ -1338,7 +1338,7 @@ success: text.txt
 ```
 @@!
 
-In the example above the text *text.txt* will be displayed in success email notification and in success window in Virtuozzo PaaS dashboard when JPS installation will be finished. If URL **https://example.com/text.txt** has any content then that content will be displayed.
+In the example above the text *text.txt* will be displayed in success email notification and in success window in Virtuozzo Application Platform dashboard when JPS installation will be finished. If URL **https://example.com/text.txt** has any content then that content will be displayed.
 
 The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="../actions/#cmd" target="_blank">*cmd*</a> and <a href="../actions/#script" target="_blank">*script*</a> actions).                 
 

@@ -2,7 +2,7 @@
 
 Run into trouble with Cloud Scripting? Here are some helpful tips and specific suggestions for troubleshooting as follows:                             
 
-* Log in to your Virtuozzo PaaS dashboard and open the link of the following type in a new browser tab.                            
+* Log in to your Virtuozzo Application Platform dashboard and open the link of the following type in a new browser tab.                            
 
     *http://app.{HOSTER_URL}/console/*                       
     
@@ -213,7 +213,7 @@ onInstall:
 
 - Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                    
 
-- Find out the correspondence between <a href="/virtuozzo-cs-correspondence/" target="_blank">CS & Virtuozzo PaaS Versions</a>          
+- Find out the correspondence between <a href="/virtuozzo-cs-correspondence/" target="_blank">CS & Virtuozzo Application Platform Versions</a>          
 
 
 <!--## Logging-->

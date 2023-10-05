@@ -57,7 +57,7 @@ The current manifest states to create a new environment, handled with **Apache 2
 
 ## How to Deploy CS Solution to Virtuozzo 
 
-In order to give a try to *Hello World* sample from above (or deploy your own application), enter your <a href="https://www.virtuozzo.com/application-platform-partners/" target="_blank">Virtuozzo PaaS Platform</a> account and perform the following steps.                    
+In order to give a try to *Hello World* sample from above (or deploy your own application), enter your <a href="https://www.virtuozzo.com/application-platform-partners/" target="_blank">Virtuozzo Application Platform</a> account and perform the following steps.                    
 
 1.&nbsp;Click the **Import** button at the top pane of the dashboard.                                             
 
@@ -68,7 +68,7 @@ In order to give a try to *Hello World* sample from above (or deploy your own ap
 ![import-manifest.png](img/import-manifest.png)               
 
 !!! note
-    **Tip:** Subsequently, you can use this editor to adjust your manifest code on a fly. Clicking on the **Examples** string nearby will redirect you to <a href="https://github.com/jelastic-jps" target="_blank">Virtuozzo PaaS JPS Collection</a> with numerous ready-to-go solutions (just import the link to the appropriate *manifest.jps* file to fetch the required one). Also, two more options for JPS deployment are available here:<ul><li><b>*Local File*</b> - to upload the locally stored manifest</li><li><b>*URL*</b> - to specify direct link to the required file</li></ul>        
+    **Tip:** Subsequently, you can use this editor to adjust your manifest code on a fly. Clicking on the **Examples** string nearby will redirect you to <a href="https://github.com/jelastic-jps" target="_blank">Virtuozzo Application Platform JPS Collection</a> with numerous ready-to-go solutions (just import the link to the appropriate *manifest.jps* file to fetch the required one). Also, two more options for JPS deployment are available here:<ul><li><b>*Local File*</b> - to upload the locally stored manifest</li><li><b>*URL*</b> - to specify direct link to the required file</li></ul>        
 
 To proceed, click on **Import** in the bottom-right corner.                   
 
@@ -92,7 +92,7 @@ Just in the same way, you can build and run the solution you need - from frequen
 
 - Leverage <a href="https://github.com/" target="_blank">GitHub</a> to store and manage your projects, manifests and scripts all together                              
 
-- Explore <a href="/samples/" target="_blank">Virtuozzo PaaS Samples</a> to benefit on preliminary composed operation and package examples                            
+- Explore <a href="/samples/" target="_blank">Virtuozzo Application Platform Samples</a> to benefit on preliminary composed operation and package examples                            
 
 <br> 
 <h2> What’s next?</h2>                                     

@@ -87,7 +87,7 @@ Highly reliable S3-compatible storage. S3 compatible object storage server in Do
 
 Highly available GlassFish cluster on Docker containers with scalable Worker Nodes amount.  
 
-To instantly host your own scalable GF cluster, click the **Deploy to Virtuozzo PaaS** button below. Within the opened frame, specify your email address, choose one of the [Virtuozzo PaaS Public Cloud providers] (https://www.virtuozzo.com/application-platform-partners/) and press **Install**.
+To instantly host your own scalable GF cluster, click the **Deploy to Virtuozzo Application Platform** button below. Within the opened frame, specify your email address, choose one of the [Virtuozzo Application Platform Public Cloud providers] (https://www.virtuozzo.com/application-platform-partners/) and press **Install**.
 
 Due to the native GlassFish clustering architecture, its topology includes three node groups:
 
@@ -266,8 +266,8 @@ Set up your own Minecraft server of the latest version inside the Cloud in one c
 
 To get your personal Minecraft server inside the cloud, perform the following:
 
-- if you don’t have Virtuozzo PaaS account yet - scroll down to the Deploy Now section and follow the provided instruction.
-- if you have Virtuozzo PaaS account - copy link to the manifest.jps file above and import it to the required Virtuozzo PaaS installation.
+- if you don’t have Virtuozzo Application Platform account yet - scroll down to the Deploy Now section and follow the provided instruction.
+- if you have Virtuozzo Application Platform account - copy link to the manifest.jps file above and import it to the required Virtuozzo Application Platform installation.
 
 [![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/minecraft-server/master/manifest.jps&min-version=4.6&keys=app.mircloud.host;app.jelastic.dogado.eu;app.fi.cloudplatform.fi;app.appengine.flow.ch;app.jelasticlw.com.br;app.paas.datacenter.fi;app.whelastic.net) 
 

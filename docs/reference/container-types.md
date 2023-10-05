@@ -75,7 +75,7 @@ where:
 
 <b>Predefined *nodeGroup* values</b>                 
 
-Virtuozzo PaaS platform supports the following predefined *nodeGroup* values:                         
+Virtuozzo Application Platform supports the following predefined *nodeGroup* values:                         
 
 - **lb** (for load balancers) - *nginx, varnish, haproxy, apache-lb*                     
 - **cp** (for compute nodes) - *tomcat6, tomcat7, tomcat8, tomee, glassfish3, glassfish4, jetty6, jetty8, jetty9, jboss7, smartfox-server, powerdns, railo4, wildfly, wildfly9, wildfly10, apache2, nginxphp, apache2-python, apache2-ruby, nginx-ruby, nodejs, iis8*                     
@@ -88,7 +88,7 @@ Virtuozzo PaaS platform supports the following predefined *nodeGroup* values:
 
 ## Containers by Types (*nodeType*)
 
-Virtuozzo PaaS Platform supports the following software stacks:         
+Virtuozzo Application Platform supports the following software stacks:         
 
 - **Compute nodes:**                  
     - *Java*                
@@ -146,9 +146,9 @@ Virtuozzo PaaS Platform supports the following software stacks:
 - **Docker containers:**                               
      - `docker`                       
 
-##Virtuozzo PaaS Native Container Types
+##Virtuozzo Application Platform Native Container Types
 
-Virtuozzo PaaS native software stacks include the following containers:                  
+Virtuozzo Application Platform native software stacks include the following containers:                  
 
 - **Compute nodes:**                            
     - *Java*               

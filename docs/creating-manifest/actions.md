@@ -246,9 +246,9 @@ cmd [nginx]:
    
 ### api
 
-Executing actions available by means of [Virtuozzo PaaS Cloud API](http://docs.jelastic.com/api).  
+Executing actions available by means of [Virtuozzo Application Platform Cloud API](http://docs.jelastic.com/api).  
 
-There are a number of parameters required by Virtuozzo PaaS API that are defined automatically:                            
+There are a number of parameters required by Virtuozzo Application Platform API that are defined automatically:                            
 
 - *envName* - environment domain name where the API method is executed             
 
@@ -280,7 +280,7 @@ api [cp]: api.environment.control.RestartNodes
 where:        
        
 - `api [cp]` - target node group for the API method execution (*[cp]*)                                                         
-- *api.environment.control.RestartNodes* - Virtuozzo PaaS API method for restarting nodes by group              
+- *api.environment.control.RestartNodes* - Virtuozzo Application Platform API method for restarting nodes by group              
 
 This method (*api.environment.control.RestartNodes*) can be simplified like shown in the next example.
 @@@
@@ -1419,11 +1419,11 @@ script [cp, 12345]: |
 ```
 @@!
 
-The `script` action provides an ability to execute Virtuozzo PaaS API in custom scripts. Therefore, it is easy to manage Virtuozzo PaaS environments by `scripts`.   
-There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certified by Virtuozzo PaaS team.
+The `script` action provides an ability to execute Virtuozzo Application Platform API in custom scripts. Therefore, it is easy to manage Virtuozzo Application Platform environments by `scripts`.   
+There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certified by Virtuozzo Application Platform team.
 
 !!! note
-    Learn more about using <a href="http://docs.jelastic.com/api" target="_blank">Virtuozzo PaaS Cloud API</a>.    
+    Learn more about using <a href="http://docs.jelastic.com/api" target="_blank">Virtuozzo Application Platform Cloud API</a>.    
 
 ### setGlobals
 
@@ -2448,7 +2448,7 @@ where:
 
 - `id` - identifier of a custom add-on                           
 
-You can locate the installed add-ons within the **Add-ons** tab at the Virtuozzo PaaS dashboard. 
+You can locate the installed add-ons within the **Add-ons** tab at the Virtuozzo Application Platform dashboard. 
 
 ![new-addon](/img/new-addon.png)
 
@@ -2527,7 +2527,7 @@ onInstall:
 ```
 @@!
 
-The result window also returns the compute node's unique identifier at Virtuozzo PaaS Platform.                                                
+The result window also returns the compute node's unique identifier at Virtuozzo Application Platform.                                                
 ![returnNodeId](/img/returnNodeId.jpg)
 
 If the action returns an object, a response code can be redefined. So the *message* or *result* code parameters are required in the *return* object. Herewith, a zero (0) *result* code is not passed to the response code.        
