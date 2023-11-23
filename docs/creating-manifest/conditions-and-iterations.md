@@ -1,6 +1,6 @@
 # Control Flows: Conditions and Iterations
 
-**Comparison** and **Logical** operators are used in *conditional* statements and serve to test for `ture` or `false`.
+**Comparison** and **Logical** operators are used in *conditional* statements and serve to test for `true` or `false`.
 
 ## Comparison Operators
 
