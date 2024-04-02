@@ -114,14 +114,6 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/payara/tree/master/addons/haproxy-load-balancing">Managed Haproxy Load Balancer</a>
-        </td>
-        <td>
-            Add-on to complement environment with auto-configured Docker Haproxy LB container
-        </td>
-    </tr>
-    <tr>
-        <td id="first-col">
             <a target="_blank" href="https://github.com/jelastic-jps/managecat">Managecat</a>
         </td>
         <td>
@@ -157,14 +149,6 @@
         </td>
         <td>
             Highly available GlassFish cluster on Docker containers with scalable Worker Nodes amount
-        </td>
-    </tr>
-    <tr>
-        <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/payara">Payara Micro Cluster</a>
-        </td>
-        <td>
-            Java-based app server cluster with autoscaling and session replication
         </td>
     </tr>
     <tr>

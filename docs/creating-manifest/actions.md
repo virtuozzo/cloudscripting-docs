@@ -246,7 +246,7 @@ cmd [nginx]:
    
 ### api
 
-Executing actions available by means of [Virtuozzo Application Platform Cloud API](http://docs.jelastic.com/api).  
+Executing actions available by means of [Virtuozzo Application Platform Cloud API](https://docs.jelastic.com/api/).  
 
 There are a number of parameters required by Virtuozzo Application Platform API that are defined automatically:                            
 
@@ -1423,7 +1423,7 @@ The `script` action provides an ability to execute Virtuozzo Application Platfor
 There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certified by Virtuozzo Application Platform team.
 
 !!! note
-    Learn more about using <a href="http://docs.jelastic.com/api" target="_blank">Virtuozzo Application Platform Cloud API</a>.    
+    Learn more about using <a href="https://docs.jelastic.com/api/" target="_blank">Virtuozzo Application Platform Cloud API</a>.    
 
 ### setGlobals
 
