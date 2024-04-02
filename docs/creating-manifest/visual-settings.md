@@ -21,6 +21,7 @@ You can use the parameters from the following example to fetch your input data.
 ```yaml
 settings:
   prepopulate: URL
+  submitUnchanged: boolean
   fields:
     - showIf: object
       type: string
@@ -45,6 +46,7 @@ settings:
 {
   "settings": {
     "prepopulate": "URL",
+    "submitUnchanged": "boolean",
     "fields": [
       {
         "showIf": "object",
@@ -74,6 +76,7 @@ settings:
 where:
 
 - `prepopulate` *[optional]* - link to a script, that will fetch default field values
+- `submitUnchanged` *[optional]* - allows (*true*) or forbids (*false*) the user to submit via the add-on’s input fields the same values as were provided the previous time. Default value is *'false'* 
 - `fields` - array of fields that will be displayed in a custom form
     - `showIf` - shows/hides field by condition 
     - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:
