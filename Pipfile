@@ -9,8 +9,7 @@ pymdown-extensions = {editable = true, path = "3rdparty/pymdown-extensions"}
 mkdocs = {editable = true, path = "3rdparty/mkdocs"}
 mkdocs-versioned = {editable = true, path = "3rdparty/mkdocs-versioned"}
 markdown-tabs = {editable = true, path = "plugins/markdown-tabs"}
-GitPython = {editable = true, path = "3rdparty/GitPython"}
-gitdb = "==4.0.4"
+GitPython = "==3.0.6"
 
 [dev-packages]
 
