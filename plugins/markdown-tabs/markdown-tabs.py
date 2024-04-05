@@ -5,8 +5,8 @@ from markdown.extensions import Extension
 from markdown.inlinepatterns import Pattern
 from markdown.preprocessors import Preprocessor
 
-TABS_START = ur'^@@@\s*$'
-TABS_END = ur'^@@!\s*$'
+TABS_START = r'^@@@\s*$'
+TABS_END = r'^@@!\s*$'
 TABS_START_REGEX = re.compile(TABS_START)
 TABS_END_REGEX = re.compile(TABS_END)
 

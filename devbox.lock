@@ -1,0 +1,18 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "pipenv@2020.6.2": {
+      "last_modified": "2020-08-25T08:51:33Z",
+      "resolved": "github:NixOS/nixpkgs/b9ba82ef8ad6d8997840332ca3a2986e360291e3#pipenv",
+      "source": "devbox-search",
+      "version": "2020.6.2"
+    },
+    "python@3.5.9": {
+      "last_modified": "2020-08-14T16:23:34Z",
+      "plugin_version": "0.0.3",
+      "resolved": "github:NixOS/nixpkgs/96745f0228359a71051a1d0bda4080e7ec134ade#python35",
+      "source": "devbox-search",
+      "version": "3.5.9"
+    }
+  }
+}

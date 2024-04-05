@@ -1,0 +1,15 @@
+{
+  "packages": {
+    "python": "3.5.9",
+    "pipenv": "2020.6.2"
+  },
+  "shell": {
+    "init_hook": [
+      "" 
+    ],
+    "scripts": {
+      "build": "pipenv run mkdocs build",
+      "serve": "pipenv run mkdocs serve"
+    }
+  }
+}
