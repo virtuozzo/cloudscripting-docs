@@ -7,9 +7,9 @@ name = "pypi"
 markdown = {editable = true, path = "3rdparty/markdown"}
 pymdown-extensions = {editable = true, path = "3rdparty/pymdown-extensions"}
 mkdocs = {editable = true, path = "3rdparty/mkdocs"}
-mkdocs-versioned = {editable = true, path = "3rdparty/mkdocs-versioned"}
-markdown-tabs = {editable = true, path = "plugins/markdown-tabs"}
 GitPython = "==3.0.6"
+mkdocs_versioned = {editable = true, path = "3rdparty/mkdocs-versioned"}
+markdown-tabs = {editable = true, path = "plugins/markdown-tabs"}
 
 [dev-packages]
 

@@ -135,6 +135,13 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
     formatedCSVersions = {}
     virtuozzoVersions = []
 
+    try:
+        # Python 2.x
+        unicode  # Attempt to access undefined name 'unicode' in Python 3.x will raise a NameError
+    except NameError:
+        # Python 3.x
+        unicode = str  # Define 'unicode' as an alias for 'str' in Python 3.x
+
     for version in versions:
         formatedCSVersions[unicode(version)] = versions[version]
 
