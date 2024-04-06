@@ -4,7 +4,7 @@ tasks:
   check-and-install-deps:
     desc: "Check and install dependencies"
     cmds:
-      - pipenv run which mkdocs && pipenv install --dev || true
+      - pipenv run which mkdocs &> /dev/null || pipenv install --dev
     internal: true
 
   serve:
