@@ -1,0 +1,29 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start the Docs web server",
+            "type": "shell",
+            "osx": {
+                "command": "command -v devbox &> /dev/null || (curl -fsSL https://get.jetpack.io/devbox | bash) && devbox run serve"
+            },
+            "linux": {
+                "command": "command -v devbox &> /dev/null || (curl -fsSL https://get.jetpack.io/devbox | bash) && devbox run serve"
+            },
+            "windows": {
+                "command": "where devbox >nul 2>&1 || (echo 'Devbox is not installed. Please visit https://www.jetpack.io/devbox/docs/installing_devbox/ for installation instructions.') && devbox run serve"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        }
+    ]
+}
