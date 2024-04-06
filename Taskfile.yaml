@@ -9,6 +9,7 @@ tasks:
 
   serve:
     desc: "Start the development server"
+    aliases: [default]
     deps:
       - check-and-install-deps
     cmds:
