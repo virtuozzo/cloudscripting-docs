@@ -34,6 +34,7 @@ Devbox is recommended for users who prefer a quick setup with isolated environme
 
     ```bash
     devbox shell
+
     task serve
     ```
 
@@ -44,7 +45,9 @@ Alternatively, in VS Code, you can run the `Start the Docs web server` task, whi
 
 ### Using a Dev Container
 
-For those seeking greater isolation and portability, the Dev Container method is ideal. Here are the steps to use Dev Container in VS Code:
+For those seeking greater isolation and portability, the Dev Container method is a better choice. It provides a consistent environment for everyone who uses it, ensuring that the documentation is built and served in the same way across different machines. The Dev Container in this repository is configured to use the Devbox inside, so you can use either method to run the docs web server.
+
+Here are the steps to use Dev Container in VS Code:
 
 1. Install [Docker Engine](https://docs.docker.com/engine/install/) if you don't already have it installed.
 2. Install the **Dev Containers** extension in VS Code.
@@ -58,7 +61,18 @@ For those seeking greater isolation and portability, the Dev Container method is
     task serve
     ```
 
-If the repository was cloned using SSH instead of HTTPS, to work with the remote repository from the Dev Container, you need to make sure that your SSH key is added to your local SSH agent. You can follow the instructions [here](https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials#_using-ssh-keys) on how to do it. In most cases, executing `ssh-add $HOME/.ssh/path_to_your_ssh_private_key` should be sufficient.
+In addition, the Dev Container in this repository is configured to install necessary VS Code extensions automatically. Here are the extensions that will be installed:
+
+- [devbox by jetpack.io](https://marketplace.visualstudio.com/items?itemName=jetpack-io.devbox)
+- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
+- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+- [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+- [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)
+- [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) with enabled Markdown support. This extension is optional but highly recommended for long-term use. It requires an active GitHub Copilot subscription.
+- [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). This extension is also optional but highly recommended for long-term use. It also requires an active GitHub Copilot subscription.
+
+> **Note:**
+> If the repository was cloned using SSH instead of HTTPS, to work with the remote repository from the Dev Container, you need to make sure that your SSH key is added to your local SSH agent. You can follow the instructions [here](https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials#_using-ssh-keys) on how to do it. In most cases, executing `ssh-add $HOME/.ssh/path_to_your_ssh_private_key` should be sufficient.
 
 ### Developing on Local Machine
 
@@ -66,13 +80,7 @@ MkDocs will incrementally rebuild the site with each file change. Keep your brow
 
 ## Developing In The Cloud
 
-When it comes to editing Git-based documentation in the cloud, there are multiple solutions to choose from. For minor changes in a single file, the GitHub interface can be suitable. However, for more extensive modifications, you might prefer a more comprehensive development environment. Some popular alternatives include GitHub Codespaces, github.dev, and Devbox Cloud.
-
-The github.dev is a lightweight web-based editor that offers a quick and convenient way to contribute without the need to start a web server and preview the entire end result.
-
-GitHub Codespaces provides a comprehensive development environment in the cloud, allowing you to easily edit and preview the documentation. It offers a full-featured development environment with a terminal, code editor, and integrated Git support.
-
-Devbox Cloud is a fast alternative to GitHub Codespaces, allowing you to instantly preview changes in the documentation without setting up a local development environment.
+When it comes to editing Git-based documentation in the cloud, there are multiple solutions to choose from. For minor changes in a single file, the GitHub interface can be suitable. However, for more extensive modifications, you might prefer a more comprehensive development environment. Some popular alternatives include github.dev, GitHub Codespaces, and Devbox Cloud.
 
 The choice of which solution to use depends on your specific needs and preferences. Whether you prioritize a comprehensive development environment, a lightweight web-based editor, or a fast and convenient editing experience, there is a solution available to suit your requirements.
 
@@ -80,26 +88,51 @@ The choice of which solution to use depends on your specific needs and preferenc
 
 The github.dev editor introduces a lightweight editing experience that runs entirely in your browser. With the github.dev editor, you can navigate files and source code repositories from GitHub, and make and commit code changes. You can open any repository, fork, or pull request in the editor.
 
-The github.dev editor is available to everyone for free on GitHub.com.
-
 ### Opening the github.dev editor
 
-You can open any GitHub repository in `github.dev` in either of the following ways:
+You can open the GitHub repository in `github.dev` in either of the following ways:
 
 - To open the repository in the same browser tab, press `.` while browsing the repository or pull request on GitHub.
 - To open the repository in a new browser tab, press `>`.
 - Change the URL from `github.com` to `github.dev`.
 - When viewing a file, select the `▾` dropdown menu and click `github.dev`.
 
-[More info](https://docs.github.com/en/codespaces/the-githubdev-web-based-editor)
+The drawback of the github.dev editor is that it doesn't provide a built-in terminal to start the web server. Therefore, you can only preview the changes in real-time, file by file, as a rendered Markdown. However, it's a great option for quick edits and minor contributions.
+
+Also, if you need more advanced features, you can navigate to Run and Debug section in the left sidebar and click on the `Continue Working On...` button to open the repository in GitHub Codespaces.
+
+[More info](https://docs.github.com/en/codespaces/the-githubdev-web-based-editor) about the github.dev editor.
 
 ## GitHub Codespaces
 
-https://github.com/features/codespaces
+GitHub Codespaces provides a comprehensive development environment in the cloud, allowing you to easily edit and preview the documentation. It offers a full-featured development environment with a terminal, code editor, and integrated Git support. When you open the repository in GitHub Codespaces, the Dev Container with Devbox inside and the VS Code extensions described above will be automatically built and started.
+
+To use GitHub Codespaces, follow these steps:
+
+1. Fork the repository to your GitHub account.
+2. Follow to [GitHub Codespaces](https://github.com/codespaces) and click on the `New codespace` button.
+3. Select the forked repository from the list of repositories.
+4. Select your region and machine type (the 2-core machine would be enough for this repository).
+5. Wait for the Codespace to be created. The Dev Container will be automatically built and started.
+6. After the Codespace is ready, execute the following commands in the integrated terminal to start the docs web server:
+
+    ```bash
+    devbox shell
+
+    task serve
+    ```
+
+7. After the web server is started, click on the `Open in browser` button to preview the documentation.
+8. Make some changes in the documentation and see that changes are reflected in the browser.
+9. Create a pull request to contribute the changes.
+
+[More info](https://docs.github.com/en/codespaces) about GitHub Codespaces.
 
 ## Devbox Cloud
 
-For those who prefer developing in the cloud and wants to instantly preview the end result, the Devbox Cloud is the best option. To use Devbox Cloud, follow these steps:
+Devbox Cloud is a fast alternative to GitHub Codespaces, allowing you to instantly preview changes in the documentation without setting up a local development environment. However, it doesn't provide a full-featured development environment with VS Code extensions like GitHub Codespaces.
+
+To use Devbox Cloud, follow these steps:
 
 1. Fork the repository to your GitHub account.
 2. Open [devbox.sh](https://devbox.sh/) in your browser.
@@ -113,3 +146,5 @@ For those who prefer developing in the cloud and wants to instantly preview the 
 5. Open a new tab in your browser and paste your current Devbox project link in the address bar. Then, add `/port/8000` at the end of the link. For example, if your Devbox project link is `https://devbox.sh/app/projects/proj_your_project_id`, the new link should be `https://devbox.sh/app/projects/proj_your_project_id/port/8000`.
 6. Make some changes in the documentation and see that changes are reflected in the browser.
 7. To contribute the changes, add Devbox Cloud GitHub App to your forked repository and create a pull request.
+
+[More info](https://www.jetpack.io/devbox/docs/devbox_cloud/) about Devbox Cloud.
