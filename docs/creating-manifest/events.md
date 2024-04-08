@@ -1718,7 +1718,7 @@ The event is executed after swapping the external domain names between two envir
     - `result` - result code. The successful action result is '0'
     
 ### onBeforeSwapExtIps
-The event is executed before swapping the external IPs between two environments via [API](https://docs.jelastic.com/api/#!/api/environment.Binder-method-SwapExtIps) or [Jelastic CLI](https://docs.jelastic.com/cli-ip-swap).
+The event is executed before swapping the external IPs between two environments via [API](https://docs.jelastic.com/api/#!/api/environment.Binder-method-SwapExtIps) or [Virtuozzo Application Platform CLI](https://www.virtuozzo.com/application-platform-docs/cli-ip-swap/).
 
 **Event Placeholders:**
 
@@ -1734,7 +1734,7 @@ The event is executed before swapping the external IPs between two environments 
     - `source` - “string” error description
 
 ### onAfterSwapExtIps
-The event is executed after swapping the external IPs between two environments via [API](https://docs.jelastic.com/api/#!/api/environment.Binder-method-SwapExtIps) or [Jelastic CLI](https://docs.jelastic.com/cli-ip-swap).
+The event is executed after swapping the external IPs between two environments via [API](https://docs.jelastic.com/api/#!/api/environment.Binder-method-SwapExtIps) or [Virtuozzo Application Platform CLI](https://www.virtuozzo.com/application-platform-docs/cli-ip-swap/).
 
 **Event Placeholders:**
 

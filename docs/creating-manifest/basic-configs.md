@@ -374,7 +374,7 @@ The *startService* flag works only for custom dockers and for dockerized templat
 
 The service doesn’t start as it is not added to autoload in the following cases:
 
--   the [RestartContainersByGroup](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartContainersByGroup) or [RestartContainer](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartContainer) methods are called through the API
+-   the [RestartNodes](https://docs.jelastic.com/api/#!/api/environment.Control-method-RestartNodes) method is called through the API
 
 -   the environment is stopped/started
 
@@ -382,7 +382,7 @@ The service doesn’t start as it is not added to autoload in the following case
 
 -   the environment is created with *startServiceOnCreation=false*
 
--   the Restart button is pressed at the dashboard calling the [RestartContainersByGroup](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartContainersByGroup) and [RestartContainer](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartContainer) API methods (only for managed dockerized containers)
+-   the Restart button is pressed at the dashboard calling the [RestartNodes](https://docs.jelastic.com/api/#!/api/environment.Control-method-RestartNodes) API method (only for managed dockerized containers)
 
 
 You can force adding the service to autoload by calling the *ExecDockerRunCmd* method
@@ -394,7 +394,7 @@ The service starts if:
 
 -   the container is scaled (starts at the newly added nodes)
 
--   the Restart button is pressed at the dashboard calling the [RestartNodesByGroup](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartNodesByGroup) and [RestartNodeById](http://apidoc.devapps.jelastic.com/5.4-private/#!/api/environment.Control-method-RestartNodeById) API methods (only for native Docker containers)
+-   the Restart button is pressed at the dashboard calling the [RestartNodes](https://docs.jelastic.com/api/#!/api/environment.Control-method-RestartNodes) API method (only for native Docker containers)
 
 <!-- end of startService section -->
 
@@ -1338,7 +1338,7 @@ success: text.txt
 ```
 @@!
 
-In the example above the text *text.txt* will be displayed in success email notification and in success window in Virtuozzo Application Platform dashboard when JPS installation will be finished. If URL **https://example.com/text.txt** has any content then that content will be displayed.
+In the example above the text *text.txt* will be displayed in success email notification and in success window in Virtuozzo Application Platform dashboard when JPS installation will be finished. If URL `https://example.com/text.txt` has any content then that content will be displayed.
 
 The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="../actions/#cmd" target="_blank">*cmd*</a> and <a href="../actions/#script" target="_blank">*script*</a> actions).                 
 

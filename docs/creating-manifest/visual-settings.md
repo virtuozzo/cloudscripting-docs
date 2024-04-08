@@ -21,6 +21,7 @@ You can use the parameters from the following example to fetch your input data.
 ```yaml
 settings:
   prepopulate: URL
+  submitUnchanged: boolean
   fields:
     - showIf: object
       type: string
@@ -45,6 +46,7 @@ settings:
 {
   "settings": {
     "prepopulate": "URL",
+    "submitUnchanged": "boolean",
     "fields": [
       {
         "showIf": "object",
@@ -74,6 +76,7 @@ settings:
 where:
 
 - `prepopulate` *[optional]* - link to a script, that will fetch default field values
+- `submitUnchanged` *[optional]* - allows (*true*) or forbids (*false*) the user to submit via the add-on’s input fields the same values as were provided the previous time. Default value is *'false'* 
 - `fields` - array of fields that will be displayed in a custom form
     - `showIf` - shows/hides field by condition 
     - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:
@@ -3114,7 +3117,7 @@ Style 1                            | Style 2                                    
 \# Heading 1                           | Heading 1<br>\=\=\=\=\=\=\=\=\=                                 | <h1 class='default'>Heading 1</h1>
 \#\# Heading 2                          | Heading 2<br>\-\-\-\-\-\-\-\-\-\-\-\-                           | <h2 class='default'>Heading 2</h2>
 \[Link](https://virtuozzo.com)          | [Link][1]<br>.<br>.<br>.<br>[1]: https://virtuozzo.com          |[virtuozzo.com URL](https://virtuozzo.com)
-\!\[Image](https://example.com/logo.png)| ![Image][1]<br>.<br>.<br>.<br>[1]: https://example.com/logo.png |![Image](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)
+\!\[Image](https:<span>//</span>example.com/logo.png)| ![Image][1]<br>.<br>.<br>.<br>[1]: https:<span>//</span>example.com/logo.png |![Image](/img/favicon.ico)
 \> Blockquote                          |                                                                 |![blockquote](/img/markdown_blockquote.jpg) Blockquote
 A paragraph.<br>  <br>A paragraph after 1 blank line.|                                                                 |A paragraph.<br><br>A paragraph after 1 blank line.
 \* List<br>\* List| \- List<br>\- List                                              |* List<br>* List
