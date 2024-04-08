@@ -12,7 +12,7 @@ When it comes to editing Git-based documentation in the cloud, there are multipl
 
 The choice of which solution to use depends on your specific needs and preferences. Whether you prioritize a comprehensive development environment, a lightweight web-based editor, or a fast and convenient editing experience, there is a solution available to suit your requirements.
 
-## GitHub Codespaces
+### GitHub Codespaces
 
 GitHub Codespaces provides a comprehensive development environment in the cloud, allowing you to easily edit and preview the documentation. It offers a full-featured development environment with a terminal, code editor, and integrated Git support. When you open the repository in GitHub Codespaces, the Dev Container with Devbox inside and the [VS Code extensions](#vs-code-preinstalled-extensions) will be automatically built and started.
 
@@ -36,11 +36,11 @@ To use GitHub Codespaces, follow these steps:
 
 [More info](https://docs.github.com/en/codespaces) about GitHub Codespaces.
 
-## The github.dev Web-Based Editor
+### The github.dev Web-Based Editor
 
 The github.dev editor introduces a lightweight editing experience that runs entirely in your browser. With the github.dev editor, you can navigate files and source code repositories from GitHub, and make and commit code changes. You can open any repository, fork, or pull request in the editor.
 
-### Opening the github.dev editor
+#### Opening the github.dev editor
 
 You can open the GitHub repository in `github.dev` in either of the following ways:
 
@@ -55,7 +55,7 @@ Also, if you need more advanced features, you can navigate to Run and Debug sect
 
 [More info](https://docs.github.com/en/codespaces/the-githubdev-web-based-editor) about the github.dev editor.
 
-## Devbox Cloud
+### Devbox Cloud
 
 Devbox Cloud is a fast alternative to GitHub Codespaces, allowing you to instantly preview changes in the documentation without setting up a local development environment. However, it doesn't provide a full-featured development environment with VS Code extensions like GitHub Codespaces.
 
