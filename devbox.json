@@ -1,0 +1,17 @@
+{
+  "packages": {
+    "python": "3.5.9",
+    "pipenv": "2020.6.2",
+    "go-task": "3.35.1"
+  },
+  "shell": {
+    "init_hook": [
+      ""
+    ],
+    "scripts": {
+      "serve": "task serve",
+      "build": "task build",
+      "build-all": "task build-all"
+    }
+  }
+}

@@ -9,3 +9,8 @@ target
 .DS_Store
 *.pyc
 *.egg-info*
+.devbox
+site
+3rdparty/*/build
+3rdparty/*/pyproject.toml
+plugins/*/build

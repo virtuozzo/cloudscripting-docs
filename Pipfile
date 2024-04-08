@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+markdown = {editable = true, path = "3rdparty/markdown"}
+pymdown-extensions = {editable = true, path = "3rdparty/pymdown-extensions"}
+mkdocs = {editable = true, path = "3rdparty/mkdocs"}
+GitPython = "==3.0.6"
+mkdocs_versioned = {editable = true, path = "3rdparty/mkdocs-versioned"}
+markdown-tabs = {editable = true, path = "plugins/markdown-tabs"}
+
+[dev-packages]
+
+[requires]
+python_version = "3.5"

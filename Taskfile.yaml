@@ -1,0 +1,38 @@
+version: "3"
+
+tasks:
+  check-and-install-deps:
+    desc: "Check and install dependencies"
+    cmds:
+      - pipenv run which mkdocs &> /dev/null || pipenv install --dev
+    internal: true
+
+  serve:
+    desc: "Start the development server"
+    aliases: [default]
+    deps:
+      - check-and-install-deps
+    cmds:
+      - pipenv run mkdocs serve
+
+  build:
+    desc: "Build the current version of the documentation"
+    deps:
+      - check-and-install-deps
+    cmds:
+      - pipenv run mkdocs build
+
+  build-all:
+    desc: >-
+      Build all versions described in the mkdocs.yml for production.
+      Make sure to commit the changes before running this task.
+      All uncommitted changes will be stashed and can be restored via 'git stash apply 0' in the branch you were working on.
+
+    deps:
+      - check-and-install-deps
+    cmds:
+      - DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
+        VERSION=$1;
+
+        pipenv run mkdocs_versioned --default-branch=$VERSION;
+        cp issue_report.php site/;
