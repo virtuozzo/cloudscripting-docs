@@ -1338,7 +1338,7 @@ success: text.txt
 ```
 @@!
 
-In the example above the text *text.txt* will be displayed in success email notification and in success window in Virtuozzo Application Platform dashboard when JPS installation will be finished. If URL **https:/\/example.com/text.txt** has any content then that content will be displayed.
+In the example above the text *text.txt* will be displayed in success email notification and in success window in Virtuozzo Application Platform dashboard when JPS installation will be finished. If URL `https://example.com/text.txt` has any content then that content will be displayed.
 
 The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="../actions/#cmd" target="_blank">*cmd*</a> and <a href="../actions/#script" target="_blank">*script*</a> actions).                 
 
