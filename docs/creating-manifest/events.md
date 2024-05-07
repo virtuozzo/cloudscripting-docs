@@ -700,6 +700,37 @@ The event is executed after setting cloudlet count, which implies changing the n
 - `${event.response.}`:
     - `result` - result code. The successful action result is *'0'*
 
+### onBeforeSetCrossServiceNetworkIpCount
+
+The event is executed before setting the <a href="https://www.virtuozzo.com/application-platform-ops-docs/cross-network-overview/" target="_blank">Cross-Service Network</a> IP address count, which implies changing the number of allocated cross-service IPs per any layer in the environment.
+
+**Event Placeholders:**
+
+- `${event.params.}`:
+    - `count` - number of cross-service IPs
+    - `session` - current user session
+    - `envName` - environment unique appid
+    - `appid` - application unique appid
+    - `nodeid` - node identifier for attaching external IP address
+    - `nodeGroup` - node group
+- `${event.response.}`: parameters are absent
+
+### onAfterSetCrossServiceNetworkIpCount
+
+The event is executed after setting the <a href="https://www.virtuozzo.com/application-platform-ops-docs/cross-network-overview/" target="_blank">Cross-Service Network</a> IP address count, which implies changing the number of allocated cross-service IPs per any layer in the environment.
+
+**Event Placeholders:**
+
+- `${event.params.}`:
+    - `count` - number of cross-service IPs
+    - `session` - current user session
+    - `envName` - environment unique appid
+    - `appid` - application unique appid
+    - `nodeid` - node identifier for attaching external IP address
+    - `nodeGroup` - node group
+- `${event.response.}`:
+    - `result` - result code. The successful action result is *'0'*
+
 ### onBeforeChangeEngine
 
 The event is performed before changing the engine's version (e.g. from *php 7* to *php 7.1*) in the required environment. The *onBeforeChangeEngine* event is not compatible with Docker-based environments.
