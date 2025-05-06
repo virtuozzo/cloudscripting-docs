@@ -41,9 +41,14 @@ jobs:
       run: |
         task build
 
-    - name: Deploy to GitHub Pages
-      if: github.ref == 'refs/heads/main'
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Create documentation archive
+      run: |
+        tar -czvf csdocs.tar.gz -C site .
+
+    - name: Upload documentation as artifact
+      uses: actions/upload-artifact@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./site
+        name: CSDocs
+        path: ./csdocs.tar.gz
+        retention-days: 14
+        if-no-files-found: error
