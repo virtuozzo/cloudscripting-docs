@@ -1,12 +1,7 @@
 name: Build and Deploy Documentation
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch: # Enables manual trigger
 
 jobs:
   build:
