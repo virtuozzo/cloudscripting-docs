@@ -31,7 +31,7 @@ jobs:
         pip install --upgrade pip
         pip install pipenv
         pipenv lock --clear
-        pipenv install --deploy
+        pipenv install --deploy --system
 
     - name: Build documentation
       run: |
