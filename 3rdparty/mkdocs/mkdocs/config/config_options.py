@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-from collections.abc import Sequence
+from collections import Sequence
 import os
 from collections import namedtuple
 
