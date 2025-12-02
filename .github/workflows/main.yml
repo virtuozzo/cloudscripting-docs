@@ -41,9 +41,8 @@ jobs:
         tar -czvf csdocs.tar.gz -C site .
 
     - name: Upload documentation as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-        name: CSDocs
+        name: csdocs
         path: ./csdocs.tar.gz
-        retention-days: 14
         if-no-files-found: error
