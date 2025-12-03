@@ -7,7 +7,9 @@ copyright: Copyright &copy; Virtuozzo, Inc.
 #theme_center_lead: false
 
 
-theme_dir: './theme/readthedocs'
+theme:
+  name: null
+  custom_dir: 'theme/readthedocs'
 repo_url: 'https://github.com/virtuozzo/cloudscripting-docs/edit/master/docs/'
 
 markdown_extensions:
@@ -32,7 +34,7 @@ markdown_extensions:
   - pymdownx.tasklist(custom_checkbox=true)
   - pymdownx.tilde
 
-pages:
+nav:
 
 - GETTING STARTED:
    - Overview: index.md

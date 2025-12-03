@@ -38,10 +38,11 @@ class TabsPreprocessor(Preprocessor):
         return new_lines
 
 class TabsExtension(Extension):
-    def extendMarkdown(self, md, md_globals):
+    # Compatible with Markdown 2.x (md, md_globals) and 3.x (md) signatures
+    def extendMarkdown(self, md, md_globals=None):
         md.registerExtension(self)
+        # Old-style assignment still works; no need for md.preprocessors.register here
         md.preprocessors["tabs"] = TabsPreprocessor()
-        pass
 
 
 def makeExtension(*args, **kwargs):
