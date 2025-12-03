@@ -12,10 +12,6 @@ TABS_END_REGEX = re.compile(TABS_END)
 
 
 class TabsPreprocessor(Preprocessor):
-    def __init__(self, md):
-        # Markdown 3.x expects the Markdown instance here
-        super(TabsPreprocessor, self).__init__(md)
-
     def run(self, lines):
         new_lines = []
         skip_empty_line = False
@@ -44,11 +40,10 @@ class TabsPreprocessor(Preprocessor):
 
 
 class TabsExtension(Extension):
-    # Compatible with Markdown 2.x (md, md_globals) and 3.x (md) signatures
-    def extendMarkdown(self, md, md_globals=None):
+    def extendMarkdown(self, md, md_globals):
         md.registerExtension(self)
-        # Use the modern registry API; this works across Markdown 3.x
-        md.preprocessors.register(TabsPreprocessor(md), 'tabs', 25)
+        md.preprocessors["tabs"] = TabsPreprocessor()
+        pass
 
 
 def makeExtension(*args, **kwargs):

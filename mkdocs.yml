@@ -7,23 +7,20 @@ copyright: Copyright &copy; Virtuozzo, Inc.
 #theme_center_lead: false
 
 
-theme:
-  name: null
-  custom_dir: 'theme/readthedocs'
+theme_dir: './theme/readthedocs'
 repo_url: 'https://github.com/virtuozzo/cloudscripting-docs/edit/master/docs/'
 
 markdown_extensions:
   - admonition
+  - toc
   - tables
   - markdown-tabs
   - markdown.extensions.admonition
   - markdown.extensions.footnotes
   - markdown.extensions.meta
-  - toc:
-      permalink: true
+  - markdown.extensions.toc(permalink=true)
   - pymdownx.arithmatex
-  - pymdownx.betterem:
-      smart_enable: all
+  - pymdownx.betterem(smart_enable=all)
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.emoji:
@@ -32,11 +29,10 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.tasklist:
-      custom_checkbox: true
+  - pymdownx.tasklist(custom_checkbox=true)
   - pymdownx.tilde
 
-nav:
+pages:
 
 - GETTING STARTED:
    - Overview: index.md

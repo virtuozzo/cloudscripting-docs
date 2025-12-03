@@ -4,9 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-markdown = ">=3.3,<4"
-pymdown-extensions = ">=9,<11"
-mkdocs = "==1.6.1"
+markdown = {editable = true, path = "3rdparty/markdown"}
+pymdown-extensions = {editable = true, path = "3rdparty/pymdown-extensions"}
+mkdocs = {editable = true, path = "3rdparty/mkdocs"}
 GitPython = "==3.0.6"
 mkdocs_versioned = {editable = true, path = "3rdparty/mkdocs-versioned"}
 markdown-tabs = {editable = true, path = "plugins/markdown-tabs"}
