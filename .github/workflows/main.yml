@@ -61,3 +61,23 @@ jobs:
         name: csdocs
         path: ./csdocs.tar.gz
         if-no-files-found: error
+
+    - name: Publish
+      uses: nogsantos/scp-deploy@master
+      with:
+        src: csdocs.tar.gz
+        remote: /tmp/csdocs.tar.gz
+        host: ${{ secrets.HOST_IP }}
+        port: 22
+        user: jelastic
+        key: ${{ secrets.SSH_KEY }}
+
+    - name: Update
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST_IP }}
+        username: jelastic
+        key: ${{ secrets.SSH_KEY }}
+        port: 22
+        script: |
+          rm -rf /tmp/public; mkdir -p /tmp/public; tar -xzf /tmp/csdocs.tar.gz -C /tmp/public/;
