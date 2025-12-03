@@ -10,6 +10,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - name: Set up Go
       uses: actions/setup-go@v4
@@ -31,11 +33,23 @@ jobs:
         pip install --upgrade pip
         pip install pipenv
         pipenv lock --clear
-        pipenv install --deploy --system
+        pipenv install --dev --deploy
 
-    - name: Build documentation
+    - name: Fetch all branches
       run: |
-        task build
+        git fetch --all --prune
+
+    - name: Build documentation (all versions)
+      run: |
+        # Determine latest version from mkdocs.yml (last line in extra.versions)
+        LATEST_VERSION="$(tail -n 1 mkdocs.yml | sed 's/://')"
+        echo "Latest documentation version: ${LATEST_VERSION}"
+
+        # Build all versions using mkdocs_versioned (similar to build.sh)
+        pipenv run mkdocs_versioned --default-branch="${LATEST_VERSION}"
+
+        # Copy issue report page into the built site root
+        cp issue_report.php site/
 
     - name: Create documentation archive
       run: |
