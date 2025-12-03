@@ -83,7 +83,7 @@
     </tr>
 </table>
 
-### Add-ons Examples
+### Add-On Examples
 
 <p dir="ltr" style="text-align: justify;">Use pluggable add-ons to easily extend functionality of the already existing environments without the necessity to reconfigure each of them manually.</p>
 
