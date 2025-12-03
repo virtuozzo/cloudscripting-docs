@@ -10,6 +10,7 @@ TABS_END = r'^@@!\s*$'
 TABS_START_REGEX = re.compile(TABS_START)
 TABS_END_REGEX = re.compile(TABS_END)
 
+
 class TabsPreprocessor(Preprocessor):
     def run(self, lines):
         new_lines = []
@@ -36,6 +37,7 @@ class TabsPreprocessor(Preprocessor):
             new_lines.append(line)
 
         return new_lines
+
 
 class TabsExtension(Extension):
     def extendMarkdown(self, md, md_globals):
