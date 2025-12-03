@@ -10,7 +10,12 @@ TABS_END = r'^@@!\s*$'
 TABS_START_REGEX = re.compile(TABS_START)
 TABS_END_REGEX = re.compile(TABS_END)
 
+
 class TabsPreprocessor(Preprocessor):
+    def __init__(self, md):
+        # Markdown 3.x expects the Markdown instance here
+        super(TabsPreprocessor, self).__init__(md)
+
     def run(self, lines):
         new_lines = []
         skip_empty_line = False
@@ -37,12 +42,13 @@ class TabsPreprocessor(Preprocessor):
 
         return new_lines
 
+
 class TabsExtension(Extension):
     # Compatible with Markdown 2.x (md, md_globals) and 3.x (md) signatures
     def extendMarkdown(self, md, md_globals=None):
         md.registerExtension(self)
-        # Old-style assignment still works; no need for md.preprocessors.register here
-        md.preprocessors["tabs"] = TabsPreprocessor()
+        # Use the modern registry API; this works across Markdown 3.x
+        md.preprocessors.register(TabsPreprocessor(md), 'tabs', 25)
 
 
 def makeExtension(*args, **kwargs):
