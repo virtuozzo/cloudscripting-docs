@@ -14,13 +14,13 @@ repo_url: 'https://github.com/virtuozzo/cloudscripting-docs/edit/master/docs/'
 
 markdown_extensions:
   - admonition
-  - toc
   - tables
   - markdown-tabs
   - markdown.extensions.admonition
   - markdown.extensions.footnotes
   - markdown.extensions.meta
-  - markdown.extensions.toc(permalink=true)
+  - toc:
+      permalink: true
   - pymdownx.arithmatex
   - pymdownx.betterem(smart_enable=all)
   - pymdownx.caret
