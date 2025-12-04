@@ -81,4 +81,4 @@ jobs:
         port: 22
         script: |
           rm -rf /tmp/public; mkdir -p /tmp/public; tar -xzf /tmp/csdocs.tar.gz -C /tmp/public/;
-          rsync -az --delete /tmp/public/ /var/www/webroot/ROOT/site/;
+          #rsync -az --delete /tmp/public/ /var/www/webroot/ROOT/site/;
