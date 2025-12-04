@@ -154,7 +154,7 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
         virtuozzoVersions = sorted(virtuozzoVersions, key=functools.cmp_to_key(version_compare))
 
         # default_version = next(iter(release_branches), None)# release_branches[-1]
-        default_version = release_branches[-1] if release_branches else None
+        default_version = release_branches[0] if release_branches else None
 
         print("Default version %s", default_version)
         print("Building %s to /", default_version)
