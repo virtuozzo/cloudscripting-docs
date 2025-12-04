@@ -157,9 +157,10 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
         virtuozzoVersions = formatedCSVersions.values()
 
     if release_branches is not None:
-        # Sort versions numerically: oldest -> newest
+        # Sort branch keys numerically (X.Y.Z): oldest -> newest
         release_branches = sorted(release_branches, key=version_key)
-        virtuozzoVersions = sorted(virtuozzoVersions, key=version_key)
+        # Rebuild virtuozzoVersions list in the same order as release_branches
+        virtuozzoVersions = [formatedCSVersions[rb] for rb in release_branches]
 
         # Take the last (newest) version as default
         default_version = release_branches[-1] if release_branches else None
