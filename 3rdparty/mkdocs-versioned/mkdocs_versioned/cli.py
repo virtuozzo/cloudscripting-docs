@@ -90,6 +90,13 @@ def version_compare(version1, version2):
     return 0
 
 
+def version_key(version):
+    """
+    Convert version string like '8.10.1' to a tuple of ints (8, 10, 1)
+    so that normal ascending sort gives oldest -> newest.
+    """
+    return tuple(map(int, str(version).split('.')))
+
 @click.command()
 @click.option('--config-file', type=click.File('rb'), help=config_file_help)
 @click.option('--strict', is_flag=True, help=strict_help)
@@ -150,11 +157,12 @@ def build_command(config_file, strict, site_dir, branches, default_branch, lates
         virtuozzoVersions = formatedCSVersions.values()
 
     if release_branches is not None:
-        release_branches = sorted(release_branches, key=functools.cmp_to_key(version_compare))
-        virtuozzoVersions = sorted(virtuozzoVersions, key=functools.cmp_to_key(version_compare))
+        # Sort versions numerically: oldest -> newest
+        release_branches = sorted(release_branches, key=version_key)
+        virtuozzoVersions = sorted(virtuozzoVersions, key=version_key)
 
-        # default_version = next(iter(release_branches), None)# release_branches[-1]
-        default_version = release_branches[0] if release_branches else None
+        # Take the last (newest) version as default
+        default_version = release_branches[-1] if release_branches else None
 
         print("Default version %s", default_version)
         print("Building %s to /", default_version)
