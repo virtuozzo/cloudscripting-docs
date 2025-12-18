@@ -26,22 +26,22 @@ The database can be extended or modified with the `key_map` dict.
 
 ### Input
 
-~~~
+```
 Press ++Shift+Alt+PgUp++, type in ++"Hello"++ and press ++Enter++.
-~~~
+```
 
 ### Config 1
 
-~~~.yaml
+```
   pymdownx.keys:
     camel_case: true
     strict: false
     separator: '+'
-~~~
+```
 
 ### Output 1
 
-~~~.html
+```
 <p>Press <span class="keys"><kbd class="key-shift">Shift</kbd><span>+</span><kbd
 class="key-alt">Alt</kbd><span>+</span><kbd class="key-page-up">Page Up</kbd></span>, type in <span
 class="keys"><kbd>Hello</kbd></span> and press <span class="keys"><kbd class="key-enter">Enter</kbd></span>.</p>
@@ -49,20 +49,20 @@ class="keys"><kbd>Hello</kbd></span> and press <span class="keys"><kbd class="ke
 
 ### Config 2
 
-~~~.yaml
+```
   pymdownx.keys:
     camel_case: true
     strict: true
     separator: ''
-~~~
+```
 
 ### Output 2
 
-~~~.html
+```
 <p>Press <kbd class="keys"><kbd class="key-shift">Shift</kbd><kbd class="key-alt">Alt</kbd><kbd
 class="key-page-up">Page Up</kbd></kbd>, type in <kbd class="keys"><kbd>Hello</kbd></kbd> and press <kbd
 class="keys"><kbd class="key-enter">Enter</kbd></kbd>.</p>
-~~~
+```
 
 Idea by Adam Twardoch and coded by Isaac Muse.
 
@@ -82,15 +82,16 @@ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABI
 CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
-from __future__ import unicode_literals
+import html
 from markdown import Extension
-from markdown.inlinepatterns import Pattern
+from markdown.inlinepatterns import InlineProcessor
 from markdown import util as md_util
+import xml.etree.ElementTree as etree
 from . import util
 from . import keymap_db as keymap
 import re
 
-RE_KBD = r'''(?x)
+RE_EARLY_KBD = r'''(?x)
 (?:
     # Escape
     (?<!\\)(?P<escapes>(?:\\{2})+)(?=\+)|
@@ -104,27 +105,28 @@ RE_KBD = r'''(?x)
 )
 '''
 
+RE_KBD = r'\+{2}([\w\-]+(?:\+[\w\-]+)*?)\+{2}'
+
 ESCAPE_RE = re.compile(r'''(?<!\\)(?:\\\\)*\\(.)''')
 UNESCAPED_PLUS = re.compile(r'''(?<!\\)(?:\\\\)*(\+)''')
-ESCAPED_BSLASH = '%s%s%s' % (md_util.STX, ord('\\'), md_util.ETX)
+ESCAPED_BSLASH = '{}{}{}'.format(md_util.STX, ord('\\'), md_util.ETX)
 DOUBLE_BSLASH = '\\\\'
 
 
-class KeysPattern(Pattern):
+class KeysPattern(InlineProcessor):
     """Return kbd tag."""
 
-    def __init__(self, pattern, config, md):
+    def __init__(self, pattern, config, md, early=False):
         """Initialize."""
 
         self.ksep = config['separator']
-        self.markdown = md
         self.strict = config['strict']
         self.classes = config['class'].split(' ')
-        self.html_parser = util.HTMLParser()
         self.map = self.merge(keymap.keymap, config['key_map'])
         self.aliases = keymap.aliases
         self.camel = config['camel_case']
-        super(KeysPattern, self).__init__(pattern)
+        self.early = early
+        super().__init__(pattern, md)
 
     def merge(self, x, y):
         """Given two dicts, merge them into a new dict."""
@@ -156,7 +158,7 @@ class KeysPattern(Pattern):
         """Process key."""
 
         if key.startswith(('"', "'")):
-            value = (None, self.html_parser.unescape(ESCAPE_RE.sub(r'\1', key[1:-1])).strip())
+            value = (None, html.unescape(ESCAPE_RE.sub(r'\1', key[1:-1])).strip())
         else:
             norm_key = self.normalize(key)
             canonical_key = self.aliases.get(norm_key, norm_key)
@@ -164,17 +166,29 @@ class KeysPattern(Pattern):
             value = (canonical_key, name) if name else None
         return value
 
-    def handleMatch(self, m):
+    def handleMatch(self, m, data):
         """Handle kbd pattern matches."""
 
-        if m.group(2):
-            return m.group('escapes').replace(DOUBLE_BSLASH, ESCAPED_BSLASH)
-        content = [self.process_key(key) for key in UNESCAPED_PLUS.split(m.group(3)) if key != '+']
+        if self.early:
+            if m.group(1):
+                return m.group('escapes').replace(DOUBLE_BSLASH, ESCAPED_BSLASH), m.start(0), m.end(0)
+            quoted = 0
+            content = []
+            for key in UNESCAPED_PLUS.split(m.group(2)):
+                if key != '+':
+                    if key.startswith(('"', "'")):
+                        quoted += 1
+                    content.append(self.process_key(key))
+            # Defer unquoted cases until later to avoid parsing URLs
+            if not quoted:
+                return None, None, None
+        else:
+            content = [self.process_key(key) for key in m.group(1).split('+')]
 
         if None in content:
-            return
+            return None, None, None
 
-        el = md_util.etree.Element(
+        el = etree.Element(
             ('kbd' if self.strict else 'span'),
             ({'class': ' '.join(self.classes)} if self.classes else {})
         )
@@ -185,16 +199,16 @@ class KeysPattern(Pattern):
             if item_class:
                 classes.append('key-' + item_class)
             if last is not None and self.ksep:
-                span = md_util.etree.SubElement(el, 'span')
+                span = etree.SubElement(el, 'span')
                 span.text = md_util.AtomicString(self.ksep)
             attr = {}
             if classes:
                 attr['class'] = ' '.join(classes)
-            kbd = md_util.etree.SubElement(el, 'kbd', attr)
+            kbd = etree.SubElement(el, 'kbd', attr)
             kbd.text = md_util.AtomicString(item_name)
             last = kbd
 
-        return el
+        return el, m.start(0), m.end(0)
 
 
 class KeysExtension(Extension):
@@ -210,13 +224,14 @@ class KeysExtension(Extension):
             'camel_case': [False, 'Allow camelCase conversion for key names PgDn -> pg-dn - Default: False'],
             'key_map': [{}, 'Additional keys to include or keys to override - Default: {}']
         }
-        super(KeysExtension, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
-    def extendMarkdown(self, md, md_globals):
+    def extendMarkdown(self, md):
         """Add support for keys."""
 
         util.escape_chars(md, ['+'])
-        md.inlinePatterns.add("keys", KeysPattern(RE_KBD, self.getConfigs(), md), "<escape")
+        md.inlinePatterns.register(KeysPattern(RE_EARLY_KBD, self.getConfigs(), md, early=True), "keys-custom", 185)
+        md.inlinePatterns.register(KeysPattern(RE_KBD, self.getConfigs(), md), "keys", 70)
 
 
 def makeExtension(*args, **kwargs):

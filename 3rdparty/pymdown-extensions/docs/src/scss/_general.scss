@@ -1,0 +1,94 @@
+@use "palette/material_color";
+@use "palette/dracula";
+@use "utilities/break";
+@use "utilities/convert";
+
+/* Normal colors */
+:root {
+  --md-heart: #{material_color.$clr-red-a200};
+  --md-heart-big: #{material_color.$clr-red-a400};
+
+  /* Dark mode colors */
+  [data-md-color-scheme="slate"] {
+    --md-heart: #{dracula.$drac-red};
+    --md-heart-big: #{dracula.$drac-pink};
+  }
+}
+
+.md-typeset {
+
+    a.source-link {
+        position: relative;
+        top: convert.px2rem(-12px);
+        float: right;
+        color: var(--md-default-fg-color--lighter);
+        transition: color 125ms;
+
+        &:hover {
+          color: var(--md-accent-fg-color);
+        }
+
+        .twemoji {
+            height: convert.px2rem(24px);
+
+            svg {
+                width: convert.px2rem(24px);
+                height: convert.px2rem(24px);
+            }
+        }
+    }
+
+    div.highlight.md-max-height pre > code {
+      max-height: convert.px2rem(300px);
+    }
+}
+
+.twemoji {
+  &.heart-throb, &.heart-throb-hover {
+    svg {
+      position: relative;
+      color: var(--md-heart);
+      animation: pulse 1.5s ease infinite;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  40% { color: var(--md-heart-big); transform: scale(1.3); }
+  50% { transform: scale(1.2); }
+  60% { color: var(--md-heart-big); transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+footer.sponsorship {
+  text-align: center;
+
+  .twemoji {
+    padding: convert.px2rem(1px);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  hr {
+    display: inline-block;
+    width: convert.px2rem(32px);
+    margin: 0 convert.px2rem(14px);
+    vertical-align: middle;
+    border-bottom: 2px solid var(--md-default-fg-color--lighter);
+  }
+
+  &:hover {
+    hr {
+        border-color: var(--md-accent-fg-color);
+    }
+  }
+
+  &:not(:hover) {
+    .twemoji.heart-throb-hover svg{
+        color: var(--md-default-fg-color--lighter) !important;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+/* --8<-- [start: css-section] */
+div {
+    color: red;
+}
+/* --8<-- [end: css-section] */
+
+<!-- -8<- [start: html-section] -->
+<div><p>content</p></div>
+<!-- -8<- [end: html-section] -->
+
+/* --8<-- [end: css-section2] */
+/* --8<-- [start: css-section2] */
+div {
+    color: red;
+}
+/* --8<-- [end: css-section2] */
+
+<!-- --8<-- [start: html-section2] -->
+<div><p>content</p></div>

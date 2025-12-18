@@ -1,3 +1,5 @@
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -56,17 +58,15 @@ target/
 
 tools/emoji.md
 
-site/*
+site/
 
-tools/tags/*
+tools/tags/
 
 tmp*
 
-node_modules/*
+node_modules/
 
-*.js.map
-
-manifest.json
+manifest*.json
 *.dic
 
 # IDE
@@ -74,3 +74,7 @@ manifest.json
 
 # cache
 .pytest_cache
+
+# Patches
+*.patch
+docs/src/dictionary/hunspell/

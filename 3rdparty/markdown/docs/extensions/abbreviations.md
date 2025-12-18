@@ -36,10 +36,35 @@ will be rendered as:
 is maintained by the <abbr title="World Wide Web Consortium">W3C</abbr>.</p>
 ```
 
+The backslash (`\`) is not permitted in an abbreviation. Any abbreviation
+definitions which include one or more backslashes between the square brackets
+will not be recognized as an abbreviation definition.
+
 Usage
 -----
 
-See [Extensions](index.md) for general extension usage, specify `markdown.extensions.abbr`
-as the name of the extension.
+See [Extensions](index.md) for general extension usage. Use `abbr` as the name
+of the extension.
 
-This extension does not accept any special configuration options.
+The following options are provided to configure the output:
+
+* **`glossary`**:
+    A dictionary where the `key` is the abbreviation and the `value` is the definition.
+
+A trivial example:
+
+```python
+markdown.markdown(some_text, extensions=['abbr'])
+```
+
+Disabling Abbreviations
+-----------------------
+
+When using the `glossary` option, there may be times when you need to turn off
+a specific abbreviation. To do this, set the abbreviation to `''` or `""`.
+
+```md
+The HTML abbreviation is disabled on this page.
+
+*[HTML]: ''
+```

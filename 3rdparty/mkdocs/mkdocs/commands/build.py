@@ -1,290 +1,369 @@
-# coding: utf-8
+from __future__ import annotations
 
-from __future__ import unicode_literals
-from datetime import datetime
-from calendar import timegm
-import io
+import gzip
 import logging
 import os
+import time
+from typing import TYPE_CHECKING, Sequence
+from urllib.parse import urljoin, urlsplit
 
-from jinja2.exceptions import TemplateNotFound
 import jinja2
+from jinja2.exceptions import TemplateNotFound
 
-from mkdocs import nav, utils
 import mkdocs
+from mkdocs import utils
+from mkdocs.exceptions import Abort, BuildError
+from mkdocs.structure.files import File, Files, InclusionLevel, get_files, set_exclusions
+from mkdocs.structure.nav import Navigation, get_navigation
+from mkdocs.structure.pages import Page
+from mkdocs.utils import DuplicateFilter  # noqa: F401 - legacy re-export
+from mkdocs.utils import templates
 
-
-class DuplicateFilter(object):
-    ''' Avoid logging duplicate messages. '''
-    def __init__(self):
-        self.msgs = set()
-
-    def filter(self, record):
-        rv = record.msg not in self.msgs
-        self.msgs.add(record.msg)
-        return rv
+if TYPE_CHECKING:
+    from mkdocs.config.defaults import MkDocsConfig
 
 
 log = logging.getLogger(__name__)
-log.addFilter(DuplicateFilter())
 
 
-def get_context(nav, config, page=None):
-    """
-    Given the SiteNavigation and config, generate the context which is relevant
-    to app pages.
-    """
+def get_context(
+    nav: Navigation,
+    files: Sequence[File] | Files,
+    config: MkDocsConfig,
+    page: Page | None = None,
+    base_url: str = '',
+) -> templates.TemplateContext:
+    """Return the template context for a given page or template."""
+    if page is not None:
+        base_url = utils.get_relative_url('.', page.url)
 
-    if nav is None:
-        return {'page', page}
+    extra_javascript = [
+        utils.normalize_url(str(script), page, base_url) for script in config.extra_javascript
+    ]
+    extra_css = [utils.normalize_url(path, page, base_url) for path in config.extra_css]
 
-    extra_javascript = utils.create_media_urls(nav, config['extra_javascript'])
+    if isinstance(files, Files):
+        files = files.documentation_pages()
 
-    extra_css = utils.create_media_urls(nav, config['extra_css'])
-
-    # Support SOURCE_DATE_EPOCH environment variable for "reproducible" builds.
-    # See https://reproducible-builds.org/specs/source-date-epoch/
-    timestamp = int(os.environ.get('SOURCE_DATE_EPOCH', timegm(datetime.utcnow().utctimetuple())))
-
-    return {
-        'nav': nav,
-        # base_url should never end with a slash.
-        'base_url': nav.url_context.make_relative('/').rstrip('/'),
-
-        'extra_css': extra_css,
-        'extra_javascript': extra_javascript,
-
-        'mkdocs_version': mkdocs.__version__,
-        'build_date_utc': datetime.utcfromtimestamp(timestamp),
-
-        'config': config,
-        'page': page,
-    }
+    return templates.TemplateContext(
+        nav=nav,
+        pages=files,
+        base_url=base_url,
+        extra_css=extra_css,
+        extra_javascript=extra_javascript,
+        mkdocs_version=mkdocs.__version__,
+        build_date_utc=utils.get_build_datetime(),
+        config=config,
+        page=page,
+    )
 
 
-def build_template(template_name, env, config, site_navigation=None):
-    """ Build a template using the theme environment. """
+def _build_template(
+    name: str, template: jinja2.Template, files: Files, config: MkDocsConfig, nav: Navigation
+) -> str:
+    """Return rendered output for given template as a string."""
+    # Run `pre_template` plugin events.
+    template = config.plugins.on_pre_template(template, template_name=name, config=config)
 
-    log.debug("Building template: %s", template_name)
+    if utils.is_error_template(name):
+        # Force absolute URLs in the nav of error pages and account for the
+        # possibility that the docs root might be different than the server root.
+        # See https://github.com/mkdocs/mkdocs/issues/77.
+        # However, if site_url is not set, assume the docs root and server root
+        # are the same. See https://github.com/mkdocs/mkdocs/issues/1598.
+        base_url = urlsplit(config.site_url or '/').path
+    else:
+        base_url = utils.get_relative_url('.', name)
+
+    context = get_context(nav, files, config, base_url=base_url)
+
+    # Run `template_context` plugin events.
+    context = config.plugins.on_template_context(context, template_name=name, config=config)
+
+    output = template.render(context)
+
+    # Run `post_template` plugin events.
+    output = config.plugins.on_post_template(output, template_name=name, config=config)
+
+    return output
+
+
+def _build_theme_template(
+    template_name: str, env: jinja2.Environment, files: Files, config: MkDocsConfig, nav: Navigation
+) -> None:
+    """Build a template using the theme environment."""
+    log.debug(f"Building theme template: {template_name}")
 
     try:
         template = env.get_template(template_name)
     except TemplateNotFound:
-        log.info("Template skipped: '{}'. Not found in template directories.".format(template_name))
+        log.warning(f"Template skipped: '{template_name}' not found in theme directories.")
         return
 
-    # Run `pre_template` plugin events.
-    template = config['plugins'].run_event(
-        'pre_template', template, template_name=template_name, config=config
-    )
+    output = _build_template(template_name, template, files, config, nav)
 
-    context = get_context(site_navigation, config)
+    if output.strip():
+        output_path = os.path.join(config.site_dir, template_name)
+        utils.write_file(output.encode('utf-8'), output_path)
 
-    # Run `template_context` plugin events.
-    context = config['plugins'].run_event(
-        'template_context', context, template_name=template_name, config=config
-    )
-
-    output_content = template.render(context)
-
-    # Run `post_template` plugin events.
-    output_content = config['plugins'].run_event(
-        'post_template', output_content, template_name=template_name, config=config
-    )
-
-    if output_content.strip():
-        output_path = os.path.join(config['site_dir'], template_name)
-        utils.write_file(output_content.encode('utf-8'), output_path)
+        if template_name == 'sitemap.xml':
+            log.debug(f"Gzipping template: {template_name}")
+            gz_filename = f'{output_path}.gz'
+            with open(gz_filename, 'wb') as f:
+                timestamp = utils.get_build_timestamp(
+                    pages=[f.page for f in files.documentation_pages() if f.page is not None]
+                )
+                with gzip.GzipFile(
+                    fileobj=f, filename=gz_filename, mode='wb', mtime=timestamp
+                ) as gz_buf:
+                    gz_buf.write(output.encode('utf-8'))
     else:
-        log.info("Template skipped: '{}'. Generated empty output.".format(template_name))
+        log.info(f"Template skipped: '{template_name}' generated empty output.")
 
 
-def build_error_template(template, env, config, site_navigation):
-    """
-    Build error template.
+def _build_extra_template(template_name: str, files: Files, config: MkDocsConfig, nav: Navigation):
+    """Build user templates which are not part of the theme."""
+    log.debug(f"Building extra template: {template_name}")
 
-    Force absolute URLs in the nav of error pages and account for the
-    possability that the docs root might be different than the server root.
-    See https://github.com/mkdocs/mkdocs/issues/77
-    """
+    file = files.get_file_from_path(template_name)
+    if file is None:
+        log.warning(f"Template skipped: '{template_name}' not found in docs_dir.")
+        return
 
-    site_navigation.url_context.force_abs_urls = True
-    default_base = site_navigation.url_context.base_path
-    site_navigation.url_context.base_path = utils.urlparse(config['site_url']).path
+    try:
+        template = jinja2.Template(file.content_string)
+    except Exception as e:
+        log.warning(f"Error reading template '{template_name}': {e}")
+        return
 
-    build_template(template, env, config, site_navigation)
+    output = _build_template(template_name, template, files, config, nav)
 
-    # Reset nav behavior to the default
-    site_navigation.url_context.force_abs_urls = False
-    site_navigation.url_context.base_path = default_base
-
-
-def _build_page(page, config, site_navigation, env, dirty=False):
-    """ Build a Markdown page and pass to theme template. """
-
-    # Run the `pre_page` plugin event
-    page = config['plugins'].run_event(
-        'pre_page', page, config=config, site_navigation=site_navigation
-    )
-
-    page.read_source(config=config)
-
-    # Run `page_markdown` plugin events.
-    page.markdown = config['plugins'].run_event(
-        'page_markdown', page.markdown, page=page, config=config, site_navigation=site_navigation
-    )
-
-    page.render(config, site_navigation)
-
-    # Run `page_content` plugin events.
-    page.content = config['plugins'].run_event(
-        'page_content', page.content, page=page, config=config, site_navigation=site_navigation
-    )
-
-    context = get_context(site_navigation, config, page)
-
-    # Allow 'template:' override in md source files.
-    if 'template' in page.meta:
-        template = env.get_template(page.meta['template'])
+    if output.strip():
+        utils.write_file(output.encode('utf-8'), file.abs_dest_path)
     else:
-        template = env.get_template('main.html')
-
-    # Run `page_context` plugin events.
-    context = config['plugins'].run_event(
-        'page_context', context, page=page, config=config, site_navigation=site_navigation
-    )
-
-    # Render the template.
-    output_content = template.render(context)
-
-    # Run `post_page` plugin events.
-    output_content = config['plugins'].run_event(
-        'post_page', output_content, page=page, config=config
-    )
-
-    # Write the output file.
-    if output_content.strip():
-        utils.write_file(output_content.encode('utf-8'), page.abs_output_path)
-    else:
-        log.info("Page skipped: '{}'. Generated empty output.".format(page.title))
+        log.info(f"Template skipped: '{template_name}' generated empty output.")
 
 
-def build_extra_templates(extra_templates, config, site_navigation=None):
-    """ Build user templates which are not part of the theme. """
+def _populate_page(page: Page, config: MkDocsConfig, files: Files, dirty: bool = False) -> None:
+    """Read page content from docs_dir and render Markdown."""
+    config._current_page = page
+    try:
+        # When --dirty is used, only read the page if the file has been modified since the
+        # previous build of the output.
+        if dirty and not page.file.is_modified():
+            return
 
-    log.debug("Building extra_templates pages")
+        # Run the `pre_page` plugin event
+        page = config.plugins.on_pre_page(page, config=config, files=files)
 
-    for extra_template in extra_templates:
+        page.read_source(config)
+        assert page.markdown is not None
 
-        input_path = os.path.join(config['docs_dir'], extra_template)
-
-        with io.open(input_path, 'r', encoding='utf-8') as template_file:
-            template = jinja2.Template(template_file.read())
-
-        # Run `pre_template` plugin events.
-        template = config['plugins'].run_event(
-            'pre_template', template, template_name=extra_template, config=config
+        # Run `page_markdown` plugin events.
+        page.markdown = config.plugins.on_page_markdown(
+            page.markdown, page=page, config=config, files=files
         )
 
-        context = get_context(site_navigation, config)
+        page.render(config, files)
+        assert page.content is not None
 
-        # Run `template_context` plugin events.
-        context = config['plugins'].run_event(
-            'template_context', context, template_name=extra_template, config=config
+        # Run `page_content` plugin events.
+        page.content = config.plugins.on_page_content(
+            page.content, page=page, config=config, files=files
         )
+    except Exception as e:
+        message = f"Error reading page '{page.file.src_uri}':"
+        # Prevent duplicated the error message because it will be printed immediately afterwards.
+        if not isinstance(e, BuildError):
+            message += f" {e}"
+        log.error(message)
+        raise
+    finally:
+        config._current_page = None
 
-        output_content = template.render(context)
 
-        # Run `post_template` plugin events.
-        output_content = config['plugins'].run_event(
-            'post_template', output_content, template_name=extra_template, config=config
-        )
+def _build_page(
+    page: Page,
+    config: MkDocsConfig,
+    doc_files: Sequence[File],
+    nav: Navigation,
+    env: jinja2.Environment,
+    dirty: bool = False,
+    excluded: bool = False,
+) -> None:
+    """Pass a Page to theme template and write output to site_dir."""
+    config._current_page = page
+    try:
+        # When --dirty is used, only build the page if the file has been modified since the
+        # previous build of the output.
+        if dirty and not page.file.is_modified():
+            return
 
-        if output_content.strip():
-            output_path = os.path.join(config['site_dir'], extra_template)
-            utils.write_file(output_content.encode('utf-8'), output_path)
+        log.debug(f"Building page {page.file.src_uri}")
+
+        # Activate page. Signals to theme that this is the current page.
+        page.active = True
+
+        context = get_context(nav, doc_files, config, page)
+
+        # Allow 'template:' override in md source files.
+        template = env.get_template(page.meta.get('template', 'main.html'))
+
+        # Run `page_context` plugin events.
+        context = config.plugins.on_page_context(context, page=page, config=config, nav=nav)
+
+        if excluded:
+            page.content = (
+                '<div class="mkdocs-draft-marker" title="This page will not be included into the built site.">'
+                'DRAFT'
+                '</div>' + (page.content or '')
+            )
+
+        # Render the template.
+        output = template.render(context)
+
+        # Run `post_page` plugin events.
+        output = config.plugins.on_post_page(output, page=page, config=config)
+
+        # Write the output file.
+        if output.strip():
+            utils.write_file(
+                output.encode('utf-8', errors='xmlcharrefreplace'), page.file.abs_dest_path
+            )
         else:
-            log.info("Template skipped: '{}'. Generated empty output.".format(extra_template))
+            log.info(f"Page skipped: '{page.file.src_uri}'. Generated empty output.")
+
+    except Exception as e:
+        message = f"Error building page '{page.file.src_uri}':"
+        # Prevent duplicated the error message because it will be printed immediately afterwards.
+        if not isinstance(e, BuildError):
+            message += f" {e}"
+        log.error(message)
+        raise
+    finally:
+        # Deactivate page
+        page.active = False
+        config._current_page = None
 
 
-def build_pages(config, dirty=False):
-    """ Build all pages and write them into the build directory. """
+def build(config: MkDocsConfig, *, serve_url: str | None = None, dirty: bool = False) -> None:
+    """Perform a full site build."""
+    logger = logging.getLogger('mkdocs')
 
-    site_navigation = nav.SiteNavigation(config)
+    # Add CountHandler for strict mode
+    warning_counter = utils.CountHandler()
+    warning_counter.setLevel(logging.WARNING)
+    if config.strict:
+        logging.getLogger('mkdocs').addHandler(warning_counter)
 
-    # Run `nav` plugin events.
-    site_navigation = config['plugins'].run_event('nav', site_navigation, config=config)
+    inclusion = InclusionLevel.is_in_serve if serve_url else InclusionLevel.is_included
 
-    env = config['theme'].get_env()
+    try:
+        start = time.monotonic()
 
-    # Run `env` plugin events.
-    env = config['plugins'].run_event(
-        'env', env, config=config, site_navigation=site_navigation
-    )
+        # Run `config` plugin events.
+        config = config.plugins.on_config(config)
 
-    for template in config['theme'].static_templates:
-        if utils.is_error_template(template):
-            build_error_template(template, env, config, site_navigation)
-        else:
-            build_template(template, env, config, site_navigation)
+        # Run `pre_build` plugin events.
+        config.plugins.on_pre_build(config=config)
 
-    build_extra_templates(config['extra_templates'], config, site_navigation)
+        if not dirty:
+            log.info("Cleaning site directory")
+            utils.clean_directory(config.site_dir)
+        else:  # pragma: no cover
+            # Warn user about problems that may occur with --dirty option
+            log.warning(
+                "A 'dirty' build is being performed, this will likely lead to inaccurate navigation and other"
+                " links within your site. This option is designed for site development purposes only."
+            )
 
-    log.debug("Building markdown pages.")
-    for page in site_navigation.walk_pages():
-        try:
-            # When --dirty is used, only build the page if the markdown has been modified since the
-            # previous build of the output.
-            if dirty and (utils.modified_time(page.abs_input_path) < utils.modified_time(page.abs_output_path)):
-                continue
+        if not serve_url:  # pragma: no cover
+            log.info(f"Building documentation to directory: {config.site_dir}")
+            if dirty and site_directory_contains_stale_files(config.site_dir):
+                log.info("The directory contains stale files. Use --clean to remove them.")
 
-            log.debug("Building page %s", page.input_path)
-            _build_page(page, config, site_navigation, env)
-        except Exception:
-            log.error("Error building page %s", page.input_path)
-            raise
+        # First gather all data from all files/pages to ensure all data is consistent across all pages.
+
+        files = get_files(config)
+        env = config.theme.get_env()
+        files.add_files_from_theme(env, config)
+
+        # Run `files` plugin events.
+        files = config.plugins.on_files(files, config=config)
+        # If plugins have added files but haven't set their inclusion level, calculate it again.
+        set_exclusions(files, config)
+
+        nav = get_navigation(files, config)
+
+        # Run `nav` plugin events.
+        nav = config.plugins.on_nav(nav, config=config, files=files)
+
+        log.debug("Reading markdown pages.")
+        excluded = []
+        for file in files.documentation_pages(inclusion=inclusion):
+            log.debug(f"Reading: {file.src_uri}")
+            if file.page is None and file.inclusion.is_not_in_nav():
+                if serve_url and file.inclusion.is_excluded():
+                    excluded.append(urljoin(serve_url, file.url))
+                Page(None, file, config)
+            assert file.page is not None
+            _populate_page(file.page, config, files, dirty)
+        if excluded:
+            log.info(
+                "The following pages are being built only for the preview "
+                "but will be excluded from `mkdocs build` per `draft_docs` config:\n  - "
+                + "\n  - ".join(excluded)
+            )
+
+        # Run `env` plugin events.
+        env = config.plugins.on_env(env, config=config, files=files)
+
+        # Start writing files to site_dir now that all data is gathered. Note that order matters. Files
+        # with lower precedence get written first so that files with higher precedence can overwrite them.
+
+        log.debug("Copying static assets.")
+        files.copy_static_files(dirty=dirty, inclusion=inclusion)
+
+        for template in config.theme.static_templates:
+            _build_theme_template(template, env, files, config, nav)
+
+        for template in config.extra_templates:
+            _build_extra_template(template, files, config, nav)
+
+        log.debug("Building markdown pages.")
+        doc_files = files.documentation_pages(inclusion=inclusion)
+        for file in doc_files:
+            assert file.page is not None
+            _build_page(
+                file.page, config, doc_files, nav, env, dirty, excluded=file.inclusion.is_excluded()
+            )
+
+        log_level = config.validation.links.anchors
+        for file in doc_files:
+            assert file.page is not None
+            file.page.validate_anchor_links(files=files, log_level=log_level)
+
+        # Run `post_build` plugin events.
+        config.plugins.on_post_build(config=config)
+
+        if counts := warning_counter.get_counts():
+            msg = ', '.join(f'{v} {k.lower()}s' for k, v in counts)
+            raise Abort(f'Aborted with {msg} in strict mode!')
+
+        log.info(f'Documentation built in {time.monotonic() - start:.2f} seconds')
+
+    except Exception as e:
+        # Run `build_error` plugin events.
+        config.plugins.on_build_error(error=e)
+        if isinstance(e, BuildError):
+            log.error(str(e))
+            raise Abort('Aborted with a BuildError!')
+        raise
+
+    finally:
+        logger.removeHandler(warning_counter)
 
 
-def build(config, live_server=False, dirty=False):
-    """ Perform a full site build. """
-    # Run `config` plugin events.
-    config = config['plugins'].run_event('config', config)
-
-    # Run `pre_build` plugin events.
-    config['plugins'].run_event('pre_build', config)
-
-    if not dirty:
-        log.info("Cleaning site directory")
-        utils.clean_directory(config['site_dir'])
-    else:
-        # Warn user about problems that may occur with --dirty option
-        log.warning("A 'dirty' build is being performed, this will likely lead to inaccurate navigation and other"
-                    " links within your site. This option is designed for site development purposes only.")
-
-    if not live_server:
-        log.info("Building documentation to directory: %s", config['site_dir'])
-        if dirty and site_directory_contains_stale_files(config['site_dir']):
-            log.info("The directory contains stale files. Use --clean to remove them.")
-
-    # Reversed as we want to take the media files from the builtin theme
-    # and then from the custom theme_dir so that the custom versions take
-    # precedence.
-    for theme_dir in reversed(config['theme'].dirs):
-        log.debug("Copying static assets from %s", theme_dir)
-        utils.copy_media_files(
-            theme_dir, config['site_dir'], exclude=['*.py', '*.pyc', '*.html', 'mkdocs_theme.yml'], dirty=dirty
-        )
-
-    log.debug("Copying static assets from the docs dir.")
-    utils.copy_media_files(config['docs_dir'], config['site_dir'], dirty=dirty)
-
-    build_pages(config, dirty=dirty)
-
-    # Run `post_build` plugin events.
-    config['plugins'].run_event('post_build', config)
-
-
-def site_directory_contains_stale_files(site_directory):
-    """ Check if the site directory contains stale files from a previous build. """
-
-    return True if os.path.exists(site_directory) and os.listdir(site_directory) else False
+def site_directory_contains_stale_files(site_directory: str) -> bool:
+    """Check if the site directory contains stale files from a previous build."""
+    return bool(os.path.exists(site_directory) and os.listdir(site_directory))

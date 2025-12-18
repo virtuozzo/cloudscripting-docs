@@ -46,8 +46,8 @@ from markdown.extensions import Extension
 
 class EscapeHtml(Extension):
     def extendMarkdown(self, md, md_globals):
-    del md.preprocessors['html_block']
-    del md.inlinePatterns['html']
+        del md.preprocessors['html_block']
+        del md.inlinePatterns['html']
 
 html = markdown.markdown(text, extensions=[EscapeHtml()])
 ```
@@ -137,12 +137,12 @@ The previously documented method of appending the extension configuration
 options as a string to the extension name is deprecated and will raise a
 **`DeprecationWarning`** in version 2.6 and an error in 2.7. The
 [`extension_configs`](../reference.md#extension_configs) keyword should be used
-instead. See the [documentation](../reference.md#extension-configs) for a full
+instead. See the [documentation](../reference.md#extension_configs) for a full
 explanation of the current behavior.
 
 ### HeaderId Extension Pending Deprecation
 
-The [HeaderId][hid] Extension is pending deprecation and will raise a
+The HeaderId Extension is pending deprecation and will raise a
 **`PendingDeprecationWarning`** in version 2.6. The extension will be deprecated
 in the next release and raise an error in the release after that. Use the [Table
 of Contents][TOC] Extension instead, which offers most of the features of the
@@ -152,8 +152,6 @@ Extension authors who have been using the `slugify` and `unique` functions
 defined in the HeaderId Extension should note that those functions are now
 defined in the Table of Contents extension and should adjust their import
 statements accordingly (`from markdown.extensions.toc import slugify, unique`).
-
-[hid]: ../extensions/header_id.md
 
 ### The `configs` Keyword is Deprecated
 
@@ -216,7 +214,7 @@ Note the call to `super` to get the benefits of configuration handling from the
 parent class. See the [documentation][config] for more information.
 
 [config]: ../extensions/api.md#configsettings
-[mext]: ../extensions/api.md#makeextension
+[mext]: ../extensions/api.md#dot_notation
 
 ## What's New in Python-Markdown 2.6
 
@@ -226,7 +224,7 @@ Official support for [PyPy] has been added. While Python-Markdown has most
 likely worked on PyPy for some time, it is now officially supported and tested
 on PyPy.
 
-[PyPy]: http://pypy.org/
+[PyPy]: https://pypy.org/
 
 ### YAML Style Meta-Data
 
@@ -241,9 +239,9 @@ suggested that a preprocessor (like [docdata]) or a third party extension be
 used if you want true YAML support. See [Issue #390][#390] for a full
 explanation.</ins>
 
-[MultiMarkdown]: http://fletcherpenney.net/MultiMarkdown_Syntax_Guide#metadata
+[MultiMarkdown]: https://fletcherpenney.net/multimarkdown/#metadata
 [Meta-Data]: ../extensions/meta_data.md
-[YAML]: http://yaml.org/
+[YAML]: https://yaml.org/
 [#390]: https://github.com/Python-Markdown/markdown/issues/390
 [docdata]: https://github.com/waylan/docdata
 
@@ -291,7 +289,7 @@ potentially be used by a JavaScript library in the browser to highlight the code
 block.
 
 [ch]: ../extensions/code_hilite.md
-[spec]: http://www.w3.org/TR/html5/text-level-semantics.html#the-code-element
+[spec]: https://www.w3.org/TR/html5/text-level-semantics.html#the-code-element
 
 ### Miscellaneous
 

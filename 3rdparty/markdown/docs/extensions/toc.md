@@ -49,14 +49,16 @@ would generate the following output:
 ```html
 <div class="toc">
   <ul>
-    <li><a href="#header-1">Header 1</a></li>
+    <li>
+      <a href="#header-1">Header 1</a>
       <ul>
         <li><a href="#header-2">Header 2</a></li>
       </ul>
+    </li>
   </ul>
 </div>
 <h1 id="header-1">Header 1</h1>
-<h1 id="header-2">Header 2</h1>
+<h2 id="header-2">Header 2</h2>
 ```
 
 Regardless of whether a `marker` is found in the document (or disabled), the
@@ -65,16 +67,90 @@ This allows one to insert the Table of Contents elsewhere in their page
 template. For example:
 
 ```pycon
->>> md = markdown.Markdown(extensions=['markdown.extensions.toc'])
+>>> md = markdown.Markdown(extensions=['toc'])
 >>> html = md.convert(text)
 >>> page = render_some_template(context={'body': html, 'toc': md.toc})
 ```
 
+The `toc_tokens` attribute is also available on the Markdown class and contains
+a nested list of dict objects. For example, the above document would result in
+the following object at `md.toc_tokens`:
+
+```python
+[
+    {
+        'level': 1,
+        'id': 'header-1',
+        'name': 'Header 1',
+        'html': 'Header 1',
+        'data-toc-label': '',
+        'children': [
+            {'level': 2, 'id': 'header-2', 'name': 'Header 2', 'children':[]}
+        ]
+    }
+]
+```
+
+Note that the `level` refers to the `hn` level. In other words, `<h1>` is level
+`1` and `<h2>` is level `2`, etc. Be aware that improperly nested levels in the
+input may result in odd nesting of the output.
+
+`name` is the sanitized value which would also be used as a label for the HTML
+version of the Table of Contents. `html` contains the fully rendered HTML
+content of the heading and has not been sanitized in any way. This may be used
+with your own custom sanitation to create custom table of contents.
+
+### Custom Labels
+
+In most cases, the text label in the Table of Contents should match the text of
+the header. However, occasionally that is not desirable. In that case, if this
+extension is used in conjunction with the [Attribute Lists Extension] and a
+`data-toc-label` attribute is defined on the header, then the contents of that
+attribute will be used as the text label for the item in the Table of Contents.
+For example, the following Markdown:
+
+[Attribute Lists Extension]: attr_list.md
+
+```md
+[TOC]
+
+# Functions
+
+## `markdown.markdown(text [, **kwargs])` { #markdown data-toc-label='markdown.markdown' }
+```
+would generate the following output:
+
+```html
+<div class="toc">
+  <ul>
+    <li>
+      <a href="#functions">Functions</a>
+      <ul>
+        <li><a href="#markdown">markdown.markdown</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<h1 id="functions">Functions</h1>
+<h2 id="markdown"><code>markdown.markdown(text [, **kwargs])</code></h2>
+```
+
+Notice that the text in the Table of Contents is much cleaner and easier to read
+in the context of a Table of Contents. The `data-toc-label` is not included in
+the HTML header element. Also note that the ID was manually defined in the
+attribute list to provide a cleaner URL when linking to the header. If the ID is
+not manually defined, it is always derived from the text of the header, never
+from the `data-toc-label` attribute.
+
+The value of the `data-toc-label` attribute is sanitized and stripped of any HTML
+tags. However, `toc_tokens` will contain the raw content under
+`data-toc-label`.
+
 Usage
 -----
 
-See [Extensions](index.md) for general extension usage, specify `markdown.extensions.toc`
-as the name of the extension.
+See [Extensions](index.md) for general extension usage. Use `toc` as the name
+of the extension.
 
 See the [Library Reference](../reference.md#extensions) for information about
 configuring extensions.
@@ -90,8 +166,17 @@ The following options are provided to configure the output:
 * **`title`**:
     Title to insert in the Table of Contents' `<div>`. Defaults to `None`.
 
+* **`title_class`**:
+    CSS class used for the title contained in the Table of Contents. Defaults to `toctitle`.
+
+* **`toc_class`**:
+    CSS class(es) used for the `<div>` containing the Table of Contents. Defaults to `toc`.
+
 * **`anchorlink`**:
     Set to `True` to cause all headers to link to themselves. Default is `False`.
+
+* **`anchorlink_class`**:
+    CSS class(es) used for the link. Defaults to `toclink`.
 
 * **`permalink`**:
     Set to `True` or a string to generate permanent links at the end of each header.
@@ -100,6 +185,21 @@ The following options are provided to configure the output:
     When set to `True` the paragraph symbol (&para; or "`&para;`") is used as
     the link text. When set to a string, the provided string is used as the link
     text.
+
+* **`permalink_class`**:
+    CSS class(es) used for the link. Defaults to `headerlink`.
+
+* **`permalink_title`**:
+    Title attribute of the permanent link. Defaults to `Permanent link`.
+
+* **`permalink_leading`**:
+    Set to `True` if the extension should generate leading permanent links.
+    Default is `False`.
+
+    Leading permanent links are placed at the start of the header tag,
+    before any header content. The default `permalink` behavior (when
+    `permalink_leading` is unset or set to `False`) creates trailing
+    permanent links, which are placed at the end of the header content.
 
 * **`baselevel`**:
     Base level for headers. Defaults to `1`.
@@ -122,7 +222,7 @@ The following options are provided to configure the output:
 * **`slugify`**:
     Callable to generate anchors.
 
-    Default: `markdown.extensions.headerid.slugify`
+    Default: `markdown.extensions.toc.slugify`
 
     In order to use a different algorithm to define the id attributes, define  and
     pass in a callable which takes the following two arguments:
@@ -132,5 +232,28 @@ The following options are provided to configure the output:
 
     The callable must return a string appropriate for use in HTML `id` attributes.
 
+    An alternate version of the default callable supporting Unicode strings is also
+    provided as `markdown.extensions.toc.slugify_unicode`.
+
 * **`separator`**:
     Word separator. Character which replaces white space in id. Defaults to "`-`".
+
+* **`toc_depth`**
+    Define the range of section levels to include in the Table of Contents.
+    A single integer (`b`) defines the bottom section level (`<h1>..<hb>`) only.
+    A string consisting of two digits separated by a hyphen in between (`"2-5"`),
+    define the top (`t`) and the bottom (`b`) (`<ht>..<hb>`). Defaults to `6` (bottom).
+
+    When used with conjunction with `baselevel`, this parameter will not
+    take the fitted hierarchy from `baselevel` into account. That is, if
+    both `toc_depth` and `baselevel` are `3`, then only the highest level
+    will be present in the table. If you set `baselevel` to `3` and
+    `toc_depth` to `"2-6"`, the *first* headline will be `<h3>` and so still
+    included in the Table of Contents. To exclude this first level, you
+    have to set `toc_depth` to `"4-6"`.
+
+A trivial example:
+
+```python
+markdown.markdown(some_text, extensions=['toc'])
+```

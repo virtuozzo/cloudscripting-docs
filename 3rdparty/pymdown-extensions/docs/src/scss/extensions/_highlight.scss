@@ -1,0 +1,241 @@
+@use "../utilities/break";
+@use "../utilities/convert";
+
+:root > * {
+  --highlight-svg-console: svg-load("@mdi/svg/svg/console.svg");
+  --highlight-svg-arrow-expand: svg-load("@mdi/svg/svg/arrow-expand.svg");
+  --highlight-svg-arrow-collapse: svg-load("@mdi/svg/svg/arrow-collapse.svg");
+}
+
+.highlight {
+  .kc { // Keyword constant
+    color: var(--md-code-hl-constant-color);
+  }
+
+  .nc,  // Name, class
+  .ne,  // Name, exception
+  {
+    color: var(--md-code-hl-class-color);
+  }
+
+  .mb {
+    color: var(--md-code-hl-number-color);
+  }
+
+  .nb,  // Name, builtin
+  .bp { // Name, builtin pseudo
+    color: var(--md-code-hl-builtin-color);
+  }
+
+  .nn { // Name, namespace Name, namespace Name, namespace Name, namespace
+    color: var(--md-code-hl-namespace-color);
+  }
+
+  .na,  // Name, attribute
+  .nd,  // Name, decorator
+  .ni { // Name, entity
+    color: var(--md-code-hl-entity-color);
+  }
+  .nl,  // Name, label
+  .nt { // Name, tag
+    color: var(--md-code-hl-tag-color);
+  }
+}
+
+.md-typeset {
+
+  /* Allow code to look like code everywhere despite Material's current preference */
+  *:not(pre) > code {
+      margin: 0;
+      padding: 0 convert.px2em( 4px, 13.6px);
+      color: var(--md-code-fg-color);
+      background-color: var(--md-code-inline-bg-color);
+      border-radius: convert.px2rem(2px);
+      box-shadow: none;
+  }
+
+  pre > code {
+    outline: none;
+  }
+
+  /* Don't always like code breaking in table cells */
+  td code {
+    word-break: normal;
+  }
+
+  .highlight {
+
+    /* Needed for tab preserving mode */
+    tab-size: 8;
+
+    /* `pymdownx-inline` mode */
+    [data-linenos] {
+
+      /* Special line mode coloring */
+      &.special::before {
+        background-color: var(--md-code-special-bg-color);
+      }
+    }
+  }
+
+    /* Special line number coloring for tables */
+  .highlighttable {
+    .linenodiv {
+      .special {
+        margin-right: convert.px2em(-8px, 13.6px);
+        margin-left: convert.px2em(-16px, 13.6px);
+        padding-right: convert.px2em(8px, 13.6px);
+        padding-left: convert.px2em(16px, 13.6px);
+        background-color: var(--md-code-special-bg-color);
+      }
+    }
+  }
+
+  // Filename span
+  .highlight span.filename {
+
+    // Style the filename banner
+    position: relative;
+    display: block;
+    margin-top: 1em;
+    padding: convert.px2em(8px) convert.px2em(16px, 13.6px) convert.px2em(8px) convert.px2em(40px, 13.6px);
+    font-weight: 700;
+    font-size: convert.px2rem(13.6px);
+    background-color: var(--md-code-title-bg-color);
+    border-top-left-radius: convert.px2rem(9.6px);
+    border-top-right-radius: convert.px2rem(9.6px);
+
+    // Adjust margins and and general container look of code block
+    + pre {
+      margin-top: 0;
+
+      code {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+
+    // Add code icon
+    &::before {
+      position: absolute;
+      left: convert.px2em(12px, 13.6px);
+      width: convert.px2em(20px, 13.6px);
+      height: convert.px2em(20px, 13.6px);
+      background-color: var(--md-default-fg-color);
+      mask-image: var(--highlight-svg-console);
+      mask-repeat: no-repeat;
+      mask-size: contain;
+      content: "";
+    }
+  }
+
+  .collapse-code {
+    position: relative;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+    pre {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    input{
+      display: none;
+
+      ~ .code-footer {
+        width: 100%;
+        margin: 0;
+        padding: convert.px2em(4px) convert.px2em(8px) convert.px2em(4px) convert.px2em(0px);
+
+        label {
+          position: relative;
+          margin: 0.05em;
+          padding: 0.15em 0.8em;
+          color: var(--md-primary-bg-color);
+          font-size: 90%;
+          background-color: var(--md-accent-fg-color);
+          mask-repeat: no-repeat;
+          mask-size: contain;
+          border-radius: convert.px2rem(2px);
+          cursor: pointer;
+          content: "";
+
+          &:hover {
+            background-color: var(--md-accent-fg-color);
+          }
+
+          &::before {
+            position: absolute;
+            top: 0.15em;
+            left: 0.15em;
+            display: block;
+            box-sizing: border-box;
+            width: 1.25em;
+            height: 1.25em;
+            background-color: var(--md-primary-bg-color);
+            background-size: 1.25em;
+            content: "";
+          }
+
+          &.expand {
+            display: none;
+
+            &::before {
+              mask-image: var(--highlight-svg-arrow-expand);
+            }
+          }
+          &.collapse::before {
+            mask-image: var(--highlight-svg-arrow-collapse);
+          }
+        }
+      }
+
+      &:checked {
+        ~ .code-footer label.expand {
+          display: inline;
+        }
+
+        ~ .code-footer label.collapse {
+          display: none;
+        }
+
+        + div.highlight code {
+          max-height: convert.px2em(150px);
+          overflow: hidden;
+        }
+
+        ~ .code-footer {
+          position: relative;
+          bottom: 4.3em;
+          left: 0;
+          margin-bottom: -4.3em;
+          padding: convert.px2em(32px) convert.px2em(8px) convert.px2em(8px) convert.px2rem(16px);
+          background-image: linear-gradient(to bottom,
+              transparent,
+              var(--md-default-bg-color) 80%
+          100%);
+          border-bottom-right-radius: convert.px2rem(9.6px);
+          border-bottom-left-radius: convert.px2rem(9.6px);
+        }
+      }
+    }
+  }
+
+  @include break.break-to-device(mobile) {
+
+    > {
+      diagram-div {
+        margin-right: convert.px2rem(-16px);
+        margin-left: convert.px2rem(-16px);
+      }
+      .collapse-code {
+        margin-right: convert.px2rem(-16px);
+        margin-left: convert.px2rem(-16px);
+
+        label.collapse {
+          left: convert.px2rem(16px);
+        }
+      }
+    }
+  }
+}

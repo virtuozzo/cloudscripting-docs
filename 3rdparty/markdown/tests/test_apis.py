@@ -1,25 +1,42 @@
-#!/usr/bin/python
 """
+Python Markdown
+
+A Python implementation of John Gruber's Markdown.
+
+Documentation: https://python-markdown.github.io/
+GitHub: https://github.com/Python-Markdown/markdown/
+PyPI: https://pypi.org/project/Markdown/
+
+Started by Manfred Stienstra (http://www.dwerg.net/).
+Maintained for a few years by Yuri Takhteyev (http://www.freewisdom.org).
+Currently maintained by Waylan Limberg (https://github.com/waylan),
+Dmitry Shachnev (https://github.com/mitya57) and Isaac Muse (https://github.com/facelessuser).
+
+Copyright 2007-2023 The Python Markdown Project (v. 1.7 and later)
+Copyright 2004, 2005, 2006 Yuri Takhteyev (v. 0.2-1.6b)
+Copyright 2004 Manfred Stienstra (the original version)
+
+License: BSD (see LICENSE.md for details).
+
 Python-Markdown Regression Tests
 ================================
 
-Tests of the various APIs with the python markdown lib.
-
+Tests of the various APIs with the Python Markdown library.
 """
 
-from __future__ import unicode_literals
 import unittest
 import sys
 import os
-import types
 import markdown
 import warnings
 from markdown.__main__ import parse_options
+from markdown import inlinepatterns
 from logging import DEBUG, WARNING, CRITICAL
 import yaml
 import tempfile
-
-PY3 = sys.version_info[0] == 3
+from io import BytesIO, StringIO, TextIOWrapper
+import xml.etree.ElementTree as etree
+from xml.etree.ElementTree import ProcessingInstruction
 
 
 class TestMarkdownBasics(unittest.TestCase):
@@ -46,13 +63,56 @@ class TestMarkdownBasics(unittest.TestCase):
         from markdown.extensions.footnotes import FootnoteExtension
         markdown.Markdown(extensions=[FootnoteExtension()])
 
-    def testNamedExtension(self):
+    def testEntryPointExtension(self):
+        """ Test Extension loading with an entry point. """
+        markdown.Markdown(extensions=['footnotes'])
+
+    def testDotNotationExtension(self):
         """ Test Extension loading with Name (`path.to.module`). """
         markdown.Markdown(extensions=['markdown.extensions.footnotes'])
 
-    def TestNamedExtensionWithClass(self):
+    def testDotNotationExtensionWithClass(self):
         """ Test Extension loading with class name (`path.to.module:Class`). """
         markdown.Markdown(extensions=['markdown.extensions.footnotes:FootnoteExtension'])
+
+
+class TestConvertFile(unittest.TestCase):
+    """ Tests of ConvertFile. """
+
+    def setUp(self):
+        self.saved = sys.stdin, sys.stdout
+        sys.stdin = StringIO('foo')
+        sys.stdout = TextIOWrapper(BytesIO())
+
+    def tearDown(self):
+        sys.stdin, sys.stdout = self.saved
+
+    def getTempFiles(self, src):
+        """ Return the file names for two temp files. """
+        infd, infile = tempfile.mkstemp(suffix='.txt')
+        with os.fdopen(infd, 'w') as fp:
+            fp.write(src)
+        outfd, outfile = tempfile.mkstemp(suffix='.html')
+        return infile, outfile, outfd
+
+    def testFileNames(self):
+        infile, outfile, outfd = self.getTempFiles('foo')
+        markdown.markdownFromFile(input=infile, output=outfile)
+        with os.fdopen(outfd, 'r') as fp:
+            output = fp.read()
+        self.assertEqual(output, '<p>foo</p>')
+
+    def testFileObjects(self):
+        infile = BytesIO(bytes('foo', encoding='utf-8'))
+        outfile = BytesIO()
+        markdown.markdownFromFile(input=infile, output=outfile)
+        outfile.seek(0)
+        self.assertEqual(outfile.read().decode('utf-8'), '<p>foo</p>')
+
+    def testStdinStdout(self):
+        markdown.markdownFromFile()
+        sys.stdout.seek(0)
+        self.assertEqual(sys.stdout.read(), '<p>foo</p>')
 
 
 class TestBlockParser(unittest.TestCase):
@@ -63,8 +123,8 @@ class TestBlockParser(unittest.TestCase):
         self.parser = markdown.Markdown().parser
 
     def testParseChunk(self):
-        """ Test BlockParser.parseChunk. """
-        root = markdown.util.etree.Element("div")
+        """ Test `BlockParser.parseChunk`. """
+        root = etree.Element("div")
         text = 'foo'
         self.parser.parseChunk(root, text)
         self.assertEqual(
@@ -73,11 +133,11 @@ class TestBlockParser(unittest.TestCase):
         )
 
     def testParseDocument(self):
-        """ Test BlockParser.parseDocument. """
+        """ Test `BlockParser.parseDocument`. """
         lines = ['#foo', '', 'bar', '', '    baz']
         tree = self.parser.parseDocument(lines)
-        self.assertTrue(isinstance(tree, markdown.util.etree.ElementTree))
-        self.assertTrue(markdown.util.etree.iselement(tree.getroot()))
+        self.assertIsInstance(tree, etree.ElementTree)
+        self.assertIs(etree.iselement(tree.getroot()), True)
         self.assertEqual(
             markdown.serializers.to_xhtml_string(tree.getroot()),
             "<div><h1>foo</h1><p>bar</p><pre><code>baz\n</code></pre></div>"
@@ -85,7 +145,7 @@ class TestBlockParser(unittest.TestCase):
 
 
 class TestBlockParserState(unittest.TestCase):
-    """ Tests of the State class for BlockParser. """
+    """ Tests of the State class for `BlockParser`. """
 
     def setUp(self):
         self.state = markdown.blockparser.State()
@@ -102,7 +162,7 @@ class TestBlockParserState(unittest.TestCase):
         self.assertEqual(self.state, ['a_state', 'state2'])
 
     def testIsSate(self):
-        """ Test State.isstate(). """
+        """ Test `State.isstate()`. """
         self.assertEqual(self.state.isstate('anything'), False)
         self.state.set('a_state')
         self.assertEqual(self.state.isstate('a_state'), True)
@@ -112,7 +172,7 @@ class TestBlockParserState(unittest.TestCase):
         self.assertEqual(self.state.isstate('missing'), False)
 
     def testReset(self):
-        """ Test State.reset(). """
+        """ Test `State.reset()`. """
         self.state.set('a_state')
         self.state.reset()
         self.assertEqual(self.state, [])
@@ -123,208 +183,179 @@ class TestBlockParserState(unittest.TestCase):
 
 
 class TestHtmlStash(unittest.TestCase):
-    """ Test Markdown's HtmlStash. """
+    """ Test Markdown's `HtmlStash`. """
 
     def setUp(self):
         self.stash = markdown.util.HtmlStash()
         self.placeholder = self.stash.store('foo')
 
     def testSimpleStore(self):
-        """ Test HtmlStash.store. """
+        """ Test `HtmlStash.store`. """
         self.assertEqual(self.placeholder, self.stash.get_placeholder(0))
         self.assertEqual(self.stash.html_counter, 1)
-        self.assertEqual(self.stash.rawHtmlBlocks, [('foo', False)])
+        self.assertEqual(self.stash.rawHtmlBlocks, ['foo'])
 
     def testStoreMore(self):
-        """ Test HtmlStash.store with additional blocks. """
+        """ Test `HtmlStash.store` with additional blocks. """
         placeholder = self.stash.store('bar')
         self.assertEqual(placeholder, self.stash.get_placeholder(1))
         self.assertEqual(self.stash.html_counter, 2)
         self.assertEqual(
             self.stash.rawHtmlBlocks,
-            [('foo', False), ('bar', False)]
-        )
-
-    def testSafeStore(self):
-        """ Test HtmlStash.store with 'safe' html. """
-        self.stash.store('bar', True)
-        self.assertEqual(
-            self.stash.rawHtmlBlocks,
-            [('foo', False), ('bar', True)]
+            ['foo', 'bar']
         )
 
     def testReset(self):
-        """ Test HtmlStash.reset. """
+        """ Test `HtmlStash.reset`. """
         self.stash.reset()
         self.assertEqual(self.stash.html_counter, 0)
         self.assertEqual(self.stash.rawHtmlBlocks, [])
 
-    def testUnsafeHtmlInSafeMode(self):
-        """ Test that unsafe HTML gets escaped in safe_mode. """
-        output = markdown.markdown('foo', extensions=[self.build_extension()], safe_mode='escape')
-        self.assertEqual(output, '<p>&lt;script&gt;print(&quot;evil&quot;)&lt;/script&gt;</p>')
 
-    def build_extension(self):
-        """ Build an extention that addes unsafe html to Stash in same_mode. """
-        class Unsafe(markdown.treeprocessors.Treeprocessor):
-            def run(self, root):
-                el = root.find('p')
-                el.text = self.markdown.htmlStash.store('<script>print("evil")</script>', safe=False)
-                return root
+class Item:
+    """ A dummy `Registry` item object for testing. """
+    def __init__(self, data):
+        self.data = data
 
-        class StoreUnsafeHtml(markdown.extensions.Extension):
-            def extendMarkdown(self, md, md_globals):
-                md.treeprocessors.add('unsafe', Unsafe(md), '_end')
+    def __repr__(self):
+        return repr(self.data)
 
-        return StoreUnsafeHtml()
+    def __eq__(self, other):
+        return self.data == other
 
 
-class TestOrderedDict(unittest.TestCase):
-    """ Test OrderedDict storage class. """
+class RegistryTests(unittest.TestCase):
+    """ Test the processor registry. """
 
-    def setUp(self):
-        self.odict = markdown.odict.OrderedDict()
-        self.odict['first'] = 'This'
-        self.odict['third'] = 'a'
-        self.odict['fourth'] = 'self'
-        self.odict['fifth'] = 'test'
+    def testCreateRegistry(self):
+        r = markdown.util.Registry()
+        r.register(Item('a'), 'a', 20)
+        self.assertEqual(len(r), 1)
+        self.assertIsInstance(r, markdown.util.Registry)
 
-    def testValues(self):
-        """ Test output of OrderedDict.values(). """
-        self.assertEqual(list(self.odict.values()), ['This', 'a', 'self', 'test'])
+    def testRegisterWithoutPriority(self):
+        r = markdown.util.Registry()
+        with self.assertRaises(TypeError):
+            r.register(Item('a'))
 
-    def testKeys(self):
-        """ Test output of OrderedDict.keys(). """
-        self.assertEqual(
-            list(self.odict.keys()),
-            ['first', 'third', 'fourth', 'fifth']
-        )
+    def testSortRegistry(self):
+        r = markdown.util.Registry()
+        r.register(Item('a'), 'a', 20)
+        r.register(Item('b'), 'b', 21)
+        r.register(Item('c'), 'c', 20.5)
+        self.assertEqual(len(r), 3)
+        self.assertEqual(list(r), ['b', 'c', 'a'])
 
-    def testItems(self):
-        """ Test output of OrderedDict.items(). """
-        self.assertEqual(
-            list(self.odict.items()), [
-                ('first', 'This'),
-                ('third', 'a'),
-                ('fourth', 'self'),
-                ('fifth', 'test')
-            ]
-        )
+    def testIsSorted(self):
+        r = markdown.util.Registry()
+        self.assertIs(r._is_sorted, False)
+        r.register(Item('a'), 'a', 20)
+        list(r)
+        self.assertIs(r._is_sorted, True)
+        r.register(Item('b'), 'b', 21)
+        self.assertIs(r._is_sorted, False)
+        r['a']
+        self.assertIs(r._is_sorted, True)
+        r._is_sorted = False
+        r.get_index_for_name('a')
+        self.assertIs(r._is_sorted, True)
+        r._is_sorted = False
+        repr(r)
+        self.assertIs(r._is_sorted, True)
 
-    def testAddBefore(self):
-        """ Test adding an OrderedDict item before a given key. """
-        self.odict.add('second', 'is', '<third')
-        self.assertEqual(
-            list(self.odict.items()), [
-                ('first', 'This'),
-                ('second', 'is'),
-                ('third', 'a'),
-                ('fourth', 'self'),
-                ('fifth', 'test')
-            ]
-        )
+    def testDeregister(self):
+        r = markdown.util.Registry()
+        r.register(Item('a'), 'a',  20)
+        r.register(Item('b'), 'b', 30)
+        r.register(Item('c'), 'c', 40)
+        self.assertEqual(len(r), 3)
+        r.deregister('b')
+        self.assertEqual(len(r), 2)
+        r.deregister('c', strict=False)
+        self.assertEqual(len(r), 1)
+        # deregister non-existent item with `strict=False`
+        r.deregister('d', strict=False)
+        self.assertEqual(len(r), 1)
+        with self.assertRaises(ValueError):
+            # deregister non-existent item with `strict=True`
+            r.deregister('e')
+        self.assertEqual(list(r), ['a'])
 
-    def testAddAfter(self):
-        """ Test adding an OrderDict item after a given key. """
-        self.odict.add('second', 'is', '>first')
-        self.assertEqual(
-            list(self.odict.items()), [
-                ('first', 'This'),
-                ('second', 'is'),
-                ('third', 'a'),
-                ('fourth', 'self'),
-                ('fifth', 'test')
-            ]
-        )
+    def testRegistryContains(self):
+        r = markdown.util.Registry()
+        item = Item('a')
+        r.register(item, 'a', 20)
+        self.assertIs('a' in r, True)
+        self.assertIn(item, r)
+        self.assertNotIn('b', r)
 
-    def testAddAfterEnd(self):
-        """ Test adding an OrderedDict item after the last key. """
-        self.odict.add('sixth', '.', '>fifth')
-        self.assertEqual(
-            list(self.odict.items()), [
-                ('first', 'This'),
-                ('third', 'a'),
-                ('fourth', 'self'),
-                ('fifth', 'test'),
-                ('sixth', '.')
-            ]
-        )
+    def testRegistryIter(self):
+        r = markdown.util.Registry()
+        r.register(Item('a'), 'a', 20)
+        r.register(Item('b'), 'b', 30)
+        self.assertEqual(list(r), ['b', 'a'])
 
-    def testAdd_begin(self):
-        """ Test adding an OrderedDict item using "_begin". """
-        self.odict.add('zero', 'CRAZY', '_begin')
-        self.assertEqual(
-            list(self.odict.items()), [
-                ('zero', 'CRAZY'),
-                ('first', 'This'),
-                ('third', 'a'),
-                ('fourth', 'self'),
-                ('fifth', 'test')
-            ]
-        )
+    def testRegistryGetItemByIndex(self):
+        r = markdown.util.Registry()
+        r.register(Item('a'), 'a', 20)
+        r.register(Item('b'), 'b', 30)
+        self.assertEqual(r[0], 'b')
+        self.assertEqual(r[1], 'a')
+        with self.assertRaises(IndexError):
+            r[3]
 
-    def testAdd_end(self):
-        """ Test adding an OrderedDict item using "_end". """
-        self.odict.add('sixth', '.', '_end')
-        self.assertEqual(
-            list(self.odict.items()), [
-                ('first', 'This'),
-                ('third', 'a'),
-                ('fourth', 'self'),
-                ('fifth', 'test'),
-                ('sixth', '.')
-            ]
-        )
+    def testRegistryGetItemByItem(self):
+        r = markdown.util.Registry()
+        r.register(Item('a'), 'a', 20)
+        r.register(Item('b'), 'b', 30)
+        self.assertEqual(r['a'], 'a')
+        self.assertEqual(r['b'], 'b')
+        with self.assertRaises(KeyError):
+            r['c']
 
-    def testAddBadLocation(self):
-        """ Test Error on bad location in OrderedDict.add(). """
-        self.assertRaises(ValueError, self.odict.add, 'sixth', '.', '<seventh')
-        self.assertRaises(ValueError, self.odict.add, 'second', 'is', 'third')
+    def testRegistrySetItem(self):
+        r = markdown.util.Registry()
+        with self.assertRaises(TypeError):
+            r[0] = 'a'
+        with self.assertRaises(TypeError):
+            r['a'] = 'a'
 
-    def testDeleteItem(self):
-        """ Test deletion of an OrderedDict item. """
-        del self.odict['fourth']
-        self.assertEqual(
-            list(self.odict.items()),
-            [('first', 'This'), ('third', 'a'), ('fifth', 'test')]
-        )
+    def testRegistryDelItem(self):
+        r = markdown.util.Registry()
+        r.register(Item('a'), 'a', 20)
+        with self.assertRaises(TypeError):
+            del r[0]
+        with self.assertRaises(TypeError):
+            del r['a']
 
-    def testChangeValue(self):
-        """ Test OrderedDict change value. """
-        self.odict['fourth'] = 'CRAZY'
-        self.assertEqual(
-            list(self.odict.items()), [
-                ('first', 'This'),
-                ('third', 'a'),
-                ('fourth', 'CRAZY'),
-                ('fifth', 'test')
-            ]
-        )
+    def testRegistrySlice(self):
+        r = markdown.util.Registry()
+        r.register(Item('a'), 'a', 20)
+        r.register(Item('b'), 'b', 30)
+        r.register(Item('c'), 'c', 40)
+        slc = r[1:]
+        self.assertEqual(len(slc), 2)
+        self.assertIsInstance(slc, markdown.util.Registry)
+        self.assertEqual(list(slc), ['b', 'a'])
 
-    def testChangeOrder(self):
-        """ Test OrderedDict change order. """
-        self.odict.link('fourth', '<third')
-        self.assertEqual(
-            list(self.odict.items()), [
-                ('first', 'This'),
-                ('fourth', 'self'),
-                ('third', 'a'),
-                ('fifth', 'test')
-            ]
-        )
+    def testGetIndexForName(self):
+        r = markdown.util.Registry()
+        r.register(Item('a'), 'a', 20)
+        r.register(Item('b'), 'b', 30)
+        self.assertEqual(r.get_index_for_name('a'), 1)
+        self.assertEqual(r.get_index_for_name('b'), 0)
+        with self.assertRaises(ValueError):
+            r.get_index_for_name('c')
 
-    def textBadLink(self):
-        """ Test OrderedDict change order with bad location. """
-        self.assertRaises(ValueError, self.odict.link('fourth', '<bad'))
-        # Check for data integrity ("fourth" wasn't deleted).'
-        self.assertEqual(
-            list(self.odict.items()), [
-                ('first', 'This'),
-                ('third', 'a'),
-                ('fourth', 'self'),
-                ('fifth', 'test')
-            ]
-        )
+    def testRegisterDupplicate(self):
+        r = markdown.util.Registry()
+        r.register(Item('a'), 'a', 20)
+        r.register(Item('b1'), 'b', 10)
+        self.assertEqual(list(r), ['a', 'b1'])
+        self.assertEqual(len(r), 2)
+        r.register(Item('b2'), 'b', 30)
+        self.assertEqual(len(r), 2)
+        self.assertEqual(list(r), ['b2', 'a'])
 
 
 class TestErrors(unittest.TestCase):
@@ -337,12 +368,6 @@ class TestErrors(unittest.TestCase):
     def tearDown(self):
         # Reset warning behavior back to default
         warnings.simplefilter('default')
-
-    def testNonUnicodeSource(self):
-        """ Test falure on non-unicode source text. """
-        if sys.version_info < (3, 0):
-            source = "foo".encode('utf-16')
-            self.assertRaises(UnicodeDecodeError, markdown.markdown, source)
 
     def testBadOutputFormat(self):
         """ Test failure on bad output_format. """
@@ -363,98 +388,56 @@ class TestErrors(unittest.TestCase):
         """ Test loading a non Extension object as an extension. """
         self.assertRaises(TypeError, markdown.Markdown, extensions=[object])
 
+    def testDotNotationExtensionWithBadClass(self):
+        """ Test Extension loading with non-existent class name (`path.to.module:Class`). """
+        self.assertRaises(
+            AttributeError,
+            markdown.Markdown,
+            extensions=['markdown.extensions.footnotes:MissingExtension']
+        )
+
     def testBaseExtention(self):
-        """ Test that the base Extension class will raise NotImplemented. """
+        """ Test that the base Extension class will raise `NotImplemented`. """
         self.assertRaises(
             NotImplementedError,
             markdown.Markdown, extensions=[markdown.extensions.Extension()]
         )
 
-    def testMdxExtention(self):
-        """ Test that prepending mdx_ raises a DeprecationWarning. """
-        _create_fake_extension(name='fake', use_old_style=True)
-        self.assertRaises(
-            DeprecationWarning,
-            markdown.Markdown, extensions=['fake']
-        )
-
-    def testShortNameExtention(self):
-        """ Test that using a short name raises a DeprecationWarning. """
-        self.assertRaises(
-            DeprecationWarning,
-            markdown.Markdown, extensions=['footnotes']
-        )
-
-    def testStringConfigExtention(self):
-        """ Test that passing configs to an Extension in the name raises a DeprecationWarning. """
-        self.assertRaises(
-            DeprecationWarning,
-            markdown.Markdown, extensions=['markdown.extension.footnotes(PLACE_MARKER=FOO)']
-        )
-
-
-def _create_fake_extension(name, has_factory_func=True, is_wrong_type=False, use_old_style=False):
-    """ Create a fake extension module for testing. """
-    if use_old_style:
-        mod_name = '_'.join(['mdx', name])
-    else:
-        mod_name = name
-    if not PY3:
-        # mod_name must be bytes in Python 2.x
-        mod_name = bytes(mod_name)
-    ext_mod = types.ModuleType(mod_name)
-
-    def makeExtension(*args, **kwargs):
-        if is_wrong_type:
-            return object
-        else:
-            return markdown.extensions.Extension(*args, **kwargs)
-
-    if has_factory_func:
-        ext_mod.makeExtension = makeExtension
-    # Warning: this brute forces the extenson module onto the system. Either
-    # this needs to be specificly overriden or a new python session needs to
-    # be started to get rid of this. This should be ok in a testing context.
-    sys.modules[mod_name] = ext_mod
-
 
 class testETreeComments(unittest.TestCase):
     """
-    Test that ElementTree Comments work.
+    Test that `ElementTree` Comments work.
 
-    These tests should only be a concern when using cElementTree with third
+    These tests should only be a concern when using `cElementTree` with third
     party serializers (including markdown's (x)html serializer). While markdown
-    doesn't use ElementTree.Comment itself, we should certainly support any
+    doesn't use `ElementTree.Comment` itself, we should certainly support any
     third party extensions which may. Therefore, these tests are included to
     ensure such support is maintained.
     """
 
     def setUp(self):
         # Create comment node
-        self.comment = markdown.util.etree.Comment('foo')
-        if hasattr(markdown.util.etree, 'test_comment'):
-            self.test_comment = markdown.util.etree.test_comment
-        else:
-            self.test_comment = markdown.util.etree.Comment
+        self.comment = etree.Comment('foo')
 
     def testCommentIsComment(self):
-        """ Test that an ElementTree Comment passes the `is Comment` test. """
-        self.assertTrue(self.comment.tag is markdown.util.etree.test_comment)
+        """ Test that an `ElementTree` `Comment` passes the `is Comment` test. """
+        self.assertIs(self.comment.tag, etree.Comment)
 
     def testCommentIsBlockLevel(self):
-        """ Test that an ElementTree Comment is recognized as BlockLevel. """
-        self.assertFalse(markdown.util.isBlockLevel(self.comment.tag))
+        """ Test that an `ElementTree` `Comment` is recognized as `BlockLevel`. """
+        md = markdown.Markdown()
+        self.assertIs(md.is_block_level(self.comment.tag), False)
 
     def testCommentSerialization(self):
-        """ Test that an ElementTree Comment serializes properly. """
+        """ Test that an `ElementTree` `Comment` serializes properly. """
         self.assertEqual(
             markdown.serializers.to_html_string(self.comment),
             '<!--foo-->'
         )
 
     def testCommentPrettify(self):
-        """ Test that an ElementTree Comment is prettified properly. """
-        pretty = markdown.treeprocessors.PrettifyTreeprocessor()
+        """ Test that an `ElementTree` `Comment` is prettified properly. """
+        pretty = markdown.treeprocessors.PrettifyTreeprocessor(markdown.Markdown())
         pretty.run(self.comment)
         self.assertEqual(
             markdown.serializers.to_html_string(self.comment),
@@ -465,15 +448,52 @@ class testETreeComments(unittest.TestCase):
 class testElementTailTests(unittest.TestCase):
     """ Element Tail Tests """
     def setUp(self):
-        self.pretty = markdown.treeprocessors.PrettifyTreeprocessor()
+        self.pretty = markdown.treeprocessors.PrettifyTreeprocessor(markdown.Markdown())
 
     def testBrTailNoNewline(self):
-        """ Test that last <br> in tree has a new line tail """
-        root = markdown.util.etree.Element('root')
-        br = markdown.util.etree.SubElement(root, 'br')
+        """ Test that last `<br>` in tree has a new line tail """
+        root = etree.Element('root')
+        br = etree.SubElement(root, 'br')
         self.assertEqual(br.tail, None)
         self.pretty.run(root)
         self.assertEqual(br.tail, "\n")
+
+
+class testElementPreCodeTests(unittest.TestCase):
+    """ Element `PreCode` Tests """
+    def setUp(self):
+        md = markdown.Markdown()
+        self.pretty = markdown.treeprocessors.PrettifyTreeprocessor(md)
+
+    def prettify(self, xml):
+        root = etree.fromstring(xml)
+        self.pretty.run(root)
+        return etree.tostring(root, encoding="unicode", short_empty_elements=False)
+
+    def testPreCodeEmpty(self):
+        xml = "<pre><code></code></pre>"
+        expected = "<pre><code></code></pre>\n"
+        self.assertEqual(expected, self.prettify(xml))
+
+    def testPreCodeWithChildren(self):
+        xml = "<pre><code> <span /></code></pre>"
+        expected = "<pre><code> <span></span></code></pre>\n"
+        self.assertEqual(expected, self.prettify(xml))
+
+    def testPreCodeWithSpaceOnly(self):
+        xml = "<pre><code> </code></pre>"
+        expected = "<pre><code>\n</code></pre>\n"
+        self.assertEqual(expected, self.prettify(xml))
+
+    def testPreCodeWithText(self):
+        xml = "<pre><code> hello</code></pre>"
+        expected = "<pre><code> hello\n</code></pre>\n"
+        self.assertEqual(expected, self.prettify(xml))
+
+    def testPreCodeWithTrailingSpace(self):
+        xml = "<pre><code> hello </code></pre>"
+        expected = "<pre><code> hello\n</code></pre>\n"
+        self.assertEqual(expected, self.prettify(xml))
 
 
 class testSerializers(unittest.TestCase):
@@ -481,46 +501,141 @@ class testSerializers(unittest.TestCase):
 
     def testHtml(self):
         """ Test HTML serialization. """
-        el = markdown.util.etree.Element('div')
-        p = markdown.util.etree.SubElement(el, 'p')
-        p.text = 'foo'
-        markdown.util.etree.SubElement(el, 'hr')
+        el = etree.Element('div')
+        el.set('id', 'foo<&">')
+        p = etree.SubElement(el, 'p')
+        p.text = 'foo <&escaped>'
+        p.set('hidden', 'hidden')
+        etree.SubElement(el, 'hr')
+        non_element = etree.SubElement(el, None)
+        non_element.text = 'non-element text'
+        script = etree.SubElement(non_element, 'script')
+        script.text = '<&"test\nescaping">'
+        el.tail = "tail text"
         self.assertEqual(
             markdown.serializers.to_html_string(el),
-            '<div><p>foo</p><hr></div>'
+            '<div id="foo&lt;&amp;&quot;&gt;">'
+            '<p hidden>foo &lt;&amp;escaped&gt;</p>'
+            '<hr>'
+            'non-element text'
+            '<script><&"test\nescaping"></script>'
+            '</div>tail text'
         )
 
     def testXhtml(self):
         """" Test XHTML serialization. """
-        el = markdown.util.etree.Element('div')
-        p = markdown.util.etree.SubElement(el, 'p')
-        p.text = 'foo'
-        markdown.util.etree.SubElement(el, 'hr')
+        el = etree.Element('div')
+        el.set('id', 'foo<&">')
+        p = etree.SubElement(el, 'p')
+        p.text = 'foo<&escaped>'
+        p.set('hidden', 'hidden')
+        etree.SubElement(el, 'hr')
+        non_element = etree.SubElement(el, None)
+        non_element.text = 'non-element text'
+        script = etree.SubElement(non_element, 'script')
+        script.text = '<&"test\nescaping">'
+        el.tail = "tail text"
         self.assertEqual(
             markdown.serializers.to_xhtml_string(el),
-            '<div><p>foo</p><hr /></div>'
+            '<div id="foo&lt;&amp;&quot;&gt;">'
+            '<p hidden="hidden">foo&lt;&amp;escaped&gt;</p>'
+            '<hr />'
+            'non-element text'
+            '<script><&"test\nescaping"></script>'
+            '</div>tail text'
         )
 
     def testMixedCaseTags(self):
         """" Test preservation of tag case. """
-        el = markdown.util.etree.Element('MixedCase')
+        el = etree.Element('MixedCase')
         el.text = 'not valid '
-        em = markdown.util.etree.SubElement(el, 'EMPHASIS')
+        em = etree.SubElement(el, 'EMPHASIS')
         em.text = 'html'
-        markdown.util.etree.SubElement(el, 'HR')
+        etree.SubElement(el, 'HR')
         self.assertEqual(
             markdown.serializers.to_xhtml_string(el),
             '<MixedCase>not valid <EMPHASIS>html</EMPHASIS><HR /></MixedCase>'
         )
 
+    def testProsessingInstruction(self):
+        """ Test serialization of `ProcessignInstruction`. """
+        pi = ProcessingInstruction('foo', text='<&"test\nescaping">')
+        self.assertIs(pi.tag, ProcessingInstruction)
+        self.assertEqual(
+            markdown.serializers.to_xhtml_string(pi),
+            '<?foo &lt;&amp;"test\nescaping"&gt;?>'
+        )
+
+    def testQNameTag(self):
+        """ Test serialization of `QName` tag. """
+        div = etree.Element('div')
+        qname = etree.QName('http://www.w3.org/1998/Math/MathML', 'math')
+        math = etree.SubElement(div, qname)
+        math.set('display', 'block')
+        sem = etree.SubElement(math, 'semantics')
+        msup = etree.SubElement(sem, 'msup')
+        mi = etree.SubElement(msup, 'mi')
+        mi.text = 'x'
+        mn = etree.SubElement(msup, 'mn')
+        mn.text = '2'
+        ann = etree.SubElement(sem, 'annotations')
+        ann.text = 'x^2'
+        self.assertEqual(
+            markdown.serializers.to_xhtml_string(div),
+            '<div>'
+            '<math display="block" xmlns="http://www.w3.org/1998/Math/MathML">'
+            '<semantics>'
+            '<msup>'
+            '<mi>x</mi>'
+            '<mn>2</mn>'
+            '</msup>'
+            '<annotations>x^2</annotations>'
+            '</semantics>'
+            '</math>'
+            '</div>'
+        )
+
+    def testQNameAttribute(self):
+        """ Test serialization of `QName` attribute. """
+        div = etree.Element('div')
+        div.set(etree.QName('foo'), etree.QName('bar'))
+        self.assertEqual(
+            markdown.serializers.to_xhtml_string(div),
+            '<div foo="bar"></div>'
+        )
+
+    def testBadQNameTag(self):
+        """ Test serialization of `QName` with no tag. """
+        qname = etree.QName('http://www.w3.org/1998/Math/MathML')
+        el = etree.Element(qname)
+        self.assertRaises(ValueError, markdown.serializers.to_xhtml_string, el)
+
+    def testQNameEscaping(self):
+        """ Test `QName` escaping. """
+        qname = etree.QName('<&"test\nescaping">', 'div')
+        el = etree.Element(qname)
+        self.assertEqual(
+            markdown.serializers.to_xhtml_string(el),
+            '<div xmlns="&lt;&amp;&quot;test&#10;escaping&quot;&gt;"></div>'
+        )
+
+    def testQNamePreEscaping(self):
+        """ Test `QName` that is already partially escaped. """
+        qname = etree.QName('&lt;&amp;"test&#10;escaping"&gt;', 'div')
+        el = etree.Element(qname)
+        self.assertEqual(
+            markdown.serializers.to_xhtml_string(el),
+            '<div xmlns="&lt;&amp;&quot;test&#10;escaping&quot;&gt;"></div>'
+        )
+
     def buildExtension(self):
-        """ Build an extension which registers fakeSerializer. """
+        """ Build an extension which registers `fakeSerializer`. """
         def fakeSerializer(elem):
-            # Ignore input and return hardcoded output
+            # Ignore input and return hard-coded output
             return '<div><p>foo</p></div>'
 
         class registerFakeSerializer(markdown.extensions.Extension):
-            def extendMarkdown(self, md, md_globals):
+            def extendMarkdown(self, md):
                 md.output_formats['fake'] = fakeSerializer
 
         return registerFakeSerializer()
@@ -533,18 +648,30 @@ class testSerializers(unittest.TestCase):
             '<p>foo</p>'
         )
 
+    def testXHTMLOutput(self):
+        self.assertEqual(
+            markdown.markdown('foo  \nbar', output_format='xhtml'),
+            '<p>foo<br />\nbar</p>'
+        )
+
+    def testHTMLOutput(self):
+        self.assertEqual(
+            markdown.markdown('foo  \nbar', output_format='html'),
+            '<p>foo<br>\nbar</p>'
+        )
+
 
 class testAtomicString(unittest.TestCase):
-    """ Test that AtomicStrings are honored (not parsed). """
+    """ Test that `AtomicStrings` are honored (not parsed). """
 
     def setUp(self):
-        md = markdown.Markdown()
-        self.inlineprocessor = md.treeprocessors['inline']
+        self.md = markdown.Markdown()
+        self.inlineprocessor = self.md.treeprocessors['inline']
 
     def testString(self):
         """ Test that a regular string is parsed. """
-        tree = markdown.util.etree.Element('div')
-        p = markdown.util.etree.SubElement(tree, 'p')
+        tree = etree.Element('div')
+        p = etree.SubElement(tree, 'p')
         p.text = 'some *text*'
         new = self.inlineprocessor.run(tree)
         self.assertEqual(
@@ -553,9 +680,9 @@ class testAtomicString(unittest.TestCase):
         )
 
     def testSimpleAtomicString(self):
-        """ Test that a simple AtomicString is not parsed. """
-        tree = markdown.util.etree.Element('div')
-        p = markdown.util.etree.SubElement(tree, 'p')
+        """ Test that a simple `AtomicString` is not parsed. """
+        tree = etree.Element('div')
+        p = etree.SubElement(tree, 'p')
         p.text = markdown.util.AtomicString('some *text*')
         new = self.inlineprocessor.run(tree)
         self.assertEqual(
@@ -564,15 +691,15 @@ class testAtomicString(unittest.TestCase):
         )
 
     def testNestedAtomicString(self):
-        """ Test that a nested AtomicString is not parsed. """
-        tree = markdown.util.etree.Element('div')
-        p = markdown.util.etree.SubElement(tree, 'p')
+        """ Test that a nested `AtomicString` is not parsed. """
+        tree = etree.Element('div')
+        p = etree.SubElement(tree, 'p')
         p.text = markdown.util.AtomicString('*some* ')
-        span1 = markdown.util.etree.SubElement(p, 'span')
+        span1 = etree.SubElement(p, 'span')
         span1.text = markdown.util.AtomicString('*more* ')
-        span2 = markdown.util.etree.SubElement(span1, 'span')
+        span2 = etree.SubElement(span1, 'span')
         span2.text = markdown.util.AtomicString('*text* ')
-        span3 = markdown.util.etree.SubElement(span2, 'span')
+        span3 = etree.SubElement(span2, 'span')
         span3.text = markdown.util.AtomicString('*here*')
         span3.tail = markdown.util.AtomicString(' *to*')
         span2.tail = markdown.util.AtomicString(' *test*')
@@ -584,10 +711,30 @@ class testAtomicString(unittest.TestCase):
             '*to*</span> *test*</span> *with*</p></div>'
         )
 
+    def testInlineProcessorDoesntCrashWithWrongAtomicString(self):
+        """ Test that an `AtomicString` returned from a Pattern doesn't cause a crash. """
+        tree = etree.Element('div')
+        p = etree.SubElement(tree, 'p')
+        p.text = 'a marker c'
+        self.md.inlinePatterns.register(
+            _InlineProcessorThatReturnsAtomicString(r'marker', self.md), 'test', 100
+        )
+        new = self.inlineprocessor.run(tree)
+        self.assertEqual(
+            markdown.serializers.to_html_string(new),
+            '<div><p>a &lt;b&gt;atomic&lt;/b&gt; c</p></div>'
+        )
+
+
+class _InlineProcessorThatReturnsAtomicString(inlinepatterns.InlineProcessor):
+    """ Return a simple text of `group(1)` of a Pattern. """
+    def handleMatch(self, m, data):
+        return markdown.util.AtomicString('<b>atomic</b>'), m.start(0), m.end(0)
+
 
 class TestConfigParsing(unittest.TestCase):
     def assertParses(self, value, result):
-        self.assertTrue(markdown.util.parseBoolValue(value, False) is result)
+        self.assertIs(markdown.util.parseBoolValue(value, False), result)
 
     def testBooleansParsing(self):
         self.assertParses(True, True)
@@ -598,8 +745,8 @@ class TestConfigParsing(unittest.TestCase):
         self.assertParses('none', False)
 
     def testPreserveNone(self):
-        self.assertTrue(markdown.util.parseBoolValue('None', preserve_none=True) is None)
-        self.assertTrue(markdown.util.parseBoolValue(None, preserve_none=True) is None)
+        self.assertIsNone(markdown.util.parseBoolValue('None', preserve_none=True))
+        self.assertIsNone(markdown.util.parseBoolValue(None, preserve_none=True))
 
     def testInvalidBooleansParsing(self):
         self.assertRaises(ValueError, markdown.util.parseBoolValue, 'novalue')
@@ -613,7 +760,7 @@ class TestCliOptionParsing(unittest.TestCase):
             'input': None,
             'output': None,
             'encoding': None,
-            'output_format': 'xhtml1',
+            'output_format': 'xhtml',
             'lazy_ol': True,
             'extensions': [],
             'extension_configs': {},
@@ -631,7 +778,7 @@ class TestCliOptionParsing(unittest.TestCase):
 
     def testQuietOption(self):
         options, logging_level = parse_options(['-q'])
-        self.assertTrue(logging_level > CRITICAL)
+        self.assertGreater(logging_level, CRITICAL)
 
     def testVerboseOption(self):
         options, logging_level = parse_options(['-v'])
@@ -662,14 +809,9 @@ class TestCliOptionParsing(unittest.TestCase):
         self.default_options['encoding'] = 'utf-8'
         self.assertEqual(options, self.default_options)
 
-    def testSafeModeOption(self):
-        options, logging_level = parse_options(['-s', 'escape'])
-        self.default_options['safe_mode'] = 'escape'
-        self.assertEqual(options, self.default_options)
-
     def testOutputFormatOption(self):
-        options, logging_level = parse_options(['-o', 'html5'])
-        self.default_options['output_format'] = 'html5'
+        options, logging_level = parse_options(['-o', 'html'])
+        self.default_options['output_format'] = 'html'
         self.assertEqual(options, self.default_options)
 
     def testNoLazyOlOption(self):
@@ -694,8 +836,8 @@ class TestCliOptionParsing(unittest.TestCase):
         self.assertEqual(options, self.default_options)
 
     def create_config_file(self, config):
-        """ Helper to create temp config files. """
-        if not isinstance(config, markdown.util.string_type):
+        """ Helper to create temporary configuration files. """
+        if not isinstance(config, str):
             # convert to string
             config = yaml.dump(config)
         fd, self.tempfile = tempfile.mkstemp('.yml')
@@ -731,7 +873,7 @@ class TestCliOptionParsing(unittest.TestCase):
         self.default_options['extension_configs'] = config
         self.assertEqual(options, self.default_options)
 
-    def testExtensonConfigOptionAsJSON(self):
+    def testExtensionConfigOptionAsJSON(self):
         config = {
             'markdown.extensions.wikilinks': {
                 'base_url': 'http://example.com/',
@@ -748,10 +890,10 @@ class TestCliOptionParsing(unittest.TestCase):
         self.default_options['extension_configs'] = config
         self.assertEqual(options, self.default_options)
 
-    def testExtensonConfigOptionMissingFile(self):
+    def testExtensionConfigOptionMissingFile(self):
         self.assertRaises(IOError, parse_options, ['-c', 'missing_file.yaml'])
 
-    def testExtensonConfigOptionBadFormat(self):
+    def testExtensionConfigOptionBadFormat(self):
         config = """
 [footnotes]
 PLACE_MARKER= ~~~footnotes~~~
@@ -772,19 +914,31 @@ class TestEscapeAppend(unittest.TestCase):
         self.assertEqual('|' not in md2.ESCAPED_CHARS, True)
 
 
+class TestBlockAppend(unittest.TestCase):
+    """ Tests block `kHTML` append. """
+
+    def testBlockAppend(self):
+        """ Test that appended escapes are only in the current instance. """
+        md = markdown.Markdown()
+        md.block_level_elements.append('test')
+        self.assertEqual('test' in md.block_level_elements, True)
+        md2 = markdown.Markdown()
+        self.assertEqual('test' not in md2.block_level_elements, True)
+
+
 class TestAncestorExclusion(unittest.TestCase):
     """ Tests exclusion of tags in ancestor list. """
 
-    class AncestorExample(markdown.inlinepatterns.SimpleTagPattern):
+    class AncestorExample(markdown.inlinepatterns.SimpleTagInlineProcessor):
         """ Ancestor Test. """
 
         ANCESTOR_EXCLUDES = ('a',)
 
-        def handleMatch(self, m):
+        def handleMatch(self, m, data):
             """ Handle match. """
-            el = markdown.util.etree.Element(self.tag)
-            el.text = m.group(3)
-            return el
+            el = etree.Element(self.tag)
+            el.text = m.group(2)
+            return el, m.start(0), m.end(0)
 
     class AncestorExtension(markdown.Extension):
 
@@ -793,11 +947,11 @@ class TestAncestorExclusion(unittest.TestCase):
 
             self.config = {}
 
-        def extendMarkdown(self, md, md_globals):
+        def extendMarkdown(self, md):
             """Modify inline patterns."""
 
-            pattern = r'(\+)([^\+]+)\2'
-            md.inlinePatterns["ancestor-test"] = TestAncestorExclusion.AncestorExample(pattern, 'strong')
+            pattern = r'(\+)([^\+]+)\1'
+            md.inlinePatterns.register(TestAncestorExclusion.AncestorExample(pattern, 'strong'), 'ancestor-test', 0)
 
     def setUp(self):
         """Setup markdown object."""

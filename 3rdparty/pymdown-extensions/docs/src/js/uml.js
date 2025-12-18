@@ -1,14 +1,53 @@
+/* Notes (as of Mermaid 8.7.0):
+ * - Gantt: width is always relative to the parent, if you have a small parent, the chart will be squashed.
+ *   Can't help it.
+ * - Journey: Suffers from the same issues that Gantt does.
+ * - Pie: These charts have no default height or width. Good luck pinning them down to a reasonable size.
+ * - Git: The render portion is agnostic to the size of the parent element. But padding of the SVG is relative
+ *   to the parent element. You will never find a happy size.
+ */
+
 /**
  * Targets special code or div blocks and converts them to UML.
- * @param {object} converter is the object that transforms the text to UML.
  * @param {string} className is the name of the class to target.
- * @param {object} settings is the settings for converter.
  * @return {void}
  */
-export default (converter, className, settings) => {
+export default async className => {
 
-  const getFromCode = function(parent) {
-    // Handles <pre><code>
+  // Custom element to encapsulate Mermaid content.
+  class MermaidDiv extends HTMLElement {
+
+    /**
+    * Creates a special Mermaid div shadow DOM.
+    * Works around issues of shared IDs.
+    * @return {void}
+    */
+    constructor() {
+      super()
+
+      // Create the Shadow DOM and attach style
+      const shadow = this.attachShadow({mode: "open"})
+      const style = document.createElement("style")
+      style.textContent = `
+      :host {
+        display: block;
+        line-height: initial;
+        font-size: 16px;
+      }
+      div.diagram {
+        margin: 0;
+        overflow: visible;
+      }`
+      shadow.appendChild(style)
+    }
+  }
+
+  if (typeof customElements.get("diagram-div") === "undefined") {
+    customElements.define("diagram-div", MermaidDiv)
+  }
+
+  const getFromCode = parent => {
+    // Handles <pre><code> text extraction.
     let text = ""
     for (let j = 0; j < parent.childNodes.length; j++) {
       const subEl = parent.childNodes[j]
@@ -26,42 +65,83 @@ export default (converter, className, settings) => {
     return text
   }
 
-  const getFromDiv = function(parent) {
-    // Handles <div>
-    return parent.textContent || parent.innerText
+  // We use this to determine if we want the dark or light theme.
+  // This is specific for our MkDocs Material environment.
+  // You should load your configs based on your own environment's needs.
+  const defaultConfig = {
+    startOnLoad: false,
+    theme: "default",
+    flowchart: {
+      useMaxWidth: false
+    },
+    er: {
+      useMaxWidth: false
+    },
+    sequence: {
+      useMaxWidth: false,
+      noteFontWeight: "14px",
+      actorFontSize: "14px",
+      messageFontSize: "16px"
+    }
   }
+  mermaid.mermaidAPI.globalReset()
+  // Non Material themes should just use "default"
+  let scheme = null
+  try {
+    scheme = document.querySelector("[data-md-color-scheme]").getAttribute("data-md-color-scheme")
+  } catch (err) {
+    scheme = "slate"
+  }
+  const config = (typeof mermaidConfig === "undefined") ?
+    defaultConfig :
+    mermaidConfig[scheme] || (mermaidConfig.default || defaultConfig)
+  mermaid.initialize(config)
 
-  // Change article to whatever element your main Markdown content lives.
-  const article = document.querySelectorAll("article")
-  const blocks = document.querySelectorAll(`pre.${className},div.${className}`)
-
-  // Is there a settings object?
-  const config = (settings === void 0) ? {} : settings
-
-  // Find the UML source element and get the text
+  // Find all of our Mermaid sources and render them.
+  const blocks = document.querySelectorAll(`pre.${className}, diagram-div`)
+  const surrogate = document.querySelector("html body")
   for (let i = 0; i < blocks.length; i++) {
-    const parentEl = blocks[i]
-    const el = document.createElement("div")
-    el.className = className
-    el.style.visibility = "hidden"
-    el.style.position = "absolute"
+    const block = blocks[i]
+    const parentEl = (block.tagName.toLowerCase() === "diagram-div") ?
+      block.shadowRoot.querySelector(`pre.${className}`) :
+      block
 
-    const text = (parentEl.tagName.toLowerCase() === "pre") ? getFromCode(parentEl) : getFromDiv(parentEl)
+    // Create a temporary element with the typeset and size we desire.
+    // Insert it at the end of our parent to render the SVG.
+    const temp = document.createElement("div")
+    temp.style.visibility = "hidden"
+    temp.style.display = "display"
+    temp.style.padding = "0"
+    temp.style.margin = "0"
+    temp.style.lineHeight = "initial"
+    temp.style.fontSize = "16px"
+    surrogate.appendChild(temp)
 
-    // Insert our new div at the end of our content to get general
-    // typeset and page sizes as our parent might be `display:none`
-    // keeping us from getting the right sizes for our SVG.
-    // Our new div will be hidden via "visibility" and take no space
-    // via `position: absolute`. When we are all done, use the
-    // original node as a reference to insert our SVG back
-    // into the proper place, and then make our SVG visible again.
-    // Lastly, clean up the old node.
-    article[0].appendChild(el)
-    const diagram = converter.parse(text)
-    diagram.drawSVG(el, config)
-    el.style.visibility = "visible"
-    el.style.position = "static"
-    parentEl.parentNode.insertBefore(el, parentEl)
-    parentEl.parentNode.removeChild(parentEl)
+    try {
+      const res = await mermaid.render(`_diagram_${i}`, getFromCode(parentEl), temp)
+      const content = res.svg
+      const fn = res.bindFunctions
+      const el = document.createElement("div")
+      el.className = className
+      el.innerHTML = content
+      if (fn) {
+        fn(el)
+      }
+
+      // Insert the render where we want it and remove the original text source.
+      // Mermaid will clean up the temporary element.
+      const shadow = document.createElement("diagram-div")
+      shadow.shadowRoot.appendChild(el)
+      block.parentNode.insertBefore(shadow, block)
+      parentEl.style.display = "none"
+      shadow.shadowRoot.appendChild(parentEl)
+      if (parentEl !== block) {
+        block.parentNode.removeChild(block)
+      }
+    } catch (err) {} // eslint-disable-line no-empty
+
+    if (surrogate.contains(temp)) {
+      surrogate.removeChild(temp)
+    }
   }
 }

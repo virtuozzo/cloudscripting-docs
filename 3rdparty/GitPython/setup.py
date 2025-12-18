@@ -1,30 +1,30 @@
 #!/usr/bin/env python
-from __future__ import print_function
-try:
-    from setuptools import setup, find_packages
-except ImportError:
-    from ez_setup import use_setuptools
-    use_setuptools()
-    from setuptools import setup, find_packages
 
-from distutils.command.build_py import build_py as _build_py
-from setuptools.command.sdist import sdist as _sdist
 import os
+from pathlib import Path
 import sys
-from os import path
+from typing import Sequence
 
-with open(path.join(path.dirname(__file__), 'VERSION')) as v:
-    VERSION = v.readline().strip()
+from setuptools import setup, find_packages
+from setuptools.command.build_py import build_py as _build_py
+from setuptools.command.sdist import sdist as _sdist
 
-with open('requirements.txt') as reqs_file:
-    requirements = reqs_file.read().splitlines()
+
+def _read_content(path: str) -> str:
+    return (Path(__file__).parent / path).read_text(encoding="utf-8")
+
+
+version = _read_content("VERSION").strip()
+requirements = _read_content("requirements.txt").splitlines()
+test_requirements = _read_content("test-requirements.txt").splitlines()
+doc_requirements = _read_content("doc/requirements.txt").splitlines()
+long_description = _read_content("README.md")
 
 
 class build_py(_build_py):
-
-    def run(self):
-        init = path.join(self.build_lib, 'git', '__init__.py')
-        if path.exists(init):
+    def run(self) -> None:
+        init = os.path.join(self.build_lib, "git", "__init__.py")
+        if os.path.exists(init):
             os.unlink(init)
         _build_py.run(self)
         _stamp_version(init)
@@ -32,60 +32,57 @@ class build_py(_build_py):
 
 
 class sdist(_sdist):
-
-    def make_release_tree(self, base_dir, files):
+    def make_release_tree(self, base_dir: str, files: Sequence) -> None:
         _sdist.make_release_tree(self, base_dir, files)
-        orig = path.join('git', '__init__.py')
-        assert path.exists(orig), orig
-        dest = path.join(base_dir, orig)
-        if hasattr(os, 'link') and path.exists(dest):
+        orig = os.path.join("git", "__init__.py")
+        assert os.path.exists(orig), orig
+        dest = os.path.join(base_dir, orig)
+        if hasattr(os, "link") and os.path.exists(dest):
             os.unlink(dest)
         self.copy_file(orig, dest)
         _stamp_version(dest)
 
 
-def _stamp_version(filename):
+def _stamp_version(filename: str) -> None:
     found, out = False, []
     try:
-        with open(filename, 'r') as f:
+        with open(filename) as f:
             for line in f:
-                if '__version__ =' in line:
-                    line = line.replace("'git'", "'%s'" % VERSION)
+                if "__version__ =" in line:
+                    line = line.replace('"git"', "'%s'" % version)
                     found = True
                 out.append(line)
-    except (IOError, OSError):
+    except OSError:
         print("Couldn't find file %s to stamp version" % filename, file=sys.stderr)
 
     if found:
-        with open(filename, 'w') as f:
+        with open(filename, "w") as f:
             f.writelines(out)
     else:
         print("WARNING: Couldn't find version line in file %s" % filename, file=sys.stderr)
 
 
-install_requires = ['gitdb2 >= 2.0.0']
-test_requires = ['ddt>=1.1.1']
-# end
-
 setup(
     name="GitPython",
-    cmdclass={'build_py': build_py, 'sdist': sdist},
-    version=VERSION,
-    description="Python Git Library",
+    cmdclass={"build_py": build_py, "sdist": sdist},
+    version=version,
+    description="GitPython is a Python library used to interact with Git repositories",
     author="Sebastian Thiel, Michael Trier",
     author_email="byronimo@gmail.com, mtrier@gmail.com",
+    license="BSD-3-Clause",
     url="https://github.com/gitpython-developers/GitPython",
-    packages=find_packages('.'),
-    py_modules=['git.' + f[:-3] for f in os.listdir('./git') if f.endswith('.py')],
-    package_data={'git.test': ['fixtures/*']},
-    package_dir={'git': 'git'},
-    license="BSD License",
-    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
-    requires=['gitdb2 (>=2.0.0)'],
-    install_requires=install_requires,
-    test_requirements=test_requires + install_requires,
+    packages=find_packages(exclude=["test", "test.*"]),
+    include_package_data=True,
+    package_dir={"git": "git"},
+    python_requires=">=3.7",
+    install_requires=requirements,
+    extras_require={
+        "test": test_requirements,
+        "doc": doc_requirements,
+    },
     zip_safe=False,
-    long_description="""GitPython is a python library used to interact with Git repositories""",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     classifiers=[
         # Picked from
         #   http://pypi.python.org/pypi?:action=list_classifiers
@@ -98,17 +95,18 @@ setup(
         # "Development Status :: 7 - Inactive",
         "Environment :: Console",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
         "Operating System :: POSIX",
         "Operating System :: Microsoft :: Windows",
         "Operating System :: MacOS :: MacOS X",
+        "Typing :: Typed",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.4",
-        "Programming Language :: Python :: 3.5",
-        "Programming Language :: Python :: 3.6",
-    ]
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+    ],
 )

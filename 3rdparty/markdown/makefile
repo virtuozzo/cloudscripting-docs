@@ -8,29 +8,26 @@ help:
 	@echo '    install       Install Python-Markdown locally'
 	@echo '    deploy        Register and upload a new release to PyPI'
 	@echo '    build         Build a source distribution'
-	@echo '    build-win     Build a Windows exe distribution'
 	@echo '    docs          Build documentation'
 	@echo '    test          Run all tests'
-	@echo '    update-tests  Generate html files for updated text files in tests'
 	@echo '    clean         Clean up the source directories'
 
 .PHONY : install
 install:
-	python setup.py install
+	pip install .
 
 .PHONY : deploy
 deploy:
+	rm -rf build
 	rm -rf dist
-	python setup.py bdist_wheel sdist --formats gztar
+	python -m build
 	twine upload dist/*
 
 .PHONY : build
 build:
-	python setup.py bdist_wheel sdist --formats gztar
-
-.PHONY : build-win
-build-win:
-	python setup.py bdist_wininst
+	rm -rf build
+	rm -rf dist
+	python -m build
 
 .PHONY : docs
 docs:
@@ -38,11 +35,8 @@ docs:
 
 .PHONY : test
 test:
-	tox
-
-.PHONY : update-tests
-update-tests:
-	python run-tests.py update
+	coverage run --source=markdown -m unittest discover tests
+	coverage report --show-missing
 
 .PHONY : clean
 clean:

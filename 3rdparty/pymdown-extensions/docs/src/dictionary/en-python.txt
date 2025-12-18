@@ -9,7 +9,9 @@ arithmatex
 autogen
 betterem
 bowtie
+bypassnorm
 chunking
+dedent
 escapeall
 extrarawhtml
 feelsgood
@@ -34,4 +36,5 @@ striphtml
 tasklist
 tasklists
 trollface
+tuple
 wildcard

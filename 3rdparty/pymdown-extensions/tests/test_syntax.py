@@ -1,16 +1,13 @@
 """Test extension syntax."""
-from __future__ import unicode_literals
 import os
 import markdown
 import difflib
-import codecs
 import pytest
 import copy
 from . import util
 import warnings
-from pymdownx.util import PymdownxDeprecationWarning
 
-warnings.simplefilter('ignore', PymdownxDeprecationWarning)
+warnings.simplefilter('ignore', DeprecationWarning)
 
 CURRENT_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -57,7 +54,7 @@ def check_markdown(testfile, extension, extension_config, wrapper, update=False)
     """Check the markdown."""
 
     expected_html = os.path.splitext(testfile)[0] + '.html'
-    with codecs.open(testfile, 'r', encoding='utf-8') as f:
+    with open(testfile, 'r', encoding='utf-8') as f:
         source = f.read()
 
     results = wrapper % markdown.Markdown(
@@ -65,24 +62,24 @@ def check_markdown(testfile, extension, extension_config, wrapper, update=False)
     ).convert(source)
 
     try:
-        with codecs.open(expected_html, 'r', encoding='utf-8') as f:
+        with open(expected_html, 'r', encoding='utf-8') as f:
             expected = f.read().replace("\r\n", "\n")
     except Exception:
         expected = ''
 
-    diff = [
-        l for l in difflib.unified_diff(
+    diff = list(
+        difflib.unified_diff(
             expected.splitlines(True),
             results.splitlines(True),
             expected_html,
             os.path.join(os.path.dirname(testfile), 'results.html'),
             n=3
         )
-    ]
+    )
     if diff:
         if update:
             print('Updated: %s' % expected_html)
-            with codecs.open(expected_html, 'w', encoding='utf-8') as f:
+            with open(expected_html, 'w', encoding='utf-8') as f:
                 f.write(results)
         else:
             raise Exception(
@@ -102,7 +99,7 @@ def gather_test_params():
         if os.path.exists(cfg_path):
             files.remove('tests.yml')
             [files.remove(file) for file in files[:] if not file.endswith('.txt')]
-            with codecs.open(cfg_path, 'r', encoding='utf-8') as f:
+            with open(cfg_path, 'r', encoding='utf-8') as f:
                 cfg = util.yaml_load(f.read())
             for testfile in files:
                 key = os.path.splitext(testfile)[0]
@@ -119,12 +116,19 @@ def gather_test_params():
                     for k1, v1 in v.items():
                         if v1 is not None:
                             for k2, v2 in v1.items():
-                                if isinstance(v2, util.string_type):
+                                if isinstance(v2, str):
                                     v1[k2] = v2.replace(
                                         '{{BASE}}', base
                                     ).replace(
                                         '{{RELATIVE}}', CURRENT_DIR
                                     )
+                                elif k2 == 'base_path' and isinstance(v2, list):
+                                    for i, v3 in enumerate(v2, 0):
+                                        v1[k2][i] = v3.replace(
+                                            '{{BASE}}', base
+                                        ).replace(
+                                            '{{RELATIVE}}', CURRENT_DIR
+                                        )
                         test_cfg[k][k1] = v1
                 target = os.path.join(base, testfile)
                 if target_file is not None and target != target_file:
@@ -135,7 +139,7 @@ def gather_test_params():
 def pytest_generate_tests(metafunc):
     """Generate tests."""
 
-    if "compare" in metafunc.funcargnames:
+    if "compare" in metafunc.fixturenames:
         metafunc.parametrize("compare", gather_test_params())
 
 

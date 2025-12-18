@@ -6,15 +6,18 @@ import copy
 sys.path.append('../pymdownx/')
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
+ADDITIONAL_ALIASES = {}
+
 # Special emoji
-special_emoji = {
-    # An unoffical emoji supported by very few
-    ":pirate_flag:": {
-        "category": "flags",
-        "name": "pirate flag",
-        "unicode": "1f3f4-200d-2620-fe0f"
+SPECIAL_EMOJI = {
+    # # An unofficial emoji supported by very few
+    ":shibuya:": {
+        "category": "travel",
+        "name": "Shibuya 109",
+        "unicode": "e50a"
     },
-    # Skier skin tones (not supported by EmojiOne yet)
+
+    # Skier skin tones (not supported by Unicode spec)
     ":skier_tone1:": {
         "category": "activity",
         "name": "skier: light skin tone",
@@ -40,120 +43,154 @@ special_emoji = {
         "name": "skier: dark skin tone",
         "unicode": "26f7-1f3ff"
     },
-    # Not many support this one
-    ":shibuya:": {
-        "category": "travel",
-        "name": "Shibuya 109",
-        "unicode": "e50a"
-    },
-    # Woman levitate
+
+    # Woman levitate (not supported in Unicode spec)
     ":woman_levitate:": {
         "category": "people",
         "name": "woman in business suit levitating",
-        "unicode": "1f574-fe0f-200d-2640-fe0f"
+        "unicode": "1f574-fe0f-200d-2640-fe0f",
+        "aliases": ["woman_in_business_suit_levitating"]
     },
-    # Woman levitating variants
-    ":woman_in_business_suit_levitating_tone1:": {
+    ":woman_levitate_tone1:": {
         "category": "people",
         "name": "woman in business suit levitating: light skin tone",
         "unicode": "1f574-1f3fb-200d-2640-fe0f",
-        "aliases": ["woman_in_business_suit_levitating_light_skin_tone"]
+        "aliases": [
+            "woman_in_business_suit_levitating_tone1",
+            "woman_in_business_suit_levitating_light_skin_tone"
+        ]
     },
-    ":woman_in_business_suit_levitating_tone2:": {
+    ":woman_leviate_tone2:": {
         "category": "people",
         "name": "woman in business suit levitating: medium-light skin tone",
         "unicode": "1f574-1f3fc-200d-2640-fe0f",
-        "aliases": ["woman_in_business_suit_levitating_medium_light_skin_tone"]
+        "aliases": [
+            "woman_in_business_suit_levitating_tone2",
+            "woman_in_business_suit_levitating_medium_light_skin_tone"
+        ]
     },
-    ":woman_in_business_suit_levitating_tone3:": {
+    ":woman_leviate_tone3:": {
         "category": "people",
         "name": "woman in business suit levitating: medium skin tone",
         "unicode": "1f574-1f3fd-200d-2640-fe0f",
-        "aliases": ["woman_in_business_suit_levitating_medium_skin_tone"]
+        "aliases": [
+            "woman_in_business_suit_levitating_tone3",
+            "woman_in_business_suit_levitating_medium_skin_tone"
+        ]
     },
-    ":woman_in_business_suit_levitating_tone4:": {
+    ":woman_leviate_tone4:": {
         "category": "people",
         "name": "woman in business suit levitating: medium-dark skin tone",
         "unicode": "1f574-1f3fe-200d-2640-fe0f",
-        "aliases": ["woman_in_business_suit_levitating_medium_dark_skin_tone"]
+        "aliases": [
+            "woman_in_business_suit_levitating_tone4",
+            "woman_in_business_suit_levitating_medium_dark_skin_tone"
+        ]
     },
-    ":woman_in_business_suit_levitating_tone5:": {
+    ":woman_leviate_tone5:": {
         "category": "people",
         "name": "woman in business suit levitating: dark skin tone",
         "unicode": "1f574-1f3ff-200d-2640-fe0f",
-        "aliases": ["woman_in_business_suit_levitating_dark_skin_tone"]
+        "aliases": [
+            "woman_in_business_suit_levitating_tone5",
+            "woman_in_business_suit_levitating_dark_skin_tone"
+        ]
     },
-    # Woman in tuxedo
-    ":woman_in_tuxedo:": {
+
+    # Man in Santa hat and variants
+    # Twitter has Santa Claus and man in Santa hat backwards
+    ":man_in_santa_hat:": {
         "category": "people",
-        "name": "woman in tuxedo",
-        "unicode": "1f935-200d-2640-fe0f"
+        "name": "man in santa hat",
+        "unicode": "1f468-200d-1f384"
     },
-    # Woman in tuxedo variants
-    ":woman_in_tuxedo_tone1:": {
+
+    ":man_in_santa_hat_tone1:": {
         "category": "people",
-        "name": "woman in tuxedo: light skin tone",
-        "unicode": "1f935-1f3fb-200d-2640-fe0f"
+        "name": "man in santa hat: light skin tone",
+        "unicode": "1f468-1f3fb-200d-1f384"
     },
-    ":woman_in_tuxedo_tone2:": {
+
+    ":man_in_santa_hat_tone2:": {
         "category": "people",
-        "name": "woman in tuxedo: medium-light skin tone",
-        "unicode": "1f935-1f3fc-200d-2640-fe0f"
+        "name": "man in santa hat: medium-light skin tone",
+        "unicode": "1f468-1f3fc-200d-1f384"
     },
-    ":woman_in_tuxedo_tone3:": {
+
+    ":man_in_santa_hat_tone3:": {
         "category": "people",
-        "name": "woman in tuxedo: medium skin tone",
-        "unicode": "1f935-1f3fd-200d-2640-fe0f"
+        "name": "man in santa hat: medium skin tone",
+        "unicode": "1f468-1f3fd-200d-1f384"
     },
-    ":woman_in_tuxedo_tone4:": {
+
+    ":man_in_santa_hat_tone4:": {
         "category": "people",
-        "name": "woman in tuxedo: medium-dark skin tone",
-        "unicode": "1f935-1f3fe-200d-2640-fe0f"
+        "name": "man in santa hat: medium-dark skin tone",
+        "unicode": "1f468-1f3fe-200d-1f384"
     },
-    ":woman_in_tuxedo_tone5:": {
+
+    ":man_in_santa_hat_tone5:": {
         "category": "people",
-        "name": "woman in tuxedo: dark skin tone",
-        "unicode": "1f935-1f3ff-200d-2640-fe0f"
+        "name": "man in santa hat: dark skin tone",
+        "unicode": "1f469-1f3ff-200d-1f384"
+    },
+
+    # Woman in Santa hat and variants
+    # Twitter has Mrs. Claus and woman in Santa hat backwards
+    ":woman_in_santa_hat:": {
+        "category": "people",
+        "name": "woman in santa hat",
+        "unicode": "1f469-200d-1f384"
+    },
+
+    ":woman_in_santa_hat_tone1:": {
+        "category": "people",
+        "name": "woman in santa hat: light skin tone",
+        "unicode": "1f469-1f3fb-200d-1f384"
+    },
+
+    ":woman_in_santa_hat_tone2:": {
+        "category": "people",
+        "name": "woman in santa hat: medium-light skin tone",
+        "unicode": "1f468-1f3ff-200d-1f384"
+    },
+
+    ":woman_in_santa_hat_tone3:": {
+        "category": "people",
+        "name": "woman in santa hat: medium skin tone",
+        "unicode": "1f469-1f3fe-200d-1f384"
+    },
+
+    ":woman_in_santa_hat_tone4:": {
+        "category": "people",
+        "name": "woman in santa hat: medium-dark skin tone",
+        "unicode": "1f469-1f3fd-200d-1f384"
+    },
+
+    ":woman_in_santa_hat_tone5:": {
+        "category": "people",
+        "name": "woman in santa hat: dark skin tone",
+        "unicode": "1f469-1f3fc-200d-1f384"
     }
 }
 
-additional_aliases = {}
-
-ignore_emoji = [
+IGNORE_EMOJI = [
     # Alternative man levitating
+    # Per spec, "levitate" is already a man,
+    # no need to explicitly have a man variant.
     "1f574-fe0f-200d-2642-fe0f",
-
-    # Alternative man levitating variants
     "1f574-1f3fb-200d-2642-fe0f",
     "1f574-1f3fc-200d-2642-fe0f",
     "1f574-1f3fd-200d-2642-fe0f",
     "1f574-1f3fe-200d-2642-fe0f",
     "1f574-1f3ff-200d-2642-fe0f",
-
-    # Alternative man in tuxedo
-    "1f935-200d-2642-fe0f",
-
-    # Alternative man in tuxedo variants
-    "1f935-1f3fb-200d-2642-fe0f",
-    "1f935-1f3fc-200d-2642-fe0f",
-    "1f935-1f3fd-200d-2642-fe0f",
-    "1f935-1f3fe-200d-2642-fe0f",
-    "1f935-1f3ff-200d-2642-fe0f"
 ]
 
 
-def get_unicode_alt(value):
-    """Get alternate Unicode form or return the original."""
-
-    return value['code_points']['output']
-
-
-def parse(repo, tag):
+def parse(repo, tag, jtag, emojis, emoji_aliases):
     """Save test files."""
-    # Load emoji database
-    import emoji1_db as emojis
 
-    asset_path = os.path.join(current_dir, 'tags', repo, repo, '2', 'assets')
+    asset_path = os.path.join(current_dir, 'tags', repo, repo, 'assets', 'svg')
 
     emoji_db = {}
     shortnames = set()
@@ -161,8 +198,8 @@ def parse(repo, tag):
     unsupported = []
 
     for asset in os.listdir(asset_path):
-        if os.path.isfile(os.path.join(asset_path, asset)) and asset.endswith('.ai'):
-            unicode_value = asset[:-3]
+        if os.path.isfile(os.path.join(asset_path, asset)) and asset.endswith('.svg'):
+            unicode_value = asset[:-4]
             unicode_alt = unicode_value
             codes = unicode_alt.split('-')
             diff = 4 - len(codes[0])
@@ -170,7 +207,7 @@ def parse(repo, tag):
                 codes[0] = ('0' * diff) + codes[0]
                 unicode_alt = '-'.join(codes)
             found = False
-            for k, v in emojis.emoji.items():
+            for k, v in emojis.items():
                 db_unicode = v.get('unicode_alt', v.get('unicode'))
                 if (
                     db_unicode and
@@ -188,12 +225,12 @@ def parse(repo, tag):
             if not found:
                 unsupported.append(unicode_value)
 
-    for k, v in emojis.aliases.items():
+    for k, v in emoji_aliases.items():
         if v in emoji_db:
-            aliases[k] = v
+            aliases[k] = v  # noqa: PERF403
 
     # Copy emoji only found in EmojiOne
-    for k, v in special_emoji.items():
+    for k, v in SPECIAL_EMOJI.items():
         if k not in emoji_db and k not in aliases:
             shortnames.add(k)
             copy_emoji = copy.copy(v)
@@ -210,14 +247,14 @@ def parse(repo, tag):
                     aliases[spec_alias] = k
 
     # Additional aliases
-    for k, v in additional_aliases.items():
+    for k, v in ADDITIONAL_ALIASES.items():
         if k in emoji_db:
             for a in v:
                 if a not in aliases:
                     aliases[a] = k
 
     # Remove ignored emoji from unsupported list
-    for ignore in ignore_emoji:
+    for ignore in IGNORE_EMOJI:
         if ignore in unsupported:
             index = unsupported.index(ignore)
             del unsupported[index]
@@ -228,7 +265,7 @@ def parse(repo, tag):
             f.write('# Emojis\n')
             count = 0
             for emoji in sorted(shortnames):
-                f.write(''.join('%s %s<br>\n' % (emoji[1:-1], emoji)))
+                f.write(''.join('{} {}<br>\n'.format(emoji[1:-1], emoji)))
                 count += 1
                 if test != 'png' and count == 10:
                     break
@@ -237,8 +274,8 @@ def parse(repo, tag):
     with open('../pymdownx/twemoji_db.py', 'w') as f:
         # Dump emoji db to file and strip out PY2 unicode specifiers
         f.write('"""Twemoji autogen.\n\nNames from emojione database. Do not edit by hand.\n"""\n')
-        f.write('from __future__ import unicode_literals\n')
         f.write('version = "%s"\n' % tag)
+        f.write('index_version = "%s"\n' % jtag)
         f.write('name = "twemoji"\n')
         f.write('emoji = %s\n' % json.dumps(emoji_db, sort_keys=True, indent=4, separators=(',', ': ')))
         f.write('aliases = %s\n' % json.dumps(aliases, sort_keys=True, indent=4, separators=(',', ': ')))

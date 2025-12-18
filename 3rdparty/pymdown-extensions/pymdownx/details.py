@@ -21,11 +21,9 @@ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABI
 CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
-from __future__ import absolute_import
-from __future__ import unicode_literals
 from markdown import Extension
 from markdown.blockprocessors import BlockProcessor
-from markdown.util import etree
+import xml.etree.ElementTree as etree
 import re
 
 
@@ -37,31 +35,109 @@ class DetailsProcessor(BlockProcessor):
     )
     COMPRESS_SPACES = re.compile(r' {2,}')
 
+    def __init__(self, parser):
+        """Initialization."""
+
+        super().__init__(parser)
+
+        self.current_sibling = None
+        self.content_indention = 0
+
+    def detab_by_length(self, text, length):
+        """Remove a tab from the front of each line of the given text."""
+
+        newtext = []
+        lines = text.split('\n')
+        for line in lines:
+            if line.startswith(' ' * length):
+                newtext.append(line[length:])
+            elif not line.strip():
+                newtext.append('')  # pragma: no cover
+            else:
+                break
+        return '\n'.join(newtext), '\n'.join(lines[len(newtext):])
+
+    def parse_content(self, parent, block):
+        """
+        Get sibling details.
+
+        Retrieve the appropriate sibling element. This can get tricky when
+        dealing with lists.
+
+        """
+
+        old_block = block
+        non_details = ''
+
+        # We already acquired the block via test
+        if self.current_sibling is not None:
+            sibling = self.current_sibling
+            block, non_details = self.detab_by_length(block, self.content_indent)
+            self.current_sibling = None
+            self.content_indent = 0
+            return sibling, block, non_details
+
+        sibling = self.lastChild(parent)
+
+        if sibling is None or sibling.tag.lower() != 'details':
+            sibling = None
+        else:
+            # If the last child is a list and the content is indented sufficient
+            # to be under it, then the content's is sibling is in the list.
+            last_child = self.lastChild(sibling)
+            indent = 0
+            while last_child is not None:
+                if (
+                    sibling is not None and block.startswith(' ' * self.tab_length * 2) and
+                    last_child is not None and last_child.tag in ('ul', 'ol', 'dl')
+                ):
+
+                    # The expectation is that we'll find an `<li>`.
+                    # We should get it's last child as well.
+                    sibling = self.lastChild(last_child)
+                    last_child = self.lastChild(sibling) if sibling is not None else None
+
+                    # Context has been lost at this point, so we must adjust the
+                    # text's indentation level so it will be evaluated correctly
+                    # under the list.
+                    block = block[self.tab_length:]
+                    indent += self.tab_length
+                else:
+                    last_child = None
+
+            if not block.startswith(' ' * self.tab_length):
+                sibling = None
+
+            if sibling is not None:
+                indent += self.tab_length
+                block, non_details = self.detab_by_length(old_block, indent)
+                self.current_sibling = sibling
+                self.content_indent = indent
+
+        return sibling, block, non_details
+
     def test(self, parent, block):
         """Test block."""
 
-        sibling = self.lastChild(parent)
-        return (
-            self.START.search(block) or
-            (
-                block.startswith(' ' * self.tab_length) and sibling is not None and
-                sibling.tag.lower() == 'details'
-            )
-        )
+        if self.START.search(block):
+            return True
+        else:
+            return self.parse_content(parent, block)[0] is not None
 
     def run(self, parent, blocks):
         """Convert to details/summary block."""
 
-        sibling = self.lastChild(parent)
         block = blocks.pop(0)
-
         m = self.START.search(block)
+
         if m:
             # remove the first line
+            if m.start() > 0:
+                self.parser.parseBlocks(parent, [block[:m.start()]])
             block = block[m.end():]
-
-        # Get the details block and and the non-details content
-        block, non_details = self.detab(block)
+            block, non_details = self.detab(block)
+        else:
+            sibling, block, non_details = self.parse_content(parent, block)
 
         if m:
             state = m.group(1)
@@ -81,6 +157,13 @@ class DetailsProcessor(BlockProcessor):
             summary = etree.SubElement(div, 'summary')
             summary.text = title
         else:
+            # Sibling is a list item, but we need to wrap it's content should be wrapped in <p>
+            if sibling.tag in ('li', 'dd') and sibling.text:
+                text = sibling.text
+                sibling.text = ''
+                p = etree.SubElement(sibling, 'p')
+                p.text = text
+
             div = sibling
 
         self.parser.parseChunk(div, block)
@@ -93,11 +176,11 @@ class DetailsProcessor(BlockProcessor):
 class DetailsExtension(Extension):
     """Add Details extension."""
 
-    def extendMarkdown(self, md, md_globals):
+    def extendMarkdown(self, md):
         """Add Details to Markdown instance."""
         md.registerExtension(self)
 
-        md.parser.blockprocessors.add('details', DetailsProcessor(md.parser), '_begin')
+        md.parser.blockprocessors.register(DetailsProcessor(md.parser), "details", 105)
 
 
 def makeExtension(*args, **kwargs):

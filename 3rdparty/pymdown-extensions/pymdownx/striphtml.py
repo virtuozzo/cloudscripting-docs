@@ -23,7 +23,6 @@ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABI
 CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
-from __future__ import unicode_literals
 from markdown import Extension
 from markdown.postprocessors import Postprocessor
 import re
@@ -32,7 +31,7 @@ import re
 RE_TAG_HTML = re.compile(
     r'''(?x)
     (?:
-        (?P<comments>(?:\r?\n?\s*)<!--[\s\S]*?-->(?:\s*)(?=\r?\n)|<!--[\s\S]*?-->)|
+        (?P<comments>(?:\r?\n?\s*)<!--(?:-(?!->)|[^-])*?-->(?:\s*)(?=\r?\n)|<!--[\s\S]*?-->)|
         (?P<scripts>
             (?P<script_open><(?P<script_name>style|script))
             (?P<script_attr>(?:\s+[\w\-:]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'`=<>]+))?)*)
@@ -74,7 +73,7 @@ class StripHtmlPostprocessor(Postprocessor):
                 re.DOTALL | re.UNICODE
             )
 
-        super(StripHtmlPostprocessor, self).__init__(md)
+        super().__init__(md)
 
     def repl(self, m):
         """Replace comments and unwanted attributes."""
@@ -130,11 +129,12 @@ class StripHtmlExtension(Extension):
                 " - Default: True"
             ]
         }
-        super(StripHtmlExtension, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
-    def extendMarkdown(self, md, md_globals):
+    def extendMarkdown(self, md):
         """Strip unwanted HTML attributes and/or comments."""
 
+        md.registerExtension(self)
         config = self.getConfigs()
         striphtml = StripHtmlPostprocessor(
             config.get('strip_comments'),
@@ -142,8 +142,7 @@ class StripHtmlExtension(Extension):
             config.get('strip_attributes'),
             md
         )
-        md.postprocessors.add("strip-html", striphtml, "_end")
-        md.registerExtension(self)
+        md.postprocessors.register(striphtml, "strip-html", 1)
 
 
 def makeExtension(*args, **kwargs):

@@ -23,7 +23,6 @@ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABI
 CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
-from __future__ import unicode_literals
 from markdown import Extension
 from markdown.treeprocessors import Treeprocessor
 import re
@@ -37,12 +36,12 @@ def get_checkbox(state, custom_checkbox=False, clickable_checkbox=False):
     if custom_checkbox:
         return (
             '<label class="task-list-control">' +
-            '<input type="checkbox"%s%s/>' % (
+            '<input type="checkbox"{}{}/>'.format(
                 ' disabled' if not clickable_checkbox else '',
                 ' checked' if state.lower() == 'x' else '') +
             '<span class="task-list-indicator"></span></label> '
         )
-    return '<input type="checkbox"%s%s/> ' % (
+    return '<input type="checkbox"{}{}/> '.format(
         ' disabled' if not clickable_checkbox else '',
         ' checked' if state.lower() == 'x' else '')
 
@@ -50,15 +49,19 @@ def get_checkbox(state, custom_checkbox=False, clickable_checkbox=False):
 class TasklistTreeprocessor(Treeprocessor):
     """Tasklist tree processor that finds lists with checkboxes."""
 
+    def __init__(self, md):
+        """Initialize."""
+
+        super().__init__(md)
+
     def inline(self, li):
         """Search for checkbox directly in `li` tag."""
 
         found = False
         m = RE_CHECKBOX.match(li.text)
         if m is not None:
-            li.text = self.markdown.htmlStash.store(
-                get_checkbox(m.group('state'), self.custom_checkbox, self.clickable_checkbox),
-                safe=True
+            li.text = self.md.htmlStash.store(
+                get_checkbox(m.group('state'), self.custom_checkbox, self.clickable_checkbox)
             ) + m.group('line')
             found = True
         return found
@@ -68,13 +71,12 @@ class TasklistTreeprocessor(Treeprocessor):
 
         found = False
         if len(li):
-            first = list(li)[0]
+            first = next(iter(li))
             if first.tag == "p" and first.text is not None:
                 m = RE_CHECKBOX.match(first.text)
                 if m is not None:
-                    first.text = self.markdown.htmlStash.store(
-                        get_checkbox(m.group('state'), self.custom_checkbox, self.clickable_checkbox),
-                        safe=True
+                    first.text = self.md.htmlStash.store(
+                        get_checkbox(m.group('state'), self.custom_checkbox, self.clickable_checkbox)
                     ) + m.group('line')
                     found = True
         return found
@@ -84,7 +86,7 @@ class TasklistTreeprocessor(Treeprocessor):
 
         self.custom_checkbox = bool(self.config["custom_checkbox"])
         self.clickable_checkbox = bool(self.config["clickable_checkbox"])
-        parent_map = dict((c, p) for p in root.iter() for c in p)
+        parent_map = {c: p for p in root.iter() for c in p}
         task_items = []
         lilinks = root.iter('li')
         for li in lilinks:
@@ -130,14 +132,14 @@ class TasklistExtension(Extension):
             'subscript': [True, "Enable subscript - Default: True"]
         }
 
-        super(TasklistExtension, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
-    def extendMarkdown(self, md, md_globals):
+    def extendMarkdown(self, md):
         """Add checklist tree processor to Markdown instance."""
 
         tasklist = TasklistTreeprocessor(md)
         tasklist.config = self.getConfigs()
-        md.treeprocessors.add("task-list", tasklist, ">inline")
+        md.treeprocessors.register(tasklist, "task-list", 25)
         md.registerExtension(self)
 
 

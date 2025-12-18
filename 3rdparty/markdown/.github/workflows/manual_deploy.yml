@@ -1,0 +1,46 @@
+name: manual deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'The branch, tag or SHA to checkout and build.'
+        type: string
+        required: true
+        default: master
+
+jobs:
+
+  ghpages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repo
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+          path: md
+      - name: Checkout Target Repo
+        uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.PAGES_DEPLOY_KEY  }}
+          repository: Python-Markdown/Python-Markdown.github.io
+          path: target
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Install dependencies
+        run: |
+          cd md
+          python -m pip install --upgrade pip setuptools
+          python -m pip install .[docs]
+      - name: Build
+        run: |
+          cd md
+          python -m mkdocs build --clean --verbose
+      - name: Publish
+        if: success()
+        run: |
+          cd target
+          git config user.email waylan.limberg@icloud.com
+          ghp-import --push --no-jekyll --branch=master ../md/site

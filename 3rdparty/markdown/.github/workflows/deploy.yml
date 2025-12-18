@@ -1,0 +1,83 @@
+name: deploy
+
+on:
+  push:
+    tags:
+    - '*'
+
+jobs:
+
+  pypi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel build semver
+      - name: Build
+        run: |
+          python -m build
+      - name: Publish to PyPI
+        if: success()
+        uses: pypa/gh-action-pypi-publish@v1.12.4
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_PASSWORD }}
+      - name: Normalize Version
+        id: normalize
+        run: echo "version=$(python -c 'import semver; print(semver.Version.parse("${{ github.ref_name }}", optional_minor_and_patch=True))')" >> $GITHUB_OUTPUT
+      - name: Get Changelog Entry
+        if: success()
+        id: changelog_reader
+        uses: mindsers/changelog-reader-action@v2
+        with:
+          version: ${{ steps.normalize.outputs.version }}
+          path: ./docs/changelog.md
+      - name: Release to GitHub
+        if: success()
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: ${{ steps.changelog_reader.outputs.changes }}
+          artifacts: dist/**
+          prerelease: ${{ steps.changelog_reader.outputs.status == 'prereleased' }}
+          draft: ${{ steps.changelog_reader.outputs.status == 'unreleased' }}
+          allowUpdates: true
+
+  ghpages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repo
+        uses: actions/checkout@v4
+        with:
+          path: md
+      - name: Checkout Target Repo
+        uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.PAGES_DEPLOY_KEY  }}
+          repository: Python-Markdown/Python-Markdown.github.io
+          path: target
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Install dependencies
+        run: |
+          cd md
+          python -m pip install --upgrade pip setuptools
+          python -m pip install .[docs]
+      - name: Build
+        run: |
+          cd md
+          python -m mkdocs build --clean --verbose
+      - name: Publish
+        if: success()
+        run: |
+          cd target
+          git config user.email waylan.limberg@icloud.com
+          ghp-import --push --no-jekyll --branch=master ../md/site

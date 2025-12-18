@@ -35,7 +35,7 @@ This Code of Conduct applies both within project spaces and in public spaces
 when an individual is representing the project or its community.
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting a project maintainer at markdown@freewisdom.org. All
+reported by contacting a project maintainer at python.markdown@gmail.com. All
 complaints will be reviewed and investigated and will result in a response that
 is deemed necessary and appropriate to the circumstances. Maintainers are
 obligated to maintain confidentiality with regard to the reporter of an
@@ -43,7 +43,7 @@ incident.
 
 This Code of Conduct is adapted from the [Contributor Covenant][homepage],
 version 1.3.0, available at
-[http://contributor-covenant.org/version/1/3/0/][version]
+[https://www.contributor-covenant.org/version/1/3/0/][version]
 
-[homepage]: http://contributor-covenant.org
-[version]: http://contributor-covenant.org/version/1/3/0/
+[homepage]: https://www.contributor-covenant.org/
+[version]: https://www.contributor-covenant.org/version/1/3/0/

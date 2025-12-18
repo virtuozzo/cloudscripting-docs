@@ -33,17 +33,20 @@ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABI
 CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
-from __future__ import unicode_literals
 from markdown import Extension
 from markdown.postprocessors import Postprocessor
 from . import util
 import os
 import re
+from urllib.parse import urlunparse
 
 RE_TAG_HTML = r'''(?xus)
     (?:
-        (?P<comments>(\r?\n?\s*)<!--[\s\S]*?-->(\s*)(?=\r?\n)|<!--[\s\S]*?-->)|
-        (?P<open><(?P<tag>(?:%s)))
+        (?P<avoid>
+            <\s*(?P<script_name>script|style)[^>]*>.*?</\s*(?P=script_name)\s*> |
+            (?:(\r?\n?\s*)<!--[\s\S]*?-->(\s*)(?=\r?\n)|<!--[\s\S]*?-->)
+        )|
+        (?P<open><\s*(?P<tag>(?:%s)))
         (?P<attr>(?:\s+[\w\-:]+(?:\s*=\s*(?:"[^"]*"|'[^']*'))?)*)
         (?P<close>\s*(?:\/?)>)
     )
@@ -71,16 +74,19 @@ def repl_relative(m, base_path, relative_path):
         if not is_url:
             # Get the absolute path of the file or return
             # if we can't resolve the path
-            path = util.url2pathname(path)
-            abs_path = None
+            path = util.url2path(path)
             if (not is_absolute):
                 # Convert current relative path to absolute
-                temp = os.path.normpath(os.path.join(base_path, path))
-                abs_path = temp.replace("\\", "/")
-
-                # Convert the path, url encode it, and format it as a link
-                path = util.pathname2url(os.path.relpath(abs_path, relative_path).replace('\\', '/'))
-                link = '%s"%s"' % (m.group('name'), util.urlunparse((scheme, netloc, path, params, query, fragment)))
+                path = os.path.relpath(
+                    os.path.normpath(os.path.join(base_path, path)),
+                    os.path.normpath(relative_path)
+                )
+                # Convert the path, URL encode it, and format it as a link
+                path = util.path2url(path)
+                link = '{}"{}"'.format(
+                    m.group('name'),
+                    urlunparse((scheme, netloc, path, params, query, fragment))
+                )
     except Exception:  # pragma: no cover
         # Parsing crashed and burned; no need to continue.
         pass
@@ -88,7 +94,7 @@ def repl_relative(m, base_path, relative_path):
     return link
 
 
-def repl_absolute(m, base_path):
+def repl_absolute(m, base_path, file_scheme):
     """Replace path with absolute path."""
 
     link = m.group(0)
@@ -96,10 +102,23 @@ def repl_absolute(m, base_path):
         scheme, netloc, path, params, query, fragment, is_url, is_absolute = util.parse_url(m.group('path')[1:-1])
 
         if (not is_absolute and not is_url):
-            path = util.url2pathname(path)
-            temp = os.path.normpath(os.path.join(base_path, path))
-            path = util.pathname2url(temp.replace("\\", "/"))
-            link = '%s"%s"' % (m.group('name'), util.urlunparse((scheme, netloc, path, params, query, fragment)))
+            path = util.url2path(path)
+            path = os.path.normpath(os.path.join(base_path, path))
+            path = util.path2url(path)
+            if file_scheme:
+                if not path.startswith('/'):
+                    path = '/' + path
+                link = '{}"{}"'.format(
+                    m.group('name'),
+                    urlunparse(("file", netloc, path, params, query, fragment))
+                )
+            else:
+                start = '/' if not path.startswith('/') else ''
+                link = '{}"{}{}"'.format(
+                    m.group('name'),
+                    start,
+                    urlunparse((scheme, netloc, path, params, query, fragment))
+                )
     except Exception:  # pragma: no cover
         # Parsing crashed and burned; no need to continue.
         pass
@@ -107,15 +126,15 @@ def repl_absolute(m, base_path):
     return link
 
 
-def repl(m, base_path, rel_path=None):
+def repl(m, base_path, rel_path=None, file_scheme=None):
     """Replace."""
 
-    if m.group('comments'):
-        tag = m.group('comments')
+    if m.group('avoid'):
+        tag = m.group('avoid')
     else:
         tag = m.group('open')
         if rel_path is None:
-            tag += RE_TAG_LINK_ATTR.sub(lambda m2: repl_absolute(m2, base_path), m.group('attr'))
+            tag += RE_TAG_LINK_ATTR.sub(lambda m2: repl_absolute(m2, base_path, file_scheme), m.group('attr'))
         else:
             tag += RE_TAG_LINK_ATTR.sub(lambda m2: repl_relative(m2, base_path, rel_path), m.group('attr'))
         tag += m.group('close')
@@ -131,11 +150,12 @@ class PathConverterPostprocessor(Postprocessor):
         basepath = self.config['base_path']
         relativepath = self.config['relative_path']
         absolute = bool(self.config['absolute'])
+        filescheme = bool(self.config['file_scheme'])
         tags = re.compile(RE_TAG_HTML % '|'.join(self.config['tags'].split()))
         if not absolute and basepath and relativepath:
-            text = tags.sub(lambda m: repl(m, basepath, relativepath), text)
+            text = tags.sub(lambda m: repl(m, basepath, rel_path=relativepath), text)
         elif absolute and basepath:
-            text = tags.sub(lambda m: repl(m, basepath), text)
+            text = tags.sub(lambda m: repl(m, basepath, file_scheme=filescheme), text)
         return text
 
 
@@ -149,17 +169,18 @@ class PathConverterExtension(Extension):
             'base_path': ["", "Base path used to find files - Default: \"\""],
             'relative_path': ["", "Path that files will be relative to (not needed if using absolute) - Default: \"\""],
             'absolute': [False, "Paths are absolute by default; disable for relative - Default: False"],
-            'tags': ["img script a link", "tags to convert src and/or href in - Default: 'img scripts a link'"]
+            'tags': ["img script a link", "tags to convert src and/or href in - Default: 'img scripts a link'"],
+            'file_scheme': [False, "Use file:// scheme for absolute paths - Default: False"],
         }
 
-        super(PathConverterExtension, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
-    def extendMarkdown(self, md, md_globals):
+    def extendMarkdown(self, md):
         """Add post processor to Markdown instance."""
 
         rel_path = PathConverterPostprocessor(md)
         rel_path.config = self.getConfigs()
-        md.postprocessors.add("path-converter", rel_path, "_end")
+        md.postprocessors.register(rel_path, "path-converter", 2)
         md.registerExtension(self)
 
 

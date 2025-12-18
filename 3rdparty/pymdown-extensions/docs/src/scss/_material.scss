@@ -1,0 +1,140 @@
+@use "utilities/break";
+@use "utilities/convert";
+
+html {
+  background-color: transparent;
+}
+
+[data-md-component="announce"] .twemoji {
+  color: var(--md-primary-fg-color);
+}
+
+.md-container .md-tabs {
+  .md-tabs__item--active {
+    border-bottom: convert.px2rem(2px) solid var(--md-accent-fg-color);
+  }
+}
+
+// Navigation
+.md-nav--secondary {
+  > ul {
+    border-left: convert.px2rem(2px) solid var(--md-default-fg-color--lightest);
+  }
+
+  ul .md-nav__item {
+    .md-nav__link--active {
+      margin-left: convert.px2rem(-2px);
+      padding-left: convert.px2rem(16px);
+    }
+
+    ul .md-nav__item {
+      .md-nav__link--active {
+        margin-left: convert.px2rem(-14px);
+        padding-left: convert.px2rem(28px);
+      }
+
+      ul .md-nav__item {
+        .md-nav__link--active {
+          margin-left: convert.px2rem(-26px);
+          padding-left: convert.px2rem(40px);
+        }
+
+        ul .md-nav__item {
+          .md-nav__link--active {
+            margin-left: convert.px2rem(-38px);
+            padding-left: convert.px2rem(52px);
+          }
+
+          ul .md-nav__item {
+            .md-nav__link--active {
+              margin-left: convert.px2rem(-50px);
+              padding-left: convert.px2rem(64px);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .md-nav__item {
+    color: var(--md-default-fg-color--light);
+
+    .md-nav__link--active {
+      color: var(--md-default-fg-color);
+      border-left: convert.px2rem(2px) solid var(--md-accent-fg-color);
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .md-nav__link {
+      &:focus,
+      &:hover {
+        color: var(--md-default-fg-color);
+      }
+    }
+  }
+}
+
+.md-nav--primary {
+  .md-nav__item {
+    color: var(--md-default-fg-color--light);
+  }
+}
+
+// Navigation
+.md-nav__source {
+  color: var(--md-text-color);
+}
+
+.md-nav__link[data-md-state=blur] {
+  color: var(--md-default-fg-color--light);
+}
+
+.md-typeset {
+
+  /* Don't force capitalization of `H5` elements. */
+  h5 {
+    color: var(--md-text-color);
+    text-transform: none;
+  }
+}
+
+.md-typeset__scrollwrap,
+.md-sidebar__scrollwrap,
+.md-search__scrollwrap,
+.md-typeset pre > code,
+.md-typeset div.mermaid,
+.md-typeset div.diagram,
+.md-typeset mermaid-div,
+.md-typeset diagram-div,
+.md-typeset pre.arithmatex,
+.md-typeset div.arithmatex {
+  // Firefox scrollbar and thumb
+  scrollbar-color: var(--md-default-fg-color--lighter) transparent;
+  scrollbar-width: thin;
+
+  // Firefox hovered scrollbar and thumb
+  &:hover {
+    scrollbar-color: var(--md-accent-fg-color) transparent;
+  }
+
+  // Override native scrollbar styles
+  &::-webkit-scrollbar {
+    width: convert.px2rem(4px);
+    height: convert.px2rem(4px);
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
+  // Scrollbar thumb
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--md-default-fg-color--lighter);
+
+    // Hovered scrollbar thumb
+    &:hover {
+      background-color: var(--md-accent-fg-color);
+    }
+  }
+}

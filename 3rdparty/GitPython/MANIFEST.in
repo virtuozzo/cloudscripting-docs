@@ -1,13 +1,14 @@
-include VERSION
-include LICENSE
-include CHANGES
 include AUTHORS
-include README
+include CHANGES
+include CONTRIBUTING.md
+include LICENSE
+include README.md
+include VERSION
 include requirements.txt
+include test-requirements.txt
+include git/py.typed
 
 recursive-include doc *
-
-graft git/test/fixtures
-graft git/test/performance
+recursive-exclude test *
 
 global-exclude __pycache__ *.pyc

@@ -4,28 +4,39 @@ Python-Markdown
 ===============
 
 This is a Python implementation of John Gruber's
-[Markdown](http://daringfireball.net/projects/markdown/).
+[Markdown](https://daringfireball.net/projects/markdown/).
 It is almost completely compliant with the reference implementation,
 though there are a few very minor [differences](#differences). See John's
-[Syntax Documentation](http://daringfireball.net/projects/markdown/syntax)
+[Syntax Documentation](https://daringfireball.net/projects/markdown/syntax)
 for the syntax rules.
 
-See the [installation instructions](install.md) to get started.
+To get started, see the [installation instructions](install.md), the [library
+reference](reference.md), and the [command line interface](cli.md).
 
 Goals
 -----
 
 The Python-Markdown project is developed with the following goals in mind:
 
-* Maintain a Python 2 *and* Python 3 library (with an optional CLI wrapper)
-  suited to use in web server environments (never raise an exception, never
-  write to stdout, etc.) as an implementation of the markdown parser that
-  follows the [syntax rules](http://daringfireball.net/projects/markdown/syntax)
-  and the behavior of the original (markdown.pl) implementation as reasonably as
-  possible (see [differences](#differences) for a few exceptions).
+* Maintain a Python library (with an optional CLI wrapper) suited to use in web
+  server environments (never raise an exception, never write to stdout, etc.) as
+  an implementation of the markdown parser that follows the
+  [syntax rules][] and the behavior of the original (markdown.pl)
+  implementation as reasonably as possible (see [differences](#differences) for
+  a few exceptions).
 
 * Provide an [Extension API](extensions/api.md) which makes it possible
   to change and/or extend the behavior of the parser.
+
+!!! Note
+
+    *This is not a CommonMark implementation*; nor is it trying to be!
+    Python-Markdown was developed long before the CommonMark specification was
+    released and has always (mostly) followed the [syntax rules][] and behavior
+    of the original reference implementation. No accommodations have been made
+    to address the changes which CommonMark has suggested. It is recommended
+    that you look elsewhere if you want an implementation which follows the
+    CommonMark specification.
 
 Features
 --------
@@ -60,23 +71,23 @@ Differences
 -----------
 
 While Python-Markdown strives to fully implement markdown as described in the
-[syntax rules](http://daringfireball.net/projects/markdown/syntax), the rules
+[syntax rules](https://daringfireball.net/projects/markdown/syntax), the rules
 can be interpreted in different ways and different implementations
 occasionally vary in their behavior (see the
-[Babelmark FAQ](http://johnmacfarlane.net/babelmark2/faq.html#what-are-some-examples-of-interesting-divergences-between-implementations)
+[Babelmark FAQ](https://johnmacfarlane.net/babelmark2/faq.html#what-are-some-examples-of-interesting-divergences-between-implementations)
 for some examples). Known and intentional differences found in Python-Markdown
 are summarized below:
 
 * __Middle-Word Emphasis__
 
-    Python-Markdown defaults to ignoring middle-word emphasis. In other words,
-    `some_long_filename.txt` will not become `some<em>long</em>filename.txt`.
-    This can be switched off if desired. See the
-    [Library Reference](reference.md#smart_emphasis) for details.
+    Python-Markdown defaults to ignoring middle-word emphasis (and strong
+    emphasis). In other words, `some_long_filename.txt` will not become
+    `some<em>long</em>filename.txt`. This can be switched off if desired. See
+    the [Legacy EM Extension](extensions/legacy_em.md) for details.
 
 * __Indentation/Tab Length__
 
-    The [syntax rules](http://daringfireball.net/projects/markdown/syntax#list)
+    The [syntax rules](https://daringfireball.net/projects/markdown/syntax#list)
     clearly state that when a list item consists of multiple paragraphs, "each
     subsequent paragraph in a list item **must** be indented by either 4 spaces
     or one tab" (emphasis added). However, many implementations do not enforce
@@ -90,7 +101,8 @@ are summarized below:
     In the event that one would prefer different behavior,
     [tab_length](reference.md#tab_length) can be set to whatever length is
     desired. Be warned however, as this will affect indentation for all aspects
-    of the syntax (including root level code blocks).
+    of the syntax (including root level code blocks). Alternatively, a
+    [third party extension] may offer a solution that meets your needs.
 
 * __Consecutive Lists__
 
@@ -104,8 +116,8 @@ are summarized below:
 Support
 -------
 
-You may ask for help and discuss various other issues on the [mailing list][]
-and report bugs on the [bug tracker][].
+You may report bugs, ask for help, and discuss various other issues on the [bug tracker][].
 
-[mailing list]: http://lists.sourceforge.net/lists/listinfo/python-markdown-discuss
-[bug tracker]: http://github.com/Python-Markdown/markdown/issues
+[third party extension]: https://github.com/Python-Markdown/markdown/wiki/Third-Party-Extensions
+[syntax rules]: https://daringfireball.net/projects/markdown/syntax
+[bug tracker]: https://github.com/Python-Markdown/markdown/issues

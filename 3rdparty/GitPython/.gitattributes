@@ -1,0 +1,3 @@
+test/fixtures/* eol=lf
+*.sh eol=lf
+/Makefile eol=lf

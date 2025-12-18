@@ -1,40 +1,101 @@
-# objects.py
 # Copyright (C) 2008, 2009 Michael Trier (mtrier@gmail.com) and contributors
 #
-# This module is part of GitPython and is released under
-# the BSD License: http://www.opensource.org/licenses/bsd-license.php
-""" Module containing all object based types. """
+# This module is part of GitPython and is released under the
+# 3-Clause BSD License: https://opensource.org/license/bsd-3-clause/
+
+"""Provides an :class:`~git.objects.base.Object`-based type for annotated tags.
+
+This defines the :class:`TagObject` class, which represents annotated tags.
+For lightweight tags, see the :mod:`git.refs.tag` module.
+"""
+
+__all__ = ["TagObject"]
+
+import sys
+
+from git.compat import defenc
+from git.util import Actor, hex_to_bin
+
 from . import base
 from .util import get_object_type_by_name, parse_actor_and_date
-from ..util import hex_to_bin
-from ..compat import defenc
 
-__all__ = ("TagObject", )
+# typing ----------------------------------------------
+
+from typing import List, TYPE_CHECKING, Union
+
+if sys.version_info >= (3, 8):
+    from typing import Literal
+else:
+    from typing_extensions import Literal
+
+if TYPE_CHECKING:
+    from git.repo import Repo
+
+    from .blob import Blob
+    from .commit import Commit
+    from .tree import Tree
+
+# ---------------------------------------------------
 
 
 class TagObject(base.Object):
+    """Annotated (i.e. non-lightweight) tag carrying additional information about an
+    object we are pointing to.
 
-    """Non-Lightweight tag carrying additional information about an object we are pointing to."""
-    type = "tag"
-    __slots__ = ("object", "tag", "tagger", "tagged_date", "tagger_tz_offset", "message")
+    See :manpage:`gitglossary(7)` on "tag object":
+    https://git-scm.com/docs/gitglossary#def_tag_object
+    """
 
-    def __init__(self, repo, binsha, object=None, tag=None,  # @ReservedAssignment
-                 tagger=None, tagged_date=None, tagger_tz_offset=None, message=None):
-        """Initialize a tag object with additional data
+    type: Literal["tag"] = "tag"
 
-        :param repo: repository this object is located in
-        :param binsha: 20 byte SHA1
-        :param object: Object instance of object we are pointing to
-        :param tag: name of this tag
-        :param tagger: Actor identifying the tagger
+    __slots__ = (
+        "object",
+        "tag",
+        "tagger",
+        "tagged_date",
+        "tagger_tz_offset",
+        "message",
+    )
+
+    def __init__(
+        self,
+        repo: "Repo",
+        binsha: bytes,
+        object: Union[None, base.Object] = None,
+        tag: Union[None, str] = None,
+        tagger: Union[None, Actor] = None,
+        tagged_date: Union[int, None] = None,
+        tagger_tz_offset: Union[int, None] = None,
+        message: Union[str, None] = None,
+    ) -> None:  # @ReservedAssignment
+        """Initialize a tag object with additional data.
+
+        :param repo:
+            Repository this object is located in.
+
+        :param binsha:
+            20 byte SHA1.
+
+        :param object:
+            :class:`~git.objects.base.Object` instance of object we are pointing to.
+
+        :param tag:
+            Name of this tag.
+
+        :param tagger:
+            :class:`~git.util.Actor` identifying the tagger.
+
         :param tagged_date: int_seconds_since_epoch
-            is the DateTime of the tag creation - use time.gmtime to convert
-            it into a different format
-        :param tagged_tz_offset: int_seconds_west_of_utc is the timezone that the
-            authored_date is in, in a format similar to time.altzone"""
-        super(TagObject, self).__init__(repo, binsha)
+            The DateTime of the tag creation.
+            Use :func:`time.gmtime` to convert it into a different format.
+
+        :param tagger_tz_offset: int_seconds_west_of_utc
+            The timezone that the `tagged_date` is in, in a format similar to
+            :attr:`time.altzone`.
+        """
+        super().__init__(repo, binsha)
         if object is not None:
-            self.object = object
+            self.object: Union["Commit", "Blob", "Tree", "TagObject"] = object
         if tag is not None:
             self.tag = tag
         if tagger is not None:
@@ -46,29 +107,34 @@ class TagObject(base.Object):
         if message is not None:
             self.message = message
 
-    def _set_cache_(self, attr):
-        """Cache all our attributes at once"""
+    def _set_cache_(self, attr: str) -> None:
+        """Cache all our attributes at once."""
         if attr in TagObject.__slots__:
             ostream = self.repo.odb.stream(self.binsha)
-            lines = ostream.read().decode(defenc).splitlines()
+            lines: List[str] = ostream.read().decode(defenc, "replace").splitlines()
 
-            obj, hexsha = lines[0].split(" ")       # object <hexsha> @UnusedVariable
-            type_token, type_name = lines[1].split(" ")  # type <type_name> @UnusedVariable
-            self.object = \
-                get_object_type_by_name(type_name.encode('ascii'))(self.repo, hex_to_bin(hexsha))
+            _obj, hexsha = lines[0].split(" ")
+            _type_token, type_name = lines[1].split(" ")
+            object_type = get_object_type_by_name(type_name.encode("ascii"))
+            self.object = object_type(self.repo, hex_to_bin(hexsha))
 
             self.tag = lines[2][4:]  # tag <tag name>
 
-            tagger_info = lines[3]  # tagger <actor> <date>
-            self.tagger, self.tagged_date, self.tagger_tz_offset = parse_actor_and_date(tagger_info)
+            if len(lines) > 3:
+                tagger_info = lines[3]  # tagger <actor> <date>
+                (
+                    self.tagger,
+                    self.tagged_date,
+                    self.tagger_tz_offset,
+                ) = parse_actor_and_date(tagger_info)
 
-            # line 4 empty - it could mark the beginning of the next header
-            # in case there really is no message, it would not exist. Otherwise
-            # a newline separates header from message
+            # Line 4 empty - it could mark the beginning of the next header.
+            # In case there really is no message, it would not exist.
+            # Otherwise a newline separates header from message.
             if len(lines) > 5:
                 self.message = "\n".join(lines[5:])
             else:
-                self.message = ''
+                self.message = ""
         # END check our attributes
         else:
-            super(TagObject, self)._set_cache_(attr)
+            super()._set_cache_(attr)

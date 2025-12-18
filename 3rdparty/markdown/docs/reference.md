@@ -25,7 +25,7 @@ instance of the `markdown.Markdown` class and pass multiple documents through
 it. If you do use a single instance though, make sure to call the `reset`
 method appropriately ([see below](#convert)).
 
-### markdown.markdown(text [, **kwargs]) {: #markdown }
+### markdown.markdown(text [, **kwargs]) {: #markdown data-toc-label='markdown.markdown' }
 
 The following options are available on the `markdown.markdown` function:
 
@@ -34,24 +34,20 @@ __text__{: #text }
 :   The source Unicode string. (required)
 
     !!! note "Important"
-        Python-Markdown expects **Unicode** as input (although
-        some simple ASCII strings *may* work) and returns output as Unicode.
-        Do not pass encoded strings to it! If your input is encoded, (e.g. as
-        UTF-8), it is your responsibility to decode it.  For example:
+        Python-Markdown expects a **Unicode** string as input (some simple ASCII binary strings *may* work only by
+        coincidence) and returns output as a Unicode string. Do not pass binary strings to it! If your input is
+        encoded, (e.g. as UTF-8), it is your responsibility to decode it.  For example:
 
             :::python
-            input_file = codecs.open("some_file.txt", mode="r", encoding="utf-8")
-            text = input_file.read()
+            with open("some_file.txt", "r", encoding="utf-8") as input_file:
+                text = input_file.read()
             html = markdown.markdown(text)
 
         If you want to write the output to disk, you *must* encode it yourself:
 
             :::python
-            output_file = codecs.open("some_file.html", "w",
-                                      encoding="utf-8",
-                                      errors="xmlcharrefreplace"
-            )
-            output_file.write(html)
+            with open("some_file.html", "w", encoding="utf-8", errors="xmlcharrefreplace") as output_file:
+                output_file.write(html)
 
 __extensions__{: #extensions }
 
@@ -67,7 +63,7 @@ __extensions__{: #extensions }
     of extension names.
 
         :::python
-        extensions=[MyExtension(), 'path.to.my.ext']
+        extensions=[MyExtClass(), 'myext', 'path.to.my.ext:MyExtClass']
 
     !!! note
         The preferred method is to pass in an instance of an extension. Strings
@@ -81,37 +77,48 @@ __extensions__{: #extensions }
 
         :::python
         from markdown.extensions import Extension
-        class MyExtension(Extension):
+        class MyExtClass(Extension):
             # define your extension here...
 
-        markdown.markdown(text, extensions=[MyExtension(option='value')])
+        markdown.markdown(text, extensions=[MyExtClass(option='value')])
 
-    If an extension name is provided as a string, the extension must be
-    importable as a python module on your PYTHONPATH. Python's dot notation is
-    supported. Therefore, to import the 'extra' extension, one could do
-    `extensions=['markdown.extensions.extra']`
+    If an extension name is provided as a string, the string must either be the
+    registered entry point of any installed extension or the importable path
+    using Python's dot notation.
 
-    Additionally, a Class may be specified in the name. The class must be at the
-    end of the name and be separated by a colon from the module.
+    See the documentation specific to an extension for the string name assigned
+    to an extension as an entry point.  Simply include the defined name as
+    a string in the list of extensions. For example, if an extension has the
+    name `myext` assigned to it and the extension is properly installed, then
+    do the following:
+
+        :::python
+        markdown.markdown(text, extensions=['myext'])
+
+    If an extension does not have a registered entry point, Python's dot
+    notation may be used instead. The extension must be installed as a
+    Python module on your PYTHONPATH. Generally, a class should be specified in
+    the name. The class must be at the end of the name and be separated by a
+    colon from the module.
 
     Therefore, if you were to import the class like this:
 
         :::python
-        from path.to.module import SomeExtensionClass
+        from path.to.module import MyExtClass
 
-    Then the named extension would comprise this string:
+    Then load the extension as follows:
 
         :::python
-        "path.to.module:SomeExtensionClass"
+        markdown.markdown(text, extensions=['path.to.module:MyExtClass'])
 
-    !!! note
-        You should only need to specify the class name if more than one extension
-        is defined  within the same module. The extensions that come with
-        Python-Markdown do *not* need to have the class name specified. However,
-        doing so will not effect the behavior of the parser.
+    If only one extension is defined within a module and the module includes a
+    `makeExtension` function which returns an instance of the extension, then
+    the class name is not necessary. For example, in that case one could do
+    `extensions=['path.to.module']`. Check the documentation for a specific
+    extension to determine if it supports this feature.
 
-    When loading an extension by name (as a string), you may pass in
-    configuration settings to the extension using the
+    When loading an extension by name (as a string), you can only pass in
+    configuration settings to the extension by using the
     [`extension_configs`](#extension_configs) keyword.
 
     !!! seealso "See Also"
@@ -144,6 +151,14 @@ __extension_configs__{: #extension_configs }
             }
         }
 
+    When specifying the extension name, be sure to use the exact same
+    string as is used in the [extensions](#extensions) keyword to load the
+    extension. Otherwise, the configuration settings will not be applied to
+    the extension. In other words, you cannot use the entry point in on
+    place and Python dot notation in the other. While both may be valid for
+    a given extension, they will not be recognized as being the same
+    extension by Markdown.
+
     See the documentation specific to the extension you are using for help in
     specifying configuration settings for that extension.
 
@@ -153,134 +168,16 @@ __output_format__{: #output_format }:
 
     Supported formats are:
 
-    * `"xhtml1"`: Outputs XHTML 1.x. **Default**.
-    * `"xhtml5"`: Outputs XHTML style tags of HTML 5
-    * `"xhtml"`: Outputs latest supported version of XHTML (currently XHTML 1.1).
-    * `"html4"`: Outputs HTML 4
-    * `"html5"`: Outputs HTML style tags of HTML 5
-    * `"html"`: Outputs latest supported version of HTML (currently HTML 4).
+    * `"xhtml"`: Outputs XHTML style tags. **Default**.
+    * `"html"`: Outputs HTML style tags.
 
     The values can be in either lowercase or uppercase.
-
-    !!! warning
-        It is suggested that the more specific formats (`"xhtml1"`, `"html5"`, &
-        `"html4"`) be used as the more general formats (`"xhtml"` or `"html"`) may
-        change in the future if it makes sense at that time.
-
-__safe_mode__{: #safe_mode }:
-
-:    Disallow raw HTML.
-
-    !!! warning
-        "`safe_mode`" is deprecated and should not be used.
-
-        HTML sanitizers (like [Bleach]) provide a better solution for
-        dealing with markdown text submitted by untrusted users.
-
-            :::python
-            import markdown
-            import bleach
-            html = bleach.clean(markdown.markdown(untrusted_text))
-
-        See the [release notes] for more info.
-
-    The following values are accepted:
-
-    `False` (Default):
-
-    : Raw HTML is passed through unaltered.
-
-    `replace`:
-
-    : Replace all HTML blocks with the text assigned to
-      `html_replacement_text`. To maintain backward compatibility, setting
-      `safe_mode=True` will have the same effect as `safe_mode='replace'`.
-
-        To replace raw HTML with something other than the default, do:
-
-            :::python
-            md = markdown.Markdown(
-                safe_mode='replace',
-                html_replacement_text='--RAW HTML NOT ALLOWED--'
-            )
-
-    `remove`:
-
-    : All raw HTML will be completely stripped from the text with
-      no warning to the author.
-
-    `escape`:
-
-    : All raw HTML will be escaped and included in the document.
-
-        For example, the following source:
-
-            :::md
-            Foo <b>bar</b>.
-
-        Will result in the following HTML:
-
-            :::html
-            <p>Foo &lt;b&gt;bar&lt;/b&gt;.</p>
-
-    !!! Note
-        "safe_mode" also alters the default value for the
-        [`enable_attributes`](#enable_attributes) option.
-
-[Bleach]: https://github.com/jsocol/bleach
-[release notes]: change_log/release-2.6.md
-
-__html_replacement_text__{: #html_replacement_text }:
-
-: Text used when safe_mode is set to `replace`. Defaults to `[HTML_REMOVED]`.
-
-    !!! warning
-        "`html_replacement_text`" is deprecated and should not be used.
-        See the [release notes] for more info.
 
 __tab_length__{: #tab_length }:
 
 : Length of tabs in the source. Default: 4
 
-__enable_attributes__{: #enable_attributes}:
-
-: Enable the conversion of attributes. Defaults to `True`, unless
-  [`safe_mode`](#safe_mode) is enabled, in which case the default is `False`.
-
-    !!! Note
-        `safe_mode` only overrides the default. If `enable_attributes`
-        is explicitly set, the explicit value is used regardless of `safe_mode`.
-        However, this could potentially allow an untrusted user to inject
-        JavaScript into your documents.
-
-__smart_emphasis__{: #smart_emphasis }:
-
-: Treat `_connected_words_` intelligently Default: True
-
-__lazy_ol__{: #lazy_ol }:
-
-: Ignore number of first item of ordered lists. Default: True
-
-    Given the following list:
-
-        :::md
-        4. Apples
-        5. Oranges
-        6. Pears
-
-    By default markdown will ignore the fact the the first line started
-    with item number "4" and the HTML list will start with a number "1".
-    If `lazy_ol` is set to `False`, then markdown will output the following
-    HTML:
-
-        :::html
-        <ol start="4">
-          <li>Apples</li>
-          <li>Oranges</li>
-          <li>Pears</li>
-        </ol>
-
-### `markdown.markdownFromFile (**kwargs)` {: #markdownFromFile }
+### `markdown.markdownFromFile (**kwargs)` {: #markdownFromFile data-toc-label='markdown.markdownFromFile' }
 
 With a few exceptions, `markdown.markdownFromFile` accepts the same options as
 `markdown.markdown`. It does **not** accept a `text` (or Unicode) string.
@@ -319,14 +216,20 @@ __encoding__{: #encoding }
         meet your specific needs, it is suggested that you write your own code
         to handle your encoding/decoding needs.
 
-### markdown.Markdown([**kwargs]) {: #Markdown }
+### markdown.Markdown([**kwargs]) {: #Markdown data-toc-label='markdown.Markdown' }
 
 The same options are available when initializing the `markdown.Markdown` class
 as on the [`markdown.markdown`](#markdown) function, except that the class does
 **not** accept a source text string on initialization. Rather, the source text
-string must be passed to one of two instance methods:
+string must be passed to one of two instance methods.
 
-#### Markdown.convert(source) {: #convert }
+!!! warning
+
+    Instances of the `markdown.Markdown` class are only thread safe within
+    the thread they were created in. A single instance should not be accessed
+    from multiple threads.
+
+#### Markdown.convert(source) {: #convert data-toc-label='Markdown.convert' }
 
 The `source` text must meet the same requirements as the [`text`](#text)
 argument of the [`markdown.markdown`](#markdown) function.
@@ -341,8 +244,7 @@ html2 = md.convert(text2)
 ```
 
 Depending on which options and/or extensions are being used, the parser may
-need its state reset between each call to `convert`, otherwise performance
-can degrade drastically:
+need its state reset between each call to `convert`.
 
 ```python
 html1 = md.convert(text1)
@@ -356,7 +258,7 @@ To make this easier, you can also chain calls to `reset` together:
 html3 = md.reset().convert(text3)
 ```
 
-#### Markdown.convertFile(**kwargs) {: #convertFile }
+#### Markdown.convertFile(**kwargs) {: #convertFile data-toc-label='Markdown.convertFile' }
 
 The arguments of this method are identical to the arguments of the same
 name on the `markdown.markdownFromFile` function ([`input`](#input),

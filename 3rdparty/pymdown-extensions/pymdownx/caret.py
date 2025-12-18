@@ -25,27 +25,119 @@ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABI
 CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
-from __future__ import unicode_literals
+import re
 from markdown import Extension
-from markdown.inlinepatterns import SimpleTagPattern, DoubleTagPattern, SimpleTextPattern
+from markdown.inlinepatterns import SimpleTextInlineProcessor
 from . import util
 
-RE_SMART_CONTENT = r'((?:[^\^]|\^(?=[^\W_]|\^|\s)|(?<=\s)\^+?(?=\s))+?\^*?)'
-RE_CONTENT = r'((?:[^\^]|(?<!\^)\^(?=[^\W_]|\^))+?)'
-RE_SMART_INS = r'(?:(?<=_)|(?<![\w\^]))(\^{2})(?![\s\^])%s(?<!\s)\2(?:(?=_)|(?![\w\^]))' % RE_SMART_CONTENT
-RE_INS = r'(\^{2})(?!\s)%s(?<!\s)\2' % RE_CONTENT
+SMART_CONTENT = r'(.+?\^*?)'
+SMART_LIMITED_CONTENT = r'((?:[^\^]|(?<=\w)\^+?(?=\w)|(?<=\s)\^+?(?=\s))+?)'
+CONTENT = r'(\^|[^\s]+?)'
+CONTENT2 = r'((?:[^\^]|(?<!\^{2})\^)+?)'
 
-RE_SUP_INS = r'(\^{3})(?!\s)([^\^]+?)(?<!\s)\2'
-RE_SMART_SUP_INS = r'(\^{3})(?!\s)%s(?<!\s)\2' % RE_SMART_CONTENT
-RE_SUP_INS2 = r'(\^{3})(?!\s)([^\^]+?)(?<!\s)\^{2}([^\^ ]+?)\^'
-RE_SMART_SUP_INS2 = r'(\^{3})(?!\s)%s(?<!\s)\^{2}(?:(?=_)|(?![\w\^]))([^\^ ]+?)\^' % RE_SMART_CONTENT
-RE_SUP = r'(\^)([^\^ ]+?|\^)\2'
+# Avoid starting a pattern with caret tokens that are surrounded by white space.
+NOT_CARET = r'((^|(?<=\s))(\^+)(?=\s|$))'
 
-RE_NOT_CARET = r'((^| )(\^)( |$))'
+# `^^^ins,sup^^^`
+INS_SUP = r'(\^{3})(?!\s)(\^{1,2}|[^\^\s]+?)(?<!\s)\1'
+# `^^^ins,sup^ins^^`
+INS_SUP2 = r'(\^{{3}})(?![\s\^]){}(?<!\s)\^{}(?<!\s)\^{{2}}'.format(CONTENT, CONTENT2)
+# `^^^sup,ins^^sup^`
+SUP_INS = r'(\^{{3}})(?![\s\^]){}(?<!\s)\^{{2}}{}(?<!\s)\^'.format(CONTENT, CONTENT)
+# `^^ins^sup,ins^^^`
+INS_SUP3 = r'(\^{{2}})(?![\s\^]){}\^(?![\s\^]){}(?<!\s)\^{{3}}'.format(CONTENT2, CONTENT)
+# `^^ins^^`
+INS = r'(\^{{2}})(?!\s){}(?<!\s)\1'.format(CONTENT2)
+# `^sup^`
+SUP = r'(\^)(?!\s){}(?<!\s)\1'.format(CONTENT)
+# `^sup ^^sup,ins^^^`
+SUP_INS2 = r'(?<!\^)(\^)(?![\^\s]){}\^{{2}}{}\^{{3}}'.format(CONTENT, CONTENT)
+# Prioritize ^value^ when ^^value^^ is nested within
+SUP2 = r'(?<!\^)(\^)(?![\^\s])((?:[^\^\s]|\^{2,})+?)(?<![\^\s])(\^)(?!\^)'
+
+# Smart rules for when "smart caret" is enabled
+# SMART: `^^^ins,sup^^^`
+SMART_INS_SUP = r'(\^{{3}})(?![\s\^]){}(?<!\s)\1'.format(CONTENT)
+# SMART: `^^^ins,sup^ ins^^`
+SMART_INS_SUP2 = \
+    r'(\^{{3}})(?![\s\^]){}(?<!\s)\^(?:(?=_)|(?![\w\^])){}(?<!\s)\^{{2}}'.format(
+        CONTENT, SMART_LIMITED_CONTENT
+    )
+# SMART: `^^^sup,ins^^ sup^`
+SMART_SUP_INS = \
+    r'(\^{{3}})(?![\s\^]){}(?<!\s)\^{{2}}(?:(?=_)|(?![\w\^])){}(?<!\s)\^'.format(
+        CONTENT, CONTENT
+    )
+# SMART: `^^ins^^`
+SMART_INS = r'(?:(?<=_)|(?<![\w\^]))(\^{{2}})(?![\s\^]){}(?<!\s)\1(?:(?=_)|(?![\w\^]))'.format(SMART_CONTENT)
+# SMART: `^sup ^^sup,ins^^^`
+SMART_SUP_INS2 = \
+    r'(?<!\^)(\^)(?![\s\^]){}(?:(?<=_)|(?<![\w\^]))\^{{2}}(?![\s\^]){}(?<!\s)\^{{3}}'.format(
+        CONTENT, CONTENT
+    )
+# SMART: `^^sup ^sup,ins^^^`
+SMART_INS_SUP3 = \
+    r'(?<!\^)(\^{{2}})(?![\s\^]){}(?:(?<=_)|(?<![\w\^]))\^(?![\s\^]){}(?<!\s)\^{{3}}'.format(
+        SMART_LIMITED_CONTENT, CONTENT
+    )
 
 
-class InsertSubExtension(Extension):
-    """Adds insert extension to Markdown class."""
+class CaretProcessor(util.PatternSequenceProcessor):
+    """Emphasis processor for handling insert and superscript matches."""
+
+    PATTERNS = [
+        util.PatSeqItem(re.compile(INS_SUP, re.DOTALL | re.UNICODE), 'double', 'ins,sup'),
+        util.PatSeqItem(re.compile(SUP_INS, re.DOTALL | re.UNICODE), 'double', 'sup,ins'),
+        util.PatSeqItem(re.compile(INS_SUP2, re.DOTALL | re.UNICODE), 'double', 'ins,sup'),
+        util.PatSeqItem(re.compile(INS_SUP3, re.DOTALL | re.UNICODE), 'double2', 'ins,sup'),
+        util.PatSeqItem(re.compile(INS, re.DOTALL | re.UNICODE), 'single', 'ins'),
+        util.PatSeqItem(re.compile(SUP_INS2, re.DOTALL | re.UNICODE), 'double2', 'sup,ins'),
+        util.PatSeqItem(re.compile(SUP2, re.DOTALL | re.UNICODE), 'single', 'sup', True),
+        util.PatSeqItem(re.compile(SUP, re.DOTALL | re.UNICODE), 'single', 'sup')
+    ]
+
+
+class CaretSmartProcessor(util.PatternSequenceProcessor):
+    """Smart insert and sup processor."""
+
+    PATTERNS = [
+        util.PatSeqItem(re.compile(SMART_INS_SUP, re.DOTALL | re.UNICODE), 'double', 'ins,sup'),
+        util.PatSeqItem(re.compile(SMART_SUP_INS, re.DOTALL | re.UNICODE), 'double', 'sup,ins'),
+        util.PatSeqItem(re.compile(SMART_INS_SUP2, re.DOTALL | re.UNICODE), 'double', 'ins,sup'),
+        util.PatSeqItem(re.compile(SMART_INS_SUP3, re.DOTALL | re.UNICODE), 'double2', 'ins,sup'),
+        util.PatSeqItem(re.compile(SMART_INS, re.DOTALL | re.UNICODE), 'single', 'ins'),
+        util.PatSeqItem(re.compile(SMART_SUP_INS2, re.DOTALL | re.UNICODE), 'double2', 'sup,ins'),
+        util.PatSeqItem(re.compile(SUP2, re.DOTALL | re.UNICODE), 'single', 'sup', True),
+        util.PatSeqItem(re.compile(SUP, re.DOTALL | re.UNICODE), 'single', 'sup')
+    ]
+
+
+class CaretSupProcessor(util.PatternSequenceProcessor):
+    """Just superscript processor."""
+
+    PATTERNS = [
+        util.PatSeqItem(re.compile(SUP, re.DOTALL | re.UNICODE), 'single', 'sup')
+    ]
+
+
+class CaretInsertProcessor(util.PatternSequenceProcessor):
+    """Just insert processor."""
+
+    PATTERNS = [
+        util.PatSeqItem(re.compile(INS, re.DOTALL | re.UNICODE), 'single', 'ins')
+    ]
+
+
+class CaretSmartInsertProcessor(util.PatternSequenceProcessor):
+    """Just smart insert processor."""
+
+    PATTERNS = [
+        util.PatSeqItem(re.compile(SMART_INS, re.DOTALL | re.UNICODE), 'single', 'ins')
+    ]
+
+
+class InsertSupExtension(Extension):
+    """Add insert and/or superscript extension to Markdown class."""
 
     def __init__(self, *args, **kwargs):
         """Initialize."""
@@ -56,15 +148,17 @@ class InsertSubExtension(Extension):
             'superscript': [True, "Enable superscript - Default: True"]
         }
 
-        super(InsertSubExtension, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
-    def extendMarkdown(self, md, md_globals):
-        """Insert <ins>test</ins> tags as ^^test^^ and/or <sup>test</sup> tags as ^test^."""
+    def extendMarkdown(self, md):
+        """Insert `<ins>test</ins>` tags as `^^test^^` and `<sup>test</sup>` tags as `^test^`."""
 
         config = self.getConfigs()
         insert = bool(config.get('insert', True))
         superscript = bool(config.get('superscript', True))
         smart = bool(config.get('smart_insert', True))
+
+        md.registerExtension(self)
 
         escape_chars = []
         if insert or superscript:
@@ -73,24 +167,20 @@ class InsertSubExtension(Extension):
             escape_chars.append(' ')
         util.escape_chars(md, escape_chars)
 
-        ins_rule = RE_SMART_INS if smart else RE_INS
-        sup_ins_rule = RE_SUP_INS
-        sup_ins2_rule = RE_SMART_SUP_INS2 if smart else RE_SUP_INS2
-        sup_rule = RE_SUP
-
-        if insert:
-            md.inlinePatterns.add("ins", SimpleTagPattern(ins_rule, "ins"), "<not_strong")
-            md.inlinePatterns.add('not_caret', SimpleTextPattern(RE_NOT_CARET), "<ins")
-            if superscript:
-                md.inlinePatterns.add("sup_ins", DoubleTagPattern(sup_ins_rule, "sup,ins"), "<ins")
-                md.inlinePatterns.add("sup_ins2", DoubleTagPattern(sup_ins2_rule, "sup,ins"), "<ins")
-                md.inlinePatterns.add("sup", SimpleTagPattern(sup_rule, "sup"), ">ins" if smart else "<ins")
+        caret = None
+        md.inlinePatterns.register(SimpleTextInlineProcessor(NOT_CARET), 'not_tilde', 70)
+        if insert and superscript:
+            caret = CaretSmartProcessor(r'\^') if smart else CaretProcessor(r'\^')
+        elif insert:
+            caret = CaretSmartInsertProcessor(r'\^') if smart else CaretInsertProcessor(r'\^')
         elif superscript:
-            md.inlinePatterns.add("sup", SimpleTagPattern(sup_rule, "sup"), "<not_strong")
-            md.inlinePatterns.add('not_caret', SimpleTextPattern(RE_NOT_CARET), "<sup")
+            caret = CaretSupProcessor(r'\^')
+
+        if caret is not None:
+            md.inlinePatterns.register(caret, "sup_ins", 65)
 
 
 def makeExtension(*args, **kwargs):
     """Return extension."""
 
-    return InsertSubExtension(*args, **kwargs)
+    return InsertSupExtension(*args, **kwargs)

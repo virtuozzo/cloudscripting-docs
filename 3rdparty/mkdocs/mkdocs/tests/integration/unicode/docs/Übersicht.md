@@ -1,13 +1,13 @@
-# Welcome to MkDocs
+Welcome to MkDocs
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## Commands
 
 * `mkdocs new [dir-name]` - Create a new project.
 * `mkdocs serve` - Start the live-reloading docs server.
 * `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+* `mkdocs -h` - Print this help message.
 
 ## Project layout
 

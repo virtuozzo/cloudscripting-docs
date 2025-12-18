@@ -1,22 +1,22 @@
 [Python-Markdown][]
 ===================
 
-[![Build Status][travis-button]][travis]
+[![Build Status][build-button]][build]
 [![Coverage Status][codecov-button]][codecov]
 [![Latest Version][mdversion-button]][md-pypi]
 [![Python Versions][pyversion-button]][md-pypi]
 [![BSD License][bsdlicense-button]][bsdlicense]
 [![Code of Conduct][codeofconduct-button]][Code of Conduct]
 
-[travis-button]: http://img.shields.io/travis/Python-Markdown/markdown.svg
-[travis]: https://travis-ci.org/Python-Markdown/markdown
+[build-button]: https://github.com/Python-Markdown/markdown/actions/workflows/tox.yml/badge.svg
+[build]: https://github.com/Python-Markdown/markdown/actions/workflows/tox.yml
 [codecov-button]: https://codecov.io/gh/Python-Markdown/markdown/branch/master/graph/badge.svg
 [codecov]: https://codecov.io/gh/Python-Markdown/markdown
-[mdversion-button]: http://img.shields.io/pypi/v/Markdown.svg
-[md-pypi]: http://pypi.python.org/pypi/Markdown
-[pyversion-button]: http://img.shields.io/pypi/pyversions/Markdown.svg
-[bsdlicense-button]: http://img.shields.io/badge/license-BSD-yellow.svg
-[bsdlicense]: http://opensource.org/licenses/BSD-3-Clause
+[mdversion-button]: https://img.shields.io/pypi/v/Markdown.svg
+[md-pypi]: https://pypi.org/project/Markdown/
+[pyversion-button]: https://img.shields.io/pypi/pyversions/Markdown.svg
+[bsdlicense-button]: https://img.shields.io/badge/license-BSD-yellow.svg
+[bsdlicense]: https://opensource.org/licenses/BSD-3-Clause
 [codeofconduct-button]: https://img.shields.io/badge/code%20of%20conduct-contributor%20covenant-green.svg?style=flat-square
 [Code of Conduct]: https://github.com/Python-Markdown/markdown/blob/master/CODE_OF_CONDUCT.md
 
@@ -27,30 +27,38 @@ on what exactly is supported and what is not. Additional features are
 supported by the [Available Extensions][].
 
 [Python-Markdown]: https://Python-Markdown.github.io/
-[Markdown]: http://daringfireball.net/projects/markdown/
+[Markdown]: https://daringfireball.net/projects/markdown/
 [Features]: https://Python-Markdown.github.io#Features
 [Available Extensions]: https://Python-Markdown.github.io/extensions
 
 Documentation
 -------------
 
-Installation and usage documentation is available in the `docs/` directory
-of the distribution and on the project website at
-<https://Python-Markdown.github.io/>.
+```bash
+pip install markdown
+```
+```python
+import markdown
+html = markdown.markdown(your_text_string)
+```
 
-See the change log at <https://Python-Markdown.github.io/change_log>.
+For more advanced [installation] and [usage] documentation, see the `docs/` directory
+of the distribution or the project website at <https://Python-Markdown.github.io/>.
+
+[installation]: https://python-markdown.github.io/install/
+[usage]: https://python-markdown.github.io/reference/
+
+See the change log at <https://python-markdown.github.io/changelog/>.
 
 Support
 -------
 
-You may ask for help and discuss various other issues on the [mailing list][]
-and report bugs on the [bug tracker][].
+You may report bugs, ask for help, and discuss various other issues on the [bug tracker][].
 
-[mailing list]: http://lists.sourceforge.net/lists/listinfo/python-markdown-discuss
-[bug tracker]: http://github.com/Python-Markdown/markdown/issues
+[bug tracker]: https://github.com/Python-Markdown/markdown/issues
 
 Code of Conduct
 ---------------
 
-Everyone interacting in the Python-Markdown project's codebases, issue trackers,
+Everyone interacting in the Python-Markdown project's code bases, issue trackers,
 and mailing lists is expected to follow the [Code of Conduct].

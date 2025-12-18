@@ -1,13 +1,21 @@
-@import "modularscale";
-@import "material-color";
-@import "material-shadows";
+@use "palette/colors";
 
-@import "links";
-@import "keys";
-@import "admonition";
-@import "details";
-@import "uml";
-@import "code";
-@import "headeranchors";
-@import "progressbar";
-@import "footer";
+@use "general";
+
+@use "extensions/admonition";
+@use "extensions/arithmatex";
+@use "extensions/critic";
+@use "extensions/details";
+@use "extensions/highlight";
+@use "extensions/keys";
+@use "extensions/magiclink";
+@use "extensions/mark";
+@use "extensions/progressbar";
+@use "extensions/tabbed";
+@use "extensions/tasklist";
+@use "extensions/toc";
+@use "extensions/superfences";
+@use "extensions/steps";
+@use "extensions/tables";
+
+@use "material";

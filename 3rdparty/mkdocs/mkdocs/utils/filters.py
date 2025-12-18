@@ -1,6 +1,1 @@
-import json
-import jinja2
-
-
-def tojson(obj, **kwargs):
-    return jinja2.Markup(json.dumps(obj, **kwargs))
+from .templates import url_filter  # noqa: F401 - legacy re-export

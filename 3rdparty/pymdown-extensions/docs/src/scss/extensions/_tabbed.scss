@@ -1,0 +1,131 @@
+@use "../utilities/break";
+@use "../utilities/convert";
+
+.md-typeset .tabbed-control button{
+  &:hover {
+    color: var(--md-default-bg-color);
+    background: var(--md-accent-fg-color);
+  }
+}
+
+.md-typeset .tabbed-control--next button {
+  &:hover {
+    color: var(--md-default-bg-color);
+    background: var(--md-accent-fg-color);
+  }
+}
+
+.js .md-typeset .tabbed-labels::before {
+  background-color: var(--md-accent-fg-color);
+}
+
+/* Style code blocks to fill full tab,
+   but otherwise, pad content. */
+.md-typeset {
+  .tabbed-alternate {
+    &.tabbed-set .tabbed-control {
+      width: convert.px2rem(40px);
+
+      &[hidden] {
+        width: convert.px2rem(24px);
+        opacity: 0;
+      }
+    }
+
+    &.tabbed-set > .tabbed-content > .tabbed-block {
+      padding: 0 convert.px2rem(12px);
+
+      > {
+        pre,
+        .codehilite,
+        .codehilitetable,
+        .highlight,
+        .highlighttable {
+
+          &:first-child {
+            margin-top: convert.px2em(15px);
+
+            code {
+              border-top-left-radius: convert.px2rem(9.6px);
+              border-top-right-radius: convert.px2rem(9.6px);
+            }
+          }
+
+          &:only-child {
+            margin-top: 0;
+            margin-right: convert.px2rem(-24px);
+            margin-left: convert.px2rem(-24px);
+            padding-right: convert.px2rem(12px);
+            padding-left: convert.px2rem(12px);
+            code {
+              border-top-left-radius: 0;
+              border-top-right-radius: 0;
+            }
+
+            span.filename {
+              margin-top: 0;
+            }
+          }
+        }
+
+        .collapse-code:only-child {
+          margin-top: 0;
+
+          margin-right: convert.px2rem(-24px);
+          margin-left: convert.px2rem(-24px);
+          padding-right: convert.px2rem(12px);
+          padding-left: convert.px2rem(12px);
+
+          pre,
+          .codehilite,
+          .codehilitetable,
+          .highlight,
+          .highlighttable {
+            code {
+              border-top-left-radius: 0;
+              border-top-right-radius: 0;
+            }
+          }
+        }
+
+        diagram-div:only-child {
+          margin-right: convert.px2rem(-24px);
+          margin-left: convert.px2rem(-24px);
+          padding-right: convert.px2rem(12px);
+          padding-left: convert.px2rem(12px);
+        }
+      }
+    }
+  }
+}
+
+/* Ignore mobile overflow styling that extends the tab bar */
+@include break.break-to-device(mobile) {
+  [dir=ltr] .md-content__inner > .tabbed-set .tabbed-labels {
+    padding-left: 0;
+  }
+
+  .md-content__inner > .tabbed-set .tabbed-labels {
+    max-width: 100%;
+    margin: 0;
+    padding-inline-start: 0;
+    scroll-padding-inline-start: 0;
+
+    &::after {
+      padding-inline-end: 0;
+      content: none;
+    }
+
+    // Tabbed control previous
+    ~ .tabbed-control--prev {
+      margin-inline-start: 0;
+      padding-inline-start: 0;
+    }
+
+    // Tabbed control next
+    ~ .tabbed-control--next {
+      margin-inline-end: 0;
+      padding-inline-end: 0;
+    }
+  }
+}

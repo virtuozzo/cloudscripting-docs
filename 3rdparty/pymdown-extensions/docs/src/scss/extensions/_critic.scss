@@ -1,0 +1,18 @@
+@use "../utilities/convert";
+
+/* Don't use box shadows */
+.md-typeset {
+  del,
+  ins,
+  mark {
+    &.critic {
+      padding: 0 convert.px2em(4px, 16px);
+      color: unset;
+      box-shadow: none;
+    }
+  }
+
+  .critic.break {
+    margin: 0;
+  }
+}

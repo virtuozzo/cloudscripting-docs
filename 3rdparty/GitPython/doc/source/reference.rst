@@ -3,6 +3,16 @@
 API Reference
 =============
 
+Top-Level
+---------
+
+.. py:data:: git.__version__
+
+   Current GitPython version.
+
+.. automodule:: git
+   :members: refresh
+
 Objects.Base
 ------------
 
@@ -10,7 +20,7 @@ Objects.Base
    :members:
    :undoc-members:
    :special-members:
- 
+
 Objects.Blob
 ------------
 
@@ -18,7 +28,7 @@ Objects.Blob
    :members:
    :undoc-members:
    :special-members:
-   
+
 Objects.Commit
 --------------
 
@@ -26,7 +36,7 @@ Objects.Commit
    :members:
    :undoc-members:
    :special-members:
-   
+
 Objects.Tag
 -----------
 
@@ -66,7 +76,7 @@ Objects.Submodule.root
    :members:
    :undoc-members:
    :special-members:
-   
+
 Objects.Submodule.util
 ----------------------
 
@@ -74,7 +84,7 @@ Objects.Submodule.util
    :members:
    :undoc-members:
    :special-members:
-   
+
 Objects.Util
 -------------
 
@@ -98,7 +108,7 @@ Index.Functions
    :members:
    :undoc-members:
    :special-members:
-   
+
 Index.Types
 -----------
 
@@ -106,7 +116,7 @@ Index.Types
    :members:
    :undoc-members:
    :special-members:
-   
+
 Index.Util
 -------------
 
@@ -114,7 +124,7 @@ Index.Util
    :members:
    :undoc-members:
    :special-members:
-   
+
 GitCmd
 ------
 
@@ -130,7 +140,7 @@ Config
    :members:
    :undoc-members:
    :special-members:
-   
+
 Diff
 ----
 
@@ -147,7 +157,7 @@ Exceptions
    :undoc-members:
    :special-members:
 
- 
+
 Refs.symbolic
 -------------
 
@@ -155,7 +165,7 @@ Refs.symbolic
    :members:
    :undoc-members:
    :special-members:
-   
+
 Refs.reference
 --------------
 
@@ -171,7 +181,7 @@ Refs.head
    :members:
    :undoc-members:
    :special-members:
-   
+
 Refs.tag
 ------------
 
@@ -179,7 +189,7 @@ Refs.tag
    :members:
    :undoc-members:
    :special-members:
-   
+
 Refs.remote
 ------------
 
@@ -187,7 +197,7 @@ Refs.remote
    :members:
    :undoc-members:
    :special-members:
-   
+
 Refs.log
 ------------
 
@@ -195,7 +205,7 @@ Refs.log
    :members:
    :undoc-members:
    :special-members:
-   
+
 Remote
 ------
 
@@ -211,11 +221,35 @@ Repo.Base
    :members:
    :undoc-members:
    :special-members:
-   
+
 Repo.Functions
 --------------
 
 .. automodule:: git.repo.fun
+   :members:
+   :undoc-members:
+   :special-members:
+
+Compat
+------
+
+.. automodule:: git.compat
+   :members:
+   :undoc-members:
+   :special-members:
+
+DB
+--
+
+.. automodule:: git.db
+   :members:
+   :undoc-members:
+   :special-members:
+
+Types
+-----
+
+.. automodule:: git.types
    :members:
    :undoc-members:
    :special-members:

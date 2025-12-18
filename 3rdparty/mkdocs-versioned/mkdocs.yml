@@ -1,0 +1,8 @@
+site_name: MkDocs Versions
+
+theme: material
+
+markdown_extensions:
+    - toc:
+        permalink: "#"
+    - admonition:

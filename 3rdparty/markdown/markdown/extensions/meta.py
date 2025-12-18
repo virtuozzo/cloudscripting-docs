@@ -1,26 +1,31 @@
-"""
-Meta Data Extension for Python-Markdown
-=======================================
+# Meta Data Extension for Python-Markdown
+# =======================================
 
+# This extension adds Meta Data handling to markdown.
+
+# See https://Python-Markdown.github.io/extensions/meta_data
+# for documentation.
+
+# Original code Copyright 2007-2008 [Waylan Limberg](https://github.com/waylan).
+
+# All changes Copyright 2008-2014 The Python Markdown Project
+
+# License: [BSD](https://opensource.org/licenses/bsd-license.php)
+
+"""
 This extension adds Meta Data handling to markdown.
 
-See <https://Python-Markdown.github.io/extensions/meta_data>
-for documentation.
-
-Original code Copyright 2007-2008 [Waylan Limberg](http://achinghead.com).
-
-All changes Copyright 2008-2014 The Python Markdown Project
-
-License: [BSD](http://www.opensource.org/licenses/bsd-license.php)
-
+See the [documentation](https://Python-Markdown.github.io/extensions/meta_data)
+for details.
 """
 
-from __future__ import absolute_import
-from __future__ import unicode_literals
+from __future__ import annotations
+
 from . import Extension
 from ..preprocessors import Preprocessor
 import re
 import logging
+from typing import Any
 
 log = logging.getLogger('MARKDOWN')
 
@@ -34,19 +39,22 @@ END_RE = re.compile(r'^(-{3}|\.{3})(\s.*)?')
 class MetaExtension (Extension):
     """ Meta-Data extension for Python-Markdown. """
 
-    def extendMarkdown(self, md, md_globals):
-        """ Add MetaPreprocessor to Markdown instance. """
-        md.preprocessors.add("meta",
-                             MetaPreprocessor(md),
-                             ">normalize_whitespace")
+    def extendMarkdown(self, md):
+        """ Add `MetaPreprocessor` to Markdown instance. """
+        md.registerExtension(self)
+        self.md = md
+        md.preprocessors.register(MetaPreprocessor(md), 'meta', 27)
+
+    def reset(self) -> None:
+        self.md.Meta = {}
 
 
 class MetaPreprocessor(Preprocessor):
     """ Get Meta-Data. """
 
-    def run(self, lines):
+    def run(self, lines: list[str]) -> list[str]:
         """ Parse Meta-Data and store in Markdown.Meta. """
-        meta = {}
+        meta: dict[str, Any] = {}
         key = None
         if lines and BEGIN_RE.match(lines[0]):
             lines.pop(0)
@@ -70,9 +78,9 @@ class MetaPreprocessor(Preprocessor):
                 else:
                     lines.insert(0, line)
                     break  # no meta data - done
-        self.markdown.Meta = meta
+        self.md.Meta = meta
         return lines
 
 
-def makeExtension(*args, **kwargs):
-    return MetaExtension(*args, **kwargs)
+def makeExtension(**kwargs):  # pragma: no cover
+    return MetaExtension(**kwargs)

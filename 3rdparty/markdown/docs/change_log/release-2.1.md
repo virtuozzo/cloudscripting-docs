@@ -43,7 +43,7 @@ release, there are a few backward-incompatible changes to note:
   you should now set them on the class. See the [Library
   Reference](../reference.md) for the options available.
 
-* If you have been using the [HeaderId](../extensions/header_id.md) extension to
+* If you have been using the HeaderId extension to
   define custom ids on headers, you will want to switch to using the new
   [Attribute List](../extensions/attr_list.md) extension. The HeaderId extension
   now only auto-generates ids on headers which have not already had ids defined.
@@ -65,10 +65,9 @@ What's New in Python-Markdown 2.1
 ---------------------------------
 
 Three new extensions were added. [Attribute Lists](../extensions/attr_list.md),
-which was inspired by Maruku's feature of the same name,
-[Newline to Break](../extensions/nl2br.md), which was inspired by GitHub
-Flavored Markdown, and [Smart Strong](../extensions/smart_strong.md), which
-fills a hole in the Extra extension.
+which was inspired by Maruku's feature of the same name, [Newline to
+Break](../extensions/nl2br.md), which was inspired by GitHub Flavored Markdown,
+and Smart Strong, which fills a hole in the Extra extension.
 
 HTML5 is now supported. All this really means is that new block level elements
 introduced in the HTML5 spec are now properly recognized as raw HTML. As
@@ -90,7 +89,7 @@ do a conversion.
 Methods on instances of the Markdown class that do not return results can now
 be changed allowing one to do `md.reset().convert(moretext)`.
 
-The Markdown class was refactored so that a subclass could define it's own
+The Markdown class was refactored so that a subclass could define its own
 `build_parser` method which would build a completely different parser. In
 other words, one could use the basic machinery in the markdown library to
 build a parser of a different markup language without the overhead of building
@@ -112,7 +111,7 @@ script to accept input on `stdin`.
 The testing framework has been completely rebuilt using the Nose testing
 framework. This provides a number of benefits including the ability to better
 test the built-in extensions and other options available to change the parsing
-behavior. See the [Test Suite](../test_suite.md) documentation for details.
+behavior. See the Test Suite documentation for details.
 
 Various bug fixes have been made, which are too numerous to list here. See the
 [commit log](https://github.com/Python-Markdown/markdown/commits/master) for a

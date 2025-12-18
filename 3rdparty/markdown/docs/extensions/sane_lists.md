@@ -66,12 +66,39 @@ With this extension the above will result in the following output:
 </ol>
 ```
 
+Sane lists also recognize the number used in ordered lists. Given the following
+list:
+
+```md
+4. Apples
+5. Oranges
+6. Pears
+```
+
+By default markdown will ignore the fact that the first line started
+with item number "4" and the HTML list will start with a number "1".
+This extension will result in the following HTML output:
+
+```html
+<ol start="4">
+  <li>Apples</li>
+  <li>Oranges</li>
+  <li>Pears</li>
+</ol>
+```
+
 In all other ways, Sane Lists should behave as normal Markdown lists.
 
 Usage
 -----
 
-See [Extensions](index.md) for general extension usage, specify
-`markdown.extensions.sane_lists` as the name of the extension.
+See [Extensions](index.md) for general extension usage. Use `sane_lists` as the
+name of the extension.
 
 This extension does not accept any special configuration options.
+
+A trivial example:
+
+```python
+markdown.markdown(some_text, extensions=['sane_lists'])
+```

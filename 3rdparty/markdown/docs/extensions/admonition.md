@@ -61,24 +61,55 @@ If you don't want a title, use a blank string `""`:
 
 ```md
 !!! important ""
-    This is a admonition box without a title.
+    This is an admonition box without a title.
 ```
 
 results in:
 
 ```html
 <div class="admonition important">
-<p>This is a admonition box without a title.</p>
+<p>This is an admonition box without a title.</p>
 </div>
 ```
 
-rST suggests the following `types`, but you're free to use whatever you want:
-    attention, caution, danger, error, hint, important, note, tip, warning.
+You can also provide additional CSS class names separated by spaces. The first
+class should be the "type." For example:
+
+```md
+!!! danger highlight blink "Don't try this at home"
+    ...
+```
+
+will render:
+
+```html
+<div class="admonition danger highlight blink">
+<p class="admonition-title">Don't try this at home</p>
+<p>...</p>
+</div>
+```
+
+rST suggests the following "types": `attention`, `caution`, `danger`, `error`,
+`hint`, `important`, `note`, `tip`, and `warning`; however, you're free to use
+whatever you want.
 
 Styling
 -------
 
-There is no CSS included as part of this extension. Look up the default
-[Sphinx][sphinx] theme if you need inspiration.
+There is no CSS included as part of this extension. Check out the default
+[Sphinx][sphinx] theme for inspiration.
 
-[sphinx]: http://sphinx.pocoo.org/
+[sphinx]: https://www.sphinx-doc.org/en/master/
+
+## Usage
+
+See [Extensions](index.md) for general extension usage. Use `admonition` as the
+name of the extension.
+
+This extension does not accept any special configuration options.
+
+A trivial example:
+
+```python
+markdown.markdown(some_text, extensions=['admonition'])
+```

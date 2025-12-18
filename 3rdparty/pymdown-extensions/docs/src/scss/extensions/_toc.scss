@@ -1,0 +1,25 @@
+@use "../utilities/convert";
+
+:root > * {
+  --toc-svg-link: svg-load("@mdi/svg/svg/link.svg");
+}
+
+// Header anchors
+.md-typeset {
+  .headerlink {
+    width: convert.px2em(16px);
+    height: convert.px2em(16px);
+    vertical-align: middle;
+    background-color: var(--md-default-fg-color--lighter);
+    background-size: convert.px2em(16px);
+    mask-size: convert.px2em(16px);
+    mask-repeat: no-repeat;
+    visibility: visible;
+    mask-image: var(--toc-svg-link);
+  }
+
+  .headerlink:hover,
+  [id]:target .headerlink {
+    background-color: var(--md-accent-fg-color);
+  }
+}

@@ -55,7 +55,7 @@ path.
 * **Windows**:
 
     Assuming a default install of Python on Windows, your "Scripts" directory
-    is most likely something like `C:\\Python26\Scripts`. Verify the location
+    is most likely something like `C:\\Python37\Scripts`. Verify the location
     of your "Scripts" directory and add it to you system path.
 
     Calling `markdown_py` from the command line will call the wrapper batch
@@ -118,16 +118,26 @@ Using Extensions
 To load a Python-Markdown extension from the command line use the `-x`
 (or `--extension`) option. The extension module must be on your `PYTHONPATH`
 (see the [Extension API](extensions/api.md) for details). The extension can
-then be invoked by the name of that module using Python's dot syntax:
+then be invoked by the name assigned to an entry point or using Python's dot
+notation to point to an extension
+
+For example, to load an extension with the assigned entry point name `myext`,
+run the following command:
 
 ```bash
-python -m markdown -x path.to.module input.txt
+python -m markdown -x myext input.txt
+```
+
+And to load an extension with Python's dot notation:
+
+```bash
+python -m markdown -x path.to.module:MyExtClass input.txt
 ```
 
 To load multiple extensions, specify an `-x` option for each extension:
 
 ```bash
-python -m markdown -x markdown.extensions.footnotes -x markdown.extensions.codehilite input.txt
+python -m markdown -x myext -x path.to.module:MyExtClass input.txt
 ```
 
 If the extension supports configuration options (see the documentation for the
@@ -135,7 +145,7 @@ extension you are using to determine what settings it supports, if any), you
 can pass them in as well:
 
 ```bash
-python -m markdown -x markdown.extensions.footnotes -c config.yml input.txt
+python -m markdown -x myext -c config.yml input.txt
 ```
 
 The `-c` (or `--extension_configs`) option accepts a file name. The file must be
@@ -145,27 +155,35 @@ map to a Python Dictionary in the format required by the
 the file `config.yaml` referenced in the above example might look like this:
 
 ```yaml
-markdown.extensions.footnotes:
-    PLACE_MARKER: ~~~~~~~~
-    UNIQUE_IDS: True
+myext:
+    option1: 'value1'
+    option2: True
+```
+
+Similarly, a JSON configuration file might look like this:
+
+```json
+{
+  "myext":
+  {
+    "option1": "value1",
+    "option2": "value2"
+  }
+}
 ```
 
 Note that while the `--extension_configs` option does specify the
-"markdown.extensions.footnotes" extension, you still need to load the extension
-with the `-x` option, or the configuration for that extension will be ignored.
+`myext` extension, you still need to load the extension with the `-x` option,
+or the configuration for that extension will be ignored. Further, if an
+extension requires a value that cannot be parsed in JSON (for example a
+reference to a function), one has to use a YAML configuration file.
 
 The `--extension_configs` option will only support YAML configuration files if
 [PyYAML] is installed on your system. JSON should work with no additional
 dependencies. The format of your configuration file is automatically detected.
 
-!!!warning
-    The previously documented method of appending the extension configuration
-    options as a string to the extension name will be deprecated in
-    Python-Markdown version 2.6. The `--extension_configs` option should be used
-    instead. See the [2.5 release notes] for more information.
-
-[ec]: reference.html#extension_configs
-[YAML]: http://yaml.org/
-[JSON]: http://json.org/
-[PyYAML]: http://pyyaml.org/
+[ec]: reference.md#extension_configs
+[YAML]: https://yaml.org/
+[JSON]: https://json.org/
+[PyYAML]: https://pyyaml.org/
 [2.5 release notes]: change_log/release-2.5.md

@@ -21,28 +21,29 @@ All changes Copyright 2008-2014 The Python Markdown Project
 
 License: [BSD](http://www.opensource.org/licenses/bsd-license.php)
 """
-from __future__ import absolute_import
-from __future__ import unicode_literals
+import re
 from markdown import Extension
 from markdown.treeprocessors import Treeprocessor
-from markdown import util as md_util
+import xml.etree.ElementTree as etree
 import copy
 from collections import OrderedDict
 try:
     from pygments import highlight
     from pygments.lexers import get_lexer_by_name, guess_lexer
     from pygments.formatters import find_formatter_class
+    from pygments import __version__ as pygments_ver
+    p_ver = tuple([int(n) for n in pygments_ver.split('.')[:2]])
     HtmlFormatter = find_formatter_class('html')
     pygments = True
 except ImportError:  # pragma: no cover
     pygments = False
-try:
-    from markdown.extensions.codehilite import CodeHiliteExtension
-except Exception:  # pragma: no cover
-    CodeHiliteExtension = None
+    p_ver = (0, 0)
 
-CODE_WRAP = '<pre%s><code%s>%s</code></pre>'
-CLASS_ATTR = ' class="%s"'
+RE_PYG_CODE = re.compile(r'^<(div)(\s*class="(.*?)")?\s*>')
+CODE_WRAP = '<pre{}><code{}{}{}>{}</code></pre>'
+CODE_WRAP_ON_PRE = '<pre{}{}{}><code>{}</code></pre>'
+CLASS_ATTR = ' class="{}"'
+ID_ATTR = ' id="{}"'
 DEFAULT_CONFIG = {
     'use_pygments': [
         True,
@@ -51,8 +52,8 @@ DEFAULT_CONFIG = {
         'Default: True'
     ],
     'guess_lang': [
-        False,
-        "Automatic language detection - Default: True"
+        0,
+        "Automatic language detection - Default: False"
     ],
     'css_class': [
         'highlight',
@@ -69,12 +70,73 @@ DEFAULT_CONFIG = {
         'Default false'
     ],
     'linenums': [
-        False,
+        None,
         'Display line numbers in block code output (not inline) - Default: False'
+    ],
+    'linenums_style': [
+        'table',
+        'Line number style -Default: "table"'
+    ],
+    'linenums_special': [
+        -1,
+        'Globally make nth line special - Default: -1'
+    ],
+    'linenums_class': [
+        "linenums",
+        "Control the linenums class name when not using Pygments - Default: 'linenums'"
     ],
     'extend_pygments_lang': [
         [],
-        'Extend pygments language with special language entry - Default: {}'
+        'Extend pygments language with special language entry - Default: []'
+    ],
+    'language_prefix': [
+        'language-',
+        'Controls the language prefix for non-Pygments code blocks. - Defaults: "language-"'
+    ],
+    'code_attr_on_pre': [
+        False,
+        "Attach attribute list values on pre element instead of code element - Default: False"
+    ],
+    'auto_title': [
+        False,
+        'Inject the lexer name as the title for block code - Defaults: False'
+    ],
+    'auto_title_map': [
+        {},
+        'User defined mapping of overrides for "auto_title" - Defaults: {}'
+    ],
+    'line_spans': [
+        '',
+        'If set to a nonempty string, e.g. foo, the formatter will wrap each output line '
+        'in a span tag with an id of foo-<code_block_number>-<line_number>. . - Defaults: ""'
+    ],
+    'anchor_linenums': [
+        False,
+        'If set to True, will wrap line numbers in <a> tags. Used in combination with linenums and line_anchors.'
+        ' - Defaults: False'
+    ],
+    'line_anchors': [
+        '',
+        'If set to a nonempty string, e.g. foo, the formatter will wrap each output line in an anchor tag with'
+        ' an id (and name) of foo-<code_block_number>-<line_number>. - Defaults: ""'
+    ],
+    'pygments_lang_class': [
+        False,
+        'If set to True, the language name used will be included as a class attached to the element. - Defaults: False'
+    ],
+    'stripnl': [
+        True,
+        'Strips leading and trailing newlines from code blocks. This is Pygments default behavior. Setting this to '
+        'False disables this and will retain leading and trailing newlines. This has no affect on inline code. '
+        '- Defaults: True'
+    ],
+    'default_lang': [
+        '',
+        'The assumed highlight language of a code block when no language is set. - Default text'
+    ],
+    '_enabled': [
+        True,
+        'Used internally to communicate if extension has been explicitly enabled - Default: False'
     ]
 }
 
@@ -82,7 +144,12 @@ if pygments:
     class InlineHtmlFormatter(HtmlFormatter):
         """Format the code blocks."""
 
-        def wrap(self, source, outfile):
+        def _wrap_div(self, inner):
+            """Do not wrap with `div`."""
+
+            yield from inner
+
+        def wrap(self, source):
             """Overload wrap."""
 
             return self._wrap_code(source)
@@ -95,13 +162,84 @@ if pygments:
                 yield i, t.strip()
             yield 0, ''
 
+    class BlockHtmlFormatter(HtmlFormatter):
+        """Adds ability to output line numbers in a new way."""
 
-class Highlight(object):
+        # Capture `<span class="lineno">   1 </span>`
+        RE_SPAN_NUMS = re.compile(r'(<span[^>]*?)(class="[^"]*\blinenos?\b[^"]*)"([^>]*)>([^<]+)(</span>)')
+        # Capture `<pre>` that is not followed by `<span></span>`
+        RE_TABLE_NUMS = re.compile(r'(<pre[^>]*>)(?!<span></span>)')
+
+        def __init__(self, **options):
+            """Initialize."""
+
+            self.pymdownx_inline = options.get('linenos', False) == 'pymdownx-inline'
+            if self.pymdownx_inline:
+                options['linenos'] = 'inline'
+            HtmlFormatter.__init__(self, **options)
+
+        def _format_custom_line(self, m):
+            """Format the custom line number."""
+
+            # We've broken up the match in such a way that we not only
+            # move the line number value to `data-linenos`, but we could
+            # wrap the gutter number in the future with a highlight class.
+            # The decision to do this has still not be made.
+
+            return (
+                m.group(1) +
+                m.group(2) +
+                '"' +
+                m.group(3) +
+                ' data-linenos="' + m.group(4) + ' ">' +
+                m.group(5)
+            )
+
+        def _wrap_customlinenums(self, inner):
+            """
+            Wrapper to handle block inline line numbers.
+
+            For our special inline version, don't display line numbers via `<span>  1</span>`,
+            but include as `<span data-linenos="  1"></span>` and use CSS to display them:
+            `[data-linenos]:before {content: attr(data-linenos);}`.  This allows us to use
+            inline and copy and paste without issue.
+            """
+
+            for t, line in inner:
+                if t:
+                    line = self.RE_SPAN_NUMS.sub(self._format_custom_line, line)
+                yield t, line
+
+        def wrap(self, source):
+            """Wrap the source code."""
+
+            if self.linenos == 2 and self.pymdownx_inline:
+                source = self._wrap_customlinenums(source)
+            return HtmlFormatter.wrap(self, source)
+
+        def _wrap_tablelinenos(self, inner):
+            """
+            Wrapper to handle line numbers better in table.
+
+            Pygments currently has a bug with line step where leading blank lines collapse.
+            Use the same fix Pygments uses for code content for code line numbers.
+            This fix should be pull requested on the Pygments repository.
+            """
+
+            for t, line in HtmlFormatter._wrap_tablelinenos(self, inner):
+                yield t, self.RE_TABLE_NUMS.sub(r'\1<span></span>', line)
+
+
+class Highlight:
     """Highlight class."""
 
     def __init__(
-        self, guess_lang=True, pygments_style='default', use_pygments=True,
-        noclasses=False, extend_pygments_lang=None, linenums=False
+        self, guess_lang=False, pygments_style='default', use_pygments=True,
+        noclasses=False, extend_pygments_lang=None, linenums=None, linenums_special=-1,
+        linenums_style='table', linenums_class='linenums', language_prefix='language-',
+        code_attr_on_pre=False, auto_title=False, auto_title_map=None, line_spans='',
+        anchor_linenums=False, line_anchors='', pygments_lang_class=False, stripnl=True,
+        default_lang=''
     ):
         """Initialize."""
 
@@ -110,16 +248,34 @@ class Highlight(object):
         self.use_pygments = use_pygments
         self.noclasses = noclasses
         self.linenums = linenums
-        self.linenums_style = 'table'
+        self.linenums_style = linenums_style
+        self.linenums_special = linenums_special
+        self.linenums_class = linenums_class
+        self.language_prefix = language_prefix
+        self.code_attr_on_pre = code_attr_on_pre
+        self.auto_title = auto_title
+        self.line_spans = line_spans
+        self.line_anchors = line_anchors
+        self.anchor_linenums = anchor_linenums
+        self.pygments_lang_class = pygments_lang_class
+        self.stripnl = stripnl
+        self.default_lang = default_lang
 
-        if extend_pygments_lang is None:
+        if self.anchor_linenums and not self.line_anchors:
+            self.line_anchors = '__codelineno'
+
+        if auto_title_map is None:
+            auto_title_map = {}
+        self.auto_title_map = auto_title_map
+
+        if extend_pygments_lang is None:  # pragma: no cover
             extend_pygments_lang = []
         self.extend_pygments_lang = {}
         for language in extend_pygments_lang:
             if isinstance(language, (dict, OrderedDict)):
                 name = language.get('name')
                 if name is not None and name not in self.extend_pygments_lang:
-                    self.extend_pygments_lang[name] = [
+                    self.extend_pygments_lang[name.lower()] = [
                         language.get('lang'),
                         language.get('options', {})
                     ]
@@ -127,15 +283,17 @@ class Highlight(object):
     def get_extended_language(self, language):
         """Get extended language."""
 
-        return self.extend_pygments_lang.get(language, (language, {}))
+        return self.extend_pygments_lang.get(language.lower(), (language, {}))
 
-    def get_lexer(self, src, language):
+    def get_lexer(self, src, language, inline, stripnl):
         """Get the Pygments lexer."""
 
+        name = language
+
+        lexer_options = {'stripnl': stripnl}
         if language:
-            language, lexer_options = self.get_extended_language(language)
-        else:
-            lexer_options = {}
+            language, options = self.get_extended_language(language)
+            lexer_options.update(options)
 
         # Try and get lexer by the name given.
         try:
@@ -144,48 +302,101 @@ class Highlight(object):
             lexer = None
 
         if lexer is None:
-            if self.guess_lang:
+            if (self.guess_lang is True) or (self.guess_lang == 'inline' if inline else self.guess_lang == 'block'):
                 try:
-                    lexer = guess_lexer(src)
+                    lexer = guess_lexer(src, **lexer_options)
+                    name = lexer.aliases[0]
                 except Exception:  # pragma: no cover
                     pass
         if lexer is None:
-            lexer = get_lexer_by_name('text')
-        return lexer
+            lexer = get_lexer_by_name(self.default_lang or 'text', **lexer_options)
+            name = lexer.aliases[0]
+        return lexer, name
 
     def escape(self, txt):
-        """Basic html escaping."""
+        """Basic HTML escaping."""
 
         txt = txt.replace('&', '&amp;')
         txt = txt.replace('<', '&lt;')
         txt = txt.replace('>', '&gt;')
-        txt = txt.replace('"', '&quot;')
         return txt
 
     def highlight(
         self, src, language, css_class='highlight', hl_lines=None,
-        linestart=-1, linestep=-1, linespecial=-1, inline=False
+        linestart=-1, linestep=-1, linespecial=-1, inline=False, classes=None, id_value='', attrs=None,
+        title=None, code_block_count=0
     ):
         """Highlight code."""
 
+        if attrs is None:
+            attrs = {}
+        class_names = classes[:] if classes else []
+        linenums_enabled = (
+            (self.linenums and linestart != 0) or
+            (self.linenums is not False and linestart > 0)
+        ) and not inline > 0
+        class_str = ''
+
+        if not language and self.default_lang:
+            language = self.default_lang
+
         # Convert with Pygments.
         if pygments and self.use_pygments:
+
+            if p_ver < (2, 12):  # pragma: no cover
+                raise RuntimeError('Pymdownx Highlight requires at least Pygments 2.12+ if enabling Pygments')
+
+            if inline:
+                stripnl = True
+            else:
+                stripnl = self.stripnl
+
             # Setup language lexer.
-            lexer = self.get_lexer(src, language)
+            lexer, lang_name = self.get_lexer(src, language, inline, stripnl)
+            if self.pygments_lang_class:
+                class_names.insert(0, self.language_prefix + lang_name)
+            linenums = self.linenums_style if linenums_enabled else False
+
+            if class_names:
+                if inline:
+                    css_class = ' {}'.format('' if not css_class else css_class)
+                    css_class = ' '.join(class_names) + css_class
+                    stripped = css_class.strip()
+                    css_class = stripped
+
+            id_str = ID_ATTR.format(id_value) if id_value else ''
+
+            lineno_id = id_value if id_value else str(code_block_count)
+
+            if not attrs:
+                attr_str = ''
+            else:
+                temp = []
+                for k, v in attrs.items():
+                    if k.startswith('data-'):
+                        temp.append(f'{k}="{v}"')
+                attr_str = ' ' + ' '.join(temp) if temp else ''
 
             # Setup line specific settings.
-            linenums = self.linenums_style if (self.linenums or linestart >= 0) and not inline > 0 else False
             if not linenums or linestep < 1:
                 linestep = 1
             if not linenums or linestart < 1:
                 linestart = 1
+            if self.linenums_special >= 0 and linespecial < 0:
+                linespecial = self.linenums_special
             if not linenums or linespecial < 0:
                 linespecial = 0
             if hl_lines is None or inline:
                 hl_lines = []
 
+            if title is None and self.auto_title:
+                name = " ".join([w.title() if w.islower() else w for w in lexer.name.split()])
+                title = self.auto_title_map.get(name, name)
+            if title:
+                title = title.strip()
+
             # Setup formatter
-            html_formatter = InlineHtmlFormatter if inline else HtmlFormatter
+            html_formatter = InlineHtmlFormatter if inline else BlockHtmlFormatter
             formatter = html_formatter(
                 cssclass=css_class,
                 linenos=linenums,
@@ -194,69 +405,97 @@ class Highlight(object):
                 linenospecial=linespecial,
                 style=self.pygments_style,
                 noclasses=self.noclasses,
-                hl_lines=hl_lines
+                hl_lines=hl_lines,
+                wrapcode=True,
+                filename=title if not inline else "",
+                linespans=f"{self.line_spans}-{lineno_id}" if self.line_spans and not inline else '',
+                lineanchors=(
+                    f"{self.line_anchors}-{lineno_id}" if self.line_anchors and not inline else ""
+                ),
+                anchorlinenos=self.anchor_linenums if not inline else False
             )
 
             # Convert
             code = highlight(src, lexer, formatter)
             if inline:
                 class_str = css_class
+                attr_str = ''
+            else:
+                m = RE_PYG_CODE.match(code)
+                if m is not None:
+                    end = m.end(0)
+                    start = m.start(0)
+                    if class_names:
+                        if m.group(2):
+                            classes = ' class="{} {}"'.format(' '.join(class_names), m.group(3).strip())
+                        else:
+                            classes = ' class="{}"'.format(' '.join(class_names))
+                    else:
+                        classes = ' ' + m.group(2).lstrip() if m.group(2) else ''
+
+                    code = f'{code[:start]}<{m.group(1)}{id_str}{classes}{attr_str}>{code[end:]}'
+
         elif inline:
             # Format inline code for a JavaScript Syntax Highlighter by specifying language.
             code = self.escape(src)
-            classes = [css_class] if css_class else []
+            if css_class:
+                class_names.insert(0, css_class)
             if language:
-                classes.append('language-%s' % language)
-            class_str = ''
-            if len(classes):
-                class_str = ' '.join(classes)
+                class_names.insert(0, self.language_prefix + language)
+            class_str = ' '.join(class_names) if class_names else ''
+            id_str = id_value
         else:
             # Format block code for a JavaScript Syntax Highlighter by specifying language.
-            classes = []
-            linenums = self.linenums_style if (self.linenums or linestart >= 0) and not inline > 0 else False
+            if self.code_attr_on_pre and css_class:
+                class_names.insert(0, css_class)
             if language:
-                classes.append('language-%s' % language)
-            if linenums:
-                classes.append('linenums')
-            class_str = ''
-            if classes:
-                class_str = CLASS_ATTR % ' '.join(classes)
-            higlight_class = (CLASS_ATTR % css_class) if css_class else ''
-            code = CODE_WRAP % (higlight_class, class_str, self.escape(src))
+                class_names.insert(0, self.language_prefix + language)
+            class_str = CLASS_ATTR.format(' '.join(class_names)) if class_names else ''
+            id_str = ID_ATTR.format(id_value) if id_value else ''
+            attr_str = ' ' + ' '.join(f'{k}="{v}"' for k, v in attrs.items()) if attrs else ''
+            if not self.code_attr_on_pre:
+                highlight_class = (CLASS_ATTR.format(css_class)) if css_class else ''
+                code = CODE_WRAP.format(highlight_class, id_str, class_str, attr_str, self.escape(src))
+            else:
+                code = CODE_WRAP_ON_PRE.format(id_str, class_str, attr_str, self.escape(src))
 
         if inline:
-            el = md_util.etree.Element('code', {'class': class_str} if class_str else {})
+            attributes = {}
+
+            if class_str:
+                attributes['class'] = class_str
+
+            # This code exists for consistency, but we currently don't
+            # ever feed extra ids or attributes for inline code.
+            # We let `attr_list` handle this directly, but if we did
+            # need this, we would then want to exercise this logic.
+            if id_str:  # pragma: no cover
+                attributes['id'] = id_str
+            for k, v in attrs:  # pragma: no cover
+                attributes[k] = v  # noqa: PERF403
+
+            el = etree.Element('code', attributes)
             el.text = code
             return el
         else:
             return code.strip()
 
 
-def get_hl_settings(md):
-    """Get the specified extension."""
-    target = None
-
-    for ext in md.registeredExtensions:
-        if isinstance(ext, HighlightExtension):
-            target = ext.getConfigs()
-            break
-
-    if target is None:
-        for ext in md.registeredExtensions:
-            if isinstance(ext, CodeHiliteExtension):
-                target = ext.getConfigs()
-                break
-
-    if target is None:
-        target = {}
-        config_clone = copy.deepcopy(DEFAULT_CONFIG)
-        for k, v in config_clone.items():
-            target[k] = config_clone[k][0]
-    return target
-
-
 class HighlightTreeprocessor(Treeprocessor):
     """Highlight source code in code blocks."""
+
+    def __init__(self, md, ext):
+        """Initialize."""
+
+        self.ext = ext
+        super().__init__(md)
+
+    def code_unescape(self, text):
+        """Unescape code."""
+        text = text.replace("&lt;", "<")
+        text = text.replace("&gt;", ">")
+        text = text.replace("&amp;", "&")
+        return text
 
     def run(self, root):
         """Find code blocks and store in `htmlStash`."""
@@ -264,27 +503,39 @@ class HighlightTreeprocessor(Treeprocessor):
         blocks = root.iter('pre')
         for block in blocks:
             if len(block) == 1 and block[0].tag == 'code':
+
+                self.ext.pygments_code_block += 1
                 code = Highlight(
                     guess_lang=self.config['guess_lang'],
                     pygments_style=self.config['pygments_style'],
                     use_pygments=self.config['use_pygments'],
                     noclasses=self.config['noclasses'],
                     linenums=self.config['linenums'],
-                    extend_pygments_lang=self.config['extend_pygments_lang']
+                    linenums_style=self.config['linenums_style'],
+                    linenums_special=self.config['linenums_special'],
+                    linenums_class=self.config['linenums_class'],
+                    extend_pygments_lang=self.config['extend_pygments_lang'],
+                    language_prefix=self.config['language_prefix'],
+                    code_attr_on_pre=self.config['code_attr_on_pre'],
+                    auto_title=self.config['auto_title'],
+                    auto_title_map=self.config['auto_title_map'],
+                    pygments_lang_class=self.config['pygments_lang_class'],
+                    stripnl=self.config['stripnl'],
+                    default_lang=self.config['default_lang']
                 )
-                placeholder = self.markdown.htmlStash.store(
+                placeholder = self.md.htmlStash.store(
                     code.highlight(
-                        block[0].text,
+                        self.code_unescape(block[0].text).rstrip('\n'),
                         '',
-                        self.config['css_class']
-                    ),
-                    safe=True
+                        self.config['css_class'],
+                        code_block_count=self.ext.pygments_code_block
+                    )
                 )
 
-                # Clear codeblock in etree instance
+                # Clear code block in `etree` instance
                 block.clear()
-                # Change to p element which will later
-                # be removed when inserting raw html
+                # Change to `p` element which will later
+                # be removed when inserting raw HTML
                 block.tag = 'p'
                 block.text = placeholder
 
@@ -296,15 +547,64 @@ class HighlightExtension(Extension):
         """Initialize."""
 
         self.config = copy.deepcopy(DEFAULT_CONFIG)
-        super(HighlightExtension, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
-    def extendMarkdown(self, md, md_globals):
+    def get_pymdownx_highlight_settings(self):
+        """Get the specified extension."""
+
+        target = None
+
+        if self.enabled:
+            target = self.getConfigs()
+
+        if target is None:
+            target = {}
+            config_clone = copy.deepcopy(DEFAULT_CONFIG)
+            for k in config_clone.keys():
+                target[k] = config_clone[k][0]
+
+        return target
+
+    def get_pymdownx_highlighter(self):
+        """Get the highlighter."""
+
+        return Highlight
+
+    def extendMarkdown(self, md):
         """Add support for code highlighting."""
 
-        ht = HighlightTreeprocessor(md)
-        ht.config = self.getConfigs()
-        md.treeprocessors.add("indent-highlight", ht, "<inline")
-        md.registerExtension(self)
+        config = self.getConfigs()
+        self.pygments_code_block = -1
+        self.md = md
+        self.enabled = config.get("_enabled", False)
+
+        if self.enabled:
+            ht = HighlightTreeprocessor(self.md, self)
+            ht.config = self.getConfigs()
+            self.md.treeprocessors.register(ht, "indent-highlight", 30)
+
+        index = 0
+        register = None
+        for ext in self.md.registeredExtensions:
+            if isinstance(ext, HighlightExtension):
+                register = not ext.enabled and self.enabled
+                break
+            index += 1
+
+        if register is None:
+            register = True
+            index = -1
+
+        if register:
+            if index == -1:
+                self.md.registerExtension(self)
+            else:
+                self.md.registeredExtensions[index] = self
+
+    def reset(self):
+        """Reset."""
+
+        self.pygments_code_block = -1
 
 
 def makeExtension(*args, **kwargs):

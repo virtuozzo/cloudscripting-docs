@@ -1,126 +1,110 @@
-from __future__ import unicode_literals
+from __future__ import annotations
 
 import logging
 import shutil
 import tempfile
+from os.path import isdir, isfile, join
+from typing import TYPE_CHECKING
+from urllib.parse import urlsplit
 
-from os.path import isfile, join
 from mkdocs.commands.build import build
 from mkdocs.config import load_config
+from mkdocs.livereload import LiveReloadServer, _serve_url
+
+if TYPE_CHECKING:
+    from mkdocs.config.defaults import MkDocsConfig
 
 log = logging.getLogger(__name__)
 
 
-def _get_handler(site_dir, StaticFileHandler):
-
-    from tornado.template import Loader
-
-    class WebHandler(StaticFileHandler):
-
-        def write_error(self, status_code, **kwargs):
-
-            if status_code in (404, 500):
-                error_page = '{}.html'.format(status_code)
-                if isfile(join(site_dir, error_page)):
-                    self.write(Loader(site_dir).load(error_page).generate())
-                else:
-                    super(WebHandler, self).write_error(status_code, **kwargs)
-
-    return WebHandler
-
-
-def _livereload(host, port, config, builder, site_dir):
-
-    # We are importing here for anyone that has issues with livereload. Even if
-    # this fails, the --no-livereload alternative should still work.
-    from livereload import Server
-    import livereload.handlers
-
-    class LiveReloadServer(Server):
-
-        def get_web_handlers(self, script):
-            handlers = super(LiveReloadServer, self).get_web_handlers(script)
-            # replace livereload handler
-            return [(handlers[0][0], _get_handler(site_dir, livereload.handlers.StaticFileHandler), handlers[0][2],)]
-
-    server = LiveReloadServer()
-
-    # Watch the documentation files, the config file and the theme files.
-    server.watch(config['docs_dir'], builder)
-    server.watch(config['config_file_path'], builder)
-
-    for d in config['theme'].dirs:
-        server.watch(d, builder)
-
-    # Run `serve` plugin events.
-    server = config['plugins'].run_event('serve', server, config=config)
-
-    server.serve(root=site_dir, host=host, port=port, restart_delay=0)
-
-
-def _static_server(host, port, site_dir):
-
-    # Importing here to seperate the code paths from the --livereload
-    # alternative.
-    from tornado import ioloop
-    from tornado import web
-
-    application = web.Application([
-        (r"/(.*)", _get_handler(site_dir, web.StaticFileHandler), {
-            "path": site_dir,
-            "default_filename": "index.html"
-        }),
-    ])
-    application.listen(port=port, address=host)
-
-    log.info('Running at: http://%s:%s/', host, port)
-    log.info('Hold ctrl+c to quit.')
-    try:
-        ioloop.IOLoop.instance().start()
-    except KeyboardInterrupt:
-        log.info('Stopping server...')
-
-
-def serve(config_file=None, dev_addr=None, strict=None, theme=None,
-          theme_dir=None, livereload='livereload'):
+def serve(
+    config_file: str | None = None,
+    livereload: bool = True,
+    build_type: str | None = None,
+    watch_theme: bool = False,
+    watch: list[str] = [],
+    *,
+    open_in_browser: bool = False,
+    **kwargs,
+) -> None:
     """
-    Start the MkDocs development server
+    Start the MkDocs development server.
 
     By default it will serve the documentation on http://localhost:8000/ and
     it will rebuild the documentation and refresh the page automatically
     whenever a file is edited.
     """
-
     # Create a temporary build directory, and set some options to serve it
-    tempdir = tempfile.mkdtemp()
+    site_dir = tempfile.mkdtemp(prefix='mkdocs_')
 
-    def builder():
-        log.info("Building documentation...")
+    def get_config():
         config = load_config(
             config_file=config_file,
-            dev_addr=dev_addr,
-            strict=strict,
-            theme=theme,
-            theme_dir=theme_dir
+            site_dir=site_dir,
+            **kwargs,
         )
-        # Override a few config settings after validation
-        config['site_dir'] = tempdir
-        config['site_url'] = 'http://{0}/'.format(config['dev_addr'])
-
-        live_server = livereload in ['dirty', 'livereload']
-        dirty = livereload == 'dirty'
-        build(config, live_server=live_server, dirty=dirty)
+        config.watch.extend(watch)
         return config
+
+    is_clean = build_type == 'clean'
+    is_dirty = build_type == 'dirty'
+
+    config = get_config()
+    config.plugins.on_startup(command=('build' if is_clean else 'serve'), dirty=is_dirty)
+
+    host, port = config.dev_addr
+    mount_path = urlsplit(config.site_url or '/').path
+    config.site_url = serve_url = _serve_url(host, port, mount_path)
+
+    def builder(config: MkDocsConfig | None = None):
+        log.info("Building documentation...")
+        if config is None:
+            config = get_config()
+            config.site_url = serve_url
+
+        build(config, serve_url=None if is_clean else serve_url, dirty=is_dirty)
+
+    server = LiveReloadServer(
+        builder=builder, host=host, port=port, root=site_dir, mount_path=mount_path
+    )
+
+    def error_handler(code) -> bytes | None:
+        if code in (404, 500):
+            error_page = join(site_dir, f'{code}.html')
+            if isfile(error_page):
+                with open(error_page, 'rb') as f:
+                    return f.read()
+        return None
+
+    server.error_handler = error_handler
 
     try:
         # Perform the initial build
-        config = builder()
+        builder(config)
 
-        host, port = config['dev_addr']
+        if livereload:
+            # Watch the documentation files, the config file and the theme files.
+            server.watch(config.docs_dir)
+            if config.config_file_path:
+                server.watch(config.config_file_path)
 
-        if livereload in ['livereload', 'dirty']:
-            _livereload(host, port, config, builder, tempdir)
-        else:
-            _static_server(host, port, tempdir)
+            if watch_theme:
+                for d in config.theme.dirs:
+                    server.watch(d)
+
+            # Run `serve` plugin events.
+            server = config.plugins.on_serve(server, config=config, builder=builder)
+
+            for item in config.watch:
+                server.watch(item)
+
+        try:
+            server.serve(open_in_browser=open_in_browser)
+        except KeyboardInterrupt:
+            log.info("Shutting down...")
+        finally:
+            server.shutdown()
     finally:
-        shutil.rmtree(tempdir)
+        config.plugins.on_shutdown()
+        if isdir(site_dir):
+            shutil.rmtree(site_dir)

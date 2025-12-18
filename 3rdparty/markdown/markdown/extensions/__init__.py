@@ -1,97 +1,142 @@
+# Python Markdown
+
+# A Python implementation of John Gruber's Markdown.
+
+# Documentation: https://python-markdown.github.io/
+# GitHub: https://github.com/Python-Markdown/markdown/
+# PyPI: https://pypi.org/project/Markdown/
+
+# Started by Manfred Stienstra (http://www.dwerg.net/).
+# Maintained for a few years by Yuri Takhteyev (http://www.freewisdom.org).
+# Currently maintained by Waylan Limberg (https://github.com/waylan),
+# Dmitry Shachnev (https://github.com/mitya57) and Isaac Muse (https://github.com/facelessuser).
+
+# Copyright 2007-2023 The Python Markdown Project (v. 1.7 and later)
+# Copyright 2004, 2005, 2006 Yuri Takhteyev (v. 0.2-1.6b)
+# Copyright 2004 Manfred Stienstra (the original version)
+
+# License: BSD (see LICENSE.md for details).
+
 """
-Extensions
------------------------------------------------------------------------------
+Markdown accepts an [`Extension`][markdown.extensions.Extension] instance for each extension. Therefore, each extension
+must to define a class that extends [`Extension`][markdown.extensions.Extension] and over-rides the
+[`extendMarkdown`][markdown.extensions.Extension.extendMarkdown] method. Within this class one can manage configuration
+options for their extension and attach the various processors and patterns which make up an extension to the
+[`Markdown`][markdown.Markdown] instance.
 """
 
-from __future__ import unicode_literals
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Any, Iterable, Mapping
 from ..util import parseBoolValue
-import warnings
+
+if TYPE_CHECKING:  # pragma: no cover
+    from markdown import Markdown
 
 
-class Extension(object):
+class Extension:
     """ Base class for extensions to subclass. """
 
-    # Default config -- to be overriden by a subclass
-    # Must be of the following format:
-    #     {
-    #       'key': ['value', 'description']
-    #     }
-    # Note that Extension.setConfig will raise a KeyError
-    # if a default is not set here.
-    config = {}
+    config: Mapping[str, list] = {}
+    """
+    Default configuration for an extension.
 
-    def __init__(self, *args, **kwargs):
+    This attribute is to be defined in a subclass and must be of the following format:
+
+    ``` python
+    config = {
+        'key': ['value', 'description']
+    }
+    ```
+
+    Note that [`setConfig`][markdown.extensions.Extension.setConfig] will raise a [`KeyError`][]
+    if a default is not set for each option.
+    """
+
+    def __init__(self, **kwargs):
         """ Initiate Extension and set up configs. """
-
-        # check for configs arg for backward compat.
-        # (there only ever used to be one so we use arg[0])
-        if len(args):
-            if args[0] is not None:
-                self.setConfigs(args[0])
-            warnings.warn('Extension classes accepting positional args is '
-                          'pending Deprecation. Each setting should be '
-                          'passed into the Class as a keyword. Positional '
-                          'args are deprecated and will raise '
-                          'an error in version 2.7. See the Release Notes for '
-                          'Python-Markdown version 2.6 for more info.',
-                          DeprecationWarning)
-        # check for configs kwarg for backward compat.
-        if 'configs' in kwargs.keys():
-            if kwargs['configs'] is not None:
-                self.setConfigs(kwargs.pop('configs', {}))
-            warnings.warn('Extension classes accepting a dict on the single '
-                          'keyword "config" is pending Deprecation. Each '
-                          'setting should be passed into the Class as a '
-                          'keyword directly. The "config" keyword is '
-                          'deprecated and raise an error in '
-                          'version 2.7. See the Release Notes for '
-                          'Python-Markdown version 2.6 for more info.',
-                          DeprecationWarning)
-        # finally, use kwargs
         self.setConfigs(kwargs)
 
-    def getConfig(self, key, default=''):
-        """ Return a setting for the given key or an empty string. """
+    def getConfig(self, key: str, default: Any = '') -> Any:
+        """
+        Return a single configuration option value.
+
+        Arguments:
+            key: The configuration option name.
+            default: Default value to return if key is not set.
+
+        Returns:
+            Value of stored configuration option.
+        """
         if key in self.config:
             return self.config[key][0]
         else:
             return default
 
-    def getConfigs(self):
-        """ Return all configs settings as a dict. """
-        return dict([(key, self.getConfig(key)) for key in self.config.keys()])
+    def getConfigs(self) -> dict[str, Any]:
+        """
+        Return all configuration options.
 
-    def getConfigInfo(self):
-        """ Return all config descriptions as a list of tuples. """
+        Returns:
+            All configuration options.
+        """
+        return {key: self.getConfig(key) for key in self.config.keys()}
+
+    def getConfigInfo(self) -> list[tuple[str, str]]:
+        """
+        Return descriptions of all configuration options.
+
+        Returns:
+            All descriptions of configuration options.
+        """
         return [(key, self.config[key][1]) for key in self.config.keys()]
 
-    def setConfig(self, key, value):
-        """ Set a config setting for `key` with the given `value`. """
+    def setConfig(self, key: str, value: Any) -> None:
+        """
+        Set a configuration option.
+
+        If the corresponding default value set in [`config`][markdown.extensions.Extension.config]
+        is a `bool` value or `None`, then `value` is passed through
+        [`parseBoolValue`][markdown.util.parseBoolValue] before being stored.
+
+        Arguments:
+            key: Name of configuration option to set.
+            value: Value to assign to option.
+
+        Raises:
+            KeyError: If `key` is not known.
+        """
         if isinstance(self.config[key][0], bool):
             value = parseBoolValue(value)
         if self.config[key][0] is None:
             value = parseBoolValue(value, preserve_none=True)
         self.config[key][0] = value
 
-    def setConfigs(self, items):
-        """ Set multiple config settings given a dict or list of tuples. """
+    def setConfigs(self, items: Mapping[str, Any] | Iterable[tuple[str, Any]]) -> None:
+        """
+        Loop through a collection of configuration options, passing each to
+        [`setConfig`][markdown.extensions.Extension.setConfig].
+
+        Arguments:
+            items: Collection of configuration options.
+
+        Raises:
+            KeyError: for any unknown key.
+        """
         if hasattr(items, 'items'):
             # it's a dict
             items = items.items()
         for key, value in items:
             self.setConfig(key, value)
 
-    def extendMarkdown(self, md, md_globals):
+    def extendMarkdown(self, md: Markdown) -> None:
         """
-        Add the various proccesors and patterns to the Markdown Instance.
+        Add the various processors and patterns to the Markdown Instance.
 
-        This method must be overriden by every extension.
+        This method must be overridden by every extension.
 
-        Keyword arguments:
-
-        * md: The Markdown instance.
-
-        * md_globals: Global variables in the markdown module namespace.
+        Arguments:
+            md: The Markdown instance.
 
         """
         raise NotImplementedError(

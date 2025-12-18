@@ -46,7 +46,13 @@ the family Rosaceae.</dd>
 Usage
 -----
 
-See [Extensions](index.md) for general extension usage, specify
-`markdown.extensions.def_list` as the name of the extension.
+See [Extensions](index.md) for general extension usage. Use `def_list` as the
+name of the extension.
 
 This extension does not accept any special configuration options.
+
+A trivial example:
+
+```python
+markdown.markdown(some_text, extensions=['def_list'])
+```
