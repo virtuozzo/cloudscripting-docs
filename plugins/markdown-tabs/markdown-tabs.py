@@ -21,7 +21,7 @@ class TabsPreprocessor(Preprocessor):
 
             if start:
                 new_lines.append('<ul class="c-tabs">')
-                skip_empty_line = True
+                skip_empty_line = False
                 continue
 
             end = TABS_END_REGEX.match(line)
@@ -40,9 +40,9 @@ class TabsPreprocessor(Preprocessor):
 
 
 class TabsExtension(Extension):
-    def extendMarkdown(self, md, md_globals):
+    def extendMarkdown(self, md):
         md.registerExtension(self)
-        md.preprocessors["tabs"] = TabsPreprocessor()
+        md.preprocessors.register(TabsPreprocessor(md), "tabs", 175)
         pass
 
 
