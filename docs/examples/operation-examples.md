@@ -1,9 +1,9 @@
-#Operation Examples
+# Operation Examples
 
 ## Automatic Vertical Scaling
 
-Adjust Nginx Balancer workers count depending on CPU cores amount:
-``` json
+Adjust Nginx Balancer worker count depending on CPU cores amount:
+```json
 {
   "type": "update",
   "name": "Nginx Balancer Vertical Scaling",
@@ -22,9 +22,9 @@ Adjust Nginx Balancer workers count depending on CPU cores amount:
 Create two Nginx PHP nodes with Nginx balancer and automatic horizontal scaling with the following rules:
 
 - add 1 node if CPU > 70% up to 10 nodes
-- remove 1 node if CPU < 5% down to 1 nodes
-   
-``` json
+- remove 1 node if CPU < 5% down to 1 node
+
+```json
 {
   "type": "install",
   "name": "Nginx PHP Auto Scaling",
@@ -51,7 +51,7 @@ Create two Nginx PHP nodes with Nginx balancer and automatic horizontal scaling 
 
 
 **Enable Auto Scaling Triggers script:**
-      
+
 ```
 var APPID = getParam("TARGET_APPID"),
     oRespTurnOn,
@@ -116,9 +116,9 @@ return oRespTurnOff;
 
 ## Using Dockers
 
-Create and link WordPress Web and WordPress DB containers: 
+Create and link WordPress Web and WordPress DB containers:
 
-``` json
+```json
 {
   "type": "install",
   "name": "Wordpress",
@@ -150,7 +150,7 @@ Create and link WordPress Web and WordPress DB containers:
 ```
 
 ## Wordpress Cluster
-``` json
+```json
 {
   "type": "install",
   "name": "WordPress Cluster",
@@ -540,7 +540,7 @@ Create and link WordPress Web and WordPress DB containers:
 **Configuring DB connections at compute nodes by pairs**
 ```
 import com.hivext.api.environment.Environment;
-  
+
 var NODE_MISSION_COMPUTE = "cp",
     sPath = "${nginxphp.SERVER_WEBROOT}/ROOT/db-config.php",
     PROCEDURE_PROCESS_NODE = "replace",
@@ -561,11 +561,11 @@ if (envInfoResponse.result != 0) {
 
 var nodes = envInfoResponse.getNodes();
 var iterator = nodes.iterator();
-  
+
 while(iterator.hasNext()) {
     var softNode = iterator.next();
     var softNodeProperties = softNode.getProperties();
-      
+
     if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeGroup())) {
         callArgs.push(softNode);
     }
@@ -613,7 +613,7 @@ return {
 #!/bin/bash
 curl -fs $2 -o /var/lib/mysql/wordpress.sql 2>&1
 
-mysql -uroot -p$1 << END 
+mysql -uroot -p$1 << END
     CREATE DATABASE wordpress;
     GRANT USAGE ON *.* TO wordpress@localhost  identified by 'password';
     grant all privileges on wordpress.* to wordpress@localhost;
@@ -625,9 +625,9 @@ mysql -uroot -p$1 << END
     UPDATE wordpress.wp_posts SET guid='$3?p=2';
     UPDATE wordpress.wp_posts SET guid='$3?p=3';
     UPDATE wordpress.wp_posts SET post_date_gmt=CURRENT_TIMESTAMP, post_date=CURRENT_TIMESTAMP, post_modified=CURRENT_TIMESTAMP;
-    UPDATE wordpress.wp_options SET option_value='$4://$5' WHERE option_name='home'; 
-    UPDATE wordpress.wp_options SET option_value='$4://$5' WHERE option_name='siteurl'; 
-    UPDATE wordpress.wp_options SET option_value='$6' WHERE option_name='admin_email'; 
+    UPDATE wordpress.wp_options SET option_value='$4://$5' WHERE option_name='home';
+    UPDATE wordpress.wp_options SET option_value='$4://$5' WHERE option_name='siteurl';
+    UPDATE wordpress.wp_options SET option_value='$6' WHERE option_name='admin_email';
     UPDATE wordpress.wp_users SET user_email='$6' WHERE user_login='admin';
     UPDATE wordpress.wp_users SET user_pass=MD5('$7') WHERE user_login='admin';
 END
@@ -656,11 +656,11 @@ if (!envInfoResponse.isOK()) {
 
 var nodes = envInfoResponse.getNodes();
 var iterator = nodes.iterator();
-  
+
 while(iterator.hasNext()) {
     var softNode = iterator.next();
     var softNodeProperties = softNode.getProperties();
-      
+
     if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeGroup())) {
         aComputeNodes.push(softNode);
     }
@@ -706,7 +706,7 @@ return {
 ```
 
 **Get compute nodes Ids and mirrors compute node's address for rsync**
-```  
+```
 var NODE_MISSION_COMPUTE = "cp",
     PROCEDURE_PROCESS_NODE = "installLsync",
     APPID = getParam("TARGET_APPID"),
@@ -724,11 +724,11 @@ if (!envInfoResponse.isOK()) {
 var nodes = envInfoResponse.getNodes();
 var iterator = nodes.iterator();
 var computeNodes = [];
-  
+
 while(iterator.hasNext()) {
     var softNode = iterator.next();
     var softNodeProperties = softNode.getProperties();
-      
+
     if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeGroup())) {
         computeNodes.push(softNode);
     }
@@ -746,18 +746,18 @@ for (var i = 0, n = computeNodes.length; i < n; i += 1) {
         }
     });
 
-} 
+}
 
 return {
     result : 0,
     onAfterReturn : {
         call : callArgs
     }
-}; 
+};
 ```
 
 **Configure balancers after remove compute node**
-```  
+```
 var NODE_MISSION_COMPUTE = "cp",
     PROCEDURE_PROCESS_NODE = "BLConfiguring,
     APPID = getParam("TARGET_APPID"),
@@ -776,11 +776,11 @@ if (!envInfoResponse.isOK()) {
 var nodes = envInfoResponse.getNodes();
 var iterator = nodes.iterator();
 var computeNodes = [];
-  
+
 while(iterator.hasNext()) {
     var softNode = iterator.next();
     var softNodeProperties = softNode.getProperties();
-      
+
     if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeGroup())) {
         computeNodes.push(softNode);
     }
@@ -810,7 +810,7 @@ return {
 
 
 ## Automated Environment Migration after Cloning
-``` json
+```json
 {
   "type": "install",
   "name": "cloneEnv",
@@ -1020,9 +1020,9 @@ function processEnvironment() {
 
 return processEnvironment();
 
-##Create two environments from one JPS in different regions
+## Create two environments from one JPS in different regions
 
-``` json
+```json
 {
   "type": "install",
   "name": "2Envs",
@@ -1066,10 +1066,10 @@ function generateEnvName(sPrefix) {
 return jelastic.env.control.CreateEnvironment(sAppid, sSession, sActionkey, oEnv, oNodes);
 ```
 
-##Install Add-on inside Manifest
+## Install Add-on inside Manifest
 
 This manifest provides an environment, that is handled with the help of **Apache PHP** application server, is powered by **PHP 7** engine version and has external IP address attached. Subsequently, Public IP address can be detached with the help of the **Add-on** button.
-``` json
+```json
 {
   "type": "install",
   "name": "example",
@@ -1105,16 +1105,16 @@ This manifest provides an environment, that is handled with the help of **Apache
   "success": "Environment with add-on installed successfully!"
 }
 ```
-   
-As a result, environment with the above-specified topology is successfully created. In order to disable the external IP feature, click the **Uninstall** button located within the **Add-ons** section.   
+
+As a result, environment with the above-specified topology is successfully created. In order to disable the external IP feature, click the **Uninstall** button located within the **Add-ons** section.
 
 ![addoninstall](/img/addon-install.jpg)
 
-##Mount Data Storage
+## Mount Data Storage
 
 Mount `data` directory from `storage` node to application server node:
 
-``` json
+```json
 {
   "type": "install",
   "name": "mount Data Storage",

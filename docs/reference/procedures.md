@@ -1,16 +1,16 @@
 # Procedures
 
 The declarative code inside a manifest can be divided into a separate blocks, named procedures. Afterwards, the particular procedures can be run by means of appealing to Call actions with different parameters.
- 
-## Procedure Placeholders 
+
+## Procedure Placeholders
 In order to access any required data or parameters of allocated resources inside the manifest, a special set of placeholders should be used. Sent to the Call method parameters are transformed in a separate kit of placeholders, that can be received inside the appropriate procedure with the help of ${this} namespace. Access to the nodes inside environment can be performed according to the node’s type, as well as according to its role in an environment.
 
 ## Examples
 
-<h3>Code Reuse</h3>
+### Code Reuse
 
-Output `Hello World!` two times in `greeting.txt`:  
-``` json
+Output `Hello World!` two times in `greeting.txt`:
+```json
 {
   "type": "update",
   "name": "Procedures Example",
@@ -39,10 +39,10 @@ Output `Hello World!` two times in `greeting.txt`:
 }
 ```
 
-<h3>Call procedure with parameters</h3>
+### Call procedure with parameters
 
-Write `Hello World!` and output first and second compute node IP address 
-``` json
+Write `Hello World!` and output first and second compute node IP address
+```json
 {
 	"type": "update",
 	"name": "Procedures Example",

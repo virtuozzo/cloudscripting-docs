@@ -1,14 +1,14 @@
-#Complex Ready to Go Solutions
+# Complex Ready to Go Solutions
 
-##Minio Cluster
+## Minio Cluster
 
-Highly reliable S3-compatible storage. S3 compatible object storage server in Docker containers.  
+Highly reliable S3-compatible storage. S3 compatible object storage server in Docker containers.
 
-[![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/minio/master/manifest.jps&min-version=4.6) 
+[![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/minio/master/manifest.jps&min-version=4.6)
 
 [More details here.](https://github.com/jelastic-jps/minio)
 
-``` json
+```json
 {
   "type": "install",
   "name": "Minio",
@@ -83,9 +83,9 @@ Highly reliable S3-compatible storage. S3 compatible object storage server in Do
 }
 ```
 
-##Glassfish Cluster
+## Glassfish Cluster
 
-Highly available GlassFish cluster on Docker containers with scalable Worker Nodes amount.  
+Highly available GlassFish cluster on Docker containers with scalable Worker Nodes amount.
 
 To instantly host your own scalable GF cluster, click the **Deploy to Virtuozzo Application Platform** button below. Within the opened frame, specify your email address, choose one of the [Virtuozzo Application Platform Public Cloud providers] (https://www.virtuozzo.com/application-platform-partners/) and press **Install**.
 
@@ -99,7 +99,7 @@ Due to the native GlassFish clustering architecture, its topology includes three
 
 [More details here](https://github.com/jelastic-jps/glassfish)
 
-``` json
+```json
 {
   "type": "install",
   "name": "Auto Scaling GlassFish Cluster",
@@ -258,22 +258,22 @@ Due to the native GlassFish clustering architecture, its topology includes three
 }
 ```
 
-##Minecraft Server
+## Minecraft Server
 
-Personal Docker-based Minecraft server with auto-deploy.  
+Personal Docker-based Minecraft server with auto-deploy.
 
-Set up your own Minecraft server of the latest version inside the Cloud in one click. Being based on itzg/minecraft-server Docker image, this solution is provided with an automatically generated connection link, that allows to launch your server remotely without external IP address attachment.   
+Set up your own Minecraft server of the latest version inside the Cloud in one click. Being based on itzg/minecraft-server Docker image, this solution is provided with an automatically generated connection link, that allows to launch your server remotely without external IP address attachment.
 
 To get your personal Minecraft server inside the cloud, perform the following:
 
 - if you don’t have Virtuozzo Application Platform account yet - scroll down to the Deploy Now section and follow the provided instruction.
 - if you have Virtuozzo Application Platform account - copy link to the manifest.jps file above and import it to the required Virtuozzo Application Platform installation.
 
-[![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/minecraft-server/master/manifest.jps&min-version=4.6&keys=app.mircloud.host;app.jelastic.dogado.eu;app.fi.cloudplatform.fi;app.appengine.flow.ch;app.jelasticlw.com.br;app.paas.datacenter.fi;app.whelastic.net) 
+[![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/minecraft-server/master/manifest.jps&min-version=4.6&keys=app.mircloud.host;app.jelastic.dogado.eu;app.fi.cloudplatform.fi;app.appengine.flow.ch;app.jelasticlw.com.br;app.paas.datacenter.fi;app.whelastic.net)
 
 [More details here](https://github.com/jelastic-jps/minecraft-server)
 
-``` json
+```json
 {
   "type": "install",
   "name": "Minecraft Server",
@@ -341,7 +341,7 @@ To get your personal Minecraft server inside the cloud, perform the following:
 }
 ```
 
-##CI from Git Repo
+## CI from Git Repo
 Automated CI from private GIT repository with authentication via private SSH key.
 
 With a help of this JPS add-on, Git-Push-Deploy is installed on app server available in the environment to provide possibility to connect and update the project in automatic mode from Git repository after changes pushed.
@@ -351,7 +351,7 @@ In order to get this solution instantly deployed, click the "Deploy" button, spe
 [![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fgit-push-deploy%2Fraw%2Fmaster%2Fmanifest.jps)
 
 [More details here](https://github.com/jelastic-jps/git-push-deploy)
-``` json
+```json
 {
   "type": "install",
   "name": "Git-Push-Deploy Example",
@@ -395,14 +395,14 @@ In order to get this solution instantly deployed, click the "Deploy" button, spe
 }
 ```
 
-##WildFly Continuous Deployment
+## WildFly Continuous Deployment
 
 Bundle of WildFly application server and Maven build node for CD from GIT.
 
-[![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/wildfly/master/manifest.jps) 
+[![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/wildfly/master/manifest.jps)
 
 [More details here](https://github.com/jelastic-jps/wildfly)
-``` json
+```json
 {
   "type": "install",
   "logo": "https://github.com/jelastic-jps/wildfly/raw/master/images/wildfly-logo-70px.png",
@@ -458,14 +458,14 @@ Bundle of WildFly application server and Maven build node for CD from GIT.
 }
 ```
 
-##PostgreSQL Cluster
+## PostgreSQL Cluster
 
 PostgreSQL Cluster with preconfigured Master-Slave replication.
 
 [![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fpostgresql-replication%2Fraw%2Fmaster%2Fmanifest.jps)
 
 [More details here](https://github.com/jelastic-jps/postgresql-replication)
-``` json
+```json
 {
   "type": "install",
   "categories": [
@@ -499,7 +499,7 @@ PostgreSQL Cluster with preconfigured Master-Slave replication.
 }
 ```
 
-##MariaDB Cluster
+## MariaDB Cluster
 
 MariaDB Cluster with preconfigured Master-Slave replication.
 
@@ -507,15 +507,15 @@ The JPS package deploys MariaDB Cluster with preconfigured replication that init
 
 The target usage for replication in MariaDB databases includes:
 
-  -  Data security
-  -  Analytics
-  -  Long-distance data distribution
-  
+- Data security
+- Analytics
+- Long-distance data distribution
+
 [![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fmariadb-replication%2Fraw%2Fmaster%2Fmanifest.jps)
-  
+
 [More details here](https://github.com/jelastic-jps/mariadb-replication)
-  
-``` json
+
+```json
 {
   "type": "install",
   "categories": [
@@ -583,7 +583,7 @@ The target usage for replication in MariaDB databases includes:
 }
 ```
 
-##MySQL Cluster
+## MySQL Cluster
 
 MySQL Cluster with preconfigured Master-Slave replication.
 
@@ -591,15 +591,15 @@ The JPS package deploys MySQL Cluster with preconfigured replication that initia
 
 The target usage for replication in MySQL databases includes:
 
-  -  Data security
-  -  Analytics
-  -  Long-distance data distribution
+- Data security
+- Analytics
+- Long-distance data distribution
 
 [![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fmysql-replication%2Fraw%2Fmaster%2Fmanifest.jps)
 
 [More details here](https://github.com/jelastic-jps/mysql-replication)
 
-``` json
+```json
 {
   "type": "install",
   "homepage": "http://docs.jelastic.com/database-master-slave-replication",
@@ -670,16 +670,16 @@ The target usage for replication in MySQL databases includes:
 }
 ```
 
-##Cyclos 4
+## Cyclos 4
 
 Auto-deployed Cyclos 4 online bancking solution.
 The JPS package deploys Cyclos 4 that initially contains 1 application server and 1 database container.
-  
+
 [![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fcyclos%2Fraw%2Fmaster%2Fcyclos-4%2Fmanifest.jps)
 
 [More details here](https://github.com/jelastic-jps/cyclos/tree/master/cyclos-4)
 
-``` json
+```json
 {
   "type": "install",
   "logo": "https://github.com/jelastic-jps/cyclos/raw/master/images/cyclos.png",
@@ -763,9 +763,11 @@ The JPS package deploys Cyclos 4 that initially contains 1 application server an
 }
 ```
 
-##Paraya Clusters
+## Paraya Clusters
+
 Java-based app server clusters with autoscaling and session replication
-<h3>Payara Micro Cluster</h3>
+
+### Payara Micro Cluster
 
 The JPS package initially deploys one container with Payara Micro application server.
 
@@ -773,7 +775,7 @@ The JPS package initially deploys one container with Payara Micro application se
 
 [More details here](https://github.com/jelastic-jps/payara/tree/master/payara-micro-cluster)
 
-``` json
+```json
 {
   "type": "install",
   "name": "Simple Payara Micro Cluster",
@@ -816,7 +818,7 @@ The JPS package initially deploys one container with Payara Micro application se
 }
 ```
 
-<h3>Payara Server Full</h3>
+### Payara Server Full
 
 The JPS package initially deploys one container with Payara Server Full. The package is based on the official Payara Docker image.
 
@@ -824,7 +826,7 @@ The JPS package initially deploys one container with Payara Server Full. The pac
 
 [More details here](https://github.com/jelastic-jps/payara/tree/master/payara-server-full)
 
-``` json
+```json
 {
   "type": "install",
   "name": "Payara Server Full",
@@ -847,7 +849,7 @@ The JPS package initially deploys one container with Payara Server Full. The pac
 }
 ```
 
-<h3>Payara Micro Cluster Multicast</h3>
+### Payara Micro Cluster Multicast
 
 The JPS package initially deploys one container with Payara Micro application server and one container with VTun bridge together with DCHP server for multicast networking setup across all containers in the environment.
 
@@ -855,7 +857,7 @@ The JPS package initially deploys one container with Payara Micro application se
 
 [More details here]([More details here](https://github.com/jelastic-jps/payara/tree/master/payara-server-full)
 
-``` json
+```json
 {
   "type": "install",
   "name": "Multicast Payara Cluster",
@@ -890,15 +892,15 @@ The JPS package initially deploys one container with Payara Micro application se
 }
 ```
 
-<h3>Payara Micro Cluster Advanced</h3>
+### Payara Micro Cluster Advanced
 
 Autoscaling triggers + Load balancing and Auto-discovery + Storage container with pre-deployed war application.
 
-[![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/payara/master/payara-micro-cluster-advanced/manifest.jps&min-version=4.6&keys=app.mircloud.host;app.jelastic.dogado.eu;app.fi.cloudplatform.fi;app.appengine.flow.ch;app.jelasticlw.com.br;app.paas.datacenter.fi;app.whelastic.net) 
+[![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/payara/master/payara-micro-cluster-advanced/manifest.jps&min-version=4.6&keys=app.mircloud.host;app.jelastic.dogado.eu;app.fi.cloudplatform.fi;app.appengine.flow.ch;app.jelasticlw.com.br;app.paas.datacenter.fi;app.whelastic.net)
 
 [More details here]([More details here](https://github.com/jelastic-jps/payara/tree/master/payara-micro-cluster-advanced)
 
-``` json
+```json
 {
   "type": "install",
   "name": "Advanced Payara Micro Cluster",

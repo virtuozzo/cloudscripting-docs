@@ -14,10 +14,10 @@ Each event triggers a particular action on the required application's lifecycle 
 
 ## Events Filtering
 
-Events can be filtered by any input parameters. As a result, the action is executed only when the called event matches specified filtering rules. Parameter name (e.g. *myalert*) can be specified via a colon: **onAlert [name:myalert]**. Input parameters list is described for every [event](events/#event-list) within **${event.params.}**. Also, it is possible to filter events with comma-separated list of the parameters (**onBeforeRedeployContainer [nodeGroup:cp, sequential:true, useExistingVolumes:true]**). 
+Events can be filtered by any input parameters. As a result, the action is executed only when the called event matches specified filtering rules. Parameter name (e.g. *myalert*) can be specified via a colon: **onAlert [name:myalert]**. Input parameters list is described for every [event](events/#event-list) within **${event.params.}**. Also, it is possible to filter events with comma-separated list of the parameters (**onBeforeRedeployContainer [nodeGroup:cp, sequential:true, useExistingVolumes:true]**).
 In case the parameter name is not specified via colon, engine tries to determine parameter as a [*nodeID*](selecting-containers/#particular-container), if it’s not possible, then it tries to determine a [*nodeGroup*](selecting-containers/#all-containers-by-group), if it’s not possible, after that it tries to determine a [*nodeType*](selecting-containers/#all-containers-by-type). Finally, if no filtering rules are specified, no event triggers.
 
-The following example describes the events filtering by *nodeGroup* (for the <b>*onAfterScaleOut*</b> event), *nodeType* (for the <b>*onAfterRestartNode*</b> event), and *nodeId* (for the <b>*onAfterResetNodePassword*</b> event). Here, filtering by the compute node group (*[cp]*) is set so that the action is executed after compute nodes are scaled out. The *nodeType* filtering is set so that the action is executed after **Apache 2** nodes are restarted. The *nodeID* filtering is set so that the action is executed after a password from the first compute node in the layer is reset.
+The following example describes the events filtering by *nodeGroup* (for the ***onAfterScaleOut*** event), *nodeType* (for the ***onAfterRestartNode*** event), and *nodeId* (for the ***onAfterResetNodePassword*** event). Here, filtering by the compute node group (*[cp]*) is set so that the action is executed after compute nodes are scaled out. The *nodeType* filtering is set so that the action is executed after **Apache 2** nodes are restarted. The *nodeID* filtering is set so that the action is executed after a password from the first compute node in the layer is reset.
 
 @@@
 ```yaml
@@ -36,7 +36,7 @@ onAfterRestartNode [nodeType:apache2]:
 onAfterResetNodePassword [${nodes.cp[0].id}]:
   cmd [${nodes.cp[0].id}]: echo 'First compute node has been restarted' >> /tmp/result.txt
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "Event Subscription Example",
@@ -81,9 +81,9 @@ Below you can find the graphs that list actions with adjoining events. Every act
 
 !!! note
 
-      The <b>*createEnvironment*</b> action does not have any adjoining events, because events are bound after the environment creation.
+      The ***createEnvironment*** action does not have any adjoining events, because events are bound after the environment creation.
 
-The <b>*changeTopology*</b> actions are considered quite time-consuming while being performed via the Virtuozzo Application Platform dashboard, therefore, you can automate their workflow with the following CS actions and related events.
+The ***changeTopology*** actions are considered quite time-consuming while being performed via the Virtuozzo Application Platform dashboard, therefore, you can automate their workflow with the following CS actions and related events.
 
 <center><img style="height: 900px; padding-right: 69px" src="/img/changeTopologySequence.png" alt="change topology sequence icon" /></center>
 
@@ -95,11 +95,11 @@ Another demanded actions are related to scaling procedures. The following graph 
 
 ### onInstall
 
-The <b>*onInstall*</b> event is the entry point for executing any action. If the installation type is *install*, the <b>*onInstall*</b> event is triggered right after the environment creation. If the installation type is *update*, <b>*onInstall*</b> is the first event that is performed during the manifest installation.
+The ***onInstall*** event is the entry point for executing any action. If the installation type is *install*, the ***onInstall*** event is triggered right after the environment creation. If the installation type is *update*, ***onInstall*** is the first event that is performed during the manifest installation.
 
 ### onUninstall
 
-The <b>*onUninstall*</b> event can be called from the **Add-ons** tab at the Virtuozzo Application Platform dashboard. This event is aimed at removing data accumulated through actions that are triggered by the <b>*onInstall*</b> event.
+The ***onUninstall*** event can be called from the **Add-ons** tab at the Virtuozzo Application Platform dashboard. This event is aimed at removing data accumulated through actions that are triggered by the ***onInstall*** event.
 
 ![uninstall](/img/uninstall.png)
 
@@ -132,11 +132,11 @@ The event is executed once the *changeTopology* action is finished.
     - `envGroups` - environment groups array
     - `right` - account right for environment
     - `nodeGroups` - node delays:
-        - `restartNodeDelay` - delay for restart
-        - `name` - node group name
-        - `redeployContainerDelay` - delay for container redeployment
-        - `redeployContextDelay` - delay for context redeployment
-        - `restartContainerDelay` - delay for container restart
+    - `restartNodeDelay` - delay for restart
+    - `name` - node group name
+    - `redeployContainerDelay` - delay for container redeployment
+    - `redeployContextDelay` - delay for context redeployment
+    - `restartContainerDelay` - delay for container restart
     - `nodes` - nodes array with detailed info about the topology change. Explore the full list of available <a href="../placeholders/#node-placeholders" target="_blank">node placeholders</a>.
     - `env` - environment information. Explore the full list of available <a href="../placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.
 
@@ -240,7 +240,7 @@ name: AddTrigger
 onAlert [cp]:
   log: onAlert event has subscribed
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "AddTrigger",
@@ -300,7 +300,7 @@ onInstall:
           customData:
             notify: false
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "AddTrigger",
@@ -344,7 +344,7 @@ This example involves execution of the Virtuozzo Application Platform API *addTr
 - `actions` - object to describe a trigger action
     - `type` - trigger action, the available values are *NOTIFY*, *ADD_NODE*, and *REMOVE_NODE*
     - `customData`:
-        - `notify`- alert notification sent to a user via email
+    - `notify`- alert notification sent to a user via email
 
 The Virtuozzo Application Platform engine sends an alert notification to the Cloud Scripting system when the appropriate trigger is invoked. Therefore, the *onAlert* event provides a possibility to bind actions to alert notifications and execute custom actions.
 
@@ -557,7 +557,7 @@ The event is executed after linking nodes to apply configurations to IP addresse
 - `${event.response.}`:
     - `result` - result code. The successful action result is *'0'*.
     - `infos` - info with result codes about all nodes' linkings:
-        - `result` - result code
+    - `result` - result code
 
 ### onBeforeAttachExtIp
 
@@ -607,7 +607,7 @@ The event is executed before detaching the external IP address. The *onBeforeDet
     - `name` - environment display name
     - `env` - environment short domain name
 - `${event.response.}` - parameters are absent
-  
+
 ### onAfterDetachExtIp
 
 The event is executed after detaching the external IP address. The *onAfterDetachExtIp* event is triggered each time upon the external IP address detachment.
@@ -838,11 +838,11 @@ The event is related to cloning environment (performed via the Virtuozzo Applica
     - `result` - result code. The successful action result is *'0'*
     - `envGroups` - environment groups array
     - `nodeGroups` - node delays:
-        - `restartNodeDelay` - delay for node restart
-        - `name` - node group name
-        - `redeployContainerDelay` - delay for container redeployment
-        - `redeployContextDelay` - delay for context redeployment
-        - `restartContainerDelay` - delay for container restart
+    - `restartNodeDelay` - delay for node restart
+    - `name` - node group name
+    - `redeployContainerDelay` - delay for container redeployment
+    - `redeployContextDelay` - delay for context redeployment
+    - `restartContainerDelay` - delay for container restart
     - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="../placeholders/#node-placeholders" target="_blank">node placeholders</a>.
     - `env` - environment information. Explore the full list of available <a href="../placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.
 
@@ -879,7 +879,7 @@ The event is related to build project action and is triggered after it (executed
     - `result` - result code. The successful action result is *'0'*
 
 ### onBeforeDeploy
-  
+
 The event is bound to the *deploy* action, which is executed at the Virtuozzo Application Platform dashboard by deploying any context (i.e. archive with a compressed app) to the environment, and is triggered before it (viz. *deploy* action).
 
 
@@ -911,13 +911,13 @@ The event is bound to the *deploy* action, which is executed at the Virtuozzo Ap
 - `${event.response.}`:
     - `result` - result code. The successful action result is *'0'*
     - `responses` - deploy result texts:
-        - `result` - deploy result code for current node ID
-        - `out` - deploy result text
-        - `nodeid` - node identifier
+    - `result` - deploy result code for current node ID
+    - `out` - deploy result text
+    - `nodeid` - node identifier
 
 ### onBeforeResetNodePassword
 
-The event is bound to resetting a container default user password (executed at the Virtuozzo Application Platform dashboard for `vds` nodeGroup via the **Reset password** button or via API methods ResetNodePassword, ResetNodePasswordByID, ResetNodePasswordByGroup) and is triggered before it.  
+The event is bound to resetting a container default user password (executed at the Virtuozzo Application Platform dashboard for `vds` nodeGroup via the **Reset password** button or via API methods ResetNodePassword, ResetNodePasswordByID, ResetNodePasswordByGroup) and is triggered before it.
 
 **Event Placeholders:**
 
@@ -930,7 +930,7 @@ The event is bound to resetting a container default user password (executed at t
 
 ### onAfterResetNodePassword
 
-The event is bound to resetting a container default user password (executed at the Virtuozzo Application Platform dashboard for `vds` nodeGroup via the **Reset password** button or via API methods ResetNodePassword, ResetNodePasswordByID, ResetNodePasswordByGroup) and is triggered before it.  
+The event is bound to resetting a container default user password (executed at the Virtuozzo Application Platform dashboard for `vds` nodeGroup via the **Reset password** button or via API methods ResetNodePassword, ResetNodePasswordByID, ResetNodePasswordByGroup) and is triggered before it.
 
 **Event Placeholders:**
 
@@ -943,7 +943,7 @@ The event is bound to resetting a container default user password (executed at t
 
 ### onBeforeResetServicePassword
 
-The event is bound to resetting a container main service password (executed at the Virtuozzo Application Platform dashboard via the **Reset password** button) and is triggered before it. The event is applicable for services that have an Admin Panel enabled by default for the specific nodeType. These templates are:  
+The event is bound to resetting a container main service password (executed at the Virtuozzo Application Platform dashboard via the **Reset password** button) and is triggered before it. The event is applicable for services that have an Admin Panel enabled by default for the specific nodeType. These templates are:
 
 | nodeGroup  | nodeType            |
 |------------|---------------------|
@@ -951,7 +951,7 @@ The event is bound to resetting a container main service password (executed at t
 | cp         | litespeedphp        |
 | sqldb      | (all *nodeTypes*)   |
 | nosqldb    | (all *nodeTypes*)   |
-  
+
 
 **Event Placeholders:**
 
@@ -964,7 +964,7 @@ The event is bound to resetting a container main service password (executed at t
 
 ### onAfterResetServicePassword
 
-The event is bound to resetting a container main service password (executed at the Virtuozzo Application Platform dashboard via the **Reset password** button) and is triggered before it. The event is applicable for services that have an Admin Panel enabled by default for the specific nodeType. These templates are:  
+The event is bound to resetting a container main service password (executed at the Virtuozzo Application Platform dashboard via the **Reset password** button) and is triggered before it. The event is applicable for services that have an Admin Panel enabled by default for the specific nodeType. These templates are:
 
 | nodeGroup  | nodeType            |
 |------------|---------------------|
@@ -995,7 +995,7 @@ This event is executed before deleting node(s) from your environment.
     - `nodeid` - predefined node identifier
 - `${event.response.}`:
     - `result` - parameters are absent
-  
+
 ### onAfterRemoveNode
 
 This event is executed after deleting node(s) from your environment.
@@ -1215,7 +1215,7 @@ The event is triggered before the *setEnvVars* action. It is executed for every 
 ### onAfterSetEnvVars
 
 The event is triggered after the *setEnvVars* action. It is executed for every Docker or dockerized container upon setting environment variables.
-  
+
 **Event Placeholders:**
 
 - `${event.params.}`:
@@ -1243,7 +1243,7 @@ This event is called before the *setEntryPoint* action. It is executed for every
 - `${event.response.}` - parameters are absent
 
 ### onAfterSetEntryPoint
-  
+
 This event is called after the *setEntryPoint* action. It is executed for every Docker container upon setting the entry point. The *onAfterSetEntryPoint* event is applied for Docker containers only.
 
 **Event Placeholders:**
@@ -1330,7 +1330,7 @@ The event is performed before adding volumes to Docker container. It is executed
     - `nodeid` - the same value as `nodeId`, an alias
     - `path` - volume path
 - `${event.response.}` - parameters are absent
-  
+
 ### onAfterAddVolume
 
 This event is performed after adding volumes to Docker container. It is executed once for each Docker container.
@@ -1386,15 +1386,15 @@ The *onAfterRemoveVolume* event is triggered after removing volumes from Docker 
     - `result` - result code. The successful action result is *'0'*
     - `nodeid` - current node identifier
 
-### onBeforeInit   
-### onBeforeInstall   
+### onBeforeInit
+### onBeforeInstall
 It is possible to dynamically fill in the manifest fields using *onBeforeInit* and *onBeforeInstall* events. All of  the JPS manifest fields inside *onBeforeInit* and *onBeforeInstall* can be accessed using **jps** variable.
 
 #### onBeforeInit
-The *onBeforeInit* event is executed:   
+The *onBeforeInit* event is executed:
 
 -   on *GetAppInfo* request, which is called to display application
-   installation dialog in the dashboard   
+   installation dialog in the dashboard
 -   on application installation
 
 You can override all the parameters of the manifest, except for:
@@ -1412,7 +1412,7 @@ For example:
 type: install
 name: Account And Quota Placeholders
 settings:
-  fields: 
+  fields:
     - type: owner
       caption: Owner
       name: ownerUid
@@ -1475,10 +1475,11 @@ The placeholders **\${globals.}** and **\${settings.}** can be used within *onBe
 *onBeforeInit* and *onBeforeInstall* can treat JavaScript code, written as:
 
 -   string
+
 @@@
 ```yaml
 type: update
-name: "Ability to dynamically determine UI in JPS"  
+name: "Ability to dynamically determine UI in JPS"
 onBeforeInit: |
   return {
     result: 0,
@@ -1505,8 +1506,10 @@ assert: "'${settings.custom_field}' == 'test'"
 
 ```
 @@!
+
 >
 -   string array
+
 @@@
 ```yaml
 type: update
@@ -1528,7 +1531,7 @@ onBeforeInit:
 {
     "type": "update",
     "name": "test",
-    
+
     "onBeforeInit": [
         "return {",
         "  result: 0,",
@@ -1545,65 +1548,69 @@ onBeforeInit:
 }
 ```
 @@!
+
 >
 -   URL
+
 @@@
 ```yaml
-type: update  
-name: "Ability to dynamically determine UI in JPS"  
+type: update
+name: "Ability to dynamically determine UI in JPS"
 onBeforeInit: https://gist.githubusercontent.com/SlavaKatiukha/4160926fdd7df13ae097a5194d42023e/raw/eff5ffa6015b8f997bfa31558524033193b6092a/
-onInstall:  
+onInstall:
 assert: "'${settings.custom_field}' == 'test'"
 ```
 ```json
 {
-"type": "update",  
-"name": "Ability to dynamically determine UI in JPS",  
+"type": "update",
+"name": "Ability to dynamically determine UI in JPS",
 "onBeforeInit": "https://gist.githubusercontent.com/SlavaKatiukha/4160926fdd7df13ae097a5194d42023e/raw/eff5ffa6015b8f997bfa31558524033193b6092a/",
 "onInstall": [
-                { 
-        "assert": [ 
-            "'${settings.custom_field}' == 'test'" 
+                {
+        "assert": [
+            "'${settings.custom_field}' == 'test'"
                     ]
                 }
             ]
 }
 ```
 @@!
+
 >
 -   filepath in case the baseUrl was determined
+
 @@@
 ```yaml
-type: update  
-name: "Ability to dynamically determine UI in JPS"  
+type: update
+name: "Ability to dynamically determine UI in JPS"
 baseUrl: https://gist.githubusercontent.com/SlavaKatiukha/4160926fdd7df13ae097a5194d42023e/raw/eff5ffa6015b8f997bfa31558524033193b6092a/
-onBeforeInit: InitManifestTest.cs  
-onInstall:  
+onBeforeInit: InitManifestTest.cs
+onInstall:
 assert: "'${settings.custom_field}' == 'test'"
-``` 
+```
 ```json
 {
-"type": "update",  
-"name": "Ability to dynamically determine UI in JPS",  
-"baseUrl": "https://gist.githubusercontent.com/SlavaKatiukha/4160926fdd7df13ae097a5194d42023e/raw/eff5ffa6015b8f997bfa31558524033193b6092a/" , 
-"onBeforeInit": "InitManifestTest.cs",  
+"type": "update",
+"name": "Ability to dynamically determine UI in JPS",
+"baseUrl": "https://gist.githubusercontent.com/SlavaKatiukha/4160926fdd7df13ae097a5194d42023e/raw/eff5ffa6015b8f997bfa31558524033193b6092a/" ,
+"onBeforeInit": "InitManifestTest.cs",
 "onInstall": [
-                { 
-        "assert": [ 
-            "'${settings.custom_field}' == 'test'" 
+                {
+        "assert": [
+            "'${settings.custom_field}' == 'test'"
                     ]
                 }
             ]
 }
-``` 
+```
 @@!
 
 The script outputs JS-object. The object contains code **result** and manifest customized field set in JSON.
 
--   If the script has completed successfully with **result: 0**, then all the fields in the script response are applied to the manifest.  
--   In case the script has completed unsuccessfully with **result: 11041** along with message “**JPS manifest initialization error**”, the  attached object data provides the details about an error.  
+-   If the script has completed successfully with **result: 0**, then all the fields in the script response are applied to the manifest.
+-   In case the script has completed unsuccessfully with **result: 11041** along with message “**JPS manifest initialization error**”, the  attached object data provides the details about an error.
 
-#### Accessing JPS manifest fields with *jps* variable  
+#### Accessing JPS manifest fields with *jps* variable
 
 - onBeforeInit:
 
@@ -1613,13 +1620,13 @@ type: install
 name: Manifest availability in onBeforeInit
 
 baseUrl: https://example.com/
-  
+
 settings:
   fields:
     - type: string
       caption: String
-      
-onBeforeInit: |  
+
+onBeforeInit: |
   return {
     result: 0,
     settings: {
@@ -1649,7 +1656,7 @@ onBeforeInit: |
 ```
 @@!
 
-simplified response example:  
+simplified response example:
 
 @@@
 ```yaml
@@ -1657,19 +1664,19 @@ type: install
 name: Manifest availability in onBeforeInit
 
 baseUrl: https://example.com/
-  
+
 settings:
   fields:
     - type: string
       caption: String
-      
-onBeforeInit: |  
+
+onBeforeInit: |
   jps.settings.fields.push({
         type: 'string',
         caption: 'Base URL',
         value: jps.baseUrl
   });
-  
+
   return jps;
 ```
 ```json
@@ -1689,8 +1696,8 @@ onBeforeInit: |
 }
 ```
 @@!
-  
-- onBeforeInstall:  
+
+- onBeforeInstall:
 
 @@@
 ```yaml
@@ -1701,13 +1708,13 @@ nodes:
   - nodeType: apache2
     cloudlets: 8
 
-onBeforeInstall: |  
+onBeforeInstall: |
   return {
     result: 0,
     nodes: jps.nodes.concat({
       nodeType: 'nginx',
       cloudlets: 8
-    })    
+    })
   };
 ```
 ```json
@@ -1747,7 +1754,7 @@ The event is executed after swapping the external domain names between two envir
     - `targetAppid` - "string" application identifier of the second environment
 -   `${event.response.}`:
     - `result` - result code. The successful action result is '0'
-    
+
 ### onBeforeSwapExtIps
 The event is executed before swapping the external IPs between two environments via [API](https://docs.jelastic.com/api/#!/api/environment.Binder-method-SwapExtIps) or [Virtuozzo Application Platform CLI](https://www.virtuozzo.com/application-platform-docs/cli-ip-swap/).
 
@@ -1755,7 +1762,7 @@ The event is executed before swapping the external IPs between two environments 
 
 -   `${event.params.}`:
     - `session` - current user session
-    - `sourceNodeId` - source node of first IP 
+    - `sourceNodeId` - source node of first IP
     - `targetNodeId` - target node of second IP
     - `sourceIp` - first IP
     - `targetIp` - second IP
@@ -1771,7 +1778,7 @@ The event is executed after swapping the external IPs between two environments v
 
 -   `${event.params.}`:
     - `session` - current user session
-    - `sourceNodeId` - source node of first IP 
+    - `sourceNodeId` - source node of first IP
     - `targetNodeId` - target node of second IP
     - `sourceIp` - first IP
     - `targetIp` - second IP
@@ -1789,7 +1796,7 @@ Event subscription example:
 ```yaml
 type: update
 name: 'Environment Transfer Testing script'
- 
+
 onAfterConfirmTransfer:
   - log: env ${env.name} transfer confirmed
 ```
@@ -1808,19 +1815,19 @@ onAfterConfirmTransfer:
 
 ### onBeforeBindSSL
 The event is executed before binding a custom SSL certificate to the environment.
-  
-Event Placeholders:  
 
--   `${event.params.}`:
+Event Placeholders:
+
+- `${event.params.}`:
     - `env` - environment short domain name
--   `${event.response.}`: 
-    - `result` - result code. The successful action result is '0'  
+- `${event.response.}`:
+    - `result` - result code. The successful action result is '0'
 
 @@@
 ```yaml
 type: update
 name: '[CS] - add onBeforeBindSSL event'
-onBeforeBindSSL: 
+onBeforeBindSSL:
   log: before bind SSL
 ```
 ```json
@@ -1836,19 +1843,19 @@ onBeforeBindSSL:
 
 ### onAfterBindSSL
 The event is executed after binding a custom SSL certificate to the environment.
-  
-Event Placeholders:  
 
--   `${event.params.}`:
+Event Placeholders:
+
+- `${event.params.}`:
     - `env` - environment short domain name
--   `${event.response.}`: 
-    - `result` - result code. The successful action result is '0'  
+- `${event.response.}`:
+    - `result` - result code. The successful action result is '0'
 
 @@@
 ```yaml
 type: update
 name: '[CS] - add onAfterBindSSL event'
-onAfterBindSSL: 
+onAfterBindSSL:
   log: after bind SSL
 ```
 ```json
@@ -1864,22 +1871,22 @@ onAfterBindSSL:
 
 ### onBeforeRemoveSSL
 The event is executed before removing a custom SSL certificate from the environment.
-  
-Event Placeholders:  
 
--   `${event.params.}`:
+Event Placeholders:
+
+- `${event.params.}`:
     - `env` - environment short domain name
--   `${event.response.}`: 
-    - `result` - result code. The successful action result is '0'  
+- `${event.response.}`:
+    - `result` - result code. The successful action result is '0'
 
 @@@
 ```yaml
 type: update
 name: '[CS] - add onBeforeRemoveSSL events'
-onBeforeRemoveSSL: 
+onBeforeRemoveSSL:
   log: before remove SSL
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "[CS] - add onBeforeRemoveSSL events",
@@ -1892,22 +1899,22 @@ onBeforeRemoveSSL:
 
 ### onAfterRemoveSSL
 The event is executed after removing a custom SSL certificate from the environment.
-  
-Event Placeholders:  
 
--   `${event.params.}`:
+Event Placeholders:
+
+- `${event.params.}`:
     - `env` - environment short domain name
--   `${event.response.}`: 
-    - `result` - result code. The successful action result is '0'  
+- `${event.response.}`:
+    - `result` - result code. The successful action result is '0'
 
 @@@
 ```yaml
 type: update
 name: '[CS] - add onAfterRemoveSSL events'
-onAfterRemoveSSL: 
+onAfterRemoveSSL:
   log: after remove SSL
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "[CS] - add onAfterRemoveSSL events",
@@ -1918,47 +1925,47 @@ onAfterRemoveSSL:
 ```
 @@!
 
-### onBeforeInstallAddon  
-The event is executed before add-on installation  
+### onBeforeInstallAddon
+The event is executed before add-on installation
 
-Event Placeholders:  
+Event Placeholders:
 
--   `${event.params.}`:  
-    - `settings` - custom form with predefined user input elements  
-    - `id` - unique add-on id  
-    - `lang` - [user's language code](https://en.wikipedia.org/wiki/Language_code) which was used during the installation. Optional parameter  
-    - `region` - region, where an environment will be installed  
-    - `targetAppid`  - unique environment *appid* at the Virtuozzo Platform  
--   `${event.response.}`: parameters are absent  
+-   `${event.params.}`:
+    - `settings` - custom form with predefined user input elements
+    - `id` - unique add-on id
+    - `lang` - [user's language code](https://en.wikipedia.org/wiki/Language_code) which was used during the installation. Optional parameter
+    - `region` - region, where an environment will be installed
+    - `targetAppid`  - unique environment *appid* at the Virtuozzo Platform
+-   `${event.response.}`: parameters are absent
 
-### onAfterInstallAddon  
-The event is executed after add-on installation  
-  
--   `${event.params.}`:  
-    - `settings` - custom form with predefined user input elements   
-    - `id` - unique add-on id  
-    - `lang` - [user's language code](https://en.wikipedia.org/wiki/Language_code) which was used during the installation. Optional parameter  
-    - `region` - region, where an environment will be installed  
-    - `targetAppid`  - unique environment *appid* at the Virtuozzo Platform  
--   `${event.response.}`:  
-    - `uniqueName` - installed add-on unique name  
-    - `appid` - unique environment *appid* at the Virtuozzo Platform  
-    - `successText`- message that appears once action is successfully performed  
-  
-Events Subscription Example:  
-  
+### onAfterInstallAddon
+The event is executed after add-on installation
+
+-   `${event.params.}`:
+    - `settings` - custom form with predefined user input elements
+    - `id` - unique add-on id
+    - `lang` - [user's language code](https://en.wikipedia.org/wiki/Language_code) which was used during the installation. Optional parameter
+    - `region` - region, where an environment will be installed
+    - `targetAppid`  - unique environment *appid* at the Virtuozzo Platform
+-   `${event.response.}`:
+    - `uniqueName` - installed add-on unique name
+    - `appid` - unique environment *appid* at the Virtuozzo Platform
+    - `successText`- message that appears once action is successfully performed
+
+Events Subscription Example:
+
 @@@
 ```yaml
-type: update  
-name: Test Add-on Events Subscription  
-  
-onBeforeInstallAddon [nodeGroup:cp, id:myaddon]:  
-  log: add-on  
-  ID: ${event.params.id}  
-  
-onAfterInstallAddon [nodeGroup:cp, id:myaddon]:  
-  log: add-on  
-  unique name: ${event.response.uniqueName}   
+type: update
+name: Test Add-on Events Subscription
+
+onBeforeInstallAddon [nodeGroup:cp, id:myaddon]:
+  log: add-on
+  ID: ${event.params.id}
+
+onAfterInstallAddon [nodeGroup:cp, id:myaddon]:
+  log: add-on
+  unique name: ${event.response.uniqueName}
 ```
 ```json
   {
@@ -1972,14 +1979,15 @@ onAfterInstallAddon [nodeGroup:cp, id:myaddon]:
     "log": "add-on",
     "unique name": "${event.response.uniqueName}"
   }
-}  
+}
 ```
 @@!
 
-Triggering:  
+Triggering:
+
 @@@
-```yaml    
-type: update  
+```yaml
+type: update
 name: Test Add-on Events Triggering
 
 targetNodes:
@@ -2011,81 +2019,81 @@ The event is executed before switching subscriptions (migrating a subscription i
 **Event Placeholders:**
 
 - `${event.params.}`:
-  - `subscriptionid` - unique identifier of the source subscription
-  - `itemid` - unique identifier of the source subscription item
-  - `itemresourceid` - unique identifier of the source subscription item resource
-  - `itemresourceuniquename` - name of the source subscription item resource
-  - `serviceplanid` - unique identifier of the source service plan
-  - `productname` - name of the source subscription product
-  - `serviceplanname` - name of the source service plan
-  - `targetsubscriptionid` - unique identifier of the target subscription
-  - `targetitemid` - unique identifier of the target subscription item
-  - `targetserviceplanid` - unique identifier of the target service plan
-  - `targetproductname` - name of the target subscription product
-  - `targetserviceplanname` - name of the target service plan
+    - `subscriptionid` - unique identifier of the source subscription
+    - `itemid` - unique identifier of the source subscription item
+    - `itemresourceid` - unique identifier of the source subscription item resource
+    - `itemresourceuniquename` - name of the source subscription item resource
+    - `serviceplanid` - unique identifier of the source service plan
+    - `productname` - name of the source subscription product
+    - `serviceplanname` - name of the source service plan
+    - `targetsubscriptionid` - unique identifier of the target subscription
+    - `targetitemid` - unique identifier of the target subscription item
+    - `targetserviceplanid` - unique identifier of the target service plan
+    - `targetproductname` - name of the target subscription product
+    - `targetserviceplanname` - name of the target service plan
 - `${event.response.}`:
-  - `result` - result code. The successful action result is '0'
+    - `result` - result code. The successful action result is '0'
 
 ### onAfterMoveProduct
 The event is executed after switching subscriptions (migrating a subscription item to a different service plan).
-  
+
 **Event Placeholders:**
 
 - `${event.params.}`:
-  - `subscriptionid` - unique identifier of the source subscription
-  - `itemid` - unique identifier of the source subscription item
-  - `itemresourceid` - unique identifier of the source subscription item resource
-  - `itemresourceuniquename` - name of the source subscription item resource
-  - `serviceplanid` - unique identifier of the source service plan
-  - `productname` - name of the source subscription product
-  - `serviceplanname` - name of the source service plan
-  - `targetsubscriptionid` - unique identifier of the target subscription
-  - `targetitemid` - unique identifier of the target subscription item
-  - `targetserviceplanid` - unique identifier of the target service plan
-  - `targetproductname` - name of the target subscription product
-  - `targetserviceplanname` - name of the target service plan
+    - `subscriptionid` - unique identifier of the source subscription
+    - `itemid` - unique identifier of the source subscription item
+    - `itemresourceid` - unique identifier of the source subscription item resource
+    - `itemresourceuniquename` - name of the source subscription item resource
+    - `serviceplanid` - unique identifier of the source service plan
+    - `productname` - name of the source subscription product
+    - `serviceplanname` - name of the source service plan
+    - `targetsubscriptionid` - unique identifier of the target subscription
+    - `targetitemid` - unique identifier of the target subscription item
+    - `targetserviceplanid` - unique identifier of the target service plan
+    - `targetproductname` - name of the target subscription product
+    - `targetserviceplanname` - name of the target service plan
 - `${event.response.}`:
-  - `result` - result code. The successful action result is '0'
+    - `result` - result code. The successful action result is '0'
 
 ### onApplySubscriptionSettings
 This event provides a possibility to execute actions required to adjust a subscription item after migration to a different service plan.
-  
+
 **Event Placeholders:**
 
 - `${event.params.}`:
-  - `subscriptionId` - unique identifier of the new subscription
-  - `subscriptionItemId` - unique identifier of the new subscription item
-  - `subscriptionItemResourceId` - unique identifier of the new subscription item resource
-  - `servicePlanId` - unique identifier of the new service plan
-  - `appUniqueName` - unique identifier of the package installation in the platform's Marketplace
-  - `targetAppid` - unique identifier of the related environment(s)
-  - `settings` - JSON object with custom settings provided for subscription item adjustment
-  - `servicePlanData` - JSON object with new service plan data
-  - `overrideRegions` - defines whether to configure the service plan's regions differently from the user group's default ones (true) or not (false)
-  - `regionPricing` - JSON object with a list of available regions and custom pricing models for them
+    - `subscriptionId` - unique identifier of the new subscription
+    - `subscriptionItemId` - unique identifier of the new subscription item
+    - `subscriptionItemResourceId` - unique identifier of the new subscription item resource
+    - `servicePlanId` - unique identifier of the new service plan
+    - `appUniqueName` - unique identifier of the package installation in the platform's Marketplace
+    - `targetAppid` - unique identifier of the related environment(s)
+    - `settings` - JSON object with custom settings provided for subscription item adjustment
+    - `servicePlanData` - JSON object with new service plan data
+    - `overrideRegions` - defines whether to configure the service plan's regions differently from the user group's default ones (true) or not (false)
+    - `regionPricing` - JSON object with a list of available regions and custom pricing models for them
 - `${event.response.}`:
-  - `result` - result code. The successful action result is '0'
+    - `result` - result code. The successful action result is '0'
 
 ### onCustomNodeEvent
 This event is executed when the **environment > Node > SendEvent** API method is called with the `eventName=CUSTOM_NODE_EVENT` parameter.
-  
+
 **Event Placeholders:**
 
 - `${event.params.}`:
-  - `NODE_NAME` - target container name
-  - `NODE_GROUP` - unique identifier of the target node group (layer), e.g. "cp" for the default application server layer
-  - `ENV_INFO` - environment information
-  - `name` - name of the event (for filtering)
-  - `ENV_NAME` - target environment name
-  - `NODE_ID` - unique identifier of the target node
-  - `USER_NAME` - target user name (email)
-  - `envName` - target environment name
-  - `nodeId` - unique identifier of the target node
+    - `NODE_NAME` - target container name
+    - `NODE_GROUP` - unique identifier of the target node group (layer), e.g. "cp" for the default application server layer
+    - `ENV_INFO` - environment information
+    - `name` - name of the event (for filtering)
+    - `ENV_NAME` - target environment name
+    - `NODE_ID` - unique identifier of the target node
+    - `USER_NAME` - target user name (email)
+    - `envName` - target environment name
+    - `nodeId` - unique identifier of the target node
 - `${event.response.}`:
-  - `result` - result code. The successful action result is '0'
+    - `result` - result code. The successful action result is '0'
 
-Events Subscription Example:  
-  
+Events Subscription Example:
+
 @@@
 ```yaml
 type: update
@@ -2113,7 +2121,7 @@ onCustomNodeEvent [${targetNodes.nodeGroup}]:
 ```
 @@!
 
-Triggering:  
+Triggering:
 
 ```
 curl --location --request POST ‘https://{platformDomain}/1.0/environment/node/rest/sendevent’ --data-urlencode ‘params=\{“name”: “test”}’
@@ -2125,16 +2133,10 @@ or
 jem api apicall [API_DOMAIN]/1.0/environment/node/rest/sendevent --data-urlencode params={"name":"test"}
 ```
 
-<br>
-
-<h2>What’s next?</h2>
+## What’s next?
 
 - Find out how to fetch parameters with <a href="../placeholders/" target="_blank">Placeholders</a>
-
 - See how to use <a href="../conditions-and-iterations/">Conditions and Iterations</a>
-
 - Read how to integrate your <a href="../custom-scripts/" target="_blank">Custom Scripts</a>
-
 - Learn how to create your custom <a href="../addons/" target="_blank">Add-Ons</a>
-
 - Check how to handle <a href="../handling-custom-responses/" target="_blank">Custom Responses</a>

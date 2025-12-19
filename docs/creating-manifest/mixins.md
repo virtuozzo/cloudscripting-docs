@@ -1,14 +1,17 @@
 ## Mixins
-The **mixins** provide agility in Cloud Scripting allowing to include(mix) pieces of code from one manifest into another.  
-The following sections can be mixed:  
-  - `globals`  
-  - `actions`  
-  - `addons`  
-  - `responses`  
-  
+
+The **mixins** provide agility in Cloud Scripting allowing to include(mix) pieces of code from one manifest into another.
+The following sections can be mixed:
+
+- `globals`
+- `actions`
+- `addons`
+- `responses`
+
 The *mixins* section in JPS manifest can contain a description of both a single and an array of *mixins*.
-In case there are included the identical *mixins* or recursive ones, the only first occurrence will be taken into the action. Also, the names were defined in the main manifest are of higher priority than those are in the *mixins*.   
-main.jps 
+In case there are included the identical *mixins* or recursive ones, the only first occurrence will be taken into the action. Also, the names were defined in the main manifest are of higher priority than those are in the *mixins*.
+main.jps
+
 @@@
 ```yaml
 type: install
@@ -18,7 +21,7 @@ baseUrl: https://example.com/mixins
 mixins:
   - mixin1.jps
   - mixin2.jps
-  
+
 actions:
   mainAction:
     log: mainTest
@@ -52,7 +55,8 @@ onInstall:
 @@!
 
 Where the Included mixins' code looks as follows:
-mixin1.jps   
+mixin1.jps
+
 @@@
 ```yaml
 mixins:
@@ -76,7 +80,8 @@ actions:
 ```
 @@!
 
-mixin2.jps   
+mixin2.jps
+
 @@@
 ```yaml
 actions:
@@ -94,7 +99,7 @@ actions:
 ```
 @@!
 
-While performing  the example above, the result of mixins include will be displayed in the log before executing onInstall event:   
+While performing  the example above, the result of mixins include will be displayed in the log before executing onInstall event:
 
 ![mixins-log](/img/mixins-log.png)
 

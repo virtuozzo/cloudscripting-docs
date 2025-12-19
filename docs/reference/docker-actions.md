@@ -1,17 +1,17 @@
-#Docker Actions
+# Docker Actions
 
 Specific Cloud Scripting actions for Docker containers include operations of *volumes*, *links* and *environment variables* management.
-<br>
-##Volumes
+
+## Volumes
 
 There are three available parameters to set Docker volumes:
 
-- *volumes* - list of volume paths   
-- *volumeMounts* - mount configurations  
-- *volumesFrom* - list of nodes the volumes are imported from    
+- *volumes* - list of volume paths
+- *volumeMounts* - mount configurations
+- *volumesFrom* - list of nodes the volumes are imported from
 
 All of the fields are set within the Docker object:
-``` json
+```json
 {
   "type": "install",
   "name": "docker volumes",
@@ -26,9 +26,11 @@ All of the fields are set within the Docker object:
   ]
 }
 ```
-<h3>Volumes</h3>
-This field represents a string array:  
-``` json
+
+### Volumes
+
+This field represents a string array:
+```json
 [
   {
     "volumes": [
@@ -41,9 +43,10 @@ This field represents a string array:
 ]
 ```
 
-<h3>VolumeMounts</h3>
-This parameter is an object. It can be set like within the example below:    
-``` json
+### VolumeMounts
+
+This parameter is an object. It can be set like within the example below:
+```json
 {
   "volumeMounts": {
     "/example-path": {
@@ -56,17 +59,17 @@ This parameter is an object. It can be set like within the example below:
   }
 }
 ```
-Here:  
+Here:
 
-- `/example-path` - path to place the volume at a target node  
-- `sourcePath [optional]` - default value that repeats volume path (*/example-path* in our sample)    
-- `sourceNodeId` -  node identifier the volume should be mounted from (optional, in case of the `sourceNodeGroup` parameter using)       
-- `sourceHost [optional]` - parameter for <a href="https://www.virtuozzo.com/application-platform-docs/configure-external-nfs-server/" target="_blank">external mounts</a> usage    
-- `readOnly` - defines write data permissions at source node, the default value is `false`   
-- `sourceNodeGroup` - any available <a href="/reference/container-types/#containers-by-groups-nodegroup" target="_blank">*nodeGroup*</a> within a source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.    
+- `/example-path` - path to place the volume at a target node
+- `sourcePath [optional]` - default value that repeats volume path (*/example-path* in our sample)
+- `sourceNodeId` -  node identifier the volume should be mounted from (optional, in case of the `sourceNodeGroup` parameter using)
+- `sourceHost [optional]` - parameter for <a href="https://www.virtuozzo.com/application-platform-docs/configure-external-nfs-server/" target="_blank">external mounts</a> usage
+- `readOnly` - defines write data permissions at source node, the default value is `false`
+- `sourceNodeGroup` - any available <a href="/reference/container-types/#containers-by-groups-nodegroup" target="_blank">*nodeGroup*</a> within a source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.
 
 In case not all source node volumes are required to be mounted, the particular ones can be specified:
-``` json
+```json
 [
   {
     "sourceNodeGroup": "storage",
@@ -78,11 +81,11 @@ In case not all source node volumes are required to be mounted, the particular o
 ]
 ```
 
-<h4>*VolumeMounts* examples</h4>
- 
-**Master Node Mount:**   
+#### *VolumeMounts* examples
+
+**Master Node Mount:**
 Samples to mount a particular volume by exact node identifier & path (*/master*) and to mount all volumes from the layer master node by *nodeGroup* (*/master-1*)
-``` json
+```json
 {
   "volumeMounts": {
     "/master": {
@@ -100,10 +103,10 @@ Samples to mount a particular volume by exact node identifier & path (*/master*)
 Here, *sourcePath* and *readOnly* parameters are optional.
 
 **Mount Data Container:**
-<br>
+
 Samples to mount all volumes from a particular node by exact node identifier & path (*/node*) and to mount master node volumes by *nodeGroup* type (*/data*)
 
-``` json
+```json
 {
   "volumeMounts": {
     "/node": {
@@ -117,9 +120,9 @@ Samples to mount all volumes from a particular node by exact node identifier & p
 ```
 
 **External Server Mounts:**
-<br>
+
 Sample to mount a volume (*/external*) from external server by indicating its host (`sourceHost`), path (`sourcePath`) and access permissions (`readOnly`).
-``` json
+```json
 {
   "volumeMounts": {
     "/external": {
@@ -131,9 +134,9 @@ Sample to mount a volume (*/external*) from external server by indicating its ho
 }
 ```
 **Short Set for External Server:**
-<br>
-Sample to mount a number of volumes from external server by specifying the required parameters (i.e. volume path, `sourceHost`, `sourcePath`, access permissions) for each of them within one string.     
-``` json
+
+Sample to mount a number of volumes from external server by specifying the required parameters (i.e. volume path, `sourceHost`, `sourcePath`, access permissions) for each of them within one string.
+```json
 {
   "volumeMounts": {
     "/ext-domain": "aws.com",
@@ -147,9 +150,9 @@ Sample to mount a number of volumes from external server by specifying the requi
 Here, "*ro*" stands for *readOnly* permissions.
 
 <!--
-##volumesFrom
+## volumesFrom
 
-`volumesFrom` is an list object.    
+`volumesFrom` is an list object.
 There are two ways to select the volume source container:
 ```
 [
@@ -184,17 +187,19 @@ Simple set examples above:
   "storage:ro"
 ]
 ```
-where:   
-- *49* - like { sourceNodeId : 49, readOnly : false }  
-- *"storage"* - like { sourceNodeGroup : "storage", readOnly : false }  
+
+where:
+
+- *49* - like { sourceNodeId : 49, readOnly : false }
+- *"storage"* - like { sourceNodeGroup : "storage", readOnly : false }
 - *"storage:ro"* - like { sourceNodeGroup : "storage", readOnly : true }
 -->
 
-##Docker Environment Variables
+## Docker Environment Variables
 
-Docker environment <a href="https://www.virtuozzo.com/application-platform-docs/container-variables/" target="_blank">variable</a> is an optional topology object. The *env* instruction allows to set the required environment variables to specified values. 
+Docker environment <a href="https://www.virtuozzo.com/application-platform-docs/container-variables/" target="_blank">variable</a> is an optional topology object. The *env* instruction allows to set the required environment variables to specified values.
 
-``` json
+```json
 {
   "type": "install",
   "name": "docker environment variables",
@@ -211,13 +216,12 @@ Docker environment <a href="https://www.virtuozzo.com/application-platform-docs/
 }
 ```
 
-##Docker Links
+## Docker Links
 
 Docker <a href="https://www.virtuozzo.com/application-platform-docs/container-links/" target="_blank">links</a> option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
-<br>
 
 The example below illustrates the way to link *sql* and *memcached* nodes to *cp* container.
-``` json
+```json
 [
   {
     "image": "wordpress:latest",
@@ -245,14 +249,14 @@ The example below illustrates the way to link *sql* and *memcached* nodes to *cp
 ```
 where:
 
-- `links` - object that defines nodes to be linked to *cp* node by their *nodeGroup* and these links names            
-- `db` - MYSQL server `nodeGroup` (environment layer)  
-- `memcached` - Memcached server `nodeGroup` (environment layer)   
+- `links` - object that defines nodes to be linked to *cp* node by their *nodeGroup* and these links names
+- `db` - MYSQL server `nodeGroup` (environment layer)
+- `memcached` - Memcached server `nodeGroup` (environment layer)
 
-As a result, all the environment variables within *db* and *memcached* nodes will be also available at *cp* container.  
- 
-Here, environment variables of linked nodes will have the names, predefined within the `links` array.     
+As a result, all the environment variables within *db* and *memcached* nodes will be also available at *cp* container.
+
+Here, environment variables of linked nodes will have the names, predefined within the `links` array.
 For example:
 
-- variable *MYSQL_ROOT_PASSWORD* from *sql* node is *DB_MYSQL_ROOT_PASSWORD* in *cp* node   
+- variable *MYSQL_ROOT_PASSWORD* from *sql* node is *DB_MYSQL_ROOT_PASSWORD* in *cp* node
 - variable *IP_ADDRESS* from *memcached* node is *MEMCACHED_IP_ADDRESS* in *cp* node

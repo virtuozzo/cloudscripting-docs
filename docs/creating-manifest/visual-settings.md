@@ -1,22 +1,23 @@
 
 # Visual Settings
 
-Cloud Scripting enables you to create a personalized solution by customizing the visual appearance and textual content of such elements as:              
+Cloud Scripting enables you to create a personalized solution by customizing the visual appearance and textual content of such elements as:
 
-* [Fields](#string)                                      
- 
-* [Menus](#custom-menus)                            
+- [Fields](#string)
 
-* [Buttons](#custom-buttons)                   
+- [Menus](#custom-menus)
 
-* [Forms](#custom-settings)                   
+- [Buttons](#custom-buttons)
 
-* [Messages](#success-text-customization)                           
-      
+- [Forms](#custom-settings)
 
-## Supported Fields                               
+- [Messages](#success-text-customization)
+
+
+## Supported Fields
 
 You can use the parameters from the following example to fetch your input data.
+
 @@@
 ```yaml
 settings:
@@ -39,10 +40,10 @@ settings:
       hidden: boolean
       id: string
       cls: string
-      itemId: string     
-      
+      itemId: string
+
 ```
-``` json
+```json
 {
   "settings": {
     "prepopulate": "URL",
@@ -76,32 +77,32 @@ settings:
 where:
 
 - `prepopulate` *[optional]* - link to a script, that will fetch default field values
-- `submitUnchanged` *[optional]* - allows (*true*) or forbids (*false*) the user to submit via the add-on’s input fields the same values as were provided the previous time. Default value is *'false'* 
+- `submitUnchanged` *[optional]* - allows (*true*) or forbids (*false*) the user to submit via the add-on’s input fields the same values as were provided the previous time. Default value is *'false'*
 - `fields` - array of fields that will be displayed in a custom form
-    - `showIf` - shows/hides field by condition 
+    - `showIf` - shows/hides field by condition
     - `type` *[optional]* - input field type. The default value is *'string'*. Possible values:
-        * `string` - [basic](#string) text field
-        * `text`  - [multiline](#text) text field
-        * `list` - drop-down menu with [textboxes](#list)
-        * `checkbox` - [single checkbox](#checkbox) field
-        * `checkboxlist` - [checkbox](#checkboxlist) grouping
-        * `radiolist` - [radio field](#radiolist) grouping
-        * `radio-fieldset` - alias to `radiolist`
-        * `dockertags` - drop-down menu with a list of [docker tags](#dockertags)
-        * `compositefield` - [component](#compositefield) that comprises any available field
-        * `slider` - [slider element](#slider) as a form field
-        * `envlist` - [list of environments](#envlist) available for a corresponding account
-        * `regionlist` - drop-down menu with a [regions](#regionlist) list
-        * `popupselector` - new [pop-up window](#popupselector) via POST request with possibility to pass additional parameters
-        * `popup-selector` - alias to `popupselector`
-        * `displayfield` - [text field](#displayfield) intended for displaying text
-        * `spacer` - alias to `displayfield`
-        * `spinner` - [input field](#spinner) for entering numeric values
-        * `numberpicker` - [field to select a number](#numberpicker) within a range
-        * `number-picker` - alias to `numberpicker`
-        * `hostpicker` - drop-down menu with [environment hosts](#hostpicker)
-        * `host-picker` - alias to `hostpicker`
-        * `toggle` - [switcher](#toggle) between two values
+        - `string` - [basic](#string) text field
+        - `text`  - [multiline](#text) text field
+        - `list` - drop-down menu with [textboxes](#list)
+        - `checkbox` - [single checkbox](#checkbox) field
+        - `checkboxlist` - [checkbox](#checkboxlist) grouping
+        - `radiolist` - [radio field](#radiolist) grouping
+        - `radio-fieldset` - alias to `radiolist`
+        - `dockertags` - drop-down menu with a list of [docker tags](#dockertags)
+        - `compositefield` - [component](#compositefield) that comprises any available field
+        - `slider` - [slider element](#slider) as a form field
+        - `envlist` - [list of environments](#envlist) available for a corresponding account
+        - `regionlist` - drop-down menu with a [regions](#regionlist) list
+        - `popupselector` - new [pop-up window](#popupselector) via POST request with possibility to pass additional parameters
+        - `popup-selector` - alias to `popupselector`
+        - `displayfield` - [text field](#displayfield) intended for displaying text
+        - `spacer` - alias to `displayfield`
+        - `spinner` - [input field](#spinner) for entering numeric values
+        - `numberpicker` - [field to select a number](#numberpicker) within a range
+        - `number-picker` - alias to `numberpicker`
+        - `hostpicker` - drop-down menu with [environment hosts](#hostpicker)
+        - `host-picker` - alias to `hostpicker`
+        - `toggle` - [switcher](#toggle) between two values
     - `inputType` *[optional]* - type attribute of the input field (e.g. *radio*, *text*, *password*, *file*, etc.). The default value is *'text'*. See more info on [type attribute](https://www.w3.org/wiki/HTML/Elements/input#Point)
     - `name` - input field name, that can be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests
     - `default` *[optional]* - default value for the input field
@@ -112,8 +113,8 @@ where:
     - `regex` *[optional]* - constructor for testing JavaScript RegExp object that refers to the field value, during validation. If test fails, the field will be marked as invalid using *regexText*. The default value is *'null'*
     - `regexText` *[optional]* - displays error message in case of *regex* test failure during validation. The default value is *' '* (blank space)
     - `hideLabel` *[optional]*[boolean] - shows/hides field label. Default value is *'false'*
-    - `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'* 
-    - `disabled` *[optional]*[boolean] - enables/disables field control. Default value is *'false'* 
+    - `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
+    - `disabled` *[optional]*[boolean] - enables/disables field control. Default value is *'false'*
     - `vtype` *[optional]* - validation type name. Possible values:
         - `alpha` - keystroke filter mask applied to alpha input. The default value is *'/[a-z_]/i'*
         - `alphanum` - keystroke filter mask applied to alphanumeric input. The default value is *'/[a-z0-9_]/i'*
@@ -129,6 +130,7 @@ where:
 Basic text field.
 
 ![string](/img/string.jpg)
+
 @@@
 ```yaml
 fields:
@@ -163,6 +165,7 @@ where:
 Multiline text field.
 
 ![text](/img/text.jpg)
+
 @@@
 ```yaml
 fields:
@@ -226,12 +229,13 @@ fields:
 }
 ```
 @@!
-      
+
 
 ### list
 Drop-down list and a single-line textbox.
 
 ![list](/img/list.jpg)
+
 @@@
 ```yaml
 fields:
@@ -244,7 +248,7 @@ fields:
     hidden: false
     editable: true
 ```
-``` json
+```json
 {
   "fields": [
     {
@@ -271,8 +275,8 @@ where:
 - `hidden` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
 - `editable` *[optional][boolean]* - allows to input custom values. Default value is *'false'*
 - `default` *[optional]: key* - sets the *"key"* which *"value"* will be displayed by default
-- `forceSelection` *[optional][boolean]* - *'true'* restricts the selected value to one of the values in the list, *'false'* allows to set arbitrary text into the field. Default value is *' false'*. The *forceSelection* parameter is applied only in case the `editable` parameter was set to 'true', otherwise, it is ignored. See [example](#forceselection)  
-- `dependsOn` *[optional]* - specifies values dependence between two lists by switching the values in one list thus the corresponding values are picked up in another. The values of the lists can be specified in non-strict and strict orders. See [examples](#dependson)  
+- `forceSelection` *[optional][boolean]* - *'true'* restricts the selected value to one of the values in the list, *'false'* allows to set arbitrary text into the field. Default value is *' false'*. The *forceSelection* parameter is applied only in case the `editable` parameter was set to 'true', otherwise, it is ignored. See [example](#forceselection)
+- `dependsOn` *[optional]* - specifies values dependence between two lists by switching the values in one list thus the corresponding values are picked up in another. The values of the lists can be specified in non-strict and strict orders. See [examples](#dependson)
 
 #### Advanced Examples
 
@@ -288,7 +292,7 @@ settings:
       caption: List
       values:
         value1: Option 1
-        value2: Option 2  
+        value2: Option 2
       required: true
       editable: true
       forceSelection: true
@@ -332,24 +336,24 @@ settings:
       name: list1
       default: value1
       required: true
-      values:        
+      values:
         value1: one
         value2: two
         value3: three
-      
+
     - caption: List 2
       type: list
       name: list2
-      required: true      
-      dependsOn:                 
+      required: true
+      dependsOn:
         list1:
-            value1:              
+            value1:
               1: 1
               one: one
-            value2:    
+            value2:
               2: 2
               two: two
-            value3:               
+            value3:
               3: 3
               three: three
 ```
@@ -357,7 +361,7 @@ settings:
 {
   "type": "install",
   "name": "Conditional filters for type \"list\"",
-  
+
   "settings": {
     "fields": [
       {
@@ -414,35 +418,35 @@ settings:
       name: list1
       default: value1
       required: true
-      values:        
+      values:
         - value: value1
           caption: one
         - value: value2
           caption: two
         - value: value3
           caption: three
-      
+
     - caption: List 2
       type: list
       name: list2
-      required: true      
-      dependsOn:                 
+      required: true
+      dependsOn:
         list1:
             value1:
               - value: 1
                 caption: 1
               - value: ONE
-                caption: ONE              
-            value2:    
+                caption: ONE
+            value2:
               - value: 2
                 caption: 2
               - value: TWO
                 caption: TWO
-            value3:               
+            value3:
               - value: 3
                 caption: 3
               - value: THREE
-                caption: THREE      
+                caption: THREE
 ```
 ```json
 {
@@ -523,6 +527,7 @@ settings:
 Single checkbox field.
 
 ![text](/img/checkbox.jpg)
+
 @@@
 ```yaml
 fields:
@@ -532,7 +537,7 @@ fields:
     hideLabel: false
     hidden: false
 ```
-``` json
+```json
 {
   "fields": [
     {
@@ -552,12 +557,12 @@ where:
 - `caption` *[optional]* - field label
 - `value` - enables or disables checkbox
 - `hideLabel` *[optional][boolean]* - shows/hides field label. Default value is *'false'*
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*.
 
 ### checkboxlist
 Checkbox grouping.
 
-![text](/img/checkboxlist.jpg)  
+![text](/img/checkboxlist.jpg)
 
 @@@
 ```yaml
@@ -569,16 +574,16 @@ Checkbox grouping.
         - name: option1
           caption: Option 1
           value: false
-          
+
         - name: option2
           caption: Option 2
           value: true
-        
+
         - name: option3
           caption: Option 3
           value: true
 ```
-``` json
+```json
 [
   {
     "type": "checkboxlist",
@@ -625,6 +630,7 @@ Field parameters:
 Radio elements grouping.
 
 ![text](/img/radiolist.jpg)
+
 @@@
 ```yaml
 fields:
@@ -637,7 +643,7 @@ fields:
     hideLabel: false
     hidden: false
 ```
-``` json
+```json
 {
   "fields": [
     {
@@ -660,18 +666,18 @@ where:
 
 - `caption` *[optional]* - field label
 - `values` - checkboxes (*"key"*:*"value"*)
-- `hideLabel` *[optional][boolean]* - shows/hides field label. Default value is *'false'* 
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
-  
-There is an ability to arrange controls with **columns** parameter.  
+- `hideLabel` *[optional][boolean]* - shows/hides field label. Default value is *'false'*
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*.
 
-   - `columns` *[optional][String/Number/Array]* - Specifies the number of columns to be created when displaying grouped radio controls using automatic layout. This parameter can take several types of values:  
-       - ***auto*** : The controls will be rendered one per column in one row and the width of each column will be evenly distributed within the overall *radiolist* field width. This is the default.  
-       - ***Number*** : If you specify a number (e.g., 3) that number of columns will be created and all controls will be automatically distributed among them creating new row upon filling out the third column. Thus if you have specified as values the 6 controls you will have 3 columns and 2 rows of controls.  
+There is an ability to arrange controls with **columns** parameter.
+
+   - `columns` *[optional][String/Number/Array]* - Specifies the number of columns to be created when displaying grouped radio controls using automatic layout. This parameter can take several types of values:
+       - ***auto*** : The controls will be rendered one per column in one row and the width of each column will be evenly distributed within the overall *radiolist* field width. This is the default.
+       - ***Number*** : If you specify a number (e.g., 3) that number of columns will be created and all controls will be automatically distributed among them creating new row upon filling out the third column. Thus if you have specified as values the 6 controls you will have 3 columns and 2 rows of controls.
        - ***Array*** : Object. You can also specify an array of column widths, mixing integer (fixed width) and float (percentage width) values as needed (e.g., [100, .25, .75]). Any integer values will be rendered first, then any float values will be calculated as a percentage of the remaining space. It's not mandatory to make float values to add up to 1 (100%) although if you want the controls to take up the entire *radiolist* field you should do so. The number of columns is equal to the number of array elements. The new rows are created if number of values are higher than number of columns like for ***Number*** value type.
-Defaults to: ***auto***.   
+Defaults to: ***auto***.
 
-Example using *columns* parameter for value type *Number*:  
+Example using *columns* parameter for value type *Number*:
 
 @@@
 ```yaml
@@ -683,7 +689,7 @@ settings:
     - type: displayfield
       value: 'radiolist:'
       hideLabel: true
-      
+
     - type: radiolist
       caption: 3 Columns
       name: test1
@@ -761,6 +767,7 @@ Grouping of the radio elements with <b>*showIf*</b> function.
     The *hideLabel* boolean is always *true* for this field.
 
 ![text](/img/radio-fieldset.jpg)
+
 @@@
 ```yaml
 fields:
@@ -783,7 +790,7 @@ fields:
           caption: Second String
           name: second
 ```
-``` json
+```json
 {
   "fields": [
     {
@@ -827,17 +834,17 @@ where:
 - `showIf` - conditional object that shows predefined elements by clicking on the *radio-fieldset* elements. Predefined elements can vary
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
 - `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
-- `caption` *[optional]* - field label.  
-  
-There is an ability to arrange controls with **columns** parameter.  
+- `caption` *[optional]* - field label.
 
-   - `columns` *[optional][String/Number/Array]* - Specifies the number of columns to be created when displaying grouped radio controls using automatic layout. This parameter can take several types of values:  
-       - ***auto*** : The controls will be rendered one per column in one row and the width of each column will be evenly distributed within the overall *radio-fieldset* field width. This is the default.  
-       - ***Number*** : If you specify a number (e.g., 3) that number of columns will be created and all controls will be automatically distributed among them creating new row upon filling out the third column. Thus if you have specified as values the 6 controls you will have 3 columns and 2 rows of controls.  
+There is an ability to arrange controls with **columns** parameter.
+
+   - `columns` *[optional][String/Number/Array]* - Specifies the number of columns to be created when displaying grouped radio controls using automatic layout. This parameter can take several types of values:
+       - ***auto*** : The controls will be rendered one per column in one row and the width of each column will be evenly distributed within the overall *radio-fieldset* field width. This is the default.
+       - ***Number*** : If you specify a number (e.g., 3) that number of columns will be created and all controls will be automatically distributed among them creating new row upon filling out the third column. Thus if you have specified as values the 6 controls you will have 3 columns and 2 rows of controls.
        - ***Array*** : Object. You can also specify an array of column widths, mixing integer (fixed width) and float (percentage width) values as needed (e.g., [100, .25, .75]). Any integer values will be rendered first, then any float values will be calculated as a percentage of the remaining space. It's not mandatory to make float values to add up to 1 (100%) although if you want the controls to take up the entire *radio-fieldset* field you should do so. The number of columns is equal to the number of array elements. The new rows are created if number of values are higher than number of columns like for ***Number*** value type.
-Defaults to: ***auto***.   
+Defaults to: ***auto***.
 
-Example above can be modified like: 
+Example above can be modified like:
 
 @@@
 ```yaml
@@ -862,7 +869,7 @@ fields:
           caption: Second String
           name: second
 ```
-``` json
+```json
 {
   "fields": [
     {
@@ -904,6 +911,7 @@ fields:
 
 Also there is an ability to set a `values` order. It needs to be defined like an array of objects.
 For example:
+
 @@@
 ```yaml
 values:
@@ -927,14 +935,15 @@ values:
 }
 ```
 @@!
- 
+
 
 ### dockertags
 Field for displaying **Docker tags** within the *[list](#list)* element.
 
 ![text](/img/dockertags.png)
 
-The *tags* of specific *nodeType* can be displayed like in the wizard above with no acquiring from the server:   
+The *tags* of specific *nodeType* can be displayed like in the wizard above with no acquiring from the server:
+
 @@@
 ```yaml
 type: install
@@ -942,7 +951,7 @@ name: Dockertags aquiring
 
 settings:
   fields:
-    - type: dockertags      
+    - type: dockertags
       nodeType: tomcat
       name: tag
       hidden: false
@@ -969,11 +978,11 @@ where:
 
 - `name` *[required]* - should have the *'tag'* value
 - `nodeType` *[required]* - defines the [*nodeType*](https://docs.cloudscripting.com/creating-manifest/basic-configs/#nodes-definition) the tags are aquired for
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*.
 
-With an **image** parameter tags can be acquired from:  
+With an **image** parameter tags can be acquired from:
 
-  * Docker Hub registry:  
+- Docker Hub registry:
 
 @@@
 ```yaml
@@ -982,7 +991,7 @@ name: Dockertags aquiring
 
 settings:
   fields:
-    - type: dockertags      
+    - type: dockertags
       image: jelastic/tomcat
       name: tag
 ```
@@ -1001,9 +1010,9 @@ settings:
   }
 }
 ```
-@@!  
-  
-  * Custom Registry:   
+@@!
+
+- Custom Registry:
 
 @@@
 ```yaml
@@ -1012,12 +1021,12 @@ name: Dockertags aquiring
 
 settings:
   fields:
-    - type: dockertags      
-      image: 
+    - type: dockertags
+      image:
         registry: example.com/dev/tomcat
         user: admin
         password: 123456
-        name: tag 
+        name: tag
 ```
 ```json
 {
@@ -1040,7 +1049,7 @@ settings:
 ```
 @@!
 
-An alias **nodetags** can be used instead of *dockertags* parameter:  
+An alias **nodetags** can be used instead of *dockertags* parameter:
 
 @@@
 ```yaml
@@ -1049,7 +1058,7 @@ name: Dockertags aquiring
 
 settings:
   fields:
-    - type: nodetags      
+    - type: nodetags
       nodeType: tomcat
       name: tag
 ```
@@ -1075,6 +1084,7 @@ settings:
 Compositefield is a container with specific functionality and structural components that constitute it as a block for application-oriented custom user interfaces.
 
 ![compositefield](/img/compositefield.jpg)
+
 @@@
 ```yaml
 fields:
@@ -1105,7 +1115,7 @@ fields:
         type: string
         hidden: false
 ```
-``` json
+```json
 {
   "fields": [
     {
@@ -1163,6 +1173,7 @@ where:
 Slider element as a form field.
 
 ![slider](/img/slider.jpg)</center>
+
 @@@
 ```yaml
 fields:
@@ -1175,7 +1186,7 @@ fields:
     name: slider
     hidden: false
 ```
-``` json
+```json
 {
   "fields": [
     {
@@ -1200,12 +1211,13 @@ where:
 - `useTips` - displaying tips for the value. Default value is *'true'*
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*.
 
 ### envlist
 Account environments list expanded within a drop-down element.
 
 ![envlist](/img/envlist.jpg)
+
 @@@
 ```yaml
 fields:
@@ -1217,7 +1229,7 @@ fields:
     hidden: false
     disableInactive: false
 ```
-``` json
+```json
 {
   "fields": [
     {
@@ -1233,6 +1245,7 @@ fields:
 }
 ```
 @@!
+
 where:
 
 - `caption` *[optional]* - field label
@@ -1245,7 +1258,7 @@ where:
     - *displayName* - environment *displayName*
     - *appid* - unique environment ID
 - `disableInactive` *[optional][boolean]* - '*false*' allows selection of any environment regardless its status, **true** restricts selection of not running environments (environments with a status other than *Running* will be displayed as disabled without the ability to be selected). The default value is '*true*'
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*  
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
 
 To perform actions on several environments the `multiSelect` option with related parameters should be used:
 
@@ -1271,7 +1284,7 @@ settings:
       required: true
       multiSelect: true
       delimiter: ","
-      
+
 onInstall:
   log: ${settings.envs}
 ```
@@ -1356,6 +1369,7 @@ fields:
 }
 ```
 @@!
+
 where:
 
 - `caption` *[optional]* - field label
@@ -1363,7 +1377,7 @@ where:
 - `disableInactive` [boolean] - an ability to chose inactive regions in combo. The default value is *'true'*
 - `selectFirstAvailable` - displaying a first available region in combo
 - `message` *[optional] [string]* - text to display after hover on disabled regions on expanded combo
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'* 
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
 - `filter` *[optional]:
     - `type` - filtering regions by virtualization types in combo [possible options: PVC, PCS_STORAGE, VZ6, VZ7], `vzTypes` is an alias.
     - `vzTypes` - virtualization types
@@ -1394,18 +1408,18 @@ settings:
     delimiter: ','
     min: 2
     max: 2
-    
+
 onInstall:
 - script: |
-    return { 
-      result: 0, 
+    return {
+      result: 0,
       regions: '${settings.regions}'.split(',')
     };
-    
+
 - set:
     region1: ${response.regions[0]}
     region2: ${response.regions[1]}
-    
+
 - install:
     region: ${this.region1}
     envName: env1-${fn.random}
@@ -1415,7 +1429,7 @@ onInstall:
       nodes:
         nodeType: apache2
         cloudlets: 8
-  
+
 - install:
     region: ${this.region2}
     envName: env2-${fn.random}
@@ -1491,7 +1505,7 @@ The field for displaying environment name, which comprises :
 @@@
 ```yaml
 fields:
-  - caption: Env Name    
+  - caption: Env Name
     type: envname
     randomName: true
     showFullDomain: true
@@ -1514,13 +1528,13 @@ fields:
 ```
 @@!
 
-where:  
-- `caption` *[optional]* - field label  
-- `region` *[optional]* - region name. The default value is default user's region  
-- `randomName` *[optional][boolean]* - autogenerate default value (e.g. env-1234567...). The default value is 'true'  
-- `showFullDomain` *[optional][boolean]* - show region's domain next to the env name.The default value is 'true'  
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*  
-- `dependsOn` *[optional]*- specifies dependency on *regionlist* field  
+where:
+- `caption` *[optional]* - field label
+- `region` *[optional]* - region name. The default value is default user's region
+- `randomName` *[optional][boolean]* - autogenerate default value (e.g. env-1234567...). The default value is 'true'
+- `showFullDomain` *[optional][boolean]* - show region's domain next to the env name.The default value is 'true'
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
+- `dependsOn` *[optional]*- specifies dependency on *regionlist* field
 
 The `dependsOn` property is used to handle the dependence between *envname* and *regionlist* parameters. Changing the Region field, the corresponding subdomain of the Environment field is revalidated and displayed respectively:
 
@@ -1530,13 +1544,13 @@ type: install
 name: Conditional filters for type "list"
 
 settings:
-  fields:    
+  fields:
     - caption: Region
       type: regionlist
       name: region
-      
-    - caption: Env Name    
-      type: envname            
+
+    - caption: Env Name
+      type: envname
       dependsOn: region
 ```
 ```json
@@ -1568,6 +1582,7 @@ settings:
 Field for opening a pop-up window via POST request to any external service. It provides a possibility to pass additional parameters.
 
 ![popupselector](/img/popupselector.jpg)
+
 @@@
 ```yaml
 fields:
@@ -1583,7 +1598,7 @@ fields:
       first: 1
       second: 2
 ```
-``` json
+```json
 {
   "fields": [
     {
@@ -1619,6 +1634,7 @@ where:
 
 The `textfield` value in `popupselector` element can be replaced by parameter from external `url` source. This parameter should be passed with `popupCallbackEvent` value.
 For example:
+
 @@@
 ```yaml
 type: update
@@ -1682,6 +1698,7 @@ where:
 Text field intended only for not validated and not submitted display.
 
 ![displayfield](/img/displayfield.jpg)
+
 @@@
 ```yaml
 fields:
@@ -1691,7 +1708,7 @@ fields:
     markup: display
     hidden: false
 ```
-``` json
+```json
 {
   "fields": [
     {
@@ -1711,12 +1728,13 @@ where:
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field
 - `markup` - value to initialize the field's display. Default value is *'undefined'*
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'* 
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
 
 ### spinner
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.
 
 ![spinner](/img/spinner.jpg)
+
 @@@
 ```yaml
 fields:
@@ -1729,7 +1747,7 @@ fields:
     decimalPrecision: ''
     hidden: false
 ```
-``` json
+```json
 {
   "fields": [
     {
@@ -1755,7 +1773,7 @@ where:
 - `max` - maximum spinner value
 - `increment` - increment value
 - `decimalPrecision` - precision value
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*.
 
 ### numberpicker
 (*number-picker* is an alias)
@@ -1763,6 +1781,7 @@ where:
 Field that enables to select a number from a predefined range.
 
 ![numberpicker](/img/numberpicker.jpg)
+
 @@@
 ```yaml
 fields:
@@ -1774,7 +1793,7 @@ fields:
     editable: true
     hidden: false
 ```
-``` json
+```json
 {
   "fields": [
     {
@@ -1798,7 +1817,7 @@ where:
 - `min` - minimum numberpicker value
 - `max` - maximum numberpicker value
 - `editable` *[optional] [boolean]* - enables/disables editing the *numberpicker* field. Default value is *'false'*
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*.
 
 ### hostpicker
 (*host-picker* is an alias)
@@ -1806,6 +1825,7 @@ where:
 Drop-down menu with environments hosts.
 
 ![hostpicker](/img/hostpicker.jpg)
+
 @@@
 ```yaml
 fields:
@@ -1815,7 +1835,7 @@ fields:
     editable: true
     hidden: false
 ```
-``` json
+```json
 {
   "fields": [
     {
@@ -1835,12 +1855,13 @@ where:
 - `name` *[optional]* - name of the field
 - `caption` *[optional]* - field label
 - `editable` *[optional] [boolean]* - enables/disables editing the *envlist* field. Default value is *'false'*
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*. 
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*.
 
 ### toggle
 Toggle element is a switch between two values.
 
 ![toggle](/img/toggle.jpg)</center>
+
 @@@
 ```yaml
 fields:
@@ -1850,7 +1871,7 @@ fields:
     value: true
     hidden: false
 ```
-``` json
+```json
 {
   "fields": [
     {
@@ -1864,54 +1885,57 @@ fields:
 }
 ```
 @@!
+
 where:
 
 - `name` *[optional]* - name of the field
 - `caption` *[optional]* - field label
 - `value` *[boolean]* - enables/disables toggle value. Default value is *'false'*
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*  
+- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
 
 ### tooltip
-  
+
 The field represents a question mark icon displaying the message in a popup on hover.
-Could be used inside **compositefield** in case field's **tooltip** property is not enough.   
+Could be used inside **compositefield** in case field's **tooltip** property is not enough.
 
 Properties:
 
-  - `text` [required] - a message to be displayed
-  - `minWidth` [optional] - The minimum width of the tip in pixels. Defaults to 45
-  - `maxWidth` [optional] - The maximum width of the tip in pixel. The maximum supported value is 500. Defaults to 400.
-  - `anchor` [optional] - aligns tooltip with question mark icon relative to the specified anchor points.  
-    The property sрould be specified as two anchor points separated by a dash. The first value is used as the tooltip's anchor point, and the second value is used as the question mark icon anchor point. Defaults to: **bl-t**.  
+- `text` [required] - a message to be displayed
+- `minWidth` [optional] - The minimum width of the tip in pixels. Defaults to 45
+- `maxWidth` [optional] - The maximum width of the tip in pixel. The maximum supported value is 500. Defaults to 400.
+- `anchor` [optional] - aligns tooltip with question mark icon relative to the specified anchor points.
+
+The property sрould be specified as two anchor points separated by a dash. The first value is used as the tooltip's anchor point, and the second value is used as the question mark icon anchor point. Defaults to: **bl-t**.
 
 **Available anchor points:**
 
-  - tl - the top left corner
-  - t - the center of the top edge
-  - tr - the top right corner
-  - l - the center of the left edge
-  - c - in the center of the element
-  - r - the center of the right edge
-  - bl - the bottom left corner
-  - b - the center of the bottom edge
-  - br - the bottom right corner
+- tl - the top left corner
+- t - the center of the top edge
+- tr - the top right corner
+- l - the center of the left edge
+- c - in the center of the element
+- r - the center of the right edge
+- bl - the bottom left corner
+- b - the center of the bottom edge
+- br - the bottom right corner
 
-In addition to the anchor points, the anchor parameter also supports the "**?**" character. If "*?*" is passed at the end of the position string (e.g. **l-r?**), the element will attempt to align as specified, but the position will be adjusted to constrain to the viewport if necessary. Note that the element being aligned might be swapped to align to a different position than that specified in order to enforce the viewport constraints.  
+In addition to the anchor points, the anchor parameter also supports the "**?**" character. If "*?*" is passed at the end of the position string (e.g. **l-r?**), the element will attempt to align as specified, but the position will be adjusted to constrain to the viewport if necessary. Note that the element being aligned might be swapped to align to a different position than that specified in order to enforce the viewport constraints.
 
-**Example**  
+**Example**
+
 @@@
 ```yaml
 type: install
 name: Inline Tooltip
 
 settings:
-  fields:      
+  fields:
     - type: compositefield
       caption: Composite Field
       items:
         - type: string
           placeholder: String
-          flex: 1          
+          flex: 1
         - type: tooltip
           text: Tooltip!
           hidden: false
@@ -1944,14 +1968,14 @@ settings:
 ```
 @@!
 
-Result:  
+Result:
 
 ![Tooltip-string](/img/tooltip-field-inline.png)</center>
 
 
-#### tooltip option   
-  
-The **tooltip** option is common to all field types:  
+#### tooltip option
+
+The **tooltip** option is common to all field types:
 
 ```
 tooltip: object/string
@@ -1959,10 +1983,10 @@ tooltip: object/string
 
 The tooltip for the field. Can be a config object or string.
 
-**Tooltip config object**:  
+**Tooltip config object**:
 
 ```
-text: string or localization object  
+text: string or localization object
 x: number
 y: number
 target: string
@@ -1970,45 +1994,47 @@ minWidth: number
 maxWidth: number
 anchor: string
 hidden: boolean
-```  
- where:   
- 
-  - `text` [required] - a message to be displayed  
-  -  `x` [optional] - left coordinate of question mark icon in pixels. Applicable only for tooltips with target: label. Defaults to: 3  
-  - `y` [optional] - top coordinate of question mark icon in pixels. Applicable only for tooltips with target: label. Defaults to: 1  
-  - `target` [optional] - the location where the message text should display. Must be one of the following values:
-     - `label` - add a question mark icon to the right of the field label, displaying the message in a popup on hover. This is the default  
-     - `side` - display a tip containing the message when the field receives focus. The tip is displayed to the right of the field by default (the tip position could be changed using anchor property). Defaults to: label  
-  - `minWidth` [optional] - The minimum width of the tip in pixels. Defaults to 45  
-  - `maxWidth` [optional] - The maximum width of the tip in pixel. The maximum supported value is 500. Defaults to 400  
-  - `anchor` [optional] - aligns tooltip with target element (question mark icon or the field itself) relative to the specified anchor points 
-  - `hidden` *[optional]*[boolean] - shows/hides tooltip sign. Default value is *'false'* 
-    The property sрould be specified as two anchor points separated by a dash. The first value is used as the tooltip's anchor point, and the second value is used as the target's anchor point (question mark icon or the field itself).  
+```
+
+where:
+
+- `text` [required] - a message to be displayed
+-  `x` [optional] - left coordinate of question mark icon in pixels. Applicable only for tooltips with target: label. Defaults to: 3
+- `y` [optional] - top coordinate of question mark icon in pixels. Applicable only for tooltips with target: label. Defaults to: 1
+- `target` [optional] - the location where the message text should display. Must be one of the following values:
+    - `label` - add a question mark icon to the right of the field label, displaying the message in a popup on hover. This is the default
+    - `side` - display a tip containing the message when the field receives focus. The tip is displayed to the right of the field by default (the tip position could be changed using anchor property). Defaults to: label
+- `minWidth` [optional] - The minimum width of the tip in pixels. Defaults to 45
+- `maxWidth` [optional] - The maximum width of the tip in pixel. The maximum supported value is 500. Defaults to 400
+- `anchor` [optional] - aligns tooltip with target element (question mark icon or the field itself) relative to the specified anchor points
+- `hidden` *[optional]*[boolean] - shows/hides tooltip sign. Default value is *'false'*
+
+The property sрould be specified as two anchor points separated by a dash. The first value is used as the tooltip's anchor point, and the second value is used as the target's anchor point (question mark icon or the field itself).
 
 **Available anchor points:**
 
-  - **tl** - the top left corner  
-  - **t** - the center of the top edge  
-  - **tr** - the top right corner  
-  - **l** - the center of the left edge  
-  - **c** - in the center of the element  
-  - **r** - the center of the right edge  
-  - **bl** - the bottom left corner  
-  - **b** - the center of the bottom edge  
-  - **br** - the bottom right corner  
+- **tl** - the top left corner
+- **t** - the center of the top edge
+- **tr** - the top right corner
+- **l** - the center of the left edge
+- **c** - in the center of the element
+- **r** - the center of the right edge
+- **bl** - the bottom left corner
+- **b** - the center of the bottom edge
+- **br** - the bottom right corner
 
-In addition to the **anchor** points, the anchor parameter also supports the "**?**" character. If "*?*" is passed at the end of the position string (e.g. *l-r?*), the element will attempt to align as specified, but the position will be adjusted to constrain to the viewport if necessary. Note that the element being aligned might be swapped to align to a different position than that specified in order to enforce the viewport constraints.  
+In addition to the **anchor** points, the anchor parameter also supports the "**?**" character. If "*?*" is passed at the end of the position string (e.g. *l-r?*), the element will attempt to align as specified, but the position will be adjusted to constrain to the viewport if necessary. Note that the element being aligned might be swapped to align to a different position than that specified in order to enforce the viewport constraints.
 
 **Default values:**
 
-  - *for target: label:* **bl-t**
-  - *for target: side:* **l-r**
+- *for target: label:* **bl-t**
+- *for target: side:* **l-r**
 
-Instead of the **config object**, the tooltip could be added as a **string** which represents a default tooltip with custom message to be displayed.  
+Instead of the **config object**, the tooltip could be added as a **string** which represents a default tooltip with custom message to be displayed.
 
 **Examples:**
 
-  * Tooltips (default)  
+- Tooltips (default)
 
 @@@
 ```yaml
@@ -2018,7 +2044,7 @@ name: 'Tooltips (default)'
 settings:
   fields:
   - caption: String
-    type: string        
+    type: string
     tooltip:  This is a string
 ```
 ```json
@@ -2038,11 +2064,12 @@ settings:
 ```
 @@!
 
-Result: 
-![Tooltip-string](/img/tooltip-string.png)</center>  
+Result:
 
-  - Tooltips (target: side)  
-  
+![Tooltip-string](/img/tooltip-string.png)
+
+- Tooltips (target: side)
+
 @@@
 ```yaml
 type: install
@@ -2051,8 +2078,8 @@ name: 'Tooltips (target: side)'
 settings:
   fields:
   - caption: String
-    type: string        
-    tooltip: 
+    type: string
+    tooltip:
         target: side
         text: This is a string
 ```
@@ -2075,11 +2102,13 @@ settings:
 }
 ```
 @@!
-Result:  
-![Tooltip-target-side](/img/tooltip-target-side.png)</center>  
 
-  * Tooltips Inside Composite Field   
-  
+Result:
+
+![Tooltip-target-side](/img/tooltip-target-side.png)
+
+- Tooltips Inside Composite Field
+
 @@@
 ```yaml
 type: install
@@ -2090,17 +2119,17 @@ settings:
   - type: compositefield
     caption: Composite Field
     defaultMargins: 0 0 0 5
-    items: 
+    items:
       - type: checkbox
         caption: Checkbox
-        tooltip: Checkbox!           
-        
-      - type: string 
+        tooltip: Checkbox!
+
+      - type: string
         placeholder: String
         flex: 1
         tooltip:
           target: side
-          text: String!          
+          text: String!
 
 ```
 ```json
@@ -2136,8 +2165,8 @@ settings:
 ```
 @@!
 
-Result:  
-![Tooltip-composit-field](/img/tooltip-composit-field.png)</center>  
+Result:
+![Tooltip-composit-field](/img/tooltip-composit-field.png)</center>
 
 ### owner
 
@@ -2172,15 +2201,15 @@ Changing the *Owner* field value results in the data will be re-rerquested with 
 Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit*  *onBeforeInstall*](events/#onbeforeinit) events.
 
 ## Target Nodes
-Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.  
+Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.
 
-Filtering for *targetNodes* is performed by:   
+Filtering for *targetNodes* is performed by:
 
-* object   
+- object
 
-* string   
-  
-**Object filtering** can be done by *nodeType*, *nodeGroup*, *dockerName* or *dockerTag*.  
+- string
+
+**Object filtering** can be done by *nodeType*, *nodeGroup*, *dockerName* or *dockerTag*.
 
 @@@
 ```yaml
@@ -2204,7 +2233,7 @@ onInstall:
     nodeGroup: cp
     path: "/tmp/newFile"
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "targetNodes",
@@ -2233,12 +2262,14 @@ onInstall:
   }
 }
 ```
-@@!  
-There are two possible ways to define objects as *targetNodes*. E.g. for object *nodeGroup*:   
-First sets the required *nodeGroup* in an array:  
+@@!
+
+There are two possible ways to define objects as *targetNodes*. E.g. for object *nodeGroup*:
+First sets the required *nodeGroup* in an array:
+
 @@@
 ```yaml
-targetNodes: 
+targetNodes:
   nodeGroup: [cp, bl]
 ```
 ```json
@@ -2253,11 +2284,11 @@ targetNodes:
 ```
 @@!
 
-Second sets the required <em>nodeGroups</em> being separated with commas:  
+Second sets the required <em>nodeGroups</em> being separated with commas:
 
 @@@
 ```yaml
-targetNodes: 
+targetNodes:
   nodeGroup: cp, bl
 ```
 ```json
@@ -2269,11 +2300,11 @@ targetNodes:
 ```
 @@!
 
-**String filtering** is performed by *nodeType* only and can be defined in an array or comma-separated list as well: 
+**String filtering** is performed by *nodeType* only and can be defined in an array or comma-separated list as well:
 
 @@@
 ```yaml
-targetNodes: [nginx, nginxphp] 
+targetNodes: [nginx, nginxphp]
 ```
 ```json
 {
@@ -2285,7 +2316,7 @@ targetNodes: [nginx, nginxphp]
 ```
 @@!
 
-or  
+or
 
 @@@
 ```yaml
@@ -2297,7 +2328,7 @@ targetNodes: nginx, nginxphp
 }
 ```
 @@!
-   
+
 **Example**
 
 Let’s suppose you have three environments with different topology.
@@ -2306,7 +2337,7 @@ Let’s suppose you have three environments with different topology.
 
 Within these environments, the same filtering of *targetNodes* for Add-On installation can be performed with the next examples.
 
-Object filtering example:  
+Object filtering example:
 
 @@@
 ```yaml
@@ -2319,7 +2350,7 @@ targetNodes:
 onInstall:
   cmd[nginx, mysql]: touch /tmp/newFile
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "targetNodes",
@@ -2333,7 +2364,8 @@ onInstall:
 ```
 @@!
 
-String filtering example:  
+String filtering example:
+
 @@@
 ```yaml
 type: update
@@ -2356,23 +2388,23 @@ onInstall:
 ```
 @@!
 
-In both these cases, the filtering result allows to install manifest on the environments that comprise either *nginx* load balancer node and/or *mysql* node. The other *nodeTypes* will be disabled for the installation on in any environment.  
+In both these cases, the filtering result allows to install manifest on the environments that comprise either *nginx* load balancer node and/or *mysql* node. The other *nodeTypes* will be disabled for the installation on in any environment.
 
-Nginx load balancer node is allowed.  
+Nginx load balancer node is allowed.
 ![TargetNodesFilter](/img/target-nodes-nginx.png)</center>
 
-MySQL database node is allowed.  
+MySQL database node is allowed.
 ![TargetNodesFilter](/img/target-nodes-mysql.png)</center>
 
-No nodes fit  the filtering rule in the environment "Production".  
+No nodes fit  the filtering rule in the environment "Production".
 ![TargetNodesFilter](/img/target-nodes-production.png)</center>
 
-In order to perform manifest installation on all nodes in any environment the wildcard character __'*'__ can be used or its alias __any__.  
+In order to perform manifest installation on all nodes in any environment the wildcard character __'*'__ can be used or its alias __any__.
 
 @@@
 ```yaml
-targetNodes: 
-  nodeGroup: '*'  
+targetNodes:
+  nodeGroup: '*'
 ```
 ```json
 {
@@ -2383,11 +2415,11 @@ targetNodes:
 ```
 @@!
 
-or  
+or
 
 @@@
 ```yaml
-targetNodes: any  
+targetNodes: any
 ```
 ```json
 {
@@ -2396,7 +2428,8 @@ targetNodes: any
 ```
 @@!
 
-If the installation is required to be performed at the environment level avoiding installation on any node despite the *nodeGroup* parameter is defined the special value **none** is used.  
+If the installation is required to be performed at the environment level avoiding installation on any node despite the *nodeGroup* parameter is defined the special value **none** is used.
+
 @@@
 ```yaml
 type: update
@@ -2419,23 +2452,23 @@ onInstall:
 ```
 @@!
 
-In this case *Nodes* field will be hidden.  
+In this case *Nodes* field will be hidden.
 
 ![TargetNodesFilter](/img/target-nodes-none.png)</center>
-  
+
 !!! note
 
-      In case of filtering by *nodeType* its *alias* cannot be used. See carefully list of available *nodeTypes* and their *aliases* in [Supported Stacks](https://docs.cloudscripting.com/creating-manifest/selecting-containers/#supported-stacks) section.  
+      In case of filtering by *nodeType* its *alias* cannot be used. See carefully list of available *nodeTypes* and their *aliases* in [Supported Stacks](https://docs.cloudscripting.com/creating-manifest/selecting-containers/#supported-stacks) section.
 
 ### showIf
 The **showIf** is an optional method that shows/hides additional fields depending on current field value.
 *showIf* represents an object of key/value pairs.
-Each **key** is a particular value of a field where *showIf* is set.  
-Each **value** is an array of Cloud Scripting supported fields.  
+Each **key** is a particular value of a field where *showIf* is set.
+Each **value** is an array of Cloud Scripting supported fields.
 
 A few usage examples with different fields.
 
-  * **list**
+- **list**
 
 @@@
 ```yaml
@@ -2443,7 +2476,7 @@ type: install
 name: ShowIf support with list field
 
 settings:
-  fields:    
+  fields:
     - type: list
       caption: List
       value: first
@@ -2493,14 +2526,14 @@ settings:
 ```
 @@!
 
-  * **string**
+- **string**
 
 @@@
 ```yaml
 type: install
 name: ShowIf support with string field
 
-settings:    
+settings:
   fields:
     - type: string
       caption: String
@@ -2534,19 +2567,19 @@ settings:
 }
 ```
 @@!
-  
 
-  * **toggle**
+
+- **toggle**
 
 @@@
 ```yaml
 type: install
 name: ShowIf support with toggle field
 
-settings:    
+settings:
   fields:
     - type: toggle
-      caption: Toggle      
+      caption: Toggle
       showIf:
         true:
           - type: string
@@ -2576,8 +2609,8 @@ settings:
 ```
 @@!
 
-  
-  * **envlist**. The **test.vip.jelastic.cloud** environment must exist to make triggering the *showIf*:
+
+- **envlist**. The **test.vip.jelastic.cloud** environment must exist to make triggering the *showIf*:
 
 @@@
 ```yaml
@@ -2589,7 +2622,7 @@ settings:
     - caption: Environments
       type: envlist
       showIf:
-        test.vip.jelastic.cloud: 
+        test.vip.jelastic.cloud:
           - type: string
             caption: String
 ```
@@ -2617,7 +2650,7 @@ settings:
 ```
 @@!
 
-In case *showIf* triggering is required by *Environment name* as a value:  
+In case *showIf* triggering is required by *Environment name* as a value:
 
 @@@
 ```yaml
@@ -2630,7 +2663,7 @@ settings:
       type: envlist
       valueField: shortdomain
       showIf:
-        test: 
+        test:
           - type: string
             caption: String
 ```
@@ -2670,6 +2703,7 @@ By default, this menu contains the <b>Uninstall</b> button. The rest of listed a
 The properties used for custom menus are the same as for custom buttons. However, the appropriate *menu* field (instead of *buttons*) should be specified to adjust functionality exactly within the menu list of the Add-ons plank.
 
 Sample to set custom buttons within the menu list of the Add-ons plank.
+
 @@@
 ```yaml
 type: update
@@ -2693,7 +2727,7 @@ menu:
   logsPath: "/var/log/add-on-action.log"
   logsNodeGroup: cp
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "Custom buttons",
@@ -2718,6 +2752,7 @@ menu:
 }
 ```
 @@!
+
 Refer to the *Custom Buttons* section below for a detailed description on the parameters set with the current sample.
 
 ## Custom Buttons
@@ -2735,6 +2770,7 @@ Such buttons execute operations that are predefined within a JPS manifest.
 <b>Templates</b>
 
 Sample to set buttons within the Add-ons plank.
+
 @@@
 ```yaml
 type: update
@@ -2754,7 +2790,7 @@ buttons:
     successText: Configuration saved successfully!
     href: http://example.com/
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "Custom buttons",
@@ -2777,6 +2813,7 @@ buttons:
 }
 ```
 @@!
+
 where:
 
 - `buttons` - button parameters array
@@ -2802,6 +2839,7 @@ It will be displayed after clicking the appropriate button for an add-on. Accord
 - `href` *[optional]* - external link that is opened in a new browser tab and is executed only if the *settings* field is absent. In case of *href* execution, an *action* will not be carried out.
 
 Another sample with additional configurations where parameters can be enabled only if the [*settings*](visual-settings/#custom-settings) field is present.
+
 @@@
 ```yaml
 type: update
@@ -2825,7 +2863,7 @@ buttons:
     logsPath: "/var/log/add-on-action.log"
     logsNodeGroup: cp
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "Custom buttons",
@@ -2852,6 +2890,7 @@ buttons:
 }
 ```
 @@!
+
 where:
 
 - `settings` - custom form ID. Default is *'main'*.
@@ -2870,6 +2909,7 @@ where:
 Settings section can include a few custom forms. Default settings form ID is *'main'*.
 
 **Example**
+
 @@@
 ```yaml
 type: update
@@ -2898,7 +2938,7 @@ buttons:
     submitButtonText: Button Text
     logsPath: "/var/lib/jelastic/keys/111"
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "Custom buttons",
@@ -2938,6 +2978,7 @@ buttons:
 }
 ```
 @@!
+
 Here, the *main settings* form appears during installation process.
 
 ![settingMain](/img/SettingsMain.jpg)
@@ -2952,6 +2993,7 @@ It is possible to customize the *success* text that is displayed upon successful
 A success text can be defined as plain text or Markdown syntax. More details about Markdown syntax in Cloud Scripting [here](visual-settings/#markdown-description)
 
 - Setting relative to the *baseUrl* link that points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.
+
 @@@
 ```yaml
 type: update
@@ -2963,7 +3005,7 @@ onInstall:
 
 success: README.md
 ```
-``` json
+```json
 {
     "type" : "update",
     "name" : "Success Text first example",
@@ -2977,6 +3019,7 @@ success: README.md
 @@!
 
 - Customizing the *success* response text by means of an external link.
+
 @@@
 ```yaml
 type: update
@@ -2987,7 +3030,7 @@ onInstall:
 
 success: https://github.com/jelastic-jps/lets-encrypt/raw/master/README.md
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "Success Text Second Example",
@@ -3014,7 +3057,7 @@ onInstall:
 success:
   text: https://github.com/jelastic-jps/lets-encrypt/raw/master/README.md
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "Success Text Second Example",
@@ -3027,7 +3070,9 @@ success:
 }
 ```
 @@!
+
  - message delivered via email notifying about the successful installation
+
 @@@
 ```yaml
 type: update
@@ -3043,7 +3088,7 @@ success:
     en: README.md
     ru: https://github.com/jelastic-jps/lets-encrypt/blob/master/README.md
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "Success Text Test 4",
@@ -3063,6 +3108,7 @@ success:
 @@!
 
 Email notification also can be customized in <a href="../handling-custom-responses/">custom responses</a>. In this case `email` value from handle custom response has a higher priority. For example:
+
 @@@
 ```yaml
 type: update
@@ -3094,16 +3140,16 @@ In the last example above, the localization functionality is applied, which depe
 
 Custom responses can be returned within <a href="../actions/#return" target="_blank">`return`</a> or <a href="../actions/#script" target="_blank">`script`</a> actions. More details about <a href="../handling-custom-responses/" target="_blank">custom responses here</a>.
 
-## JPS installation without environment  
-  
-In case no environment is specified in the manifest, the installation dialog has no *Environment Name* and *Region* fields, but the *[custom settings](/creating-manifest/visual-settings/#custom-settings)* can be used and displayed.  
-  
-![import-button.png](/img/addon-wo-env.png)  
-  
-The installation process for such **type:install** manifest is accompanied by installation process dialog which displays **Deploying {name}** instead of: *Preparing environment*, *Deploying{name}*, *Configuring environment*.  
-  
-![import-button.png](/img/deploy-addon-wo-env.png)  
-  
+## JPS installation without environment
+
+In case no environment is specified in the manifest, the installation dialog has no *Environment Name* and *Region* fields, but the *[custom settings](/creating-manifest/visual-settings/#custom-settings)* can be used and displayed.
+
+![import-button.png](/img/addon-wo-env.png)
+
+The installation process for such **type:install** manifest is accompanied by installation process dialog which displays **Deploying {name}** instead of: *Preparing environment*, *Deploying{name}*, *Configuring environment*.
+
+![import-button.png](/img/deploy-addon-wo-env.png)
+
 ## Markdown Description
 
 Markdown is a light language with plain text formatting syntax. This language is supported by Cloud Scripting technology to describe a `description`, `success texts` or show [`custom response` texts](visual-settings/#success-text-customization).
@@ -3172,14 +3218,9 @@ description: |
 
 More details about Markdown implementation can be found in CommonMark specification - [CommonMark](http://spec.commonmark.org/).
 
-<br>
-<h2>What's next?</h2>
+## What’s next?
 
 - Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples
-
 - See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions
-
 - Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements
-
 - Find out the correspondence between <a href="/virtuozzo-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>
-

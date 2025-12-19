@@ -421,7 +421,7 @@
 ## Configuring DB connections at compute nodes by pairs
 ```
 import com.hivext.api.environment.Environment;
-  
+
 var NODE_MISSION_COMPUTE = "cp",
     sPath = "${nginxphp.SERVER_WEBROOT}/ROOT/db-config.php",
     PROCEDURE_PROCESS_NODE = "replace",
@@ -442,11 +442,11 @@ if (!envInfoResponse.isOK()) {
 
 var nodes = envInfoResponse.getNodes();
 var iterator = nodes.iterator();
-  
+
 while(iterator.hasNext()) {
     var softNode = iterator.next();
     var softNodeProperties = softNode.getProperties();
-      
+
     if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeGroup())) {
         callArgs.push(softNode);
     }
@@ -494,7 +494,7 @@ return {
 #!/bin/bash
 curl -fs $2 -o /var/lib/mysql/wordpress.sql 2>&1
 
-mysql -uroot -p$1 << END 
+mysql -uroot -p$1 << END
     CREATE DATABASE wordpress;
     GRANT USAGE ON *.* TO wordpress@localhost  identified by 'password';
     grant all privileges on wordpress.* to wordpress@localhost;
@@ -506,9 +506,9 @@ mysql -uroot -p$1 << END
     UPDATE wordpress.wp_posts SET guid='$3?p=2';
     UPDATE wordpress.wp_posts SET guid='$3?p=3';
     UPDATE wordpress.wp_posts SET post_date_gmt=CURRENT_TIMESTAMP, post_date=CURRENT_TIMESTAMP, post_modified=CURRENT_TIMESTAMP;
-    UPDATE wordpress.wp_options SET option_value='$4://$5' WHERE option_name='home'; 
-    UPDATE wordpress.wp_options SET option_value='$4://$5' WHERE option_name='siteurl'; 
-    UPDATE wordpress.wp_options SET option_value='$6' WHERE option_name='admin_email'; 
+    UPDATE wordpress.wp_options SET option_value='$4://$5' WHERE option_name='home';
+    UPDATE wordpress.wp_options SET option_value='$4://$5' WHERE option_name='siteurl';
+    UPDATE wordpress.wp_options SET option_value='$6' WHERE option_name='admin_email';
     UPDATE wordpress.wp_users SET user_email='$6' WHERE user_login='admin';
     UPDATE wordpress.wp_users SET user_pass=MD5('$7') WHERE user_login='admin';
 END
@@ -604,11 +604,11 @@ if (!envInfoResponse.isOK()) {
 
 var nodes = envInfoResponse.getNodes();
 var iterator = nodes.iterator();
-  
+
 while(iterator.hasNext()) {
     var softNode = iterator.next();
     var softNodeProperties = softNode.getProperties();
-      
+
     if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeGroup())) {
         aComputeNodes.push(softNode);
     }
@@ -654,7 +654,7 @@ return {
 ```
 
 ## Get compute nodes Ids and mirrors compute node's address for rsync
-```  
+```
 var NODE_MISSION_COMPUTE = "cp",
     PROCEDURE_PROCESS_NODE = "installLsync",
     APPID = getParam("TARGET_APPID"),
@@ -672,11 +672,11 @@ if (!envInfoResponse.isOK()) {
 var nodes = envInfoResponse.getNodes();
 var iterator = nodes.iterator();
 var computeNodes = [];
-  
+
 while(iterator.hasNext()) {
     var softNode = iterator.next();
     var softNodeProperties = softNode.getProperties();
-      
+
     if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeGroup())) {
         computeNodes.push(softNode);
     }
@@ -694,18 +694,18 @@ for (var i = 0, n = computeNodes.length; i < n; i += 1) {
         }
     });
 
-} 
+}
 
 return {
     result : 0,
     onAfterReturn : {
         call : callArgs
     }
-}; 
+};
 ```
 
 ## Configure balancers after remove compute node
-```  
+```
 var NODE_MISSION_COMPUTE = "cp";
 var PROCEDURE_PROCESS_NODE = "BLConfiguring";
 var APPID = getParam("TARGET_APPID");
@@ -724,11 +724,11 @@ if (!envInfoResponse.isOK()) {
 var nodes = envInfoResponse.getNodes();
 var iterator = nodes.iterator();
 var computeNodes = [];
-  
+
 while(iterator.hasNext()) {
     var softNode = iterator.next();
     var softNodeProperties = softNode.getProperties();
-      
+
     if (NODE_MISSION_COMPUTE.equals(softNodeProperties.getNodeGroup())) {
         computeNodes.push(softNode);
     }

@@ -1,6 +1,6 @@
 # Swap domain between two environments
 
-``` json
+```json
 {
 	"type": "install",
 	"application": {

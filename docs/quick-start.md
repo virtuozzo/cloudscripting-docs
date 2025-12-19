@@ -1,22 +1,23 @@
-# Quick Start                                      
-    
-This guide is designed to assist you with the first steps towards implementing the Cloud Scripting solutions.                                     
+# Quick Start
 
-To give a try to Cloud Scripting right away, use a basic [Hello World](#hello-world-manifest-example) application sample, provided below.                                                                     
+This guide is designed to assist you with the first steps towards implementing the Cloud Scripting solutions.
 
-And to get up and ready with your own project, fulfill the following requirements:                                    
+To try Cloud Scripting right away, use a basic [Hello World](#hello-world-manifest-example) application sample, provided below.
 
-- decide upon a [scenario](/samples/) that will be delivered by means of CS                       
+And to get up and ready with your own project, complete the following requirements:
 
-- define a set of [properties](/creating-manifest/basic-configs/) properties</a>, essential for the proper application workflow                  
+- decide upon a [scenario](/samples/) that will be delivered by means of CS
 
-- declare the required properties within your [JPS manifest](/creating-manifest/basic-configs/) file                      
+- define a set of [properties](/creating-manifest/basic-configs/) properties</a>, essential for the proper application workflow
 
-- deploy the prepared manifest to a Platform via [import](#how-to-deploy-cs-solution-to-virtuozzo ) functionality                 
+- declare the required properties within your [JPS manifest](/creating-manifest/basic-configs/) file
 
-## Hello World Manifest Example                      
+- deploy the prepared manifest to a Platform via [import](#how-to-deploy-cs-solution-to-virtuozzo ) functionality
 
-Hello World is a simple ready-to-go application that you can use as a start point in exploring Cloud Scripting possibilities.                                              
+## Hello World Manifest Example
+
+Hello World is a simple ready-to-go application that you can use as a start point in exploring Cloud Scripting possibilities.
+
 @@@
 ```yaml
 type: install
@@ -53,60 +54,51 @@ onInstall:
 ```
 @@!
 
-The current manifest states to create a new environment, handled with **Apache 2** application server on top of **PHP 5.4** engine. After that, the platform will fetch the archive with Hello World app from the specified URL and deploy it to the Apache **ROOT** context.                                   
+The current manifest states to create a new environment, handled with **Apache 2** application server on top of **PHP 5.4** engine. After that, the platform will fetch the archive with Hello World app from the specified URL and deploy it to the Apache **ROOT** context.
 
-## How to Deploy CS Solution to Virtuozzo 
+## How to Deploy CS Solution to Virtuozzo
 
-In order to give a try to *Hello World* sample from above (or deploy your own application), enter your <a href="https://www.virtuozzo.com/application-platform-partners/" target="_blank">Virtuozzo Application Platform</a> account and perform the following steps.                    
+In order to give a try to *Hello World* sample from above (or deploy your own application), enter your <a href="https://www.virtuozzo.com/application-platform-partners/" target="_blank">Virtuozzo Application Platform</a> account and perform the following steps.
 
-1.&nbsp;Click the **Import** button at the top pane of the dashboard.                                             
+1.&nbsp;Click the **Import** button at the top pane of the dashboard.
 
-![import-button.png](img/import-button.png)                        
+![import-button.png](img/import-button.png)
 
-2.&nbsp;Within the opened frame, switch to the **JPS** tab and paste the code provided above (for Hello World app).                      
+2.&nbsp;Within the opened frame, switch to the **JPS** tab and paste the code provided above (for Hello World app).
 
-![import-manifest.png](img/import-manifest.png)               
+![import-manifest.png](img/import-manifest.png)
 
 !!! note
-    **Tip:** Subsequently, you can use this editor to adjust your manifest code on a fly. Clicking on the **Examples** string nearby will redirect you to <a href="https://github.com/jelastic-jps" target="_blank">Virtuozzo Application Platform JPS Collection</a> with numerous ready-to-go solutions (just import the link to the appropriate *manifest.jps* file to fetch the required one). Also, two more options for JPS deployment are available here:<ul><li><b>*Local File*</b> - to upload the locally stored manifest</li><li><b>*URL*</b> - to specify direct link to the required file</li></ul>        
+    **Tip:** Subsequently, you can use this editor to adjust your manifest code on the fly. Clicking on the **Examples** string nearby will redirect you to <a href="https://github.com/jelastic-jps" target="_blank">Virtuozzo Application Platform JPS Collection</a> with numerous ready-to-go solutions (just import the link to the appropriate *manifest.jps* file to fetch the required one). Also, two more options for JPS deployment are available here:<ul><li><b>*Local File*</b> - to upload the locally stored manifest</li><li><b>*URL*</b> - to specify direct link to the required file</li></ul>
 
-To proceed, click on **Import** in the bottom-right corner.                   
+To proceed, click on **Import** in the bottom-right corner.
 
-3.&nbsp;Within the installation confirmation window, specify domain name for a new **Environment**, set a **Display Name** (i.e. <a href="https://www.virtuozzo.com/application-platform-docs/environment-aliases/" target="_blank">alias</a>) for it and select the preferred <a href="https://www.virtuozzo.com/application-platform-docs/environment-regions/" target="_blank">region</a> (if available).                  
+3.&nbsp;Within the installation confirmation window, specify domain name for a new **Environment**, set a **Display Name** (i.e. <a href="https://www.virtuozzo.com/application-platform-docs/environment-aliases/" target="_blank">alias</a>) for it and select the preferred <a href="https://www.virtuozzo.com/application-platform-docs/environment-regions/" target="_blank">region</a> (if available).
 
-![hello-world.png](img/hello-world.png)                                        
+![hello-world.png](img/hello-world.png)
 
-4.&nbsp;Once the import is completed, you’ll get notification about successful package installation.                                                                              
+4.&nbsp;Once the import is completed, you’ll get notification about successful package installation.
 
-![open-in-browser.png](img/open-in-browser.png)               
+![open-in-browser.png](img/open-in-browser.png)
 
-Now you can **Open** your new environment in a **browser** and check the result.                         
+Now you can **Open** your new environment in a **browser** and check the result.
 
-![hello-world-startpage.png](img/hello-world-startpage.png)                                   
+![hello-world-startpage.png](img/hello-world-startpage.png)
 
-Just in the same way, you can build and run the solution you need - from frequent tasks automation to implementing complex CI/CD flows and clustering configurations.                               
-<br>    
-## Best Practises                        
+Similarly, you can build and run the solution you need - from frequent tasks automation to implementing complex CI/CD flows and clustering configurations.
 
-- For advanced coding possibilities, use either <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a> with automatic formatting and syntax highlighting or <a href="http://www.yaml.org/" target="_blank">YAML</a> parser (depending on the syntax you prefer to work with)                               
+## Best Practices
 
-- Leverage <a href="https://github.com/" target="_blank">GitHub</a> to store and manage your projects, manifests and scripts all together                              
+- For advanced coding possibilities, use either <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a> with automatic formatting and syntax highlighting or <a href="http://www.yaml.org/" target="_blank">YAML</a> parser (depending on the syntax you prefer to work with)
+- Leverage <a href="https://github.com/" target="_blank">GitHub</a> to store and manage your projects, manifests and scripts all together
+- Explore <a href="/samples/" target="_blank">Virtuozzo Application Platform Samples</a> to benefit from pre-composed operation and package examples
 
-- Explore <a href="/samples/" target="_blank">Virtuozzo Application Platform Samples</a> to benefit on preliminary composed operation and package examples                            
+## What’s next?
 
-<br> 
-<h2> What’s next?</h2>                                     
-
-- [Basic Configs](/creating-manifest/basic-configs/) - learn the minimum basis of any JSP manifest and find out about the differences between *Install* and *Update* package types                                                         
-
-- [Actions](/creating-manifest/actions/) - define the required configurations and application behavior with a set of prescribed procedures                                                           
-
-- [Custom Scripts](/creating-manifest/custom-scripts/) - integrate your own scripts, written in either *Java*, *Javascript* or *PHP*, to subsequently execute them within containers                                                              
-
-- [Events](/creating-manifest/events/) - automate application workflow by binding actions to particular application lifecycle events                                                     
-
-- [Visual Settings](/creating-manifest/visual-settings/) - customize your package visual layout                                                             
-
-- [Placeholders](/creating-manifest/placeholders/) - specify automatically substituted parameters for the required data to be fetched during installation                 
-
-- [Troubleshooting](/troubleshooting/) - appeal to this guide if you face any issue while working with Cloud Scripting                                                                           
+- [Basic Configs](/creating-manifest/basic-configs/) - learn the minimum basis of any JSP manifest and find out about the differences between *Install* and *Update* package types
+- [Actions](/creating-manifest/actions/) - define the required configurations and application behavior with a set of prescribed procedures
+- [Custom Scripts](/creating-manifest/custom-scripts/) - integrate your own scripts, written in either *Java*, *Javascript* or *PHP*, to subsequently execute them within containers
+- [Events](/creating-manifest/events/) - automate application workflow by binding actions to particular application lifecycle events
+- [Visual Settings](/creating-manifest/visual-settings/) - customize your package visual layout
+- [Placeholders](/creating-manifest/placeholders/) - specify automatically substituted parameters for the required data to be fetched during installation
+- [Troubleshooting](/troubleshooting/) - appeal to this guide if you face any issue while working with Cloud Scripting

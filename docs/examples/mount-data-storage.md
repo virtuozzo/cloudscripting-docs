@@ -1,8 +1,8 @@
-#Mount Data Storage
+# Mount Data Storage
 
 Mount `data` directory from `storage` node to application server node:
 
-``` json
+```json
 {
   "type": "install",
   "name": "mount Data Storage",

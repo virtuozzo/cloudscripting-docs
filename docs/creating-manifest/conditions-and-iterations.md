@@ -23,9 +23,9 @@ Let's assume that `x = 5`. The table below explains the comparison operators:
 | !==                | not equal value or not equal type   | x !== "5" | true     |
 | !==                | not equal value or not equal type   | x !== 8   | true     |
 |                    |                                     |           |          |
-| >                  | grater than                         | x > 8     | false    |
+| >                  | greater than                        | x > 8     | false    |
 | <                  | less than                           | x < 8     | true     |
-| >=                 | grater than or equal to             | x >= 8    | false    |
+| >=                 | greater than or equal to             | x >= 8    | false    |
 | <=                 | less than or equal to               | x <= 8    | true     |
 
 ## Logical Operators
@@ -42,28 +42,29 @@ The logical operators are used to determine the logic between variables or value
 
 
 
-## Conditions    
+## Conditions
 
-The main conditional statement is <b>*if*</b>. Within this parameter, all the available <a href="../placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
+The main conditional statement is ***if***. Within this parameter, all the available <a href="../placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used.
 
 For example
 ```
 if ('${env.protocol}' == 'http')
 ```
-or 
+or
 ```
 if (env.protocol == 'http')
 ```
 
-The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*</b> can be of any nesting level.                                             
+The main iterable object is ***ForEach***. Both ***if*** and ***ForEach*** can be of any nesting level.
 
-- If condition is specified incorrectly, the actions inside <b>*if*</b> statement are not executed. Herewith, the <a href="/troubleshooting/" target="_blank">Cloud Scripting Console</a> returns the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer proceeds to the next action.                            
+- If condition is specified incorrectly, the actions inside ***if*** statement are not executed. Herewith, the <a href="/troubleshooting/" target="_blank">Cloud Scripting Console</a> returns the ***'invalid condition'*** message with the root cause explanation. The application installer proceeds to the next action.
 
-- If condition is valid, but is not executed, the <b>*'condition is not met'*</b> message is logged.                                        
+- If condition is valid, but is not executed, the ***'condition is not met'*** message is logged.
 
-<b>Examples</b>    
+### Examples
 
-* Comparing global variables
+- Comparing global variables
+
 @@@
 ```yaml
 type: update
@@ -78,7 +79,7 @@ onInstall:
       if (user.uid > 1):
         log: "## p1 < p2 and ${user.email} is not a platform owner"
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "Comparing global variables",
@@ -99,14 +100,15 @@ onInstall:
 ```
 @@!
 
-* Checking environment status
+- Checking environment status
+
 @@@
 ```yaml
 onInstall:
   if (env.status == 1):
     log: "## Environment is running"
 ```
-``` json
+```json
 {
   "onInstall": {
     "if (env.status == 1)": {
@@ -116,15 +118,16 @@ onInstall:
 }
 ```
 @@!
-     
-* Checking Jelastic SSL status 
+
+- Checking Jelastic SSL status
+
 @@@
 ```yaml
 onInstall:
   if(!${env.ssl}):
     log: "## SSL Disabled"
 ```
-``` json
+```json
 {
   "onInstall": {
     "if(!${env.ssl})": {
@@ -135,14 +138,15 @@ onInstall:
 ```
 @@!
 
-* Validating environment domain
+- Validating environment domain
+
 @@@
 ```yaml
 onInstall:
   if (/^env-/.test(env.domain)):
     log: "## Env domain begins with env-: ${env.domain}"
 ```
-``` json
+```json
 {
   "onInstall": {
     "if (/^env-/.test(env.domain))": {
@@ -153,7 +157,8 @@ onInstall:
 ```
 @@!
 
-* Checking compute node OS type and balancer presence
+- Checking compute node OS type and balancer presence
+
 @@@
 ```yaml
 onInstall:
@@ -162,7 +167,7 @@ onInstall:
     if (nodes.bl && nodes.bl[0].nodeType == 'nginx' && nodes.cp.length > 1):
       log: "## Environment has Nginx balancer and more than one compute node"
 ```
-``` json
+```json
 {
   "onInstall": {
     "if (nodes.cp && nodes.cp[0].osType == 'LINUX')": [
@@ -180,9 +185,10 @@ onInstall:
 ```
 @@!
 
-### Nested Conditions   
-  
-Nesting of two <b>*if*</b> conditional statements - the first one is checking an environment for two compute nodes presence. If the nodes are available, the second one is checking the presence of the external IP address on the first balancer node and is logging the correspondent messages.          
+### Nested Conditions
+
+Nesting of two ***if*** conditional statements - the first one is checking an environment for two compute nodes presence. If the nodes are available, the second one is checking the presence of the external IP address on the first balancer node and is logging the correspondent messages.
+
 @@@
 ```yaml
 type: update
@@ -194,7 +200,7 @@ onInstall:
     - if (/^[0-9]{2,3}.[0-9]{2,3}.[0-9]{2,3}.[0-9]{2,3}/.test("${nodes.bl[0].extips}")):
         cmd [${nodes.cp[0].id}]: echo "Balancer node with external IP address!" >> /tmp/result.txt
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "Nesting example",
@@ -214,13 +220,14 @@ onInstall:
 ```
 @@!
 
-The operation result can be located within a <b>*result.txt*</b>  file that is automatically created in the master node (i.e. the first *cp* node) *<b>tmp</b>* directory.
+The operation result can be located within a ***result.txt***  file that is automatically created in the master node (i.e. the first *cp* node) ***tmp*** directory.
 ```
 Environment consists of two compute nodes
 Balancer node with external IP address!
 ```
 
-* Checking balancer stack type   
+- Checking balancer stack type
+
 @@@
 ```yaml
 type: update
@@ -231,7 +238,7 @@ onInstall:
     - script: |
         return { result: 0, error: "Environment balancer node is NGINX stack"};
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "Nginx stack",
@@ -248,7 +255,7 @@ onInstall:
 
 ### Else
 
-In case the conditional statement should be complemented by the opposite comparison and respective action the ***else*** conditional operator can be accommodated.  
+In case the conditional statement should be complemented by the opposite comparison and respective action the ***else*** conditional operator can be accommodated.
 
 @@@
 ```yaml
@@ -293,7 +300,7 @@ onInstall:
 ```json
 {
   "type": "install",
-  "name": "[CS:Conditions] - action 'else'",  
+  "name": "[CS:Conditions] - action 'else'",
   "globals": {
     "a": 1,
     "b": 2
@@ -373,8 +380,8 @@ onInstall:
 
 ### Elif
 
-An **elif** is a combination of ***if*** and ***else***. Similar to *else*, it extends the *if* statement to execute a different statement in case the original *if* expression evaluates to *FALSE*. However, unlike *else*, it will execute that alternative expression only if the *elif* conditional expression evaluates to *TRUE*. 
-There may be several *elif* within the same *if* statement. The first *elif* expression (if several exist) that evaluates to *TRUE* would be executed and the others will be skipped.  
+An **elif** is a combination of ***if*** and ***else***. Similar to *else*, it extends the *if* statement to execute a different statement in case the original *if* expression evaluates to *FALSE*. However, unlike *else*, it will execute that alternative expression only if the *elif* conditional expression evaluates to *TRUE*.
+There may be several *elif* within the same *if* statement. The first *elif* expression (if several exist) that evaluates to *TRUE* would be executed and the others will be skipped.
 
 @@@
 ```yaml
@@ -408,7 +415,7 @@ onInstall:
 - elif (globals.a == 1):
     assert: false
 ```
-``` json
+```json
 {
   "type": "install",
   "name": "[CS:Conditions] - action 'elif'",
@@ -476,7 +483,7 @@ onInstall:
 ### Single line *if* statement
 
 Another ***if-else*** combination can be represented as a single ***if*** statement when multiple conditions are required to be checked and the statements nesting is not mandatory.
-It is applicable if any condition or all of the conditions in the statement may lead to the same outcome. 
+It is applicable if any condition or all of the conditions in the statement may lead to the same outcome.
 For example:
 
 @@@
@@ -492,7 +499,7 @@ onInstall:
 - log: "-- single line if test --"
 - if ((globals.b == 2) && (globals.a == 1) && (globals.a == 1)):
     assert: true
-    
+
 - log: "-- another single line if test --"
 - if (globals.a == 2 || globals.a == 3 || globals.a == 1):
     assert: true
@@ -532,7 +539,8 @@ onInstall:
 
 ### ForEach
 
-The main iterable object is <b>*ForEach*</b> with the following map. 
+The main iterable object is ***ForEach*** with the following map.
+
 @@@
 ```yaml
 env:
@@ -550,7 +558,7 @@ event:
 
 this: {}
 ```
-``` json
+```json
 {
   "env": {
     "nodes": [],
@@ -568,16 +576,18 @@ this: {}
 }
 ```
 @@!
-where:    
 
-- `settings` *[optional]* - values of the fields that are predefined within a <a href="../visual-settings/" target="_blank">user settings form</a>          
-- `license [optional]` - link to fetch parameters that are specified within the <a href="../visual-settings/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through the `$(license.{any_name}` <a href="../placeholders/" target="_blank">placeholder</a>  within a manifest.       
-- `event [optional]` - object with <a href="../events/" target="_blank">events</a> that can be of two types, triggering a particular <a href="../actions/" target="_blank"> action</a> *before* or *after* the event execution       
-- `this [optional]` - object with parameters that are transmitted within the procedure body. See the full list of available<a href="../placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
+where:
 
-Iteration can be executed by <b>*env.nodes*</b>, <b>*nodes*</b>, <b>*env.contexts*</b>, and <b>*env.extdomains*</b> objects.                      
+- `settings` *[optional]* - values of the fields that are predefined within a <a href="../visual-settings/" target="_blank">user settings form</a>
+- `license [optional]` - link to fetch parameters that are specified within the <a href="../visual-settings/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through the `$(license.{any_name}` <a href="../placeholders/" target="_blank">placeholder</a>  within a manifest.
+- `event [optional]` - object with <a href="../events/" target="_blank">events</a> that can be of two types, triggering a particular <a href="../actions/" target="_blank"> action</a> *before* or *after* the event execution
+- `this [optional]` - object with parameters that are transmitted within the procedure body. See the full list of available<a href="../placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.
 
-Iteration set by <b>*env.extdomains*</b>.
+Iteration can be executed by ***env.nodes***, ***nodes***, ***env.contexts***, and ***env.extdomains*** objects.
+
+Iteration set by ***env.extdomains***.
+
 @@@
 ```yaml
 forEach(env.extdomains):
@@ -586,7 +596,7 @@ forEach(env.extdomains):
       path: /var/lib/jelastic/keys/${@i}.txt
       body: hello
 ```
-``` json
+```json
 {
   "forEach(env.extdomains)": [
     {
@@ -600,12 +610,14 @@ forEach(env.extdomains):
 }
 ```
 @@!
-where:    
 
-- `@i` - default iterator name 
-- `env.extdomains` - bound external domains 
+where:
 
-Iteration set by <b>*env.contexts*</b>.
+- `@i` - default iterator name
+- `env.extdomains` - bound external domains
+
+Iteration set by ***env.contexts***.
+
 @@@
 ```yaml
 forEach(env.contexts):
@@ -613,7 +625,7 @@ forEach(env.contexts):
     path: /var/lib/jelastic/keys/${@i.context}.txt
     body: 1
 ```
-``` json
+```json
 {
   "forEach(env.contexts)": {
     "writeFile [cp]": {
@@ -624,11 +636,13 @@ forEach(env.contexts):
 }
 ```
 @@!
-where:  
 
-- `env.contexts` -  list of contexts (applications) deployed to an environment                           
+where:
 
-The example of scaling nodes.                             
+- `env.contexts` -  list of contexts (applications) deployed to an environment
+
+The example of scaling nodes.
+
 @@@
 ```yaml
 type: update
@@ -645,7 +659,7 @@ actions:
         - {commands to rewrite all Compute nodes internal IP addresses in balancer configs. Here balancer node is NGINX}
         - /etc/init.d/nginx reload
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "Scaling Example",
@@ -664,19 +678,21 @@ actions:
 }
 ```
 @@!
-As a result of the *cmd* action, the compute nodes internal IP addresses are rewritten within balancer configs and NGINX balancer node is reloaded. The <b>*onAfterScaleIn*</b> and <b>*onAfterScaleOut*</b> events are executed immediately after adding or removing a compute node.   
+
+As a result of the *cmd* action, the compute nodes internal IP addresses are rewritten within balancer configs and NGINX balancer node is reloaded. The ***onAfterScaleIn*** and ***onAfterScaleOut*** events are executed immediately after adding or removing a compute node.
 
 ### By All Nodes
 
-Iteration by all nodes in an environment.    
+Iteration by all nodes in an environment.
 
-Iteration set by <b>*env.nodes*</b>.
+Iteration set by ***env.nodes***.
+
 @@@
 ```yaml
 forEach(env.nodes):
   cmd [${@i.id}]: echo ${@i.address} > /tmp/example.txt
 ```
-``` json
+```json
 {
   "forEach(env.nodes)": {
     "cmd [${@i.id}]": "echo ${@i.address} > /tmp/example.txt"
@@ -684,15 +700,17 @@ forEach(env.nodes):
 }
 ```
 @@!
-### By Compute Nodes 
+
+### By Compute Nodes
 
 Iteration by compute nodes with a custom iterator name.
+
 @@@
 ```yaml
 forEach(cp:nodes.cp):
   cmd [${@cp.id}]: echo ${@cp.address} > /tmp/example.txt
 ```
-``` json
+```json
 {
   "forEach(cp:nodes.cp)": {
     "cmd [${@cp.id}]": "echo ${@cp.address} > /tmp/example.txt"
@@ -700,10 +718,13 @@ forEach(cp:nodes.cp):
 }
 ```
 @@!
-where:   
-- `@cp [optional]` - custom iterator name. Also, target nodes can be set by type -*${@cp.nodeType}*, or group - *${@cp.nodeGroup}*.                                                    
+
+where:
+
+- `@cp [optional]` - custom iterator name. Also, target nodes can be set by type -*${@cp.nodeType}*, or group - *${@cp.nodeGroup}*.
 
 Custom iterator name can be used for nesting cycles one into another.
+
 @@@
 ```yaml
 type: update
@@ -714,7 +735,7 @@ onInstall:
     forEach(secondItem:env.nodes):
       log: ${@@item} - ${@@secondItem} - ${@}
 ```
-``` json
+```json
 {
   "type": "update",
   "name": "execution actions",
@@ -728,28 +749,24 @@ onInstall:
 }
 ```
 @@!
-where:   
 
-- `${@}` - iterator number current loop  
-- `${@@item}` - iterator number of the first loop 
-- `${@@secondItem}` - iterator number of the second loop 
+where:
 
-In this case, every environment node will have only one conjunction by <b>Node ID</b>.
+- `${@}` - iterator number current loop
+- `${@@item}` - iterator number of the first loop
+- `${@@secondItem}` - iterator number of the second loop
 
-The **ForEach** execution is recorded in the user console <a href="/troubleshooting/" target="_blank">log file</a> for convenient code debugging.           
+In this case, every environment node will have only one conjunction by **Node ID**.
+
+The **ForEach** execution is recorded in the user console <a href="/troubleshooting/" target="_blank">log file</a> for convenient code debugging.
 
 ![forEachCount](/img/forEachCount.jpg)
-<br>
-<h2>What's next?</h2>        
 
-- Read how to integrate your <a href="../custom-scripts/" target="_blank">Custom Scripts</a>                         
+## What’s next?
 
-- Learn how to сreate your custom <a href="../addons/" target="_blank">Add-Ons</a>                                         
-
-- Find out how to handle <a href="../handling-custom-responses/" target="_blank">Custom Responses</a>                       
-
-- See how to customize <a href="../visual-settings/" target="_blank">Visual Settings</a>                   
-
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                           
-
-- See the <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions                       
+- Read how to integrate your <a href="../custom-scripts/" target="_blank">Custom Scripts</a>
+- Learn how to сreate your custom <a href="../addons/" target="_blank">Add-Ons</a>
+- Find out how to handle <a href="../handling-custom-responses/" target="_blank">Custom Responses</a>
+- See how to customize <a href="../visual-settings/" target="_blank">Visual Settings</a>
+- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples
+- See the <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions

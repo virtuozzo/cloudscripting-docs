@@ -1,7 +1,7 @@
-#Install Add-on inside Manifest
+# Install Add-on inside Manifest
 
 This manifest provides an environment, that is handled with the help of **Apache PHP** application server, is powered by **PHP 7** engine version and has external IP address attached. Subsequently, Public IP address can be detached with the help of the **Add-on** button.
-``` json
+```json
 {
   "type": "install",
   "name": "example",
@@ -37,7 +37,7 @@ This manifest provides an environment, that is handled with the help of **Apache
   "success": "Environment with add-on installed successfully!"
 }
 ```
-   
-As a result, environment with the above-specified topology is successfully created. In order to disable the external IP feature, click the **Uninstall** button located within the **Add-ons** section.   
+
+As a result, environment with the above-specified topology is successfully created. In order to disable the external IP feature, click the **Uninstall** button located within the **Add-ons** section.
 
 ![addoninstall](/img/addon-install.jpg)

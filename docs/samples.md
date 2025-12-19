@@ -1,8 +1,8 @@
 # Samples
 
-<p dir="ltr" style="text-align: justify;">Cloud Scripting provides almost unlimited possibilities for environment management, allowing to automatically tune its settings, adjust topology, implement events handling and a lot of more. Having a pool of scripts with such basic actions prescribed can speed up the new projects development and become a basis for more complex automation solutions.</p>
+<p dir="ltr" style="text-align: justify;">Cloud Scripting provides almost unlimited possibilities for environment management, allowing you to automatically tune its settings, adjust topology, implement events handling and much more. Having a pool of scripts with such basic actions can speed up new project development and become a basis for more complex automation solutions.</p>
 
-<p dir="ltr" style="text-align: justify;">Below we provide a bunch of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions. You can use them independently or examine and adjust scripts to create your own packages.</p>
+<p dir="ltr" style="text-align: justify;">Below are categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions. You can use them independently or examine and adjust scripts to create your own packages.</p>
 
 ### Operation Examples
 
@@ -121,7 +121,7 @@
         </td>
     </tr>
     </table>
-    
+
 ### Complex Ready-to-Go Solutions
 
 <p dir="ltr" style="text-align: justify;">Virtuozzo Application Platform also provides you with a set of ready-to-go preconfigured CS packages for some of the most popular solutions’ deployment and CI/CD integration. All of them can be used without any additional changes and provide all of the options for being properly tuned according to your needs.</p>
@@ -202,11 +202,9 @@
 </table>
 
 <p dir="ltr" style="text-align: justify;">Сheck out even more awesome open source solutions within our <a href="https://github.com/jelastic-jps" target="_blank">JPS Collection</a> at GitHub (continuously updating). All the given packages are completely free to use and, simultaneously, represent a good basis to learn about the Cloud Scripting possibilities.</p>
-<br>
-<h2> What's next?</h2>
 
-- See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions                      
+## What’s next?
 
-- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                                      
-
-- Find out the correspondence between <a href="/virtuozzo-cs-correspondence/" target="_blank">CS & Virtuozzo Application Platform Versions</a>                                              
+- See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions
+- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements
+- Find out the correspondence between <a href="/virtuozzo-cs-correspondence/" target="_blank">CS & Virtuozzo Application Platform Versions</a>

@@ -1,5 +1,5 @@
 # Automated Environment Migration after Cloning
-``` json
+```json
 {
 	"type": "install",
 	"application": {

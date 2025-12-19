@@ -1,17 +1,17 @@
-#Add-ons
+# Add-ons
 
-##Free SSL Let’s Encrypt Add-On
+## Free SSL Let’s Encrypt Add-On
 
-Add-on to secure application with custom SSL for free.  
-Let’s Encrypt Add-on for Automatic SSL Configuration of Your Virtuozzo Application Platform Environment.  
+Add-on to secure application with custom SSL for free.
+Let’s Encrypt Add-on for Automatic SSL Configuration of Your Virtuozzo Application Platform Environment.
 This add-on allows to configure SSL for:
 
  - Internal environment address
  - Custom domains
- 
+
  See [more details about add-on installation and configuration here.](https://github.com/jelastic-jps/lets-encrypt)
 
-``` json
+```json
 {
   "type": "update",
   "id": "letsencrypt-ssl-addon",
@@ -118,9 +118,9 @@ This add-on allows to configure SSL for:
 }
 ```
 
-##Virtuozzo Application Platform Fail2Ban Add-on
+## Virtuozzo Application Platform Fail2Ban Add-on
 
-Add-on for advanced application security with automated firewall rules tuning.  
+Add-on for advanced application security with automated firewall rules tuning.
 Fail2Ban is an intrusion prevention software framework that protects computer servers from brute-force attacks.
 
 Type of nodes this add-on can be applied to:
@@ -133,7 +133,7 @@ In order to get this solution instantly deployed, click the "Get It Hosted Now" 
 
 [![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Ffail2ban%2Fraw%2Fmaster%2Fmanifest.jps)
 
-``` json
+```json
 {
   "type": "update",
   "Appversion": "0.9.6",
@@ -216,9 +216,9 @@ In order to get this solution instantly deployed, click the "Get It Hosted Now" 
 }
 ```
 
-##Managecat
+## Managecat
 
-Add-on to install Managecat administration console to manage and monitor Tomcat-based app servers.  
+Add-on to install Managecat administration console to manage and monitor Tomcat-based app servers.
 Managecat is an administration console platform to manage, monitor and troubleshoot Apache Tomcat, Apache TomEE and all other Apache Tomcat based application servers.
 
 Type of nodes this add-on can be applied to:
@@ -234,7 +234,7 @@ In order to get this solution instantly deployed, click the "Get It Hosted Now" 
 
 To deploy this package to Virtuozzo Application Platform Private Cloud, import [this JPS manifest](../../raw/master/manifest.jps) within your dashboard ([detailed instruction](https://www.virtuozzo.com/application-platform-docs/environment-import/)).
 
-``` json
+```json
 {
   "version": "0.4",
   "type": "update",
@@ -352,10 +352,10 @@ To deploy this package to Virtuozzo Application Platform Private Cloud, import [
 }
 ```
 
-##Managed Haproxy Load Balancer
+## Managed Haproxy Load Balancer
 
-Add-on to complement environment with auto-configured Docker Haproxy LB container.  
-``` json
+Add-on to complement environment with auto-configured Docker Haproxy LB container.
+```json
 {
   "type": "update",
   "name": "Managed Load Balancer for Payara micro cluster",
