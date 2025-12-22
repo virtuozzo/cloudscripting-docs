@@ -760,7 +760,7 @@ In this case, every environment node will have only one conjunction by **Node ID
 
 The **ForEach** execution is recorded in the user console <a href="/troubleshooting/" target="_blank">log file</a> for convenient code debugging.
 
-![forEachCount](/img/forEachCount.jpg)
+![foreachcount](/img/foreachcount.jpg)
 
 ## What’s next?
 

@@ -6,7 +6,7 @@ There are the following types of pop-up windows that emerge while custom respons
 
 - `info` - *information* pop-up window
 
-![SuccessText](/img/SuccessText.jpg)
+![SuccessText](/img/successtext.jpg)
 
 - `warning` - *warning* pop-up window with a custom message
 
@@ -19,13 +19,13 @@ There are the following types of pop-up windows that emerge while custom respons
 - `success` - *successfull* result window.
 When the action is executed with the expected result code, the *success* window is displayed.
 
-![success](/img/successResponse.jpg)
+![success](/img/successresponse.jpg)
 
 A **success** type has an optional parameter `email` - custom email can be sent after successful JPS installation.
 
 The *info*, *error* and *warning* pop-up windows emerge as a result of failed installation. The manifest installation is finished immediately, if any action returns the negative result code or code predefined in the *responses* block. Thus, the installation process is marked by the red cross like in the picture below.
 
-![success](/img/redCross.jpg)
+![success](/img/redcross.jpg)
 
 The basic custom response message can be returned in one string via the **return** or **script** action as follows.
 

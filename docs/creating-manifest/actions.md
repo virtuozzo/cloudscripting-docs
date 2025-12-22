@@ -1524,7 +1524,7 @@ actions:
 @@!
 
 The result is on the screen below:
-![setGlobals](/img/setGlobals.png)
+![setglobals](/img/setglobals.png)
 
 First action `setGlobals` defines new *global* values - variables *a* and *b*. Then a new placeholders *\${globals.a}* and *\${globals.b}* are available in all next actions (custom actions are included too).
 
@@ -2568,11 +2568,11 @@ onInstall:
 @@!
 
 Through the example above, the pop-up window with the following text is returned.
-![returnHelloWorld](/img/returnHelloWorld.jpg)
+![returnhelloworld](/img/returnhelloworld.jpg)
 
 The installation is not completed and the following installation window is displayed.
 
-![returnHelloWorld](/img/redCross.jpg)
+![redcross](/img/redcross.jpg)
 
 If the *return* action includes a string, then the response is displayed via the *error* pop-up window like in the screen-shot below.
 
@@ -2597,7 +2597,7 @@ onInstall:
 @@!
 
 The result window also returns the compute node's unique identifier at Virtuozzo Application Platform.
-![returnNodeId](/img/returnNodeId.jpg)
+![returnnodeid](/img/returnnodeid.jpg)
 
 If the action returns an object, a response code can be redefined. So the *message* or *result* code parameters are required in the *return* object. Herewith, a zero (0) *result* code is not passed to the response code.
 

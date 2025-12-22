@@ -85,11 +85,11 @@ Below you can find the graphs that list actions with adjoining events. Every act
 
 The ***changeTopology*** actions are considered quite time-consuming while being performed via the Virtuozzo Application Platform dashboard, therefore, you can automate their workflow with the following CS actions and related events.
 
-<center><img style="height: 900px; padding-right: 69px" src="/img/changeTopologySequence.png" alt="change topology sequence icon" /></center>
+<center><img style="height: 900px; padding-right: 69px" src="/img/changetopologysequence.png" alt="change topology sequence icon" /></center>
 
 Another demanded actions are related to scaling procedures. The following graph provides a sequence of scaling actions and related events.
 
-<center><img style="height: 626px" src="/img/scalingEventSequence.png" alt="scaling sequence icon" /></center>
+<center><img style="height: 626px" src="/img/scalingeventsequence.png" alt="scaling sequence icon" /></center>
 
 ## Event List
 

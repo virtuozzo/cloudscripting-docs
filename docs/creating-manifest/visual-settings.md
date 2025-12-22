@@ -526,7 +526,7 @@ settings:
 ### checkbox
 Single checkbox field.
 
-![text](/img/checkbox.jpg)
+![checkbox](/img/checkbox.jpg)
 
 @@@
 ```yaml
@@ -562,7 +562,7 @@ where:
 ### checkboxlist
 Checkbox grouping.
 
-![text](/img/checkboxlist.jpg)
+![checkboxlist](/img/checkboxlist.jpg)
 
 @@@
 ```yaml
@@ -629,7 +629,7 @@ Field parameters:
 ### radiolist
 Radio elements grouping.
 
-![text](/img/radiolist.jpg)
+![radiolist](/img/radiolist.jpg)
 
 @@@
 ```yaml
@@ -766,7 +766,7 @@ Grouping of the radio elements with <b>*showIf*</b> function.
 !!! note
     The *hideLabel* boolean is always *true* for this field.
 
-![text](/img/radio-fieldset.jpg)
+![radio-fieldset](/img/radio-fieldset.jpg)
 
 @@@
 ```yaml
@@ -906,7 +906,7 @@ fields:
 ```
 @@!
 
-![text](/img/radio-fieldset-2columns.png)
+![radio-fieldset-2columns](/img/radio-fieldset-2columns.png)
 
 
 Also there is an ability to set a `values` order. It needs to be defined like an array of objects.
@@ -940,7 +940,7 @@ values:
 ### dockertags
 Field for displaying **Docker tags** within the *[list](#list)* element.
 
-![text](/img/dockertags.png)
+![dockertags](/img/dockertags.png)
 
 The *tags* of specific *nodeType* can be displayed like in the wizard above with no acquiring from the server:
 
@@ -1970,7 +1970,7 @@ settings:
 
 Result:
 
-![Tooltip-string](/img/tooltip-field-inline.png)</center>
+![tooltip-field-inline](/img/tooltip-field-inline.png)</center>
 
 
 #### tooltip option
@@ -2066,7 +2066,7 @@ settings:
 
 Result:
 
-![Tooltip-string](/img/tooltip-string.png)
+![tooltip-string](/img/tooltip-string.png)
 
 - Tooltips (target: side)
 
@@ -2105,7 +2105,7 @@ settings:
 
 Result:
 
-![Tooltip-target-side](/img/tooltip-target-side.png)
+![tooltip-target-side](/img/tooltip-target-side.png)
 
 - Tooltips Inside Composite Field
 
@@ -2986,7 +2986,6 @@ Here, the *main settings* form appears during installation process.
 *config settings* form appears after clicking the <b>Configure</b> button within the Add-ons section.
 
 ![settingCustom](/img/settingscustom.png)
-![settingCustom](/img/SettingsCustom.jpg)
 
 ## Success Text Customization
 
