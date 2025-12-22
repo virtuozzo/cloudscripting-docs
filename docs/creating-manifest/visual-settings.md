@@ -2981,10 +2981,11 @@ buttons:
 
 Here, the *main settings* form appears during installation process.
 
-![settingMain](/img/SettingsMain.jpg)
+![settingMain](/img/settingsmain.png)
 
 *config settings* form appears after clicking the <b>Configure</b> button within the Add-ons section.
 
+![settingCustom](/img/settingscustom.png)
 ![settingCustom](/img/SettingsCustom.jpg)
 
 ## Success Text Customization
