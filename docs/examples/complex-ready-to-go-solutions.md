@@ -6,7 +6,7 @@ Highly reliable S3-compatible storage. S3 compatible object storage server in Do
 
 [![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/minio/master/manifest.jps&min-version=4.6)
 
-[More details here.](https://github.com/jelastic-jps/minio)
+[More details here](https://github.com/jelastic-jps/minio)
 
 ```json
 {
@@ -346,11 +346,12 @@ Automated CI from private GIT repository with authentication via private SSH key
 
 With a help of this JPS add-on, Git-Push-Deploy is installed on app server available in the environment to provide possibility to connect and update the project in automatic mode from Git repository after changes pushed.
 
-In order to get this solution instantly deployed, click the "Deploy" button, specify your email address within the widget, choose one of the [Jelastic Public Cloud providers](https://jelastic.cloud) and press Install.
+In order to get this solution instantly deployed, click the "Deploy" button, specify your email address within the widget, choose one of the [Virtuozzo Public Cloud providers](https://www.virtuozzo.com/application-platform-partners/) and press Install.
 
 [![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fgit-push-deploy%2Fraw%2Fmaster%2Fmanifest.jps)
 
 [More details here](https://github.com/jelastic-jps/git-push-deploy)
+
 ```json
 {
   "type": "install",
@@ -402,6 +403,7 @@ Bundle of WildFly application server and Maven build node for CD from GIT.
 [![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/wildfly/master/manifest.jps)
 
 [More details here](https://github.com/jelastic-jps/wildfly)
+
 ```json
 {
   "type": "install",
@@ -465,6 +467,7 @@ PostgreSQL Cluster with preconfigured Master-Slave replication.
 [![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fpostgresql-replication%2Fraw%2Fmaster%2Fmanifest.jps)
 
 [More details here](https://github.com/jelastic-jps/postgresql-replication)
+
 ```json
 {
   "type": "install",
@@ -855,7 +858,7 @@ The JPS package initially deploys one container with Payara Micro application se
 
 [![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic%2Fpayara%2Fraw%2Fmaster%2Fpayara-micro-cluster-multicast%2Fmanifest.jps&min-version=4.6&keys=app.mircloud.host;app.jelastic.dogado.eu;app.fi.cloudplatform.fi;app.appengine.flow.ch;app.jelasticlw.com.br;app.paas.datacenter.fi;app.whelastic.net)
 
-[More details here]([More details here](https://github.com/jelastic-jps/payara/tree/master/payara-server-full)
+[More details here](https://github.com/jelastic-jps/payara/tree/master/payara-server-full)
 
 ```json
 {
@@ -898,7 +901,7 @@ Autoscaling triggers + Load balancing and Auto-discovery + Storage container wit
 
 [![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/payara/master/payara-micro-cluster-advanced/manifest.jps&min-version=4.6&keys=app.mircloud.host;app.jelastic.dogado.eu;app.fi.cloudplatform.fi;app.appengine.flow.ch;app.jelasticlw.com.br;app.paas.datacenter.fi;app.whelastic.net)
 
-[More details here]([More details here](https://github.com/jelastic-jps/payara/tree/master/payara-micro-cluster-advanced)
+[More details here](https://github.com/jelastic-jps/payara/tree/master/payara-micro-cluster-advanced)
 
 ```json
 {

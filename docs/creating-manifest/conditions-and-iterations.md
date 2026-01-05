@@ -44,7 +44,7 @@ The logical operators are used to determine the logic between variables or value
 
 ## Conditions
 
-The main conditional statement is ***if***. Within this parameter, all the available <a href="../placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used.
+The main conditional statement is ***if***. Within this parameter, all the available [placeholders](../placeholders/) and their objective JavaScript  mappings can be used.
 
 For example
 ```
@@ -57,8 +57,7 @@ if (env.protocol == 'http')
 
 The main iterable object is ***ForEach***. Both ***if*** and ***ForEach*** can be of any nesting level.
 
-- If condition is specified incorrectly, the actions inside ***if*** statement are not executed. Herewith, the <a href="/troubleshooting/" target="_blank">Cloud Scripting Console</a> returns the ***'invalid condition'*** message with the root cause explanation. The application installer proceeds to the next action.
-
+- If condition is specified incorrectly, the actions inside ***if*** statement are not executed. Herewith, the [Cloud Scripting Console](/troubleshooting/) returns the ***'invalid condition'*** message with the root cause explanation. The application installer proceeds to the next action.
 - If condition is valid, but is not executed, the ***'condition is not met'*** message is logged.
 
 ### Examples
@@ -119,7 +118,7 @@ onInstall:
 ```
 @@!
 
-- Checking Jelastic SSL status
+- Checking built-in SSL status
 
 @@@
 ```yaml
@@ -579,10 +578,10 @@ this: {}
 
 where:
 
-- `settings` *[optional]* - values of the fields that are predefined within a <a href="../visual-settings/" target="_blank">user settings form</a>
-- `license [optional]` - link to fetch parameters that are specified within the <a href="../visual-settings/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through the `$(license.{any_name}` <a href="../placeholders/" target="_blank">placeholder</a>  within a manifest.
-- `event [optional]` - object with <a href="../events/" target="_blank">events</a> that can be of two types, triggering a particular <a href="../actions/" target="_blank"> action</a> *before* or *after* the event execution
-- `this [optional]` - object with parameters that are transmitted within the procedure body. See the full list of available<a href="../placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.
+- `settings` *[optional]* - values of the fields that are predefined within a [user settings form](../visual-settings/)
+- `license [optional]` - link to fetch parameters that are specified within the [prepopulate](../visual-settings/) custom script. It enables to customize default field values and can be further initialized through the `$(license.{any_name}` [placeholder](../placeholders/)  within a manifest.
+- `event [optional]` - object with [events](../events/) that can be of two types, triggering a particular [ action](../actions/) *before* or *after* the event execution
+- `this [optional]` - object with parameters that are transmitted within the procedure body. See the full list of available[ placeholders](../placeholders/#procedure-placeholders) on this parameter.
 
 Iteration can be executed by ***env.nodes***, ***nodes***, ***env.contexts***, and ***env.extdomains*** objects.
 
@@ -758,15 +757,15 @@ where:
 
 In this case, every environment node will have only one conjunction by **Node ID**.
 
-The **ForEach** execution is recorded in the user console <a href="/troubleshooting/" target="_blank">log file</a> for convenient code debugging.
+The **ForEach** execution is recorded in the user console [log file](/troubleshooting/) for convenient code debugging.
 
 ![foreachcount](/img/foreachcount.jpg)
 
 ## What’s next?
 
-- Read how to integrate your <a href="../custom-scripts/" target="_blank">Custom Scripts</a>
-- Learn how to сreate your custom <a href="../addons/" target="_blank">Add-Ons</a>
-- Find out how to handle <a href="../handling-custom-responses/" target="_blank">Custom Responses</a>
-- See how to customize <a href="../visual-settings/" target="_blank">Visual Settings</a>
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples
-- See the <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions
+- Read how to integrate your [Custom Scripts](../custom-scripts/)
+- Learn how to сreate your custom [Add-Ons](../addons/)
+- Find out how to handle [Custom Responses](../handling-custom-responses/)
+- See how to customize [Visual Settings](../visual-settings/)
+- Examine a bunch of [Samples](/samples/) with operation and package examples
+- See the [Troubleshooting](/troubleshooting/) for helpful tips and specific suggestions

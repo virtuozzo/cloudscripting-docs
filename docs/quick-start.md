@@ -7,11 +7,8 @@ To try Cloud Scripting right away, use a basic [Hello World](#hello-world-manife
 And to get up and ready with your own project, complete the following requirements:
 
 - decide upon a [scenario](/samples/) that will be delivered by means of CS
-
 - define a set of [properties](/creating-manifest/basic-configs/) properties</a>, essential for the proper application workflow
-
 - declare the required properties within your [JPS manifest](/creating-manifest/basic-configs/) file
-
 - deploy the prepared manifest to a Platform via [import](#how-to-deploy-cs-solution-to-virtuozzo ) functionality
 
 ## Hello World Manifest Example
@@ -58,26 +55,26 @@ The current manifest states to create a new environment, handled with **Apache 2
 
 ## How to Deploy CS Solution to Virtuozzo
 
-In order to give a try to *Hello World* sample from above (or deploy your own application), enter your <a href="https://www.virtuozzo.com/application-platform-partners/" target="_blank">Virtuozzo Application Platform</a> account and perform the following steps.
+In order to give a try to *Hello World* sample from above (or deploy your own application), enter your [Virtuozzo Application Platform](https://www.virtuozzo.com/application-platform-partners/) account and perform the following steps.
 
-1.&nbsp;Click the **Import** button at the top pane of the dashboard.
+1. Click the **Import** button at the top pane of the dashboard.
 
 ![import-button.png](img/import-button.png)
 
-2.&nbsp;Within the opened frame, switch to the **JPS** tab and paste the code provided above (for Hello World app).
+2. Within the opened frame, switch to the **JPS** tab and paste the code provided above (for Hello World app).
 
 ![import-manifest.png](img/import-manifest.png)
 
 !!! note
-    **Tip:** Subsequently, you can use this editor to adjust your manifest code on the fly. Clicking on the **Examples** string nearby will redirect you to <a href="https://github.com/jelastic-jps" target="_blank">Virtuozzo Application Platform JPS Collection</a> with numerous ready-to-go solutions (just import the link to the appropriate *manifest.jps* file to fetch the required one). Also, two more options for JPS deployment are available here:<ul><li><b>*Local File*</b> - to upload the locally stored manifest</li><li><b>*URL*</b> - to specify direct link to the required file</li></ul>
+    **Tip:** Subsequently, you can use this editor to adjust your manifest code on the fly. Clicking on the **Examples** string nearby will redirect you to [Virtuozzo Application Platform JPS Collection](https://github.com/jelastic-jps) with numerous ready-to-go solutions (just import the link to the appropriate *manifest.jps* file to fetch the required one). Also, two more options for JPS deployment are available here:<ul><li><b>*Local File*</b> - to upload the locally stored manifest</li><li><b>*URL*</b> - to specify direct link to the required file</li></ul>
 
 To proceed, click on **Import** in the bottom-right corner.
 
-3.&nbsp;Within the installation confirmation window, specify domain name for a new **Environment**, set a **Display Name** (i.e. <a href="https://www.virtuozzo.com/application-platform-docs/environment-aliases/" target="_blank">alias</a>) for it and select the preferred <a href="https://www.virtuozzo.com/application-platform-docs/environment-regions/" target="_blank">region</a> (if available).
+3. Within the installation confirmation window, specify domain name for a new **Environment**, set a **Display Name** (i.e. [alias](https://www.virtuozzo.com/application-platform-docs/environment-aliases/)) for it and select the preferred [region](https://www.virtuozzo.com/application-platform-docs/environment-regions/) (if available).
 
 ![hello-world.png](img/hello-world.png)
 
-4.&nbsp;Once the import is completed, you’ll get notification about successful package installation.
+4. Once the import is completed, you’ll get notification about successful package installation.
 
 ![open-in-browser.png](img/open-in-browser.png)
 
@@ -89,9 +86,9 @@ Similarly, you can build and run the solution you need - from frequent tasks aut
 
 ## Best Practices
 
-- For advanced coding possibilities, use either <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a> with automatic formatting and syntax highlighting or <a href="http://www.yaml.org/" target="_blank">YAML</a> parser (depending on the syntax you prefer to work with)
-- Leverage <a href="https://github.com/" target="_blank">GitHub</a> to store and manage your projects, manifests and scripts all together
-- Explore <a href="/samples/" target="_blank">Virtuozzo Application Platform Samples</a> to benefit from pre-composed operation and package examples
+- For advanced coding possibilities, use either [JSON Editor Online](http://jsoneditoronline.org/) with automatic formatting and syntax highlighting or [YAML](http://www.yaml.org/) parser (depending on the syntax you prefer to work with)
+- Leverage [GitHub](https://github.com/) to store and manage your projects, manifests and scripts all together
+- Explore [Virtuozzo Application Platform Samples](/samples/) to benefit from pre-composed operation and package examples
 
 ## What’s next?
 

@@ -1,6 +1,6 @@
 # Basic Configs
 
-The JPS manifest is a file with ***`.jps`*** extension, with code written in JSON or YAML format. This manifest file includes the links to the web only dependencies. This file can be named as you require.
+The JPS manifest is a file with `.jps` extension, with code written in JSON or YAML format. This manifest file includes the links to the web only dependencies. This file can be named as you require.
 
 The code should contain a set of strings needed for a successful installation of an application. The basis of the code is represented by the following string:
 
@@ -96,34 +96,34 @@ envGroups: array/string
 @@!
 
 - `type` *[optional]* - type of the application installation. Available values are **install** and **update**. More details described above
-- `version` - *[optional]* - JPS type supported by the Virtuozzo Application Platform. See the <a href="/virtuozzo-cs-correspondence/" target="_blank">correspondence between version</a> page
+- `version` - *[optional]* - JPS type supported by the Virtuozzo Application Platform. See the [correspondence between version](/virtuozzo-cs-correspondence/) page
 - `name` *[required]* - JPS custom name
 - `logo` *[optional]* - JPS image that will be displayed within custom add-ons
 - `description` - text string that describes a template. This section should always follow the template format version section
 - `homepage` *[optional]* - link to any external application source
 - `categories` - categories available for manifests filtering
-- `baseUrl` *[optional]* - custom <a href="#relative-links" target="_blank">relative links</a>
-- `settings` *[optional]* - custom form with <a href="../visual-settings/" target="_blank">predefined user input elements</a>
+- `baseUrl` *[optional]* - custom [relative links](#relative-links)
+- `settings` *[optional]* - custom form with [predefined user input elements](../visual-settings/)
 - `targetRegions` *[optional]* - filtering available regions on Virtuozzo Application Platform. This option will be used only with **type** `install`
     - `type` *[optional]* [array] - region's virtualization types
     - `name` *[optional]* [string] - text or JavaScript RegExp argument to filtering region's by name
 - `region` *[optional]* - region where an environment will be installed. This option will be used only with **type** `install`. `targetRegions` has a higher priority than `region`. So in case when both options have been set, regions will be filtered according to the `targetRegions` rules
 - `nodeGroupAlias` *[optional]* - an ability to set aliases for existing environment *nodeGroup*. More details [here](selecting-containers/#nodegroup-aliases)
 - `nodes` - an array to describe information about nodes for an installation. This option will be used only with **type** `install`
-- `engine` *[optional]* - engine <a href="../selecting-containers/#engine-versions" target="_blank">version</a>, by **default** `java6`
-- `ssl` *[optional]* - Jelastic SSL status for an environment, by **default** `false`. Parameter is available only with **type** `install` mode
+- `engine` *[optional]* - engine [version](../selecting-containers/#engine-versions), by **default** `java6`
+- `ssl` *[optional]* - built-in SSL status for an environment, by **default** `false`. Parameter is available only with **type** `install` mode
 - `ha` *[optional]* - high availability for Java stacks, by **default** `false`. Parameter is available only with **type** `install` mode
 - `displayName` *[optional]* - display name for an environment. Required option for **type** `install`
 - `skipNodeEmails` *[optional]* - an ability to skip sending emails about creating nodes. Emails are related only to nodes where implemented reset password functionality
 - `appVersion` *[optional]* - custom version of an application
-- `onInstall` *[optional]* - <a href="../events/#oninstall" target="_blank">event</a> that is an entry point for actions execution
+- `onInstall` *[optional]* - [event](../events/#oninstall) that is an entry point for actions execution
 - `startPage` *[optional]* - an [entry point](basic-configs/#entry-points) to be opened via the **Open in browser** button through a successful installation message
-- `actions` *[optional]* - objects to describe all <a href="../actions/#custom-actions" target="_blank">custom actions</a>
+- `actions` *[optional]* - objects to describe all [custom actions](../actions/#custom-actions)
 - `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation. More details [here](addons/)
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](visual-settings/#success-text-customization).
 - `mixins` *[optional]* - includes(mixes) the functionality and data from one manifest into another by URL or object. More details [here](mixins/)
 - `envGroups` *[optional]* [array] - specifies a new environment group(s) or existing one(s) the new environment will belong to. The parameter can be set up as a string or as an array of strings: *envGroups [“MyGroup”]* or *envGroups [“MyGroup”,”ParentGroup/ChildGroup”]*. See more regarding [environment groups management](https://www.virtuozzo.com/application-platform-docs/environment-groups-management/)
-- "..." - the list of <a href="../events/" target="_blank">events</a> can be predefined before manifest is installed
+- "..." - the list of [events](../events/) can be predefined before manifest is installed
 
 ### envGroups
 
@@ -171,12 +171,12 @@ The environment can be installed in case when the `type` parameter is set to **i
 
 The list of available parameters are:
 
-- `nodeType` *[required]* - the defined node type. The list of available stacks are <a href="../selecting-containers/#supported-stacks" target="_blank">here</a>
+- `nodeType` *[required]* - the defined node type. The list of available stacks are [here](../selecting-containers/#supported-stacks)
 - `cloudlets` *[required]* - a number of dynamic cloudlets. The recommended value is 4. The value below can disable some services in the container
 - `fixedCloudlets` *[optional]* - amount of fixed cloudlets. The default value is 1.
 - `count` *[optional]* - amount of nodes in one group. The default value is 1. To set up the parameter dynamically see an [example](#count-parameter).
 - `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any custom node group.
-- `displayName` *[optional]* - node's display name (i.e. <a href="https://www.virtuozzo.com/application-platform-docs/environment-aliases/" target="_blank">alias</a>)
+- `displayName` *[optional]* - node's display name (i.e. [alias](https://www.virtuozzo.com/application-platform-docs/environment-aliases/))
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*
 - `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`. Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](/creating-manifest/addons/)
 - `tag` *[optional]* - an image tag for `dokerized` Virtuozzo Application Platform templates with `nodeType` parameter. Full list of supported tag [here](/creating-manifest/selecting-containers/#dokerized-template-tags)
@@ -204,8 +204,8 @@ The following parameters are available for Docker and Docker-based nodes only:
 - `validation` *[optional]* - validates, sets, and limits node creation parameters in the layer. [Learn more](#validation)
 - `adminUrl` *[optional]* - allows to override default web administration interface URL for the *nodeTypes* that support such administration interface and it's applied to all nodes of the layer. Such *nodeTypes* are *[MySQL, MariaDB](https://www.virtuozzo.com/company/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/)*, *[PostgreSQL](https://www.virtuozzo.com/company/blog/postgresql-auto-clustering-master-slave-replication/)*, *[MongoDB](https://www.virtuozzo.com/company/blog/mongodb-auto-clustering/)*, *[LiteSpeed ADC](https://www.virtuozzo.com/company/blog/litespeed-web-adc-load-balancing/)*, *[LiteSpeed Web Server](https://www.virtuozzo.com/company/blog/litespeed-web-server/)*, *[Couchbase](https://www.virtuozzo.com/company/blog/auto-scalable-couchbase-cluster-in-docker-containers/)*, *[Redis](https://www.virtuozzo.com/application-platform-docs/redis/)*, *[GlassFish](https://www.virtuozzo.com/company/blog/glassfish-payara-clustering-automated/)*, *[WildFly](https://www.virtuozzo.com/company/blog/wildfly-managed-domain-automatic-clustering-scaling/)*, *[Payara](https://www.virtuozzo.com/company/blog/glassfish-payara-clustering-automated/)*. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)
 - `isClusterSupport` *[optional]* - allows to override clustering support and it's applied to all nodes of the layer. If the setting is not used the default value is applied. At the moment, it may be applicable to the templates with label “clusterEnabled = 1”. And setting can be used to hide the *Auto-Clustering* field for a DAS node. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)
-- `isRedeploySupport` *[optional]*[boolean] - disables [redeploy](https://www.virtuozzo.com/application-platform-docs/container-redeploy/) functionality through the *nodeGroup* settings. It is applicable to the all nodes of the layer. Respectively the **Redeploy** button gets hidden in the dashboard. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)
-- `isDeploySupport` *[optional]*[boolean] - disables deployment  through the *nodeGroup* settings. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)
+- `isRedeploySupport` *[optional] [boolean]* - disables [redeploy](https://www.virtuozzo.com/application-platform-docs/container-redeploy/) functionality through the *nodeGroup* settings. It is applicable to the all nodes of the layer. Respectively the **Redeploy** button gets hidden in the dashboard. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)
+- `isDeploySupport` *[optional] [boolean]* - disables deployment  through the *nodeGroup* settings. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)
 - `isResetServicePassword` *[optional]* - hides the password reset button on the UI. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings). Possible values:
     - *false* - hides buttons at all levels
     - *NODE* - displays buttons only at the level of the nodes (containers)
@@ -450,7 +450,7 @@ nodes:
     - `scheme` *[optional]* - configures database [replication scheme](https://www.virtuozzo.com/company/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/) for:
         - `mysql` - **slave** (Master-Slave), **master** (Master-Master), **single** (Single Primary Group Replication), **multi** (Multi Primary Group Replication)
         - `mariadb` - **slave** (Master-Slave), **master** (Master-Master), **galera** (Galera Cluster)
-    - `is_proxysql` *[optional][boolean]* - *'true'* adds a ProxySQL load balancer layer to the topology and configures it as an entry point to the database cluster
+    - `is_proxysql` *[optional] [boolean]* - *'true'* adds a ProxySQL load balancer layer to the topology and configures it as an entry point to the database cluster
     - `db_user` *[optional]* - sets up a database username. If not defined the system will generate one by default
     - `db_pass` *[optional]* - sets up a password for `db_user`. If not defined the system will generate one by default
 
@@ -681,7 +681,7 @@ Here:
 - `/example-path` - path to place the volume at a target node
 - `sourcePath` *[optional]* - default value that repeats volume path (*/example-path* in our sample)
 - `sourceNodeId` -  node identifier the volume should be mounted from (optional, in case of the `sourceNodeGroup` parameter using)
-- `sourceHost` *[optional]* - parameter for <a href="https://www.virtuozzo.com/application-platform-docs/configure-external-nfs-server/" target="_blank">external mounts</a> usage
+- `sourceHost` *[optional]* - parameter for [external mounts](https://www.virtuozzo.com/application-platform-docs/configure-external-nfs-server/) usage
 - `readOnly` - defines write data permissions at source node, the default value is `false`
 - `sourceNodeGroup` - any available *nodeGroup* within a source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.
 
@@ -864,7 +864,7 @@ where:
 
 #### Environment Variables
 
-Docker environment <a href="https://www.virtuozzo.com/application-platform-docs/container-variables/" target="_blank">variable</a> is an optional topology object. The *env* instruction allows to set the required environment variables to specified values.
+Docker environment [variable](https://www.virtuozzo.com/application-platform-docs/container-variables/) is an optional topology object. The *env* instruction allows to set the required environment variables to specified values.
 
 @@@
 ```yaml
@@ -896,7 +896,7 @@ nodes:
 ```
 @@!
 
-Environment variables can manage to control nodes availability from outside to the platform. <a href="https://www.virtuozzo.com/application-platform-docs/custom-firewall/" target="_blank">Virtuozzo Application Platform Container Firewall</a> feature was implemented in Virtuozzo Application Platform version 5.4 and new firewall rules can be set during creating new environment.
+Environment variables can manage to control nodes availability from outside to the platform. [Virtuozzo Application Platform Container Firewall](https://www.virtuozzo.com/application-platform-docs/custom-firewall/) feature was implemented in Virtuozzo Application Platform version 5.4 and new firewall rules can be set during creating new environment.
 
 The reserved environment variable for this option is - **JELASTIC_PORTS**. This parameter defines which ports will be added in *inbound* rules. All rules in this case will be added for both protocols (**TCP/UDP**).
 
@@ -929,7 +929,7 @@ All ports for output traffic are opened by default.
 
 Another one reserved environment variables is **ON_ENV_INSTALL**. This variable is responsible for executing new JPS installation after new nodeGroup (layer of nodes) has been created.
 
-This variable for **nodeGroup** can be set in JPS or via dashboard. More info about Docker configuration is Virtuozzo Application Platform dashboard <a href="https://www.virtuozzo.com/application-platform-docs/container-configuration/" target="_blank">here</a>.
+This variable for **nodeGroup** can be set in JPS or via dashboard. More info about Docker configuration is Virtuozzo Application Platform dashboard [here](https://www.virtuozzo.com/application-platform-docs/container-configuration/).
 
 !!! note
     > By default in manifest from the **ON_ENV_INSTALL** variable *\${settings.nodeGroup}* placeholder is defined. It will be a nodeGroup value where this manifest is executed.
@@ -1005,7 +1005,7 @@ Any number of custom parameters in *settings* can be set.
 
 #### Links
 
-Docker <a href="https://www.virtuozzo.com/application-platform-docs/container-links/" target="_blank">links</a> option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
+Docker [links](https://www.virtuozzo.com/application-platform-docs/container-links/) option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
 
 The example below illustrates the way to link *sql* and *memcached* nodes to *cp* container.
 
@@ -1279,10 +1279,10 @@ The error 11022 is ignored and gets to no crash report.
 
 ## Relative Links
 
-The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the <b>*baseUrl*</b> parameter or specified while <a href="https://www.virtuozzo.com/application-platform-docs/environment-export-import/" target="_blank">importing</a> a corresponding JPS file via the Virtuozzo Application Platform dashboard.
+The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the <b>*baseUrl*</b> parameter or specified while [importing](https://www.virtuozzo.com/application-platform-docs/environment-export-import/) a corresponding JPS file via the Virtuozzo Application Platform dashboard.
 
 !!! note
-    > The *baseUrl* value declared within the manifest has higher priority than installation via URL (i.e. <a href="https://www.virtuozzo.com/application-platform-docs/environment-export-import/" target="_blank">Import</a>).
+    > The *baseUrl* value declared within the manifest has higher priority than installation via URL (i.e. [Import](https://www.virtuozzo.com/application-platform-docs/environment-export-import/)).
 
 **Example**
 
@@ -1336,12 +1336,12 @@ There are the following Cloud Scripting rules applied while parsing file's relat
 - verification that the linked file’s text doesn't contain whitespaces (including tabs and line breaks)
 - verification that the linked file’s text doesn't contain semicolons and round brackets
 
-If installation is being run from <a href="https://github.com/jelastic-jps" target="_blank">*GitHub*</a> and URL includes <b>*‘/blob/’*</b>, it will be replaced with <b>*‘/raw/’*</b>. In case the `baseUrl` parameter is defined without a slash at the end, it will be added automatically.
+If installation is being run from [*GitHub*](https://github.com/jelastic-jps) and URL includes <b>*‘/blob/’*</b>, it will be replaced with <b>*‘/raw/’*</b>. In case the `baseUrl` parameter is defined without a slash at the end, it will be added automatically.
 
 There are a list of JPS blocks which can use resources from **related** links:
 
 - `logo` - JPS application image is shown while jps installation
-- `script` - <a href="../actions/#script" target="_blank">action</a>, for executing javascript and java scripts
+- `script` - [action](../actions/#script), for executing javascript and java scripts
 - `description` - information about JPS which is shown before install process
 - `success` - message after successful application installation
 
@@ -1368,7 +1368,7 @@ success: text.txt
 
 In the example above the text *text.txt* will be displayed in success email notification and in success window in Virtuozzo Application Platform dashboard when JPS installation will be finished. If URL `https://example.com/text.txt` has any content then that content will be displayed.
 
-The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the <a href="../actions/#cmd" target="_blank">*cmd*</a> and <a href="../actions/#script" target="_blank">*script*</a> actions).
+The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the [*cmd*](../actions/#cmd) and [*script*](../actions/#script) actions).
 
 For example:
 

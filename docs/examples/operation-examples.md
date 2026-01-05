@@ -3,6 +3,7 @@
 ## Automatic Vertical Scaling
 
 Adjust Nginx Balancer worker count depending on CPU cores amount:
+
 ```json
 {
   "type": "update",
@@ -538,6 +539,7 @@ Create and link WordPress Web and WordPress DB containers:
 ```
 
 **Configuring DB connections at compute nodes by pairs**
+
 ```
 import com.hivext.api.environment.Environment;
 
@@ -609,6 +611,7 @@ return {
 ```
 
 **Create database and restore dump**
+
 ```bash
 #!/bin/bash
 curl -fs $2 -o /var/lib/mysql/wordpress.sql 2>&1
@@ -635,6 +638,7 @@ END
 
 
 **Configuring DB's address on new compute nodes**
+
 ```
 var sPath = "${nginxphp.SERVER_WEBROOT}/ROOT/db-config.php",
     NODE_MISSION_COMPUTE = "cp",
@@ -706,6 +710,7 @@ return {
 ```
 
 **Get compute nodes Ids and mirrors compute node's address for rsync**
+
 ```
 var NODE_MISSION_COMPUTE = "cp",
     PROCEDURE_PROCESS_NODE = "installLsync",
@@ -757,6 +762,7 @@ return {
 ```
 
 **Configure balancers after remove compute node**
+
 ```
 var NODE_MISSION_COMPUTE = "cp",
     PROCEDURE_PROCESS_NODE = "BLConfiguring,
@@ -810,6 +816,7 @@ return {
 
 
 ## Automated Environment Migration after Cloning
+
 ```json
 {
   "type": "install",
@@ -1069,6 +1076,7 @@ return jelastic.env.control.CreateEnvironment(sAppid, sSession, sActionkey, oEnv
 ## Install Add-on inside Manifest
 
 This manifest provides an environment, that is handled with the help of **Apache PHP** application server, is powered by **PHP 7** engine version and has external IP address attached. Subsequently, Public IP address can be detached with the help of the **Add-on** button.
+
 ```json
 {
   "type": "install",

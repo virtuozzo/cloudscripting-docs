@@ -4,13 +4,9 @@
 Cloud Scripting enables you to create a personalized solution by customizing the visual appearance and textual content of such elements as:
 
 - [Fields](#string)
-
 - [Menus](#custom-menus)
-
 - [Buttons](#custom-buttons)
-
 - [Forms](#custom-settings)
-
 - [Messages](#success-text-customization)
 
 
@@ -107,14 +103,14 @@ where:
     - `name` - input field name, that can be used to get a parameter value through the `${settings.your_input_name}` placeholder within scripts or manifests
     - `default` *[optional]* - default value for the input field
     - `caption` *[optional]* - field label
-    - `tooltip` *[optional]*[object/string] - the tooltip for the field. Can be a config object or string. See more info on [tooltip](#tooltip)
+    - `tooltip` *[optional] [object/string]* - the tooltip for the field. Can be a config object or string. See more info on [tooltip](#tooltip)
     - `placeholder` *[optional]* - used [placeholders](placeholders/)
     - `required` *[optional]* - possible values are *'true'* & *'false'*. If left empty, default value is *'true'*
     - `regex` *[optional]* - constructor for testing JavaScript RegExp object that refers to the field value, during validation. If test fails, the field will be marked as invalid using *regexText*. The default value is *'null'*
     - `regexText` *[optional]* - displays error message in case of *regex* test failure during validation. The default value is *' '* (blank space)
-    - `hideLabel` *[optional]*[boolean] - shows/hides field label. Default value is *'false'*
-    - `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
-    - `disabled` *[optional]*[boolean] - enables/disables field control. Default value is *'false'*
+    - `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
+    - `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*
+    - `disabled` *[optional] [boolean]* - enables/disables field control. Default value is *'false'*
     - `vtype` *[optional]* - validation type name. Possible values:
         - `alpha` - keystroke filter mask applied to alpha input. The default value is *'/[a-z_]/i'*
         - `alphanum` - keystroke filter mask applied to alphanumeric input. The default value is *'/[a-z0-9_]/i'*
@@ -127,6 +123,7 @@ where:
     The *vtypeText* parameter is applied only in case the *vtype* value is set, otherwise, it is ignored.
 
 ### string
+
 Basic text field.
 
 ![string](/img/string.jpg)
@@ -162,6 +159,7 @@ where:
 - `hidden` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*.
 
 ### text
+
 Multiline text field.
 
 ![text](/img/text.jpg)
@@ -232,6 +230,7 @@ fields:
 
 
 ### list
+
 Drop-down list and a single-line textbox.
 
 ![list](/img/list.jpg)
@@ -273,9 +272,9 @@ where:
 - `values` - objects values (*"key"*:*"value"*)
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
 - `hidden` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
-- `editable` *[optional][boolean]* - allows to input custom values. Default value is *'false'*
+- `editable` *[optional] [boolean]* - allows to input custom values. Default value is *'false'*
 - `default` *[optional]: key* - sets the *"key"* which *"value"* will be displayed by default
-- `forceSelection` *[optional][boolean]* - *'true'* restricts the selected value to one of the values in the list, *'false'* allows to set arbitrary text into the field. Default value is *' false'*. The *forceSelection* parameter is applied only in case the `editable` parameter was set to 'true', otherwise, it is ignored. See [example](#forceselection)
+- `forceSelection` *[optional] [boolean]* - *'true'* restricts the selected value to one of the values in the list, *'false'* allows to set arbitrary text into the field. Default value is *' false'*. The *forceSelection* parameter is applied only in case the `editable` parameter was set to 'true', otherwise, it is ignored. See [example](#forceselection)
 - `dependsOn` *[optional]* - specifies values dependence between two lists by switching the values in one list thus the corresponding values are picked up in another. The values of the lists can be specified in non-strict and strict orders. See [examples](#dependson)
 
 #### Advanced Examples
@@ -524,6 +523,7 @@ settings:
 
 
 ### checkbox
+
 Single checkbox field.
 
 ![checkbox](/img/checkbox.jpg)
@@ -556,8 +556,8 @@ where:
 
 - `caption` *[optional]* - field label
 - `value` - enables or disables checkbox
-- `hideLabel` *[optional][boolean]* - shows/hides field label. Default value is *'false'*
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*.
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
+- `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*.
 
 ### checkboxlist
 Checkbox grouping.
@@ -621,9 +621,9 @@ Field parameters:
 - `caption` *[optional]* - field label
 - `values` - checkboxes (*"key"*:*"value"*)
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
-- `delimiter` *[optional][string]* - a delimiter character to separate list data items. The default value is a comma ','
-- `columns` *[optional][Number]* - specifies the number of columns to be created when displaying grouped checkboxlist controls using automatic layout. The default value is 1.
+- `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*
+- `delimiter` *[optional] [string]* - a delimiter character to separate list data items. The default value is a comma ','
+- `columns` *[optional] [Number]* - specifies the number of columns to be created when displaying grouped checkboxlist controls using automatic layout. The default value is 1.
 
 
 ### radiolist
@@ -666,15 +666,16 @@ where:
 
 - `caption` *[optional]* - field label
 - `values` - checkboxes (*"key"*:*"value"*)
-- `hideLabel` *[optional][boolean]* - shows/hides field label. Default value is *'false'*
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*.
+- `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
+- `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*.
 
 There is an ability to arrange controls with **columns** parameter.
 
-   - `columns` *[optional][String/Number/Array]* - Specifies the number of columns to be created when displaying grouped radio controls using automatic layout. This parameter can take several types of values:
-       - ***auto*** : The controls will be rendered one per column in one row and the width of each column will be evenly distributed within the overall *radiolist* field width. This is the default.
-       - ***Number*** : If you specify a number (e.g., 3) that number of columns will be created and all controls will be automatically distributed among them creating new row upon filling out the third column. Thus if you have specified as values the 6 controls you will have 3 columns and 2 rows of controls.
-       - ***Array*** : Object. You can also specify an array of column widths, mixing integer (fixed width) and float (percentage width) values as needed (e.g., [100, .25, .75]). Any integer values will be rendered first, then any float values will be calculated as a percentage of the remaining space. It's not mandatory to make float values to add up to 1 (100%) although if you want the controls to take up the entire *radiolist* field you should do so. The number of columns is equal to the number of array elements. The new rows are created if number of values are higher than number of columns like for ***Number*** value type.
+- `columns` *[optional] [String/Number/Array]* - Specifies the number of columns to be created when displaying grouped radio controls using automatic layout. This parameter can take several types of values:
+    - ***auto*** : The controls will be rendered one per column in one row and the width of each column will be evenly distributed within the overall *radiolist* field width. This is the default.
+    - ***Number*** : If you specify a number (e.g., 3) that number of columns will be created and all controls will be automatically distributed among them creating new row upon filling out the third column. Thus if you have specified as values the 6 controls you will have 3 columns and 2 rows of controls.
+    - ***Array*** : Object. You can also specify an array of column widths, mixing integer (fixed width) and float (percentage width) values as needed (e.g., [100, .25, .75]). Any integer values will be rendered first, then any float values will be calculated as a percentage of the remaining space. It's not mandatory to make float values to add up to 1 (100%) although if you want the controls to take up the entire *radiolist* field you should do so. The number of columns is equal to the number of array elements. The new rows are created if number of values are higher than number of columns like for ***Number*** value type.
+
 Defaults to: ***auto***.
 
 Example using *columns* parameter for value type *Number*:
@@ -833,15 +834,16 @@ where:
 - `values` - checkboxes (*"key"*:*"value"*)
 - `showIf` - conditional object that shows predefined elements by clicking on the *radio-fieldset* elements. Predefined elements can vary
 - `hideLabel` *[optional] [boolean]* - shows/hides field label. Default value is *'false'*
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
+- `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*
 - `caption` *[optional]* - field label.
 
 There is an ability to arrange controls with **columns** parameter.
 
-   - `columns` *[optional][String/Number/Array]* - Specifies the number of columns to be created when displaying grouped radio controls using automatic layout. This parameter can take several types of values:
-       - ***auto*** : The controls will be rendered one per column in one row and the width of each column will be evenly distributed within the overall *radio-fieldset* field width. This is the default.
-       - ***Number*** : If you specify a number (e.g., 3) that number of columns will be created and all controls will be automatically distributed among them creating new row upon filling out the third column. Thus if you have specified as values the 6 controls you will have 3 columns and 2 rows of controls.
-       - ***Array*** : Object. You can also specify an array of column widths, mixing integer (fixed width) and float (percentage width) values as needed (e.g., [100, .25, .75]). Any integer values will be rendered first, then any float values will be calculated as a percentage of the remaining space. It's not mandatory to make float values to add up to 1 (100%) although if you want the controls to take up the entire *radio-fieldset* field you should do so. The number of columns is equal to the number of array elements. The new rows are created if number of values are higher than number of columns like for ***Number*** value type.
+- `columns` *[optional] [String/Number/Array]* - Specifies the number of columns to be created when displaying grouped radio controls using automatic layout. This parameter can take several types of values:
+    - ***auto*** : The controls will be rendered one per column in one row and the width of each column will be evenly distributed within the overall *radio-fieldset* field width. This is the default.
+    - ***Number*** : If you specify a number (e.g., 3) that number of columns will be created and all controls will be automatically distributed among them creating new row upon filling out the third column. Thus if you have specified as values the 6 controls you will have 3 columns and 2 rows of controls.
+    - ***Array*** : Object. You can also specify an array of column widths, mixing integer (fixed width) and float (percentage width) values as needed (e.g., [100, .25, .75]). Any integer values will be rendered first, then any float values will be calculated as a percentage of the remaining space. It's not mandatory to make float values to add up to 1 (100%) although if you want the controls to take up the entire *radio-fieldset* field you should do so. The number of columns is equal to the number of array elements. The new rows are created if number of values are higher than number of columns like for ***Number*** value type.
+
 Defaults to: ***auto***.
 
 Example above can be modified like:
@@ -938,6 +940,7 @@ values:
 
 
 ### dockertags
+
 Field for displaying **Docker tags** within the *[list](#list)* element.
 
 ![dockertags](/img/dockertags.png)
@@ -978,7 +981,7 @@ where:
 
 - `name` *[required]* - should have the *'tag'* value
 - `nodeType` *[required]* - defines the [*nodeType*](https://docs.cloudscripting.com/creating-manifest/basic-configs/#nodes-definition) the tags are aquired for
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*.
+- `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*.
 
 With an **image** parameter tags can be acquired from:
 
@@ -1081,6 +1084,7 @@ settings:
 
 
 ### compositefield
+
 Compositefield is a container with specific functionality and structural components that constitute it as a block for application-oriented custom user interfaces.
 
 ![compositefield](/img/compositefield.jpg)
@@ -1167,12 +1171,13 @@ where:
 - `defaultPadding` *[optional]* - default paddings for items. Default value is *'0'*
 - `defaultFlex` *[optional]* - horizontal flex for items
 - `items` - elements
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
+- `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*
 
 ### slider
+
 Slider element as a form field.
 
-![slider](/img/slider.jpg)</center>
+![slider](/img/slider.jpg)
 
 @@@
 ```yaml
@@ -1211,9 +1216,10 @@ where:
 - `useTips` - displaying tips for the value. Default value is *'true'*
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*.
+- `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*.
 
 ### envlist
+
 Account environments list expanded within a drop-down element.
 
 ![envlist](/img/envlist.jpg)
@@ -1250,22 +1256,22 @@ where:
 
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field
-- `editable` *[optional][boolean]* - enables/disables the *envlist* field editing. Default value is *'false'*
-- `valueField` *[optional][string]* - value from environment information, which will be sent to a server. Default value is *'domain'*. Available values are:
+- `editable` *[optional] [boolean]* - enables/disables the *envlist* field editing. Default value is *'false'*
+- `valueField` *[optional] [string]* - value from environment information, which will be sent to a server. Default value is *'domain'*. Available values are:
     - *iconCls* - CSS class
     - *isRunning* - checking whether environment status is *running*
     - *shortdomain* - short environment domain name (without platform URL)
     - *displayName* - environment *displayName*
     - *appid* - unique environment ID
-- `disableInactive` *[optional][boolean]* - '*false*' allows selection of any environment regardless its status, **true** restricts selection of not running environments (environments with a status other than *Running* will be displayed as disabled without the ability to be selected). The default value is '*true*'
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
+- `disableInactive` *[optional] [boolean]* - '*false*' allows selection of any environment regardless its status, **true** restricts selection of not running environments (environments with a status other than *Running* will be displayed as disabled without the ability to be selected). The default value is '*true*'
+- `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*
 
 To perform actions on several environments the `multiSelect` option with related parameters should be used:
 
-- `multiSelect` *[optional][boolean]* - provides an ability to choose several environment at once
-- `delimiter` *[optional][string]* - a delimiter character to separate list data items. The default value is a comma ','
-- `min` *[optional][number]* - minimum number of selected environments, required to begin installation
-- `max` *[optional][number]* - maximum number of selected environments, exceeding this number doesn’t allow to begin installation
+- `multiSelect` *[optional] [boolean]* - provides an ability to choose several environment at once
+- `delimiter` *[optional] [string]* - a delimiter character to separate list data items. The default value is a comma ','
+- `min` *[optional] [number]* - minimum number of selected environments, required to begin installation
+- `max` *[optional] [number]* - maximum number of selected environments, exceeding this number doesn’t allow to begin installation
 
 Example:
 
@@ -1314,6 +1320,7 @@ onInstall:
 @@!
 
 ### regionlist
+
 An available region list for a current account where new environments can be installed.
 
 @@@
@@ -1377,7 +1384,7 @@ where:
 - `disableInactive` [boolean] - an ability to chose inactive regions in combo. The default value is *'true'*
 - `selectFirstAvailable` - displaying a first available region in combo
 - `message` *[optional] [string]* - text to display after hover on disabled regions on expanded combo
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
+- `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*
 - `filter` *[optional]:
     - `type` - filtering regions by virtualization types in combo [possible options: PVC, PCS_STORAGE, VZ6, VZ7], `vzTypes` is an alias.
     - `vzTypes` - virtualization types
@@ -1391,7 +1398,7 @@ where:
     - `isRegionMigrationAllowed` *[boolean]* - display regions where migration is allowed
     - `region` *[number]* - filtering by region identifier
 
-There is an ability to carry out actions on the environments in several regions at once with parameter `multiSelect:`**true** :
+There is an ability to carry out actions on the environments in several regions at once with parameter `multiSelect:`**true**:
 
 @@@
 ```yaml
@@ -1500,6 +1507,7 @@ onInstall:
 @@!
 
 ### envname
+
 The field for displaying environment name, which comprises :
 
 @@@
@@ -1529,11 +1537,12 @@ fields:
 @@!
 
 where:
+
 - `caption` *[optional]* - field label
 - `region` *[optional]* - region name. The default value is default user's region
-- `randomName` *[optional][boolean]* - autogenerate default value (e.g. env-1234567...). The default value is 'true'
-- `showFullDomain` *[optional][boolean]* - show region's domain next to the env name.The default value is 'true'
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
+- `randomName` *[optional] [boolean]* - autogenerate default value (e.g. env-1234567...). The default value is 'true'
+- `showFullDomain` *[optional] [boolean]* - show region's domain next to the env name.The default value is 'true'
+- `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*
 - `dependsOn` *[optional]*- specifies dependency on *regionlist* field
 
 The `dependsOn` property is used to handle the dependence between *envname* and *regionlist* parameters. Changing the Region field, the corresponding subdomain of the Environment field is revalidated and displayed respectively:
@@ -1577,6 +1586,7 @@ settings:
 
 
 ### popupselector
+
 (*popup-selector* is an alias)
 
 Field for opening a pop-up window via POST request to any external service. It provides a possibility to pass additional parameters.
@@ -1684,15 +1694,16 @@ In the example above, the external source should return a URL with such paramete
 
 A full external resource link should be like in the example below:
 ```
-http://{Jelastic_Platform_URL} + "fireevent?event=click&value=hello"
+http://{Platform_URL} + "fireevent?event=click&value=hello"
 ```
 where:
 
-- `Jelastic_Platform_URL` - Virtuozzo Application Platform Dashboard URL where manifest is executed
+- `Platform_URL` - Virtuozzo Application Platform Dashboard URL where manifest is executed
 - `click` - event name which is handled in manifest in `popupCallbackEvent` parameter
 - `value` - type is **string**. The `textfield` will be filled by it when button "Open" will be applied.
 
 ### displayfield
+
 (*spacer* is an alias)
 
 Text field intended only for not validated and not submitted display.
@@ -1728,9 +1739,10 @@ where:
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field
 - `markup` - value to initialize the field's display. Default value is *'undefined'*
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
+- `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*
 
 ### spinner
+
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.
 
 ![spinner](/img/spinner.jpg)
@@ -1773,9 +1785,10 @@ where:
 - `max` - maximum spinner value
 - `increment` - increment value
 - `decimalPrecision` - precision value
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*.
+- `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*.
 
 ### numberpicker
+
 (*number-picker* is an alias)
 
 Field that enables to select a number from a predefined range.
@@ -1817,9 +1830,10 @@ where:
 - `min` - minimum numberpicker value
 - `max` - maximum numberpicker value
 - `editable` *[optional] [boolean]* - enables/disables editing the *numberpicker* field. Default value is *'false'*
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*.
+- `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*.
 
 ### hostpicker
+
 (*host-picker* is an alias)
 
 Drop-down menu with environments hosts.
@@ -1855,12 +1869,13 @@ where:
 - `name` *[optional]* - name of the field
 - `caption` *[optional]* - field label
 - `editable` *[optional] [boolean]* - enables/disables editing the *envlist* field. Default value is *'false'*
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*.
+- `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*.
 
 ### toggle
+
 Toggle element is a switch between two values.
 
-![toggle](/img/toggle.jpg)</center>
+![toggle](/img/toggle.jpg)
 
 @@@
 ```yaml
@@ -1891,7 +1906,7 @@ where:
 - `name` *[optional]* - name of the field
 - `caption` *[optional]* - field label
 - `value` *[boolean]* - enables/disables toggle value. Default value is *'false'*
-- `hidden` *[optional]*[boolean] - shows/hides field with its label. Default value is *'false'*
+- `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*
 
 ### tooltip
 
@@ -1970,7 +1985,7 @@ settings:
 
 Result:
 
-![tooltip-field-inline](/img/tooltip-field-inline.png)</center>
+![tooltip-field-inline](/img/tooltip-field-inline.png)
 
 
 #### tooltip option
@@ -1999,7 +2014,7 @@ hidden: boolean
 where:
 
 - `text` [required] - a message to be displayed
--  `x` [optional] - left coordinate of question mark icon in pixels. Applicable only for tooltips with target: label. Defaults to: 3
+- `x` [optional] - left coordinate of question mark icon in pixels. Applicable only for tooltips with target: label. Defaults to: 3
 - `y` [optional] - top coordinate of question mark icon in pixels. Applicable only for tooltips with target: label. Defaults to: 1
 - `target` [optional] - the location where the message text should display. Must be one of the following values:
     - `label` - add a question mark icon to the right of the field label, displaying the message in a popup on hover. This is the default
@@ -2007,7 +2022,7 @@ where:
 - `minWidth` [optional] - The minimum width of the tip in pixels. Defaults to 45
 - `maxWidth` [optional] - The maximum width of the tip in pixel. The maximum supported value is 500. Defaults to 400
 - `anchor` [optional] - aligns tooltip with target element (question mark icon or the field itself) relative to the specified anchor points
-- `hidden` *[optional]*[boolean] - shows/hides tooltip sign. Default value is *'false'*
+- `hidden` *[optional] [boolean]* - shows/hides tooltip sign. Default value is *'false'*
 
 The property sрould be specified as two anchor points separated by a dash. The first value is used as the tooltip's anchor point, and the second value is used as the target's anchor point (question mark icon or the field itself).
 
@@ -2166,7 +2181,7 @@ settings:
 @@!
 
 Result:
-![Tooltip-composit-field](/img/tooltip-composit-field.png)</center>
+![Tooltip-composit-field](/img/tooltip-composit-field.png)
 
 ### owner
 
@@ -2198,15 +2213,16 @@ The field is not displayed if there are no users defined in **Shared with Me**.
 Changing the *Owner* field value results in the data will be re-rerquested with *GetAppInfo* method and form re-rendered in case there is [onBeforeInit](events/#onbeforeinit) in the mainifest. Re-rendering will be performed according to the account and quotas of collaborator.
 
 ## Dynamic filling of the manifest fields
+
 Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit*  *onBeforeInstall*](events/#onbeforeinit) events.
 
 ## Target Nodes
+
 Target Nodes is an optional method that allows to define environments suitable for JPS installation. This method is available only for the *update* installation type.
 
 Filtering for *targetNodes* is performed by:
 
 - object
-
 - string
 
 **Object filtering** can be done by *nodeType*, *nodeGroup*, *dockerName* or *dockerTag*.
@@ -2265,6 +2281,7 @@ onInstall:
 @@!
 
 There are two possible ways to define objects as *targetNodes*. E.g. for object *nodeGroup*:
+
 First sets the required *nodeGroup* in an array:
 
 @@@
@@ -2391,15 +2408,18 @@ onInstall:
 In both these cases, the filtering result allows to install manifest on the environments that comprise either *nginx* load balancer node and/or *mysql* node. The other *nodeTypes* will be disabled for the installation on in any environment.
 
 Nginx load balancer node is allowed.
-![TargetNodesFilter](/img/target-nodes-nginx.png)</center>
+
+![TargetNodesFilter](/img/target-nodes-nginx.png)
 
 MySQL database node is allowed.
-![TargetNodesFilter](/img/target-nodes-mysql.png)</center>
+
+![TargetNodesFilter](/img/target-nodes-mysql.png)
 
 No nodes fit  the filtering rule in the environment "Production".
-![TargetNodesFilter](/img/target-nodes-production.png)</center>
 
-In order to perform manifest installation on all nodes in any environment the wildcard character __'*'__ can be used or its alias __any__.
+![TargetNodesFilter](/img/target-nodes-production.png)
+
+In order to perform manifest installation on all nodes in any environment the wildcard character `'*'` can be used or its alias `any`.
 
 @@@
 ```yaml
@@ -2454,16 +2474,20 @@ onInstall:
 
 In this case *Nodes* field will be hidden.
 
-![TargetNodesFilter](/img/target-nodes-none.png)</center>
+![TargetNodesFilter](/img/target-nodes-none.png)
 
 !!! note
 
       In case of filtering by *nodeType* its *alias* cannot be used. See carefully list of available *nodeTypes* and their *aliases* in [Supported Stacks](https://docs.cloudscripting.com/creating-manifest/selecting-containers/#supported-stacks) section.
 
 ### showIf
+
 The **showIf** is an optional method that shows/hides additional fields depending on current field value.
+
 *showIf* represents an object of key/value pairs.
+
 Each **key** is a particular value of a field where *showIf* is set.
+
 Each **value** is an array of Cloud Scripting supported fields.
 
 A few usage examples with different fields.
@@ -2694,11 +2718,12 @@ settings:
 
 
 ## Custom Menus
+
 Menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](#custom-buttons).
 
 ![new-menu](/img/new-menu.png)
 
-By default, this menu contains the <b>Uninstall</b> button. The rest of listed actions, if there are any, executes operations from the <a href="/reference/events/" target="_blank">events</a> settings.
+By default, this menu contains the <b>Uninstall</b> button. The rest of listed actions, if there are any, executes operations from the [events](/reference/events/) settings.
 
 The properties used for custom menus are the same as for custom buttons. However, the appropriate *menu* field (instead of *buttons*) should be specified to adjust functionality exactly within the menu list of the Add-ons plank.
 
@@ -2756,6 +2781,7 @@ menu:
 Refer to the *Custom Buttons* section below for a detailed description on the parameters set with the current sample.
 
 ## Custom Buttons
+
 Custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node.
 
 ![custom-addon](/img/custom-addon.png)
@@ -2827,7 +2853,7 @@ It will be displayed after clicking the appropriate button for an add-on. Accord
 
 ![LoadingText](/img/LoadingText.jpg)
 
-- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the <a href="../actions/#custom-actions" target="_blank">*actions*</a> section.
+- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the [*actions*](../actions/#custom-actions) section.
 - `caption` - title of the button
 
 ![Caption](/img/Caption.jpg)
@@ -2903,7 +2929,7 @@ where:
 
 ![LogsPath](/img/LogsPath.jpg)
 
-- `logsNodeGroup` - nodeGroup <a href="../selecting-containers/#predefined-nodegroup-values" target="_blank">layer</a> the logging path should be opened for
+- `logsNodeGroup` - nodeGroup [layer](../selecting-containers/#predefined-nodegroup-values) the logging path should be opened for
 
 ## Custom Settings
 Settings section can include a few custom forms. Default settings form ID is *'main'*.
@@ -3107,7 +3133,7 @@ success:
 ```
 @@!
 
-Email notification also can be customized in <a href="../handling-custom-responses/">custom responses</a>. In this case `email` value from handle custom response has a higher priority. For example:
+Email notification also can be customized in [custom responses](../handling-custom-responses/). In this case `email` value from handle custom response has a higher priority. For example:
 
 @@@
 ```yaml
@@ -3138,7 +3164,7 @@ success: success!!
 
 In the last example above, the localization functionality is applied, which depends upon the Virtuozzo Application Platform selected language.
 
-Custom responses can be returned within <a href="../actions/#return" target="_blank">`return`</a> or <a href="../actions/#script" target="_blank">`script`</a> actions. More details about <a href="../handling-custom-responses/" target="_blank">custom responses here</a>.
+Custom responses can be returned within [`return`](../actions/#return) or [`script`](../actions/#script) actions. More details about [custom responses here](../handling-custom-responses/).
 
 ## JPS installation without environment
 
@@ -3173,6 +3199,7 @@ Horizontal Rule<br>\-\-\-| Horizontal Rule<br>\*\*\*                            
 \`\`\`<br>print '3 backticks <br>or3 tildes'<br>\`\`\`| \~\~\~\~<br>print '3 backticks<br> or 3 tildes'<br>\~\~\~\~     |![Block code](/img/markdown_block-code.jpg)
 
 The elements visualization can be found on the screen below:
+
 ![markdown_tags](/img/markdown_tags.jpg)
 
 Source code for each of these elements is displayed below:
@@ -3191,7 +3218,7 @@ description: |
 
   [virtuozzo.com URL](https://virtuozzo.com)
 
-  ![Jelastic](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)
+  ![Virtuozzo](https://static.virtuozzo.com/wp-content/uploads/2025/10/virtuozzo-logo.png)
 
   > Blockquote
 
@@ -3212,7 +3239,7 @@ description: |
     "type": "update",
     "name": "Markdown tags",
 }
-"description": "*Italic* or _Italic_    \n**Bold** or __Bold__  \n\n# This is H1   \n## This is H2  \n##### This is H6  \n\n[virtuozzo.com URL](https://virtuozzo.com)  \n\n![Virtuozzo Application Platform](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)  \n\n> Blockquote  \n\n* List  \n\n---  \n\n`Inline code` with backticks   \n\n```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
+"description": "*Italic* or _Italic_    \n**Bold** or __Bold__  \n\n# This is H1   \n## This is H2  \n##### This is H6  \n\n[virtuozzo.com URL](https://virtuozzo.com)  \n\n![Virtuozzo](https://static.virtuozzo.com/wp-content/uploads/2025/10/virtuozzo-logo.png)  \n\n> Blockquote  \n\n* List  \n\n---  \n\n`Inline code` with backticks   \n\n```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
 ```
 @@!
 
@@ -3220,7 +3247,7 @@ More details about Markdown implementation can be found in CommonMark specificat
 
 ## What’s next?
 
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples
-- See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions
-- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements
-- Find out the correspondence between <a href="/virtuozzo-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>
+- Examine a bunch of [Samples](/samples/) with operation and package examples
+- See [Troubleshooting](/troubleshooting/) for helpful tips and specific suggestions
+- Read [Realese Notes](/releasenotes/) to find out about the recent CS improvements
+- Find out the correspondence between [CS & Virtuozzo PaaS Versions](/virtuozzo-cs-correspondence/)

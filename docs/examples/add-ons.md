@@ -6,8 +6,8 @@ Add-on to secure application with custom SSL for free.
 Let’s Encrypt Add-on for Automatic SSL Configuration of Your Virtuozzo Application Platform Environment.
 This add-on allows to configure SSL for:
 
- - Internal environment address
- - Custom domains
+- Internal environment address
+- Custom domains
 
  See [more details about add-on installation and configuration here.](https://github.com/jelastic-jps/lets-encrypt)
 
@@ -219,6 +219,7 @@ In order to get this solution instantly deployed, click the "Get It Hosted Now" 
 ## Managecat
 
 Add-on to install Managecat administration console to manage and monitor Tomcat-based app servers.
+
 Managecat is an administration console platform to manage, monitor and troubleshoot Apache Tomcat, Apache TomEE and all other Apache Tomcat based application servers.
 
 Type of nodes this add-on can be applied to:

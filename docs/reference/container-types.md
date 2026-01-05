@@ -2,11 +2,11 @@
 
 **Containers by Types (*NodeType*)**
 
-The *nodeType* parameter defines software stacks (among the supported ones) to be implemented within an environment. The node type value is specified within the *nodeType* field while performing an appropriate <a href="/reference/actions/" target="_blank">action</a>.
+The *nodeType* parameter defines software stacks (among the supported ones) to be implemented within an environment. The node type value is specified within the *nodeType* field while performing an appropriate [action](/reference/actions/).
 
 **For example:**
 
-Using the *nodeType* field while performing the <a href="/reference/actions/#writefile" target="_blank">*writeFile*</a> action:
+Using the *nodeType* field while performing the [*writeFile*](/reference/actions/#writefile) action:
 
 ```json
 {
@@ -70,12 +70,12 @@ For example:
 
 where:
 
-- `customGroup` - name of your custom *nodeGroup* value, that is called via `nodeGroup:customGroup` field, while performing an appropriate <a href="/reference/actions/" target="_blank">action</a>
+- `customGroup` - name of your custom *nodeGroup* value, that is called via `nodeGroup:customGroup` field, while performing an appropriate [action](/reference/actions/)
 
 !!! note
     > Upon setting a non-predefined (i.e. custom) *nodeGroup* value for *Docker* containers, the corresponding container will be placed to the *Extra* layer:
     <center>![extra](/img/extra_layer.jpg)</center>
-    Subsequently, this *nodeGroup* value can be used within the same-named <a href="/reference/actions/" target="_blank">actions</a> field to point to a particular *Extra* layer.
+    Subsequently, this *nodeGroup* value can be used within the same-named [actions](/reference/actions/) field to point to a particular *Extra* layer.
 
 **Predefined *nodeGroup* values**
 
@@ -227,4 +227,4 @@ The following section deals with supported engine versions and their availabilit
 |engine  |*nodejs0.10*<br>*nodejs0.12*<br>*nodejs4.3*<br>*nodejs5.6*|
 
 !!! note
-    > The list of supported <a href="https://www.virtuozzo.com/application-platform-docs/software-stacks-versions/" targer="_blank">software stacks</a> can vary depending on your Vrituozzo PaaS platform version - it can be checked at your dashboard.
+    > The list of supported [software stacks](https://www.virtuozzo.com/application-platform-docs/software-stacks-versions/) can vary depending on your Vrituozzo PaaS platform version - it can be checked at your dashboard.

@@ -6,7 +6,7 @@ Having trouble with Cloud Scripting? Here are some helpful tips and specific tro
 
     *http://app.{HOSTER_URL}/console/*
 
-    Here, substitute <b>*{HOSTER_URL}*</b>  with the platform domain of your hosting provider (see the last column of the table within the <a href="https://www.virtuozzo.com/application-platform-docs/paas-hosting-providers/" target="_blank">Hosters Info</a> page).
+    Here, substitute <b>*{HOSTER_URL}*</b>  with the platform domain of your hosting provider (see the last column of the table within the [Hosters Info](https://www.virtuozzo.com/application-platform-docs/paas-hosting-providers/) page).
 
 - In the opened browser tab, you will see the Cloud Scripting execution log.
 
@@ -17,7 +17,7 @@ Having trouble with Cloud Scripting? Here are some helpful tips and specific tro
 
 Below, you can find some samples of editing custom information to the log:
 
-- outputting a single <a href="../placeholders/" target="blank">placeholder</a> value
+- outputting a single [placeholder](../placeholders/) value
 
 @@@
 ```yaml
@@ -210,8 +210,8 @@ onInstall:
 
 ## What’s next?
 
-- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements
-- Find out the correspondence between <a href="/virtuozzo-cs-correspondence/" target="_blank">CS & Virtuozzo Application Platform Versions</a>
+- Read [Realese Notes](/releasenotes/) to find out about the recent CS improvements
+- Find out the correspondence between [CS & Virtuozzo Application Platform Versions](/virtuozzo-cs-correspondence/)
 
 <!--## Logging-->
 <!--Work in progress...-->

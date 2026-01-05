@@ -1,12 +1,12 @@
 # Samples
 
-<p dir="ltr" style="text-align: justify;">Cloud Scripting provides almost unlimited possibilities for environment management, allowing you to automatically tune its settings, adjust topology, implement events handling and much more. Having a pool of scripts with such basic actions can speed up new project development and become a basis for more complex automation solutions.</p>
+Cloud Scripting provides almost unlimited possibilities for environment management, allowing you to automatically tune its settings, adjust topology, implement events handling and much more. Having a pool of scripts with such basic actions can speed up new project development and become a basis for more complex automation solutions.
 
-<p dir="ltr" style="text-align: justify;">Below are categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions. You can use them independently or examine and adjust scripts to create your own packages.</p>
+Below are categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions. You can use them independently or examine and adjust scripts to create your own packages.
 
 ### Operation Examples
 
-<p dir="ltr" style="text-align: justify;">The following list contains examples of some basic environment management procedures, which can be subsequently combined to implement more complex solutions and application lifecycle pipelines.</p>
+The following list contains examples of some basic environment management procedures, which can be subsequently combined to implement more complex solutions and application lifecycle pipelines.
 
 <table id="bs-pr">
     <tr>
@@ -19,7 +19,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/basic-examples/tree/master/automatic-vertical-scaling">Automatic Vertical Scaling</a>
+            [Automatic Vertical Scaling](https://github.com/jelastic-jps/basic-examples/tree/master/automatic-vertical-scaling)
         </td>
         <td>
             Optimization of Nginx Balancer workers number based on allocated CPU amount
@@ -27,7 +27,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/basic-examples/tree/master/automatic-horizontal-scaling">Automatic Horizontal Scaling</a>
+            [Automatic Horizontal Scaling](https://github.com/jelastic-jps/basic-examples/tree/master/automatic-horizontal-scaling)
         </td>
         <td>
             Setting triggers for server horizontal scaling based on load
@@ -43,7 +43,7 @@
     </tr>
     <tr> -->
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/wordpress-cluster">Application Clustering</a>
+            [Application Clustering](https://github.com/jelastic-jps/wordpress-cluster)
         </td>
         <td>
             Building highly available and scalable clustered solution for WordPress
@@ -51,7 +51,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/basic-examples/tree/master/automatic-environment-migration-after-cloning">Migration After Cloning</a>
+            [Migration After Cloning](https://github.com/jelastic-jps/basic-examples/tree/master/automatic-environment-migration-after-cloning)
         </td>
         <td>
             Automatic environment migration to another region after cloning
@@ -59,7 +59,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/basic-examples/tree/master/two-environments-from-one-jps-in-diff-regions">Create Environment from Script</a>
+            [Create Environment from Script](https://github.com/jelastic-jps/basic-examples/tree/master/two-environments-from-one-jps-in-diff-regions)
         </td>
         <td>
             Simultaneous creation of two identical environments in different regions
@@ -67,7 +67,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/basic-examples/tree/master/install-add-on-inside-manifest">Install Add-on within Environment Manifest</a>
+            [Install Add-on within Environment Manifest](https://github.com/jelastic-jps/basic-examples/tree/master/install-add-on-inside-manifest)
         </td>
         <td>
             Manifest template to create an environment and attach Public IP as an add-on
@@ -75,7 +75,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/basic-examples/tree/master/mount-data-storage">Mount Data from Storage</a>
+            [Mount Data from Storage](https://github.com/jelastic-jps/basic-examples/tree/master/mount-data-storage)
         </td>
         <td>
             Mounting directory from Storage node to application server
@@ -85,7 +85,7 @@
 
 ### Add-On Examples
 
-<p dir="ltr" style="text-align: justify;">Use pluggable add-ons to easily extend functionality of the already existing environments without the necessity to reconfigure each of them manually.</p>
+Use pluggable add-ons to easily extend functionality of the already existing environments without the necessity to reconfigure each of them manually.
 
 <table id="bs-pr">
     <tr>
@@ -98,7 +98,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/lets-encrypt">Let's Encrypt</a>
+            [Let's Encrypt](https://github.com/jelastic-jps/lets-encrypt)
         </td>
         <td>
             Add-on to secure application with custom SSL for free
@@ -106,7 +106,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/fail2ban">Fail2ban</a>
+            [Fail2ban](https://github.com/jelastic-jps/fail2ban)
         </td>
         <td>
             Add-on for advanced application security with automated firewall rules tuning
@@ -114,7 +114,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/managecat">Managecat</a>
+            [Managecat](https://github.com/jelastic-jps/managecat)
         </td>
         <td>
             Add-on to install Managecat administration console to manage and monitor Tomcat-based app servers
@@ -124,7 +124,7 @@
 
 ### Complex Ready-to-Go Solutions
 
-<p dir="ltr" style="text-align: justify;">Virtuozzo Application Platform also provides you with a set of ready-to-go preconfigured CS packages for some of the most popular solutions’ deployment and CI/CD integration. All of them can be used without any additional changes and provide all of the options for being properly tuned according to your needs.</p>
+Virtuozzo Application Platform also provides you with a set of ready-to-go preconfigured CS packages for some of the most popular solutions' deployment and CI/CD integration. All of them can be used without any additional changes and provide all of the options for being properly tuned according to your needs.
 
 <table id="bs-pr">
     <tr>
@@ -137,7 +137,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/minio">Minio Cluster</a>
+            [Minio Cluster](https://github.com/jelastic-jps/minio)
         </td>
         <td>
             Highly reliable S3-compatible storage
@@ -145,7 +145,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/glassfish">Glassfish Cluster</a>
+            [Glassfish Cluster](https://github.com/jelastic-jps/glassfish)
         </td>
         <td>
             Highly available GlassFish cluster on Docker containers with scalable Worker Nodes amount
@@ -153,7 +153,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/git-push-deploy">CI from Git Repo</a>
+            [CI from Git Repo](https://github.com/jelastic-jps/git-push-deploy)
         </td>
         <td>
             Automated CI from private GIT repository with authentication via private SSH key
@@ -161,7 +161,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/wildfly">WildFly Continuous Deployment</a>
+            [WildFly Continuous Deployment](https://github.com/jelastic-jps/wildfly)
         </td>
         <td>
             Bundle of WildFly application server and Maven build node for CD from GIT
@@ -169,7 +169,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/postgresql-replication">PostgreSQL Cluster</a>
+            [PostgreSQL Cluster](https://github.com/jelastic-jps/postgresql-replication)
         </td>
         <td>
             PostgreSQL Cluster with preconfigured Master-Slave replication
@@ -177,7 +177,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/mariadb-replication">MariaDB Cluster</a>
+            [MariaDB Cluster](https://github.com/jelastic-jps/mariadb-replication)
         </td>
         <td>
             MariaDB Cluster with preconfigured Master-Slave replication
@@ -185,7 +185,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/mysql-cluster">MySQL Cluster</a>
+            [MySQL Cluster](https://github.com/jelastic-jps/mysql-cluster)
         </td>
         <td>
             MySQL Cluster with preconfigured different replication types
@@ -193,7 +193,7 @@
     </tr>
     <tr>
         <td id="first-col">
-            <a target="_blank" href="https://github.com/jelastic-jps/cyclos/tree/master/cyclos-4">Cyclos 4</a>
+            [Cyclos 4](https://github.com/jelastic-jps/cyclos/tree/master/cyclos-4)
         </td>
         <td>
             Auto-deployed Cyclos 4 online bancking solution
@@ -201,10 +201,10 @@
     </tr>
 </table>
 
-<p dir="ltr" style="text-align: justify;">Сheck out even more awesome open source solutions within our <a href="https://github.com/jelastic-jps" target="_blank">JPS Collection</a> at GitHub (continuously updating). All the given packages are completely free to use and, simultaneously, represent a good basis to learn about the Cloud Scripting possibilities.</p>
+Сheck out even more awesome open source solutions within our [JPS Collection](https://github.com/jelastic-jps) at GitHub (continuously updating). All the given packages are completely free to use and, simultaneously, represent a good basis to learn about the Cloud Scripting possibilities.
 
 ## What’s next?
 
-- See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions
-- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements
-- Find out the correspondence between <a href="/virtuozzo-cs-correspondence/" target="_blank">CS & Virtuozzo Application Platform Versions</a>
+- See [Troubleshooting](/troubleshooting/) for helpful tips and specific suggestions
+- Read [Realese Notes](/releasenotes/) to find out about the recent CS improvements
+- Find out the correspondence between [CS & Virtuozzo Application Platform Versions](/virtuozzo-cs-correspondence/)

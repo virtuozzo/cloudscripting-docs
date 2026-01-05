@@ -55,7 +55,8 @@ onInstall:
 @@!
 
 Where the Included mixins' code looks as follows:
-mixin1.jps
+
+**mixin1.jps**
 
 @@@
 ```yaml
@@ -80,7 +81,7 @@ actions:
 ```
 @@!
 
-mixin2.jps
+**mixin2.jps**
 
 @@@
 ```yaml
@@ -104,4 +105,5 @@ While performing  the example above, the result of mixins include will be displa
 ![mixins-log](/img/mixins-log.png)
 
 If the mixin could not be loaded, an ERROR will be displayed in the CS log indicating the reason (for example, file not found), and the response from the server will contain error code 11042. Once the *mixins* are loaded, in the main.jps example, you can use any action which is in *mixins*.
+
 The mixin's baseURL is always overridden by the baseURL from the main manifest the mixin is included into.

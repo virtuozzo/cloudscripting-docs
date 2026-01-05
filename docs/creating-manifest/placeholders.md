@@ -2,38 +2,24 @@
 Cloud Scripting supports a set of placeholders that can be used in any section of a manifest file, if the section isn't strictly limited with its content. The Cloud Scripting engine makes an attempt to resolve all placeholders on the package installation stage. If it's not possible, the placeholder will be unresolved and displayed in the text as is (e.g. *${placeholder}*).
 
 !!! note
-    To output all available placeholders, use a special <b>${placeholders}</b> placeholder. For more information, see the <a href="/troubleshooting/" target ="_blank">*Troubleshooting*</a> guide.
+    To output all available placeholders, use a special <b>${placeholders}</b> placeholder. For more information, see the [*Troubleshooting*](/troubleshooting/) guide.
 
 The following specific groups of placeholders are singled out:
 
 - [Environment Placeholders](placeholders/#environment-placeholders)
-
 - [Node Placeholders](placeholders/#node-placeholders)
-
 - [Event Placeholders](placeholders/#event-placeholders)
-
 - [Account Information](placeholders/#account-information)
-
 - [Input Parameters](placeholders/#input-parameters)
-
 - [Action Placeholders](placeholders/#action-placeholders)
-
 - [UI Placeholders](placeholders/#ui-placeholders)
-
 - [Custom Global Placeholders](placeholders/#custom-global-placeholders)
-
 - [Function Placeholders](placeholders/#function-placeholders)
-
 - [Data Processing Placeholders](placeholders/#data-processing-placeholders)
-
 - [Array Placeholders](placeholders/#array-placeholders)
-
 - [File Path Placeholders](placeholders/#file-path-placeholders)
-
 - [Engine Placeholder](placeholders/#engine-placeholder)
-
 - [Account Placeholders](placeholders/#account-placeholders)
-
 - [Quota Placeholders](placeholders/#quota-placeholders)
 
 Placeholders like `env`, `nodes`, `targetNodes`, `response` are dynamically updated. They could be updated by their requests if they are required to be updated.
@@ -90,21 +76,21 @@ This is the list of placeholders that you can use within the nodes section (*{no
     - `{nodes.(group).last.(key)}`
     - `{nodes.(group).master.(key)}`
     where:
-    - `(group)` - node group (<a href="../selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> or <a href="../selecting-containers/#all-containers-by-type" target="_blank">nodeType</a>)
+    - `(group)` - node group ([nodeGroup](../selecting-containers/#all-containers-by-group) or [nodeType](../selecting-containers/#all-containers-by-type))
     - `(i)` - node index, starting from *'0'*
     - `(key)` - name of the applied parameter, according to the following list:
         - `address` - internal or external IP address
         - `adminUrl` - full URL address with protocol
-        - `canBeExported` *[boolean]* - Virtuozzo Application Platform <a href="https://www.virtuozzo.com/application-platform-docs/environment-export-import/" target="_blank">Export</a> feature
+        - `canBeExported` *[boolean]* - Virtuozzo Application Platform [Export](https://www.virtuozzo.com/application-platform-docs/environment-export-import/) feature
         - `bandwidthLimit` - node bandwidth limit
         - `contextValidatorRegex` - validation for context names
         - `diskIopsLimit` - IOPS limitation quota
         - `addons.length` - number of available add-ons at the selected node
         - `diskLimit` - hardware node disk space quota in MB
-        - `endpoints` [*array indexes*] - <a href="https://www.virtuozzo.com/application-platform-docs/endpoints/" target="_blank">endpoints</a> functionality
+        - `endpoints` [*array indexes*] - [endpoints](https://www.virtuozzo.com/application-platform-docs/endpoints/) functionality
             - `domain` - full domain name of the node the endpoint is being set for
             - `id` - node ID  
-            - `name` - title for the new endpoint (can be either custom or <a href="https://www.virtuozzo.com/application-platform-docs/endpoints/#preconfigured" target="_blank">predefined</a>)
+            - `name` - title for the new endpoint (can be either custom or [predefined](https://www.virtuozzo.com/application-platform-docs/endpoints/#preconfigured))
             - `privatePort` - preferred local node port
             - `publicPort` - private (dynamic) port used for mapping
             - `protocol` - protocol type (currently, only TCP is provided)
@@ -146,7 +132,7 @@ This is the list of placeholders that you can use within the nodes section (*{no
             - `type` - engine type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
             - `vcsSupport` - supporting VCS in a container  
             - `version` - engine version
-        - `packages` [*array*] - packages with add-ons installed over the corresponding nodes (e.g. <a href="https://www.virtuozzo.com/application-platform-docs/ftp-ftps-support/" target="_blank">FTP</a> add-on)
+        - `packages` [*array*] - packages with add-ons installed over the corresponding nodes (e.g. [FTP](https://www.virtuozzo.com/application-platform-docs/ftp-ftps-support/) add-on)
             - `description` - package description
             - `documentationurl` - redirect to page(s) with more info on the particular add-on
             - `iconurl` - add-on logo
@@ -168,7 +154,7 @@ Event placeholders represent a set of dynamic parameters that are executed as a 
 - `${event.params.(key)}` - where *key* is a name of the event parameter
 - `${event.response.(key)}` -where *key* is a name of the event response parameter
 
-Learn more about the event placeholders within the <a href="../events" target="_blank">*Events*</a> page.
+Learn more about the event placeholders within the [*Events*](../events) page.
 
 ## Account Information
 
@@ -214,7 +200,7 @@ settings:
 ```
 @@!
 
-Here, the name of the placeholder is `${settings.customName}`. See the list of <a href="../visual-settings/" target="_blank">fields</a> that are defined by users.
+Here, the name of the placeholder is `${settings.customName}`. See the list of [fields](../visual-settings/) that are defined by users.
 
 ## Action Placeholders
 
@@ -319,7 +305,7 @@ This is the list of placeholders that you can use to specify UI parameters.
 - `${user.email}` - user email address
 - `${env.domain}` - full domain name without protocol
 - `${env.appid}` - unique environment appid at the Virtuozzo Application Platform
-- `${baseUrl}` - user custom relative URL. More details about <a href="../basic-configs/#relative-links">Relative Links here</a>
+- `${baseUrl}` - user custom relative URL. More details about [Relative Links here](../basic-configs/#relative-links)
 - `${platformUrl}` - platform dashboard URL
 
 **Example**
@@ -383,11 +369,11 @@ As a result, you can use <b>*${globals.value1}*</b> and <b>*${globals.value2}*</
 
 Values are global placeholders (<i>value1</i> and <i>value2</i> in example above) could consist of like simple text or/and placeholders in it. There are the list of placeholders which are predefined in `globals` block:
 
-- `${settings.*}` - <a href="../placeholders/#input-parameters" target="_blank">input parameters</a> from `settings` block, where custom forms are described
-- `${env.*}` - all <a href="../placeholders/#environment-placeholders" target="_balnk">environment placeholders</a>. Placeholders are available only in JPS manifests with `type` *install* -  `globals` block will be updated after an environment is created.
-- `${nodes.*}` - all <a href="../placeholders/#node-placeholders" target="_balnk">node placeholders</a>. Node values in global placeholders will be available only after environment is created.
-- `${user.*}` - <a href="../placeholders/#account-information" target="-blank">account placeholders</a> are available during all JPS installation process.
-- `${fn.*}` - <a href="../placeholders/#function-placeholders" target="_blank">functional placeholders</a>  are available during all JPS installation process.
+- `${settings.*}` - [input parameters](../placeholders/#input-parameters) from `settings` block, where custom forms are described
+- `${env.*}` - all [environment placeholders](../placeholders/#environment-placeholders). Placeholders are available only in JPS manifests with `type` *install* -  `globals` block will be updated after an environment is created.
+- `${nodes.*}` - all [node placeholders](../placeholders/#node-placeholders). Node values in global placeholders will be available only after environment is created.
+- `${user.*}` - [account placeholders](../placeholders/#account-information) are available during all JPS installation process.
+- `${fn.*}` - [functional placeholders](../placeholders/#function-placeholders)  are available during all JPS installation process.
 
 ## Function Placeholders
 
@@ -420,14 +406,14 @@ The function parameter can be passed from existing placeholders, for example:
 
 - `${fn.md5([fn.random])}` - *md5* encoding random password
 - `${fn.base64([user.email])}` - *base64* encoding user email address
-- `${fn.compareEngine(version)}` - compares the latest supported by the current platform CS engine version with the given *version*.  Returns result:
-	0 - *version* equals CS engine version
-	1 - CS engine version greater than *version*
-	-1 - CS engine version less than *version*
+- `${fn.compareEngine(version)}` - compares the latest supported by the current platform CS engine version with the given *version*. Returns result:
+    - **0** - *version* equals CS engine version
+    - **1** - CS engine version greater than *version*
+    - **-1** - CS engine version less than *version*
 - `${fn.compare(version1, version2)}` - compares two given versions separated by dots. Returns result:
-	0 - *version1* equals *version2*
-	1 - *version1* greater than *version2*
-	-1 - *version1* less than *version2*
+    - **0** - *version1* equals *version2*
+    - **1** - *version1* greater than *version2*
+    - **-1** - *version1* less than *version2*
 
 You can easily define function placeholders within the [custom global placeholders](#custom-global-placeholders), for example:
 
@@ -450,6 +436,7 @@ Now, you can use <b>*${globals.pass}*</b> within the entire manifest.
 ## Data Processing Placeholders
 
 There are data conversion routines in Cloud Scripting which can be performed with specially developed *Data Processing Placeholders*:
+
 - [`${*.toBase64()}`](#${\*.tobase64()}) - does data encoding into *Base64* format
 - [`${*.fromBase64()}`](#${\*.frombase64()}) - decodes data from *Base64* format
 - [`${*.md5()}`](#${\*.md5()}) - *md5* hash generator
@@ -523,7 +510,7 @@ The result of the example execution in [console](http://docs.cloudscripting.com/
 [17:43:36 CS.toBase64]: END HANDLE EVENT: application/install
 [17:43:36 CS.toBase64]: END INSTALLATION: CS Placeholders - built-in data processing functions - toBase64
 ```
-\
+
 ### ${\*.fromBase64()}
 
 Data decoding example from Base64 format to plain text:
@@ -578,6 +565,7 @@ onInstall:
 @@!
 
 The output in the [console](http://docs.cloudscripting.com/troubleshooting/#troubleshooting) should look like:
+
 ```
 [08:13:38 CS:Placeholders.fromBase64]: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions] - fromBase64
 [08:13:39 CS:Placeholders.fromBase64]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
@@ -589,7 +577,7 @@ The output in the [console](http://docs.cloudscripting.com/troubleshooting/#trou
 [08:13:41 CS:Placeholders.fromBase64]: END HANDLE EVENT: application/install
 [08:13:42 CS:Placeholders.fromBase64]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - fromBase64
 ```
-\
+
 ### ${\*.md5()}
 
 *md5* hash generation example:
@@ -644,6 +632,7 @@ onInstall:
 @@!
 
 Check the output in the [console](http://docs.cloudscripting.com/troubleshooting/#troubleshooting):
+
 ```
 [08:16:57 CS:Placeholders.md5]: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions] - md5
 [08:16:58 CS:Placeholders.md5]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
@@ -655,7 +644,7 @@ Check the output in the [console](http://docs.cloudscripting.com/troubleshooting
 [08:17:01 CS:Placeholders.md5]: END HANDLE EVENT: application/install
 [08:17:02 CS:Placeholders.md5]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - md5
 ```
-\
+
 ### ${\*.join()}
 
 The ${\*.join()} can be applied in case of array's elements should be concatenated with each other according to element filtering rule if any.
@@ -687,11 +676,9 @@ onInstall:
 - assert: "'${globals.arrayOfObjects.join(id,\\,\\,)}' == '7,,8,,9'"
 - assert: "'${globals.arrayOfObjects.join(id, )}' == '7 8 9'"
 - assert: "'${globals.mixedArray.join(id, )}' == ' 10'"
-
 - value: "${globals.mixedArray2.join(id)}"
   script: 'return { result: 0, success: (getParam(''value'') == ''{"id":10}id123'')};'
 - assert: "${response.success}"
-
 - assert: '''${globals.mixedArray2.join(;)}'' == ''{"id":10};123'''
 - assert: '''${globals.mixedArray2.join()}'' == ''{"id":10}123'''
 - assert: "'${globals.mixedArray3.join(id,#)}' == '11##'"
@@ -829,7 +816,7 @@ Console output:
 [11:40:07 CS:Placeholders.join]: END HANDLE EVENT: application/install
 [11:40:07 CS:Placeholders.join]: END INSTALLATION: CS:Placeholders - built-in data processing functions - join
 ```
-\
+
 ### ${\*.toJSON()}
 
 This placeholder returns structured data in JSON format.
@@ -900,6 +887,7 @@ onInstall:
 @@!
 
 Check the output for both placeholders ${\*.toJSON()} and ${\*.print()}:
+
 ```
 [12:49:36 CS:Placeholders.toJSON/print']: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions- toJSON/print'
 [12:49:36 CS:Placeholders.toJSON/print']: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
@@ -927,7 +915,7 @@ Check the output for both placeholders ${\*.toJSON()} and ${\*.print()}:
 [12:49:40 CS:Placeholders.toJSON/print']: END HANDLE EVENT: application/install
 [12:49:40 CS:Placeholders.toJSON/print']: END INSTALLATION: CS:Placeholders - built-in data processing functions- toJSON/print'
 ```
-\
+
 ### ${\*.contains()}
 
 This placeholder is used for checking if the specified element exists in the given list or not.
@@ -1014,7 +1002,7 @@ The result of such action is a Boolean value: *true* or *false*:
 [14:34:04 CS:Placeholders.contains]: END HANDLE EVENT: application/install
 [14:34:05 CS:Placeholders.contains]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - contains
 ```
-\
+
 ## Array Placeholders
 
 Any array has a list of specific placeholders: array *length*, element by *ID*, the *first* and the *last* array elements.
@@ -1029,7 +1017,7 @@ Any array length placeholder can be defined within a manifest.
 ${nodes.cp.length},
 ${nodes.bl.extips.length}
 ```
-\
+
 **Element by ID**
 
 Each element has an index in the array.
@@ -1041,7 +1029,7 @@ Each element has an index in the array.
 where:
 
 - `(i)` - array index, starting from *'0'*
-- `(key)` - node <a href="../placeholders/#node-placeholders" target="_blank">parameters</a>
+- `(key)` - node [parameters](../placeholders/#node-placeholders)
 
 **The First and the Last Array Elements**
 
@@ -1083,7 +1071,7 @@ You can use the following placeholders, as well, with the definite *nodeType*:
 - `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*
 - `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*
 
-Explore the full list of available <a href="../selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> values within the linked page.
+Explore the full list of available [*nodeType*](../selecting-containers/#all-containers-by-type) values within the linked page.
 
 The list of single placeholders:
 
@@ -1193,6 +1181,7 @@ The results on the screen below:
 ![comparison](/img/default_placeholder_value.png)
 
 ## Engine Placeholder
+
 The *${engine}* placeholder returns the latest Cloud Scripting engine version that is supported by the platform the manifest is executed on.
 
 `${engine}` - CS engine version
@@ -1300,7 +1289,6 @@ To ensure ability to process user's quotas and collaboration the following `${qu
     - `${quota.maxcount}`
     - `${quota.disk.iolimit}`
     - ...
-
 - `${quota.data.}`
     - `${quota.data.environment.maxcloudletsperrec.quota.name}`
     - `${quota.data.environment.maxcloudletsperrec.quota.description}`
@@ -1370,9 +1358,9 @@ settings:
 
 ## What’s next?
 
-- See how to use <a href="../conditions-and-iterations/">Conditions and Iterations</a>
-- Read how to integrate your <a href="../custom-scripts/" target="_blank">Custom Scripts</a>
-- Check how to create your custom <a href="../addons/" target="_blank">Add-Ons</a>
-- Find out how to handle <a href="../handling-custom-responses/" target="_blank">Custom Responses</a>
-- Learn how to customize <a href="../visual-settings/" target="_blank">Visual Settings</a>
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples
+- See how to use [Conditions and Iterations](../conditions-and-iterations/)
+- Read how to integrate your [Custom Scripts](../custom-scripts/)
+- Check how to create your custom [Add-Ons](../addons/)
+- Find out how to handle [Custom Responses](../handling-custom-responses/)
+- Learn how to customize [Visual Settings](../visual-settings/)
+- Examine a bunch of [Samples](/samples/) with operation and package examples

@@ -1,6 +1,6 @@
 ## Handling Custom Responses
 
-The Cloud Scripting engine provides functionality to handle custom responses. This functionality is related to the action result codes that can be located within the <a href="/troubleshooting/" target="_blank">Virtuozzo Application Platform Console Log Panel</a> upon a corresponding action execution.
+The Cloud Scripting engine provides functionality to handle custom responses. This functionality is related to the action result codes that can be located within the [Virtuozzo Application Platform Console Log Panel](/troubleshooting/) upon a corresponding action execution.
 
 There are the following types of pop-up windows that emerge while custom responses are being handled:
 
@@ -72,7 +72,7 @@ In this case, the default response type is *error* and the response *warning* me
 
 It is possible to return a response with a predefined result type and with a custom message text via the **return** or **script** action.
 
-The <a href="../actions/#script" target="_blank">*return*</a> action.
+The [*return*](../actions/#script) action.
 
 @@@
 ```yaml
@@ -246,11 +246,11 @@ responses:
 
 where:
 
-- `createFile` - predefined within the Cloud Scripting <a href="../actions/#createfile" target="_blank">action</a>
+- `createFile` - predefined within the Cloud Scripting [action](../actions/#createfile)
 - `responses` - object (array) to describe custom responses
 - `type` - type of a pop-up window, emerging upon the response occurrence. The available values are: *error*, *warning*, *info*, *success*.
 
-The additional functionality is provided to display action responses using <a href="../actions" target="_blank">*return*</a> action.
+The additional functionality is provided to display action responses using [*return*](../actions) action.
 
 @@@
 ```yaml
@@ -285,7 +285,7 @@ responses:
 
 where:
 
-- `script` - Cloud Scripting <a href="../actions/#script" target="__blank">action</a> for executing *Javascript* or *Java* code (*Javascript* is set by default)
+- `script` - Cloud Scripting [action](../actions/#script) for executing *Javascript* or *Java* code (*Javascript* is set by default)
 - `1000` - custom predefined result code for responses handling. It is returned from the *script* action in the *onInstall* block.
 
 If the result code is delivered via string, then the default result code is *11039*. Therefore, responses can be handled by the following outcoming string text.
@@ -363,8 +363,8 @@ The final *success* form is similar to the following one.
 
 ## What’s next?
 
-- Explore how to customize <a href="../visual-settings/" target="_blank">Visual Settings</a>
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples
-- See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions
-- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements
-- Find out the correspondence between <a href="/virtuozzo-cs-correspondence/" target="_blank">CS & Virtuozzo Application Platform Versions</a>
+- Explore how to customize [Visual Settings](../visual-settings/)
+- Examine a bunch of [Samples](/samples/) with operation and package examples
+- See [Troubleshooting](/troubleshooting/) for helpful tips and specific suggestions
+- Read [Realese Notes](/releasenotes/) to find out about the recent CS improvements
+- Find out the correspondence between [CS & Virtuozzo Application Platform Versions](/virtuozzo-cs-correspondence/)

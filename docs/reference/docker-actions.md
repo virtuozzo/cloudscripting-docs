@@ -11,6 +11,7 @@ There are three available parameters to set Docker volumes:
 - *volumesFrom* - list of nodes the volumes are imported from
 
 All of the fields are set within the Docker object:
+
 ```json
 {
   "type": "install",
@@ -30,6 +31,7 @@ All of the fields are set within the Docker object:
 ### Volumes
 
 This field represents a string array:
+
 ```json
 [
   {
@@ -46,6 +48,7 @@ This field represents a string array:
 ### VolumeMounts
 
 This parameter is an object. It can be set like within the example below:
+
 ```json
 {
   "volumeMounts": {
@@ -59,16 +62,18 @@ This parameter is an object. It can be set like within the example below:
   }
 }
 ```
+
 Here:
 
 - `/example-path` - path to place the volume at a target node
 - `sourcePath [optional]` - default value that repeats volume path (*/example-path* in our sample)
 - `sourceNodeId` -  node identifier the volume should be mounted from (optional, in case of the `sourceNodeGroup` parameter using)
-- `sourceHost [optional]` - parameter for <a href="https://www.virtuozzo.com/application-platform-docs/configure-external-nfs-server/" target="_blank">external mounts</a> usage
+- `sourceHost [optional]` - parameter for [external mounts](https://www.virtuozzo.com/application-platform-docs/configure-external-nfs-server/) usage
 - `readOnly` - defines write data permissions at source node, the default value is `false`
-- `sourceNodeGroup` - any available <a href="/reference/container-types/#containers-by-groups-nodegroup" target="_blank">*nodeGroup*</a> within a source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.
+- `sourceNodeGroup` - any available [*nodeGroup*](/reference/container-types/#containers-by-groups-nodegroup) within a source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.
 
 In case not all source node volumes are required to be mounted, the particular ones can be specified:
+
 ```json
 [
   {
@@ -85,6 +90,7 @@ In case not all source node volumes are required to be mounted, the particular o
 
 **Master Node Mount:**
 Samples to mount a particular volume by exact node identifier & path (*/master*) and to mount all volumes from the layer master node by *nodeGroup* (*/master-1*)
+
 ```json
 {
   "volumeMounts": {
@@ -122,6 +128,7 @@ Samples to mount all volumes from a particular node by exact node identifier & p
 **External Server Mounts:**
 
 Sample to mount a volume (*/external*) from external server by indicating its host (`sourceHost`), path (`sourcePath`) and access permissions (`readOnly`).
+
 ```json
 {
   "volumeMounts": {
@@ -133,9 +140,11 @@ Sample to mount a volume (*/external*) from external server by indicating its ho
   }
 }
 ```
+
 **Short Set for External Server:**
 
 Sample to mount a number of volumes from external server by specifying the required parameters (i.e. volume path, `sourceHost`, `sourcePath`, access permissions) for each of them within one string.
+
 ```json
 {
   "volumeMounts": {
@@ -197,7 +206,7 @@ where:
 
 ## Docker Environment Variables
 
-Docker environment <a href="https://www.virtuozzo.com/application-platform-docs/container-variables/" target="_blank">variable</a> is an optional topology object. The *env* instruction allows to set the required environment variables to specified values.
+Docker environment [variable](https://www.virtuozzo.com/application-platform-docs/container-variables/) is an optional topology object. The *env* instruction allows to set the required environment variables to specified values.
 
 ```json
 {
@@ -218,9 +227,10 @@ Docker environment <a href="https://www.virtuozzo.com/application-platform-docs/
 
 ## Docker Links
 
-Docker <a href="https://www.virtuozzo.com/application-platform-docs/container-links/" target="_blank">links</a> option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
+Docker [links](https://www.virtuozzo.com/application-platform-docs/container-links/) option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
 
 The example below illustrates the way to link *sql* and *memcached* nodes to *cp* container.
+
 ```json
 [
   {
@@ -247,6 +257,7 @@ The example below illustrates the way to link *sql* and *memcached* nodes to *cp
   }
 ]
 ```
+
 where:
 
 - `links` - object that defines nodes to be linked to *cp* node by their *nodeGroup* and these links names

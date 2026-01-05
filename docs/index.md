@@ -6,24 +6,19 @@
 
 There are three main pillars of cloud scripting:
 
-- **Actions** - scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and the ability to <a href="creating-manifest/custom-scripts/" target="_blank">script custom actions</a> using <a href="https://www.virtuozzo.com/application-platform-api-docs/" target="_blank">API calls</a>, Linux bash <a href="creating-manifest/actions/#cmd" target="_blank">shell command</a>, JS and Java scripts
+- **Actions** - scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and the ability to [script custom actions](creating-manifest/custom-scripts/) using [API calls](https://www.virtuozzo.com/application-platform-api-docs/), Linux bash [shell command](creating-manifest/actions/#cmd), JS and Java scripts
+- **Events** - specific [triggers](creating-manifest/events/) for executing actions on a required application lifecycle stage
+- **Injection** - supplying default actions, [placeholders](creating-manifest/placeholders/), platform API methods, environment variables, request parameters and input settings in custom scripts by default
 
-- **Events** - specific <a href="creating-manifest/events/" target="_blank">triggers</a> for executing actions on a required application lifecycle stage
+The developed Cloud Scripting solutions are wrapped into packages and distributed through preparing a manifest file in JSON format. Such packaged solutions can be effortlessly deployed to the platform via [import](https://www.virtuozzo.com/application-platform-docs/environment-import/) functionality.
 
-- **Injection** - supplying default actions, <a href="creating-manifest/placeholders/" target="_blank">placeholders</a>, platform API methods, environment variables, request parameters and input settings in custom scripts by default
-
-<p dir="ltr" style="text-align: justify;">The developed Cloud Scripting solutions are wrapped into packages and distributed through preparing a manifest file in JSON format. Such packaged solutions can be effortlessly deployed to the platform via <a href="https://www.virtuozzo.com/application-platform-docs/environment-import/" target="_blank">import</a> functionality.</p>
-
-<p dir="ltr" style="text-align: justify;">The example below represents the Cloud Scripting basic use case. This manifest declares the creation of a new environment with the Payara Micro cluster image certified by Virtuozzo Application Platform and provides the ability to configure new cluster members while scaling nodes. Within the manifest, the following key parameters are declared:</p>
+The example below represents the Cloud Scripting basic use case. This manifest declares the creation of a new environment with the Payara Micro cluster image certified by Virtuozzo Application Platform and provides the ability to configure new cluster members while scaling nodes. Within the manifest, the following key parameters are declared:
 
 - `nodes` - an environment topology which will be created
-
-- `onAfterScaleIn`, `onAfterScaleOut` - scaling <a href="creating-manifest/events/#onafterscalein" target="blank">events</a>
-
-- `cmd` - action to execute <a href="creating-manifest/actions/#cmd" target="blank">shell commands</a>
-
-- `updateNodes` - custom <a href="creating-manifest/actions/#custom-actions" target="blank">action</a>
-- `baseUrl` - external links <a href="creating-manifest/basic-configs/#relative-links" target="_blank">relative path</a>
+- `onAfterScaleIn`, `onAfterScaleOut` - scaling [events](creating-manifest/events/#onafterscalein)
+- `cmd` - action to execute [shell commands](creating-manifest/actions/#cmd)
+- `updateNodes` - custom [action](creating-manifest/actions/#custom-actions)
+- `baseUrl` - external links [relative path](creating-manifest/basic-configs/#relative-links)
 
 @@@
 ```yaml
@@ -140,10 +135,10 @@ homepage: http://docs.cloudscripting.com/
 
 ## What’s next?
 
-- Build a simple automation with <a href="/quick-start/" target="_blank">Quick Start</a> Guide
-- Learn how to <a href="creating-manifest/basic-configs/" target="_blank">Create Manifest</a>
-- Explore the list of available <a href="creating-manifest/actions/" target="_blank">Actions</a>
-- See the <a href="creating-manifest/events/" target="_blank">Events</a> list the actions can be bound to
-- Find out the list of <a href="creating-manifest/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching
-- Read how to integrate your <a href="creating-manifest/custom-scripts/" target="_blank">Custom Scripts</a>
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples
+- Build a simple automation with [Quick Start](/quick-start/) Guide
+- Learn how to [Create Manifest](creating-manifest/basic-configs/)
+- Explore the list of available [Actions](creating-manifest/actions/)
+- See the [Events](creating-manifest/events/) list the actions can be bound to
+- Find out the list of [Placeholders](creating-manifest/placeholders/) for automatic parameters fetching
+- Read how to integrate your [Custom Scripts](creating-manifest/custom-scripts/)
+- Examine a bunch of [Samples](/samples/) with operation and package examples

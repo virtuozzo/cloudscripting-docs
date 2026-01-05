@@ -1,11 +1,12 @@
 # Custom Scripts
 
-You can write your custom scripts in Java or JavaScript. Inside these scripts, a set of client libraries for <a href="https://docs.jelastic.com/api/" target="_blank">Jelastic API</a> methods calling is available.
-You can bind your scripts to the ***onAfterReturn*** event to execute the required <a href="../actions/" target="_blank">actions</a>.
+You can write your custom scripts in Java or JavaScript. Inside these scripts, a set of client libraries for [Virtuozzo Application Platform API](https://www.virtuozzo.com/application-platform-api-docs/) methods calling is available.
+
+You can bind your scripts to the ***onAfterReturn*** event to execute the required [actions](../actions/).
 
 
 ## Intercontainer Scripts
-In order to execute a shell script inside of a container, use the <a href="../actions/#cmd" target="_blank">ExecuteShellCommands</a> (*cmd*) action.
+In order to execute a shell script inside of a container, use the [ExecuteShellCommands](../actions/#cmd) (*cmd*) action.
 
 ### Examples
 
@@ -66,7 +67,7 @@ Here, `${nodes.sqldb.password}` is available only for the *install* installation
 
 ## Top Level Scripts
 
-Using a <a href="../actions/#script" target="_blank">*script*</a> action.
+Using a [*script*](../actions/#script) action.
 
 ### Java
 
@@ -116,8 +117,8 @@ greeting: Hello World!
 
 ## What’s next?
 
-- See how to create your custom <a href="../addons/" target="_blank">Add-Ons</a>
-- Find out how to handle <a href="../handling-custom-responses/" target="_blank">Custom Responses</a>
-- Explore how to customize <a href="../visual-settings/" target="_blank">Visual Settings</a>
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples
-- See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions
+- See how to create your custom [Add-Ons](../addons/)
+- Find out how to handle [Custom Responses](../handling-custom-responses/)
+- Explore how to customize [Visual Settings](../visual-settings/)
+- Examine a bunch of [Samples](/samples/) with operation and package examples
+- See [Troubleshooting](/troubleshooting/) for helpful tips and specific suggestions

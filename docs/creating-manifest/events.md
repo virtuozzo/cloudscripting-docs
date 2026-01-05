@@ -1,6 +1,6 @@
 # Events
 
-Any <a href="../actions/" target="_blank">action</a>, available to be performed by means of <a href="https://docs.jelastic.com/api/" target="_blank">API</a> (including <a href="../custom-scripts/" target="_blank">custom scripts</a> running), should be bound to some event and executed as a result of this event occurrence.
+Any [action](../actions/), available to be performed by means of [API](https://www.virtuozzo.com/application-platform-api-docs/) (including [custom scripts](../custom-scripts/) running), should be bound to some event and executed as a result of this event occurrence.
 
 Each event triggers a particular action on the required application's lifecycle stage. The entry point for executing any action is the [*onInstall*](#oninstall) event.
 
@@ -137,12 +137,12 @@ The event is executed once the *changeTopology* action is finished.
     - `redeployContainerDelay` - delay for container redeployment
     - `redeployContextDelay` - delay for context redeployment
     - `restartContainerDelay` - delay for container restart
-    - `nodes` - nodes array with detailed info about the topology change. Explore the full list of available <a href="../placeholders/#node-placeholders" target="_blank">node placeholders</a>.
-    - `env` - environment information. Explore the full list of available <a href="../placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.
+    - `nodes` - nodes array with detailed info about the topology change. Explore the full list of available [node placeholders](../placeholders/#node-placeholders).
+    - `env` - environment information. Explore the full list of available [environment placeholders](../placeholders/#environment-placeholders).
 
 ### onBeforeScaleOut
 
-The event is executed before adding new node(s) (i.e. scaling *out*) to the existing node group (layer). Scaling in/out can be performed either through <a href="https://www.virtuozzo.com/application-platform-docs/dashboard-guide/#change-topology" target="_blank">changing topology</a> or <a href="https://www.virtuozzo.com/application-platform-docs/automatic-horizontal-scaling/" target="_blank">auto horizontal scaling</a> functionality. The *onBeforeScaleOut* event is run once for each layer upon any node count change.
+The event is executed before adding new node(s) (i.e. scaling *out*) to the existing node group (layer). Scaling in/out can be performed either through [changing topology](https://www.virtuozzo.com/application-platform-docs/dashboard-guide/#change-topology) or [auto horizontal scaling](https://www.virtuozzo.com/application-platform-docs/automatic-horizontal-scaling/) functionality. The *onBeforeScaleOut* event is run once for each layer upon any node count change.
 
 **Event Placeholders:**
 
@@ -162,7 +162,7 @@ The event is executed after adding new node(s) to the existing node group. The *
     - `count` - number of nodes that are added
     - `nodeGroup` - node group that is scaled out
 - `${event.response.}`:
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="../placeholders/#node-placeholders" target="_blank">node placeholders</a>.
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](../placeholders/#node-placeholders).
 
 ### onBeforeScaleIn
 
@@ -174,7 +174,7 @@ The event is executed before removing node(s) (i.e. scaling *in*) from the targe
     - `count` - number of nodes that are removed
     - `nodeGroup` - node group that is scaled in
 - `${event.response.}`:
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="../placeholders/#node-placeholders" target="_blank">node placeholders</a>.
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](../placeholders/#node-placeholders).
 
 ### onAfterScaleIn
 
@@ -186,7 +186,7 @@ The event is executed after scaling *in* the corresponding node group. The *onAf
     - `count` - number of nodes that are removed
     - `nodeGroup` - node group that is scaled in
 - `${event.response.}`:
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="../placeholders/#node-placeholders" target="_blank">node placeholders</a>.
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](../placeholders/#node-placeholders).
 
 ### onBeforeServiceScaleOut
 
@@ -214,7 +214,7 @@ The event is executed after adding new container(s) to the existing node group. 
 
 ### onAlert
 
-This event provides a possibility to bind actions to <a href="https://www.virtuozzo.com/application-platform-docs/load-alerts/" target="_blank">Load Alerts</a> and <a href="https://www.virtuozzo.com/application-platform-docs/automatic-horizontal-scaling/" target="_blank">Automatic Horizontal Scaling Alerts</a> that are configured through the Virtuozzo Application Platform triggers.
+This event provides a possibility to bind actions to [Load Alerts](https://www.virtuozzo.com/application-platform-docs/load-alerts/) and [Automatic Horizontal Scaling Alerts](https://www.virtuozzo.com/application-platform-docs/automatic-horizontal-scaling/) that are configured through the Virtuozzo Application Platform triggers.
 
 These monitoring triggers are based on the usage of the following resource types:
 
@@ -272,7 +272,7 @@ onAlert [name:custom_name]:
 ```
 @@!
 
-<left><img style="width: 600px"  src="/img/trigger_name.png" alt="trigger name" /></left>
+<img style="width: 600px"  src="/img/trigger_name.png" alt="trigger name" />
 
 The trigger name can be set up through the dashboard as on the picture above or as described in the example as follows.
 
@@ -627,7 +627,7 @@ The event is executed after detaching the external IP address. The *onAfterDetac
 
 ### onBeforeUpdateVcsProject
 
-The event is carried out before updating the VCS project. For a detailed guidance on the <a href="https://www.virtuozzo.com/application-platform-docs/cli-vcs-deploy/" target="_blank">VCS project deployment</a>, refer to the linked page.
+The event is carried out before updating the VCS project. For a detailed guidance on the [VCS project deployment](https://www.virtuozzo.com/application-platform-docs/cli-vcs-deploy/), refer to the linked page.
 
 **Event Placeholders:**
 
@@ -646,7 +646,7 @@ The event is carried out before updating the VCS project. For a detailed guidanc
 
 ### onAfterUpdateVcsProject
 
-The event is carried out after updating the VCS project. For a detailed guidance on the <a href="https://www.virtuozzo.com/application-platform-docs/cli-vcs-deploy/" target="_blank">VCS project deployment</a>, refer to the linked page.
+The event is carried out after updating the VCS project. For a detailed guidance on the [VCS project deployment](https://www.virtuozzo.com/application-platform-docs/cli-vcs-deploy/), refer to the linked page.
 
 **Event Placeholders:**
 
@@ -702,7 +702,7 @@ The event is executed after setting cloudlet count, which implies changing the n
 
 ### onBeforeSetCrossServiceNetworkIpCount
 
-The event is executed before setting the <a href="https://www.virtuozzo.com/application-platform-ops-docs/cross-network-overview/" target="_blank">Cross-Service Network</a> IP address count, which implies changing the number of allocated cross-service IPs per any layer in the environment.
+The event is executed before setting the [Cross-Service Network](https://www.virtuozzo.com/application-platform-ops-docs/cross-network-overview/) IP address count, which implies changing the number of allocated cross-service IPs per any layer in the environment.
 
 **Event Placeholders:**
 
@@ -717,7 +717,7 @@ The event is executed before setting the <a href="https://www.virtuozzo.com/appl
 
 ### onAfterSetCrossServiceNetworkIpCount
 
-The event is executed after setting the <a href="https://www.virtuozzo.com/application-platform-ops-docs/cross-network-overview/" target="_blank">Cross-Service Network</a> IP address count, which implies changing the number of allocated cross-service IPs per any layer in the environment.
+The event is executed after setting the [Cross-Service Network](https://www.virtuozzo.com/application-platform-ops-docs/cross-network-overview/) IP address count, which implies changing the number of allocated cross-service IPs per any layer in the environment.
 
 **Event Placeholders:**
 
@@ -843,8 +843,8 @@ The event is related to cloning environment (performed via the Virtuozzo Applica
     - `redeployContainerDelay` - delay for container redeployment
     - `redeployContextDelay` - delay for context redeployment
     - `restartContainerDelay` - delay for container restart
-    - `nodes` - nodes array with detailed info about topology. Explore the full list of available <a href="../placeholders/#node-placeholders" target="_blank">node placeholders</a>.
-    - `env` - environment information. Explore the full list of available <a href="../placeholders/#environment-placeholders" target="_blank">environment placeholders</a>.
+    - `nodes` - nodes array with detailed info about topology. Explore the full list of available [node placeholders](../placeholders/#node-placeholders).
+    - `env` - environment information. Explore the full list of available [environment placeholders](../placeholders/#environment-placeholders).
 
 ### onBeforeBuildProject
 
@@ -1048,7 +1048,7 @@ This event is carried out after restarting container. The *onAfterRestartContain
 
 ### onBeforeMigrate
 
-The event is related to the <a href="https://www.virtuozzo.com/application-platform-docs/environment-regions-migration/" target="_blank">*migrating environment*</a> action and is called before it.
+The event is related to the [*migrating environment*](https://www.virtuozzo.com/application-platform-docs/environment-regions-migration/) action and is called before it.
 
 **Event Placeholders:**
 
@@ -1061,7 +1061,7 @@ The event is related to the <a href="https://www.virtuozzo.com/application-platf
 
 ### onAfterMigrate
 
-The event is related to <a href="https://www.virtuozzo.com/application-platform-docs/environment-regions-migration/" target="_blank">*migrating environment*</a> and is called after it.
+The event is related to [*migrating environment*](https://www.virtuozzo.com/application-platform-docs/environment-regions-migration/) and is called after it.
 
 **Event Placeholders:**
 
@@ -2135,8 +2135,8 @@ jem api apicall [API_DOMAIN]/1.0/environment/node/rest/sendevent --data-urlencod
 
 ## What’s next?
 
-- Find out how to fetch parameters with <a href="../placeholders/" target="_blank">Placeholders</a>
-- See how to use <a href="../conditions-and-iterations/">Conditions and Iterations</a>
-- Read how to integrate your <a href="../custom-scripts/" target="_blank">Custom Scripts</a>
-- Learn how to create your custom <a href="../addons/" target="_blank">Add-Ons</a>
-- Check how to handle <a href="../handling-custom-responses/" target="_blank">Custom Responses</a>
+- Find out how to fetch parameters with [Placeholders](../placeholders/)
+- See how to use [Conditions and Iterations](../conditions-and-iterations/)
+- Read how to integrate your [Custom Scripts](../custom-scripts/)
+- Learn how to create your custom [Add-Ons](../addons/)
+- Check how to handle [Custom Responses](../handling-custom-responses/)
