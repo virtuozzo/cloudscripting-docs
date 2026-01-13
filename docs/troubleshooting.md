@@ -17,7 +17,7 @@ Having trouble with Cloud Scripting? Here are some helpful tips and specific tro
 
 Below, you can find some samples of editing custom information to the log:
 
-- outputting a single [placeholder](../placeholders/) value
+- outputting a single [placeholder](/creating-manifest/placeholders/) value
 
 @@@
 ```yaml

@@ -59,12 +59,11 @@ In order to give a try to *Hello World* sample from above (or deploy your own ap
 
 1. Click the **Import** button at the top pane of the dashboard.
 
-![import-button.png](img/import-button.png)
+![import-button.png](/img/import-button.png)
 
 2. Within the opened frame, switch to the **JPS** tab and paste the code provided above (for Hello World app).
 
-![import-manifest.png](img/import-manifest.png)
-
+![import-manifest.png](/img/import-manifest.png)
 !!! note
     **Tip:** Subsequently, you can use this editor to adjust your manifest code on the fly. Clicking on the **Examples** string nearby will redirect you to [Virtuozzo Application Platform JPS Collection](https://github.com/jelastic-jps) with numerous ready-to-go solutions (just import the link to the appropriate *manifest.jps* file to fetch the required one). Also, two more options for JPS deployment are available here:<ul><li><b>*Local File*</b> - to upload the locally stored manifest</li><li><b>*URL*</b> - to specify direct link to the required file</li></ul>
 
@@ -72,15 +71,15 @@ To proceed, click on **Import** in the bottom-right corner.
 
 3. Within the installation confirmation window, specify domain name for a new **Environment**, set a **Display Name** (i.e. [alias](https://www.virtuozzo.com/application-platform-docs/environment-aliases/)) for it and select the preferred [region](https://www.virtuozzo.com/application-platform-docs/environment-regions/) (if available).
 
-![hello-world.png](img/hello-world.png)
+![hello-world.png](/img/hello-world.png)
 
-4. Once the import is completed, you’ll get notification about successful package installation.
+4. Once the import is completed, you'll get notification about successful package installation.
 
-![open-in-browser.png](img/open-in-browser.png)
+![open-in-browser.png](/img/open-in-browser.png)
 
 Now you can **Open** your new environment in a **browser** and check the result.
 
-![hello-world-startpage.png](img/hello-world-startpage.png)
+![hello-world-startpage.png](/img/hello-world-startpage.png)
 
 Similarly, you can build and run the solution you need - from frequent tasks automation to implementing complex CI/CD flows and clustering configurations.
 
@@ -90,7 +89,7 @@ Similarly, you can build and run the solution you need - from frequent tasks aut
 - Leverage [GitHub](https://github.com/) to store and manage your projects, manifests and scripts all together
 - Explore [Virtuozzo Application Platform Samples](/samples/) to benefit from pre-composed operation and package examples
 
-## What’s next?
+## What's next?
 
 - [Basic Configs](/creating-manifest/basic-configs/) - learn the minimum basis of any JSP manifest and find out about the differences between *Install* and *Update* package types
 - [Actions](/creating-manifest/actions/) - define the required configurations and application behavior with a set of prescribed procedures

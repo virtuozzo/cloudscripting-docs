@@ -1,3 +1,4 @@
+````markdown
 # Mount Data Storage
 
 Mount `data` directory from `storage` node to application server node:
@@ -34,3 +35,5 @@ Mount `data` directory from `storage` node to application server node:
 }
 ```
 
+
+````

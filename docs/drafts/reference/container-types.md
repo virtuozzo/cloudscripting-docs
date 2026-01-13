@@ -1,3 +1,4 @@
+````markdown
 # Containers by Groups and Types
 
 **Containers by Types (*NodeType*)**
@@ -228,3 +229,5 @@ The following section deals with supported engine versions and their availabilit
 
 !!! note
     > The list of supported [software stacks](https://www.virtuozzo.com/application-platform-docs/software-stacks-versions/) can vary depending on your Vrituozzo PaaS platform version - it can be checked at your dashboard.
+
+````

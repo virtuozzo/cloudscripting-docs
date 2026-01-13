@@ -1,9 +1,10 @@
+````markdown
 # Add-ons
 
-## Free SSL Let’s Encrypt Add-On
+## Free SSL Let's Encrypt Add-On
 
 Add-on to secure application with custom SSL for free.
-Let’s Encrypt Add-on for Automatic SSL Configuration of Your Virtuozzo Application Platform Environment.
+Let's Encrypt Add-on for Automatic SSL Configuration of Your Virtuozzo Application Platform Environment.
 This add-on allows to configure SSL for:
 
 - Internal environment address
@@ -114,7 +115,7 @@ This add-on allows to configure SSL for:
       }
     ]
   },
-  "success": "<div class='description'>Your Let’s Encrypt SSL certificate(s) will remain valid for 90 days. To avoid their expiration, use the Update option at add-on’s panel (you'll get the appropriate email notification beforehand).</div><div class='description'>Starting with 4.9.5 Virtuozzo Application Platform version, this operation is handled by the system automatically.</div><br><div>Useful links:</div><div><a href='https://github.com/jelastic-jps/lets-encrypt#how-to-renew-ssl-certificate' target='_blank'>How to renew SSL certificate</div><div><a href='https://docs.jelastic.com/custom-domain-via-cname'target='_blank'>How to bind custom domain via CNAME</a></div><div><a href='https://docs.jelastic.com/custom-domain-via-arecord' target='_blank'>How to bind custom domain via A Record</a></div>"
+  "success": "<div class='description'>Your Let's Encrypt SSL certificate(s) will remain valid for 90 days. To avoid their expiration, use the Update option at add-on's panel (you'll get the appropriate email notification beforehand).</div><div class='description'>Starting with 4.9.5 Virtuozzo Application Platform version, this operation is handled by the system automatically.</div><br><div>Useful links:</div><div><a href='https://github.com/jelastic-jps/lets-encrypt#how-to-renew-ssl-certificate' target='_blank'>How to renew SSL certificate</div><div><a href='https://docs.jelastic.com/custom-domain-via-cname'target='_blank'>How to bind custom domain via CNAME</a></div><div><a href='https://docs.jelastic.com/custom-domain-via-arecord' target='_blank'>How to bind custom domain via A Record</a></div>"
 }
 ```
 
@@ -419,3 +420,5 @@ Add-on to complement environment with auto-configured Docker Haproxy LB containe
   ]
 }
 ```
+
+````

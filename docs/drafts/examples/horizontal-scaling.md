@@ -1,3 +1,4 @@
+````markdown
 # Automatic Horizontal Scaling
 
 Create two Nginx PHP nodes with Nginx balancer and automatic horizontal scaling with the following rules:
@@ -100,3 +101,4 @@ return {
     result : 0
 };
 ```
+````

@@ -1,3 +1,4 @@
+```markdown
 # Release Notes
 
 # Release Notes 1.0
@@ -19,6 +20,7 @@ The major improvements were applied to the [*Visual Settings*](creating-manifest
     - *width*
     - *height*
 
-## What’s next?
+## What's next?
 
 - See the correspondence between [CS and Virtuozzo Application Platform versions](/virtuozzo-cs-correspondence/)
+```

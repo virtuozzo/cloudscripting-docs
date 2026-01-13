@@ -38,29 +38,28 @@ markdown_extensions:
 
 nav:
 
-- GETTING STARTED:
-   - Overview: index.md
-   - Quick Start: quick-start.md
+- Getting Started:
+  - CS Overview: getting-started/cs-overview.md
+  - Quick Start: getting-started/quick-start.md
 
 - Creating Manifest:
-   - Basic Configs: creating-manifest/basic-configs.md
-   - Specifying Target Container: creating-manifest/selecting-containers.md
-   - Actions: creating-manifest/actions.md
-   - Events: creating-manifest/events.md
-   - Placeholders: creating-manifest/placeholders.md
-   - Conditions and Iterations: creating-manifest/conditions-and-iterations.md
-   - Custom Scripts: creating-manifest/custom-scripts.md
-   - Mixins: creating-manifest/mixins.md
-   - Add-Ons: creating-manifest/addons.md
-   - Custom Responses: creating-manifest/handling-custom-responses.md
-   - Visual Settings: creating-manifest/visual-settings.md
+  - Basic Configs: creating-manifest/basic-configs.md
+  - Specifying Target Container: creating-manifest/selecting-containers.md
+  - Actions: creating-manifest/actions.md
+  - Events: creating-manifest/events.md
+  - Placeholders: creating-manifest/placeholders.md
+  - Conditions and Iterations: creating-manifest/conditions-and-iterations.md
+  - Custom Scripts: creating-manifest/custom-scripts.md
+  - Mixins: creating-manifest/mixins.md
+  - Add-Ons: creating-manifest/addons.md
+  - Custom Responses: creating-manifest/handling-custom-responses.md
+  - Visual Settings: creating-manifest/visual-settings.md
 
-- Samples:
-   - Overview: samples.md
+- Samples: samples.md
 
 - Troubleshooting: troubleshooting.md
 
-- CS vs Virtuozzo PaaS Versions: virtuozzo-cs-correspondence.md
+- VAP & CS Version Correlation: virtuozzo-cs-correspondence.md
 
 extra:
   versions:

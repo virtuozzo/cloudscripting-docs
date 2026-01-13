@@ -80,7 +80,7 @@ nav:
 - Display names should match page H1 headings
 - Maintain logical hierarchy and grouping
 - Use relative paths from `docs/` directory
-- Preserve existing indentation (3 spaces)
+- Preserve existing indentation (2 spaces)
 - Test navigation after changes
 
 ### 3. Links and References
@@ -165,57 +165,13 @@ Use MkDocs admonition syntax for important information:
 
 **Whitespace:**
 - No trailing spaces on lines
-- One blank line between sections
+- Two blank lines before H2 headings (major sections)
+- One blank line between other sections
 - No multiple consecutive blank lines
+- One blank line at end of file
 
 
 ## Documentation Structure
-
-### Directory Layout
-
-```
-docs/
-├── index.md                          # Landing page - Cloud Scripting overview
-├── quick-start.md                    # Tutorial: first manifest in 5 minutes
-├── releasenotes.md                   # Version history and changes
-├── samples.md                        # Curated collection of manifest examples
-├── troubleshooting.md                # Common issues and solutions
-├── virtuozzo-cs-correspondence.md    # Platform version compatibility
-│
-├── creating-manifest/                # CORE REFERENCE - Manifest syntax & features
-│   ├── basic-configs.md              # Manifest structure, metadata, parameters
-│   ├── actions.md                    # All automation actions (cmd, deploy, etc.)
-│   ├── events.md                     # Event triggers and lifecycle hooks
-│   ├── placeholders.md               # Variable interpolation and expressions
-│   ├── selecting-containers.md       # nodeId, nodeGroup, nodeType targeting
-│   ├── conditions-and-iterations.md  # Control flow (if/else, forEach)
-│   ├── custom-scripts.md             # JavaScript, shell scripts, API calls
-│   ├── visual-settings.md            # User input forms and UI configuration
-│   ├── addons.md                     # Add-on manifests vs. full deployments
-│   ├── mixins.md                     # Code reuse and composition
-│   └── handling-custom-responses.md  # Return values and response processing
-│
-├── examples/                         # PRACTICAL USE CASES - Real-world patterns
-│   ├── hello-world.md                # Minimal working example
-│   ├── wordpress-cluster.md          # Multi-tier application deployment
-│   ├── horizontal-scaling.md         # Auto-scaling patterns
-│   ├── vertical-scaling.md           # Resource adjustment examples
-│   ├── mount-data-storage.md         # Persistent storage configuration
-│   ├── using-docker.md               # Container-based deployments
-│   ├── add-ons.md                    # Add-on development examples
-│   ├── addon-inside-manifest.md      # Embedded add-ons pattern
-│   ├── configs-adjustments.md        # Configuration management
-│   ├── operation-examples.md         # Common operation patterns
-│   ├── environment-migration-after-cloning.md  # Clone & migrate workflow
-│   ├── swap-domain.md                # Domain management automation
-│   ├── two-envs-in-diff-regions.md   # Multi-region deployments
-│   └── complex-ready-to-go-solutions.md  # Advanced multi-component systems
-│
-└── reference/                        # API & TECHNICAL SPECS
-    ├── container-types.md            # Node types (apache, nginx, tomcat, etc.)
-    ├── docker-actions.md             # Docker-specific operations
-    └── procedures.md                 # Reusable procedure definitions
-```
 
 ### Content Type Guidelines
 
@@ -235,6 +191,47 @@ docs/
 - API mappings and correspondences
 - Valid values and constraints
 - Version compatibility information
+
+### File Organization Rules
+
+**Directory Structure:**
+```
+docs/
+├── getting-started/         # Getting Started section pages
+│   ├── cs-overview.md      # Main overview (was index.md)
+│   └── quick-start.md      # Quick start guide
+├── creating-manifest/      # Creating Manifest section pages
+│   ├── actions.md
+│   ├── basic-configs.md
+│   └── ...
+├── samples.md              # Root-level single-file sections
+├── troubleshooting.md
+├── virtuozzo-cs-correspondence.md
+└── drafts/                 # Unpublished/unreferenced content
+    ├── examples/           # Tutorial examples not in nav
+    ├── reference/          # Technical references not in nav
+    └── ...
+```
+
+**File Naming and Placement:**
+- **Multi-page sections**: Create folder matching section name in `mkdocs.yml` nav
+  - Example: "Getting Started" section → `docs/getting-started/` folder
+- **File names**: Use lowercase with hyphens, match navigation title
+  - "CS Overview" → `cs-overview.md`
+  - "Quick Start" → `quick-start.md`
+  - NOT: `index.md`, `overview.md`, `quick_start.md`
+- **Single-file sections**: Keep at root level
+  - Example: "Samples" section with one file → `docs/samples.md` (not `docs/samples/samples.md`)
+- **Unreferenced content**: Move to `docs/drafts/` folder
+  - Preserves work-in-progress or deprecated content
+  - Excludes from main navigation but keeps accessible
+
+**When Moving/Renaming Files:**
+1. Create new file at correct location with proper name
+2. Update `mkdocs.yml` nav paths
+3. Search and update all internal links referencing the file
+4. Verify no broken links with grep search
+5. Delete old file via git after verification
 
 
 ## Common Tasks and Workflows
