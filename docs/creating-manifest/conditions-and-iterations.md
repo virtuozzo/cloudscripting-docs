@@ -2,6 +2,7 @@
 
 **Comparison** and **Logical** operators are used in *conditional* statements and serve to test for `true` or `false`.
 
+
 ## Comparison Operators
 
 The Comparison operators are used in logical statements to determine equality or difference between variables or values.
@@ -28,6 +29,7 @@ Let's assume that `x = 5`. The table below explains the comparison operators:
 | >=                 | greater than or equal to             | x >= 8    | false    |
 | <=                 | less than or equal to               | x <= 8    | true     |
 
+
 ## Logical Operators
 
 The logical operators are used to determine the logic between variables or values. Let's take that `x = 6` and `y = 3`. The table below explains the logical operators:
@@ -35,30 +37,33 @@ The logical operators are used to determine the logic between variables or value
 | Operator           | Description                         | Example                      |
 |--------------------|-------------------------------------|------------------------------|
 | &&                 | and                                 | (x < 10 && y > 1) is true    |
-| ==                 | or                                  | (x == 5 || y == 5) is false  |
-| ==                 | not                                 | !(x == y) is true            |
-
-
-
+| \|\|               | or                                  | (x == 5 \|\| y == 5) is false  |
+| !                  | not                                 | !(x == y) is true            |
 
 
 ## Conditions
 
-The main conditional statement is ***if***. Within this parameter, all the available [placeholders](../placeholders/) and their objective JavaScript  mappings can be used.
+The main conditional statement is ***if***. Within this parameter, all the available [placeholders](/creating-manifest/placeholders/) and their objective JavaScript  mappings can be used.
 
 For example
+
 ```
 if ('${env.protocol}' == 'http')
 ```
+
 or
+
 ```
 if (env.protocol == 'http')
 ```
 
 The main iterable object is ***ForEach***. Both ***if*** and ***ForEach*** can be of any nesting level.
 
-- If condition is specified incorrectly, the actions inside ***if*** statement are not executed. Herewith, the [Cloud Scripting Console](/troubleshooting/) returns the ***'invalid condition'*** message with the root cause explanation. The application installer proceeds to the next action.
-- If condition is valid, but is not executed, the ***'condition is not met'*** message is logged.
+!!! warning
+    If condition is specified incorrectly, the actions inside ***if*** statement are not executed. Herewith, the [Cloud Scripting Console](/troubleshooting/) returns the ***'invalid condition'*** message with the root cause explanation. The application installer proceeds to the next action.
+
+!!! note
+    If condition is valid, but is not executed, the ***'condition is not met'*** message is logged.
 
 ### Examples
 
@@ -220,6 +225,7 @@ onInstall:
 @@!
 
 The operation result can be located within a ***result.txt***  file that is automatically created in the master node (i.e. the first *cp* node) ***tmp*** directory.
+
 ```
 Environment consists of two compute nodes
 Balancer node with external IP address!
@@ -482,7 +488,9 @@ onInstall:
 ### Single line *if* statement
 
 Another ***if-else*** combination can be represented as a single ***if*** statement when multiple conditions are required to be checked and the statements nesting is not mandatory.
+
 It is applicable if any condition or all of the conditions in the statement may lead to the same outcome.
+
 For example:
 
 @@@
@@ -578,10 +586,10 @@ this: {}
 
 where:
 
-- `settings` *[optional]* - values of the fields that are predefined within a [user settings form](../visual-settings/)
-- `license [optional]` - link to fetch parameters that are specified within the [prepopulate](../visual-settings/) custom script. It enables to customize default field values and can be further initialized through the `$(license.{any_name}` [placeholder](../placeholders/)  within a manifest.
-- `event [optional]` - object with [events](../events/) that can be of two types, triggering a particular [ action](../actions/) *before* or *after* the event execution
-- `this [optional]` - object with parameters that are transmitted within the procedure body. See the full list of available[ placeholders](../placeholders/#procedure-placeholders) on this parameter.
+- `settings` *[optional]* - values of the fields that are predefined within a [user settings form](/creating-manifest/visual-settings/)
+- `license [optional]` - link to fetch parameters that are specified within the [prepopulate](/creating-manifest/visual-settings/) custom script. It enables to customize default field values and can be further initialized through the `$(license.{any_name}` [placeholder](/creating-manifest/placeholders/)  within a manifest.
+- `event [optional]` - object with [events](/creating-manifest/events/) that can be of two types, triggering a particular [action](/creating-manifest/actions/) *before* or *after* the event execution
+- `this [optional]` - object with parameters that are transmitted within the procedure body. See the full list of available [placeholders](/creating-manifest/placeholders/#procedure-placeholders) on this parameter.
 
 Iteration can be executed by ***env.nodes***, ***nodes***, ***env.contexts***, and ***env.extdomains*** objects.
 
@@ -759,13 +767,14 @@ In this case, every environment node will have only one conjunction by **Node ID
 
 The **ForEach** execution is recorded in the user console [log file](/troubleshooting/) for convenient code debugging.
 
-![foreachcount](/img/foreachcount.jpg)
+![forEach count](/img/creating-manifest/conditions-and-iterations/foreachcount.jpg)
+
 
 ## What’s next?
 
-- Read how to integrate your [Custom Scripts](../custom-scripts/)
-- Learn how to сreate your custom [Add-Ons](../addons/)
-- Find out how to handle [Custom Responses](../handling-custom-responses/)
-- See how to customize [Visual Settings](../visual-settings/)
+- Read how to integrate your [Custom Scripts](/creating-manifest/custom-scripts/)
+- Learn how to create your custom [Add-Ons](/creating-manifest/addons/)
+- Find out how to handle [Custom Responses](/creating-manifest/handling-custom-responses/)
+- See how to customize [Visual Settings](/creating-manifest/visual-settings/)
 - Examine a bunch of [Samples](/samples/) with operation and package examples
 - See the [Troubleshooting](/troubleshooting/) for helpful tips and specific suggestions

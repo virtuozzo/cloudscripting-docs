@@ -2,7 +2,7 @@
 
 **Cloud Scripting (CS)** is a tool designed to program the behavior of Virtuozzo Application Platform related to the application lifecycle for automating frequent tasks, complex CI/CD flows and clustering configurations.
 
-<center>![newoverview](/img/newoverview.svg)</center>
+<center>![Cloud Scripting overview illustration](/img/getting-started/cs-overview/cs-overview.svg)</center>
 
 There are three main pillars of cloud scripting:
 

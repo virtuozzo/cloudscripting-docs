@@ -1,6 +1,6 @@
 # Actions
 
-Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and the ability to [script custom actions](../custom-scripts/) using [API calls](https://www.virtuozzo.com/application-platform-api-docs/), Linux bash shell command, JS, and Java scripts. Any action, available to be performed by means of API (including custom scripts running), should be bound to some [event](../events) and executed as a result of this event occurrence.
+Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and the ability to [script custom actions](/creating-manifest/custom-scripts/) using [API calls](https://www.virtuozzo.com/application-platform-api-docs/), Linux bash shell command, JS, and Java scripts. Any action, available to be performed by means of API (including custom scripts running), should be bound to some [event](/creating-manifest/events/) and executed as a result of this event occurrence.
 
 With the help of actions you can achieve automation of the tasks related to:
 
@@ -11,8 +11,8 @@ With the help of actions you can achieve automation of the tasks related to:
 
 The default workflow for any action execution is the following:
 
-- replacing [placeholders](../placeholders)
-- getting a list of [target containers](../selecting-containers)
+- replacing [placeholders](/creating-manifest/placeholders/)
+- getting a list of [target containers](/creating-manifest/selecting-containers/)
 - checking permissions
 - executing the action itself
 
@@ -24,9 +24,10 @@ Thus, the following specific groups of actions are singled out:
 - [User-Defined Operations](#user-defined-operations)
 - [Custom Actions](#custom-actions)
 
+
 ## Container Operations
 
-There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the [*Specifying Target Containers*](../selecting-containers) page.
+There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the [Specifying Target Containers](/creating-manifest/selecting-containers/) page.
 
 Any container operation can be performed using a [*cmd*](#cmd) action. Moreover, there are also some additional actions provided for your convenience. Thus, all the actions performed within a container can be divided into three groups:
 
@@ -175,7 +176,7 @@ Therefore, the first commands will be executed only in a first compute node.
 
 While accessing a container via *cmd*, you receive all the required permissions and additionally can manage the main services with **sudo** commands of the following types (and others).
 
-```no-highlight
+```sh
 sudo /etc/init.d/jetty start
 sudo /etc/init.d/mysql stop
 sudo /etc/init.d/tomcat restart
@@ -249,7 +250,8 @@ There are a number of parameters required by Virtuozzo Application Platform API 
 - *appid* - unique environment identifier that can be passed to API instead of *envName*
 - *session* - unique session of a current user
 
-Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be run on all nodes within a single *[nodeGroup](../selecting-containers/#all-containers-by-group)* (i.e. layer) or *[nodeType](../selecting-containers/#all-containers-by-type)* asynchronously or in other words in parallel. Also, API methods can be run on a *[particular node(s)](../selecting-containers/#particular-container)*. In this case, the Node ID is required that is available either through the *[node placeholders](../placeholders/#node-placeholders)*, or a set of [custom action parameters](#action-placeholders) (*${this}*).
+Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be run on all nodes within a single *[nodeGroup](/creating-manifest/selecting-containers/#all-containers-by-group)* (i.e. layer) or *[nodeType](/creating-manifest/selecting-containers/#all-containers-by-type)* asynchronously or in other words in parallel. Also, API methods can be run on a *[particular node(s)](/creating-manifest/selecting-containers/#particular-container)*. In this case, the Node ID is required that is available either through the *[node placeholders](/creating-manifest/placeholders/#node-placeholders)*, or a set of [custom action parameters](#action-placeholders) (*${this}*).
+
 All of the nodes keywords and/or Node IDs can be passed as a list within one `api` action that allows to execute it asynchronously on all specified nodes. In case the action should be executed on all environment nodes you can use wildcards  `api[*]`.
 
 !!! note
@@ -376,13 +378,13 @@ onInstall:
     "name": "API action",
     "onInstall": {
         "api": [{
-            "method": "environment.file.Create"
+            "method": "environment.file.Create",
             "params": {
                 "nodeGroup": "cp",
                 "path": "/tmp/exampleFile.txt"
             }
         },{
-            "method": "environment.control.RestartNodes"
+            "method": "environment.control.RestartNodes",
             "params": {
                 "nodeGroup": "cp"
             }
@@ -415,9 +417,9 @@ onInstall:
     "name": "API action",
     "onInstall": {
         "api": [{
-            "method": "environment.file.Create"
+            "method": "environment.file.Create",
             "params": {
-                "path": "/tmp/exampleFIle.txt"
+                "path": "/tmp/exampleFile.txt"
             }
         }, {
             "method": "environment.control.RestartNodes"
@@ -796,10 +798,11 @@ where:
 - `path` - path where a file is available
 - `replacements` - list of replacements within the node's configuration files
     - `pattern` - regular expressions to find a string (e.g. *app\\.host\\.url\\s*=\\s*.**)
-    - `replacement` - you can use as a replacement any string value, including any combination of [placeholders](../placeholders)
+    - `replacement` - you can use as a replacement any string value, including any combination of [placeholders](/creating-manifest/placeholders/)
 
 <!-- DeletePath -->
 <!-- RenamePath -->
+
 
 ## Topology Nodes Management
 
@@ -855,7 +858,7 @@ addNodes:
 
 where:
 
-- `nodeType` *[required]* - parameter to specify [software stacks](../selecting-containers/#supported-stacks). For Docker containers the *nodeType* value is **docker**.
+- `nodeType` *[required]* - parameter to specify [software stacks](/creating-manifest/selecting-containers/#supported-stacks). For Docker containers the *nodeType* value is **docker**.
 - `nodeGroup` *[optional]* - the defined node layer.
 - `extip` *[optional]* - attaching the external IP address to a container. The default value is *'false'*.
 - `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.
@@ -1103,7 +1106,7 @@ restartNodes:
 where:
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)
-- `reboot` - flag which determines in which way node should be restarted. Positive value means the whole container should be restarted (the similar action to [`restartContainer`](../actions/#restartcontainers)), the negative one value means only main service in current container will be restarted (the similar action to [`restartService`](../actions/#restartservices)).
+- `reboot` - flag which determines in which way node should be restarted. Positive value means the whole container should be restarted (the similar action to [`restartContainer`](/creating-manifest/actions/#restartcontainers)), the negative one value means only main service in current container will be restarted (the similar action to [`restartService`](/creating-manifest/actions/#restartservices)).
 
 ### restartContainers
 
@@ -1168,6 +1171,7 @@ where:
     - `GIT`
     - `SVN`
 
+
 ## Database Operations
 
 Within this section, you can find actions that are intended for managing database containers.
@@ -1228,7 +1232,7 @@ where:
 
 ### restoreSqlDump
 
-Available for SQL databases (except for Docker container)
+Available for SQL databases (except for Docker containers)
 
 @@@
 ```yaml
@@ -1304,10 +1308,11 @@ where:
 - `databaseName` - name of a database for a patch to be applied
 - `user` - username in a database, on behalf of which an application is used
 - `password` - password in a database, on behalf of which an application is used
-- `patch` - SQL query or a link to it. It is used only for SQL databases. Here, the [placeholders](../placeholders) support is available.
+- `patch` - SQL query or a link to it. It is used only for SQL databases. Here, the [placeholders](/creating-manifest/placeholders/) support is available.
 
 !!! note
     The action is executed only for *mysql5*, *mariadb*, and *mariadb10* containers.
+
 
 ## User-Defined Operations
 
@@ -1339,7 +1344,7 @@ onInstall:
 @@!
 
 A custom scripts can be set via external links instead of a **string**.
-The example execution result is a [response type](../handling-custom-responses/) `error` with message *"Hello World!"*.
+The example execution result is a [response type](/creating-manifest/handling-custom-responses/) `error` with message *"Hello World!"*.
 The default action script type is `javascript`.
 
 There is an ability to define language type or pass custom parameters. In this case the `script` action should be describe like in example below:
@@ -1423,7 +1428,6 @@ script [cp, bl]: |
 }
 ```
 @@!
-
 
 all nodes filtering:
 
@@ -1523,15 +1527,18 @@ actions:
 @@!
 
 The result is on the screen below:
-![setglobals](/img/setglobals.png)
+
+![setGlobals action](/img/creating-manifest/actions/setglobals.png)
 
 First action `setGlobals` defines new *global* values - variables *a* and *b*. Then a new placeholders *\${globals.a}* and *\${globals.b}* are available in all next actions (custom actions are included too).
 
-!!!Note
-    <b>Global</b> scope is created at the beginning of JPS installation and it is available within current manifest only.
+!!! note
+    **Global** scope is created at the beginning of JPS installation and it is available within current manifest only.
 
 ### set
-An ability to set local scope variables. Suchwise, new variables within *\${this.*}* scope could be defined.
+
+An ability to set local scope variables. Suchwise, new variables within *\${this.\*}* scope could be defined.
+
 The example below shows a local scope borders within manifest and local variables usability:
 
 @@@
@@ -1554,7 +1561,7 @@ actions:
   - set:
       a: 1
       b: 2
-  - assert: "'${this.a}' === '1' && '${this.b}' === '2'"A
+  - assert: "'${this.a}' === '1' && '${this.b}' === '2'"
 ```
 ```json
 {
@@ -1600,13 +1607,13 @@ actions:
 ```
 @@!
 
-![set](/img/set.png)
+![Set action](/img/creating-manifest/actions/set.png)
 
 So from the screen results, it could understandable that local scope creates each time during a processing an event or while call custom actions.
 While execution custom action a local scope can consists of arguments if they pass with action. So these arguments will be in a custom action local scope.
 
-
 ### assert
+
 Is an ability to check two any values and verify results in [console log](/troubleshooting/). One of the useful case is checking response fields from previous action with expected values. Responses parameters can be compared with other parameters or with any hardcoded values.
 For example:
 
@@ -1639,9 +1646,11 @@ onInstall:
 ```
 @@!
 
-In the example above the `cmd` action the first one. Here, <i>echo</i> command is executed with world <i>test</i>. The second action `assert` compares response output result form the first command and the word <i>test</i>.
+In the example above the `cmd` action the first one. Here, *echo* command is executed with world *test*. The second action `assert` compares response output result form the first command and the word *test*.
+
 The result can be check in console log panel like in example screen:
-![assert](/img/assert.jpg)
+
+![Assert action result](/img/creating-manifest/actions/assert.jpg)
 
 An `assert` action can be defined as an array of strings or in simple one line(*string*):
 
@@ -1698,7 +1707,8 @@ assert:
 @@!
 
 Failed comparing value will be marked in red colored text:
-![assert-failed](/img/assert-failed.jpg)
+
+![Assert failed result](/img/creating-manifest/actions/assert-failed.jpg)
 
 Also, there is an ability to set custom messages in console log instead default text *ASSERT*:
 
@@ -1731,7 +1741,7 @@ onInstall:
 ```
 @@!
 
-![assert-custom-msg](/img/assert-custom-msg.jpg)
+![Assert with custom message](/img/creating-manifest/actions/assert-custom-msg.jpg)
 
 Response placeholders in `assert` action are being defined only from the previous one action.
 To check the result from the previous action, see the example:
@@ -1779,7 +1789,8 @@ onInstall:
 @@!
 
 Result screen:
-![assert-only-prev-action.jpg](/img/assert-only-prev-action.jpg)
+
+![Assert only previous action](/img/creating-manifest/actions/assert-only-prev-action.jpg)
 
 ### sleep
 
@@ -1986,7 +1997,7 @@ where:
 - `jps` - URL to your custom JPS manifest
 - `settings` - user custom parameters
 
-The `nodeGroup` [filtering](../selecting-containers/#selector-types) can be applied to the `install` action in order to carry out addon installation on different [layers](https://www.virtuozzo.com/application-platform-docs/paas-components-definition/#layer) within one environment.
+The `nodeGroup` [filtering](/creating-manifest/selecting-containers/#selector-types) can be applied to the `install` action in order to carry out addon installation on different [layers](https://www.virtuozzo.com/application-platform-docs/paas-components-definition/#layer) within one environment.
 
 @@@
 ```yaml
@@ -2272,7 +2283,7 @@ where:
 
 - `jps` - URL to your custom JPS manifest
 - `envName` - short domain name of a new environment
-- `settings` - user [custom form](../visual-settings/)
+- `settings` - user [custom form](/creating-manifest/visual-settings/)
 
 Installing the environment from the local manifest file.
 
@@ -2461,10 +2472,9 @@ where:
 - `nodes` - nodes description
 - `onInstall` - entry point for performed actions
 
-
 ### installAddon
 
-You can install a [custom add-on](../addons/) within another - *parent* manifest. By default, custom add-ons have the *update* installation type.
+You can install a [custom add-on](/creating-manifest/addons/) within another - *parent* manifest. By default, custom add-ons have the *update* installation type.
 
 Thus, the custom add-on can be installed to the:
 
@@ -2514,7 +2524,7 @@ where:
 
 You can locate the installed add-ons within the **Add-ons** tab at the Virtuozzo Application Platform dashboard.
 
-![new-addon](/img/new-addon.png)
+![New add-on installation](/img/creating-manifest/actions/new-addon.png)
 
 In the following example, the *nodeGroup* parameter is passed to the *installAddon* action, targeting the add-on at the balancer (*bl*) node group.
 
@@ -2536,7 +2546,7 @@ installAddon:
 
 The action `installAddon` has the default parameter called `id`.
 
-For more details about the [add-ons](../addons/) installation, visit the linked page.
+For more details about the [add-ons](/creating-manifest/addons/) installation, visit the linked page.
 
 <!-- add example -->
 
@@ -2566,11 +2576,12 @@ onInstall:
 @@!
 
 Through the example above, the pop-up window with the following text is returned.
-![returnhelloworld](/img/returnhelloworld.jpg)
+
+![Return hello world message](/img/creating-manifest/actions/return-hello-world.jpg)
 
 The installation is not completed and the following installation window is displayed.
 
-![redcross](/img/redcross.jpg)
+![Installation failure indicator](/img/creating-manifest/actions/red-cross.jpg)
 
 If the *return* action includes a string, then the response is displayed via the *error* pop-up window like in the screen-shot below.
 
@@ -2595,7 +2606,8 @@ onInstall:
 @@!
 
 The result window also returns the compute node's unique identifier at Virtuozzo Application Platform.
-![returnnodeid](/img/returnnodeid.jpg)
+
+![Return node ID message](/img/creating-manifest/actions/return-node-id.jpg)
 
 If the action returns an object, a response code can be redefined. So the *message* or *result* code parameters are required in the *return* object. Herewith, a zero (0) *result* code is not passed to the response code.
 
@@ -2625,7 +2637,7 @@ onInstall:
 ```
 @@!
 
-For more details about [*Custom Response*](handling-custom-responses/), visit the linked page.
+For more details about [Custom Response](/creating-manifest/handling-custom-responses/), visit the linked page.
 
 All the other actions within the *onInstall* array are not executed after the *return* action.
 
@@ -2658,11 +2670,12 @@ onInstall:
 
 Therefore, the *restartNodes* action is not run to restart a compute node.
 
+
 ## Custom Actions
 
 Particular actions can be run by means of calling actions with different parameters.
 
-The example below shows how to create a new file (e.g. the <b>*example.txt*</b> file in the <b>*tmp*</b> directory) by running a *createFile* action on the compute node.
+The example below shows how to create a new file (e.g. the **example.txt** file in the **tmp** directory) by running a *createFile* action on the compute node.
 
 @@@
 ```yaml
@@ -2721,7 +2734,7 @@ where:
 
 In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. The parameters, sent to a call method, are transformed into a separate kit of placeholders, which can be further used within the appropriate actions by means of *${this}*  namespace. Access to a node inside environment can be gained according to its type, as well as according to its role in the environment.
 
-The example below illustrates how to pass the dynamic parameters for running in the action. Here, the *name* parameter is sent to <b>*customAction*</b> where the *createFile* action is executed.
+The example below illustrates how to pass the dynamic parameters for running in the action. Here, the *name* parameter is sent to **customAction** where the *createFile* action is executed.
 
 @@@
 ```yaml
@@ -2754,13 +2767,13 @@ actions:
 ```
 @@!
 
-Therefore, the same custom actions can be reused for several times with different parameters. Moreover, any action can be targeted at a specific node by ID, at a particular layer (*nodeGroup*) or *nodeType*. For more details about [*Node Selectors*](../selecting-containers/#types-of-selectors), visit the linked page.
+Therefore, the same custom actions can be reused for several times with different parameters. Moreover, any action can be targeted at a specific node by ID, at a particular layer (*nodeGroup*) or *nodeType*. For more details about [Node Selectors](/creating-manifest/selecting-containers/#types-of-selectors), visit the linked page.
 
 ### Code Reuse
 
 You can use the already-existing code to perform a new action.
 
-For example, outputting Hello World! twice in the <b>*greeting.txt*</b>.
+For example, outputting Hello World! twice in the **greeting.txt**.
 
 @@@
 ```yaml
@@ -2980,24 +2993,24 @@ onBeforeRestartNode[cp]:
 
 where:
 
-- `type` *[string]* - message type to be displayed:
-    - **error**
-    ![stopEvent-error](/img/stopevent-error.png)
-    - **warning**
-    ![stopEvent-error](/img/stopevent-warning.png)
+- `type` *[string]* - message type to be displayed (`error` or `warning`)
 - `message` *[string]* - text of the message
+
+![Stop event error message](/img/creating-manifest/actions/stopevent-error.png)
+![Stop event warning message](/img/creating-manifest/actions/stopevent-warning.png)
 
 Once the *stopEvent* action is executed it outputs an error to the console.
 
 For example:
 
-![stopEvent-console](/img/stopevent-console.png)
+![Stop event console output](/img/creating-manifest/actions/stopevent-console.png)
+
 
 ## What’s next?
 
-- See the [Events](../events/) list the actions can be bound to
-- Find out the list of [Placeholders](../placeholders/) for automatic parameters fetching
-- See how to use [Conditions and Iterations](../conditions-and-iterations/)
-- Read how to integrate your [Custom Scripts](../custom-scripts/)
-- Learn how to customize [Visual Settings](../visual-settings/)
+- See the [Events](/creating-manifest/events/) list the actions can be bound to
+- Find out the list of [Placeholders](/creating-manifest/placeholders/) for automatic parameters fetching
+- See how to use [Conditions and Iterations](/creating-manifest/conditions-and-iterations/)
+- Read how to integrate your [Custom Scripts](/creating-manifest/custom-scripts/)
+- Learn how to customize [Visual Settings](/creating-manifest/visual-settings/)
 - Examine a bunch of [Samples](/samples/) with operation and package examples

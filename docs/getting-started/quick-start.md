@@ -7,7 +7,7 @@ To try Cloud Scripting right away, use a basic [Hello World](#hello-world-manife
 And to get up and ready with your own project, complete the following requirements:
 
 - decide upon a [scenario](/samples/) that will be delivered by means of CS
-- define a set of [properties](/creating-manifest/basic-configs/) properties</a>, essential for the proper application workflow
+- define a set of [properties](/creating-manifest/basic-configs/), essential for the proper application workflow
 - declare the required properties within your [JPS manifest](/creating-manifest/basic-configs/) file
 - deploy the prepared manifest to a Platform via [import](#how-to-deploy-cs-solution-to-virtuozzo ) functionality
 
@@ -19,7 +19,7 @@ Hello World is a simple ready-to-go application that you can use as a start poin
 ```yaml
 type: install
 name: Hello World!
-engine: php5.4
+engine: php8.3
 
 nodes:
   nodeType: apache2
@@ -51,43 +51,50 @@ onInstall:
 ```
 @@!
 
-The current manifest states to create a new environment, handled with **Apache 2** application server on top of **PHP 5.4** engine. After that, the platform will fetch the archive with Hello World app from the specified URL and deploy it to the Apache **ROOT** context.
+The current manifest states to create a new environment, handled with **Apache 2** application server on top of **PHP 8.3** engine. After that, the platform will fetch the archive with Hello World app from the specified URL and deploy it to the Apache **ROOT** context.
+
 
 ## How to Deploy CS Solution to Virtuozzo
 
 In order to give a try to *Hello World* sample from above (or deploy your own application), enter your [Virtuozzo Application Platform](https://www.virtuozzo.com/application-platform-partners/) account and perform the following steps.
 
-1. Click the **Import** button at the top pane of the dashboard.
+1\. Click the **Import** button at the top pane of the dashboard.
 
-![import-button.png](/img/import-button.png)
+![import-button.png](/img/getting-started/quick-start/import-button.png)
 
-2. Within the opened frame, switch to the **JPS** tab and paste the code provided above (for Hello World app).
+2\. Within the opened frame, switch to the **JPS** tab and paste the code provided above (for Hello World app).
 
-![import-manifest.png](/img/import-manifest.png)
+![import-manifest.png](/img/getting-started/quick-start/import-manifest.png)
+
 !!! note
-    **Tip:** Subsequently, you can use this editor to adjust your manifest code on the fly. Clicking on the **Examples** string nearby will redirect you to [Virtuozzo Application Platform JPS Collection](https://github.com/jelastic-jps) with numerous ready-to-go solutions (just import the link to the appropriate *manifest.jps* file to fetch the required one). Also, two more options for JPS deployment are available here:<ul><li><b>*Local File*</b> - to upload the locally stored manifest</li><li><b>*URL*</b> - to specify direct link to the required file</li></ul>
+    **Tip:** Subsequently, you can use this editor to adjust your manifest code on the fly. Clicking on the **Examples** string nearby will redirect you to [Virtuozzo Application Platform JPS Collection](https://github.com/jelastic-jps) with numerous ready-to-go solutions (just import the link to the appropriate *manifest.jps* file to fetch the required one). Also, two more options for JPS deployment are available here:
+
+    - **Local File** - to upload the locally stored manifest
+    - **URL** - to specify direct link to the required file
 
 To proceed, click on **Import** in the bottom-right corner.
 
-3. Within the installation confirmation window, specify domain name for a new **Environment**, set a **Display Name** (i.e. [alias](https://www.virtuozzo.com/application-platform-docs/environment-aliases/)) for it and select the preferred [region](https://www.virtuozzo.com/application-platform-docs/environment-regions/) (if available).
+3\. Within the installation confirmation window, specify domain name for a new **Environment**, set a **Display Name** (i.e. [alias](https://www.virtuozzo.com/application-platform-docs/environment-aliases/)) for it and select the preferred [region](https://www.virtuozzo.com/application-platform-docs/choosing-region/) (if available).
 
-![hello-world.png](/img/hello-world.png)
+![hello-world.png](/img/getting-started/quick-start/hello-world.png)
 
-4. Once the import is completed, you'll get notification about successful package installation.
+4\. Once the import is completed, you'll get notification about successful package installation.
 
-![open-in-browser.png](/img/open-in-browser.png)
+![open-in-browser.png](/img/getting-started/quick-start/open-in-browser.png)
 
 Now you can **Open** your new environment in a **browser** and check the result.
 
-![hello-world-startpage.png](/img/hello-world-startpage.png)
+![hello-world-startpage.png](/img/getting-started/quick-start/hello-world-startpage.png)
 
 Similarly, you can build and run the solution you need - from frequent tasks automation to implementing complex CI/CD flows and clustering configurations.
+
 
 ## Best Practices
 
 - For advanced coding possibilities, use either [JSON Editor Online](http://jsoneditoronline.org/) with automatic formatting and syntax highlighting or [YAML](http://www.yaml.org/) parser (depending on the syntax you prefer to work with)
 - Leverage [GitHub](https://github.com/) to store and manage your projects, manifests and scripts all together
 - Explore [Virtuozzo Application Platform Samples](/samples/) to benefit from pre-composed operation and package examples
+
 
 ## What's next?
 

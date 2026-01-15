@@ -2,11 +2,12 @@
 
 You can write your custom scripts in Java or JavaScript. Inside these scripts, a set of client libraries for [Virtuozzo Application Platform API](https://www.virtuozzo.com/application-platform-api-docs/) methods calling is available.
 
-You can bind your scripts to the ***onAfterReturn*** event to execute the required [actions](../actions/).
+You can bind your scripts to the ***onAfterReturn*** event to execute the required [actions](/creating-manifest/actions/).
 
 
 ## Intercontainer Scripts
-In order to execute a shell script inside of a container, use the [ExecuteShellCommands](../actions/#cmd) (*cmd*) action.
+
+In order to execute a shell script inside of a container, use the [ExecuteShellCommands](/creating-manifest/actions/#cmd) (*cmd*) action.
 
 ### Examples
 
@@ -63,11 +64,13 @@ mysql -u${USER} -p${PASSWORD} << END
 END
 ```
 
-Here, `${nodes.sqldb.password}` is available only for the *install* installation type when a SQL node is created.
+!!! note
+    `${nodes.sqldb.password}` is available only for the *install* installation type when a SQL node is created.
+
 
 ## Top Level Scripts
 
-Using a [*script*](../actions/#script) action.
+Using a [*script*](/creating-manifest/actions/#script) action.
 
 ### Java
 
@@ -95,10 +98,6 @@ script:
 ```
 @@!
 
-<!--
-**Example #1 Generate random password**
--->
-
 ### JavaScript
 
 @@@
@@ -117,8 +116,8 @@ greeting: Hello World!
 
 ## What’s next?
 
-- See how to create your custom [Add-Ons](../addons/)
-- Find out how to handle [Custom Responses](../handling-custom-responses/)
-- Explore how to customize [Visual Settings](../visual-settings/)
+- See how to create your custom [Add-Ons](/creating-manifest/addons/)
+- Find out how to handle [Custom Responses](/creating-manifest/handling-custom-responses/)
+- Explore how to customize [Visual Settings](/creating-manifest/visual-settings/)
 - Examine a bunch of [Samples](/samples/) with operation and package examples
 - See [Troubleshooting](/troubleshooting/) for helpful tips and specific suggestions

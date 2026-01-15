@@ -1,10 +1,11 @@
 # Specifying Target Container
 
-Running a specific [action](../actions/) requires to specify a target container, in confines of which this action is executed. Thus, it is possible to specify a [particular container](#particular-container), all containers within a layer by the [*nodeGroup*](#all-containers-by-group) value, or all containers of the same type by the [*nodeType*](#all-containers-by-type) value.
+Running a specific [action](/creating-manifest/actions/) requires to specify a target container, in confines of which this action is executed. Thus, it is possible to specify a [particular container](#particular-container), all containers within a layer by the [*nodeGroup*](#all-containers-by-group) value, or all containers of the same type by the [*nodeType*](#all-containers-by-type) value.
 
-### Particular Container
 
-The <em>nodeId</em> parameter is used to specify a particular container for the action execution. If you know the Node ID of your container (displayed at the Virtuozzo Application Platform dashboard next to the required node), you can set it statically as follows.
+## Particular Container
+
+The *nodeId* parameter is used to specify a particular container for the action execution. If you know the Node ID of your container (displayed at the Virtuozzo Application Platform dashboard next to the required node), you can set it statically as follows.
 
 @@@
 ```yaml
@@ -48,9 +49,10 @@ writeFile:
 ```
 @@!
 
-For more information, visit the [<em>Placeholders</em>](../placeholders/) documentation page.
+For more information, visit the [*Placeholders*](/creating-manifest/placeholders/) documentation page.
 
-### All Containers By Group
+
+## All Containers By Group
 
 The *nodeGroup* parameter is used to specify all containers within a specific [layer](#predefined-nodegroup-values).
 
@@ -65,19 +67,20 @@ The Virtuozzo Application Platform supports the following predefined *nodeGroup*
 - *vds* (for VPS)
 - *build*
 
-Actions for the specified <em>nodeGroup</em> are executed successively one by one. For Docker containers the <em>nodeGroup</em> value is not predefined, therefore, you can state it to any value above or your custom one.
+Actions for the specified *nodeGroup* are executed successively one by one. For Docker containers the *nodeGroup* value is not predefined, therefore, you can state it to any value above or your custom one.
 
 !!! note
-    If you state a custom <em>nodeGroup</em> value for Docker containers, the corresponding container is placed to the <em>Extra</em> layer. Subsequently, this <em>nodeGroup</em> value can be used within the same-named actions field to point to the particular <em>Extra</em> layer.
-    ![dockerextra](/img/dockerextra.png)
+    If you state a custom *nodeGroup* value for Docker containers, the corresponding container is placed to the *Extra* layer. Subsequently, this *nodeGroup* value can be used within the same-named actions field to point to the particular *Extra* layer.
+    ![dockerextra](/img/creating-manifest/selecting-containers/dockerextra.png)
 
-### All Containers By Type
 
-The <em>nodeType</em> parameter is used to specify all containers that are built upon the same software [stacks](#supported-stacks ).
+## All Containers By Type
 
-<b>Examples</b>
+The *nodeType* parameter is used to specify all containers that are built upon the same software [stacks](#supported-stacks ).
 
-Using the *nodeType* parameter while performing the [**writeFile**](../actions/#writefile) action.
+**Examples**
+
+Using the *nodeType* parameter while performing the [**writeFile**](/creating-manifest/actions/#writefile) action.
 
 @@@
 ```yaml
@@ -132,17 +135,18 @@ where:
 - `engine` - parameter that specifies the engine version
 - `nodeType` - parameter that specifies the node type
 
+
 ## Selector Types
 
 There are three alternative approaches, provided to specify a target container in a manifest:
 
 - specifying a target container within a name of an action (**node selectors**)
 
-Through the following example, a new file is created in the compute layer (<em>[cp]</em>) and a new directory is created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers, and container with the Node ID <em>123</em>. Actions for the specified containers are executed in the declared order.
+Through the following example, a new file is created in the compute layer (*[cp]*) and a new directory is created in the compute (*[cp]*) and balancer (*[bl]*) layers, and container with the Node ID *123*. Actions for the specified containers are executed in the declared order.
 
 @@@
 ```yaml
-- createfile [cp]:
+- createFile [cp]:
     path: /tmp/test.txt
 
 - createDirectory [cp,bl,123]:
@@ -187,11 +191,11 @@ onInstall:
 
 There is a console log screen which displays that `cmd` action has been executed in all nodes by unique identifier one by one:
 
-![wildcard-mask](/img/wildcard-mask.jpg)
+![wildcard-mask](/img/creating-manifest/selecting-containers/wildcard-mask.jpg)
 
 - specifying a target container next to the performed action
 
-Through the following example, the [**createFile**](../actions/#createfile) and [**createDirectory**](../actions/#createdirectory) actions are applied to the specified <em>nodeGroup</em>, namely the compute layer (<em>[cp]</em>).
+Through the following example, the [**createFile**](/creating-manifest/actions/#createfile) and [**createDirectory**](/creating-manifest/actions/#createdirectory) actions are applied to the specified *nodeGroup*, namely the compute layer (*[cp]*).
 
 @@@
 ```yaml
@@ -218,15 +222,15 @@ Through the following example, the [**createFile**](../actions/#createfile) and 
 
 - specifying a target container as a parameter in the *actions* object
 
-Learn more on this parameter within the [<em>Custom Actions</em>](../actions/#custom-actions) documentation page.
+Learn more on this parameter within the [*Custom Actions*](/creating-manifest/actions/#custom-actions) documentation page.
 
 !!! note
-    <b>Node selectors</b> have higher priority than containers specified next to the action, but lower than parameters set in the *actions* object.
-    If you specify all three parameters (*nodeId*, *nodeGroup*, and *nodeType*), actions for indicated containers are executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.
+    **Node selectors** have higher priority than containers specified next to the action, but lower than parameters set in the *actions* object.
+    If you specify all three parameters (*nodeId*, *nodeGroup*, and *nodeType*), actions for indicated containers are executed in the following order: ***nodeId -> nodeGroup -> nodeType***.
 
 ## NodeGroup Aliases
 
-An existed nodes in environments can be targeted not only by their defined *nodeGroup*s and by aliases. That aliases could be defined in manifests like in example:
+Existing nodes in environments can be targeted not only by their defined *nodeGroup*s but also by aliases. These aliases can be defined in manifests as in the following example:
 
 @@@
 ```yaml
@@ -252,7 +256,8 @@ onInstall:
 @@!
 
 In the example above JPS add-on with `type` *update* could be applied on any existing environment. In this case all compute nodes with **nodeGroup** *cp* can be called by aliases (Nodes with **nodeGroup** *sqldb2* are absent in environment). So the example result is displayed in the screen:
-![nodeGroup-alias](/img/nodeGroupAlias.png)
+
+![nodeGroup alias](/img/creating-manifest/selecting-containers/nodegroupalias.png)
 
 !!! note
     `nodeGroupAlias` option works only within current JPS manifest.
@@ -260,7 +265,6 @@ In the example above JPS add-on with `type` *update* could be applied on any exi
 ## Supported Stacks
 
 The supported software stacks are categorized in the table below with specified names and aliases that can be used within Cloud Scripting, as well as the links to the available tags.
-
 
 | nodeGroup                            | Supported nodeType Values (Aliases)                                                                                                                                                                                        | Supported Tags Link |
 |--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
@@ -270,7 +274,7 @@ The supported software stacks are categorized in the table below with specified 
 | vps, cache, build, storage, extra | centos-vps (centos7),  debian-vps (debian10, debian9, debian11),  dockerengine,  kubernetes,  logstash (logstash8, logstash7),  maven (maven3),  memcached-dockerized (memcached),  opensearchdashboards (opensearchdashboards1, opensearchdashboards2),  pgpool2 (pgpool2-4),  proxysql,  storage,  ubuntu-vps (ubuntu22, ubuntu16, ubuntu20, ubuntu18),  windows2019                                                                                                                                 | [Additional Stacks](https://www.virtuozzo.com/application-platform-docs/software-stacks-versions/#additional)   |
 
 !!! note
-    In case the root privileges are required within the certified template, it should be created as custom docker via [image](basic-configs/#environment-installation) parameter. If so, take into account that some functionality/automation won’t be available such as Custom SSL, Managed Firewall, etc. To create custom docker follow the **Supported Tags Link** column to get the proper name of certified Virtuozzo docker images.
+    In case the root privileges are required within the certified template, it should be created as custom docker via [image](/creating-manifest/basic-configs/#environment-installation) parameter. If so, take into account that some functionality/automation won't be available such as Custom SSL, Managed Firewall, etc. To create custom docker follow the **Supported Tags Link** column to get the proper name of certified Virtuozzo docker images.
 
 [Engine versions](https://www.virtuozzo.com/application-platform-docs/software-stacks-versions/#engines)
 
@@ -281,10 +285,11 @@ The supported software stacks are categorized in the table below with specified 
 !!! note
     The list of supported [software stacks](https://www.virtuozzo.com/application-platform-docs/software-stacks-versions/) can vary depending on your Virtuozzo Application Platform version - it can be checked at your dashboard.
 
+
 ## Selecting Hardware Hosts
 
 There is an ability in Virtuozzo Application Platform to select the hardware for the user's application with the help of the [multi zones](https://www.virtuozzo.com/application-platform-ops-docs/multi-zones/) approach. If a user is aware all of the [labels](https://www.virtuozzo.com/application-platform-ops-docs/multi-zones/#host-labels) assigned for the hardware hosts within the platform he can decide which hosts across all of the available regions can be used to install the user's environment.
-Hardware host selection is performed by **distribution** parameter which defines the logic in the [layer specifics](basic-configs/#nodes-definition), which consist of the following two options:
+Hardware host selection is performed by **distribution** parameter which defines the logic in the [layer specifics](/creating-manifest/basic-configs/#nodes-definition), which consist of the following two options:
 
 - `zones` - sets a filter for allowed zones (groups of hosts custom-defined by labels) in the “{name}: {value}” format, e.g. zones: [{provider: azure}, {provider: amazon}]
 - `mode` - defines the behavior in case of the target zone unavailability
@@ -369,7 +374,7 @@ nodes:
       - "${settings.labelname}": "${settings.labelvalue}"
 ```
 ```json
-      {
+{
   "name": "multi-zone",
   "type": "install",
   "settings": {
@@ -406,10 +411,11 @@ nodes:
 ```
 @@!
 
+
 ## What’s next?
 
-- Explore the list of available [Actions](../actions/)
-- See the [Events](../events/) list the actions can be bound to
-- Find out the list of [Placeholders](../placeholders/) for automatic parameters fetching
-- Read how to integrate your [Custom Scripts](../custom-scripts/)
-- Learn how to customize [Visual Settings](../visual-settings/)
+- Explore the list of available [Actions](/creating-manifest/actions/)
+- See the [Events](/creating-manifest/events/) list the actions can be bound to
+- Find out the list of [Placeholders](/creating-manifest/placeholders/) for automatic parameters fetching
+- Read how to integrate your [Custom Scripts](/creating-manifest/custom-scripts/)
+- Learn how to customize [Visual Settings](/creating-manifest/visual-settings/)

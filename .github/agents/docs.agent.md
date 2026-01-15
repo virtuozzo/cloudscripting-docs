@@ -86,20 +86,18 @@ nav:
 ### 3. Links and References
 
 **Internal Links (within docs):**
-- Use relative paths: `[placeholder](/creating-manifest/placeholders/)`
+- Use absolute site-root paths: `[placeholder](/creating-manifest/placeholders/)`
 - Anchor links: `[CMD Action](/creating-manifest/actions/#cmd)`
 
-**External API Links:**
-- Official API base: `https://www.virtuozzo.com/application-platform-api-docs/`
-- For specific API methods, use direct links. Example: `[DeleteEnv API](https://docs.jelastic.com/api/#!/api/environment.Control-method-DeleteEnv)`
+**External Links:**
 - Virtuozzo Application Platform (VAP) docs: `https://www.virtuozzo.com/application-platform-docs/`
 
 ### 4. Images and Assets
 
 **Storage Structure:**
 - Mirror the `docs/` directory structure within `theme/readthedocs/img/`
-- Example: Images for `docs/creating-manifest/actions.md` → `theme/readthedocs/img/creating-manifest/actions/`
-- Example: Images for `docs/quick-start.md` → `theme/readthedocs/img/quick-start/`
+- Example: Images for `docs/creating-manifest/actions.md` → `theme/readthedocs/img/creating-manifest/actions/filename.png`
+- Example: Images for `docs/troubleshooting.md` → `theme/readthedocs/img/troubleshooting/filename.png`
 
 **Reference Syntax:**
 - Use site-root paths: `![Description](/img/<docs-path>/filename.png)`
@@ -140,6 +138,8 @@ Use MkDocs admonition syntax for important information:
 **Language:** American English (e.g., "organize" not "organise", "behavior" not "behaviour")
 
 **Character Set:** Prefer ASCII unless existing file uses extended characters
+
+**Quotation Marks:** Always use straight quotes (`"`) not curly/smart quotes (`"` or `"`)
 
 **Code Fences:** Always specify language
 ```markdown
@@ -245,14 +245,29 @@ docs/
 5. Update cross-references in related pages
 6. Verify all links work (relative paths!)
 
+### Reviewing an Existing Page
+
+1. Read the entire page content carefully
+2. Verify all code examples use dual-format tabs (`@@@ ... @@!`)
+3. Check that code fences specify language identifiers
+4. Confirm internal links use absolute site-root paths, e.g. `/creating-manifest/actions/`
+5. Verify images follow proper path structure (`/img/<docs-path>/filename.png`)
+6. Check for consistent terminology and formatting
+7. Ensure American English spelling throughout
+8. Validate heading hierarchy (no skipped levels)
+9. Look for trailing whitespace or formatting issues
+10. Verify page title (H1) matches `mkdocs.yml` nav entry
+11. Check admonitions are properly formatted
+12. Check quotation marks are straight, not curly
+
 ### Documenting a New Action
 
 1. Add section in `docs/creating-manifest/actions.md`
 2. Include dual-format example (YAML + JSON)
 3. Document all parameters with types
 4. Explain target container requirements
-5. Link to API documentation where applicable
-6. Add practical example in `docs/examples/operation-examples.md`
+5. Add practical examples demonstrating usage
+6. Link to related actions or sections
 
 ### Adding Code Examples
 
@@ -327,11 +342,10 @@ Before completing any documentation task, verify:
 - [ ] All code examples include both YAML and JSON formats
 - [ ] Triple-backticks specify language (`yaml`, `json`, `bash`, etc.)
 - [ ] Navigation updated in `mkdocs.yml` if page added/moved
-- [ ] All internal links use relative paths
+- [ ] All internal links use absolute site-root paths
 - [ ] Images stored in `theme/readthedocs/img/` with site-root references
 - [ ] American English spelling throughout
 - [ ] No trailing whitespace
 - [ ] Heading hierarchy is logical (no skipped levels)
-- [ ] API links point to official Virtuozzo documentation
 - [ ] Admonitions used for warnings/notes where appropriate
 - [ ] Content is accurate per Cloud Scripting behavior

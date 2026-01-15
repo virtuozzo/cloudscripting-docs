@@ -2,7 +2,10 @@
 
 Cloud Scripting allows you to install a custom add-on to a new environment or to an existing one. You can develop your custom add-on within another - *parent* manifest. Therefore, you need to set the add-on's installation type to *update* and declare essential properties within the *addons* section.
 
-You can install the developed add-on either by specifying a target [*nodeGroup*](../selecting-containers/#all-containers-by-group), or by calling the [*installAddon*](../actions/#installaddon) action.
+You can install the developed add-on either by specifying a target [*nodeGroup*](/creating-manifest/selecting-containers/#all-containers-by-group), or by calling the [*installAddon*](/creating-manifest/actions/#installaddon) action.
+
+
+## Examples
 
 The following example illustrates the add-on's installation to a specific *nodeGroup* (layer).
 
@@ -46,9 +49,12 @@ addons:
 ```
 @@!
 
-In the example above, the [Virtuozzo Application Platform API](https://www.virtuozzo.com/application-platform-api-docs/) ***RestartNodes*** method is executed after the environment creation is completed. The compute node is restarted at the end of the manifest installation procedure. Herewith, the add-on is installed, if the *parent* manifest's installation type is *install*. When the add-on is installed, the **Add-ons** tab for the corresponding compute node becomes available at the dashboard.
+In the example above, the [Virtuozzo Application Platform API](https://www.virtuozzo.com/application-platform-api-docs/) ***RestartNodes*** method is executed after the environment creation is completed. The compute node is restarted at the end of the manifest installation procedure.
 
-![new-addon](/img/new-addon.png)
+!!! note
+    The add-on is installed only if the *parent* manifest's installation type is *install*. When the add-on is installed, the **Add-ons** tab for the corresponding compute node becomes available at the dashboard.
+
+![new-addon](/img/creating-manifest/addons/new-addon.png)
 
 The following example illustrates the add-on's installation by calling the *installAddon* action. You can call this action for both *update* and *install* installation types of a *parent* manifest.
 
@@ -89,9 +95,10 @@ addons:
 
 Through this example, a new *test.log* file is created during the *onInstall* action execution. You can declare the add-on's expected behavior within the *addons* section, while the *installAddon* action is needed to specify the appropriate add-on's identifier.
 
+
 ## What's next?
 
-- Find out how to handle [Custom Responses](../handling-custom-responses/)
-- Explore how to customize [Visual Settings](../visual-settings/)
+- Find out how to handle [Custom Responses](/creating-manifest/handling-custom-responses/)
+- Explore how to customize [Visual Settings](/creating-manifest/visual-settings/)
 - Examine a bunch of [Samples](/samples/) with operation and package examples
 - See [Troubleshooting](/troubleshooting/) for helpful tips and specific suggestions

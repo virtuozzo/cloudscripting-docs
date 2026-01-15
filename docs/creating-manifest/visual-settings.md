@@ -1,4 +1,3 @@
-
 # Visual Settings
 
 Cloud Scripting enables you to create a personalized solution by customizing the visual appearance and textual content of such elements as:
@@ -104,7 +103,7 @@ where:
     - `default` *[optional]* - default value for the input field
     - `caption` *[optional]* - field label
     - `tooltip` *[optional] [object/string]* - the tooltip for the field. Can be a config object or string. See more info on [tooltip](#tooltip)
-    - `placeholder` *[optional]* - used [placeholders](placeholders/)
+    - `placeholder` *[optional]* - used [placeholders](/creating-manifest/placeholders/)
     - `required` *[optional]* - possible values are *'true'* & *'false'*. If left empty, default value is *'true'*
     - `regex` *[optional]* - constructor for testing JavaScript RegExp object that refers to the field value, during validation. If test fails, the field will be marked as invalid using *regexText*. The default value is *'null'*
     - `regexText` *[optional]* - displays error message in case of *regex* test failure during validation. The default value is *' '* (blank space)
@@ -126,7 +125,7 @@ where:
 
 Basic text field.
 
-![string](/img/string.jpg)
+![string](/img/creating-manifest/visual-settings/string.jpg)
 
 @@@
 ```yaml
@@ -162,7 +161,7 @@ where:
 
 Multiline text field.
 
-![text](/img/text.jpg)
+![text](/img/creating-manifest/visual-settings/text.jpg)
 
 @@@
 ```yaml
@@ -228,12 +227,11 @@ fields:
 ```
 @@!
 
-
 ### list
 
 Drop-down list and a single-line textbox.
 
-![list](/img/list.jpg)
+![list](/img/creating-manifest/visual-settings/list.jpg)
 
 @@@
 ```yaml
@@ -521,12 +519,11 @@ settings:
 ```
 @@!
 
-
 ### checkbox
 
 Single checkbox field.
 
-![checkbox](/img/checkbox.jpg)
+![checkbox](/img/creating-manifest/visual-settings/checkbox.jpg)
 
 @@@
 ```yaml
@@ -560,9 +557,10 @@ where:
 - `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*.
 
 ### checkboxlist
+
 Checkbox grouping.
 
-![checkboxlist](/img/checkboxlist.jpg)
+![checkboxlist](/img/creating-manifest/visual-settings/checkboxlist.jpg)
 
 @@@
 ```yaml
@@ -614,7 +612,9 @@ Checkbox grouping.
 
 This example returns values as follows:
 
-*{ "options": "option2,option3", "option1": false, "option2": true, "option3": true }*
+```json
+{ "options": "option2,option3", "option1": false, "option2": true, "option3": true }
+```
 
 Field parameters:
 
@@ -625,11 +625,11 @@ Field parameters:
 - `delimiter` *[optional] [string]* - a delimiter character to separate list data items. The default value is a comma ','
 - `columns` *[optional] [Number]* - specifies the number of columns to be created when displaying grouped checkboxlist controls using automatic layout. The default value is 1.
 
-
 ### radiolist
+
 Radio elements grouping.
 
-![radiolist](/img/radiolist.jpg)
+![radiolist](/img/creating-manifest/visual-settings/radiolist.jpg)
 
 @@@
 ```yaml
@@ -760,14 +760,14 @@ settings:
 ```
 @@!
 
-
 ### radio-fieldset
-Grouping of the radio elements with <b>*showIf*</b> function.
+
+Grouping of the radio elements with **showIf** function.
 
 !!! note
     The *hideLabel* boolean is always *true* for this field.
 
-![radio-fieldset](/img/radio-fieldset.jpg)
+![radio-fieldset](/img/creating-manifest/visual-settings/radio-fieldset.jpg)
 
 @@@
 ```yaml
@@ -908,10 +908,10 @@ fields:
 ```
 @@!
 
-![radio-fieldset-2columns](/img/radio-fieldset-2columns.png)
-
+![radio-fieldset-2columns](/img/creating-manifest/visual-settings/radio-fieldset-2columns.png)
 
 Also there is an ability to set a `values` order. It needs to be defined like an array of objects.
+
 For example:
 
 @@@
@@ -938,12 +938,11 @@ values:
 ```
 @@!
 
-
 ### dockertags
 
 Field for displaying **Docker tags** within the *[list](#list)* element.
 
-![dockertags](/img/dockertags.png)
+![dockertags](/img/creating-manifest/visual-settings/dockertags.png)
 
 The *tags* of specific *nodeType* can be displayed like in the wizard above with no acquiring from the server:
 
@@ -980,7 +979,7 @@ settings:
 where:
 
 - `name` *[required]* - should have the *'tag'* value
-- `nodeType` *[required]* - defines the [*nodeType*](https://docs.cloudscripting.com/creating-manifest/basic-configs/#nodes-definition) the tags are aquired for
+- `nodeType` *[required]* - defines [*nodeType*](/creating-manifest/basic-configs/#nodes-definition) the tags are acquired for
 - `hidden` *[optional] [boolean]* - shows/hides field with its label. Default value is *'false'*.
 
 With an **image** parameter tags can be acquired from:
@@ -1082,12 +1081,11 @@ settings:
 ```
 @@!
 
-
 ### compositefield
 
 Compositefield is a container with specific functionality and structural components that constitute it as a block for application-oriented custom user interfaces.
 
-![compositefield](/img/compositefield.jpg)
+![compositefield](/img/creating-manifest/visual-settings/compositefield.jpg)
 
 @@@
 ```yaml
@@ -1177,7 +1175,7 @@ where:
 
 Slider element as a form field.
 
-![slider](/img/slider.jpg)
+![slider](/img/creating-manifest/visual-settings/slider.jpg)
 
 @@@
 ```yaml
@@ -1222,7 +1220,7 @@ where:
 
 Account environments list expanded within a drop-down element.
 
-![envlist](/img/envlist.jpg)
+![envlist](/img/creating-manifest/visual-settings/envlist.jpg)
 
 @@@
 ```yaml
@@ -1398,7 +1396,7 @@ where:
     - `isRegionMigrationAllowed` *[boolean]* - display regions where migration is allowed
     - `region` *[number]* - filtering by region identifier
 
-There is an ability to carry out actions on the environments in several regions at once with parameter `multiSelect:`**true**:
+There is an ability to carry out actions on the environments in several regions at once with parameter `multiSelect: true`:
 
 @@@
 ```yaml
@@ -1584,14 +1582,13 @@ settings:
 ```
 @@!
 
-
 ### popupselector
 
 (*popup-selector* is an alias)
 
 Field for opening a pop-up window via POST request to any external service. It provides a possibility to pass additional parameters.
 
-![popupselector](/img/popupselector.jpg)
+![popupselector](/img/creating-manifest/visual-settings/popupselector.jpg)
 
 @@@
 ```yaml
@@ -1693,9 +1690,11 @@ settings:
 In the example above, the external source should return a URL with such parameters as `value` and `event`. The `event` name is the same name as `popupCallbackEvent` in field description in manifest.
 
 A full external resource link should be like in the example below:
+
 ```
 http://{Platform_URL} + "fireevent?event=click&value=hello"
 ```
+
 where:
 
 - `Platform_URL` - Virtuozzo Application Platform Dashboard URL where manifest is executed
@@ -1708,7 +1707,7 @@ where:
 
 Text field intended only for not validated and not submitted display.
 
-![displayfield](/img/displayfield.jpg)
+![displayfield](/img/creating-manifest/visual-settings/displayfield.jpg)
 
 @@@
 ```yaml
@@ -1745,7 +1744,7 @@ where:
 
 Enhanced input field for entering numeric values, with up/down buttons and arrow keys handling.
 
-![spinner](/img/spinner.jpg)
+![spinner](/img/creating-manifest/visual-settings/spinner.jpg)
 
 @@@
 ```yaml
@@ -1793,7 +1792,7 @@ where:
 
 Field that enables to select a number from a predefined range.
 
-![numberpicker](/img/numberpicker.jpg)
+![numberpicker](/img/creating-manifest/visual-settings/numberpicker.jpg)
 
 @@@
 ```yaml
@@ -1838,7 +1837,7 @@ where:
 
 Drop-down menu with environments hosts.
 
-![hostpicker](/img/hostpicker.jpg)
+![hostpicker](/img/creating-manifest/visual-settings/hostpicker.jpg)
 
 @@@
 ```yaml
@@ -1875,7 +1874,7 @@ where:
 
 Toggle element is a switch between two values.
 
-![toggle](/img/toggle.jpg)
+![toggle](/img/creating-manifest/visual-settings/toggle.jpg)
 
 @@@
 ```yaml
@@ -1985,8 +1984,7 @@ settings:
 
 Result:
 
-![tooltip-field-inline](/img/tooltip-field-inline.png)
-
+![tooltip-field-inline](/img/creating-manifest/visual-settings/tooltip-field-inline.png)
 
 #### tooltip option
 
@@ -2081,7 +2079,7 @@ settings:
 
 Result:
 
-![tooltip-string](/img/tooltip-string.png)
+![tooltip-string](/img/creating-manifest/visual-settings/tooltip-string.png)
 
 - Tooltips (target: side)
 
@@ -2120,7 +2118,7 @@ settings:
 
 Result:
 
-![tooltip-target-side](/img/tooltip-target-side.png)
+![tooltip-target-side](/img/creating-manifest/visual-settings/tooltip-target-side.png)
 
 - Tooltips Inside Composite Field
 
@@ -2181,7 +2179,8 @@ settings:
 @@!
 
 Result:
-![Tooltip-composit-field](/img/tooltip-composit-field.png)
+
+![Tooltip-composit-field](/img/creating-manifest/visual-settings/tooltip-composit-field.png)
 
 ### owner
 
@@ -2204,17 +2203,19 @@ This field allows you to add the possibility of collaboration for packages with 
 ```
 @@!
 
-![owner-field](/img/owner-field.png)
+![owner-field](/img/creating-manifest/visual-settings/owner-field.png)
 
 The field is not displayed if there are no users defined in **Shared with Me**.
 
-![shared-with-me](/img/shared-with-me.png)
+![shared-with-me](/img/creating-manifest/visual-settings/shared-with-me.png)
 
 Changing the *Owner* field value results in the data will be re-rerquested with *GetAppInfo* method and form re-rendered in case there is [onBeforeInit](events/#onbeforeinit) in the mainifest. Re-rendering will be performed according to the account and quotas of collaborator.
 
+
 ## Dynamic filling of the manifest fields
 
-Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit*  *onBeforeInstall*](events/#onbeforeinit) events.
+Ability to dynamically determine UI in JPS manifest is accessible via [*onBeforeInit* and *onBeforeInstall*](/creating-manifest/events/#onbeforeinit-and-onbeforeinstall) events.
+
 
 ## Target Nodes
 
@@ -2301,7 +2302,7 @@ targetNodes:
 ```
 @@!
 
-Second sets the required <em>nodeGroups</em> being separated with commas:
+Second sets the required *nodeGroups* being separated with commas:
 
 @@@
 ```yaml
@@ -2350,7 +2351,7 @@ targetNodes: nginx, nginxphp
 
 Let’s suppose you have three environments with different topology.
 
-![target-nodes](/img/target-nodes-new.png)
+![target-nodes](/img/creating-manifest/visual-settings/target-nodes-new.png)
 
 Within these environments, the same filtering of *targetNodes* for Add-On installation can be performed with the next examples.
 
@@ -2409,15 +2410,15 @@ In both these cases, the filtering result allows to install manifest on the envi
 
 Nginx load balancer node is allowed.
 
-![TargetNodesFilter](/img/target-nodes-nginx.png)
+![TargetNodes NGINX](/img/creating-manifest/visual-settings/target-nodes-nginx.png)
 
 MySQL database node is allowed.
 
-![TargetNodesFilter](/img/target-nodes-mysql.png)
+![TargetNodes MySQL](/img/creating-manifest/visual-settings/target-nodes-mysql.png)
 
 No nodes fit  the filtering rule in the environment "Production".
 
-![TargetNodesFilter](/img/target-nodes-production.png)
+![TargetNodes filter](/img/creating-manifest/visual-settings/target-nodes-production.png)
 
 In order to perform manifest installation on all nodes in any environment the wildcard character `'*'` can be used or its alias `any`.
 
@@ -2474,11 +2475,10 @@ onInstall:
 
 In this case *Nodes* field will be hidden.
 
-![TargetNodesFilter](/img/target-nodes-none.png)
+![TargetNodes none](/img/creating-manifest/visual-settings/target-nodes-none.png)
 
 !!! note
-
-      In case of filtering by *nodeType* its *alias* cannot be used. See carefully list of available *nodeTypes* and their *aliases* in [Supported Stacks](https://docs.cloudscripting.com/creating-manifest/selecting-containers/#supported-stacks) section.
+    In case of filtering by *nodeType* its *alias* cannot be used. See carefully list of available *nodeTypes* and their *aliases* in [Supported Stacks](/creating-manifest/selecting-containers/#supported-stacks) section.
 
 ### showIf
 
@@ -2592,7 +2592,6 @@ settings:
 ```
 @@!
 
-
 - **toggle**
 
 @@@
@@ -2632,7 +2631,6 @@ settings:
 }
 ```
 @@!
-
 
 - **envlist**. The **test.vip.jelastic.cloud** environment must exist to make triggering the *showIf*:
 
@@ -2719,11 +2717,11 @@ settings:
 
 ## Custom Menus
 
-Menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](#custom-buttons).
+Menu is an expandable list within the **Add-ons** section, comprising operations that can be extended and adjusted by means of [custom buttons](#custom-buttons).
 
-![new-menu](/img/new-menu.png)
+![new-menu](/img/creating-manifest/visual-settings/new-menu.png)
 
-By default, this menu contains the <b>Uninstall</b> button. The rest of listed actions, if there are any, executes operations from the [events](/reference/events/) settings.
+By default, this menu contains the **Uninstall** button. The rest of listed actions, if there are any, executes operations from the [events](/creating-manifest/events/) settings.
 
 The properties used for custom menus are the same as for custom buttons. However, the appropriate *menu* field (instead of *buttons*) should be specified to adjust functionality exactly within the menu list of the Add-ons plank.
 
@@ -2780,20 +2778,21 @@ menu:
 
 Refer to the *Custom Buttons* section below for a detailed description on the parameters set with the current sample.
 
+
 ## Custom Buttons
 
-Custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node.
+Custom buttons settings are intended for extending and adjusting functionality of planks within the **Add-ons** section. It can be accessed upon clicking the same-named button next to the required node.
 
-![custom-addon](/img/custom-addon.png)
+![custom-addon](/img/creating-manifest/visual-settings/custom-addon.png)
 
 Such buttons execute operations that are predefined within a JPS manifest.
 
-![traffic-distributor](/img/traffic-distributor.png)
+![traffic-distributor](/img/creating-manifest/visual-settings/traffic-distributor.png)
 
 !!! note
-    > The JPS manifest should include the [*targetNodes*](#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.
+    The JPS manifest should include the [*targetNodes*](#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.
 
-<b>Templates</b>
+**Templates**
 
 Sample to set buttons within the Add-ons plank.
 
@@ -2847,24 +2846,24 @@ where:
 
 It will be displayed after clicking the appropriate button for an add-on. According to the code above, the text will be the following.
 
-![Confirm](/img/Confirm.jpg)
+![Confirm](/img/creating-manifest/visual-settings/confirm.jpg)
 
 - `loadingText` *[optional]* - UI text to be displayed during loading and applying changes. Default value is *'Applying...'*.
 
-![LoadingText](/img/LoadingText.jpg)
+![LoadingText](/img/creating-manifest/visual-settings/loadingtext.jpg)
 
-- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the [*actions*](../actions/#custom-actions) section.
+- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the [*actions*](/creating-manifest/actions/#custom-actions) section.
 - `caption` - title of the button
 
-![Caption](/img/Caption.jpg)
+![Caption](/img/creating-manifest/visual-settings/caption.jpg)
 
 - `successText` -  message that appears once action is successfully performed
 
-![SuccessText](/img/SuccessText.jpg)
+![SuccessText](/img/creating-manifest/visual-settings/successtext.jpg)
 
 - `href` *[optional]* - external link that is opened in a new browser tab and is executed only if the *settings* field is absent. In case of *href* execution, an *action* will not be carried out.
 
-Another sample with additional configurations where parameters can be enabled only if the [*settings*](visual-settings/#custom-settings) field is present.
+Another sample with additional configurations where parameters can be enabled only if the [*settings*](#custom-settings) field is present.
 
 @@@
 ```yaml
@@ -2923,15 +2922,17 @@ where:
 - `title` - custom dialog title. If absent, *caption* will be applied.
 - `submitButtonText` - text for submission button in the opened dialog. Default value is *'Apply'*.
 
-![SubmitButtonText](/img/SubmitButtonText.jpg)
+![SubmitButtonText](/img/creating-manifest/visual-settings/submitbuttontext.jpg)
 
 - `logsPath` - path to a log file that is accessible via the **Show Logs** button
 
-![LogsPath](/img/LogsPath.jpg)
+![LogsPath](/img/creating-manifest/visual-settings/logspath.jpg)
 
-- `logsNodeGroup` - nodeGroup [layer](../selecting-containers/#predefined-nodegroup-values) the logging path should be opened for
+- `logsNodeGroup` - nodeGroup [layer](/creating-manifest/selecting-containers/#predefined-nodegroup-values) the logging path should be opened for
+
 
 ## Custom Settings
+
 Settings section can include a few custom forms. Default settings form ID is *'main'*.
 
 **Example**
@@ -3007,18 +3008,20 @@ buttons:
 
 Here, the *main settings* form appears during installation process.
 
-![settingMain](/img/settingsmain.png)
+![settingMain](/img/creating-manifest/visual-settings/settingsmain.png)
 
-*config settings* form appears after clicking the <b>Configure</b> button within the Add-ons section.
+*config settings* form appears after clicking the **Configure** button within the **Add-ons** section.
 
-![settingCustom](/img/settingscustom.png)
+![settingCustom](/img/creating-manifest/visual-settings/settingscustom.png)
+
 
 ## Success Text Customization
 
 It is possible to customize the *success* text that is displayed upon successful installation either at the Dashboard, or via email notification.
-A success text can be defined as plain text or Markdown syntax. More details about Markdown syntax in Cloud Scripting [here](visual-settings/#markdown-description)
 
-- Setting relative to the *baseUrl* link that points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.
+A success text can be defined as plain text or Markdown syntax. More details about Markdown syntax in Cloud Scripting [here](#markdown-description)
+
+- Setting relative to the *baseUrl* link that points path to the **README.md** file for its content to be displayed within the *success* response.
 
 @@@
 ```yaml
@@ -3070,7 +3073,7 @@ success: https://github.com/jelastic-jps/lets-encrypt/raw/master/README.md
 
 As it was mentioned above, the success response is distinguished between two values:
 
- - text displayed at the dashboard after installation is successfully conducted
+- text displayed at the dashboard after installation is successfully conducted
 
 @@@
 ```yaml
@@ -3097,7 +3100,7 @@ success:
 ```
 @@!
 
- - message delivered via email notifying about the successful installation
+- message delivered via email notifying about the successful installation
 
 @@@
 ```yaml
@@ -3133,7 +3136,7 @@ success:
 ```
 @@!
 
-Email notification also can be customized in [custom responses](../handling-custom-responses/). In this case `email` value from handle custom response has a higher priority. For example:
+Email notification also can be customized in [custom responses](/creating-manifest/handling-custom-responses/). In this case `email` value from handle custom response has a higher priority. For example:
 
 @@@
 ```yaml
@@ -3164,22 +3167,26 @@ success: success!!
 
 In the last example above, the localization functionality is applied, which depends upon the Virtuozzo Application Platform selected language.
 
-Custom responses can be returned within [`return`](../actions/#return) or [`script`](../actions/#script) actions. More details about [custom responses here](../handling-custom-responses/).
+Custom responses can be returned within [`return`](/creating-manifest/actions/#return) or [`script`](/creating-manifest/actions/#script) actions. More details about [custom responses here](/creating-manifest/handling-custom-responses/).
+
 
 ## JPS installation without environment
 
 In case no environment is specified in the manifest, the installation dialog has no *Environment Name* and *Region* fields, but the *[custom settings](/creating-manifest/visual-settings/#custom-settings)* can be used and displayed.
 
-![import-button.png](/img/addon-wo-env.png)
+![import-button.png](/img/creating-manifest/visual-settings/addon-wo-env.png)
 
 The installation process for such **type:install** manifest is accompanied by installation process dialog which displays **Deploying {name}** instead of: *Preparing environment*, *Deploying{name}*, *Configuring environment*.
 
-![import-button.png](/img/deploy-addon-wo-env.png)
+![import-button.png](/img/creating-manifest/visual-settings/deploy-addon-wo-env.png)
+
 
 ## Markdown Description
 
-Markdown is a light language with plain text formatting syntax. This language is supported by Cloud Scripting technology to describe a `description`, `success texts` or show [`custom response` texts](visual-settings/#success-text-customization).
+Markdown is a light language with plain text formatting syntax. This language is supported by Cloud Scripting technology to describe a `description`, `success texts` or show [`custom response` texts](#success-text-customization).
+
 Cloud Scripting uses [CommonMark](http://commonmark.org/) implementation to convert Markdown syntax into html code.
+
 Therefore, there is a main supported Markdown tag list:
 
 Style 1                            | Style 2                                                         | Result|
@@ -3189,18 +3196,18 @@ Style 1                            | Style 2                                    
 \# Heading 1                           | Heading 1<br>\=\=\=\=\=\=\=\=\=                                 | <h1 class='default'>Heading 1</h1>
 \#\# Heading 2                          | Heading 2<br>\-\-\-\-\-\-\-\-\-\-\-\-                           | <h2 class='default'>Heading 2</h2>
 \[Link](https://virtuozzo.com)          | [Link][1]<br>.<br>.<br>.<br>[1]: https://virtuozzo.com          |[virtuozzo.com URL](https://virtuozzo.com)
-\!\[Image](https:<span>//</span>example.com/logo.png)| ![Image][1]<br>.<br>.<br>.<br>[1]: https:<span>//</span>example.com/logo.png |![Image](/img/favicon.ico)
-\> Blockquote                          |                                                                 |![blockquote](/img/markdown_blockquote.jpg) Blockquote
+\!\[Image](https:<span>//</span>example.com/logo.png)| ![Image][1]<br>.<br>.<br>.<br>[1]: https:<span>//</span>example.com/logo.png |![Image](/img/creating-manifest/visual-settings/favicon.ico)
+\> Blockquote                          |                                                                 |![blockquote](/img/creating-manifest/visual-settings/markdown-blockquote.jpg) Blockquote
 A paragraph.<br>  <br>A paragraph after 1 blank line.|                                                                 |A paragraph.<br><br>A paragraph after 1 blank line.
 \* List<br>\* List| \- List<br>\- List                                              |* List<br>* List
 1\. One<br>2\. Two<br>3\. Three| 1\) One<br>2\) Two<br>3\) Three                                 |1. One<br>2. Two<br>3. Three
-Horizontal Rule<br>\-\-\-| Horizontal Rule<br>\*\*\*                                       |Horizontal Rule<br>![horizontal-rule](/img/markdown_horizontal-rule.jpg)
-\`\`Inline code\`\` with backticks|                                                                 | ![Inline code](/img/markdown_inline-code.jpg) with backticks
-\`\`\`<br>print '3 backticks <br>or3 tildes'<br>\`\`\`| \~\~\~\~<br>print '3 backticks<br> or 3 tildes'<br>\~\~\~\~     |![Block code](/img/markdown_block-code.jpg)
+Horizontal Rule<br>\-\-\-| Horizontal Rule<br>\*\*\*                                       |Horizontal Rule<br>![horizontal-rule](/img/creating-manifest/visual-settings/markdown-horizontal-rule.jpg)
+\`\`Inline code\`\` with backticks|                                                                 | ![Inline code](/img/creating-manifest/visual-settings/markdown-inline-code.jpg) with backticks
+\`\`\`<br>print '3 backticks'<br>or '3 tildes'<br>\`\`\`| \~\~\~<br>print '3 backticks'<br>or '3 tildes'<br>\~\~\~     |![Block code](/img/creating-manifest/visual-settings/markdown-block-code.jpg)
 
 The elements visualization can be found on the screen below:
 
-![markdown_tags](/img/markdown_tags.jpg)
+![markdown_tags](/img/creating-manifest/visual-settings/markdown-tags.jpg)
 
 Source code for each of these elements is displayed below:
 
@@ -3238,16 +3245,16 @@ description: |
 {
     "type": "update",
     "name": "Markdown tags",
+    "description": "*Italic* or _Italic_    \n**Bold** or __Bold__  \n\n# This is H1   \n## This is H2  \n##### This is H6  \n\n[virtuozzo.com URL](https://virtuozzo.com)  \n\n![Virtuozzo](https://static.virtuozzo.com/wp-content/uploads/2025/10/virtuozzo-logo.png)  \n\n> Blockquote  \n\n* List  \n\n---  \n\n`Inline code` with backticks   \n\n```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
 }
-"description": "*Italic* or _Italic_    \n**Bold** or __Bold__  \n\n# This is H1   \n## This is H2  \n##### This is H6  \n\n[virtuozzo.com URL](https://virtuozzo.com)  \n\n![Virtuozzo](https://static.virtuozzo.com/wp-content/uploads/2025/10/virtuozzo-logo.png)  \n\n> Blockquote  \n\n* List  \n\n---  \n\n`Inline code` with backticks   \n\n```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
 ```
 @@!
 
 More details about Markdown implementation can be found in CommonMark specification - [CommonMark](http://spec.commonmark.org/).
 
+
 ## What’s next?
 
 - Examine a bunch of [Samples](/samples/) with operation and package examples
 - See [Troubleshooting](/troubleshooting/) for helpful tips and specific suggestions
-- Read [Realese Notes](/releasenotes/) to find out about the recent CS improvements
 - Find out the correspondence between [CS & Virtuozzo PaaS Versions](/virtuozzo-cs-correspondence/)

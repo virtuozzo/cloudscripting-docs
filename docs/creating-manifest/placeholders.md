@@ -1,28 +1,30 @@
 # Placeholders
-Cloud Scripting supports a set of placeholders that can be used in any section of a manifest file, if the section isn't strictly limited with its content. The Cloud Scripting engine makes an attempt to resolve all placeholders on the package installation stage. If it's not possible, the placeholder will be unresolved and displayed in the text as is (e.g. *${placeholder}*).
+
+Cloud Scripting supports a set of placeholders that can be used in any section of a manifest file, if the section isn't strictly limited with its content. The Cloud Scripting engine makes an attempt to resolve all placeholders on the package installation stage. If it's not possible, the placeholder will be unresolved and displayed in the text as is (e.g., *${placeholder}*).
 
 !!! note
-    To output all available placeholders, use a special <b>${placeholders}</b> placeholder. For more information, see the [*Troubleshooting*](/troubleshooting/) guide.
+    To output all available placeholders, use a special **${placeholders}** placeholder. For more information, see the [*Troubleshooting*](/troubleshooting/) guide.
 
 The following specific groups of placeholders are singled out:
 
-- [Environment Placeholders](placeholders/#environment-placeholders)
-- [Node Placeholders](placeholders/#node-placeholders)
-- [Event Placeholders](placeholders/#event-placeholders)
-- [Account Information](placeholders/#account-information)
-- [Input Parameters](placeholders/#input-parameters)
-- [Action Placeholders](placeholders/#action-placeholders)
-- [UI Placeholders](placeholders/#ui-placeholders)
-- [Custom Global Placeholders](placeholders/#custom-global-placeholders)
-- [Function Placeholders](placeholders/#function-placeholders)
-- [Data Processing Placeholders](placeholders/#data-processing-placeholders)
-- [Array Placeholders](placeholders/#array-placeholders)
-- [File Path Placeholders](placeholders/#file-path-placeholders)
-- [Engine Placeholder](placeholders/#engine-placeholder)
-- [Account Placeholders](placeholders/#account-placeholders)
-- [Quota Placeholders](placeholders/#quota-placeholders)
+- [Environment Placeholders](#environment-placeholders)
+- [Node Placeholders](#node-placeholders)
+- [Event Placeholders](#event-placeholders)
+- [Account Information](#account-information)
+- [Input Parameters](#input-parameters)
+- [Action Placeholders](#action-placeholders)
+- [UI Placeholders](#ui-placeholders)
+- [Custom Global Placeholders](#custom-global-placeholders)
+- [Function Placeholders](#function-placeholders)
+- [Data Processing Placeholders](#data-processing-placeholders)
+- [Array Placeholders](#array-placeholders)
+- [File Path Placeholders](#file-path-placeholders)
+- [Engine Placeholder](#engine-placeholder)
+- [Account Placeholders](#account-placeholders)
+- [Quota Placeholders](#quota-placeholders)
 
 Placeholders like `env`, `nodes`, `targetNodes`, `response` are dynamically updated. They could be updated by their requests if they are required to be updated.
+
 
 ## Environment Placeholders
 
@@ -66,6 +68,7 @@ This is the list of placeholders that you can use within the environment section
     - `contexts.length` *[number]* - number of contexts that are deployed to an environment
     - `extdomains.length` *[number]* - number of external domains that are bound to an environment
 
+
 ## Node Placeholders
 
 This is the list of placeholders that you can use within the nodes section (*{nodes.}*) of your manifest.
@@ -76,7 +79,7 @@ This is the list of placeholders that you can use within the nodes section (*{no
     - `{nodes.(group).last.(key)}`
     - `{nodes.(group).master.(key)}`
     where:
-    - `(group)` - node group ([nodeGroup](../selecting-containers/#all-containers-by-group) or [nodeType](../selecting-containers/#all-containers-by-type))
+    - `(group)` - node group ([nodeGroup](/creating-manifest/selecting-containers/#all-containers-by-group) or [nodeType](/creating-manifest/selecting-containers/#all-containers-by-type))
     - `(i)` - node index, starting from *'0'*
     - `(key)` - name of the applied parameter, according to the following list:
         - `address` - internal or external IP address
@@ -154,7 +157,8 @@ Event placeholders represent a set of dynamic parameters that are executed as a 
 - `${event.params.(key)}` - where *key* is a name of the event parameter
 - `${event.response.(key)}` -where *key* is a name of the event response parameter
 
-Learn more about the event placeholders within the [*Events*](../events) page.
+Learn more about the event placeholders within the [*Events*](/creating-manifest/events/) page.
+
 
 ## Account Information
 
@@ -164,6 +168,7 @@ This is the list of placeholders that you can use to specify account information
 - `${user.email}` - user email address
 - `${user.appPassword}` - random value that can be used to set application passwords
 - `${user.name}` - email address value (same as `${user.email}`)
+
 
 ## Input Parameters
 
@@ -200,11 +205,12 @@ settings:
 ```
 @@!
 
-Here, the name of the placeholder is `${settings.customName}`. See the list of [fields](../visual-settings/) that are defined by users.
+Here, the name of the placeholder is `${settings.customName}`. See the list of [fields](/creating-manifest/visual-settings/) that are defined by users.
+
 
 ## Action Placeholders
 
-Action placeholders form a set of placeholders that can be used within the actions by means of a <b>*\${this.*}*</b> namespace. So, in <b>*${this.param}*</b> the *param* is a name of the action parameter.
+Action placeholders form a set of placeholders that can be used within the actions by means of a **\${this.\*}** namespace. So, in **${this.param}** the *param* is a name of the action parameter.
 
 **Example**
 
@@ -260,7 +266,7 @@ actions:
 ```
 @@!
 
-As a result, console will display the *first* (1) custom parameter from the <b>*${this.first}*</b> placeholder.
+As a result, console will display the *first* (1) custom parameter from the **${this.first}** placeholder.
 
 Also custom actions can receive as a parameter a string or an array or strings. In this case a new placeholder *\${this}* will be defined within executed action.
 
@@ -292,8 +298,9 @@ actions:
 ```
 @@!
 
-The result message of \${this} placeholder is on the screen below:
-![this-placeholder](/img/this-placeholder.png)
+The result message of ${this} placeholder is on the screen below:
+
+![This placeholder output](/img/creating-manifest/placeholders/this-placeholder.png)
 
 In case if an argument is an array of strings the executed custom action will be executed so many times how many arguments are in an array.
 
@@ -305,7 +312,7 @@ This is the list of placeholders that you can use to specify UI parameters.
 - `${user.email}` - user email address
 - `${env.domain}` - full domain name without protocol
 - `${env.appid}` - unique environment appid at the Virtuozzo Application Platform
-- `${baseUrl}` - user custom relative URL. More details about [Relative Links here](../basic-configs/#relative-links)
+- `${baseUrl}` - user custom relative URL. More details about [Relative Links here](/creating-manifest/basic-configs/#relative-links)
 - `${platformUrl}` - platform dashboard URL
 
 **Example**
@@ -340,7 +347,7 @@ settings:
 
 ## Custom Global Placeholders
 
-Placeholders that are managed by users can be predefined via <b>*globals declaration*</b>. The corresponding declaration is performed in advance of the manifest installation.
+Placeholders that are managed by users can be predefined via **globals declaration**. The corresponding declaration is performed in advance of the manifest installation.
 
 **Example**
 
@@ -365,15 +372,16 @@ globals:
 ```
 @@!
 
-As a result, you can use <b>*${globals.value1}*</b> and <b>*${globals.value2}*</b>  within the entire manifest.
+As a result, you can use **${globals.value1}** and **${globals.value2}**  within the entire manifest.
 
-Values are global placeholders (<i>value1</i> and <i>value2</i> in example above) could consist of like simple text or/and placeholders in it. There are the list of placeholders which are predefined in `globals` block:
+Values are global placeholders (*value1* and *value2* in example above) could consist of like simple text or/and placeholders in it. There are the list of placeholders which are predefined in `globals` block:
 
-- `${settings.*}` - [input parameters](../placeholders/#input-parameters) from `settings` block, where custom forms are described
-- `${env.*}` - all [environment placeholders](../placeholders/#environment-placeholders). Placeholders are available only in JPS manifests with `type` *install* -  `globals` block will be updated after an environment is created.
-- `${nodes.*}` - all [node placeholders](../placeholders/#node-placeholders). Node values in global placeholders will be available only after environment is created.
-- `${user.*}` - [account placeholders](../placeholders/#account-information) are available during all JPS installation process.
-- `${fn.*}` - [functional placeholders](../placeholders/#function-placeholders)  are available during all JPS installation process.
+- `${settings.*}` - [input parameters](#input-parameters) from `settings` block, where custom forms are described
+- `${env.*}` - all [environment placeholders](#environment-placeholders). Placeholders are available only in JPS manifests with `type` *install* -  `globals` block will be updated after an environment is created.
+- `${nodes.*}` - all [node placeholders](#node-placeholders). Node values in global placeholders will be available only after environment is created.
+- `${user.*}` - [account placeholders](#account-information) are available during all JPS installation process.
+- `${fn.*}` - [functional placeholders](#function-placeholders)  are available during all JPS installation process.
+
 
 ## Function Placeholders
 
@@ -400,7 +408,6 @@ Functions without required parameters have two input forms:
 
 - `${fn.password}` or `${fn.password()}`
 - `${fn.random}` or `${fn.random()}`
-
 
 The function parameter can be passed from existing placeholders, for example:
 
@@ -431,19 +438,20 @@ globals:
 ```
 @@!
 
-Now, you can use <b>*${globals.pass}*</b> within the entire manifest.
+Now, you can use **${globals.pass}** within the entire manifest.
+
 
 ## Data Processing Placeholders
 
 There are data conversion routines in Cloud Scripting which can be performed with specially developed *Data Processing Placeholders*:
 
-- [`${*.toBase64()}`](#${\*.tobase64()}) - does data encoding into *Base64* format
-- [`${*.fromBase64()}`](#${\*.frombase64()}) - decodes data from *Base64* format
-- [`${*.md5()}`](#${\*.md5()}) - *md5* hash generator
-- [`${*.join()}`](#${\*.join()}) - concatenates data provided as array of words or objects
-- [`${*.toJSON()}`](#${\*.tojson()}) - converts array of of words or objects into JSON format
-- [`${*.contains()}`](#${\*.contains()}) - allows to find a word or object in the array of words or objects respectively
-- [`${*.print()}`](#${\*.print()}) - outputs an array of words or objects to the [console](http://docs.cloudscripting.com/troubleshooting/#troubleshooting)
+- [`${*.toBase64()}`](#tobase64) - does data encoding into *Base64* format
+- [`${*.fromBase64()}`](#frombase64) - decodes data from *Base64* format
+- [`${*.md5()}`](#md5) - *md5* hash generator
+- [`${*.join()}`](#join) - concatenates data provided as array of words or objects
+- [`${*.toJSON()}`](#tojson) - converts array of of words or objects into JSON format
+- [`${*.contains()}`](#contains) - allows to find a word or object in the array of words or objects respectively
+- [`${*.print()}`](#print) - outputs an array of words or objects to the [console](/troubleshooting/)
 
 ### ${\*.toBase64()}
 
@@ -498,7 +506,8 @@ onInstall:
 ```
 @@!
 
-The result of the example execution in [console](http://docs.cloudscripting.com/troubleshooting/#troubleshooting):
+The result of the example execution in [console](/troubleshooting/#troubleshooting):
+
 ```
 [17:43:32 CS.toBase64]: BEGIN INSTALLATION: CS Placeholders - built-in data processing functions - toBase64
 [17:43:33 CS.toBase64]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
@@ -564,7 +573,7 @@ onInstall:
 ```
 @@!
 
-The output in the [console](http://docs.cloudscripting.com/troubleshooting/#troubleshooting) should look like:
+The output in the [console](/troubleshooting/#troubleshooting) should look like:
 
 ```
 [08:13:38 CS:Placeholders.fromBase64]: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions] - fromBase64
@@ -631,7 +640,7 @@ onInstall:
 ```
 @@!
 
-Check the output in the [console](http://docs.cloudscripting.com/troubleshooting/#troubleshooting):
+Check the output in the [console](/troubleshooting/#troubleshooting):
 
 ```
 [08:16:57 CS:Placeholders.md5]: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions] - md5
@@ -990,6 +999,7 @@ onInstall:
 @@!
 
 The result of such action is a Boolean value: *true* or *false*:
+
 ```
 [14:33:59 CS:Placeholders.contains]: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions] - contains
 [14:34:00 CS:Placeholders.contains]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
@@ -1003,9 +1013,10 @@ The result of such action is a Boolean value: *true* or *false*:
 [14:34:05 CS:Placeholders.contains]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - contains
 ```
 
+
 ## Array Placeholders
 
-Any array has a list of specific placeholders: array *length*, element by *ID*, the *first* and the *last* array elements.
+Any array has a list of specific placeholders: array **length**, element by **ID**, the **first** and the **last** array elements.
 
 **Array Length**
 
@@ -1029,18 +1040,19 @@ Each element has an index in the array.
 where:
 
 - `(i)` - array index, starting from *'0'*
-- `(key)` - node [parameters](../placeholders/#node-placeholders)
+- `(key)` - node [parameters](#node-placeholders)
 
 **The First and the Last Array Elements**
 
 - `{nodes.cp.first.(key)}` - array element with the *'0'* index
 - `{nodes.sqldb.last.(key)}` - array element with the last ID in the array
 
-Here, <b>*key*</b> is the node parameter.
+Here, **key** is the node parameter.
+
 
 ## File Path Placeholders
 
-The values below can vary depending on a particular *nodeType*:
+The values below can vary depending on a particular **nodeType**:
 
 - `${HOME}` - for *couchdb*, *glassfish3*, *jetty6*, *nginx-ruby*, *nginx*, *nginxphp*, *tomcat6*,*tomcat7*, *tomee*
 - `${WEBAPPS}` - for *apache2-ruby*, *apache2*, *jetty6*, *nginx-ruby*, *nginxphp*, *nodejs*, *tomcat6*, *tomcat7*, *tomee*
@@ -1071,7 +1083,7 @@ You can use the following placeholders, as well, with the definite *nodeType*:
 - `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*
 - `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*
 
-Explore the full list of available [*nodeType*](../selecting-containers/#all-containers-by-type) values within the linked page.
+Explore the full list of available [*nodeType*](/creating-manifest/selecting-containers/#all-containers-by-type) values within the linked page.
 
 The list of single placeholders:
 
@@ -1120,7 +1132,7 @@ The first comparing in `assert` action is **"'\${unknown:defaultValue}' === 'def
 
 The executed results on the screen below:
 
-![simple-comparison](/img/simple-comparison.png)
+![Simple comparison output](/img/creating-manifest/placeholders/simple-comparison.png)
 
 Default placeholder values can be replaced in placeholders if they were defined before they are spelled out in manifest. For example, custom placeholders can be defined in action `set`.
 
@@ -1178,7 +1190,8 @@ onInstall:
 
 The results on the screen below:
 
-![comparison](/img/default_placeholder_value.png)
+![Default placeholder value comparison](/img/creating-manifest/placeholders/default-placeholder-value.png)
+
 
 ## Engine Placeholder
 
@@ -1257,6 +1270,7 @@ onInstall:
 ```
 @@!
 
+
 ## Account Placeholders
 
 To ensure ability to process user's quotas and collaboration the following `${account.(key)}` placeholders are available:
@@ -1280,6 +1294,7 @@ To ensure ability to process user's quotas and collaboration the following `${ac
 Placeholders *${account.(key)}* are initialized on demand, that is, only if they are used and only at the moment they are required.
 Placeholder values are filled in depending on which user the installation is carried out for. That is, the placeholders will be filled with values for the collaborator selected during installation.
 
+
 ## Quota Placeholders
 
 To ensure ability to process user's quotas and collaboration the following `${quota.(key)` and `${quota.data.(key)}` placeholders are available:
@@ -1298,6 +1313,7 @@ To ensure ability to process user's quotas and collaboration the following `${qu
     - ...
 
 Placeholders `${quota.(key)}` are initialized on demand, that is, only if they are used and only at the moment they are required.
+
 Placeholder values are filled in depending on which user the installation is carried out for. That is, the placeholders will be filled with values for the collaborator selected during installation.
 
 Placeholders `${quota.(key)}` are filled with quota values, where **key** is the name of the quota (for example: *${quota.environment.maxcloudletsperrec}*).
@@ -1356,11 +1372,12 @@ settings:
 ```
 @@!
 
+
 ## What’s next?
 
-- See how to use [Conditions and Iterations](../conditions-and-iterations/)
-- Read how to integrate your [Custom Scripts](../custom-scripts/)
-- Check how to create your custom [Add-Ons](../addons/)
-- Find out how to handle [Custom Responses](../handling-custom-responses/)
-- Learn how to customize [Visual Settings](../visual-settings/)
+- See how to use [Conditions and Iterations](/creating-manifest/conditions-and-iterations/)
+- Read how to integrate your [Custom Scripts](/creating-manifest/custom-scripts/)
+- Check how to create your custom [Add-Ons](/creating-manifest/addons/)
+- Find out how to handle [Custom Responses](/creating-manifest/handling-custom-responses/)
+- Learn how to customize [Visual Settings](/creating-manifest/visual-settings/)
 - Examine a bunch of [Samples](/samples/) with operation and package examples

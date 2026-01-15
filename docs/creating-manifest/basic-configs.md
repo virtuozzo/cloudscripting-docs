@@ -26,6 +26,7 @@ This is a mandatory body part of the application package, which includes the inf
 
 This basic string should be extended with the settings required by the application you are packing. The following configuration details are included beside the ***'type': " "*** parameter:
 
+
 ## Manifest Overview
 
 There is a set of available parameters to define a manifest installation behavior, custom description and design, application icons and success texts etc.
@@ -163,6 +164,7 @@ where:
 - *group2* - it is a group the created environment will belong to
 - *group3* - it is another group the created environment will belong to
 
+
 ## Environment Installation
 
 The environment can be installed in case when the `type` parameter is set to **install**. Then the set of nodes with their parameters should be defined also.
@@ -171,7 +173,7 @@ The environment can be installed in case when the `type` parameter is set to **i
 
 The list of available parameters are:
 
-- `nodeType` *[required]* - the defined node type. The list of available stacks are [here](../selecting-containers/#supported-stacks)
+- `nodeType` *[required]* - the defined node type. The list of available stacks are [here](/creating-manifest/selecting-containers/#supported-stacks)
 - `cloudlets` *[required]* - a number of dynamic cloudlets. The recommended value is 4. The value below can disable some services in the container
 - `fixedCloudlets` *[optional]* - amount of fixed cloudlets. The default value is 1.
 - `count` *[optional]* - amount of nodes in one group. The default value is 1. To set up the parameter dynamically see an [example](#count-parameter).
@@ -211,7 +213,6 @@ The following parameters are available for Docker and Docker-based nodes only:
     - *NODE* - displays buttons only at the level of the nodes (containers)
     - *NODEGROUP* - displays buttons only at the *nodeGroup* level
 - `isSLBAccessEnabled` *[optional]{boolean}* - enables/disables access to the node or respective *nodeGroup* through the [Shared Load Balancer](https://www.virtuozzo.com/application-platform-docs/shared-load-balancer/#deny-access-via-shared-load-balancer). By default `true`
-
 
 #### count Parameter
 
@@ -395,7 +396,7 @@ The service starts if:
 
 #### Cluster
 
-In Virtuozzo Application Platform the following *[nodeTypes](https://docs.cloudscripting.com/creating-manifest/selecting-containers/#supported-stacks)* can be clusterized with help of built-in [Auto-Сlustering feature](https://www.virtuozzo.com/application-platform-ops-docs/auto-clustering-templates/):
+In Virtuozzo Application Platform the following *[nodeTypes](/creating-manifest/selecting-containers/#supported-stacks)* can be clusterized with help of built-in [Auto-Сlustering feature](https://www.virtuozzo.com/application-platform-ops-docs/auto-clustering-templates/):
 
 - Application Servers: GlassFish, WildFly, Payara
 - SQL Databases: MySQL, MariaDB, PostgreSQL
@@ -404,7 +405,7 @@ In Virtuozzo Application Platform the following *[nodeTypes](https://docs.clouds
 
 *Auto-Clustering* can be enabled via `cluster` parameter or using *Auto-Clustering* switch at the dashboard:
 
-![autoclustering-switch](/img/autoclustering-switch.png)
+![autoclustering-switch](/img/creating-manifest/basic-configs/autoclustering-switch.png)
 
 #### cluster parameter
 
@@ -415,9 +416,9 @@ To enable *Auto-Clustering* the `cluster` parameter is used as:
 !!! note
     - Default topology that will be created for the MySQL and MariaDB is [master-slave](https://www.virtuozzo.com/company/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/) replication cluster with 2 nodes of HA ProxySQL load balancer in front of
     - In case of PostgreSQL there is only one topology available - [master-slave](https://www.virtuozzo.com/company/blog/postgresql-auto-clustering-master-slave-replication/)
-    - The WildFly cluster is created in [Managed Domain Mode](https://www.virtuozzo.com/company/blog/wildfly-managed-domain-automatic-clustering-scaling/) with topology that comrises one Domain Controller node and Worker nodes. Number of Worker nodes is defined by *[count](basic-configs/#nodes-definition)* parameter
-    - The Payara/GlassFish cluster is created with topology that comrises one [DAS node and Worker nodes](https://www.virtuozzo.com/company/blog/glassfish-payara-clustering-automated/). Number of Worker nodes is defined by *[count](basic-configs/#nodes-definition)* parameter
-    - The MongoDB cluster is created as [replica-set](https://www.virtuozzo.com/company/blog/mongodb-replica-set-master-slave-failover/) with topology that comrises tree nodes one *Primary* and two *Secondary* nodes
+    - The WildFly cluster is created in [Managed Domain Mode](https://www.virtuozzo.com/company/blog/wildfly-managed-domain-automatic-clustering-scaling/) with topology that comprises one Domain Controller node and Worker nodes. Number of Worker nodes is defined by *[count](#nodes-definition)* parameter
+    - The Payara/GlassFish cluster is created with topology that comprises one [DAS node and Worker nodes](https://www.virtuozzo.com/company/blog/glassfish-payara-clustering-automated/). Number of Worker nodes is defined by *[count](#nodes-definition)* parameter
+    - The MongoDB cluster is created as [replica-set](https://www.virtuozzo.com/company/blog/mongodb-replica-set-master-slave-failover/) with topology that comprises three nodes one *Primary* and two *Secondary* nodes
     - The Couchbase is created as [cluster with 3 interconnected Couchbase containers](https://www.virtuozzo.com/company/blog/auto-scalable-couchbase-cluster-in-docker-containers/)
     - The Storage cluster is based on scalable network filesystem [GlusterFS](https://www.gluster.org/). The default cluster topology comprises 3 storage nodes
 
@@ -444,7 +445,7 @@ nodes:
   ]
 }
 ```
-@@!  
+@@!
 
 - *object* - this is applicable for MySQL/MariaDB only. Object contains multiple options can be passed as configuration parameters:
     - `scheme` *[optional]* - configures database [replication scheme](https://www.virtuozzo.com/company/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/) for:
@@ -490,7 +491,7 @@ nodes:
 ```
 @@!
 
-![autoclustering-mysql](/img/autoclustering-mysql.png)
+![autoclustering-mysql](/img/creating-manifest/basic-configs/autoclustering-mysql.png)
 
 Once the cluster parameters were applied to respective layer, you won't be able to change them.
 
@@ -500,7 +501,7 @@ The validation parameter properties allow to:
 
 - minCount - specify minimum number of nodes in the layer
 - maxCount - specify maximum number of nodes in the layer
-- scalingMode - set up a *[scalingMode](https://docs.cloudscripting.com/creating-manifest/basic-configs/#nodes-definition)* parameter for the layer
+- scalingMode - set up a *[scalingMode](#nodes-definition)* parameter for the layer
 
 Following example shows how to restrict a scaling limit of worker nodes between 3 and 5 for Payara Cluster:
 
@@ -531,7 +532,7 @@ nodes:
 
 Respectively trying to decrease below 3 the number of worker nodes in the wizard the corresponding warning will be displayed:
 
-![validation-min](/img/autoclustering-min-count.png)
+![validation-min](/img/creating-manifest/basic-configs/validation-min.png)
 
 In case `minCount` is equal to `maxCount` parameter the scaling is inaccessible for the layer.
 The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings).
@@ -1074,7 +1075,8 @@ For example:
 ### Entry Points
 
 There is an ability to set custom entry points - the button *Open in Browser*, which can be clicked when JPS with type `install` is installed.
-![open-in-browser.png](/img/open-in-browser.png)
+
+![open-in-browser](/img/creating-manifest/basic-configs/open-in-browser.png)
 
 Entry Points can be set in `startPage` option. The default `startPage` value is an installed environment URL (even it hasn't been defined).
 
@@ -1273,13 +1275,16 @@ If the environment is not specified the list of the following actions can be per
 - [sleep](/creating-manifest/actions/#sleep)
 
 For the rest of the [actions](/creating-manifest/actions), an error will be displayed in the console:
+
+```json
 { "result": 11022, "error": "can't find node by the given parameters" }
+```
 
 The error 11022 is ignored and gets to no crash report.
 
 ## Relative Links
 
-The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the <b>*baseUrl*</b> parameter or specified while [importing](https://www.virtuozzo.com/application-platform-docs/environment-export-import/) a corresponding JPS file via the Virtuozzo Application Platform dashboard.
+The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the ***baseUrl*** parameter or specified while [importing](https://www.virtuozzo.com/application-platform-docs/environment-export-import/) a corresponding JPS file via the Virtuozzo Application Platform dashboard.
 
 !!! note
     > The *baseUrl* value declared within the manifest has higher priority than installation via URL (i.e. [Import](https://www.virtuozzo.com/application-platform-docs/environment-export-import/)).
@@ -1324,10 +1329,10 @@ ${baseUrl}/manifest.jps
 
 where:
 
-- ${baseUrl}={protocol}//{domain}/{path}
-- ***{protocol}*** - *http* or *https* protocols
-- ***{domain}*** - domain name of the website, where the manifest is stored
-- ***{path}*** - directory path
+- ***${baseUrl}***={protocol}//{domain}/{path}
+    - ***{protocol}*** - *http* or *https* protocols
+    - ***{domain}*** - domain name of the website, where the manifest is stored
+    - ***{path}*** - directory path
 - ***manifest.jps*** - name of the file jps package
 
 There are the following Cloud Scripting rules applied while parsing file's relative path:
@@ -1336,12 +1341,12 @@ There are the following Cloud Scripting rules applied while parsing file's relat
 - verification that the linked file’s text doesn't contain whitespaces (including tabs and line breaks)
 - verification that the linked file’s text doesn't contain semicolons and round brackets
 
-If installation is being run from [*GitHub*](https://github.com/jelastic-jps) and URL includes <b>*‘/blob/’*</b>, it will be replaced with <b>*‘/raw/’*</b>. In case the `baseUrl` parameter is defined without a slash at the end, it will be added automatically.
+If installation is being run from [*GitHub*](https://github.com/jelastic-jps) and URL includes ***‘/blob/’***, it will be replaced with ***‘/raw/’***. In case the `baseUrl` parameter is defined without a slash at the end, it will be added automatically.
 
 There are a list of JPS blocks which can use resources from **related** links:
 
 - `logo` - JPS application image is shown while jps installation
-- `script` - [action](../actions/#script), for executing javascript and java scripts
+- `script` - [action](/creating-manifest/actions/#script), for executing javascript and java scripts
 - `description` - information about JPS which is shown before install process
 - `success` - message after successful application installation
 
@@ -1368,7 +1373,7 @@ success: text.txt
 
 In the example above the text *text.txt* will be displayed in success email notification and in success window in Virtuozzo Application Platform dashboard when JPS installation will be finished. If URL `https://example.com/text.txt` has any content then that content will be displayed.
 
-The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the [*cmd*](../actions/#cmd) and [*script*](../actions/#script) actions).
+The Cloud Scripting engine also supports a `${baseUrl}` placeholder. It can be used throughout the users’ customs scripts (within the [*cmd*](/creating-manifest/actions/#cmd) and [*script*](/creating-manifest/actions/#script) actions).
 
 For example:
 

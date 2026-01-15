@@ -1,4 +1,4 @@
-## Mixins
+# Mixins
 
 The **mixins** provide agility in Cloud Scripting allowing to include(mix) pieces of code from one manifest into another.
 The following sections can be mixed:
@@ -9,8 +9,11 @@ The following sections can be mixed:
 - `responses`
 
 The *mixins* section in JPS manifest can contain a description of both a single and an array of *mixins*.
-In case there are included the identical *mixins* or recursive ones, the only first occurrence will be taken into the action. Also, the names were defined in the main manifest are of higher priority than those are in the *mixins*.
-main.jps
+
+!!! note
+    If there are included identical *mixins* or recursive ones, only the first occurrence will be taken into action. Names defined in the main manifest have higher priority than those in the *mixins*.
+
+**main.jps**
 
 @@@
 ```yaml
@@ -100,10 +103,22 @@ actions:
 ```
 @@!
 
-While performing  the example above, the result of mixins include will be displayed in the log before executing onInstall event:
+While performing the example above, the result of mixins include will be displayed in the log before executing onInstall event:
 
-![mixins-log](/img/mixins-log.png)
+![mixins-log](/img/creating-manifest/mixins/mixins-log.png)
 
-If the mixin could not be loaded, an ERROR will be displayed in the CS log indicating the reason (for example, file not found), and the response from the server will contain error code 11042. Once the *mixins* are loaded, in the main.jps example, you can use any action which is in *mixins*.
+!!! warning
+    If the mixin could not be loaded, an ERROR will be displayed in the CS log indicating the reason (for example, file not found), and the response from the server will contain error code 11042.
+
+Once the *mixins* are loaded, you can use any action which is in *mixins*.
 
 The mixin's baseURL is always overridden by the baseURL from the main manifest the mixin is included into.
+
+
+## What's next?
+
+- Learn how to define [Actions](/creating-manifest/actions/)
+- Explore [Add-Ons](/creating-manifest/addons/)
+- See [Custom Scripts](/creating-manifest/custom-scripts/)
+- Examine a bunch of [Samples](/samples/) with operation and package examples
+- See the [Troubleshooting](/troubleshooting/) for helpful tips and specific suggestions
