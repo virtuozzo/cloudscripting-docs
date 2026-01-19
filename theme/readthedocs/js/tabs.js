@@ -29,7 +29,8 @@ $(document).ready(function(){
 
         $(this).wrap(sTemplate);
         oItem = $(sLiClassItem);
-        oItem.last().prepend("<span class='c-tabs__link'>" + $(item).children('code').attr('class').toUpperCase() + " </span>");
+        var className = $(item).children('code').attr('class').replace(/^language-/, '');
+        oItem.last().prepend("<span class='c-tabs__link'>" + className.toUpperCase() + " </span>");
     });
 
     oButton.append("<img class='clippy' src='/img/clippy.svg'>");
