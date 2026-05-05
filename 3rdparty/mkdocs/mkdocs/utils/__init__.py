@@ -11,7 +11,10 @@ from __future__ import unicode_literals
 
 import logging
 import os
-import pkg_resources
+try:
+    import pkg_resources
+except ImportError:
+    pkg_resources = None
 import shutil
 import re
 import sys
@@ -376,10 +379,17 @@ def get_theme_dir(name):
 def get_themes():
     """ Return a dict of all installed themes as (name, entry point) pairs. """
 
-    themes = {}
-    builtins = pkg_resources.get_entry_map(dist='mkdocs', group='mkdocs.themes')
+    if pkg_resources is not None:
+        builtins = pkg_resources.get_entry_map(dist='mkdocs', group='mkdocs.themes')
+        ep_iter = pkg_resources.iter_entry_points(group='mkdocs.themes')
+    else:
+        from mkdocs.entrypoints_compat import get_entry_map, iter_entry_points
 
-    for theme in pkg_resources.iter_entry_points(group='mkdocs.themes'):
+        builtins = get_entry_map(dist='mkdocs', group='mkdocs.themes')
+        ep_iter = iter_entry_points(group='mkdocs.themes')
+
+    themes = {}
+    for theme in ep_iter:
 
         if theme.name in builtins and theme.dist.key != 'mkdocs':
             raise exceptions.ConfigurationError(

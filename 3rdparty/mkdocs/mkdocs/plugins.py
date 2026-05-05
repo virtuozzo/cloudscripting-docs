@@ -7,7 +7,10 @@ Implements the plugin API for MkDocs.
 
 from __future__ import unicode_literals
 
-import pkg_resources
+try:
+    import pkg_resources
+except ImportError:
+    pkg_resources = None
 import logging
 from collections import OrderedDict
 
@@ -27,7 +30,12 @@ EVENTS = (
 def get_plugins():
     """ Return a dict of all installed Plugins by name. """
 
-    plugins = pkg_resources.iter_entry_points(group='mkdocs.plugins')
+    if pkg_resources is not None:
+        plugins = pkg_resources.iter_entry_points(group='mkdocs.plugins')
+    else:
+        from mkdocs.entrypoints_compat import iter_entry_points
+
+        plugins = iter_entry_points(group='mkdocs.plugins')
 
     return dict((plugin.name, plugin) for plugin in plugins)
 
