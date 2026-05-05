@@ -41,8 +41,8 @@ jobs:
 
     - name: Build documentation (all versions)
       run: |
-        # Determine latest version from mkdocs.yml (last line in extra.versions)
-        LATEST_VERSION="$(tail -n 1 mkdocs.yml | sed 's/://')"
+        # Determine latest version from mkdocs.yml (last line in extra.versions: "    X.Y.Z: ...")
+        LATEST_VERSION="$(tail -n 1 mkdocs.yml | sed -n 's/^[[:space:]]*\([^[:space:]]*\):.*/\1/p')"
         echo "Latest documentation version: ${LATEST_VERSION}"
 
         # Build all versions using mkdocs_versioned (similar to build.sh)

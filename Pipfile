@@ -4,6 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+setuptools = "*"
 markdown = {editable = true, path = "3rdparty/markdown"}
 pymdown-extensions = {editable = true, path = "3rdparty/pymdown-extensions"}
 mkdocs = {editable = true, path = "3rdparty/mkdocs"}
