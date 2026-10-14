@@ -5,7 +5,7 @@ aliases: "/docker-actions/"
 seoindex: "index, follow"
 seotitle: "Docker Actions"
 seokeywords: "cloud scripting, docker actions"
-seodesc: "Specific Cloud Scripting actions for Docker containers include operations of volumes, links and environment variables management. ## Volumes"
+seodesc: "Specific Cloud Scripting actions for Docker containers include operations of volumes, links and environment variables management."
 menu:
     docs:
         title: "Docker Actions"
@@ -17,6 +17,7 @@ menu:
 
 Specific Cloud Scripting actions for Docker containers include operations of *volumes*, *links* and *environment variables* management.
 <br>
+
 ## Volumes
 
 There are three available parameters to set Docker volumes:
@@ -42,6 +43,7 @@ All of the fields are set within the Docker object:
 }
 ```
 <h3>Volumes</h3>
+
 This field represents a string array:  
 ```json
 [
@@ -57,6 +59,7 @@ This field represents a string array:
 ```
 
 <h3>VolumeMounts</h3>
+
 This parameter is an object. It can be set like within the example below:    
 ```json
 {
@@ -116,6 +119,7 @@ Here, *sourcePath* and *readOnly* parameters are optional.
 
 **Mount Data Container:**
 <br>
+
 Samples to mount all volumes from a particular node by exact node identifier & path (*/node*) and to mount master node volumes by *nodeGroup* type (*/data*)
 
 ```json
@@ -133,6 +137,7 @@ Samples to mount all volumes from a particular node by exact node identifier & p
 
 **External Server Mounts:**
 <br>
+
 Sample to mount a volume (*/external*) from external server by indicating its host (`sourceHost`), path (`sourcePath`) and access permissions (`readOnly`).
 ```json
 {
@@ -147,6 +152,7 @@ Sample to mount a volume (*/external*) from external server by indicating its ho
 ```
 **Short Set for External Server:**
 <br>
+
 Sample to mount a number of volumes from external server by specifying the required parameters (i.e. volume path, `sourceHost`, `sourcePath`, access permissions) for each of them within one string.     
 ```json
 {

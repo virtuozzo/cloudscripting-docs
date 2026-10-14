@@ -811,6 +811,7 @@ Here, *sourcePath* and *readOnly* parameters are optional.
 
 **Mount Data Container:**
 <br>
+
 Samples to mount all volumes from a particular node by exact node identifier & path (*/node*) and to mount master node volumes by *nodeGroup* type (*/data*)
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
@@ -840,6 +841,7 @@ volumeMounts:
 
 **External Server Mounts:**
 <br>
+
 Sample to mount a volume (*/external*) from external server by indicating its host (`sourceHost`), path (`sourcePath`) and access permissions (`readOnly`).
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
@@ -867,6 +869,7 @@ volumeMounts:
 {{< /tabs >}}
 **Short Set for External Server:**
 <br>
+
 Sample to mount a number of volumes from external server by specifying the required parameters (i.e. volume path, `sourceHost`, `sourcePath`, access permissions) for each of them within one string.     
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
@@ -1320,6 +1323,7 @@ https://app.jelastic.com/1.0/environment/control/rest/applynodegroupdata?data={"
 ```
   
 <br>
+
 ## JPS execution without environment
  
 The JPS manifest can be executed without binding to any environment.  

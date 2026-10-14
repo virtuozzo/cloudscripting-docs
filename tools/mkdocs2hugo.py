@@ -14,6 +14,7 @@ What it does:
   * `#Heading` (no space)    -> `# Heading` (CommonMark requires the space)
   * images from theme/readthedocs/img are co-located in the page bundle
   * internal links/hrefs are rewritten to the flat Hugo slugs (/slug/)
+  * a blank line is inserted after raw HTML block lines so goldmark renders the markdown after them
   * writes redirects.htaccess with old-URL -> new-URL rules
 """
 import argparse
@@ -150,6 +151,33 @@ def fix_nested_fences(chunk):
     lines[0] = re.sub(r"^`{3,}", "`" * n, lines[0])
     lines[-1] = re.sub(r"^`{3,}", "`" * n, lines[-1])
     return "\n".join(lines)
+
+
+BLOCK_TAGS = ("address|article|aside|blockquote|br|center|dd|details|dialog|div|dl|dt|fieldset|figcaption|"
+              "figure|footer|form|h[1-6]|header|hr|iframe|img|legend|li|main|menu|nav|ol|optgroup|option|p|"
+              "section|summary|table|tbody|td|tfoot|th|thead|tr|ul")
+CONTAINER_TAGS = "table|div|ul|ol|dl|center|details|blockquote|figure|section|nav|aside|form|fieldset"
+
+
+def fix_html_blocks(chunk):
+    """Goldmark treats a line that starts with a block-level HTML tag as raw HTML up to the
+    next blank line, so markdown right after `<h3>..</h3>` or `<p>..</p>` is swallowed.
+    Python-Markdown did not. Insert a blank line after a closed HTML block line when the
+    next line is markdown."""
+    lines = chunk.split("\n")
+    out, depth = [], 0
+    for i, line in enumerate(lines):
+        out.append(line)
+        is_html = re.match(r"^<(%s)(\s|>|/)" % BLOCK_TAGS, line, re.I) or re.match(r"^</?[A-Za-z][^<>]*>\s*$", line)
+        depth += len(re.findall(r"<(%s)(\s[^>]*)?>" % CONTAINER_TAGS, line, re.I))
+        depth -= len(re.findall(r"</(%s)>" % CONTAINER_TAGS, line, re.I))
+        if depth < 0:
+            depth = 0
+        nxt = lines[i + 1] if i + 1 < len(lines) else ""
+        if (is_html or (depth == 0 and re.match(r"^\s*</(%s)>" % CONTAINER_TAGS, line, re.I))) \
+                and depth == 0 and nxt.strip() and not nxt.lstrip().startswith("<"):
+            out.append("")
+    return "\n".join(out)
 
 
 def map_code(text, fn):
@@ -412,6 +440,7 @@ class Converter:
         text = map_code(text, fix_nested_fences)
         text = normalize_fences(text)
         text = map_prose(text, lambda c: self.rewrite_links(c, page))
+        text = map_prose(text, fix_html_blocks)
         if page.src in BODY_PREFIX:
             text = BODY_PREFIX[page.src] + text
         m = re.search(r"^# (.+?)\s*$", text, re.M)

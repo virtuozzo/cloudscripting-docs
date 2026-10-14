@@ -108,6 +108,7 @@ Now you can **Open** your new environment in a **browser** and check the result.
 
 Just in the same way, you can build and run the solution you need - from frequent tasks automation to implementing complex CI/CD flows and clustering configurations.                               
 <br>    
+
 ## Best Practises
 
 - For advanced coding possibilities, use either <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a> with automatic formatting and syntax highlighting or <a href="http://www.yaml.org/" target="_blank">YAML</a> parser (depending on the syntax you prefer to work with)                               
