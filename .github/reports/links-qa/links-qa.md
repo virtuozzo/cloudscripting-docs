@@ -1,6 +1,6 @@
 # Links QA report
 
-- Last run: 2026-10-14T14:44:29
+- Last run: 2026-10-14T15:22:25
 - Scope: 37 pages
 - External checks: off
 - Local server: `http://127.0.0.1:1313`

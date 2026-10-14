@@ -53,34 +53,7 @@ params:
     - "7.2.1"
     - "7.0.2"
     - "6.3.2"
-  # Cloud Scripting -> Virtuozzo Application Platform version table, rendered by
-  # layouts/shortcodes/cs-versions.html on the "CS vs Virtuozzo PaaS Versions" page.
-  # Replaces the `extra.versions` map of mkdocs.yml.
-  csPlatformVersions:
-    - { cs: "6.3.2", platform: "6.3-2" }
-    - { cs: "7.0.2", platform: "7.0-2" }
-    - { cs: "7.2.1", platform: "7.2-1" }
-    - { cs: "7.3.1", platform: "7.3-1" }
-    - { cs: "8.0.2", platform: "8.0-2" }
-    - { cs: "8.1.1", platform: "8.1-1" }
-    - { cs: "8.2.2", platform: "8.2-2" }
-    - { cs: "8.2.4", platform: "8.2-4" }
-    - { cs: "8.2.5", platform: "8.2-5" }
-    - { cs: "8.3.1", platform: "8.3-1" }
-    - { cs: "8.3.2", platform: "8.3-2" }
-    - { cs: "8.3.3", platform: "8.3-3" }
-    - { cs: "8.4.1", platform: "8.4-1" }
-    - { cs: "8.6.1", platform: "8.6.1" }
-    - { cs: "8.6.2", platform: "8.6.2" }
-    - { cs: "8.8.1", platform: "8.8.1" }
-    - { cs: "8.10.1", platform: "8.10.1" }
-    - { cs: "8.10.2", platform: "8.10.2" }
-    - { cs: "8.11.1", platform: "8.11.1" }
-    - { cs: "8.12.1", platform: "8.12.1" }
-    - { cs: "8.13.1", platform: "8.13.1" }
-    - { cs: "8.14.2", platform: "8.14.2" }
-    - { cs: "8.14.3", platform: "8.14.3" }
-    - { cs: "8.15.1", platform: "8.15.1" }
+
 
 outputs:
   home:
@@ -129,6 +102,5 @@ permalinks:
   creating-manifest: ":filename/"
   samples: ":filename/"
   troubleshooting: ":filename/"
-  virtuozzo-cs-correspondence: ":filename/"
   examples: ":filename/"
   reference: ":filename/"

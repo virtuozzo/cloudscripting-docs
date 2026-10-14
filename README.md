@@ -8,9 +8,8 @@ Each Cloud Scripting version lives on its own branch (for example `8.15.1`); the
 
 | Path | Purpose |
 |------|---------|
-| `config.yaml` | Site configuration, version switcher list, CS/platform version table |
+| `config.yaml` | Site configuration and version switcher list |
 | `content/` | Pages as Hugo page bundles (`<section>/<slug>/index.md` plus images) |
-| `layouts/shortcodes/` | Repo-local shortcodes (`cs-versions`) |
 | `themes/` | Shared theme submodule (`virtuozzo/docs-theme`) |
 | `redirects.htaccess` | Redirects from the old MkDocs URLs to the Hugo slugs |
 | `tools/mkdocs2hugo.py` | Converter used to migrate the MkDocs sources |

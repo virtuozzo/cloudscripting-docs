@@ -36,6 +36,7 @@ NAV = [
         "pages": [
             ("index.md", "Overview", "overview"),
             ("quick-start.md", "Quick Start", None),
+            ("virtuozzo-cs-correspondence.md", "CS vs Virtuozzo PaaS Versions", None),
         ],
     },
     {
@@ -62,8 +63,6 @@ NAV = [
      "index": {"src": "samples.md"}, "pages": []},
     {"slug": "troubleshooting", "title": "Troubleshooting", "weight": 4,
      "index": {"src": "troubleshooting.md"}, "pages": []},
-    {"slug": "virtuozzo-cs-correspondence", "title": "CS vs Virtuozzo PaaS Versions", "weight": 5,
-     "index": {"src": "virtuozzo-cs-correspondence.md"}, "pages": []},
 ]
 
 # Pages that MkDocs built but never listed in the sidebar: folder -> source files.
@@ -88,16 +87,11 @@ TITLE_OVERRIDES = {
     "virtuozzo-cs-correspondence.md": "Virtuozzo Application Platform & CS Correspondence",
 }
 
-# Body that the MkDocs theme template (virtuozzo-cs-correspondence.html) used to prepend.
+# Body prepended to pages whose H1 lived in a MkDocs theme template. The CS/platform
+# version table of virtuozzo-cs-correspondence.html is dropped on purpose: there are no
+# production versions below 6.0, where the versions started to match.
 BODY_PREFIX = {
-    "virtuozzo-cs-correspondence.md": (
-        "# Virtuozzo Application Platform & CS Correspondence\n\n"
-        "The table below displays dependencies between Cloud Scripting and the Virtuozzo "
-        "Application Platform versions within the same "
-        '<a href="https://www.virtuozzo.com/application-platform-partners/" target="_blank">'
-        "hosting provider</a> platform.\n\n"
-        "{{< cs-versions >}}\n\n"
-    ),
+    "virtuozzo-cs-correspondence.md": "# Virtuozzo Application Platform & CS Correspondence\n\n",
 }
 
 SITE_KEYWORD = "cloud scripting"
