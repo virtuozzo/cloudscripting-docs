@@ -1,7 +1,0 @@
-[run]
-omit=
-    pymdownx/plainhtml.py
-
-[report]
-omit=
-    pymdownx/plainhtml.py
