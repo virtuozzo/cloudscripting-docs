@@ -12,7 +12,7 @@ repo-specific; they override the skill where the two conflict.
 ## Repo facts
 
 - Single-language site: the content root is `content/`. Top-level sections are `getting-started`, `creating-manifest`, `samples`, and `troubleshooting`.
-- `examples/` and `reference/` hold link-only pages (no sidebar entry), which is how MkDocs published them. Promote a page into the sidebar by adding `parent` and `weight` to its menu block.
+- The MkDocs `examples/`, `reference/` and `releasenotes.md` pages were outdated drafts that never appeared in the navigation; they were not migrated.
 - One branch per Cloud Scripting version (`8.15.1`, `8.14.3`, …). `params.version` and `params.versions` in `config.yaml` drive the version switcher.
 - Serve with `devbox run serve` (runs `task serve`) or `task serve` inside `devbox shell`.
 - `config.yaml` sets `goldmark.renderer.unsafe: true`, so HTML comments ship in the page source. Use the theme's `comment` shortcode for notes.
@@ -21,4 +21,5 @@ repo-specific; they override the skill where the two conflict.
 ## Content conventions
 
 - Manifest samples are shown in YAML and JSON side by side with `{{%tabs%}}` / `{{%tabs-item title="YAML"%}}`.
-- Pages inherited from MkDocs end with an HTML `<h2>What's next?</h2>` block; keep that heading text when editing, or convert it to `## What's next?`.
+- Leaf pages end with `## What's next?` and a tight list of related links.
+- Product name in prose: *Virtuozzo Application Management* (the sources said *Virtuozzo Application Platform*; the `tools/mkdocs2hugo.py --polish content` pass renames it and converts simple HTML to markdown).

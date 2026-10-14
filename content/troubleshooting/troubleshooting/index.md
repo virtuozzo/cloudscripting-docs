@@ -19,12 +19,11 @@ menu:
 
 Run into trouble with Cloud Scripting? Here are some helpful tips and specific suggestions for troubleshooting as follows:                             
 
-* Log in to your Virtuozzo Application Platform dashboard and open the link of the following type in a new browser tab.                            
+* Log in to your Virtuozzo Application Management dashboard and open the link of the following type in a new browser tab.                            
 
     *http://app.{HOSTER_URL}/console/*                       
     
-    Here, substitute <b>*{HOSTER_URL}*</b>  with the platform domain of your hosting provider (see the last column of the table within the <a href="https://www.virtuozzo.com/application-platform-docs/paas-hosting-providers/" target="_blank">Hosters Info</a> page).                                           
-
+    Here, substitute ***{HOSTER_URL}***  with the platform domain of your hosting provider (see the last column of the table within the [Hosters Info](https://www.virtuozzo.com/application-platform-docs/paas-hosting-providers/) page).                                           
 * In the opened browser tab, you will see the Cloud Scripting execution log.                                                               
     
 ![troubleshooting](troubleshooting.jpg)          
@@ -35,7 +34,7 @@ The maximum size of the log is 1 MB. The log will be truncated or overwritten, i
 
 Below, you can find some samples of editing custom information to the log:                      
 
-- outputting a single <a href="/placeholders/" target="blank">placeholder</a> value                     
+- outputting a single [placeholder](/placeholders/) value                     
 
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
@@ -238,12 +237,10 @@ onInstall:
 ```
 ![troubleshooting-warning](troubleshooting-warning.png)
 
-<br>
-<h2> What's next?</h2>    
+## What's next?
 
-- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements                    
 
-- Find out the correspondence between <a href="/virtuozzo-cs-correspondence/" target="_blank">CS & Virtuozzo Application Platform Versions</a>          
+- Find out the correspondence between [CS & Virtuozzo Application Management Versions](/virtuozzo-cs-correspondence/)          
 
 
 <!--## Logging-->

@@ -24,11 +24,8 @@ To give a try to Cloud Scripting right away, use a basic [Hello World](#hello-wo
 And to get up and ready with your own project, fulfill the following requirements:                                    
 
 - decide upon a [scenario](/samples/) that will be delivered by means of CS                       
-
 - define a set of [properties](/basic-configs/) properties</a>, essential for the proper application workflow                  
-
 - declare the required properties within your [JPS manifest](/basic-configs/) file                      
-
 - deploy the prepared manifest to a Platform via [import](#how-to-deploy-cs-solution-to-virtuozzo ) functionality                 
 
 ## Hello World Manifest Example
@@ -78,7 +75,7 @@ The current manifest states to create a new environment, handled with **Apache 2
 
 ## How to Deploy CS Solution to Virtuozzo
 
-In order to give a try to *Hello World* sample from above (or deploy your own application), enter your <a href="https://www.virtuozzo.com/application-platform-partners/" target="_blank">Virtuozzo Application Platform</a> account and perform the following steps.                    
+In order to give a try to *Hello World* sample from above (or deploy your own application), enter your [Virtuozzo Application Management](https://www.virtuozzo.com/application-platform-partners/) account and perform the following steps.                    
 
 1.&nbsp;Click the **Import** button at the top pane of the dashboard.                                             
 
@@ -89,12 +86,15 @@ In order to give a try to *Hello World* sample from above (or deploy your own ap
 ![import-manifest.png](import-manifest.png)               
 
 {{%note%}}
-**Tip:** Subsequently, you can use this editor to adjust your manifest code on a fly. Clicking on the **Examples** string nearby will redirect you to <a href="https://github.com/jelastic-jps" target="_blank">Virtuozzo Application Platform JPS Collection</a> with numerous ready-to-go solutions (just import the link to the appropriate *manifest.jps* file to fetch the required one). Also, two more options for JPS deployment are available here:<ul><li><b>*Local File*</b> - to upload the locally stored manifest</li><li><b>*URL*</b> - to specify direct link to the required file</li></ul>        
+**Tip:** Subsequently, you can use this editor to adjust your manifest code on a fly. Clicking on the **Examples** string nearby will redirect you to [Virtuozzo Application Management JPS Collection](https://github.com/jelastic-jps) with numerous ready-to-go solutions (just import the link to the appropriate *manifest.jps* file to fetch the required one). Also, two more options for JPS deployment are available here:
+
+- ***Local File*** - to upload the locally stored manifest
+- ***URL*** - to specify direct link to the required file        
 {{%/note%}}
 
 To proceed, click on **Import** in the bottom-right corner.                   
 
-3.&nbsp;Within the installation confirmation window, specify domain name for a new **Environment**, set a **Display Name** (i.e. <a href="https://www.virtuozzo.com/application-platform-docs/environment-aliases/" target="_blank">alias</a>) for it and select the preferred <a href="https://www.virtuozzo.com/application-platform-docs/environment-regions/" target="_blank">region</a> (if available).                  
+3.&nbsp;Within the installation confirmation window, specify domain name for a new **Environment**, set a **Display Name** (i.e. [alias](https://www.virtuozzo.com/application-platform-docs/environment-aliases/)) for it and select the preferred [region](https://www.virtuozzo.com/application-platform-docs/environment-regions/) (if available).                  
 
 ![hello-world.png](hello-world.png)                                        
 
@@ -107,29 +107,19 @@ Now you can **Open** your new environment in a **browser** and check the result.
 ![hello-world-startpage.png](hello-world-startpage.png)                                   
 
 Just in the same way, you can build and run the solution you need - from frequent tasks automation to implementing complex CI/CD flows and clustering configurations.                               
-<br>    
 
 ## Best Practises
 
-- For advanced coding possibilities, use either <a href="http://jsoneditoronline.org/" target="_blank">JSON Editor Online</a> with automatic formatting and syntax highlighting or <a href="http://www.yaml.org/" target="_blank">YAML</a> parser (depending on the syntax you prefer to work with)                               
+- For advanced coding possibilities, use either [JSON Editor Online](http://jsoneditoronline.org/) with automatic formatting and syntax highlighting or [YAML](http://www.yaml.org/) parser (depending on the syntax you prefer to work with)                               
+- Leverage [GitHub](https://github.com/) to store and manage your projects, manifests and scripts all together                              
+- Explore [Virtuozzo Application Management Samples](/samples/) to benefit on preliminary composed operation and package examples                            
 
-- Leverage <a href="https://github.com/" target="_blank">GitHub</a> to store and manage your projects, manifests and scripts all together                              
-
-- Explore <a href="/samples/" target="_blank">Virtuozzo Application Platform Samples</a> to benefit on preliminary composed operation and package examples                            
-
-<br> 
-<h2> What’s next?</h2>                                     
+## What's next?
 
 - [Basic Configs](/basic-configs/) - learn the minimum basis of any JSP manifest and find out about the differences between *Install* and *Update* package types                                                         
-
 - [Actions](/actions/) - define the required configurations and application behavior with a set of prescribed procedures                                                           
-
 - [Custom Scripts](/custom-scripts/) - integrate your own scripts, written in either *Java*, *Javascript* or *PHP*, to subsequently execute them within containers                                                              
-
 - [Events](/events/) - automate application workflow by binding actions to particular application lifecycle events                                                     
-
 - [Visual Settings](/visual-settings/) - customize your package visual layout                                                             
-
 - [Placeholders](/placeholders/) - specify automatically substituted parameters for the required data to be fetched during installation                 
-
 - [Troubleshooting](/troubleshooting/) - appeal to this guide if you face any issue while working with Cloud Scripting

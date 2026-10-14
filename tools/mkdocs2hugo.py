@@ -15,6 +15,8 @@ What it does:
   * images from theme/readthedocs/img are co-located in the page bundle
   * internal links/hrefs are rewritten to the flat Hugo slugs (/slug/)
   * a blank line is inserted after raw HTML block lines so goldmark renders the markdown after them
+  * polish pass (also: --polish content): product rename, simple HTML -> markdown
+    (<a>, <b>, <em>, <p>, <hN>, <br>, single-line <ul>, plain <table>), tight lists
   * writes redirects.htaccess with old-URL -> new-URL rules
 """
 import argparse
@@ -65,33 +67,20 @@ NAV = [
      "index": {"src": "troubleshooting.md"}, "pages": []},
 ]
 
-# Pages that MkDocs built but never listed in the sidebar: folder -> source files.
-LINK_ONLY = {
-    "examples": [
-        "examples/add-ons.md", "examples/addon-inside-manifest.md",
-        "examples/complex-ready-to-go-solutions.md", "examples/configs-adjustments.md",
-        "examples/environment-migration-after-cloning.md", "examples/hello-world.md",
-        "examples/horizontal-scaling.md", "examples/mount-data-storage.md",
-        "examples/operation-examples.md", "examples/swap-domain.md",
-        "examples/two-envs-in-diff-regions.md", "examples/using-docker.md",
-        "examples/vertical-scaling.md", "examples/wordpress-cluster.md",
-    ],
-    "reference": [
-        "reference/container-types.md", "reference/docker-actions.md",
-        "reference/procedures.md", "releasenotes.md",
-    ],
-}
+# Pages that MkDocs built but never listed in the sidebar (examples/, reference/,
+# releasenotes.md) are outdated drafts and are intentionally not migrated.
+LINK_ONLY = {}
 
 # Titles for pages whose source has no H1 (or where the MkDocs theme template supplied it).
 TITLE_OVERRIDES = {
-    "virtuozzo-cs-correspondence.md": "Virtuozzo Application Platform & CS Correspondence",
+    "virtuozzo-cs-correspondence.md": "Virtuozzo Application Management & CS Correspondence",
 }
 
 # Body prepended to pages whose H1 lived in a MkDocs theme template. The CS/platform
 # version table of virtuozzo-cs-correspondence.html is dropped on purpose: there are no
 # production versions below 6.0, where the versions started to match.
 BODY_PREFIX = {
-    "virtuozzo-cs-correspondence.md": "# Virtuozzo Application Platform & CS Correspondence\n\n",
+    "virtuozzo-cs-correspondence.md": "# Virtuozzo Application Management & CS Correspondence\n\n",
 }
 
 SITE_KEYWORD = "cloud scripting"
@@ -108,17 +97,23 @@ def yaml_str(s):
     return json.dumps(s, ensure_ascii=False)
 
 
-def split_code(text):
-    """Split text into [(is_code, chunk)] on fenced code blocks (``` or ~~~)."""
-    out, buf, in_code, fence = [], [], False, None
+def split_code(text, commonmark=False):
+    """Split text into [(is_code, chunk)] on fenced code blocks (``` or ~~~).
+
+    Default: Python-Markdown semantics (fences at column 0 only), used while converting.
+    commonmark=True: fences may be indented and a closing fence must be at least as long
+    as the opening one, used by the polish pass on already converted content."""
+    out, buf, in_code, fence, flen = [], [], False, None, 0
+    fence_re = r"^\s*(```+|~~~+)" if commonmark else r"^(```+|~~~+)"
     for line in text.split("\n"):
-        m = re.match(r"^(```+|~~~+)", line)
+        m = re.match(fence_re, line)
         if not in_code and m:
             if buf:
                 out.append((False, "\n".join(buf)))
-            buf, in_code, fence = [line], True, m.group(1)[0]
+            buf, in_code, fence, flen = [line], True, m.group(1)[0], len(m.group(1))
             continue
-        if in_code and m and m.group(1)[0] == fence and not line.strip()[len(m.group(1)):].strip():
+        if in_code and m and m.group(1)[0] == fence and len(m.group(1)) >= flen \
+                and not line.strip()[len(m.group(1)):].strip():
             buf.append(line)
             out.append((True, "\n".join(buf)))
             buf, in_code = [], False
@@ -294,6 +289,156 @@ def seodesc(body, title):
     return text
 
 
+# --------------------------------------------------------------------------- polish
+# Idempotent clean-up applied after conversion and available on its own (--polish DIR).
+PRODUCT_RENAMES = [("Virtuozzo Application Platform", "Virtuozzo Application Management")]
+DROP_LINK_TARGETS = ("/releasenotes/",)   # pages that are not migrated: drop list items linking to them
+LIST_ITEM_RE = re.compile(r"^(\s*)([-*+]|\d+[.)]) ")
+
+
+def _wrap(inner, mark):
+    if not inner.strip():
+        return inner
+    lead = inner[:len(inner) - len(inner.lstrip())]
+    trail = inner[len(inner.rstrip()):]
+    return f"{lead}{mark}{inner.strip()}{mark}{trail}"
+
+
+def md_inline(line):
+    line = re.sub(r"<(?:b|strong)>(.*?)</(?:b|strong)>", lambda m: _wrap(m.group(1), "**"), line)
+    line = re.sub(r"<(?:em|i)>(.*?)</(?:em|i)>", lambda m: _wrap(m.group(1), "*"), line)
+    return line
+
+
+def md_links(line):
+    def repl(m):
+        attrs, text = m.group(1), m.group(2)
+        href = re.search(r'href\s*=\s*"([^"]*)"', attrs)
+        rest = re.sub(r'(href|target)\s*=\s*"[^"]*"', "", attrs).strip()
+        if not href or rest or not text.strip() or re.search(r"[\[\]<>\n]", text):
+            return m.group(0)
+        return _wrap(text, "") .replace(text.strip(), f"[{text.strip()}]({href.group(1)})", 1)
+
+    return re.sub(r"<a\s+([^>]*)>(.*?)</a>", repl, line)
+
+
+def md_table(block):
+    """Convert a simple <table> (header row + plain cells) to a markdown table."""
+    if block.count("<table") != 1:
+        return None
+    rows = re.findall(r"<tr[^>]*>(.*?)</tr>", block, re.S)
+    table = []
+    for row in rows:
+        cells = re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", row, re.S)
+        cells = [md_links(md_inline(re.sub(r"\s+", " ", c).strip())).replace("|", "\\|") for c in cells]
+        if not cells or any("<" in c for c in cells):
+            return None
+        table.append(cells)
+    if len(table) < 2 or len({len(r) for r in table}) != 1:
+        return None
+    header = [re.sub(r"^\*\*(.*)\*\*$", r"\1", c) for c in table[0]]
+    out = ["| " + " | ".join(header) + " |", "|" + "---|" * len(table[0])]
+    out += ["| " + " | ".join(r) + " |" for r in table[1:]]
+    return "\n".join(out)
+
+
+def html_to_markdown(chunk):
+    chunk = re.sub(r"^<table[^>]*>\n.*?^[ \t]*</table>[ \t]*$",
+                   lambda m: md_table(m.group(0)) or m.group(0), chunk, flags=re.S | re.M)
+    out, in_table = [], False
+    for line in chunk.split("\n"):
+        if re.match(r"^\s*<table", line):
+            in_table = True
+        if in_table:
+            out.append(line)
+            if re.match(r"^\s*</table>", line):
+                in_table = False
+            continue
+        line = re.sub(r"^<p[^>]*>(.*)</p>[ \t]*$", r"\1", line)
+        hm = re.match(r"^<h([1-6])[^>]*>\s*(.*?)\s*</h\1>[ \t]*$", line)
+        if hm:
+            if out and out[-1].strip():
+                out.append("")
+            line = "#" * int(hm.group(1)) + " " + hm.group(2).replace("\u2019", "'")
+        if re.match(r"^<ul>(<li>.*?</li>)+</ul>[ \t]*$", line):
+            out.extend("- " + md_links(md_inline(i.strip())) for i in re.findall(r"<li>(.*?)</li>", line))
+            continue
+        line = re.sub(r'^<img\s+src="([^"]+)"\s+alt="([^"]*)"\s*/?>[ \t]*$', r"![\2](\1)", line)
+        if re.match(r"^\s*<br\s*/?>\s*$", line):
+            continue
+        line = md_links(md_inline(line))
+        if re.match(r"^#{1,6} ", line) and out and out[-1].strip():
+            out.append("")
+        if re.search(r"<br\s*/?>[ \t]*$", line) and not line.startswith(("|", " ", "\t")) \
+                and not LIST_ITEM_RE.match(line):
+            out.append(re.sub(r"<br\s*/?>[ \t]*$", "", line))
+            out.append("")
+            continue
+        out.append(line)
+    return "\n".join(out)
+
+
+def drop_dead_links(chunk):
+    keep = []
+    for line in chunk.split("\n"):
+        if LIST_ITEM_RE.match(line) and any(f"]({t})" in line or f'href="{t}"' in line for t in DROP_LINK_TARGETS):
+            continue
+        keep.append(line)
+    return "\n".join(keep)
+
+
+def tighten_lists(chunk):
+    """Remove blank lines between consecutive list items (tight lists)."""
+    lines = chunk.split("\n")
+    out, i = [], 0
+    while i < len(lines):
+        if lines[i].strip() == "":
+            j = i
+            while j < len(lines) and lines[j].strip() == "":
+                j += 1
+            nxt = LIST_ITEM_RE.match(lines[j]) if j < len(lines) else None
+            prev = out[-1] if out else ""
+            pm = LIST_ITEM_RE.match(prev)
+            same_list = pm and len(pm.group(1)) == len(nxt.group(1)) if nxt else False
+            continuation = nxt and prev.strip() and not prev.startswith(("{{", "<")) \
+                and len(prev) - len(prev.lstrip()) > len(nxt.group(1))
+            if nxt and (same_list or continuation):
+                i = j
+                continue
+        out.append(lines[i])
+        i += 1
+    return "\n".join(out)
+
+
+def polish_text(text):
+    for old, new in PRODUCT_RENAMES:
+        text = text.replace(old, new)
+    chunks = split_code(text, commonmark=True)
+    done = []
+    for is_code, chunk in chunks:
+        if not is_code:
+            chunk = html_to_markdown(chunk)
+            chunk = drop_dead_links(chunk)
+            chunk = tighten_lists(chunk)
+        done.append(chunk)
+    return "\n".join(done)
+
+
+def polish_file(path):
+    with open(path, encoding="utf-8") as fh:
+        text = fh.read()
+    m = re.match(r"^---\n.*?\n---\n", text, re.S)
+    fm, body = (m.group(0), text[m.end():]) if m else ("", text)
+    for old, new in PRODUCT_RENAMES:
+        fm = fm.replace(old, new)
+    new = fm + polish_text(body)
+    if new != text:
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(new)
+        return True
+    return False
+
+
 # --------------------------------------------------------------------------- pages
 class Page:
     def __init__(self, src, slug, section, menu_title=None, weight=None, parent=None, is_section_index=False):
@@ -435,6 +580,7 @@ class Converter:
         text = normalize_fences(text)
         text = map_prose(text, lambda c: self.rewrite_links(c, page))
         text = map_prose(text, fix_html_blocks)
+        text = polish_text(text)
         if page.src in BODY_PREFIX:
             text = BODY_PREFIX[page.src] + text
         m = re.search(r"^# (.+?)\s*$", text, re.M)
@@ -491,7 +637,17 @@ def main():
     ap.add_argument("--img", default="theme/readthedocs/img")
     ap.add_argument("--out", default="content")
     ap.add_argument("--redirects", default="redirects.htaccess")
+    ap.add_argument("--polish", metavar="DIR", help="only re-run the clean-up pass on existing pages under DIR")
     args = ap.parse_args()
+
+    if args.polish:
+        changed = 0
+        for root, _, files in os.walk(args.polish):
+            for name in files:
+                if name.endswith(".md"):
+                    changed += polish_file(os.path.join(root, name))
+        print(f"polished {changed} changed file(s) under {args.polish}/")
+        return
 
     pages = build_pages()
     conv = Converter(args.src, args.img, args.out, pages)

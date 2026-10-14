@@ -61,7 +61,7 @@ The logical operators are used to determine the logic between variables or value
 
 ## Conditions
 
-The main conditional statement is <b>*if*</b>. Within this parameter, all the available <a href="/placeholders/" target="_blank">placeholders</a> and their objective JavaScript  mappings can be used. 
+The main conditional statement is ***if***. Within this parameter, all the available [placeholders](/placeholders/) and their objective JavaScript  mappings can be used. 
 
 For example
 ```
@@ -72,13 +72,12 @@ or
 if (env.protocol == 'http')
 ```
 
-The main iterable object is <b>*ForEach*</b>. Both <b>*if*</b> and <b>*ForEach*</b> can be of any nesting level.                                             
+The main iterable object is ***ForEach***. Both ***if*** and ***ForEach*** can be of any nesting level.                                             
 
-- If condition is specified incorrectly, the actions inside <b>*if*</b> statement are not executed. Herewith, the <a href="/troubleshooting/" target="_blank">Cloud Scripting Console</a> returns the <b>*‘invalid condition’*</b> message with the root cause explanation. The application installer proceeds to the next action.                            
+- If condition is specified incorrectly, the actions inside ***if*** statement are not executed. Herewith, the [Cloud Scripting Console](/troubleshooting/) returns the ***‘invalid condition’*** message with the root cause explanation. The application installer proceeds to the next action.                            
+- If condition is valid, but is not executed, the ***'condition is not met'*** message is logged.                                        
 
-- If condition is valid, but is not executed, the <b>*'condition is not met'*</b> message is logged.                                        
-
-<b>Examples</b>    
+**Examples**    
 
 * Comparing global variables
 {{< tabs >}}
@@ -219,7 +218,7 @@ onInstall:
 
 ### Nested Conditions
   
-Nesting of two <b>*if*</b> conditional statements - the first one is checking an environment for two compute nodes presence. If the nodes are available, the second one is checking the presence of the external IP address on the first balancer node and is logging the correspondent messages.          
+Nesting of two ***if*** conditional statements - the first one is checking an environment for two compute nodes presence. If the nodes are available, the second one is checking the presence of the external IP address on the first balancer node and is logging the correspondent messages.          
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
 ```yaml
@@ -255,7 +254,7 @@ onInstall:
 {{< /tabs-item >}}
 {{< /tabs >}}
 
-The operation result can be located within a <b>*result.txt*</b>  file that is automatically created in the master node (i.e. the first *cp* node) *<b>tmp</b>* directory.
+The operation result can be located within a ***result.txt***  file that is automatically created in the master node (i.e. the first *cp* node) ***tmp*** directory.
 ```
 Environment consists of two compute nodes
 Balancer node with external IP address!
@@ -589,7 +588,7 @@ onInstall:
 
 ### ForEach
 
-The main iterable object is <b>*ForEach*</b> with the following map. 
+The main iterable object is ***ForEach*** with the following map. 
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
 ```yaml
@@ -631,14 +630,14 @@ this: {}
 {{< /tabs >}}
 where:    
 
-- `settings` *[optional]* - values of the fields that are predefined within a <a href="/visual-settings/" target="_blank">user settings form</a>          
-- `license [optional]` - link to fetch parameters that are specified within the <a href="/visual-settings/" target="_blank">prepopulate</a> custom script. It enables to customize default field values and can be further initialized through the `$(license.{any_name}` <a href="/placeholders/" target="_blank">placeholder</a>  within a manifest.       
-- `event [optional]` - object with <a href="/events/" target="_blank">events</a> that can be of two types, triggering a particular <a href="/actions/" target="_blank"> action</a> *before* or *after* the event execution       
-- `this [optional]` - object with parameters that are transmitted within the procedure body. See the full list of available<a href="/placeholders/#procedure-placeholders" target="_blank"> placeholders</a> on this parameter.        
+- `settings` *[optional]* - values of the fields that are predefined within a [user settings form](/visual-settings/)          
+- `license [optional]` - link to fetch parameters that are specified within the [prepopulate](/visual-settings/) custom script. It enables to customize default field values and can be further initialized through the `$(license.{any_name}` [placeholder](/placeholders/)  within a manifest.       
+- `event [optional]` - object with [events](/events/) that can be of two types, triggering a particular  [action](/actions/) *before* or *after* the event execution       
+- `this [optional]` - object with parameters that are transmitted within the procedure body. See the full list of available [placeholders](/placeholders/#procedure-placeholders) on this parameter.        
 
-Iteration can be executed by <b>*env.nodes*</b>, <b>*nodes*</b>, <b>*env.contexts*</b>, and <b>*env.extdomains*</b> objects.                      
+Iteration can be executed by ***env.nodes***, ***nodes***, ***env.contexts***, and ***env.extdomains*** objects.                      
 
-Iteration set by <b>*env.extdomains*</b>.
+Iteration set by ***env.extdomains***.
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
 ```yaml
@@ -670,7 +669,7 @@ where:
 - `@i` - default iterator name 
 - `env.extdomains` - bound external domains 
 
-Iteration set by <b>*env.contexts*</b>.
+Iteration set by ***env.contexts***.
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
 ```yaml
@@ -737,13 +736,13 @@ actions:
 ```
 {{< /tabs-item >}}
 {{< /tabs >}}
-As a result of the *cmd* action, the compute nodes internal IP addresses are rewritten within balancer configs and NGINX balancer node is reloaded. The <b>*onAfterScaleIn*</b> and <b>*onAfterScaleOut*</b> events are executed immediately after adding or removing a compute node.   
+As a result of the *cmd* action, the compute nodes internal IP addresses are rewritten within balancer configs and NGINX balancer node is reloaded. The ***onAfterScaleIn*** and ***onAfterScaleOut*** events are executed immediately after adding or removing a compute node.   
 
 ### By All Nodes
 
 Iteration by all nodes in an environment.    
 
-Iteration set by <b>*env.nodes*</b>.
+Iteration set by ***env.nodes***.
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
 ```yaml
@@ -761,6 +760,7 @@ forEach(env.nodes):
 ```
 {{< /tabs-item >}}
 {{< /tabs >}}
+
 ### By Compute Nodes
 
 Iteration by compute nodes with a custom iterator name.
@@ -819,22 +819,17 @@ where:
 - `${@@item}` - iterator number of the first loop 
 - `${@@secondItem}` - iterator number of the second loop 
 
-In this case, every environment node will have only one conjunction by <b>Node ID</b>.
+In this case, every environment node will have only one conjunction by **Node ID**.
 
-The **ForEach** execution is recorded in the user console <a href="/troubleshooting/" target="_blank">log file</a> for convenient code debugging.           
+The **ForEach** execution is recorded in the user console [log file](/troubleshooting/) for convenient code debugging.           
 
 ![forEachCount](foreachcount.jpg)
-<br>
-<h2>What's next?</h2>        
 
-- Read how to integrate your <a href="/custom-scripts/" target="_blank">Custom Scripts</a>                         
+## What's next?
 
-- Learn how to сreate your custom <a href="/addons/" target="_blank">Add-Ons</a>                                         
-
-- Find out how to handle <a href="/handling-custom-responses/" target="_blank">Custom Responses</a>                       
-
-- See how to customize <a href="/visual-settings/" target="_blank">Visual Settings</a>                   
-
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples                           
-
-- See the <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions
+- Read how to integrate your [Custom Scripts](/custom-scripts/)                         
+- Learn how to сreate your custom [Add-Ons](/addons/)                                         
+- Find out how to handle [Custom Responses](/handling-custom-responses/)                       
+- See how to customize [Visual Settings](/visual-settings/)                   
+- Examine a bunch of [Samples](/samples/) with operation and package examples                           
+- See the [Troubleshooting](/troubleshooting/) for helpful tips and specific suggestions

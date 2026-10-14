@@ -21,13 +21,9 @@ menu:
 Cloud Scripting enables you to create a personalized solution by customizing the visual appearance and textual content of such elements as:              
 
 * [Fields](#string)                                      
- 
 * [Menus](#custom-menus)                            
-
 * [Buttons](#custom-buttons)                   
-
 * [Forms](#custom-settings)                   
-
 * [Messages](#success-text-customization)                           
       
 
@@ -821,7 +817,7 @@ settings:
 
 
 ### radio-fieldset
-Grouping of the radio elements with <b>*showIf*</b> function.
+Grouping of the radio elements with ***showIf*** function.
 
 {{%note%}}
 The *hideLabel* boolean is always *true* for this field.
@@ -1741,7 +1737,7 @@ where:
 - `caption` *[optional]* - field label
 - `name` *[optional]* - name of the field
 - `buttonText` *[optional]* - button label
-- `url` *[optional]* - external source URL. The default link is to the current Virtuozzo Application Platform Dashboard. New popup window is opened only via POST request.
+- `url` *[optional]* - external source URL. The default link is to the current Virtuozzo Application Management Dashboard. New popup window is opened only via POST request.
 - `popupWidth` *[optional]* - width in pixels
 - `popupHeight` *[optional]* - height in pixels
 - `popupCallbackEvent` - event handler
@@ -1807,7 +1803,7 @@ http://{Jelastic_Platform_URL} + "fireevent?event=click&value=hello"
 ```
 where:
 
-- `Jelastic_Platform_URL` - Virtuozzo Application Platform Dashboard URL where manifest is executed
+- `Jelastic_Platform_URL` - Virtuozzo Application Management Dashboard URL where manifest is executed
 - `click` - event name which is handled in manifest in `popupCallbackEvent` parameter
 - `value` - type is **string**. The `textfield` will be filled by it when button "Open" will be applied.
 
@@ -2352,7 +2348,6 @@ Target Nodes is an optional method that allows to define environments suitable f
 Filtering for *targetNodes* is performed by:   
 
 * object   
-
 * string   
   
 **Object filtering** can be done by *nodeType*, *nodeGroup*, *dockerName* or *dockerTag*.  
@@ -2436,7 +2431,7 @@ targetNodes:
 {{< /tabs-item >}}
 {{< /tabs >}}
 
-Second sets the required <em>nodeGroups</em> being separated with commas:  
+Second sets the required *nodeGroups* being separated with commas:  
 
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
@@ -2896,11 +2891,11 @@ settings:
 
 
 ## Custom Menus
-Menu is an expandable list within the <b>Add-ons</b> section, comprising operations that can be extended and adjusted by means of [custom buttons](#custom-buttons).
+Menu is an expandable list within the **Add-ons** section, comprising operations that can be extended and adjusted by means of [custom buttons](#custom-buttons).
 
 ![new-menu](new-menu.png)
 
-By default, this menu contains the <b>Uninstall</b> button. The rest of listed actions, if there are any, executes operations from the <a href="/events/" target="_blank">events</a> settings.
+By default, this menu contains the **Uninstall** button. The rest of listed actions, if there are any, executes operations from the [events](/events/) settings.
 
 The properties used for custom menus are the same as for custom buttons. However, the appropriate *menu* field (instead of *buttons*) should be specified to adjust functionality exactly within the menu list of the Add-ons plank.
 
@@ -2960,7 +2955,7 @@ menu:
 Refer to the *Custom Buttons* section below for a detailed description on the parameters set with the current sample.
 
 ## Custom Buttons
-Custom buttons settings are intended for extending and adjusting functionality of planks within the <b>Add-ons</b> section. It can be accessed upon clicking the same-named button next to the required node.
+Custom buttons settings are intended for extending and adjusting functionality of planks within the **Add-ons** section. It can be accessed upon clicking the same-named button next to the required node.
 
 ![custom-addon](custom-addon.png)
 
@@ -2972,7 +2967,7 @@ Such buttons execute operations that are predefined within a JPS manifest.
 > The JPS manifest should include the [*targetNodes*](#target-nodes) field in order to be displayed within the Add-ons section after installation, otherwise, it will be hidden.
 {{%/note%}}
 
-<b>Templates</b>
+**Templates**
 
 Sample to set buttons within the Add-ons plank.
 {{< tabs >}}
@@ -3034,7 +3029,7 @@ It will be displayed after clicking the appropriate button for an add-on. Accord
 
 ![LoadingText](loadingtext.jpg)
 
-- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the <a href="/actions/#custom-actions" target="_blank">*actions*</a> section.
+- `action` *[required] [string]* - name of the custom action that will be executed. Custom action body structure is described in the [*actions*](/actions/#custom-actions) section.
 - `caption` - title of the button
 
 ![Caption](caption.jpg)
@@ -3112,7 +3107,7 @@ where:
 
 ![LogsPath](logspath.jpg)
 
-- `logsNodeGroup` - nodeGroup <a href="/selecting-containers/#predefined-nodegroup-values" target="_blank">layer</a> the logging path should be opened for
+- `logsNodeGroup` - nodeGroup [layer](/selecting-containers/#predefined-nodegroup-values) the logging path should be opened for
 
 ## Custom Settings
 Settings section can include a few custom forms. Default settings form ID is *'main'*.
@@ -3194,7 +3189,7 @@ Here, the *main settings* form appears during installation process.
 
 ![settingMain](settingsmain.jpg)
 
-*config settings* form appears after clicking the <b>Configure</b> button within the Add-ons section.
+*config settings* form appears after clicking the **Configure** button within the Add-ons section.
 
 ![settingCustom](settingscustom.jpg)
 
@@ -3203,7 +3198,7 @@ Here, the *main settings* form appears during installation process.
 It is possible to customize the *success* text that is displayed upon successful installation either at the Dashboard, or via email notification.
 A success text can be defined as plain text or Markdown syntax. More details about Markdown syntax in Cloud Scripting [here](/visual-settings/#markdown-description)
 
-- Setting relative to the *baseUrl* link that points path to the <b>*README.md*</b> file for its content to be displayed within the *success* response.
+- Setting relative to the *baseUrl* link that points path to the ***README.md*** file for its content to be displayed within the *success* response.
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
 ```yaml
@@ -3330,7 +3325,7 @@ success:
 {{< /tabs-item >}}
 {{< /tabs >}}
 
-Email notification also can be customized in <a href="/handling-custom-responses/">custom responses</a>. In this case `email` value from handle custom response has a higher priority. For example:
+Email notification also can be customized in [custom responses](/handling-custom-responses/). In this case `email` value from handle custom response has a higher priority. For example:
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
 ```yaml
@@ -3362,9 +3357,9 @@ success: success!!
 {{< /tabs-item >}}
 {{< /tabs >}}
 
-In the last example above, the localization functionality is applied, which depends upon the Virtuozzo Application Platform selected language.
+In the last example above, the localization functionality is applied, which depends upon the Virtuozzo Application Management selected language.
 
-Custom responses can be returned within <a href="/actions/#return" target="_blank">`return`</a> or <a href="/actions/#script" target="_blank">`script`</a> actions. More details about <a href="/handling-custom-responses/" target="_blank">custom responses here</a>.
+Custom responses can be returned within [`return`](/actions/#return) or [`script`](/actions/#script) actions. More details about [custom responses here](/handling-custom-responses/).
 
 ## JPS installation without environment
   
@@ -3441,20 +3436,15 @@ description: |
     "type": "update",
     "name": "Markdown tags",
 }
-"description": "*Italic* or _Italic_    \n**Bold** or __Bold__  \n\n# This is H1   \n## This is H2  \n##### This is H6  \n\n[virtuozzo.com URL](https://virtuozzo.com)  \n\n![Virtuozzo Application Platform](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)  \n\n> Blockquote  \n\n* List  \n\n---  \n\n`Inline code` with backticks   \n\n```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
+"description": "*Italic* or _Italic_    \n**Bold** or __Bold__  \n\n# This is H1   \n## This is H2  \n##### This is H6  \n\n[virtuozzo.com URL](https://virtuozzo.com)  \n\n![Virtuozzo Application Management](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)  \n\n> Blockquote  \n\n* List  \n\n---  \n\n`Inline code` with backticks   \n\n```\n# code block\nprint '3 backticks or'\nprint 'indent 4 spaces'\n```\n"
 ```
 {{< /tabs-item >}}
 {{< /tabs >}}
 
 More details about Markdown implementation can be found in CommonMark specification - [CommonMark](http://spec.commonmark.org/).
 
-<br>
-<h2>What's next?</h2>
+## What's next?
 
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples
-
-- See <a href="/troubleshooting/" target="_blank">Troubleshooting</a> for helpful tips and specific suggestions
-
-- Read <a href="/releasenotes/" target="_blank">Realese Notes</a> to find out about the recent CS improvements
-
-- Find out the correspondence between <a href="/virtuozzo-cs-correspondence/" target="_blank">CS & Jelastic Versions</a>
+- Examine a bunch of [Samples](/samples/) with operation and package examples
+- See [Troubleshooting](/troubleshooting/) for helpful tips and specific suggestions
+- Find out the correspondence between [CS & Jelastic Versions](/virtuozzo-cs-correspondence/)

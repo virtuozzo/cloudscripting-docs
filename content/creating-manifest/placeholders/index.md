@@ -19,39 +19,25 @@ menu:
 Cloud Scripting supports a set of placeholders that can be used in any section of a manifest file, if the section isn't strictly limited with its content. The Cloud Scripting engine makes an attempt to resolve all placeholders on the package installation stage. If it's not possible, the placeholder will be unresolved and displayed in the text as is (e.g. *${placeholder}*).                           
  
 {{%note%}}
-To output all available placeholders, use a special <b>${placeholders}</b> placeholder. For more information, see the <a href="/troubleshooting/" target ="_blank">*Troubleshooting*</a> guide.                                                                                                   
+To output all available placeholders, use a special **${placeholders}** placeholder. For more information, see the [*Troubleshooting*](/troubleshooting/) guide.                                                                                                   
 {{%/note%}}
 
 The following specific groups of placeholders are singled out: 
 
 - [Environment Placeholders](/placeholders/#environment-placeholders)           
-
 - [Node Placeholders](/placeholders/#node-placeholders)                 
-
 - [Event Placeholders](/placeholders/#event-placeholders)                    
-
 - [Account Information](/placeholders/#account-information)                 
-
 - [Input Parameters](/placeholders/#input-parameters)                          
-
 - [Action Placeholders](/placeholders/#action-placeholders)                  
-
 - [UI Placeholders](/placeholders/#ui-placeholders)                     
-
 - [Custom Global Placeholders](/placeholders/#custom-global-placeholders)                               
-
 - [Function Placeholders](/placeholders/#function-placeholders)                             
-
 - [Data Processing Placeholders](/placeholders/#data-processing-placeholders)                  
-
 - [Array Placeholders](/placeholders/#array-placeholders)                                       
-
 - [File Path Placeholders](/placeholders/#file-path-placeholders)      
-                           
 - [Engine Placeholder](/placeholders/#engine-placeholder)      
-                           
 - [Account Placeholders](/placeholders/#account-placeholders)
-
 - [Quota Placeholders](/placeholders/#quota-placeholders)
 
 Placeholders like `env`, `nodes`, `targetNodes`, `response` are dynamically updated. They could be updated by their requests if they are required to be updated.
@@ -108,21 +94,21 @@ This is the list of placeholders that you can use within the nodes section (*{no
     - `{nodes.(group).last.(key)}`   
     - `{nodes.(group).master.(key)}`   
     where:
-    - `(group)` - node group (<a href="/selecting-containers/#all-containers-by-group" target="_blank">nodeGroup</a> or <a href="/selecting-containers/#all-containers-by-type" target="_blank">nodeType</a>)           
+    - `(group)` - node group ([nodeGroup](/selecting-containers/#all-containers-by-group) or [nodeType](/selecting-containers/#all-containers-by-type))           
     - `(i)` - node index, starting from *'0'*
     - `(key)` - name of the applied parameter, according to the following list:
         - `address` - internal or external IP address                               
         - `adminUrl` - full URL address with protocol   
-        - `canBeExported` *[boolean]* - Virtuozzo Application Platform <a href="https://www.virtuozzo.com/application-platform-docs/environment-export-import/" target="_blank">Export</a> feature       
+        - `canBeExported` *[boolean]* - Virtuozzo Application Management [Export](https://www.virtuozzo.com/application-platform-docs/environment-export-import/) feature       
         - `bandwidthLimit` - node bandwidth limit   
         - `contextValidatorRegex` - validation for context names    
         - `diskIopsLimit` - IOPS limitation quota   
         - `addons.length` - number of available add-ons at the selected node
         - `diskLimit` - hardware node disk space quota in MB 
-        - `endpoints` [*array indexes*] - <a href="https://www.virtuozzo.com/application-platform-docs/endpoints/" target="_blank">endpoints</a> functionality                              
+        - `endpoints` [*array indexes*] - [endpoints](https://www.virtuozzo.com/application-platform-docs/endpoints/) functionality                              
             - `domain` - full domain name of the node the endpoint is being set for                  
             - `id` - node ID  
-            - `name` - title for the new endpoint (can be either custom or <a href="https://www.virtuozzo.com/application-platform-docs/endpoints/#preconfigured" target="_blank">predefined</a>)                         
+            - `name` - title for the new endpoint (can be either custom or [predefined](https://www.virtuozzo.com/application-platform-docs/endpoints/#preconfigured))                         
             - `privatePort` - preferred local node port              
             - `publicPort` - private (dynamic) port used for mapping                                         
             - `protocol` - protocol type (currently, only TCP is provided)             
@@ -164,7 +150,7 @@ This is the list of placeholders that you can use within the nodes section (*{no
             - `type` - engine type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
             - `vcsSupport` - supporting VCS in a container  
             - `version` - engine version   
-        - `packages` [*array*] - packages with add-ons installed over the corresponding nodes (e.g. <a href="https://www.virtuozzo.com/application-platform-docs/ftp-ftps-support/" target="_blank">FTP</a> add-on)                              
+        - `packages` [*array*] - packages with add-ons installed over the corresponding nodes (e.g. [FTP](https://www.virtuozzo.com/application-platform-docs/ftp-ftps-support/) add-on)                              
             - `description` - package description                                       
             - `documentationurl` - redirect to page(s) with more info on the particular add-on                          
             - `iconurl` - add-on logo                                               
@@ -186,13 +172,13 @@ Event placeholders represent a set of dynamic parameters that are executed as a 
 - `${event.params.(key)}` - where *key* is a name of the event parameter                     
 - `${event.response.(key)}` -where *key* is a name of the event response parameter             
 
-Learn more about the event placeholders within the <a href="/events/" target="_blank">*Events*</a> page.         
+Learn more about the event placeholders within the [*Events*](/events/) page.         
 
 ## Account Information
 
 This is the list of placeholders that you can use to specify account information.                                                                       
 
-- `${user.uid}` - user ID at the Virtuozzo Application Platform               
+- `${user.uid}` - user ID at the Virtuozzo Application Management               
 - `${user.email}` - user email address      
 - `${user.appPassword}` - random value that can be used to set application passwords       
 - `${user.name}` - email address value (same as `${user.email}`)       
@@ -234,11 +220,11 @@ settings:
 ```
 {{< /tabs-item >}}
 {{< /tabs >}}
-Here, the name of the placeholder is `${settings.customName}`. See the list of <a href="/visual-settings/" target="_blank">fields</a> that are defined by users.       
+Here, the name of the placeholder is `${settings.customName}`. See the list of [fields](/visual-settings/) that are defined by users.       
 
 ## Action Placeholders
 
-Action placeholders form a set of placeholders that can be used within the actions by means of a <b>*\${this.*}*</b> namespace. So, in <b>*${this.param}*</b> the *param* is a name of the action parameter.
+Action placeholders form a set of placeholders that can be used within the actions by means of a ***\${this.*}*** namespace. So, in ***${this.param}*** the *param* is a name of the action parameter.
 
 **Example**
 {{< tabs >}}
@@ -298,7 +284,7 @@ actions:
 ```
 {{< /tabs-item >}}
 {{< /tabs >}}
-As a result, console will display the *first* (1) custom parameter from the <b>*${this.first}*</b> placeholder.
+As a result, console will display the *first* (1) custom parameter from the ***${this.first}*** placeholder.
 
 Also custom actions can receive as a parameter a string or an array or strings. In this case a new placeholder *\${this}* will be defined within executed action.
 
@@ -342,11 +328,11 @@ In case if an argument is an array of strings the executed custom action will be
 
 This is the list of placeholders that you can use to specify UI parameters.                              
 
-- `${user.uid}` - user ID at the Virtuozzo Application Platform
+- `${user.uid}` - user ID at the Virtuozzo Application Management
 - `${user.email}` - user email address
 - `${env.domain}` - full domain name without protocol
-- `${env.appid}` - unique environment appid at the Virtuozzo Application Platform
-- `${baseUrl}` - user custom relative URL. More details about <a href="/basic-configs/#relative-links">Relative Links here</a>
+- `${env.appid}` - unique environment appid at the Virtuozzo Application Management
+- `${baseUrl}` - user custom relative URL. More details about [Relative Links here](/basic-configs/#relative-links)
 - `${platformUrl}` - platform dashboard URL
 
 **Example**
@@ -384,7 +370,7 @@ settings:
 
 ## Custom Global Placeholders
 
-Placeholders that are managed by users can be predefined via <b>*globals declaration*</b>. The corresponding declaration is performed in advance of the manifest installation.  
+Placeholders that are managed by users can be predefined via ***globals declaration***. The corresponding declaration is performed in advance of the manifest installation.  
 
 **Example**
 {{< tabs >}}
@@ -412,15 +398,15 @@ globals:
 {{< /tabs-item >}}
 {{< /tabs >}}
 
-As a result, you can use <b>*${globals.value1}*</b> and <b>*${globals.value2}*</b>  within the entire manifest.
+As a result, you can use ***${globals.value1}*** and ***${globals.value2}***  within the entire manifest.
 
-Values are global placeholders (<i>value1</i> and <i>value2</i> in example above) could consist of like simple text or/and placeholders in it. There are the list of placeholders which are predefined in `globals` block:
+Values are global placeholders (*value1* and *value2* in example above) could consist of like simple text or/and placeholders in it. There are the list of placeholders which are predefined in `globals` block:
 
-- `${settings.*}` - <a href="/placeholders/#input-parameters" target="_blank">input parameters</a> from `settings` block, where custom forms are described
-- `${env.*}` - all <a href="/placeholders/#environment-placeholders" target="_balnk">environment placeholders</a>. Placeholders are available only in JPS manifests with `type` *install* -  `globals` block will be updated after an environment is created.
-- `${nodes.*}` - all <a href="/placeholders/#node-placeholders" target="_balnk">node placeholders</a>. Node values in global placeholders will be available only after environment is created.
-- `${user.*}` - <a href="/placeholders/#account-information" target="-blank">account placeholders</a> are available during all JPS installation process.
-- `${fn.*}` - <a href="/placeholders/#function-placeholders" target="_blank">functional placeholders</a>  are available during all JPS installation process.
+- `${settings.*}` - [input parameters](/placeholders/#input-parameters) from `settings` block, where custom forms are described
+- `${env.*}` - all [environment placeholders](/placeholders/#environment-placeholders). Placeholders are available only in JPS manifests with `type` *install* -  `globals` block will be updated after an environment is created.
+- `${nodes.*}` - all [node placeholders](/placeholders/#node-placeholders). Node values in global placeholders will be available only after environment is created.
+- `${user.*}` - [account placeholders](/placeholders/#account-information) are available during all JPS installation process.
+- `${fn.*}` - [functional placeholders](/placeholders/#function-placeholders)  are available during all JPS installation process.
 
 ## Function Placeholders
 
@@ -481,7 +467,7 @@ globals:
 {{< /tabs-item >}}
 {{< /tabs >}}
 
-Now, you can use <b>*${globals.pass}*</b> within the entire manifest.
+Now, you can use ***${globals.pass}*** within the entire manifest.
 
 ## Data Processing Placeholders
 
@@ -564,6 +550,7 @@ The result of the example execution in [console](http://docs.cloudscripting.com/
 [17:43:36 CS.toBase64]: END INSTALLATION: CS Placeholders - built-in data processing functions - toBase64  
 ```
 \  
+
 ### ${\*.fromBase64()}
 
 Data decoding example from Base64 format to plain text:
@@ -634,6 +621,7 @@ The output in the [console](http://docs.cloudscripting.com/troubleshooting/#trou
 [08:13:42 CS:Placeholders.fromBase64]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - fromBase64
 ```
 \  
+
 ### ${\*.md5()}
 
 *md5* hash generation example:  
@@ -704,6 +692,7 @@ Check the output in the [console](http://docs.cloudscripting.com/troubleshooting
 [08:17:02 CS:Placeholders.md5]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - md5
 ```
 \  
+
 ### ${\*.join()}
 
 The ${\*.join()} can be applied in case of array's elements should be concatenated with each other according to element filtering rule if any.
@@ -882,6 +871,7 @@ Console output:
 [11:40:07 CS:Placeholders.join]: END INSTALLATION: CS:Placeholders - built-in data processing functions - join
 ```
 \  
+
 ### ${\*.toJSON()}
 
 This placeholder returns structured data in JSON format. 
@@ -984,6 +974,7 @@ Check the output for both placeholders ${\*.toJSON()} and ${\*.print()}:
 [12:49:40 CS:Placeholders.toJSON/print']: END INSTALLATION: CS:Placeholders - built-in data processing functions- toJSON/print'
 ```
 \  
+
 ### ${\*.contains()}
 
 This placeholder is used for checking if the specified element exists in the given list or not.  
@@ -1075,6 +1066,7 @@ The result of such action is a Boolean value: *true* or *false*:
 [14:34:05 CS:Placeholders.contains]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - contains
 ```
 \  
+
 ## Array Placeholders
 
 Any array has a list of specific placeholders: array *length*, element by *ID*, the *first* and the *last* array elements.   
@@ -1101,14 +1093,14 @@ Each element has an index in the array.
 where:
 
 - `(i)` - array index, starting from *'0'*                     
-- `(key)` - node <a href="/placeholders/#node-placeholders" target="_blank">parameters</a>                            
+- `(key)` - node [parameters](/placeholders/#node-placeholders)                            
 
 **The First and the Last Array Elements** 
 
 - `{nodes.cp.first.(key)}` - array element with the *'0'* index              
 - `{nodes.sqldb.last.(key)}` - array element with the last ID in the array                      
 
-Here, <b>*key*</b> is the node parameter.                         
+Here, ***key*** is the node parameter.                         
 
 ## File Path Placeholders
 
@@ -1143,7 +1135,7 @@ You can use the following placeholders, as well, with the definite *nodeType*:
 - `${nginx-ruby.SERVER_WEBROOT}` - */var/www/webroot*  
 - `${nginx.SERVER_CONF_D}` - */etc/nginx/conf.d*      
 
-Explore the full list of available <a href="/selecting-containers/#all-containers-by-type" target="_blank">*nodeType*</a> values within the linked page.                                                         
+Explore the full list of available [*nodeType*](/selecting-containers/#all-containers-by-type) values within the linked page.                                                         
 
 The list of single placeholders:
 
@@ -1159,7 +1151,8 @@ The list of single placeholders:
 
 ## Default Values of Placeholders
 
-All placeholders which are spelled out in manifest and are not defined in Cloud Scripting during manifest execution will be displayed like a simple texts. <br>
+All placeholders which are spelled out in manifest and are not defined in Cloud Scripting during manifest execution will be displayed like a simple texts. 
+
 In the example below the **action** `assert` is executed where values are compared.
 
 {{< tabs >}}
@@ -1191,7 +1184,8 @@ onInstall:
 {{< /tabs-item >}}
 {{< /tabs >}}
 
-The first comparing in `assert` action is **"'\${unknown:defaultValue}' === 'defaultValue'"**, where placeholder *\${unknown:defaultValue}* in Cloud Scripting engine isn't defined. So the simple string will be displayed in console. The same behaviour will be with another comparisons.<br>
+The first comparing in `assert` action is **"'\${unknown:defaultValue}' === 'defaultValue'"**, where placeholder *\${unknown:defaultValue}* in Cloud Scripting engine isn't defined. So the simple string will be displayed in console. The same behaviour will be with another comparisons.
+
 The executed results on the screen below:
 ![simple-comparison](simple-comparison.png)
 
@@ -1371,7 +1365,6 @@ To ensure ability to process user's quotas and collaboration the following `${qu
     - `${quota.maxcount}`
     - `${quota.disk.iolimit}`
     - ...
-   
 - `${quota.data.}`  
     - `${quota.data.environment.maxcloudletsperrec.quota.name}`  
     - `${quota.data.environment.maxcloudletsperrec.quota.description}`  
@@ -1444,17 +1437,11 @@ settings:
 {{< /tabs >}}
 
 
-<br>       
-<h2> What’s next?</h2>                    
+## What's next?
 
-- See how to use <a href="/conditions-and-iterations/">Conditions and Iterations</a>                                
-
-- Read how to integrate your <a href="/custom-scripts/" target="_blank">Custom Scripts</a>                      
-
-- Check how to create your custom <a href="/addons/" target="_blank">Add-Ons</a>                                         
-
-- Find out how to handle <a href="/handling-custom-responses/" target="_blank">Custom Responses</a>      
-
-- Learn how to customize <a href="/visual-settings/" target="_blank">Visual Settings</a>
-
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples
+- See how to use [Conditions and Iterations](/conditions-and-iterations/)                                
+- Read how to integrate your [Custom Scripts](/custom-scripts/)                      
+- Check how to create your custom [Add-Ons](/addons/)                                         
+- Find out how to handle [Custom Responses](/handling-custom-responses/)      
+- Learn how to customize [Visual Settings](/visual-settings/)
+- Examine a bunch of [Samples](/samples/) with operation and package examples

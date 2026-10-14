@@ -17,11 +17,11 @@ menu:
 
 # Specifying Target Container
 
-Running a specific <a href="/actions/" target="_blank">action</a> requires to specify a target container, in confines of which this action is executed. Thus, it is possible to specify a [particular container](#particular-container), all containers within a layer by the [*nodeGroup*](#all-containers-by-group) value, or all containers of the same type by the [*nodeType*](#all-containers-by-type) value.                                 
+Running a specific [action](/actions/) requires to specify a target container, in confines of which this action is executed. Thus, it is possible to specify a [particular container](#particular-container), all containers within a layer by the [*nodeGroup*](#all-containers-by-group) value, or all containers of the same type by the [*nodeType*](#all-containers-by-type) value.                                 
 
 ### Particular Container
 
-The <em>nodeId</em> parameter is used to specify a particular container for the action execution. If you know the Node ID of your container (displayed at the Virtuozzo Application Platform dashboard next to the required node), you can set it statically as follows.                                           
+The *nodeId* parameter is used to specify a particular container for the action execution. If you know the Node ID of your container (displayed at the Virtuozzo Application Management dashboard next to the required node), you can set it statically as follows.                                           
 
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
@@ -71,44 +71,37 @@ writeFile:
 ```
 {{< /tabs-item >}}
 {{< /tabs >}}
-For more information, visit the <a href="/placeholders/" target="_blank"><em>Placeholders</em></a> documentation page.                               
+For more information, visit the [*Placeholders*](/placeholders/) documentation page.                               
 
 ### All Containers By Group
  
 The *nodeGroup* parameter is used to specify all containers within a specific [layer](#predefined-nodegroup-values).                              
 
-The Virtuozzo Application Platform supports the following predefined *nodeGroup* values:     
+The Virtuozzo Application Management supports the following predefined *nodeGroup* values:     
 
 - *bl*                   
- 
 - *cp*                  
-
 - *cache*                   
-
 - *sqldb*                   
-
 - *nosqldb*                       
-
 - *storage*                   
-
 - *vds* (for VPS)                 
-
 - *build*                           
 
-Actions for the specified <em>nodeGroup</em> are executed successively one by one. For Docker containers the <em>nodeGroup</em> value is not predefined, therefore, you can state it to any value above or your custom one.                              
+Actions for the specified *nodeGroup* are executed successively one by one. For Docker containers the *nodeGroup* value is not predefined, therefore, you can state it to any value above or your custom one.                              
 
 {{%note%}}
-If you state a custom <em>nodeGroup</em> value for Docker containers, the corresponding container is placed to the <em>Extra</em> layer. Subsequently, this <em>nodeGroup</em> value can be used within the same-named actions field to point to the particular <em>Extra</em> layer.
+If you state a custom *nodeGroup* value for Docker containers, the corresponding container is placed to the *Extra* layer. Subsequently, this *nodeGroup* value can be used within the same-named actions field to point to the particular *Extra* layer.
 ![dockerextra](dockerextra.png)         
 {{%/note%}}
 
 ### All Containers By Type
 
-The <em>nodeType</em> parameter is used to specify all containers that are built upon the same software [stacks](#supported-stacks ).                                   	  
+The *nodeType* parameter is used to specify all containers that are built upon the same software [stacks](#supported-stacks ).                                   	  
 
-<b>Examples</b>     
+**Examples**     
 
-Using the *nodeType* parameter while performing the <a href="/actions/#writefile" target="_blank">**writeFile**</a> action.                         
+Using the *nodeType* parameter while performing the [**writeFile**](/actions/#writefile) action.                         
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
 ```yaml
@@ -173,7 +166,7 @@ There are three alternative approaches, provided to specify a target container i
 
 - specifying a target container within a name of an action (**node selectors**)     
 
-Through the following example, a new file is created in the compute layer (<em>[cp]</em>) and a new directory is created in the compute (<em>[cp]</em>) and balancer (<em>[bl]</em>) layers, and container with the Node ID <em>123</em>. Actions for the specified containers are executed in the declared order.
+Through the following example, a new file is created in the compute layer (*[cp]*) and a new directory is created in the compute (*[cp]*) and balancer (*[bl]*) layers, and container with the Node ID *123*. Actions for the specified containers are executed in the declared order.
 
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
@@ -234,7 +227,7 @@ There is a console log screen which displays that `cmd` action has been executed
 
 - specifying a target container next to the performed action                                       
 
-Through the following example, the <a href="/actions/#createfile" target="_blank">**createFile**</a> and <a href="/actions/#createdirectory" target="_blank">**createDirectory**</a> actions are applied to the specified <em>nodeGroup</em>, namely the compute layer (<em>[cp]</em>).
+Through the following example, the [**createFile**](/actions/#createfile) and [**createDirectory**](/actions/#createdirectory) actions are applied to the specified *nodeGroup*, namely the compute layer (*[cp]*).
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
 ```yaml
@@ -264,11 +257,11 @@ Through the following example, the <a href="/actions/#createfile" target="_blank
  
 - specifying a target container as a parameter in the *actions* object     
 
-Learn more on this parameter within the <a href="/actions/#custom-actions" target="_blank"><em>Custom Actions</em></a> documentation page.                                      
+Learn more on this parameter within the [*Custom Actions*](/actions/#custom-actions) documentation page.                                      
 
 {{%note%}}
-<b>Node selectors</b> have higher priority than containers specified next to the action, but lower than parameters set in the *actions* object.   
-If you specify all three parameters (*nodeId*, *nodeGroup*, and *nodeType*), actions for indicated containers are executed in the following order: <b>*_nodeId -> nodeGroup -> nodeType_*</b>.
+**Node selectors** have higher priority than containers specified next to the action, but lower than parameters set in the *actions* object.   
+If you specify all three parameters (*nodeId*, *nodeGroup*, and *nodeType*), actions for indicated containers are executed in the following order: ***_nodeId -> nodeGroup -> nodeType_***.
 {{%/note%}}
 
 ## NodeGroup Aliases
@@ -324,27 +317,25 @@ The supported software stacks are categorized in the table below with specified 
 In case the root privileges are required within the certified template, it should be created as custom docker via [image](/basic-configs/#environment-installation) parameter. If so, take into account that some functionality/automation won’t be available such as Custom SSL, Managed Firewall, etc. To create custom docker follow the **Supported Tags Link** column to get the proper name of certified Virtuozzo docker images.
 {{%/note%}}
 
-<a href="https://www.virtuozzo.com/application-platform-docs/software-stacks-versions/#engines">Engine versions</a>
+[Engine versions](https://www.virtuozzo.com/application-platform-docs/software-stacks-versions/#engines)
 
 |Stacks|Java|PHP|Ruby|Python|Nodejs|.NET|Go|
 |--------|----------|-----------|-----------|--------|---------|---------|---------|
 |engine|adoptopenjdk-8 <br>adoptopenjdk-11 <br>adoptopenjdk-13 <br>adoptopenjdk-14 <br>adoptopenjdk-15 <br>adoptopenjdk-16 <br>correttojdk-8 <br>correttojdk-11 <br>correttojdk-15 <br>correttojdk-16 <br>correttojdk-17 <br>correttojdk-18 <br>correttojdk-19 <br>dragonwell-8 <br>graalvm-19 <br>graalvm-21 <br>graalvm-22 <br>jdk-8 <br>jdk-11 <br>openj9-8 <br>openj9-11 <br>openj9-14 <br>openj9-15 <br>openj9-16 <br>openjdk-8 <br>openjdk-11 <br>openjdk-13 <br>openjdk-14 <br>openjdk-15 <br>openjdk-16 <br>openjdk-17 <br>openjdk-18 <br>openjdk-19 <br>openjdk-20 <br>openjdk-21 <br>temurinjdk-8 <br>temurinjdk-11 <br>temurinjdk-17 <br>temurinjdk-18 <br>temurinjdk-19 <br>zulujdk-8 <br>zulujdk-11 <br>zulujdk-13 <br>zulujdk-14 <br>zulujdk-15 <br>zulujdk-16 <br>zulujdk-17 <br>zulujdk-18 <br>zulujdk-19<br>|php7.4<br>php8.0<br>php8.1|ruby2.7<br>ruby3.0<br>ruby3.1<br>|python3.6<br>python3.7<br>python3.8<br>python3.9<br>python3.10<br>python3.11<br>|nodejs14-npm <br>nodejs14-forever <br>nodejs14-pm2 <br>nodejs14-supervisor <br>nodejs16-npm <br>nodejs16-forever <br>nodejs16-pm2 <br>nodejs16-supervisor<br>|dotnet3 <br>dotnet5 <br>dotnet6 <br>dotnet7|go14 <br>go15 <br>go16 <br>go17 <br>go18 <br>go19 <br>|
 
 {{%note%}}
-The list of supported <a href="https://www.virtuozzo.com/application-platform-docs/software-stacks-versions/" target="_blank">software stacks</a> can vary depending on your Virtuozzo Application Platform version - it can be checked at your dashboard.    
+The list of supported [software stacks](https://www.virtuozzo.com/application-platform-docs/software-stacks-versions/) can vary depending on your Virtuozzo Application Management version - it can be checked at your dashboard.    
 {{%/note%}}
 
 ## Selecting Hardware Hosts
 
-There is an ability in Virtuozzo Application Platform to select the hardware for the user's application with the help of the [multi zones](https://www.virtuozzo.com/application-platform-ops-docs/multi-zones/) approach. If a user is aware all of the [labels](https://www.virtuozzo.com/application-platform-ops-docs/multi-zones/#host-labels) assigned for the hardware hosts within the platform he can decide which hosts across all of the available regions can be used to install the user's environment.  
+There is an ability in Virtuozzo Application Management to select the hardware for the user's application with the help of the [multi zones](https://www.virtuozzo.com/application-platform-ops-docs/multi-zones/) approach. If a user is aware all of the [labels](https://www.virtuozzo.com/application-platform-ops-docs/multi-zones/#host-labels) assigned for the hardware hosts within the platform he can decide which hosts across all of the available regions can be used to install the user's environment.  
 Hardware host selection is performed by **distribution** parameter which defines the logic in the [layer specifics](/basic-configs/#nodes-definition), which consist of the following two options:  
 
 - `zones` - sets a filter for allowed zones (groups of hosts custom-defined by labels) in the “{name}: {value}” format, e.g. zones: [{provider: azure}, {provider: amazon}]  
-
 - `mode` - defines the behavior in case of the target zone unavailability  
 
     - *SOFT* - the operation should proceed on the next zone/host defined by the multi zones algorithm (this option is used by default)  
-
     - *STRICT* - the operation should be terminated with an error  
 
 {{%note%}}
@@ -472,14 +463,10 @@ nodes:
 {{< /tabs >}}
 
 
-<h2>What’s next?</h2>
+## What's next?
 
-- Explore the list of available <a href="/actions/" target="_blank">Actions</a>                                   
-
-- See the <a href="/events/" target="_blank">Events</a> list the actions can be bound to                                  
-
-- Find out the list of <a href="/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching                                         
-
-- Read how to integrate your <a href="/custom-scripts/" target="_blank">Custom Scripts</a>                                 
-
-- Learn how to customize <a href="/visual-settings/" target="_blank">Visual Settings</a>
+- Explore the list of available [Actions](/actions/)                                   
+- See the [Events](/events/) list the actions can be bound to                                  
+- Find out the list of [Placeholders](/placeholders/) for automatic parameters fetching                                         
+- Read how to integrate your [Custom Scripts](/custom-scripts/)                                 
+- Learn how to customize [Visual Settings](/visual-settings/)

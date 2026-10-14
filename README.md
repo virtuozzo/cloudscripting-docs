@@ -66,4 +66,4 @@ Common shortcodes:
 python3 tools/mkdocs2hugo.py --src docs --img theme/readthedocs/img --out content
 ```
 
-It maps the MkDocs navigation to sidebar sections, converts admonitions and tab blocks to shortcodes, co-locates images, rewrites internal links, and writes `redirects.htaccess`.
+It maps the MkDocs navigation to sidebar sections, converts admonitions and tab blocks to shortcodes, co-locates images, rewrites internal links, and writes `redirects.htaccess`. The clean-up pass it ends with can also run on its own against existing pages (`python3 tools/mkdocs2hugo.py --polish content`): product rename, simple HTML to markdown, tight lists.

@@ -5,7 +5,7 @@ aliases: "/overview/"
 seoindex: "index, follow"
 seotitle: "Cloud Scripting Overview"
 seokeywords: "cloud scripting, cloud scripting overview"
-seodesc: "Cloud Scripting (CS) is a tool, designed to program the behaviour of Virtuozzo Application Platform related to the application lifecycle for automating"
+seodesc: "Cloud Scripting (CS) is a tool, designed to program the behaviour of Virtuozzo Application Management related to the application lifecycle for automating"
 menu:
     docs:
         title: "Overview"
@@ -16,30 +16,25 @@ menu:
 ---
 
 # Cloud Scripting Overview
-<b>Cloud Scripting (CS)</b> is a tool, designed to program the behaviour of Virtuozzo Application Platform related to the application lifecycle for automating frequent tasks, complex CI/CD flows and clustering configurations.            
+**Cloud Scripting (CS)** is a tool, designed to program the behaviour of Virtuozzo Application Management related to the application lifecycle for automating frequent tasks, complex CI/CD flows and clustering configurations.            
 
 <center><img src="newoverview.svg" alt="newoverview"></center>                                           
 
 There are three main pillars of cloud scripting:
 
-* **Actions** - scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="/custom-scripts/" target="_blank">script custom actions</a> using <a href="https://www.virtuozzo.com/application-platform-api-docs/" target="_blank">API calls</a>, Linux bash <a href="/actions/#cmd" target="_blank">shell command</a>, JS and Java scripts   
+* **Actions** - scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to [script custom actions](/custom-scripts/) using [API calls](https://www.virtuozzo.com/application-platform-api-docs/), Linux bash [shell command](/actions/#cmd), JS and Java scripts   
+* **Events** - specific [triggers](/events/) for executing actions on a required application lifecycle stage   
+* **Injection** - supplying default actions, [placeholders](/placeholders/), platform API methods, environment variables, request parameters and input settings in custom scripts by default
 
-* **Events** - specific <a href="/events/" target="_blank">triggers</a> for executing actions on a required application lifecycle stage   
-  
-* **Injection** - supplying default actions, <a href="/placeholders/" target="_blank">placeholders</a>, platform API methods, environment variables, request parameters and input settings in custom scripts by default
+The developed Cloud Scripting solutions are wrapped into packages and distributed through preparing a manifest file in JSON format. Such packaged solutions can be effortlessly deployed to the platform via [import](https://www.virtuozzo.com/application-platform-docs/environment-import/) functionality.
 
-<p dir="ltr" style="text-align: justify;">The developed Cloud Scripting solutions are wrapped into packages and distributed through preparing a manifest file in JSON format. Such packaged solutions can be effortlessly deployed to the platform via <a href="https://www.virtuozzo.com/application-platform-docs/environment-import/" target="_blank">import</a> functionality.</p>
-
-<p dir="ltr" style="text-align: justify;">The example below represents the Cloud Scripting basic use case. This manifest declares the creation of a new environment with the Payara Micro cluster image certified by Virtuozzo Application Platform and provides possibility to configure new cluster members while scaling nodes. Within the manifest, the following key parameters are declared:</p>
+The example below represents the Cloud Scripting basic use case. This manifest declares the creation of a new environment with the Payara Micro cluster image certified by Virtuozzo Application Management and provides possibility to configure new cluster members while scaling nodes. Within the manifest, the following key parameters are declared:
  
 * `nodes` - a environment topology which will be created
-
-* `onAfterScaleIn`, `onAfterScaleOut` - scaling <a href="/events/#onafterscalein" target="blank">events</a>            
-
-* `cmd` - action to execute <a href="/actions/#cmd" target="blank">shell commands</a>               
-
-* `updateNodes` - custom <a href="/actions/#custom-actions" target="blank">action</a>         
-* `baseUrl` - external links <a href="/basic-configs/#relative-links" target="_blank">relative path</a> 
+* `onAfterScaleIn`, `onAfterScaleOut` - scaling [events](/events/#onafterscalein)            
+* `cmd` - action to execute [shell commands](/actions/#cmd)               
+* `updateNodes` - custom [action](/actions/#custom-actions)         
+* `baseUrl` - external links [relative path](/basic-configs/#relative-links) 
 
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
@@ -157,19 +152,13 @@ homepage: http://docs.cloudscripting.com/
 ```
 {{< /tabs-item >}}
 {{< /tabs >}}
-<br>       
-<h2> What’s next?</h2>
 
-- Build a simple automation with <a href="/quick-start/" target="_blank">Quick Start</a> Guide                               
- 
-- Learn how to <a href="/basic-configs/" target="_blank">Create Manifest</a>               
- 
-- Explore the list of available <a href="/actions/" target="_blank">Actions</a>                      
- 
-- See the <a href="/events/" target="_blank">Events</a> list the actions can be bound to                       
-  
-- Find out the list of <a href="/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching               
- 
-- Read how to integrate your <a href="/custom-scripts/" target="_blank">Custom Scripts</a>                    
+## What's next?
 
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples
+- Build a simple automation with [Quick Start](/quick-start/) Guide                               
+- Learn how to [Create Manifest](/basic-configs/)               
+- Explore the list of available [Actions](/actions/)                      
+- See the [Events](/events/) list the actions can be bound to                       
+- Find out the list of [Placeholders](/placeholders/) for automatic parameters fetching               
+- Read how to integrate your [Custom Scripts](/custom-scripts/)                    
+- Examine a bunch of [Samples](/samples/) with operation and package examples

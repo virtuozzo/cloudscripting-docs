@@ -17,50 +17,38 @@ menu:
 
 # Actions
 
-Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to <a href="/custom-scripts/" target="_blank">script custom actions</a> using <a href="https://docs.jelastic.com/api/" target="_blank">API calls</a>, Linux bash shell command, JS, and Java scripts. Any action, available to be performed by means of API (including custom scripts running), should be bound to some <a href="/events/" target="_blank">event</a> and executed as a result of this event occurrence.                                                      
+Actions represent a scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to [script custom actions](/custom-scripts/) using [API calls](https://docs.jelastic.com/api/), Linux bash shell command, JS, and Java scripts. Any action, available to be performed by means of API (including custom scripts running), should be bound to some [event](/events/) and executed as a result of this event occurrence.                                                      
 
 With the help of actions you can achieve automation of the tasks related to:                
 
 - increasing or decreasing CPU or RAM amount                    
-
 - adjusting essential configs                                
-
 - restarting a service or a container                             
-
 - applying a database patch                                                   
 
 The default workflow for any action execution is the following:                  
 
-- replacing <a href="/placeholders/" target="_blank">placeholders</a>                                     
-
-- getting a list of <a href="/selecting-containers/" target="_blank">target containers</a>                                                 
-
+- replacing [placeholders](/placeholders/)                                     
+- getting a list of [target containers](/selecting-containers/)                                                 
 - checking permissions                                     
-
 - executing the action itself                                                   
 
 Thus, the following specific groups of actions are singled out:           
 
 - [Container Operations](#container-operations)                   
-
 - [Topology Nodes Management](#topology-nodes-management)             
-
 - [Database Operations](#database-operations)                   
-
 - [User-Defined Operations](#user-defined-operations)              
-
 - [Custom Actions](#custom-actions)                                             
 
 ## Container Operations
 
-There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the <a href="/selecting-containers/" target="_blank"><em>Specifying Target Containers</em></a> page.                        
+There are actions that perform operations inside of a container. For a detailed guidance on how to set a target container, visit the [*Specifying Target Containers*](/selecting-containers/) page.                        
 
 Any container operation can be performed using a [*cmd*](#cmd) action. Moreover, there are also some additional actions provided for your convenience. Thus, all the actions performed in confines of a container can be divided into three groups:       
 
 - SSH commands ([*cmd*](#cmd))                            
-
 - predefined modules ([*deploy*](#deploy), [*upload*](#upload), [*unpack*](#unpack))                                
-
 - operations with files ([*createFile*](#createfile), [*createDirectory*](#createdirectory), [*writeFile*](#writefile), [*appendFile*](#appendfile), [*replaceInFile*](#replaceinfile))                                     
 
 {{%note%}}
@@ -300,14 +288,12 @@ cmd [nginx]:
    
 ### api
 
-Executing actions available by means of [Virtuozzo Application Platform Cloud API](https://docs.jelastic.com/api/).  
+Executing actions available by means of [Virtuozzo Application Management Cloud API](https://docs.jelastic.com/api/).  
 
-There are a number of parameters required by Virtuozzo Application Platform API that are defined automatically:                            
+There are a number of parameters required by Virtuozzo Application Management API that are defined automatically:                            
 
 - *envName* - environment domain name where the API method is executed             
-
 - *appid* - unique environment identifier that can be passed to API instead of *envName*                         
-
 - *session* - unique session of a current user                                  
 
 Target containers, specified for the API methods execution can be passed by the nodes keywords. Therefore, API methods can be run on all nodes within a single *[nodeGroup](/selecting-containers/#all-containers-by-group)* (i.e. layer) or *[nodeType](/selecting-containers/#all-containers-by-type)* asynchronously or in other words in parallel. Also, API methods can be run on a *[particular node(s)](/selecting-containers/#particular-container)*. In this case, the Node ID is required that is available either through the *[node placeholders](/placeholders/#node-placeholders)*, or a set of [custom action parameters](#action-placeholders) (*${this}*).   
@@ -338,7 +324,7 @@ api [cp]: api.environment.control.RestartNodes
 where:        
        
 - `api [cp]` - target node group for the API method execution (*[cp]*)                                                         
-- *api.environment.control.RestartNodes* - Virtuozzo Application Platform API method for restarting nodes by group              
+- *api.environment.control.RestartNodes* - Virtuozzo Application Management API method for restarting nodes by group              
 
 This method (*api.environment.control.RestartNodes*) can be simplified like shown in the next example.
 {{< tabs >}}
@@ -910,7 +896,7 @@ where:
 - `path` - path where a file is available               
 - `replacements` - list of replacements within the node's configuration files                        
     - `pattern` - regular expressions to find a string (e.g. *app\\.host\\.url\\s*=\\s*.**)                   
-    - `replacement` - you can use as a replacement any string value, including any combination of <a href="/placeholders/" target="_blank">placeholders</a>                                            
+    - `replacement` - you can use as a replacement any string value, including any combination of [placeholders](/placeholders/)                                            
 
 <!-- DeletePath -->
 <!-- RenamePath --> 
@@ -971,13 +957,13 @@ addNodes:
 {{< /tabs >}}
 where:
 
-- `nodeType` *[required]* - parameter to specify <a href="/selecting-containers/#supported-stacks" target="_blank">software stacks</a>. For Docker containers the *nodeType* value is **docker**.
+- `nodeType` *[required]* - parameter to specify [software stacks](/selecting-containers/#supported-stacks). For Docker containers the *nodeType* value is **docker**.
 - `nodeGroup` *[optional]* - the defined node layer.           
 - `extip` *[optional]* - attaching the external IP address to a container. The default value is *'false'*.                     
 - `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.                             
 - `flexibleCloudlets` *[optional]* - number of dynamic cloudlets. The default value is *'1'*.                           
-- `displayName` *[optional]* - node's display name (i.e. <a href="https://www.virtuozzo.com/application-platform-docs/environment-aliases/" target="_blank">alias</a>)                                         
-    The following parameters are required for <a href="https://www.virtuozzo.com/application-platform-docs/container-types/" target="_blank">Docker</a> containers only:                                    
+- `displayName` *[optional]* - node's display name (i.e. [alias](https://www.virtuozzo.com/application-platform-docs/environment-aliases/))                                         
+    The following parameters are required for [Docker](https://www.virtuozzo.com/application-platform-docs/container-types/) containers only:                                    
 - `dockerName` *[optional]* - name and tag of Docker image
 - `registryUrl` *[optional]* - custom Docker registry
 - `registryUser` *[optional]* - Docker registry username
@@ -992,6 +978,7 @@ where:
 - `dockerEntryPoint` *[optional]* - Docker entry points                                          
 
 <!-- SetCloudletsCount -->
+
 ### setNodeDisplayName
 
 Available for all nodes
@@ -1012,7 +999,7 @@ setNodeDisplayName [nodeId, nodeGroup, nodeType]: string
 where:   
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                   
-- `string` - node’s display name (i.e. <a href="https://www.virtuozzo.com/application-platform-docs/environment-aliases/" target="_blank">alias</a>)                                                                        
+- `string` - node’s display name (i.e. [alias](https://www.virtuozzo.com/application-platform-docs/environment-aliases/))                                                                        
 
 The action `setNodeDisplayName` has the default parameter called **displayName**. It is useful to set display name for few node layers in the same `action`. For example:
 {{< tabs >}}
@@ -1238,7 +1225,7 @@ restartNodes:
 where:       
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)
-- `reboot` - flag which determines in which way node should be restarted. Positive value means the whole container should be restarted (the similar action to <a href="/actions/#restartcontainers" target="_blank">`restartContainer`</a>), the negative one value means only main service in current container will be restarted (the similar action to <a href="/actions/#restartservices" target="_blank">`restartService`</a>).
+- `reboot` - flag which determines in which way node should be restarted. Positive value means the whole container should be restarted (the similar action to [`restartContainer`](/actions/#restartcontainers)), the negative one value means only main service in current container will be restarted (the similar action to [`restartService`](/actions/#restartservices)).
 
 ### restartContainers
 
@@ -1450,7 +1437,7 @@ where:
 - `databaseName` - name of a database for a patch to be applied                    
 - `user` - username in a database, on behalf of which an application is used                                          
 - `password` - password in a database, on behalf of which an application is used                              
-- `patch` - SQL query or a link to it. It is used only for SQL databases. Here, the <a href="/placeholders/" target="_blank">placeholders</a> support is available.                    
+- `patch` - SQL query or a link to it. It is used only for SQL databases. Here, the [placeholders](/placeholders/) support is available.                    
 
 {{%note%}}
 The action is executed only for *mysql5*, *mariadb*, and *mariadb10* containers.  
@@ -1489,7 +1476,7 @@ onInstall:
 {{< /tabs >}}
 
 A custom scripts can be set via external links instead of a **string**.  
-The example execution result is a <a href="/handling-custom-responses/" target="_blank">response type</a> `error` with message *"Hello World!"*.
+The example execution result is a [response type](/handling-custom-responses/) `error` with message *"Hello World!"*.
 The default action script type is `javascript`.
 
 There is an ability to define language type or pass custom parameters. In this case the `script` action should be describe like in example below:
@@ -1635,11 +1622,11 @@ script [cp, 12345]: |
 {{< /tabs-item >}}
 {{< /tabs >}}
 
-The `script` action provides an ability to execute Virtuozzo Application Platform API in custom scripts. Therefore, it is easy to manage Virtuozzo Application Platform environments by `scripts`.   
-There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certified by Virtuozzo Application Platform team.
+The `script` action provides an ability to execute Virtuozzo Application Management API in custom scripts. Therefore, it is easy to manage Virtuozzo Application Management environments by `scripts`.   
+There are [ready-to-go solutions](/samples/#complex-ready-to-go-solutions) certified by Virtuozzo Application Management team.
 
 {{%note%}}
-Learn more about using <a href="https://docs.jelastic.com/api/" target="_blank">Virtuozzo Application Platform Cloud API</a>.    
+Learn more about using [Virtuozzo Application Management Cloud API](https://docs.jelastic.com/api/).    
 {{%/note%}}
 
 ### setGlobals
@@ -1698,7 +1685,7 @@ The result is on the screen below:
 First action `setGlobals` defines new *global* values - variables *a* and *b*. Then a new placeholders *\${globals.a}* and *\${globals.b}* are available in all next actions (custom actions are included too).
 
 {{%note%}}
-<b>Global</b> scope is created at the beginning of JPS installation and it is available within current manifest only.
+**Global** scope is created at the beginning of JPS installation and it is available within current manifest only.
 {{%/note%}}
 
 ### set
@@ -1781,7 +1768,7 @@ While execution custom action a local scope can consists of arguments if they pa
 
 
 ### assert
-Is an ability to check two any values and verify results in <a href="/troubleshooting/" target="_blank">console log</a>. One of the useful case is checking response fields from previous action with expected values. Responses parameters can be compared with other parameters or with any hardcoded values.
+Is an ability to check two any values and verify results in [console log](/troubleshooting/). One of the useful case is checking response fields from previous action with expected values. Responses parameters can be compared with other parameters or with any hardcoded values.
 For example:
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
@@ -1815,7 +1802,7 @@ onInstall:
 ```
 {{< /tabs-item >}}
 {{< /tabs >}}
-In the example above the `cmd` action the first one. Here, <i>echo</i> command is executed with world <i>test</i>. The second action `assert` compares response output result form the first command and the word <i>test</i>.
+In the example above the `cmd` action the first one. Here, *echo* command is executed with world *test*. The second action `assert` compares response output result form the first command and the word *test*.
 The result can be check in console log panel like in example screen:
 ![assert](assert.jpg)
 
@@ -2719,12 +2706,11 @@ where:
 
 ### installAddon
 
-You can install a <a href="/addons/" target="_blank">custom add-on</a> within another - *parent* manifest. By default, custom add-ons have the *update* installation type.                                      
+You can install a [custom add-on](/addons/) within another - *parent* manifest. By default, custom add-ons have the *update* installation type.                                      
 
 Thus, the custom add-on can be installed to the:                                         
 
 - existing environment with the *update* installation type                         
-
 - new environment with the *install* installation type. In this case, add-ons (if there are several ones) are installed sequentially one by one right after a new environment creation.                                                                   
 
 The example below shows how to pass the add-on identifier to the *installAddon* action. This add-on's parameters are described in the *addons* section. As a result, the custom add-on with the *firstAddon* identifier initiates the creation of a new file in the *tmp* directory on the compute node layer.                                                 
@@ -2770,7 +2756,7 @@ where:
 
 - `id` - identifier of a custom add-on                           
 
-You can locate the installed add-ons within the **Add-ons** tab at the Virtuozzo Application Platform dashboard. 
+You can locate the installed add-ons within the **Add-ons** tab at the Virtuozzo Application Management dashboard. 
 
 ![new-addon](new-addon.png)
 
@@ -2797,7 +2783,7 @@ installAddon:
 
 The action `installAddon` has the default parameter called `id`. 
 
-For more details about the <a href="/addons/" target="_blank">add-ons</a> installation, visit the linked page.                                              
+For more details about the [add-ons](/addons/) installation, visit the linked page.                                              
 
 <!-- add example -->
 
@@ -2861,7 +2847,7 @@ onInstall:
 {{< /tabs-item >}}
 {{< /tabs >}}
 
-The result window also returns the compute node's unique identifier at Virtuozzo Application Platform.                                                
+The result window also returns the compute node's unique identifier at Virtuozzo Application Management.                                                
 ![returnNodeId](returnnodeid.jpg)
 
 If the action returns an object, a response code can be redefined. So the *message* or *result* code parameters are required in the *return* object. Herewith, a zero (0) *result* code is not passed to the response code.        
@@ -2935,7 +2921,7 @@ Therefore, the *restartNodes* action is not run to restart a compute node.
 
 Particular actions can be run by means of calling actions with different parameters.             
 
-The example below shows how to create a new file (e.g. the <b>*example.txt*</b> file in the <b>*tmp*</b> directory) by running a *createFile* action on the compute node.
+The example below shows how to create a new file (e.g. the ***example.txt*** file in the ***tmp*** directory) by running a *createFile* action on the compute node.
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
 ```yaml
@@ -2998,7 +2984,7 @@ where:
 
 In order to access any required data or parameters of allocated resources inside a manifest, a special set of placeholders should be used. The parameters, sent to a call method, are transformed into a separate kit of placeholders, which can be further used within the appropriate actions by means of *${this}*  namespace. Access to a node inside environment can be gained according to its type, as well as according to its role in the environment.                             
 
-The example below illustrates how to pass the dynamic parameters for running in the action. Here, the *name* parameter is sent to <b>*customAction*</b> where the *createFile* action is executed.                   
+The example below illustrates how to pass the dynamic parameters for running in the action. Here, the *name* parameter is sent to ***customAction*** where the *createFile* action is executed.                   
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
 ```yaml
@@ -3033,13 +3019,13 @@ actions:
 ```
 {{< /tabs-item >}}
 {{< /tabs >}}
-Therefore, the same custom actions can be reused for several times with different parameters. Moreover, any action can be targeted at a specific node by ID, at a particular layer (*nodeGroup*) or *nodeType*. For more details about <a href="/selecting-containers/#types-of-selectors" target="_blank">*Node Selectors*</a>, visit the linked page.                             
+Therefore, the same custom actions can be reused for several times with different parameters. Moreover, any action can be targeted at a specific node by ID, at a particular layer (*nodeGroup*) or *nodeType*. For more details about [*Node Selectors*](/selecting-containers/#types-of-selectors), visit the linked page.                             
  
 ### Code Reuse
 
 You can use the already-existing code to perform a new action.                    
 
-For example, outputting Hello World! twice in the <b>*greeting.txt*</b>.                                     
+For example, outputting Hello World! twice in the ***greeting.txt***.                                     
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
 ```yaml
@@ -3282,17 +3268,11 @@ For example:
 ![stopEvent-console](stopevent-console.png)
 
 
-<br>       
-<h2>What’s next?</h2>                   
+## What's next?
 
-- See the <a href="/events/" target="_blank">Events</a> list the actions can be bound to            
-
-- Find out the list of <a href="/placeholders/" target="_blank">Placeholders</a> for automatic parameters fetching           
-
-- See how to use <a href="/conditions-and-iterations/">Conditions and Iterations</a>                                  
-
-- Read how to integrate your <a href="/custom-scripts/" target="_blank">Custom Scripts</a>                                               
-
-- Learn how to customize <a href="/visual-settings/" target="_blank">Visual Settings</a>                                    
-
-- Examine a bunch of <a href="/samples/" target="_blank">Samples</a> with operation and package examples
+- See the [Events](/events/) list the actions can be bound to            
+- Find out the list of [Placeholders](/placeholders/) for automatic parameters fetching           
+- See how to use [Conditions and Iterations](/conditions-and-iterations/)                                  
+- Read how to integrate your [Custom Scripts](/custom-scripts/)                                               
+- Learn how to customize [Visual Settings](/visual-settings/)                                    
+- Examine a bunch of [Samples](/samples/) with operation and package examples
