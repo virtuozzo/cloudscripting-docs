@@ -13,6 +13,7 @@ Each Cloud Scripting version lives on its own branch (for example `8.15.1`); the
 | `themes/` | Shared theme submodule (`virtuozzo/docs-theme`) |
 | `redirects.htaccess` | Redirects from the old MkDocs URLs to the Hugo slugs |
 | `tools/mkdocs2hugo.py` | Converter used to migrate the MkDocs sources |
+| `tools/import-basic-examples.py` | Generates the sample pages from the basic-examples GitHub repository |
 | `TECH-DOCS.md` | Repo-specific rules for the `tech-docs` authoring skill |
 
 ## Staging the docs locally
@@ -67,3 +68,14 @@ python3 tools/mkdocs2hugo.py --src docs --img theme/readthedocs/img --out conten
 ```
 
 It maps the MkDocs navigation to sidebar sections, converts admonitions and tab blocks to shortcodes, co-locates images, rewrites internal links, and writes `redirects.htaccess`. The clean-up pass it ends with can also run on its own against existing pages (`python3 tools/mkdocs2hugo.py --polish content`): product rename, simple HTML to markdown, tight lists.
+
+## Refreshing the sample pages
+
+The pages under `content/samples/` that show manifests from the [basic-examples](https://github.com/jelastic-jps/basic-examples) repository are generated. To refresh them after the repository changes:
+
+```bash
+git clone --depth 1 https://github.com/jelastic-jps/basic-examples /tmp/basic-examples
+python3 tools/import-basic-examples.py --repo /tmp/basic-examples --out content/samples
+```
+
+The explanatory text of each page lives in the `EXAMPLES` table of the script.

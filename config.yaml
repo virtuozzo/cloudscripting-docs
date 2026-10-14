@@ -101,4 +101,3 @@ permalinks:
   getting-started: ":filename/"
   creating-manifest: ":filename/"
   samples: ":filename/"
-  troubleshooting: ":filename/"

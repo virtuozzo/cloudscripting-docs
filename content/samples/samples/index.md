@@ -21,20 +21,25 @@ Cloud Scripting provides almost unlimited possibilities for environment manageme
 
 Below we provide a bunch of categorized CS examples, divided by sections with simple standalone operations, add-ons for existing environments and complete ready-to-go solutions. You can use them independently or examine and adjust scripts to create your own packages.
 
+In this section:
+
+{{%childrenList%}}
+
 ### Operation Examples
 
 The following list contains examples of some basic environment management procedures, which can be subsequently combined to implement more complex solutions and application lifecycle pipelines.
 
 | Name | Description |
 |---|---|
-| [Automatic Vertical Scaling](https://github.com/jelastic-jps/basic-examples/tree/master/automatic-vertical-scaling) | Optimization of Nginx Balancer workers number based on allocated CPU amount |
-| [Automatic Horizontal Scaling](https://github.com/jelastic-jps/basic-examples/tree/master/automatic-horizontal-scaling) | Setting triggers for server horizontal scaling based on load |
-| [Using Docker Containers](https://github.com/jelastic-jps/basic-examples/tree/master/using-docker-containers) | Bundle of linked WordPress-Web and WordPress-DB Docker containers |
+| [Hello World](/hello-world/) | Minimal install package that deploys an application into a single Apache node |
+| [Automatic Vertical Scaling](/automatic-vertical-scaling/) | Optimization of Nginx Balancer workers number based on allocated CPU amount |
+| [Automatic Horizontal Scaling](/automatic-horizontal-scaling/) | Setting triggers for server horizontal scaling based on load |
+| [Mount Data from Storage](/mount-data-storage/) | Mounting directory from Storage node to application server |
 | [Application Clustering](https://github.com/jelastic-jps/wordpress-cluster) | Building highly available and scalable clustered solution for WordPress |
-| [Migration After Cloning](https://github.com/jelastic-jps/basic-examples/tree/master/automatic-environment-migration-after-cloning) | Automatic environment migration to another region after cloning |
-| [Create Environment from Script](https://github.com/jelastic-jps/basic-examples/tree/master/two-environments-from-one-jps-in-diff-regions) | Simultaneous creation of two identical environments in different regions |
-| [Install Add-on within Environment Manifest](https://github.com/jelastic-jps/basic-examples/tree/master/install-add-on-inside-manifest) | Manifest template to create an environment and attach Public IP as an add-on |
-| [Mount Data from Storage](https://github.com/jelastic-jps/basic-examples/tree/master/mount-data-storage) | Mounting directory from Storage node to application server |
+| [Install Add-on within Environment Manifest](/install-add-on-inside-manifest/) | Manifest template to create an environment and attach Public IP as an add-on |
+| [Create Two Environments in Different Regions](/two-environments-in-different-regions/) | Simultaneous creation of two identical environments in different regions |
+| [Deploy an Image from a Custom Registry](/custom-registry/) | Provisioning a node from a private container registry with credentials from the installation form |
+| [Subscription Upgrade Flow](/subscriptions/) | Handling subscription settings changes and product moves in a marketplace package |
 
 ### Add-On Examples
 

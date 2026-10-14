@@ -10,8 +10,8 @@ menu:
     docs:
         title: "Troubleshooting"
         url: "/troubleshooting/"
-        weight: 4
-        parent: ""
+        weight: 20
+        parent: "samples"
         identifier: "troubleshooting"
 ---
 
