@@ -1,6 +1,68 @@
 {
+    "files.autoSave": "afterDelay",
+    "git.autofetch": "all",
+    "git.autoStash": true,
     "github.copilot.enable": {
-        "plaintext": "true",
-        "markdown": "true"
-    }
+      "plaintext": "true",
+      "markdown": "true"
+    },
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+    },
+    "[markdown]": {
+      "editor.unicodeHighlight.ambiguousCharacters": false,
+      "editor.unicodeHighlight.invisibleCharacters": true,
+      "diffEditor.ignoreTrimWhitespace": false,
+      "editor.minimap.autohide": "mouseover",
+      "editor.wordWrap": "on",
+      "editor.quickSuggestions": {
+        "comments": "off",
+        "strings": "off",
+        "other": "off"
+      },
+      "editor.defaultFormatter": null
+    },
+    "darkLight.showNotification": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.editorAssociations": {
+      "*.md": "default"
+    },
+    "terminal.integrated.profiles.linux": {
+      "devbox": {
+        "path": "devbox",
+        "args": [
+          "shell"
+        ]
+      }
+    },
+    "terminal.integrated.profiles.windows": {
+      "devbox": {
+        "path": "devbox",
+        "args": [
+          "shell"
+        ]
+      }
+    },
+    "terminal.integrated.profiles.osx": {
+      "devbox": {
+        "path": "devbox",
+        "args": [
+          "shell"
+        ]
+      }
+    },
+    "terminal.integrated.defaultProfile.linux": "devbox",
+    "terminal.integrated.defaultProfile.windows": "devbox",
+    "terminal.integrated.defaultProfile.osx": "devbox",
+    "git.rebaseWhenSync": true,
+    "cSpell.words": [
+      "seodesc",
+      "seoindex",
+      "seokeywords",
+      "seotitle",
+      "Virtuozzo"
+    ],
+    "markdown.extension.toc.updateOnSave": false 
 }

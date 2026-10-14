@@ -1,0 +1,134 @@
+languageCode: en-us
+theme: compose-master
+title: Cloud Scripting Documentation
+assetDir: "/themes/compose-master/static/"
+baseURL: "https://docs.cloudscripting.com/"
+canonifyURLs: true
+
+enableRobotsTXT: true
+disableAliases: true
+enableGitInfo: true
+
+disableKinds:
+  - taxonomy
+  - section
+
+params:
+  openGraphSiteName: Cloud Scripting Documentation
+  readRedirects: true
+  hostName: docs.cloudscripting.com
+  pageSeoTitle: Cloud Scripting
+  logo: vz_logo.svg
+  logoClass: vz-logo
+  logoWidth: 180
+  logoHeight: 35
+  logoLink: https://docs.cloudscripting.com/
+  useWebp: true
+  errorPage: /404/
+  notice: Documentation Portal for Cloud Scripting
+  # Version switcher (theme). Keep newest first; `version` is the version this branch documents.
+  version: "8.15.1"
+  versions:
+    - "8.15.1"
+    - "8.14.3"
+    - "8.14.2"
+    - "8.13.1"
+    - "8.12.1"
+    - "8.11.1"
+    - "8.10.2"
+    - "8.10.1"
+    - "8.8.1"
+    - "8.6.2"
+    - "8.6.1"
+    - "8.4.1"
+    - "8.3.3"
+    - "8.3.2"
+    - "8.3.1"
+    - "8.2.5"
+    - "8.2.4"
+    - "8.2.2"
+    - "8.1.1"
+    - "8.0.2"
+    - "7.3.1"
+    - "7.2.1"
+    - "7.0.2"
+    - "6.3.2"
+  # Cloud Scripting -> Virtuozzo Application Platform version table, rendered by
+  # layouts/shortcodes/cs-versions.html on the "CS vs Virtuozzo PaaS Versions" page.
+  # Replaces the `extra.versions` map of mkdocs.yml.
+  csPlatformVersions:
+    - { cs: "6.3.2", platform: "6.3-2" }
+    - { cs: "7.0.2", platform: "7.0-2" }
+    - { cs: "7.2.1", platform: "7.2-1" }
+    - { cs: "7.3.1", platform: "7.3-1" }
+    - { cs: "8.0.2", platform: "8.0-2" }
+    - { cs: "8.1.1", platform: "8.1-1" }
+    - { cs: "8.2.2", platform: "8.2-2" }
+    - { cs: "8.2.4", platform: "8.2-4" }
+    - { cs: "8.2.5", platform: "8.2-5" }
+    - { cs: "8.3.1", platform: "8.3-1" }
+    - { cs: "8.3.2", platform: "8.3-2" }
+    - { cs: "8.3.3", platform: "8.3-3" }
+    - { cs: "8.4.1", platform: "8.4-1" }
+    - { cs: "8.6.1", platform: "8.6.1" }
+    - { cs: "8.6.2", platform: "8.6.2" }
+    - { cs: "8.8.1", platform: "8.8.1" }
+    - { cs: "8.10.1", platform: "8.10.1" }
+    - { cs: "8.10.2", platform: "8.10.2" }
+    - { cs: "8.11.1", platform: "8.11.1" }
+    - { cs: "8.12.1", platform: "8.12.1" }
+    - { cs: "8.13.1", platform: "8.13.1" }
+    - { cs: "8.14.2", platform: "8.14.2" }
+    - { cs: "8.14.3", platform: "8.14.3" }
+    - { cs: "8.15.1", platform: "8.15.1" }
+
+outputs:
+  home:
+    - HTML
+    - HTACCESS
+    - JSON
+
+mediaTypes:
+  text/htaccess:
+    suffixes:
+      - htaccess
+
+outputFormats:
+  HTACCESS:
+    baseName: ''
+    isPlainText: true
+    mediaType: text/htaccess
+
+markup:
+  defaultMarkdownHandler: goldmark
+  goldmark:
+    extensions:
+      definitionList: true
+      footnote: true
+      linkify: true
+      table: true
+      taskList: true
+    parser:
+      attribute: true
+      wrapStandAloneImageWithinParagraph: false
+    renderer:
+      hardWraps: false
+      unsafe: true
+  highlight:
+    codeFences: true
+    hl_Lines: ''
+    lineNoStart: 1
+    lineNos: false
+    lineNumbersInTable: true
+    noClasses: false
+    style: igor
+    tabWidth: 4
+
+permalinks:
+  getting-started: ":filename/"
+  creating-manifest: ":filename/"
+  samples: ":filename/"
+  troubleshooting: ":filename/"
+  virtuozzo-cs-correspondence: ":filename/"
+  examples: ":filename/"
+  reference: ":filename/"

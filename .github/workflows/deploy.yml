@@ -1,0 +1,100 @@
+name: Build and Deploy Documentation (Hugo)
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version branch to build, or "all" for every version branch'
+        required: true
+        default: 'all'
+
+env:
+  BASE_URL: https://docs.cloudscripting.com/
+  HUGO_VERSION: 0.124.1
+  THEME_BRANCH: main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '${{ env.HUGO_VERSION }}'
+          extended: true
+
+      - name: Setup yq
+        uses: vegardit/gha-setup-yq@v1
+
+      - name: Select branches
+        shell: bash
+        run: |
+          git fetch --all --prune
+          if [ "${{ github.event.inputs.version }}" = "all" ]; then
+            # Version branches are named like 8.15.1; the newest one is published at the site root.
+            git branch -r | grep -v '\->' | sed 's#origin/##' | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -V > branches.txt
+          else
+            git show-ref --verify --quiet "refs/remotes/origin/${{ github.event.inputs.version }}" || { echo "Unknown version branch"; exit 1; }
+            echo "${{ github.event.inputs.version }}" > branches.txt
+          fi
+          echo "DEFAULT_VERSION=$(git branch -r | grep -v '\->' | sed 's#origin/##' | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -1)" >> "$GITHUB_ENV"
+          cat branches.txt
+
+      - name: Build every selected version
+        shell: bash
+        run: |
+          mkdir -p site
+          for branch in $(cat branches.txt); do
+            git checkout -f "$branch"
+            git submodule update --init
+            (cd themes && git checkout -f "${{ env.THEME_BRANCH }}" && git pull origin "${{ env.THEME_BRANCH }}")
+            version=$(yq eval '.params.version' config.yaml)
+            rm -rf public
+            if [ "$version" = "${DEFAULT_VERSION}" ]; then
+              HUGO_PARAMS_DEFAULTVERSION="${DEFAULT_VERSION}" hugo --minify -b "${{ env.BASE_URL }}"
+              cp -r public/. site/
+            else
+              HUGO_PARAMS_DEFAULTVERSION="${DEFAULT_VERSION}" hugo --minify -b "${{ env.BASE_URL }}${version}/"
+              mkdir -p "site/${version}"
+              cp -r public/. "site/${version}/"
+            fi
+          done
+
+      - name: Create documentation archive
+        run: tar -czvf csdocs.tar.gz -C site .
+
+      - name: Upload documentation as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: csdocs
+          path: ./csdocs.tar.gz
+          if-no-files-found: error
+
+      - name: Publish
+        uses: nogsantos/scp-deploy@master
+        with:
+          src: csdocs.tar.gz
+          remote: /tmp/csdocs.tar.gz
+          host: ${{ secrets.HOST_IP }}
+          port: 22
+          user: jelastic
+          key: ${{ secrets.SSH_KEY }}
+
+      - name: Update
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST_IP }}
+          username: jelastic
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            rm -rf /tmp/csdocs && mkdir -p /tmp/csdocs
+            tar -xzf /tmp/csdocs.tar.gz -C /tmp/csdocs
+            rsync -az --delete /tmp/csdocs/ /var/www/webroot/ROOT/site/

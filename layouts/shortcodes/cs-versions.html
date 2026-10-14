@@ -1,0 +1,19 @@
+{{- /* Cloud Scripting <-> Virtuozzo Application Platform version table.
+       Data: params.csPlatformVersions in config.yaml (replaces extra.versions of mkdocs.yml).
+       Usage: {{< cs-versions >}} */ -}}
+{{- with site.Params.csPlatformVersions }}
+<table class="corresp" style="width:100%">
+    <tr id="cs">
+        <th id="table-head">CS</th>
+        {{- range . }}
+        <td>{{ .cs }}</td>
+        {{- end }}
+    </tr>
+    <tr id="jel">
+        <th id="table-head">Virtuozzo PaaS</th>
+        {{- range . }}
+        <td>{{ .platform }}</td>
+        {{- end }}
+    </tr>
+</table>
+{{- end }}

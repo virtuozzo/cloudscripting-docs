@@ -7,13 +7,19 @@
             "label": "Start the Docs web server",
             "type": "shell",
             "osx": {
-                "command": "command -v devbox &> /dev/null || (curl -fsSL https://get.jetpack.io/devbox | bash) && devbox run serve"
+                "command": "which devbox &> /dev/null || (curl -fsSL https://get.jetpack.io/devbox | bash) && devbox run serve"
             },
             "linux": {
-                "command": "command -v devbox &> /dev/null || (curl -fsSL https://get.jetpack.io/devbox | bash) && devbox run serve"
+                "command": "which devbox &> /dev/null || (curl -fsSL https://get.jetpack.io/devbox | bash) && devbox run serve"
             },
             "windows": {
                 "command": "where devbox >nul 2>&1 || (echo 'Devbox is not installed. Please visit https://www.jetpack.io/devbox/docs/installing_devbox/ for installation instructions.') && devbox run serve"
+            },
+            "options": {
+                "shell": {
+                    "executable": "bash",
+                    "args": [ "-c" ]
+                }
             },
             "problemMatcher": [],
             "group": {
