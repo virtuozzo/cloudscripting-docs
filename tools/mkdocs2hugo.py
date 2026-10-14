@@ -294,6 +294,9 @@ def seodesc(body, title):
 PRODUCT_RENAMES = [
     ("Virtuozzo Application Platform", "Virtuozzo Application Management"),
     ("https://www.virtuozzo.com/application-platform-docs", "https://www.virtuozzo.com/application-management-docs"),
+    ("https://www.virtuozzo.com/application-platform-api-docs", "https://www.virtuozzo.com/application-management-api-docs"),
+    ("https://www.virtuozzo.com/application-platform-ops-docs", "https://www.virtuozzo.com/application-management-admin-docs"),
+    ("https://www.virtuozzo.com/application-platform-partners", "https://www.virtuozzo.com/paas-partners"),
 ]
 DROP_LINK_TARGETS = ("/releasenotes/",)   # pages that are not migrated: drop list items linking to them
 LIST_ITEM_RE = re.compile(r"^(\s*)([-*+]|\d+[.)]) ")

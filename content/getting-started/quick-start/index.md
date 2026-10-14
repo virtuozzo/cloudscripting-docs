@@ -75,7 +75,7 @@ The current manifest states to create a new environment, handled with **Apache 2
 
 ## How to Deploy CS Solution to Virtuozzo
 
-In order to give a try to *Hello World* sample from above (or deploy your own application), enter your [Virtuozzo Application Management](https://www.virtuozzo.com/application-platform-partners/) account and perform the following steps.                    
+In order to give a try to *Hello World* sample from above (or deploy your own application), enter your [Virtuozzo Application Management](https://www.virtuozzo.com/paas-partners/) account and perform the following steps.                    
 
 1.&nbsp;Click the **Import** button at the top pane of the dashboard.                                             
 

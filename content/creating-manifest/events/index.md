@@ -735,7 +735,7 @@ The event is executed after setting cloudlet count, which implies changing the n
 
 ### onBeforeSetCrossServiceNetworkIpCount
 
-The event is executed before setting the [Cross-Service Network](https://www.virtuozzo.com/application-platform-ops-docs/cross-network-overview/) IP address count, which implies changing the number of allocated cross-service IPs per any layer in the environment.
+The event is executed before setting the [Cross-Service Network](https://www.virtuozzo.com/application-management-admin-docs/cross-network-overview/) IP address count, which implies changing the number of allocated cross-service IPs per any layer in the environment.
 
 **Event Placeholders:**
 
@@ -750,7 +750,7 @@ The event is executed before setting the [Cross-Service Network](https://www.vir
 
 ### onAfterSetCrossServiceNetworkIpCount
 
-The event is executed after setting the [Cross-Service Network](https://www.virtuozzo.com/application-platform-ops-docs/cross-network-overview/) IP address count, which implies changing the number of allocated cross-service IPs per any layer in the environment.
+The event is executed after setting the [Cross-Service Network](https://www.virtuozzo.com/application-management-admin-docs/cross-network-overview/) IP address count, which implies changing the number of allocated cross-service IPs per any layer in the environment.
 
 **Event Placeholders:**
 

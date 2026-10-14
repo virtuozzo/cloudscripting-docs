@@ -22,7 +22,7 @@ menu:
 
 There are three main pillars of cloud scripting:
 
-* **Actions** - scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to [script custom actions](/custom-scripts/) using [API calls](https://www.virtuozzo.com/application-platform-api-docs/), Linux bash [shell command](/actions/#cmd), JS and Java scripts   
+* **Actions** - scripted logic for executing a set of commands to automate the tasks. The system provides a default list of actions and possibility to [script custom actions](/custom-scripts/) using [API calls](https://www.virtuozzo.com/application-management-api-docs/), Linux bash [shell command](/actions/#cmd), JS and Java scripts   
 * **Events** - specific [triggers](/events/) for executing actions on a required application lifecycle stage   
 * **Injection** - supplying default actions, [placeholders](/placeholders/), platform API methods, environment variables, request parameters and input settings in custom scripts by default
 

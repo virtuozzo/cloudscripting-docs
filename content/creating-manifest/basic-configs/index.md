@@ -431,7 +431,7 @@ The service starts if:
 
 #### Cluster
 
-In Virtuozzo Application Management the following *[nodeTypes](https://docs.cloudscripting.com/creating-manifest/selecting-containers/#supported-stacks)* can be clusterized with help of built-in [Auto-Сlustering feature](https://www.virtuozzo.com/application-platform-ops-docs/auto-clustering-templates/):  
+In Virtuozzo Application Management the following *[nodeTypes](https://docs.cloudscripting.com/creating-manifest/selecting-containers/#supported-stacks)* can be clusterized with help of built-in [Auto-Сlustering feature](https://www.virtuozzo.com/application-management-admin-docs/auto-clustering-templates/):  
 
   * Application Servers: GlassFish, WildFly, Payara  
   * SQL Databases: MySQL, MariaDB, PostgreSQL
@@ -495,7 +495,7 @@ nodes:
     * `db_user` *[optional]* - sets up a database username. If not defined the system will generate one by default  
     * `db_pass` *[optional]* - sets up a password for `db_user`. If not defined the system will generate one by default  
   
-A [cluster configuration object](https://www.virtuozzo.com/application-platform-ops-docs/auto-clustering-templates/#clusterization-package) should be passed to the `cluster` field to enable custom auto-clustering
+A [cluster configuration object](https://www.virtuozzo.com/application-management-admin-docs/auto-clustering-templates/#clusterization-package) should be passed to the `cluster` field to enable custom auto-clustering
 
 For example *Master-Master* replication topology with ProxySQL node as the entry point:  
   

@@ -329,7 +329,7 @@ The list of supported [software stacks](https://www.virtuozzo.com/application-ma
 
 ## Selecting Hardware Hosts
 
-There is an ability in Virtuozzo Application Management to select the hardware for the user's application with the help of the [multi zones](https://www.virtuozzo.com/application-platform-ops-docs/multi-zones/) approach. If a user is aware all of the [labels](https://www.virtuozzo.com/application-platform-ops-docs/multi-zones/#host-labels) assigned for the hardware hosts within the platform he can decide which hosts across all of the available regions can be used to install the user's environment.  
+There is an ability in Virtuozzo Application Management to select the hardware for the user's application with the help of the [multi zones](https://www.virtuozzo.com/application-management-admin-docs/multi-zones/) approach. If a user is aware all of the [labels](https://www.virtuozzo.com/application-management-admin-docs/multi-zones/#host-labels) assigned for the hardware hosts within the platform he can decide which hosts across all of the available regions can be used to install the user's environment.  
 Hardware host selection is performed by **distribution** parameter which defines the logic in the [layer specifics](/basic-configs/#nodes-definition), which consist of the following two options:  
 
 - `zones` - sets a filter for allowed zones (groups of hosts custom-defined by labels) in the “{name}: {value}” format, e.g. zones: [{provider: azure}, {provider: amazon}]  
