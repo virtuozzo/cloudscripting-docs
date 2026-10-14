@@ -291,7 +291,10 @@ def seodesc(body, title):
 
 # --------------------------------------------------------------------------- polish
 # Idempotent clean-up applied after conversion and available on its own (--polish DIR).
-PRODUCT_RENAMES = [("Virtuozzo Application Platform", "Virtuozzo Application Management")]
+PRODUCT_RENAMES = [
+    ("Virtuozzo Application Platform", "Virtuozzo Application Management"),
+    ("https://www.virtuozzo.com/application-platform-docs", "https://www.virtuozzo.com/application-management-docs"),
+]
 DROP_LINK_TARGETS = ("/releasenotes/",)   # pages that are not migrated: drop list items linking to them
 LIST_ITEM_RE = re.compile(r"^(\s*)([-*+]|\d+[.)]) ")
 

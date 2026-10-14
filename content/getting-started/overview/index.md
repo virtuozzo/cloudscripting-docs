@@ -26,7 +26,7 @@ There are three main pillars of cloud scripting:
 * **Events** - specific [triggers](/events/) for executing actions on a required application lifecycle stage   
 * **Injection** - supplying default actions, [placeholders](/placeholders/), platform API methods, environment variables, request parameters and input settings in custom scripts by default
 
-The developed Cloud Scripting solutions are wrapped into packages and distributed through preparing a manifest file in JSON format. Such packaged solutions can be effortlessly deployed to the platform via [import](https://www.virtuozzo.com/application-platform-docs/environment-import/) functionality.
+The developed Cloud Scripting solutions are wrapped into packages and distributed through preparing a manifest file in JSON format. Such packaged solutions can be effortlessly deployed to the platform via [import](https://www.virtuozzo.com/application-management-docs/environment-import/) functionality.
 
 The example below represents the Cloud Scripting basic use case. This manifest declares the creation of a new environment with the Payara Micro cluster image certified by Virtuozzo Application Management and provides possibility to configure new cluster members while scaling nodes. Within the manifest, the following key parameters are declared:
  

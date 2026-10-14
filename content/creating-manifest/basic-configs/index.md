@@ -145,7 +145,7 @@ envGroups: array/string
 - `addons` *[optional]* - includes JPS manifests with the **type** `update` as a new JPS installation. More details [here](/addons/)
 - `success` *[optional]* - success text that will be sent via email and will be displayed at the dashboard after installation. There is an ability to use Markdown syntax. More details [here](/visual-settings/#success-text-customization).
 - `mixins` *[optional]* - includes(mixes) the functionality and data from one manifest into another by URL or object. More details [here](/mixins/)
-- `envGroups` *[optional]* [array] - specifies a new environment group(s) or existing one(s) the new environment will belong to. The parameter can be set up as a string or as an array of strings: *envGroups [“MyGroup”]* or *envGroups [“MyGroup”,”ParentGroup/ChildGroup”]*. See more regarding [environment groups management](https://www.virtuozzo.com/application-platform-docs/environment-groups-management/)
+- `envGroups` *[optional]* [array] - specifies a new environment group(s) or existing one(s) the new environment will belong to. The parameter can be set up as a string or as an array of strings: *envGroups [“MyGroup”]* or *envGroups [“MyGroup”,”ParentGroup/ChildGroup”]*. See more regarding [environment groups management](https://www.virtuozzo.com/application-management-docs/environment-groups-management/)
 - "..." - the list of [events](/events/) can be predefined before manifest is installed  
 
 ### envGroups
@@ -202,11 +202,11 @@ The list of available parameters are:
 - `fixedCloudlets` *[optional]* - amount of fixed cloudlets. The default value is 1.
 - `count` *[optional]* - amount of nodes in one group. The default value is 1. To set up the parameter dynamically see an [example](#count-parameter).
 - `nodeGroup` *[optional]* - the defined node layer. A docker-based containers can be predefined in any custom node group.
-- `displayName` *[optional]* - node's display name (i.e. [alias](https://www.virtuozzo.com/application-platform-docs/environment-aliases/))                                         
+- `displayName` *[optional]* - node's display name (i.e. [alias](https://www.virtuozzo.com/application-management-docs/environment-aliases/))                                         
 - `extip` *[optional]* - attaching public IP address to a container. The default value is *'false'*
 - `addons` *[optional]* - a list of addons, which will be installed in current `nodeGroup`. Addons will be installed after environment installation and `onInstall` action will be finished. [More details here](/addons/)
 - `tag` *[optional]* - an image tag for `dokerized` Virtuozzo Application Management templates with `nodeType` parameter. Full list of supported tag [here](/selecting-containers/#dokerized-template-tags)
-- `scalingMode` *[optional]* - *stateless* or *stateful* [scaling](https://www.virtuozzo.com/application-platform-docs/horizontal-scaling/) mode, the possible values are *'STATELESS'* or *'STATEFUL'* respectively. The default value is *'STATEFUL'* for *nodeGroup* types: *bl,cp,vds*. For the rest of *nodeGroup* types the default value is *'STATELESS'*
+- `scalingMode` *[optional]* - *stateless* or *stateful* [scaling](https://www.virtuozzo.com/application-management-docs/horizontal-scaling/) mode, the possible values are *'STATELESS'* or *'STATEFUL'* respectively. The default value is *'STATEFUL'* for *nodeGroup* types: *bl,cp,vds*. For the rest of *nodeGroup* types the default value is *'STATELESS'*
 - `diskLimit` *[optional]* - sets a storage size limit. The default value is equal to disk quota for current *nodeGroup*. It is measured in GB by default. The MB and TB can be used as well. Examples:
     - 10 = 10 GB
     - 10G = 10GB
@@ -229,15 +229,15 @@ The following parameters are available for Docker and Docker-based nodes only:
 - `startService` *[optional]* - defines whether to run defined service or not. By default `true`
 - `cluster` *[optional]* - enables auto-clustering functionality for specific stacks. [Learn more](#cluster)  
 - `validation` *[optional]* - validates, sets, and limits node creation parameters in the layer. [Learn more](#validation)  
-- `adminUrl` *[optional]* - allows to override default web administration interface URL for the *nodeTypes* that support such administration interface and it's applied to all nodes of the layer. Such *nodeTypes* are *[MySQL, MariaDB](https://www.virtuozzo.com/company/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/)*, *[PostgreSQL](https://www.virtuozzo.com/company/blog/postgresql-auto-clustering-master-slave-replication/)*, *[MongoDB](https://www.virtuozzo.com/company/blog/mongodb-auto-clustering/)*, *[LiteSpeed ADC](https://www.virtuozzo.com/company/blog/litespeed-web-adc-load-balancing/)*, *[LiteSpeed Web Server](https://www.virtuozzo.com/company/blog/litespeed-web-server/)*, *[Couchbase](https://www.virtuozzo.com/company/blog/auto-scalable-couchbase-cluster-in-docker-containers/)*, *[Redis](https://www.virtuozzo.com/application-platform-docs/redis/)*, *[GlassFish](https://www.virtuozzo.com/company/blog/glassfish-payara-clustering-automated/)*, *[WildFly](https://www.virtuozzo.com/company/blog/wildfly-managed-domain-automatic-clustering-scaling/)*, *[Payara](https://www.virtuozzo.com/company/blog/glassfish-payara-clustering-automated/)*. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings) 
+- `adminUrl` *[optional]* - allows to override default web administration interface URL for the *nodeTypes* that support such administration interface and it's applied to all nodes of the layer. Such *nodeTypes* are *[MySQL, MariaDB](https://www.virtuozzo.com/company/blog/mysql-mariadb-database-auto-clustering-cloud-hosting/)*, *[PostgreSQL](https://www.virtuozzo.com/company/blog/postgresql-auto-clustering-master-slave-replication/)*, *[MongoDB](https://www.virtuozzo.com/company/blog/mongodb-auto-clustering/)*, *[LiteSpeed ADC](https://www.virtuozzo.com/company/blog/litespeed-web-adc-load-balancing/)*, *[LiteSpeed Web Server](https://www.virtuozzo.com/company/blog/litespeed-web-server/)*, *[Couchbase](https://www.virtuozzo.com/company/blog/auto-scalable-couchbase-cluster-in-docker-containers/)*, *[Redis](https://www.virtuozzo.com/application-management-docs/redis/)*, *[GlassFish](https://www.virtuozzo.com/company/blog/glassfish-payara-clustering-automated/)*, *[WildFly](https://www.virtuozzo.com/company/blog/wildfly-managed-domain-automatic-clustering-scaling/)*, *[Payara](https://www.virtuozzo.com/company/blog/glassfish-payara-clustering-automated/)*. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings) 
 - `isClusterSupport` *[optional]* - allows to override clustering support and it's applied to all nodes of the layer. If the setting is not used the default value is applied. At the moment, it may be applicable to the templates with label “clusterEnabled = 1”. And setting can be used to hide the *Auto-Clustering* field for a DAS node. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)
-- `isRedeploySupport` *[optional]*[boolean] - disables [redeploy](https://www.virtuozzo.com/application-platform-docs/container-redeploy/) functionality through the *nodeGroup* settings. It is applicable to the all nodes of the layer. Respectively the **Redeploy** button gets hidden in the dashboard. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)
+- `isRedeploySupport` *[optional]*[boolean] - disables [redeploy](https://www.virtuozzo.com/application-management-docs/container-redeploy/) functionality through the *nodeGroup* settings. It is applicable to the all nodes of the layer. Respectively the **Redeploy** button gets hidden in the dashboard. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)
 - `isDeploySupport` *[optional]*[boolean] - disables deployment  through the *nodeGroup* settings. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings)  
 - `isResetServicePassword` *[optional]* - hides the password reset button on the UI. The setting is stored in *nodeGroup* settings and [can be overridden via API](#update-nodegroup-settings). Possible values:  
     - *false* - hides buttons at all levels
     - *NODE* - displays buttons only at the level of the nodes (containers)
     - *NODEGROUP* - displays buttons only at the *nodeGroup* level
-- `isSLBAccessEnabled` *[optional]{boolean}* - enables/disables access to the node or respective *nodeGroup* through the [Shared Load Balancer](https://www.virtuozzo.com/application-platform-docs/shared-load-balancer/#deny-access-via-shared-load-balancer). By default `true`  
+- `isSLBAccessEnabled` *[optional]{boolean}* - enables/disables access to the node or respective *nodeGroup* through the [Shared Load Balancer](https://www.virtuozzo.com/application-management-docs/shared-load-balancer/#deny-access-via-shared-load-balancer). By default `true`  
 
 
 #### count Parameter
@@ -741,7 +741,7 @@ Here:
 - `/example-path` - path to place the volume at a target node  
 - `sourcePath` *[optional]* - default value that repeats volume path (*/example-path* in our sample)
 - `sourceNodeId` -  node identifier the volume should be mounted from (optional, in case of the `sourceNodeGroup` parameter using)       
-- `sourceHost` *[optional]* - parameter for [external mounts](https://www.virtuozzo.com/application-platform-docs/configure-external-nfs-server/) usage
+- `sourceHost` *[optional]* - parameter for [external mounts](https://www.virtuozzo.com/application-management-docs/configure-external-nfs-server/) usage
 - `readOnly` - defines write data permissions at source node, the default value is `false`   
 - `sourceNodeGroup` - any available *nodeGroup* within a source environment (ignored if the `sourceNodeId` parameter is specified). The list of mounted volumes is defined by a master node.    
 
@@ -938,7 +938,7 @@ where:
 
 #### Environment Variables
 
-Docker environment [variable](https://www.virtuozzo.com/application-platform-docs/container-variables/) is an optional topology object. The *env* instruction allows to set the required environment variables to specified values. 
+Docker environment [variable](https://www.virtuozzo.com/application-management-docs/container-variables/) is an optional topology object. The *env* instruction allows to set the required environment variables to specified values. 
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
 ```yaml
@@ -973,7 +973,7 @@ nodes:
 {{< /tabs-item >}}
 {{< /tabs >}}
 
-Environment variables can manage to control nodes availability from outside to the platform. [Virtuozzo Application Management Container Firewall](https://www.virtuozzo.com/application-platform-docs/custom-firewall/) feature was implemented in Virtuozzo Application Management version 5.4 and new firewall rules can be set during creating new environment.
+Environment variables can manage to control nodes availability from outside to the platform. [Virtuozzo Application Management Container Firewall](https://www.virtuozzo.com/application-management-docs/custom-firewall/) feature was implemented in Virtuozzo Application Management version 5.4 and new firewall rules can be set during creating new environment.
 
  The reserved environment variable for this option is - **JELASTIC_PORTS**. This parameter defines which ports will be added in *inbound* rules. All rules in this case will be added for both protocols (**TCP/UDP**).
 
@@ -1009,7 +1009,7 @@ All ports for output traffic are opened by default.
 
 Another one reserved environment variables is **ON_ENV_INSTALL**. This variable is responsible for executing new JPS installation after new nodeGroup (layer of nodes) has been created.
 
-This variable for **nodeGroup** can be set in JPS or via dashboard. More info about Docker configuration is Virtuozzo Application Management dashboard [here](https://www.virtuozzo.com/application-platform-docs/container-configuration/).
+This variable for **nodeGroup** can be set in JPS or via dashboard. More info about Docker configuration is Virtuozzo Application Management dashboard [here](https://www.virtuozzo.com/application-management-docs/container-configuration/).
 
 {{%note%}}
 > By default in manifest from the **ON_ENV_INSTALL** variable *\${settings.nodeGroup}* placeholder is defined. It will be a nodeGroup value where this manifest is executed.
@@ -1091,7 +1091,7 @@ Any number of custom parameters in *settings* can be set.
 
 #### Links
 
-Docker [links](https://www.virtuozzo.com/application-platform-docs/container-links/) option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
+Docker [links](https://www.virtuozzo.com/application-management-docs/container-links/) option allows to set up interaction between Docker containers, without having to expose internal ports to the outside world.
 
 The example below illustrates the way to link *sql* and *memcached* nodes to *cp* container.
 {{< tabs >}}
@@ -1378,10 +1378,10 @@ The error 11022 is ignored and gets to no crash report.
 
 ## Relative Links
 
-The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the ***baseUrl*** parameter or specified while [importing](https://www.virtuozzo.com/application-platform-docs/environment-export-import/) a corresponding JPS file via the Virtuozzo Application Management dashboard.          
+The relative links functionality is intended to specify the JPS file’s base URL, in relation to which the subsequent links can be set throughout the manifest. This source destination (URL) can point either to the text of the file or its raw code. Therefore, it is passed in the manifest through the ***baseUrl*** parameter or specified while [importing](https://www.virtuozzo.com/application-management-docs/environment-export-import/) a corresponding JPS file via the Virtuozzo Application Management dashboard.          
 
 {{%note%}}
-> The *baseUrl* value declared within the manifest has higher priority than installation via URL (i.e. [Import](https://www.virtuozzo.com/application-platform-docs/environment-export-import/)).                
+> The *baseUrl* value declared within the manifest has higher priority than installation via URL (i.e. [Import](https://www.virtuozzo.com/application-management-docs/environment-export-import/)).                
 {{%/note%}}
 
 **Example**

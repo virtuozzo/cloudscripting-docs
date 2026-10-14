@@ -99,16 +99,16 @@ This is the list of placeholders that you can use within the nodes section (*{no
     - `(key)` - name of the applied parameter, according to the following list:
         - `address` - internal or external IP address                               
         - `adminUrl` - full URL address with protocol   
-        - `canBeExported` *[boolean]* - Virtuozzo Application Management [Export](https://www.virtuozzo.com/application-platform-docs/environment-export-import/) feature       
+        - `canBeExported` *[boolean]* - Virtuozzo Application Management [Export](https://www.virtuozzo.com/application-management-docs/environment-export-import/) feature       
         - `bandwidthLimit` - node bandwidth limit   
         - `contextValidatorRegex` - validation for context names    
         - `diskIopsLimit` - IOPS limitation quota   
         - `addons.length` - number of available add-ons at the selected node
         - `diskLimit` - hardware node disk space quota in MB 
-        - `endpoints` [*array indexes*] - [endpoints](https://www.virtuozzo.com/application-platform-docs/endpoints/) functionality                              
+        - `endpoints` [*array indexes*] - [endpoints](https://www.virtuozzo.com/application-management-docs/endpoints/) functionality                              
             - `domain` - full domain name of the node the endpoint is being set for                  
             - `id` - node ID  
-            - `name` - title for the new endpoint (can be either custom or [predefined](https://www.virtuozzo.com/application-platform-docs/endpoints/#preconfigured))                         
+            - `name` - title for the new endpoint (can be either custom or [predefined](https://www.virtuozzo.com/application-management-docs/endpoints/#preconfigured))                         
             - `privatePort` - preferred local node port              
             - `publicPort` - private (dynamic) port used for mapping                                         
             - `protocol` - protocol type (currently, only TCP is provided)             
@@ -150,7 +150,7 @@ This is the list of placeholders that you can use within the nodes section (*{no
             - `type` - engine type (e.g. *java*, *php*, *ruby*, *python*, *nodejs*)  
             - `vcsSupport` - supporting VCS in a container  
             - `version` - engine version   
-        - `packages` [*array*] - packages with add-ons installed over the corresponding nodes (e.g. [FTP](https://www.virtuozzo.com/application-platform-docs/ftp-ftps-support/) add-on)                              
+        - `packages` [*array*] - packages with add-ons installed over the corresponding nodes (e.g. [FTP](https://www.virtuozzo.com/application-management-docs/ftp-ftps-support/) add-on)                              
             - `description` - package description                                       
             - `documentationurl` - redirect to page(s) with more info on the particular add-on                          
             - `iconurl` - add-on logo                                               

@@ -23,7 +23,7 @@ Run into trouble with Cloud Scripting? Here are some helpful tips and specific s
 
     *http://app.{HOSTER_URL}/console/*                       
     
-    Here, substitute ***{HOSTER_URL}***  with the platform domain of your hosting provider (see the last column of the table within the [Hosters Info](https://www.virtuozzo.com/application-platform-docs/paas-hosting-providers/) page).                                           
+    Here, substitute ***{HOSTER_URL}***  with the platform domain of your hosting provider (see the last column of the table within the [Hosters Info](https://www.virtuozzo.com/application-management-docs/paas-hosting-providers/) page).                                           
 * In the opened browser tab, you will see the Cloud Scripting execution log.                                                               
     
 ![troubleshooting](troubleshooting.jpg)          

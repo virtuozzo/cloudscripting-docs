@@ -94,7 +94,7 @@ In order to give a try to *Hello World* sample from above (or deploy your own ap
 
 To proceed, click on **Import** in the bottom-right corner.                   
 
-3.&nbsp;Within the installation confirmation window, specify domain name for a new **Environment**, set a **Display Name** (i.e. [alias](https://www.virtuozzo.com/application-platform-docs/environment-aliases/)) for it and select the preferred [region](https://www.virtuozzo.com/application-platform-docs/environment-regions/) (if available).                  
+3.&nbsp;Within the installation confirmation window, specify domain name for a new **Environment**, set a **Display Name** (i.e. [alias](https://www.virtuozzo.com/application-management-docs/environment-aliases/)) for it and select the preferred [region](https://www.virtuozzo.com/application-management-docs/environment-regions/) (if available).                  
 
 ![hello-world.png](hello-world.png)                                        
 

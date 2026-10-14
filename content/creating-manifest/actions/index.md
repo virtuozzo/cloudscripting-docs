@@ -57,7 +57,7 @@ To process any container operation (except for [*cmd*](#cmd)), the Cloud Scripti
 
 ### cmd
 
-The *cmd* action executes *[commands](https://www.virtuozzo.com/application-platform-docs/ssh-gate/)* in synchronous and asynchronous modes. Within one container the *cmd* actions can be performed in synchronous mode only. Within one environment *cmd* actions can be performed asynchronously in case similar actions are required to be executed on different nodeGroups.
+The *cmd* action executes *[commands](https://www.virtuozzo.com/application-management-docs/ssh-gate/)* in synchronous and asynchronous modes. Within one container the *cmd* actions can be performed in synchronous mode only. Within one environment *cmd* actions can be performed asynchronously in case similar actions are required to be executed on different nodeGroups.
 <!--Available for all nodes.-->      
 
 **Example** 
@@ -107,7 +107,7 @@ cmd [tomcat6]: curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2
 {{< /tabs-item >}}
 {{< /tabs >}}
 
-The same action can be performed asynchronously on all nodes of specific *[nodeGroup](https://www.virtuozzo.com/application-platform-docs/paas-components-definition/#layer)* or several ones provided as the list: [cp, bl].  
+The same action can be performed asynchronously on all nodes of specific *[nodeGroup](https://www.virtuozzo.com/application-management-docs/paas-components-definition/#layer)* or several ones provided as the list: [cp, bl].  
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
 ```yaml
@@ -962,8 +962,8 @@ where:
 - `extip` *[optional]* - attaching the external IP address to a container. The default value is *'false'*.                     
 - `fixedCloudlets` *[optional]* - number of reserved cloudlets. The default value is *'0'*.                             
 - `flexibleCloudlets` *[optional]* - number of dynamic cloudlets. The default value is *'1'*.                           
-- `displayName` *[optional]* - node's display name (i.e. [alias](https://www.virtuozzo.com/application-platform-docs/environment-aliases/))                                         
-    The following parameters are required for [Docker](https://www.virtuozzo.com/application-platform-docs/container-types/) containers only:                                    
+- `displayName` *[optional]* - node's display name (i.e. [alias](https://www.virtuozzo.com/application-management-docs/environment-aliases/))                                         
+    The following parameters are required for [Docker](https://www.virtuozzo.com/application-management-docs/container-types/) containers only:                                    
 - `dockerName` *[optional]* - name and tag of Docker image
 - `registryUrl` *[optional]* - custom Docker registry
 - `registryUser` *[optional]* - Docker registry username
@@ -999,7 +999,7 @@ setNodeDisplayName [nodeId, nodeGroup, nodeType]: string
 where:   
 
 - `nodeId`, `nodeGroup`, `nodeType` - parameters that determine target containers for the action execution (at least one of these parameters is required)                   
-- `string` - node’s display name (i.e. [alias](https://www.virtuozzo.com/application-platform-docs/environment-aliases/))                                                                        
+- `string` - node’s display name (i.e. [alias](https://www.virtuozzo.com/application-management-docs/environment-aliases/))                                                                        
 
 The action `setNodeDisplayName` has the default parameter called **displayName**. It is useful to set display name for few node layers in the same `action`. For example:
 {{< tabs >}}
@@ -2189,7 +2189,7 @@ where:
 - `jps` - URL to your custom JPS manifest  
 - `settings` - user custom parameters           
 
-The `nodeGroup` [filtering](/selecting-containers/#selector-types) can be applied to the `install` action in order to carry out addon installation on different [layers](https://www.virtuozzo.com/application-platform-docs/paas-components-definition/#layer) within one environment.  
+The `nodeGroup` [filtering](/selecting-containers/#selector-types) can be applied to the `install` action in order to carry out addon installation on different [layers](https://www.virtuozzo.com/application-management-docs/paas-components-definition/#layer) within one environment.  
 
 {{< tabs >}}
 {{< tabs-item title="YAML" >}}
@@ -2697,7 +2697,7 @@ onInstall:
 
 where:
 
-- `region` - hardware node's [region](https://www.virtuozzo.com/application-platform-docs/environment-regions/)  
+- `region` - hardware node's [region](https://www.virtuozzo.com/application-management-docs/environment-regions/)  
 - `envName` - short domain name of a new environment                     
 - `name` - JPS name  
 - `nodes` - nodes description                                                           

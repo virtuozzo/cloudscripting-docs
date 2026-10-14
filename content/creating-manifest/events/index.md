@@ -163,7 +163,7 @@ The event is executed once the *changeTopology* action is finished.
 
 ### onBeforeScaleOut
 
-The event is executed before adding new node(s) (i.e. scaling *out*) to the existing node group (layer). Scaling in/out can be performed either through [changing topology](https://www.virtuozzo.com/application-platform-docs/dashboard-guide/#change-topology) or [auto horizontal scaling](https://www.virtuozzo.com/application-platform-docs/automatic-horizontal-scaling/) functionality. The *onBeforeScaleOut* event is run once for each layer upon any node count change.
+The event is executed before adding new node(s) (i.e. scaling *out*) to the existing node group (layer). Scaling in/out can be performed either through [changing topology](https://www.virtuozzo.com/application-management-docs/dashboard-guide/#change-topology) or [auto horizontal scaling](https://www.virtuozzo.com/application-management-docs/automatic-horizontal-scaling/) functionality. The *onBeforeScaleOut* event is run once for each layer upon any node count change.
 
 **Event Placeholders:**
 
@@ -235,7 +235,7 @@ The event is executed after adding new container(s) to the existing node group. 
 
 ### onAlert
 
-This event provides a possibility to bind actions to [Load Alerts](https://www.virtuozzo.com/application-platform-docs/load-alerts/) and [Automatic Horizontal Scaling Alerts](https://www.virtuozzo.com/application-platform-docs/automatic-horizontal-scaling/) that are configured through the Virtuozzo Application Management triggers.
+This event provides a possibility to bind actions to [Load Alerts](https://www.virtuozzo.com/application-management-docs/load-alerts/) and [Automatic Horizontal Scaling Alerts](https://www.virtuozzo.com/application-management-docs/automatic-horizontal-scaling/) that are configured through the Virtuozzo Application Management triggers.
 
 These monitoring triggers are based on the usage of the following resource types:
 
@@ -660,7 +660,7 @@ The event is executed after detaching the external IP address. The *onAfterDetac
 
 ### onBeforeUpdateVcsProject
 
-The event is carried out before updating the VCS project. For a detailed guidance on the [VCS project deployment](https://www.virtuozzo.com/application-platform-docs/cli-vcs-deploy/), refer to the linked page.
+The event is carried out before updating the VCS project. For a detailed guidance on the [VCS project deployment](https://www.virtuozzo.com/application-management-docs/cli-vcs-deploy/), refer to the linked page.
 
 **Event Placeholders:**
 
@@ -679,7 +679,7 @@ The event is carried out before updating the VCS project. For a detailed guidanc
 
 ### onAfterUpdateVcsProject
 
-The event is carried out after updating the VCS project. For a detailed guidance on the [VCS project deployment](https://www.virtuozzo.com/application-platform-docs/cli-vcs-deploy/), refer to the linked page.
+The event is carried out after updating the VCS project. For a detailed guidance on the [VCS project deployment](https://www.virtuozzo.com/application-management-docs/cli-vcs-deploy/), refer to the linked page.
 
 **Event Placeholders:**
 
@@ -1081,7 +1081,7 @@ This event is carried out after restarting container. The *onAfterRestartContain
 
 ### onBeforeMigrate
 
-The event is related to the [*migrating environment*](https://www.virtuozzo.com/application-platform-docs/environment-regions-migration/) action and is called before it.
+The event is related to the [*migrating environment*](https://www.virtuozzo.com/application-management-docs/environment-regions-migration/) action and is called before it.
 
 **Event Placeholders:**
 
@@ -1094,7 +1094,7 @@ The event is related to the [*migrating environment*](https://www.virtuozzo.com/
 
 ### onAfterMigrate
 
-The event is related to [*migrating environment*](https://www.virtuozzo.com/application-platform-docs/environment-regions-migration/) and is called after it.
+The event is related to [*migrating environment*](https://www.virtuozzo.com/application-management-docs/environment-regions-migration/) and is called after it.
 
 **Event Placeholders:**
 
@@ -1815,7 +1815,7 @@ The event is executed after swapping the external domain names between two envir
     - `result` - result code. The successful action result is '0'
     
 ### onBeforeSwapExtIps
-The event is executed before swapping the external IPs between two environments via [API](https://docs.jelastic.com/api/#!/api/environment.Binder-method-SwapExtIps) or [Virtuozzo Application Management CLI](https://www.virtuozzo.com/application-platform-docs/cli-ip-swap/).
+The event is executed before swapping the external IPs between two environments via [API](https://docs.jelastic.com/api/#!/api/environment.Binder-method-SwapExtIps) or [Virtuozzo Application Management CLI](https://www.virtuozzo.com/application-management-docs/cli-ip-swap/).
 
 **Event Placeholders:**
 
@@ -1831,7 +1831,7 @@ The event is executed before swapping the external IPs between two environments 
     - `source` - “string” error description
 
 ### onAfterSwapExtIps
-The event is executed after swapping the external IPs between two environments via [API](https://docs.jelastic.com/api/#!/api/environment.Binder-method-SwapExtIps) or [Virtuozzo Application Management CLI](https://www.virtuozzo.com/application-platform-docs/cli-ip-swap/).
+The event is executed after swapping the external IPs between two environments via [API](https://docs.jelastic.com/api/#!/api/environment.Binder-method-SwapExtIps) or [Virtuozzo Application Management CLI](https://www.virtuozzo.com/application-management-docs/cli-ip-swap/).
 
 **Event Placeholders:**
 
