@@ -1,0 +1,21 @@
+name: "multi-zone"
+type: install
+
+settings:
+  fields:
+  - hideLabel: false
+    type: string
+    caption: Label name
+    name: labelname
+  - hideLabel: false
+    type: string
+    caption: Label value
+    name: labelvalue
+
+nodes:
+  - nodeType: tomcat
+    cloudlets: 6
+    distribution:
+      mode: SOFT
+      zones: 
+      - "${settings.labelname}": "${settings.labelvalue}"

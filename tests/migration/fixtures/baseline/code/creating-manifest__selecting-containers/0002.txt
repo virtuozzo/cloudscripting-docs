@@ -1,0 +1,4 @@
+writeFile:
+  - nodeId: ${nodes.apache2[0].id}
+    path: /var/www/webroot/hw.txt
+    body: Hello World!

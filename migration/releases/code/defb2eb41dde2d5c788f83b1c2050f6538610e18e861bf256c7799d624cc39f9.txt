@@ -1,0 +1,5 @@
+- createfile [cp]:
+    path: /tmp/test.txt
+
+- createDirectory [cp,bl,123]:
+    path: /tmp/test

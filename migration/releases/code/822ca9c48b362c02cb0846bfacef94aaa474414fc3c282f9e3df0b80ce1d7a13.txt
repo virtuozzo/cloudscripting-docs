@@ -1,0 +1,7 @@
+{
+  "type": "update",
+  "name": "response handlers",
+  "onInstall": {
+    "script": "return 'Warning!'"
+  }
+}

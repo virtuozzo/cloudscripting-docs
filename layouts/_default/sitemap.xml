@@ -1,0 +1,9 @@
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\" ?>" | safeHTML }}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>{{ .Site.Home.Permalink }}</loc></url>
+  {{- range .Site.RegularPages -}}
+    {{- if and (not .Draft) (not .Params.searchExclude) (ne .Layout "search") (not .Params.private) -}}
+  <url><loc>{{ .Permalink }}</loc></url>
+    {{- end -}}
+  {{- end }}
+</urlset>

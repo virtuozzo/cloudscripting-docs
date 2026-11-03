@@ -1,0 +1,20 @@
+{
+  "type": "install",
+  "name": "ShowIf support with toggle field",
+  "settings": {
+    "fields": [
+      {
+        "type": "toggle",
+        "caption": "Toggle",
+        "showIf": {
+          "true": [
+            {
+              "type": "string",
+              "caption": "String"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

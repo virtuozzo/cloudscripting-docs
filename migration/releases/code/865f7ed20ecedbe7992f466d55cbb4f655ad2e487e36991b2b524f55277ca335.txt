@@ -1,0 +1,25 @@
+[
+  {
+    "type": "checkboxlist",
+    "caption": "Options",
+    "name": "options",
+    "columns": 2,
+    "values": [
+      {
+        "name": "option1",
+        "caption": "Option 1",
+        "value": false
+      },
+      {
+        "name": "option2",
+        "caption": "Option 2",
+        "value": true
+      },
+      {
+        "name": "option3",
+        "caption": "Option 3",
+        "value": true
+      }
+    ]
+  }
+]

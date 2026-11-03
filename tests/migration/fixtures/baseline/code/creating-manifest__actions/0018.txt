@@ -1,0 +1,3 @@
+{
+    "api [cp]" : "api.environment.control.RestartNodes"
+}

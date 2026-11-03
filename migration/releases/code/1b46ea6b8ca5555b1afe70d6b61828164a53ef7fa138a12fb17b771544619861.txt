@@ -1,0 +1,18 @@
+var message = 'Hello';
+
+return { 
+    result: 0, 
+    onAfterReturn: {
+        call: [{
+            action: 'myaction', 
+            params: {
+                message: message
+            } 
+        }, {
+            action: 'myaction',
+            params: {
+                message: 'World !'
+            }
+        }] 
+    } 
+};

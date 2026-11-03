@@ -1,0 +1,7 @@
+{
+  "type": "update",
+  "name": "execution actions",
+  "onInstall": {
+    "createFile [cp]": "/tmp/example.txt"
+  }
+}

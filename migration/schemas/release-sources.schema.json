@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pinned release source manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "production_base_url", "default_version", "root", "releases", "candidate_publication"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "production_base_url": {"type": "string", "pattern": "^https://[^/?#]+(?:/[^?#]*)?/$"},
+    "default_version": {"$ref": "#/$defs/id"},
+    "root": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_commit", "source_format", "output_prefix", "decision_status", "decision_provenance"],
+      "properties": {
+        "source_commit": {"$ref": "#/$defs/commit"},
+        "source_format": {"enum": ["mkdocs", "hugo"]},
+        "output_prefix": {"const": ""},
+        "decision_status": {"$ref": "#/$defs/decision_status"},
+        "decision_provenance": {"$ref": "#/$defs/provenance"}
+      }
+    },
+    "releases": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "platform_version", "source_ref", "source_commit", "source_format", "publication", "output_prefix", "decision_status", "decision_provenance"],
+        "properties": {
+          "id": {"$ref": "#/$defs/id"},
+          "platform_version": {"type": "string", "minLength": 1},
+          "source_ref": {"type": "string", "pattern": "^refs/(remotes|heads|tags)/[^\\s]+$"},
+          "source_commit": {"$ref": "#/$defs/commit"},
+          "source_format": {"enum": ["mkdocs", "hugo"]},
+          "publication": {"const": "retained"},
+          "output_prefix": {"type": "string", "pattern": "^[0-9]+(?:\\.[0-9]+)+(?:-[0-9]+)?/$"},
+          "decision_status": {"$ref": "#/$defs/decision_status"},
+          "decision_provenance": {"$ref": "#/$defs/provenance"}
+        }
+      }
+    },
+    "candidate_publication": {
+      "type": "object", "additionalProperties": false,
+      "required": ["decision_status", "decision_provenance"],
+      "properties": {
+        "decision_status": {"$ref": "#/$defs/decision_status"},
+        "decision_provenance": {"$ref": "#/$defs/provenance"}
+      }
+    }
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[0-9]+(?:\\.[0-9]+)+(?:-[0-9]+)?$"},
+    "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "decision_status": {"enum": ["unresolved", "provisional", "approved"]},
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["basis", "evidence"],
+      "properties": {"basis": {"type": "string", "minLength": 1}, "evidence": {"type": "string", "minLength": 1}}
+    }
+  }
+}

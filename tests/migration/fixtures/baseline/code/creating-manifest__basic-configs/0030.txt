@@ -1,0 +1,5 @@
+volumeMounts:
+  /ext-domain: aws.com
+  /ext-domain/ro: aws.com;ro
+  /ext-domain/path: aws.com:/121233
+  /ext-domain/path/ro: aws.com:/121233:ro

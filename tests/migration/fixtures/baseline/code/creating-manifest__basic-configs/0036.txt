@@ -1,0 +1,6 @@
+type: install
+name: ON ENV INSTALL
+nodes:
+  nodeType: nginxphp
+  env:
+    ON_ENV_INSTALL: http://example.com/manifest.jps

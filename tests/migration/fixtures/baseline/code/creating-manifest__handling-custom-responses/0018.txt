@@ -1,0 +1,11 @@
+type: update
+name: Custom Response Handlers
+
+onInstall:
+  script: |
+    return {'result': '2308', 'message': 'Success from script with result 2308'}
+
+responses:
+  2308:
+    type: success
+    message: Custom Success message!

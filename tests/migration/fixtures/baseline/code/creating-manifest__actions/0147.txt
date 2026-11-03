@@ -1,0 +1,12 @@
+type: update
+name: Install Add-on example
+
+onInstall:
+  installAddon:
+    id: firstAddon
+
+addons:
+  - id: firstAddon
+    name: firstAddon
+    onInstall:
+      createFile [cp]: /tmp/exampleFile.txt

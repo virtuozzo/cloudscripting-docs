@@ -1,0 +1,14 @@
+{
+  "onInstall": {
+    "if (nodes.cp && nodes.cp[0].osType == 'LINUX')": [
+      {
+        "log": "## Environment has compute node based on Linux"
+      },
+      {
+        "if (nodes.bl && nodes.bl[0].nodeType == 'nginx' && nodes.cp.length > 1)": {
+          "log": "## Environment has Nginx balancer and more than one compute node"
+        }
+      }
+    ]
+  }
+}

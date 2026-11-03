@@ -1,0 +1,9 @@
+type: install
+name: EnvGroup
+
+nodes:
+  nodeType: apache
+  cloudlets: 4
+envGroups: 
+  - Group1/Group2
+  - Group3

@@ -1,0 +1,7 @@
+{{- $index := slice -}}
+{{- range .Site.RegularPages | append .Site.Home -}}
+  {{- if and (not .Params.searchExclude) (ne .Layout "search") (ne .Kind "404") -}}
+    {{- $index = $index | append (dict "title" .Title "description" .Params.Seodesc "contents" (.Plain | htmlUnescape) "permalink" .Permalink) -}}
+  {{- end -}}
+{{- end -}}
+{{- $index | jsonify -}}

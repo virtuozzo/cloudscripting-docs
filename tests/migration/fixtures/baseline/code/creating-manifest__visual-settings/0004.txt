@@ -1,0 +1,7 @@
+fields:
+  - type: text
+    caption: string
+    hideLabel: false
+    hidden: false
+    height: 200
+    width: 200

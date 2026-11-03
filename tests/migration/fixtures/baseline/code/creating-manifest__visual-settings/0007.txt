@@ -1,0 +1,13 @@
+{
+  "fields": [
+    {
+      "type": "string",
+      "caption": "string",
+      "hideLabel": false,
+      "hidden": false,
+      "height": 200,
+      "width": 200,
+      "cls": "x-form-field-wrap"
+    }
+  ]
+}

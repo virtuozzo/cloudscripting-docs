@@ -1,0 +1,488 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "scope": "reviewed historical link inputs only; full Hugo/browser/hosting acceptance remains open",
+  "inputs": {
+    "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+    "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+    "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec"
+  },
+  "exceptions": [
+    {
+      "id": "historical-01-broken-link",
+      "check": "broken-link",
+      "url": "/creating-manifest/actions/",
+      "target": "/selecting-containers/#all-containers-by-group",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited malformed-raw-route occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/creating-manifest/actions.md",
+        "classification": "malformed-raw-route",
+        "occurrences": [
+          {
+            "link_index": 30,
+            "href": "../../selecting-containers/#all-containers-by-group",
+            "resolved_url": "/selecting-containers/#all-containers-by-group",
+            "text": "nodeGroup"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-02-broken-link",
+      "check": "broken-link",
+      "url": "/creating-manifest/actions/",
+      "target": "/selecting-containers/#all-containers-by-type",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited malformed-raw-route occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/creating-manifest/actions.md",
+        "classification": "malformed-raw-route",
+        "occurrences": [
+          {
+            "link_index": 31,
+            "href": "../../selecting-containers/#all-containers-by-type",
+            "resolved_url": "/selecting-containers/#all-containers-by-type",
+            "text": "nodeType"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-03-broken-link",
+      "check": "broken-link",
+      "url": "/creating-manifest/actions/",
+      "target": "/selecting-containers/#particular-container",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited malformed-raw-route occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/creating-manifest/actions.md",
+        "classification": "malformed-raw-route",
+        "occurrences": [
+          {
+            "link_index": 32,
+            "href": "../../selecting-containers/#particular-container",
+            "resolved_url": "/selecting-containers/#particular-container",
+            "text": "particular node(s)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-04-broken-link",
+      "check": "broken-link",
+      "url": "/creating-manifest/actions/",
+      "target": "/placeholders/#node-placeholders",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited malformed-raw-route occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/creating-manifest/actions.md",
+        "classification": "malformed-raw-route",
+        "occurrences": [
+          {
+            "link_index": 33,
+            "href": "../../placeholders/#node-placeholders",
+            "resolved_url": "/placeholders/#node-placeholders",
+            "text": "node placeholders"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-05-broken-link",
+      "check": "broken-link",
+      "url": "/creating-manifest/actions/",
+      "target": "/selecting-containers/#selector-types",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited malformed-raw-route occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/creating-manifest/actions.md",
+        "classification": "malformed-raw-route",
+        "occurrences": [
+          {
+            "link_index": 76,
+            "href": "../../selecting-containers/#selector-types",
+            "resolved_url": "/selecting-containers/#selector-types",
+            "text": "filtering"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-06-broken-link",
+      "check": "broken-link",
+      "url": "/creating-manifest/actions/",
+      "target": "/visual-settings/",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited malformed-raw-route occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/creating-manifest/actions.md",
+        "classification": "malformed-raw-route",
+        "occurrences": [
+          {
+            "link_index": 78,
+            "href": "../../visual-settings/",
+            "resolved_url": "/visual-settings/",
+            "text": "custom form"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-07-missing-fragment",
+      "check": "missing-fragment",
+      "url": "/creating-manifest/actions/",
+      "target": "/creating-manifest/selecting-containers/#types-of-selectors",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited missing-published-fragment occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/creating-manifest/actions.md",
+        "classification": "missing-published-fragment",
+        "occurrences": [
+          {
+            "link_index": 88,
+            "href": "../selecting-containers/#types-of-selectors",
+            "resolved_url": "/creating-manifest/selecting-containers/#types-of-selectors",
+            "text": "Node Selectors"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-08-missing-fragment",
+      "check": "missing-fragment",
+      "url": "/creating-manifest/basic-configs/",
+      "target": "/creating-manifest/selecting-containers/#engine-versions",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited missing-published-fragment occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/creating-manifest/basic-configs.md",
+        "classification": "missing-published-fragment",
+        "occurrences": [
+          {
+            "link_index": 6,
+            "href": "../selecting-containers/#engine-versions",
+            "resolved_url": "/creating-manifest/selecting-containers/#engine-versions",
+            "text": "version"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-09-missing-fragment",
+      "check": "missing-fragment",
+      "url": "/creating-manifest/basic-configs/",
+      "target": "/creating-manifest/selecting-containers/#dokerized-template-tags",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited missing-published-fragment occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/creating-manifest/basic-configs.md",
+        "classification": "missing-published-fragment",
+        "occurrences": [
+          {
+            "link_index": 22,
+            "href": "../../creating-manifest/selecting-containers/#dokerized-template-tags",
+            "resolved_url": "/creating-manifest/selecting-containers/#dokerized-template-tags",
+            "text": "here"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-10-broken-link",
+      "check": "broken-link",
+      "url": "/creating-manifest/basic-configs/",
+      "target": "/visual-settings/",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited malformed-raw-route occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/creating-manifest/basic-configs.md",
+        "classification": "malformed-raw-route",
+        "occurrences": [
+          {
+            "link_index": 44,
+            "href": "../../visual-settings/",
+            "resolved_url": "/visual-settings/",
+            "text": "visual-settings"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-11-missing-fragment",
+      "check": "missing-fragment",
+      "url": "/creating-manifest/conditions-and-iterations/",
+      "target": "/creating-manifest/placeholders/#procedure-placeholders",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited missing-published-fragment occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/creating-manifest/conditions-and-iterations.md",
+        "classification": "missing-published-fragment",
+        "occurrences": [
+          {
+            "link_index": 17,
+            "href": "../placeholders/#procedure-placeholders",
+            "resolved_url": "/creating-manifest/placeholders/#procedure-placeholders",
+            "text": " placeholders"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-12-broken-link",
+      "check": "broken-link",
+      "url": "/creating-manifest/handling-custom-responses/",
+      "target": "/releasenotes/",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited missing-published-route occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/creating-manifest/handling-custom-responses.md",
+        "classification": "missing-published-route",
+        "occurrences": [
+          {
+            "link_index": 13,
+            "href": "/releasenotes/",
+            "resolved_url": "/releasenotes/",
+            "text": "Realese Notes"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-13-missing-fragment",
+      "check": "missing-fragment",
+      "url": "/creating-manifest/selecting-containers/",
+      "target": "/creating-manifest/selecting-containers/#predefined-nodegroup-values",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited missing-published-fragment occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/creating-manifest/selecting-containers.md",
+        "classification": "missing-published-fragment",
+        "occurrences": [
+          {
+            "link_index": 8,
+            "href": "#predefined-nodegroup-values",
+            "resolved_url": "/creating-manifest/selecting-containers/#predefined-nodegroup-values",
+            "text": "layer"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-14-broken-link",
+      "check": "broken-link",
+      "url": "/creating-manifest/visual-settings/",
+      "target": "/reference/events/",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited missing-published-route occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/creating-manifest/visual-settings.md",
+        "classification": "missing-published-route",
+        "occurrences": [
+          {
+            "link_index": 62,
+            "href": "/reference/events/",
+            "resolved_url": "/reference/events/",
+            "text": "events"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-15-missing-fragment",
+      "check": "missing-fragment",
+      "url": "/creating-manifest/visual-settings/",
+      "target": "/creating-manifest/selecting-containers/#predefined-nodegroup-values",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited missing-published-fragment occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/creating-manifest/visual-settings.md",
+        "classification": "missing-published-fragment",
+        "occurrences": [
+          {
+            "link_index": 67,
+            "href": "../selecting-containers/#predefined-nodegroup-values",
+            "resolved_url": "/creating-manifest/selecting-containers/#predefined-nodegroup-values",
+            "text": "layer"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-16-broken-link",
+      "check": "broken-link",
+      "url": "/creating-manifest/visual-settings/",
+      "target": "/releasenotes/",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited missing-published-route occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/creating-manifest/visual-settings.md",
+        "classification": "missing-published-route",
+        "occurrences": [
+          {
+            "link_index": 88,
+            "href": "/releasenotes/",
+            "resolved_url": "/releasenotes/",
+            "text": "Realese Notes"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-17-broken-link",
+      "check": "broken-link",
+      "url": "/samples/",
+      "target": "/releasenotes/",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited missing-published-route occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/samples.md",
+        "classification": "missing-published-route",
+        "occurrences": [
+          {
+            "link_index": 26,
+            "href": "/releasenotes/",
+            "resolved_url": "/releasenotes/",
+            "text": "Realese Notes"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-18-broken-link",
+      "check": "broken-link",
+      "url": "/troubleshooting/",
+      "target": "/placeholders/",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited malformed-raw-route occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/troubleshooting.md",
+        "classification": "malformed-raw-route",
+        "occurrences": [
+          {
+            "link_index": 2,
+            "href": "../placeholders/",
+            "resolved_url": "/placeholders/",
+            "text": "placeholder"
+          }
+        ]
+      }
+    },
+    {
+      "id": "historical-19-broken-link",
+      "check": "broken-link",
+      "url": "/troubleshooting/",
+      "target": "/releasenotes/",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "reason": "Inherited missing-published-route occurs in this exact frozen baseline; preserve its literal target and occurrence count without publishing unlisted material.",
+      "evidence": {
+        "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+        "baseline_sha256": "6dfbbcdaf26be2486935c2c87d014e8abe4811fa213152521018af0e1910b3ec",
+        "source_path": "docs/troubleshooting.md",
+        "classification": "missing-published-route",
+        "occurrences": [
+          {
+            "link_index": 7,
+            "href": "/releasenotes/",
+            "resolved_url": "/releasenotes/",
+            "text": "Realese Notes"
+          }
+        ]
+      }
+    }
+  ],
+  "unexcepted_malformed_references": [
+    {
+      "source_path": "docs/creating-manifest/placeholders.md",
+      "url": "/creating-manifest/placeholders/",
+      "classification": "malformed-legacy-fragment",
+      "validation_check": "missing-fragment",
+      "occurrence": {
+        "link_index": 39,
+        "href": "#{\\*.tobase64()}) - does data encoding into *Base64* format  \n- [\u0002klzzwxh:0066\u0003](#{\\*.tobase64()}) - does data encoding into *Base64* format  \n- [\u0002klzzwxh:0066\u0003](#{*.frombase64()}",
+        "resolved_url": "/creating-manifest/placeholders/#{\\*.tobase64()}) - does data encoding into *Base64* format  - [\u0002klzzwxh:0066\u0003](#{\\*.tobase64()}) - does data encoding into *Base64* format  - [\u0002klzzwxh:0066\u0003](#{*.frombase64()}",
+        "text": "${*.toBase64()}"
+      },
+      "known_alternative_routes": [],
+      "disposition": "Open exact rendering comparison; no exception approved for malformed parser/token/literal-star targets."
+    },
+    {
+      "source_path": "docs/creating-manifest/placeholders.md",
+      "url": "/creating-manifest/placeholders/",
+      "classification": "malformed-legacy-fragment",
+      "validation_check": "missing-fragment",
+      "occurrence": {
+        "link_index": 40,
+        "href": "#{\\*.md5()}) - *md5* hash generator  \n- [\u0002klzzwxh:0068\u0003](#{\\*.md5()}) - *md5* hash generator  \n- [\u0002klzzwxh:0068\u0003](#{*.join()}",
+        "resolved_url": "/creating-manifest/placeholders/#{\\*.md5()}) - *md5* hash generator  - [\u0002klzzwxh:0068\u0003](#{\\*.md5()}) - *md5* hash generator  - [\u0002klzzwxh:0068\u0003](#{*.join()}",
+        "text": "${*.md5()}"
+      },
+      "known_alternative_routes": [],
+      "disposition": "Open exact rendering comparison; no exception approved for malformed parser/token/literal-star targets."
+    },
+    {
+      "source_path": "docs/creating-manifest/placeholders.md",
+      "url": "/creating-manifest/placeholders/",
+      "classification": "malformed-legacy-fragment",
+      "validation_check": "missing-fragment",
+      "occurrence": {
+        "link_index": 41,
+        "href": "#{\\*.tojson()}) - converts array of of words or objects into JSON format  \n- [\u0002klzzwxh:0070\u0003](#{\\*.tojson()}) - converts array of of words or objects into JSON format  \n- [\u0002klzzwxh:0070\u0003](#{*.contains()}",
+        "resolved_url": "/creating-manifest/placeholders/#{\\*.tojson()}) - converts array of of words or objects into JSON format  - [\u0002klzzwxh:0070\u0003](#{\\*.tojson()}) - converts array of of words or objects into JSON format  - [\u0002klzzwxh:0070\u0003](#{*.contains()}",
+        "text": "${*.toJSON()}"
+      },
+      "known_alternative_routes": [],
+      "disposition": "Open exact rendering comparison; no exception approved for malformed parser/token/literal-star targets."
+    },
+    {
+      "source_path": "docs/creating-manifest/placeholders.md",
+      "url": "/creating-manifest/placeholders/",
+      "classification": "malformed-legacy-fragment",
+      "validation_check": "missing-fragment",
+      "occurrence": {
+        "link_index": 42,
+        "href": "#${*.print()}",
+        "resolved_url": "/creating-manifest/placeholders/#${*.print()}",
+        "text": "${*.print()}"
+      },
+      "known_alternative_routes": [],
+      "disposition": "Open exact rendering comparison; no exception approved for malformed parser/token/literal-star targets."
+    }
+  ]
+}

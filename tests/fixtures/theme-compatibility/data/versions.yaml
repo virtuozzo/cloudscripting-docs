@@ -1,0 +1,11 @@
+default_version: '8.15.1'
+releases:
+  - id: '6.3.2'
+    platform_version: '6.3-2'
+    output_prefix: '6.3.2/'
+  - id: '8.9.1'
+    platform_version: '8.9.1'
+    output_prefix: '8.9.1/'
+  - id: '8.15.1'
+    platform_version: '8.15.1'
+    output_prefix: '8.15.1/'

@@ -1,0 +1,16 @@
+{
+  "type": "update",
+  "name": "setNodeDisplayName example",
+  "onInstall": {
+    "setNodeDisplayName": [
+      {
+        "displayName": "Compute Nodes",
+        "nodeGroup": "cp"
+      },
+      {
+        "displayName": "SQL Nodes",
+        "nodeGroup": "sqldb"
+      }
+    ]
+  }
+}

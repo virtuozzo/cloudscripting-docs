@@ -1,0 +1,24 @@
+<h1 id="jelastic-cs-correspondence">Jelastic & CS Correspondence</h1>
+
+The table below displays dependencies between Cloud Scripting and the Jelastic Platform versions within the same <a href="https://jelastic.cloud/" target="_blank">hosting provider</a> platform.
+
+{% if config.extra.all_versions %}
+    {% if config.extra.all_jel_versions %}
+
+        <table class="corresp" style="width:100%">
+            <tr id="cs">
+                <th id="table-head">CS</th>
+                    {% for version in config.extra.all_versions %}
+                        <td>{{ version }}</td>
+                    {% endfor %}
+            </tr>
+            <tr id="jel">
+                <th id="table-head">Jelastic</th>
+                {% for version in config.extra.all_jel_versions %}
+                    <td>{{ version }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+
+    {% endif %}
+{% endif %}

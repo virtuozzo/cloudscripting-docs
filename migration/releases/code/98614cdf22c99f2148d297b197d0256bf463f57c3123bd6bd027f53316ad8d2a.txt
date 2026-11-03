@@ -1,0 +1,5 @@
+- volumes:
+  - /external
+  - /data
+  - /master
+  - /local

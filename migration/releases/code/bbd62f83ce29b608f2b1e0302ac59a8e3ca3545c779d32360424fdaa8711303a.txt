@@ -1,0 +1,4 @@
+{
+  "script": "return getParam('greeting');",
+  "greeting": "Hello World!"
+}

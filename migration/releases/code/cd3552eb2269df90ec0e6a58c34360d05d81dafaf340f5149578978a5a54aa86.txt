@@ -1,0 +1,25 @@
+type: install
+name: stopEvent Test
+
+settings:
+  fields:
+    type: checkbox
+    name: restart
+    caption: App Server Restart Allow
+    default: true
+
+nodes:
+  - nodeType: apache2
+    nodeGroup: cp
+    count: 1
+    cloudlets: 4
+  - nodeType: nginx
+    nodeGroup: bl
+    count: 1
+    cloudlets: 4
+
+onBeforeRestartNode[cp]:
+  if ( ${settings.restart} == false ):
+      stopEvent:
+        type: warning
+        message: Restart is prohibited. 

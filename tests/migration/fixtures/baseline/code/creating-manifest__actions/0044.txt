@@ -1,0 +1,13 @@
+{
+    "type": "update",
+    "name": "Create File action",
+    "onInstall": {
+        "createFile": [{
+            "path": "/tmp/firstFile",
+            "nodeGroup": "sqldb"
+        },{
+            "path": "/tmp/secondFile",
+            "nodeGroup": "cp"
+        }]
+    }
+}

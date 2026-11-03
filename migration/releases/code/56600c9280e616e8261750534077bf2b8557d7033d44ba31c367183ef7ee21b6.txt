@@ -1,0 +1,19 @@
+{
+  "type": "install",
+  "name": "Mixins Example",
+  "baseUrl": "https://example.com/mixins",
+  "mixins": [
+    "mixin1.jps",
+    "mixin2.jps"
+  ],
+  "actions": {
+    "mainAction": {
+      "log": "mainTest"
+    }
+  },
+  "onInstall": [
+    "mainAction",
+    "mixin1Action",
+    "mixin2Action"
+  ]
+}

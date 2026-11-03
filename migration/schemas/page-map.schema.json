@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.cloudscripting.com/migration/page-map.schema.json",
+  "title": "Cloud Scripting editorial source map",
+  "type": "object",
+  "required": ["schema_version", "source_commit", "source_kind", "pages"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "source_commit": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
+    "source_kind": {"enum": ["git", "worktree"]},
+    "production_base_url": {"type": ["string", "null"]},
+    "navigation": {"type": "array", "items": {"$ref": "#/$defs/navigation"}},
+    "pages": {"type": "array", "items": {"$ref": "#/$defs/page"}}
+  },
+  "allOf": [{"if": {"properties": {"source_kind": {"const": "git"}}}, "then": {"properties": {"source_commit": {"type": "string"}}}}],
+  "$defs": {
+    "navigation": {
+      "type": "object",
+      "required": ["title", "menu_id", "menu_parent", "weight"],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "menu_id": {"type": "string", "minLength": 1},
+        "menu_parent": {"type": ["string", "null"]},
+        "weight": {"type": "integer", "minimum": 1},
+        "source_path": {"type": "string"},
+        "children": {"type": "array", "items": {"$ref": "#/$defs/navigation"}}
+      }
+    },
+    "page": {
+      "type": "object",
+      "required": ["source_path", "source_sha256", "published", "disposition", "old_url", "target_path", "title", "nav_title", "menu_id", "menu_parent", "weight", "exceptions"],
+      "properties": {
+        "source_path": {"type": "string", "pattern": "^docs/(?!superpowers/).+\\.md$"},
+        "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "published": {"type": "boolean"},
+        "disposition": {"type": "string", "minLength": 1},
+        "old_url": {"type": ["string", "null"], "pattern": "^/(?:[^?#]*/)?$"},
+        "target_path": {"type": ["string", "null"]},
+        "title": {"type": "string", "minLength": 1},
+        "nav_title": {"type": ["string", "null"]},
+        "menu_id": {"type": ["string", "null"]},
+        "menu_parent": {"type": ["string", "null"]},
+        "weight": {"type": ["integer", "null"], "minimum": 1},
+        "exceptions": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      },
+      "allOf": [{
+        "if": {"properties": {"published": {"const": true}}},
+        "then": {"properties": {
+          "old_url": {"type": "string"},
+          "target_path": {"type": "string", "pattern": "^content/(?:.*/)?(?:_?index)\\.md$"},
+          "nav_title": {"type": "string", "minLength": 1},
+          "menu_id": {"type": "string", "minLength": 1},
+          "weight": {"type": "integer", "minimum": 1}
+        }},
+        "else": {"properties": {"old_url": {"type": "null"}, "target_path": {"type": "null"}, "weight": {"type": "null"}}}
+      }]
+    }
+  }
+}

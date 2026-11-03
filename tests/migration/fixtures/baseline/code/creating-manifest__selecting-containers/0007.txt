@@ -1,0 +1,8 @@
+{
+  "type": "install",
+  "name": "install Tomcat7 node",
+  "engine": "java7",
+  "nodes": {
+    "nodeType": "tomcat7"
+  }
+}

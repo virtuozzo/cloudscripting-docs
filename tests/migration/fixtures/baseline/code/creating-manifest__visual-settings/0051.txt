@@ -1,0 +1,12 @@
+{
+  "fields": [
+    {
+      "caption": "Env Name",
+      "type": "envname",
+      "randomName": true,
+      "showFullDomain": true,
+      "hidden": false
+      "dependsOn": "regionFieldName"
+    }
+  ]
+}

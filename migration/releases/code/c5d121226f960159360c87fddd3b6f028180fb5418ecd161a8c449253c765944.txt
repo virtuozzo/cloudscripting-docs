@@ -1,0 +1,12 @@
+{
+    "type": "update",
+    "name": "Create Directory action",
+    "onInstall": {
+        "createDirectory": [{
+            "path": "/tmp/firstDirectory"
+        },{
+            "path": "/tmp/secondDirectory"
+        }],
+        "nodeGroup": "cp"
+    }
+}

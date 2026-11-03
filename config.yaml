@@ -1,0 +1,88 @@
+---
+languageCode: en-us
+theme: compose-master
+title: Cloud Scripting Documentation
+assetDir: themes/compose-master/static
+baseURL: https://www.virtuozzo.com/cloudscripting-docs/
+canonifyURLs: true
+disableAliases: true
+# Keep the explicit GA ID empty. The pinned theme enables corporate GTM and
+# CookiePro on the user-selected virtuozzo.com host, matching the reference site.
+googleAnalytics: ''
+enableRobotsTXT: true
+disableKinds:
+  - taxonomy
+  - term
+  - section
+params:
+  openGraphSiteName: Cloud Scripting Documentation
+  readRedirects: true
+  hostName: www.virtuozzo.com
+  pageSeoTitle: Cloud Scripting Documentation
+  logo: vz_logo.svg
+  logoWidth: 180
+  logoHeight: 35
+  useWebp: true
+  errorPage: /cloudscripting-docs/404.html
+  notice: Documentation Portal for Cloud Scripting
+  docsMenu:
+    # Opt in to section links beneath the current page; omitted/false disables.
+    showPageHeadings: true
+    # Menu identifiers that remain expanded on every page; [] restores collapsing.
+    alwaysOpen:
+      - creating-manifest
+  schema:
+    product:
+      id: https://www.virtuozzo.com/cloudscripting-docs/#software
+      name: Cloud Scripting
+      url: https://www.virtuozzo.com/cloudscripting-docs/
+# Grouping-only menu nodes: no URL and no empty section page.
+# Identifiers/weights match migration/page-map.json.
+menu:
+  docs:
+    - name: GETTING STARTED
+      identifier: getting-started
+      weight: 10
+    - name: Creating Manifest
+      identifier: creating-manifest
+      weight: 40
+    - name: Samples
+      identifier: samples
+      weight: 160
+outputs:
+  home:
+    - HTML
+    - JSON
+    - HTACCESS
+mediaTypes:
+  text/htaccess:
+    suffixes:
+      - htaccess
+outputFormats:
+  HTACCESS:
+    baseName: ''
+    isPlainText: true
+    mediaType: text/htaccess
+markup:
+  defaultMarkdownHandler: goldmark
+  goldmark:
+    extensions:
+      definitionList: true
+      footnote: true
+      linkify: true
+      table: true
+      taskList: true
+    parser:
+      attribute: true
+      wrapStandAloneImageWithinParagraph: false
+    renderer:
+      hardWraps: false
+      unsafe: true
+  highlight:
+    codeFences: true
+    lineNoStart: 1
+    lineNos: false
+    lineNumbersInTable: true
+    noClasses: false
+    style: igor
+    tabWidth: 4

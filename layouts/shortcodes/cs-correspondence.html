@@ -1,0 +1,12 @@
+{{- /* version_data emits numeric ascending order; reverse, never lexical sort.
+Keep the legacy row/header fragments while avoiding its duplicate header ID. */ -}}
+{{- $platform := .Get "platform" | default "Virtuozzo PaaS" -}}
+{{- $releases := collections.Reverse site.Data.versions.releases -}}
+<div class="cs-correspondence-scroll" role="region" aria-label="Cloud Scripting and {{ $platform }} version correspondence" tabindex="0" style="max-width:100%;overflow-x:auto">
+<table class="corresp cs-correspondence" style="width:100%">
+<tbody>
+<tr id="cs"><th id="table-head" scope="row">CS</th>{{ range $releases }}<td>{{ .id }}</td>{{ end }}</tr>
+<tr id="jel"><th scope="row">{{ $platform }}</th>{{ range $releases }}<td>{{ .platform_version }}</td>{{ end }}</tr>
+</tbody>
+</table>
+</div>

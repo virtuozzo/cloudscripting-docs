@@ -1,0 +1,8 @@
+type: update
+name: Create File action
+
+onInstall:
+  createFile:
+    - path: /tmp/firstFile
+    - path: /tmp/secondFile
+  nodeGroup: cp

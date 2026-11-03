@@ -1,0 +1,1 @@
+api [cp, bl, ${nodes.sqldb[0].id}]: environment.control.RestartNodes

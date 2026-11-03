@@ -1,0 +1,7 @@
+type: update
+name: targetNodes
+
+targetNodes: nginx, mysql
+
+onInstall:
+  cmd[nginx, mysql]: touch /tmp/newFile

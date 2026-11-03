@@ -1,0 +1,12 @@
+{
+  "type": "update",
+  "name": "this placeholder",
+  "onInstall": {
+    "customAction": "custom string"
+  },
+  "actions": {
+    "customAction": {
+      "log": "${this}"
+    }
+  }
+}

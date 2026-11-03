@@ -1,0 +1,11 @@
+{{- /* Current docs no longer need the version-correspondence sidebar entry.
+Keep the page published for old links and preserve archived navigation. */ -}}
+{{- $entries := site.Menus.docs -}}
+{{- if not site.Params.archived -}}
+  {{- $entries = where $entries "Identifier" "ne" "page-virtuozzo-cs-correspondence" -}}
+{{- end -}}
+{{- $data := partial "sidebar/menu-data.html" (dict "entries" $entries "prefix" "" "level" 1) -}}
+{{- $configured := site.Params.docsMenu.alwaysOpen | default slice -}}
+{{- $open := partial "sidebar/open-items.html" (dict "entries" $entries "prefix" "" "ancestors" slice "configured" $configured) -}}
+{{- $json := resources.FromString (printf "menu/%s.json" site.Language.Lang) ($data.tree | jsonify) | fingerprint "md5" -}}
+{{- return (merge $data (dict "json" $json.Permalink "alwaysOpen" $open)) -}}

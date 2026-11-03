@@ -1,0 +1,13 @@
+type: update
+name: Scaling Example
+
+onAfterScaleIn [nodeGroup:cp]: ScaleNodes
+
+onAfterScaleOut [nodeGroup:cp]: ScaleNodes
+
+actions:
+  ScaleNodes:
+    forEach(nodes.cp):
+      cmd [bl]:
+        - {commands to rewrite all Compute nodes internal IP addresses in balancer configs. Here balancer node is NGINX}
+        - /etc/init.d/nginx reload

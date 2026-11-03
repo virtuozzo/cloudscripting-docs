@@ -1,0 +1,4 @@
+forEach(env.contexts):
+  writeFile [cp]:
+    path: /var/lib/jelastic/keys/${@i.context}.txt
+    body: 1

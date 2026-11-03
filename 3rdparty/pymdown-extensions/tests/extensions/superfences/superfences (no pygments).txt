@@ -1,9 +1,0 @@
-```python
-import test
-```
-
-Text after code.
-
-```python linenums="1"
-import test
-```

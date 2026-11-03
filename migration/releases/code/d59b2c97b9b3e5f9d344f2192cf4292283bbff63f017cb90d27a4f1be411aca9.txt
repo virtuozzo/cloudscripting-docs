@@ -1,0 +1,15 @@
+{
+  "fields": [
+    {
+      "type": "radiolist",
+      "caption": "Radio List",
+      "name": "customName",
+      "values": {
+        "value1": "hello",
+        "value2": "world"
+      },
+      "hideLabel": false,
+      "hidden": false
+    }
+  ]
+}

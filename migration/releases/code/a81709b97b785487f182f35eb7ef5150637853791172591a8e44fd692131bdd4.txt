@@ -1,0 +1,7 @@
+sudo /etc/init.d/jetty start  
+sudo /etc/init.d/mysql stop
+sudo /etc/init.d/tomcat restart  
+sudo /etc/init.d/memcached status  
+sudo /etc/init.d/mongod reload  
+sudo /etc/init.d/nginx upgrade  
+sudo /etc/init.d/httpd help                             

@@ -1,0 +1,8 @@
+fields:
+  - caption: Envlist
+    editable: true
+    valueField: appid
+    type: envlist
+    name: envlist
+    hidden: false
+    disableInactive: false

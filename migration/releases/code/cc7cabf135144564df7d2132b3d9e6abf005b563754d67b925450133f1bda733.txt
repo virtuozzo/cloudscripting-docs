@@ -1,0 +1,6 @@
+type: update
+name: Execute scripts
+
+onInstall:
+script [cp, bl]: |  
+  return { result: 0, nodeGroup: nodeGroup };

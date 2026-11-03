@@ -1,0 +1,4 @@
+type: update
+name: '[CS] - add onBeforeRemoveSSL events'
+onBeforeRemoveSSL: 
+  log: before remove SSL

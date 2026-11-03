@@ -1,0 +1,140 @@
+schema_version: 1
+status: incomplete
+recorded_at: '2026-11-01'
+scope: local-contract-and-disposable-fixture-only
+host_acceptance: pending
+status_vocabulary:
+  observed: Evidence bytes or user decision exist; see cited source and date.
+  derived: Reference convention or required policy, not a verified host fact.
+  unverified: Missing external evidence; null is intentional.
+evidence:
+  reference:
+    status: observed
+    repository: application-management-docs
+    commit: ecb1b04ebc5222a53ab717a90316acc6a4a9e913
+    source: git:c946ae18c04c0f5e55c8b02387270ef81d072c87:migration/reports/task-13/reference-deployment.md
+  public_http:
+    status: observed
+    observed_at: '2026-10-31'
+    sources:
+      - git:c946ae18c04c0f5e55c8b02387270ef81d072c87:migration/reports/task-13/public-observations.json
+      - git:c946ae18c04c0f5e55c8b02387270ef81d072c87:migration/reports/task-13/unlisted-and-candidate-routes.json
+    limits: HEAD and sampled GET bytes; not full served-tree or rewrite backup.
+    observed_release_roots: Root plus 24 configured roots returned 200; 24 extra candidate roots returned 404.
+    extra_candidate_policy: Root HEAD 404 does not prove deeper routes absent; reconcile against real served tree.
+    server_header: nginx
+    server_header_limit: Does not identify backing server, enabled modules, maps or PHP.
+  reconstructed_legacy:
+    status: observed
+    role: Semantic comparison baseline only; never substitute for a deployed backup.
+    source: git:c946ae18c04c0f5e55c8b02387270ef81d072c87:migration/reports/task-10/
+destinations:
+  production_url:
+    status: observed
+    value: https://www.virtuozzo.com/cloudscripting-docs/
+    basis: User decision recorded in reference-deployment.md.
+  staging_url:
+    status: derived
+    value: https://test-site.virtuozzo.com/cloudscripting-docs/
+    confirmed_value: null
+  document_directory:
+    status: derived
+    value: /var/www/webroot/cloudscripting-docs/
+    confirmed_value: null
+  legacy_workflow_target:
+    status: observed
+    value: /var/www/webroot/ROOT/site/
+    basis: Repository workflow only; current server mapping unverified.
+  transport:
+    status: derived
+    method: manual workflow dispatch, SCP upload, SSH operator session
+    reference_user: jelastic
+    reference_port: 22
+    reference_secret_names: [PROD_HOST_IP, TEST_HOST_IP, SSH_KEY]
+    confirmed_host_user_port: null
+capabilities:
+  status: unverified
+  document_root_and_url_mapping: null
+  host_specific_rewrite_maps_and_includes: null
+  backing_server_and_enabled_rewrite_modules: null
+  per_directory_rewrite_support: null
+  GET_HEAD_equivalence_and_real_404: null
+  old_domain_TLS_renewal_and_redirect_control: null
+  staging_noindex_response_headers_and_access_control: null
+  owner_group_modes_ACLs_xattrs_SELinux: null
+  same_filesystem_atomic_symlink_replace: null
+  document_root_symlink_and_cache_behavior: null
+  tar_sha256sum_cp_mv_readlink_and_configtest_reload_commands: null
+  free_space_for_artifact_backup_and_restoration: null
+  server_managed_files_inventory_and_write_quiescence: null
+  accepted_strategy: null
+artifact_contract:
+  status: derived
+  source: docs/deployment.md
+  layout: [site/, artifact.json, checksums.sha256, validation/]
+  validation: Complete non-preview artifact; check_artifact and per-release checks pass; no drafts.
+  retained_set: All retained records from reviewed migration/release-sources.yaml plus served-tree reconciliation; never infer from directory ordering.
+  separate_root_and_latest: true
+  exact_case_assets: true
+  promotion: Same validated archive SHA-256 staged and promoted; no rebuilding, theme pull or post-transfer edits.
+  digests:
+    approved_archive_sha256: null
+    artifact_identity: null
+    staging_acceptance_record: null
+    production_received_sha256: null
+  managed_files: Explicit path inventory outside artifact ownership; collision refuses deployment. Record combined served-tree manifest separately.
+  strategy:
+    preferred: Immutable release directories with an already configured atomic symlink pointer.
+    fallback: Conditional same-filesystem directory rename under maintenance; two renames are not atomic. No blanket rsync --delete.
+redirect_contract:
+  status: derived
+  source_host: docs.cloudscripting.com
+  target_base: https://www.virtuozzo.com/cloudscripting-docs/
+  requirements:
+    - Retain every supported path, release prefix, image filename case and original query string.
+    - Use a host-scoped permanent redirect after staging rehearsal; avoid double-prefixes and loops.
+    - Location must not introduce or replace a fragment; the browser must inherit its original fragment.
+    - Preserve /search.html?q=... semantics and per-version GET/HEAD navigation.
+    - Preserve root and explicit latest as different URLs and content identities.
+    - Keep old-domain TLS valid and certificate renewal routed correctly throughout redirect service.
+    - Resolve missing paths with a real 404; never silently route all missing releases to root.
+  browser_example:
+    from: 'https://docs.cloudscripting.com/8.15.1/creating-manifest/actions/?q=example#oninstall'
+    to: 'https://www.virtuozzo.com/cloudscripting-docs/8.15.1/creating-manifest/actions/?q=example#oninstall'
+  installed_rules_and_host_tests: null
+feedback:
+  status: observed
+  candidate_runtime: GitHub issue link; no PHP dependency for Hugo feedback.
+  evidence: git:c946ae18c04c0f5e55c8b02387270ef81d072c87:migration/reports/task-06/README.md
+  legacy_runtime: Preserve required hosted PHP/runtime and recoverable legacy source through cutover and rollback acceptance; retired checkout files remain in Git history.
+  retained_PHP_runtime_and_route_owner:
+    status: unverified
+    value: null
+rollback:
+  status: unverified
+  actual_served_tree_backup_id: null
+  archive_sha256: null
+  served_tree_manifest_sha256: null
+  rewrite_TLS_maps_backup_id: null
+  rewrite_archive_sha256: null
+  ownership_ACL_xattr_capture: null
+  restored_verification_record: null
+  off_host_recovery_location: null
+  retention_deadline: null
+  local_fixture_is_backup: false
+ownership:
+  status: unverified
+  deployment_operator: User intends to deploy personally; identity not yet recorded.
+  hosting_and_TLS_owner: null
+  artifact_acceptance_owner: null
+  content_and_redirect_acceptance_owner: null
+  rollback_operator_and_escalation: null
+  cutover_window: null
+  observation_duration_and_end: null
+  rollback_triggers_and_response_time: null
+runbooks:
+  status: observed
+  staging: docs/runbooks/staging.md
+  production: docs/runbooks/production.md
+  rollback: docs/runbooks/rollback.md
+  local_proof: git:c946ae18c04c0f5e55c8b02387270ef81d072c87:migration/reports/task-13/local-preparation.md

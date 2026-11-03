@@ -1,0 +1,11 @@
+{
+  "type": "update",
+  "name": "Execute scripts",
+  "script": {
+    "script": "return '${this.greeting}';",
+    "params": {
+      "greeting": "Hello World!"
+    },
+    "type": "js"
+  }
+}

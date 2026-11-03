@@ -1,0 +1,141 @@
+/* Local code viewers: the shared theme and source-rendering hooks stay pinned. */
+.code-block,
+.tabs-container {
+    --cs-code-bg: #fff;
+    --cs-code-text: #282735;
+    --cs-code-bar: #f4f6ff;
+    --cs-code-border: rgba(94, 108, 158, .15);
+    --cs-code-tab-muted: #969eac;
+    --cs-code-accent: #254d90;
+    margin: 1.25rem 0;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(94, 108, 158, .3);
+    scroll-margin-top: 96px;
+}
+
+/* Inherit the shared theme's text-only Copy button and standalone toolbar,
+   matching Application Management's SSH Gate examples. */
+.code-block .code-copy-btn:focus-visible,
+.tabs-container .tab-button:focus-visible {
+    outline: 2px solid var(--cs-code-accent);
+    outline-offset: -3px;
+}
+
+.code-block .highlight,
+.code-block .highlight > pre,
+.code-block .highlight .lntd,
+.code-block .highlight .lntd pre {
+    background: var(--cs-code-bg);
+    color: var(--cs-code-text);
+    border-radius: 0;
+    box-shadow: none;
+}
+.code-block .highlight { margin: 0; }
+.cs-code-viewer .highlight {
+    display: block;
+    max-height: none;
+    overflow: auto;
+}
+.code-block .highlight pre {
+    min-width: 100%;
+    width: max-content;
+    margin: 0;
+    padding: 16px 20px;
+    overflow: visible;
+    tab-size: 4;
+}
+.code-block .highlight code {
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    white-space: pre;
+}
+.code-block .highlight:focus-visible { outline: 2px solid var(--cs-code-accent); outline-offset: -3px; }
+
+/* Existing Chroma spans retain their exact text; plain-text fallbacks stay literal. */
+.code-block .chroma :is(.k,.kc,.kd,.kn,.kp,.kr,.ow,.cp,.cpf) { color: #6b46a0; }
+.code-block .chroma :is(.kt,.nc,.na,.nb,.bp,.nt) { color: var(--cs-code-accent); }
+.code-block .chroma :is(.no,.nd,.ni,.ne,.nf,.fm,.nl,.nn,.nx,.py,.nv,.vc,.vg,.vi,.vm) { color: #6b46a0; }
+.code-block .chroma :is(.l,.ld,.s,.sa,.sb,.sc,.dl,.sd,.s2,.se,.sh,.si,.sx,.sr,.s1,.ss) { color: #00756b; }
+.code-block .chroma :is(.m,.mb,.mf,.mh,.mi,.il,.mo) { color: #9a4d12; }
+.code-block .chroma :is(.c,.ch,.cm,.c1,.cs,.ln,.lnt) { color: #667085; }
+.code-block .highlight .line.hl { background: #f1f4fc; border-left-color: #86a2ed; }
+
+.tabs-container .tabs-header {
+    gap: 4px;
+    min-height: 38px;
+    padding: 1px 8px;
+    border-bottom: 1px solid var(--cs-code-border);
+    background: var(--cs-code-bar);
+}
+.tabs-container .tab-button {
+    flex: 0 0 auto;
+    min-width: 44px;
+    min-height: 36px;
+    margin: 0;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--cs-code-tab-muted);
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    transition: color 150ms ease;
+    touch-action: manipulation;
+}
+.tabs-container .tab-button.active {
+    color: #5e6c9e;
+    background: transparent;
+    border: 0;
+    text-decoration: none;
+    box-shadow: none;
+}
+.tabs-container .tab-panel { padding: 12px; animation: none; }
+
+/* A flat code-only tab group gets one header. Buttons remain inside their
+   own code block so the theme's existing clipboard handler keeps its target. */
+.cs-code-tabs { position: relative; background: var(--cs-code-bar); }
+.cs-code-tabs > .tabs-header {
+    width: calc(100% - 100px);
+    overflow-x: auto;
+    border: 0;
+    scrollbar-width: thin;
+}
+.cs-code-tabs > .tabs-content { border-top: 1px solid var(--cs-code-border); }
+.cs-code-tabs > .tabs-content > .tab-panel { padding: 0; }
+.cs-code-tabs > .tabs-content > .tab-panel > .code-block {
+    position: static;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+.cs-code-tabs > .tabs-content > .tab-panel > .code-block > .code-block-toolbar {
+    position: absolute;
+    top: 1px;
+    right: 12px;
+    min-height: 36px;
+    padding: 0;
+    border: 0;
+}
+.cs-code-tabs > .tabs-content > .tab-panel > .code-block > .code-block-toolbar > .code-block-label { display: none; }
+
+@media (max-width: 480px) {
+    .code-block .highlight pre { padding: 16px; }
+    .cs-code-tabs > .tabs-header { padding-left: 6px; padding-right: 6px; }
+    .tabs-container .tab-button { padding: 0 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .tabs-container .tab-button,
+    .code-block .code-copy-btn { transition: none; }
+}
+@media print {
+    .cs-code-viewer .highlight { max-height: none; overflow: visible; }
+    .code-copy-btn { display: none !important; }
+    .cs-code-tabs > .tabs-header { width: 100%; }
+}

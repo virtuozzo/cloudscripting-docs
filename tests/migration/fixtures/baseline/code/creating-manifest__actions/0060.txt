@@ -1,0 +1,3 @@
+{
+  "setNodeDisplayName [nodeId, nodeGroup, nodeType]": "string"
+}

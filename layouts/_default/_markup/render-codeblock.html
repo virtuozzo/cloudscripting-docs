@@ -1,0 +1,38 @@
+{{- /* Goldmark removes the terminal LF(s) before invoking this hook. The
+converter records exceptional terminal blanks (or explicit zero); code stays literal. */ -}}
+{{- $count := 1 -}}
+{{- if isset .Attributes "cs_trailing_newlines" -}}{{- $count = int .Attributes.cs_trailing_newlines -}}{{- end -}}
+{{- $body := printf "%s%s" .Inner (strings.Repeat $count "\n") -}}
+{{- $lang := .Type -}}
+{{- $highlightLang := .Type -}}
+{{- if or (not $lang) (eq $lang "fallback") -}}
+  {{- $lang = "" -}}
+  {{- $highlightLang = "text" -}}
+{{- end -}}
+{{- /* Hide the formatting label while retaining the original code identity. */ -}}
+{{- $label := $lang -}}
+{{- if eq $label "no-highlight" -}}{{- $label = "" -}}{{- end -}}
+{{- $highlighted := transform.Highlight $body $highlightLang .Options -}}
+{{- /* Some Chroma lexers change indentation. Use highlighted output only
+when its decoded text is exact. Controls/style remain the shared theme's. */ -}}
+{{- $visible := $highlighted | replaceRE `<[^>]*>` "" | htmlUnescape -}}
+{{- if and (ne $visible $body) (in (slice "yaml" "yml") (lower $highlightLang)) -}}
+  {{- /* Pinned Chroma duplicates block-scalar indentation in a whitespace
+  token after the last scalar line. Repair only that token shape; the exact
+  comparison below still rejects any remaining change, including lost spaces. */ -}}
+  {{- $highlighted = replaceRE `(<span class="sd">[^<]*</span><span class="w">)[ \t]+(\n)` "${1}${2}" $highlighted | safeHTML -}}
+  {{- $visible = $highlighted | replaceRE `<[^>]*>` "" | htmlUnescape -}}
+{{- end -}}
+{{- /* HTML5 consumes one initial textarea LF token, including an entity.
+Prepend a sacrificial LF so the DOM value contains exactly the source body. */ -}}
+<div class="code-block">
+  <textarea class="code-block-source" hidden readonly aria-hidden="true">&#10;{{ $body | htmlEscape | replaceRE `\n` `&#10;` | safeHTML }}</textarea>
+  <div class="code-block-toolbar">
+    {{- with .Attributes.filename -}}<span class="code-block-label">{{ . }}</span>
+    {{- else -}}{{- with $label -}}<span class="code-block-label">{{ . }}</span>{{- end -}}{{- end -}}
+    <button type="button" class="code-copy-btn" aria-label="Copy code to clipboard">Copy</button>
+  </div>
+  {{- if eq $visible $body }}{{ $highlighted }}{{ else }}
+  <div class="highlight"><pre class="chroma"><code{{ with $lang }} class="language-{{ . }}" data-lang="{{ . }}"{{ end }}>{{ $body | htmlEscape | replaceRE `\n` `&#10;` | safeHTML }}</code></pre></div>
+  {{- end }}
+</div>

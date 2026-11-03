@@ -1,0 +1,18 @@
+{
+    "type": "update",
+    "name": "test",
+
+    "onBeforeInit": [
+        "return {",
+        "  result: 0,",
+        "  settings : {",
+        "    fields: [{",
+        "      type : 'string',",
+        "      caption: 'Custom Field',",
+        "      name : 'custom_field',",
+        "      'default' : 'test'",
+        "    }]",
+        "  }",
+        "};"
+    ]
+}

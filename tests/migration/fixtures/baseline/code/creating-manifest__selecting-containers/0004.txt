@@ -1,0 +1,4 @@
+writeFile:
+  nodeType: apache2
+  path: /tmp/example.txt
+  body: Hello World

@@ -1,0 +1,5 @@
+{
+  "sleep": {
+    "milliseconds": "1000"
+  }
+}

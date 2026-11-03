@@ -1,0 +1,2 @@
+Environment consists of two compute nodes
+Balancer node with external IP address!

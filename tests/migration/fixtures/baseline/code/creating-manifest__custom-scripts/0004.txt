@@ -1,0 +1,22 @@
+#!/bin/bash
+USER="root"
+PASSWORD="$1"
+
+DUMP_URL="$2"
+DUMP_PATH="/var/lib/mysql/dump.sql"
+
+NEW_USER_NAME="test"
+NEW_USER_PASS="$3"
+NEW_DB_NAME="test"
+
+
+curl -fs ${DUMP_URL} -o ${DUMP_PATH} 2>&1
+
+mysql -u${USER} -p${PASSWORD} << END 
+    CREATE DATABASE ${NEW_DB_NAME};
+    GRANT USAGE ON *.* TO ${NEW_USER_NAME}@localhost  IDENTIFIED BY '${NEW_USER_PASS}';
+    GRANT ALL PRIVILEGES ON ${NEW_USER_NAME}.* to ${NEW_DB_NAME}@localhost;
+    USE ${NEW_DB_NAME};
+
+\. ${DUMP_PATH}
+END

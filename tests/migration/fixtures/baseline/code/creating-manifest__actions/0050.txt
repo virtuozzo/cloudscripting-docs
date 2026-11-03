@@ -1,0 +1,13 @@
+{
+    "type": "update",
+    "name": "Create Directory action",
+    "onInstall": {
+        "createDirectory": [{
+            "path": "/tmp/firstDirectory",
+            "nodeGroup": "sqldb"
+        },{
+            "path": "/tmp/secondDirectory",
+            "nodeGroup": "cp"
+        }]
+    }
+}

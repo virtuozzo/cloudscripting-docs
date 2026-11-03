@@ -1,0 +1,3 @@
+{
+    "api [cp]" : "jelastic.environment.control.RestartNodes"
+}

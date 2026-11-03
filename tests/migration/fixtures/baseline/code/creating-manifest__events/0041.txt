@@ -1,0 +1,1 @@
+jem api apicall [API_DOMAIN]/1.0/environment/node/rest/sendevent --data-urlencode params={"name":"test"}

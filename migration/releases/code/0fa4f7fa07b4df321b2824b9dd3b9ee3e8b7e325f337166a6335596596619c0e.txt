@@ -1,0 +1,15 @@
+type: update
+name: Install action
+
+onInstall:
+  - install:
+      jps: http://example.com/manifest1.jps
+      envName: env1-${fn.random}
+      settings:
+        myparam: test1
+
+  - install:
+      jps: http://example.com/manifest2.jps
+      envName: env2-${fn.random}
+      settings:
+        myparam: test2

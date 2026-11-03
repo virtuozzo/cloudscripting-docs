@@ -1,0 +1,12 @@
+fields:
+  - caption: Popupselector
+    type: popupselector
+    name: popupselector
+    buttonText: Open
+    url: http://{external url}
+    popupWidth: 300
+    popupHeight: 300
+    popupCallbackEvent: handler
+    params:
+      first: 1
+      second: 2

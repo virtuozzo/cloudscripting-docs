@@ -1,0 +1,8 @@
+type: update
+name: Execute scripts
+
+script:
+  script: return '${this.greetings}';
+  params:
+    greeting: Hello World!
+  type: js

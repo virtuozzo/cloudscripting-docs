@@ -1,0 +1,4 @@
+deploy:
+  archive:URL
+  name: string
+  context: string

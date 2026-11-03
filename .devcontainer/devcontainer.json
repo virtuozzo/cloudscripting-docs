@@ -1,5 +1,5 @@
 {
-  "name": "Devbox Remote Container",
+  "name": "Cloud Scripting documentation",
   "build": {
     "dockerfile": "./Dockerfile",
     "context": ".."
@@ -14,9 +14,17 @@
         "DavidAnson.vscode-markdownlint",
         "shd101wyy.markdown-preview-enhanced",
         "GitHub.copilot",
-        "GitHub.copilot-chat"
+        "GitHub.copilot-chat",
+        "eliostruyf.vscode-front-matter",
+        "kaellarkin.hugo-shortcode-syntax",
+        "budparr.language-hugo-vscode"
       ]
     }
   },
-  "remoteUser": "devbox"
+  "remoteUser": "devbox",
+  "postCreateCommand": "git submodule update --init --recursive",
+  "forwardPorts": [
+    8000,
+    1313
+  ]
 }

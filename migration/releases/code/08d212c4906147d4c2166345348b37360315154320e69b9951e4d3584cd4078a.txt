@@ -1,0 +1,9 @@
+[17:43:32 CS.toBase64]: BEGIN INSTALLATION: CS Placeholders - built-in data processing functions - toBase64
+[17:43:33 CS.toBase64]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
+[17:43:34 CS.toBase64:1]: [SUCCESS] ASSERT: 'dGVzdA==' == 'dGVzdA=='
+[17:43:34 CS.toBase64:2]: [SUCCESS] ASSERT: '' == ''
+[17:43:35 CS.toBase64:3]: set:  {"test2":"test2"}
+[17:43:35 CS.toBase64:4]: set:  {"test2":"dGVzdDI="}
+[17:43:35 CS.toBase64:5]: [SUCCESS] ASSERT: 'dGVzdDI=' == 'dGVzdDI='
+[17:43:36 CS.toBase64]: END HANDLE EVENT: application/install
+[17:43:36 CS.toBase64]: END INSTALLATION: CS Placeholders - built-in data processing functions - toBase64  

@@ -1,0 +1,13 @@
+{
+"type": "update",  
+"name": "Ability to dynamically determine UI in JPS",  
+"baseUrl": "https://gist.githubusercontent.com/SlavaKatiukha/4160926fdd7df13ae097a5194d42023e/raw/eff5ffa6015b8f997bfa31558524033193b6092a/" , 
+"onBeforeInit": "InitManifestTest.cs",  
+"onInstall": [
+                { 
+        "assert": [ 
+            "'${settings.custom_field}' == 'test'" 
+                    ]
+                }
+            ]
+}

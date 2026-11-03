@@ -1,0 +1,11 @@
+type: update
+name: Base URL test
+baseUrl: https://github.com/jelastic-jps/minio/blob/master
+
+onInstall:
+  log: Base URL test
+
+onAfterRestartNode [cp]:
+  script: build-cluster.js
+
+success: README.md

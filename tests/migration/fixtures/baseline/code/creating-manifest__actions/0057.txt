@@ -1,0 +1,17 @@
+addNodes:
+  - nodeType: string
+    nodeGroup: string
+    extip: boolean
+    fixedCloudlets: number
+    flexibleCloudlets: number
+    displayName: string
+    dockerName: jelastic/wordpress-web:latest
+    registryUrl: string
+    registryUser: string
+    registryPassword: string
+    dockerTag: string
+    dockerLinks: sourceNodeGroup:alias
+    dockerEnvVars: object
+    dockerVolumes: array
+    dockerRunCmd: array
+    dockerEntryPoint: object

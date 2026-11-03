@@ -1,0 +1,11 @@
+type: install
+name: ShowIf support with envlist
+
+settings:
+  fields:
+    - caption: Environments
+      type: envlist
+      showIf:
+        test.vip.jelastic.cloud: 
+          - type: string
+            caption: String

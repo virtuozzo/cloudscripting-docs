@@ -1,0 +1,4 @@
+jelastic.marketplace.jps.Install({
+  jps: "https://example.com/manifest.jps",
+  loggerName: "Test 1"
+});

@@ -1,0 +1,10 @@
+type: update
+name: API action
+
+onInstall:
+  api:
+    - method: environment.file.Create
+      params:
+        path: /tmp/exampleFile.txt
+    - method: environment.control.RestartNodes
+  nodeGroup: cp

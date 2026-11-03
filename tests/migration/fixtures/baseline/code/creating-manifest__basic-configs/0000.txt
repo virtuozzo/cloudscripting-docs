@@ -1,0 +1,2 @@
+type: string
+name: any required name

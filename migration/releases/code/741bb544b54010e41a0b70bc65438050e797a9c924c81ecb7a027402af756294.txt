@@ -1,0 +1,27 @@
+type: update
+name: Markdown tags
+description: |
+  *Italic* or _Italic_
+  **Bold** or __Bold__
+
+  # This is H1
+  ## This is H2
+  ##### This is H6
+
+  [jelastic.com URL](https://jelastic.com)
+
+  ![Jelastic](https://jelastic.com/wp-content/themes/salient/assets/img/logo.png)
+
+  > Blockquote
+
+  * List
+
+  ---
+
+  `Inline code` with backticks
+
+  ```
+  # code block
+  print '3 backticks or'
+  print 'indent 4 spaces'
+  ```

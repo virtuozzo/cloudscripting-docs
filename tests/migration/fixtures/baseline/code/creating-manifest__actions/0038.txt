@@ -1,0 +1,11 @@
+{
+  "unpack": [
+    {
+      "nodeId": "number or string",
+      "nodeGroup": "string",
+      "nodeType": "string",
+      "sourcePath" : "URL",
+      "destPath" : "string"
+    }
+  ]
+}

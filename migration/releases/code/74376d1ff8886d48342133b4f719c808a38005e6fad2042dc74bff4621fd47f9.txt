@@ -1,0 +1,11 @@
+[
+  {
+    "createFile": {
+      "path": "/tmp/test.txt"
+    },
+    "createDirectory": {
+      "path": "/tmp/test"
+    },
+    "nodeGroup": "cp"
+  }
+]

@@ -1,0 +1,7 @@
+type: update
+name: Nginx stack
+
+onInstall:
+  if (nodes.bl[0].nodeType == 'nginx'):
+    - script: |
+        return { result: 0, error: "Environment balancer node is NGINX stack"};

@@ -1,0 +1,14 @@
+click==8.1.8
+Jinja2==3.0.3
+livereload==2.7.1
+# Editable install with no version control (Markdown==2.6.11)
+-e /private/tmp/cloudscripting-task10-volume/2138f28f0ca0060ba9ec0de103ab1d3044d1b8ff/3rdparty/markdown
+# Editable install with no version control (markdown-tabs==1.0)
+-e /private/tmp/cloudscripting-task10-volume/2138f28f0ca0060ba9ec0de103ab1d3044d1b8ff/plugins/markdown-tabs
+MarkupSafe==2.1.5
+# Editable install with no version control (mkdocs==0.17.4)
+-e /private/tmp/cloudscripting-task10-volume/2138f28f0ca0060ba9ec0de103ab1d3044d1b8ff/3rdparty/mkdocs
+# Editable install with no version control (pymdown-extensions==4.11)
+-e /private/tmp/cloudscripting-task10-volume/2138f28f0ca0060ba9ec0de103ab1d3044d1b8ff/3rdparty/pymdown-extensions
+PyYAML==6.0.3
+tornado==4.5.3

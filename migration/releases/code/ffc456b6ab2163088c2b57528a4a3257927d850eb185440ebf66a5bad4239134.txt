@@ -1,0 +1,7 @@
+{
+    "type": "update",
+    "name": "Return Action",
+    "onInstall": {
+        "return": "Hello World!"
+    }
+}

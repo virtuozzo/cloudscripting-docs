@@ -1,0 +1,8 @@
+type: update
+name: Return Action
+
+onInstall:
+  - return:
+      type: success
+      message: Compute node unique identifier - ${nodes.cp.id}
+  - restartNodes [cp]

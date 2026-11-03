@@ -1,0 +1,10 @@
+{
+    "type": "update",
+    "name": "execution actions",
+    "onInstall": "customAction",
+    "actions": {
+        "customAction": {
+            "createFile [cp]": "/tmp/example.txt"
+        }
+    }
+}

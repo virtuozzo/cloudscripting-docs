@@ -1,0 +1,5 @@
+type: update
+name: Install action
+
+onInstall:
+  install: http://example.com/manifest.jps

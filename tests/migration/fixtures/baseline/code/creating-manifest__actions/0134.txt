@@ -1,0 +1,24 @@
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": [
+    {
+      "install": {
+        "type": "update",
+        "name": "test1",
+        "onInstall": {
+          "log": "install test1"
+        }
+      }
+    },
+    {
+      "install": {
+        "type": "update",
+        "name": "test2",
+        "onInstall": {
+          "log": "install test2"
+        }
+      }
+    }
+  ]
+}

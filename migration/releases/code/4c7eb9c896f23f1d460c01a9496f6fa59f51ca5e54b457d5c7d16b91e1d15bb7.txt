@@ -1,0 +1,4 @@
+addContext:
+  - name: string
+    fileName: string
+    type: string

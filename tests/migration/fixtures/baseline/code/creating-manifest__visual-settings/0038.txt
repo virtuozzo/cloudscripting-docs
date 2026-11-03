@@ -1,0 +1,27 @@
+fields:
+  - pack: ''
+    align: ''
+    defaultMargins:
+      top: 0
+      right: 0
+      bottom: 0
+      left: 10
+    defaultPadding: 0
+    defaultFlex: 0
+    caption: Compositefield
+    type: compositefield
+    name: compositefield
+    hidden: false
+    items:
+      - name: checkbox
+        value: true
+        type: checkbox
+        hidden: false
+      - width: 50
+        name: first
+        type: string
+        hidden: false
+      - width: 100
+        name: latest
+        type: string
+        hidden: false

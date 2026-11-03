@@ -1,0 +1,9 @@
+type: install
+name: Environment variables
+
+nodes:
+  - nodeGroup: cp
+    image: wordpress:latest
+    env:
+      WORDPRESS_VERSION: 4.6.1
+      PHP_INI_DIR: /usr/local/etc/php

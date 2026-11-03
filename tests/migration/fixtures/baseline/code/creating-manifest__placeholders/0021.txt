@@ -1,0 +1,9 @@
+[08:13:38 CS:Placeholders.fromBase64]: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions] - fromBase64
+[08:13:39 CS:Placeholders.fromBase64]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
+[08:13:40 CS:Placeholders.fromBase64:1]: [SUCCESS] ASSERT: 'test' == 'test'
+[08:13:40 CS:Placeholders.fromBase64:2]: [SUCCESS] ASSERT: '' == ''
+[08:13:41 CS:Placeholders.fromBase64:3]: set:  {"test2":"dGVzdDI="}
+[08:13:41 CS:Placeholders.fromBase64:4]: set:  {"test2":"test2"}
+[08:13:41 CS:Placeholders.fromBase64:5]: [SUCCESS] ASSERT: 'test2' == 'test2'
+[08:13:41 CS:Placeholders.fromBase64]: END HANDLE EVENT: application/install
+[08:13:42 CS:Placeholders.fromBase64]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - fromBase64

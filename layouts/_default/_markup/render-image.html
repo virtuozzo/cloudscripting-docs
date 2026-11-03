@@ -1,0 +1,85 @@
+{{/* Keep processed resources on the actual build origin; no CDN deployment is assumed. */}}
+{{ $src := .Destination }}
+{{ $alt := .Text | safeHTMLAttr }}
+{{ $caption := .Title | default "" | safeHTML }}
+
+{{ $img := .Page.Resources.GetMatch (path.Base $src) }}
+{{ $imgType := "" }}
+{{ with $img }}{{ $imgType = .MediaType.Type }}{{ end }}
+
+{{ $isSupportedImage := and $img (in (slice "image/png" "image/jpeg") $imgType) }}
+
+{{ if $isSupportedImage }}
+
+  {{ $maxWidth := $img.Width }}
+
+  {{ $medium := cond (ge $maxWidth 480) ($img.Resize "480x") $img }}
+  {{ $large := $img }}
+
+  {{ $limit := 480 }}
+  {{ $sizesWidth := cond (lt $img.Width $limit) $img.Width $limit }}
+  {{ $sizes := printf "(max-width: 900px) %dpx, 100vw" $sizesWidth }}
+
+  {{ if .Page.Site.Params.useWebp }}
+    {{ $mediumWebp := $medium.Process "webp" }}
+    {{ $largeWebp := $large.Process "webp" }}
+
+    <figure>
+      <picture>
+        <source
+          type="image/webp"
+          srcset="
+            {{ if ne $mediumWebp.Permalink $largeWebp.Permalink }}
+              {{ $mediumWebp.Permalink }} {{ $mediumWebp.Width }}w,
+            {{ end }}
+            {{ $largeWebp.Permalink }} {{ $largeWebp.Width }}w"
+          sizes="{{ $sizes }}" />
+
+        <img
+          src="{{ $medium.Permalink }}"
+          srcset="
+            {{ if ne $medium.Permalink $large.Permalink }}
+              {{ $medium.Permalink }} {{ $medium.Width }}w,
+            {{ end }}
+            {{ $large.Permalink }} {{ $large.Width }}w"
+          sizes="{{ $sizes }}"
+          width="{{ $img.Width }}"
+          height="{{ $img.Height }}"
+          alt="{{ if $alt }}{{ $alt }}{{ else if $caption }}{{ $caption | markdownify | plainify }}{{ else }}&nbsp;{{ end }}"
+          loading="lazy"
+          decoding="async" />
+      </picture>
+
+      {{ if $caption }}
+        <figcaption>{{ $caption | markdownify }}</figcaption>
+      {{ end }}
+    </figure>
+
+  {{ else }}
+
+    <figure>
+      <img
+        src="{{ $medium.Permalink }}"
+        srcset="
+          {{ if ne $medium.Permalink $large.Permalink }}
+            {{ $medium.Permalink }} {{ $medium.Width }}w,
+          {{ end }}
+          {{ $large.Permalink }} {{ $large.Width }}w"
+        sizes="{{ $sizes }}"
+        width="{{ $img.Width }}"
+        height="{{ $img.Height }}"
+        alt="{{ if $alt }}{{ $alt }}{{ else if $caption }}{{ $caption | markdownify | plainify }}{{ else }}&nbsp;{{ end }}"
+        loading="lazy"
+        decoding="async" />
+      {{ if $caption }}
+        <figcaption>{{ $caption | markdownify }}</figcaption>
+      {{ end }}
+    </figure>
+
+  {{ end }}
+
+{{ else }}
+
+  <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy" decoding="async" />
+
+{{ end }}

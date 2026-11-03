@@ -1,0 +1,7 @@
+type: update
+name: LogTest
+
+onInstall:
+  log:
+    - Hello
+    - ${user.email}

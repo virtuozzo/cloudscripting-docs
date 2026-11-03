@@ -1,0 +1,4 @@
+{
+  "message": "test myvar",
+  "assert": "${this.myvar} === true"
+}

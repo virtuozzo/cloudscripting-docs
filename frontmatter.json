@@ -1,0 +1,141 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "default",
+      "pageBundle": true,
+      "fields": [
+        {
+          "title": "Draft",
+          "name": "draft",
+          "type": "draft",
+          "default": true
+        },
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "title": "SEO Index",
+          "name": "seoindex",
+          "type": "string"
+        },
+        {
+          "title": "SEO Title",
+          "name": "seotitle",
+          "type": "string"
+        },
+        {
+          "title": "SEO Keywords",
+          "name": "seokeywords",
+          "type": "string"
+        },
+        {
+          "title": "SEO Description",
+          "name": "seodesc",
+          "type": "string"
+        },
+        {
+          "title": "Docs menu",
+          "name": "menu",
+          "type": "fields",
+          "fields": [
+            {
+              "title": "Docs",
+              "name": "docs",
+              "type": "fields",
+              "fields": [
+                {
+                  "title": "Navigation title",
+                  "name": "title",
+                  "type": "string"
+                },
+                {
+                  "title": "Identifier (unique)",
+                  "name": "identifier",
+                  "type": "string"
+                },
+                {
+                  "title": "Parent identifier",
+                  "name": "parent",
+                  "type": "string"
+                },
+                {
+                  "title": "Weight (nonzero)",
+                  "name": "weight",
+                  "type": "number",
+                  "min": 1,
+                  "isDecimal": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "frontMatter.framework.id": "hugo",
+  "frontMatter.content.publicFolder": "public",
+  "frontMatter.preview.host": "http://localhost:8000",
+  "frontMatter.git.submodule.folder": "themes",
+  "frontMatter.git.enabled": true,
+  "frontMatter.framework.startCommand": "devbox run hugo:serve",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "Published Hugo content",
+      "path": "[[workspace]]/content"
+    }
+  ],
+  "frontMatter.snippets.wrapper.enabled": false,
+  "frontMatter.content.snippets": {
+    "[Common] Tip": {
+      "description": "",
+      "body": [
+        "{{%tip%}}",
+        "[[&selection]]",
+        "{{%/tip%}}"
+      ],
+      "fields": [
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[Common] Note": {
+      "description": "",
+      "body": [
+        "{{%note%}}",
+        "[[&selection]]",
+        "{{%/note%}}"
+      ],
+      "fields": [
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[Occasional] Tabs": {
+      "description": "",
+      "body": [
+        "{{%tabs%}}",
+        "{{%tabs-item title=\"First Tab\"%}}",
+        "",
+        "{{%/tabs-item%}}",
+        "{{%tabs-item title=\"Second Tab\"%}}",
+        "",
+        "{{%/tabs-item%}}",
+        "{{%/tabs%}}"
+      ],
+      "fields": []
+    }
+  }
+}

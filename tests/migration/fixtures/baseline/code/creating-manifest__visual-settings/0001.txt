@@ -1,0 +1,27 @@
+{
+  "settings": {
+    "prepopulate": "URL",
+    "submitUnchanged": "boolean",
+    "fields": [
+      {
+        "showIf": "object",
+        "type": "string",
+        "inputType": "string",
+        "name": "string",
+        "default": "string or localization object",
+        "caption": "string or localization object",
+        "placeholder": "string or localization object",
+        "required": "boolean",
+        "vtype": "string",
+        "vtypeText": "string or localization object",
+        "regex": "string for RegExp constructor",
+        "regexText": "string or localization object",
+        "hideLabel": "boolean",
+        "hidden": "boolean",
+        "id": "string",
+        "cls": "string",
+        "itemId": "string"
+      }
+    ]
+  }
+}

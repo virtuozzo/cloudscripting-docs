@@ -1,0 +1,20 @@
+{
+  "type": "install",
+  "name": "Addon installation",
+  "nodes": [
+    {
+      "nodeType": "apache2",
+      "addons": "custom-addon-id"
+    },
+    {
+      "nodeType": "mysql5"
+    }
+  ],
+  "addons": {
+    "id": "custom-addon-id",
+    "name": "Custom Addon",
+    "onInstall": {
+      "api [cp]": "environment.control.RestartNodes"
+    }
+  }
+}

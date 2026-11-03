@@ -1,0 +1,6 @@
+script:
+  - type: java
+    params:
+      greeting: Hello World!
+    script: |
+      return hivext.local.GetParam("greeting");

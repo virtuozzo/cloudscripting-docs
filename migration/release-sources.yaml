@@ -1,0 +1,414 @@
+'schema_version': 1
+'production_base_url': 'https://www.virtuozzo.com/cloudscripting-docs/'
+'default_version': '8.15.1'
+'root':
+  'source_commit': 'c779dbee16190019695af0201c822a0307004842'
+  'source_format': 'hugo'
+  'output_prefix': ''
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'user-decision-2026-10-31'
+    'evidence': 'User selected current repository content for the unversioned root,
+      including ubuntu24; frozen releases retain historical content. Task 09 authored
+      Hugo content was independently reviewed and integrated as
+      c779dbee16190019695af0201c822a0307004842, preserving legacy validation source
+      76628f8aa01571fbc348211cb7df726cf408cd17. This pins the reviewed reachable
+      authored commit, not a moving execution-branch HEAD. Root acceptance bindings
+      and identity evidence are recorded in migration/reports/task-09/root-pin.md.'
+'releases':
+- 'id': '6.3.2'
+  'platform_version': '6.3-2'
+  'source_ref': 'refs/remotes/origin/6.3.2'
+  'source_commit': '7e4f20f55427bb4edaf179b243de95b52e17aa94'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '6.3.2/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 6.3.2; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/6.3.2/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '7.0.2'
+  'platform_version': '7.0-2'
+  'source_ref': 'refs/remotes/origin/7.0.2'
+  'source_commit': 'b0a8e57823d5f618150324b143085d7b96bdb43a'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '7.0.2/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 7.0.2; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/7.0.2/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '7.2.1'
+  'platform_version': '7.2-1'
+  'source_ref': 'refs/remotes/origin/7.2.1'
+  'source_commit': '6796d14270567df874729feaff5dac175c80f776'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '7.2.1/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 7.2.1; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/7.2.1/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '7.3.1'
+  'platform_version': '7.3-1'
+  'source_ref': 'refs/remotes/origin/7.3.1'
+  'source_commit': 'a7fff106b6f4d596ee66f6c323e12d33b754a008'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '7.3.1/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 7.3.1; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/7.3.1/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.0.2'
+  'platform_version': '8.0-2'
+  'source_ref': 'refs/remotes/origin/8.0.2'
+  'source_commit': 'e8974d16e2e3c6c929be570207de5a920984e8f3'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.0.2/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.0.2; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.0.2/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.1.1'
+  'platform_version': '8.1-1'
+  'source_ref': 'refs/remotes/origin/8.1.1'
+  'source_commit': '39f8f40875b4dc8ccea281970f1ee7cf8629b582'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.1.1/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.1.1; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.1.1/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.2.2'
+  'platform_version': '8.2-2'
+  'source_ref': 'refs/remotes/origin/8.2.2'
+  'source_commit': '3c756a455536ec4afa0358c8f1098dc4851a070b'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.2.2/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.2.2; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.2.2/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.2.4'
+  'platform_version': '8.2-4'
+  'source_ref': 'refs/remotes/origin/8.2.4'
+  'source_commit': '2138f28f0ca0060ba9ec0de103ab1d3044d1b8ff'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.2.4/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.2.4; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.2.4/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.2.5'
+  'platform_version': '8.2-5'
+  'source_ref': 'refs/remotes/origin/8.2.5'
+  'source_commit': 'd883abdd7de63803706aa6918898480308d77d77'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.2.5/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.2.5; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.2.5/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.3.1'
+  'platform_version': '8.3-1'
+  'source_ref': 'refs/remotes/origin/8.3.1'
+  'source_commit': '21e3d40f674a025246af114c062bf256eaee3cc9'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.3.1/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.3.1; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.3.1/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.3.2'
+  'platform_version': '8.3-2'
+  'source_ref': 'refs/remotes/origin/8.3.2'
+  'source_commit': '9d35916829f4eb61f915944c39ba8968cc3ae802'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.3.2/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.3.2; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.3.2/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.3.3'
+  'platform_version': '8.3-3'
+  'source_ref': 'refs/remotes/origin/8.3.3'
+  'source_commit': 'b62d8010231d83eefa01a388191501672a181d60'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.3.3/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.3.3; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.3.3/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.4.1'
+  'platform_version': '8.4-1'
+  'source_ref': 'refs/remotes/origin/8.4.1'
+  'source_commit': '709c2837f56c90f70f19f7d38e1042d28840314c'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.4.1/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.4.1; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.4.1/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.6.1'
+  'platform_version': '8.6.1'
+  'source_ref': 'refs/remotes/origin/8.6.1'
+  'source_commit': '8c056373bffac2e2a02c3b5bc008180baf5ac4d7'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.6.1/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.6.1; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.6.1/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.6.2'
+  'platform_version': '8.6.2'
+  'source_ref': 'refs/remotes/origin/8.6.2'
+  'source_commit': '57790a31e4207414f9d3ae26c0900cabfa6e4df2'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.6.2/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.6.2; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.6.2/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.8.1'
+  'platform_version': '8.8.1'
+  'source_ref': 'refs/remotes/origin/8.8.1'
+  'source_commit': 'ec693cc290fc24cd995c4ae5108ac3f350884e94'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.8.1/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.8.1; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.8.1/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.10.1'
+  'platform_version': '8.10.1'
+  'source_ref': 'refs/remotes/origin/8.10.1'
+  'source_commit': 'c9cbe7503b7055516d5772be912316f8cd2263e2'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.10.1/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.10.1; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.10.1/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.10.2'
+  'platform_version': '8.10.2'
+  'source_ref': 'refs/remotes/origin/8.10.2'
+  'source_commit': '1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.10.2/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.10.2; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.10.2/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.11.1'
+  'platform_version': '8.11.1'
+  'source_ref': 'refs/remotes/origin/8.11.1'
+  'source_commit': '1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.11.1/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.11.1; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.11.1/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.12.1'
+  'platform_version': '8.12.1'
+  'source_ref': 'refs/remotes/origin/8.12.1'
+  'source_commit': '1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.12.1/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.12.1; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.12.1/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.13.1'
+  'platform_version': '8.13.1'
+  'source_ref': 'refs/remotes/origin/8.13.1'
+  'source_commit': '1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.13.1/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.13.1; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.13.1/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.14.2'
+  'platform_version': '8.14.2'
+  'source_ref': 'refs/remotes/origin/8.14.2'
+  'source_commit': '1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.14.2/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.14.2; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.14.2/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.14.3'
+  'platform_version': '8.14.3'
+  'source_ref': 'refs/remotes/origin/8.14.3'
+  'source_commit': '1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.14.3/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.14.3; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.14.3/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+- 'id': '8.15.1'
+  'platform_version': '8.15.1'
+  'source_ref': 'refs/remotes/origin/8.15.1'
+  'source_commit': '6e0617cb49da66acf10335f613fcfd80820515e3'
+  'source_format': 'mkdocs'
+  'publication': 'retained'
+  'output_prefix': '8.15.1/'
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-retained-build-set-2026-11-01'
+    'evidence': 'Retain configured release 8.15.1; legacy extra.versions config_sha256=3fab84c8249acbe4b7b39fff6a17146fa89b7b5623218a7bb37e15d0bf674937.
+      Exact observed root https://docs.cloudscripting.com/8.15.1/ returned200 in migration/reports/task-13/public-observations.json
+      (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f). All24
+      configured roots returned200. This approves the known retained build set only;
+      it is not a full server-tree audit, deployment approval or Hugo acceptance.
+      Task13 hosting/pre-cutover audit remains mandatory.'
+'candidate_publication':
+  'decision_status': 'approved'
+  'decision_provenance':
+    'basis': 'reviewed-known-candidate-exclusion-2026-11-01'
+    'evidence': 'Exclude24 additional numeric ref candidates from the known retained
+      configured build set: absent from legacy extra.versions; all24 candidate roots
+      returned404 in migration/reports/task-13/public-observations.json (sha256=c591126ea2ca372a70c5505fbf56d900dd7101dc1d423fb8de50ab37938e969f),
+      and two deep paths each returned404 in migration/reports/task-13/unlisted-and-candidate-routes.json
+      (sha256=b999f7ac7d33e24c9ebaefa72c87556f9a896a27a19d9c1fc6ad823b299f49e7). Finite
+      samples do not establish a complete server-tree absence audit. No observed200
+      published release route is dropped. No new publication or deployment is approved.
+      Task13 hosting/pre-cutover audit remains mandatory.'

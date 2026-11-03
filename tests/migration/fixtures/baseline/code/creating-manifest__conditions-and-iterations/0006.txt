@@ -1,0 +1,3 @@
+onInstall:
+  if(!${env.ssl}):
+    log: "## SSL Disabled"

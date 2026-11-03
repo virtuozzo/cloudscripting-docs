@@ -1,0 +1,6 @@
+type: install
+name: Auto-Cluster
+
+nodes:
+  - nodeType: payara
+    cluster: true

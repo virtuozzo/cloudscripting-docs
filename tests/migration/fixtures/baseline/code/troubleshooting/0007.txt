@@ -1,0 +1,6 @@
+install:
+  - jps: https://example.com/manifest.jps
+    loggerName: Test 1
+
+  - jps: https://example.com/manifest.jps
+    loggerName: Test 2

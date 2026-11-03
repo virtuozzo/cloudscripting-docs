@@ -1,0 +1,14 @@
+type: update
+name: Install action
+
+onInstall:
+  install:
+    type: install
+    region: dev
+    envName: env-${fn.random}
+    name: test
+    nodes:
+      nodeType: apache2
+      cloudlets: 16
+    onInstall: 
+      log: install test

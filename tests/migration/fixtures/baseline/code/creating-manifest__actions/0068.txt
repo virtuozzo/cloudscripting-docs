@@ -1,0 +1,3 @@
+{
+  "setExtIpEnabled [nodeId, nodeGroup, nodeType]": true or false
+}

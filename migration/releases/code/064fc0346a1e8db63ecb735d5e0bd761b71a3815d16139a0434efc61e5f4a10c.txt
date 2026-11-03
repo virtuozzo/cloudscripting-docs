@@ -1,0 +1,12 @@
+{
+   "values": [
+       {
+           "value": 1,
+           "caption": "hello"
+       },
+       {
+           "value": 2,
+           "caption": "world"
+       }
+   ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "update",
+  "name": "setNodeCount example",
+  "onInstall": {
+    "setNodeCount": [
+      {
+        "count": 3,
+        "nodeGroup": "cp"
+      },
+      {
+        "count": 5,
+        "nodeGroup": "sqldb"
+      }
+    ]
+  }
+}

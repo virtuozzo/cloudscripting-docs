@@ -1,0 +1,11 @@
+{{- /* Match rendered absolute hrefs, including the homepage URL. The theme's
+trimmed path index drops '/', so an empty-path lookup cannot select Overview. */ -}}
+{{- $ids := slice -}}
+{{- range $i, $node := .tree -}}
+  {{- $id := printf "%s%d" $.prefix $i -}}
+  {{- if eq $node.h $.url -}}{{- $ids = $ids | append $id -}}{{- end -}}
+  {{- with $node.k -}}
+    {{- $ids = $ids | append (partial "sidebar/page-items.html" (dict "tree" . "prefix" (print $id ".") "url" $.url)) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $ids -}}

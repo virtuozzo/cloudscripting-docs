@@ -1,0 +1,11 @@
+type: update
+name: Comparing global variables
+
+globals:
+  p1: 1
+  p2: 2
+
+onInstall:
+  - if (globals.p1 < globals.p2):
+      if (user.uid > 1):
+        log: "## p1 < p2 and ${user.email} is not a platform owner"

@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "builds": [
+    {
+      "id": "root",
+      "source_commit": "c779dbee16190019695af0201c822a0307004842",
+      "validation_source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "page_map": "migration/page-map.json",
+      "baseline": "tests/migration/fixtures/baseline/legacy-root.json",
+      "exceptions": "migration/compatibility-exceptions.json"
+    },
+    {
+      "id": "6.3.2",
+      "source_commit": "7e4f20f55427bb4edaf179b243de95b52e17aa94",
+      "validation_source_commit": "7e4f20f55427bb4edaf179b243de95b52e17aa94",
+      "page_map": "migration/releases/acceptance/7e4f20f55427bb4edaf179b243de95b52e17aa94/page-map.json",
+      "baseline": "migration/releases/baselines/7e4f20f55427bb4edaf179b243de95b52e17aa94/baseline.json",
+      "exceptions": "migration/releases/acceptance/7e4f20f55427bb4edaf179b243de95b52e17aa94/exceptions.json"
+    },
+    {
+      "id": "7.0.2",
+      "source_commit": "b0a8e57823d5f618150324b143085d7b96bdb43a",
+      "validation_source_commit": "b0a8e57823d5f618150324b143085d7b96bdb43a",
+      "page_map": "migration/releases/acceptance/b0a8e57823d5f618150324b143085d7b96bdb43a/page-map.json",
+      "baseline": "migration/releases/baselines/b0a8e57823d5f618150324b143085d7b96bdb43a/baseline.json",
+      "exceptions": "migration/releases/acceptance/b0a8e57823d5f618150324b143085d7b96bdb43a/exceptions.json"
+    },
+    {
+      "id": "7.2.1",
+      "source_commit": "6796d14270567df874729feaff5dac175c80f776",
+      "validation_source_commit": "6796d14270567df874729feaff5dac175c80f776",
+      "page_map": "migration/releases/acceptance/6796d14270567df874729feaff5dac175c80f776/page-map.json",
+      "baseline": "migration/releases/baselines/6796d14270567df874729feaff5dac175c80f776/baseline.json",
+      "exceptions": "migration/releases/acceptance/6796d14270567df874729feaff5dac175c80f776/exceptions.json"
+    },
+    {
+      "id": "7.3.1",
+      "source_commit": "a7fff106b6f4d596ee66f6c323e12d33b754a008",
+      "validation_source_commit": "a7fff106b6f4d596ee66f6c323e12d33b754a008",
+      "page_map": "migration/releases/acceptance/a7fff106b6f4d596ee66f6c323e12d33b754a008/page-map.json",
+      "baseline": "migration/releases/baselines/a7fff106b6f4d596ee66f6c323e12d33b754a008/baseline.json",
+      "exceptions": "migration/releases/acceptance/a7fff106b6f4d596ee66f6c323e12d33b754a008/exceptions.json"
+    },
+    {
+      "id": "8.0.2",
+      "source_commit": "e8974d16e2e3c6c929be570207de5a920984e8f3",
+      "validation_source_commit": "e8974d16e2e3c6c929be570207de5a920984e8f3",
+      "page_map": "migration/releases/acceptance/e8974d16e2e3c6c929be570207de5a920984e8f3/page-map.json",
+      "baseline": "migration/releases/baselines/e8974d16e2e3c6c929be570207de5a920984e8f3/baseline.json",
+      "exceptions": "migration/releases/acceptance/e8974d16e2e3c6c929be570207de5a920984e8f3/exceptions.json"
+    },
+    {
+      "id": "8.1.1",
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "validation_source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "page_map": "migration/releases/acceptance/39f8f40875b4dc8ccea281970f1ee7cf8629b582/page-map.json",
+      "baseline": "migration/releases/baselines/39f8f40875b4dc8ccea281970f1ee7cf8629b582/baseline.json",
+      "exceptions": "migration/releases/acceptance/39f8f40875b4dc8ccea281970f1ee7cf8629b582/exceptions.json"
+    },
+    {
+      "id": "8.2.2",
+      "source_commit": "3c756a455536ec4afa0358c8f1098dc4851a070b",
+      "validation_source_commit": "3c756a455536ec4afa0358c8f1098dc4851a070b",
+      "page_map": "migration/releases/acceptance/3c756a455536ec4afa0358c8f1098dc4851a070b/page-map.json",
+      "baseline": "migration/releases/baselines/3c756a455536ec4afa0358c8f1098dc4851a070b/baseline.json",
+      "exceptions": "migration/releases/acceptance/3c756a455536ec4afa0358c8f1098dc4851a070b/exceptions.json"
+    },
+    {
+      "id": "8.2.4",
+      "source_commit": "2138f28f0ca0060ba9ec0de103ab1d3044d1b8ff",
+      "validation_source_commit": "2138f28f0ca0060ba9ec0de103ab1d3044d1b8ff",
+      "page_map": "migration/releases/acceptance/2138f28f0ca0060ba9ec0de103ab1d3044d1b8ff/page-map.json",
+      "baseline": "migration/releases/baselines/2138f28f0ca0060ba9ec0de103ab1d3044d1b8ff/baseline.json",
+      "exceptions": "migration/releases/acceptance/2138f28f0ca0060ba9ec0de103ab1d3044d1b8ff/exceptions.json"
+    },
+    {
+      "id": "8.2.5",
+      "source_commit": "d883abdd7de63803706aa6918898480308d77d77",
+      "validation_source_commit": "d883abdd7de63803706aa6918898480308d77d77",
+      "page_map": "migration/releases/acceptance/d883abdd7de63803706aa6918898480308d77d77/page-map.json",
+      "baseline": "migration/releases/baselines/d883abdd7de63803706aa6918898480308d77d77/baseline.json",
+      "exceptions": "migration/releases/acceptance/d883abdd7de63803706aa6918898480308d77d77/exceptions.json"
+    },
+    {
+      "id": "8.3.1",
+      "source_commit": "21e3d40f674a025246af114c062bf256eaee3cc9",
+      "validation_source_commit": "21e3d40f674a025246af114c062bf256eaee3cc9",
+      "page_map": "migration/releases/acceptance/21e3d40f674a025246af114c062bf256eaee3cc9/page-map.json",
+      "baseline": "migration/releases/baselines/21e3d40f674a025246af114c062bf256eaee3cc9/baseline.json",
+      "exceptions": "migration/releases/acceptance/21e3d40f674a025246af114c062bf256eaee3cc9/exceptions.json"
+    },
+    {
+      "id": "8.3.2",
+      "source_commit": "9d35916829f4eb61f915944c39ba8968cc3ae802",
+      "validation_source_commit": "9d35916829f4eb61f915944c39ba8968cc3ae802",
+      "page_map": "migration/releases/acceptance/9d35916829f4eb61f915944c39ba8968cc3ae802/page-map.json",
+      "baseline": "migration/releases/baselines/9d35916829f4eb61f915944c39ba8968cc3ae802/baseline.json",
+      "exceptions": "migration/releases/acceptance/9d35916829f4eb61f915944c39ba8968cc3ae802/exceptions.json"
+    },
+    {
+      "id": "8.3.3",
+      "source_commit": "b62d8010231d83eefa01a388191501672a181d60",
+      "validation_source_commit": "b62d8010231d83eefa01a388191501672a181d60",
+      "page_map": "migration/releases/acceptance/b62d8010231d83eefa01a388191501672a181d60/page-map.json",
+      "baseline": "migration/releases/baselines/b62d8010231d83eefa01a388191501672a181d60/baseline.json",
+      "exceptions": "migration/releases/acceptance/b62d8010231d83eefa01a388191501672a181d60/exceptions.json"
+    },
+    {
+      "id": "8.4.1",
+      "source_commit": "709c2837f56c90f70f19f7d38e1042d28840314c",
+      "validation_source_commit": "709c2837f56c90f70f19f7d38e1042d28840314c",
+      "page_map": "migration/releases/acceptance/709c2837f56c90f70f19f7d38e1042d28840314c/page-map.json",
+      "baseline": "migration/releases/baselines/709c2837f56c90f70f19f7d38e1042d28840314c/baseline.json",
+      "exceptions": "migration/releases/acceptance/709c2837f56c90f70f19f7d38e1042d28840314c/exceptions.json"
+    },
+    {
+      "id": "8.6.1",
+      "source_commit": "8c056373bffac2e2a02c3b5bc008180baf5ac4d7",
+      "validation_source_commit": "8c056373bffac2e2a02c3b5bc008180baf5ac4d7",
+      "page_map": "migration/releases/acceptance/8c056373bffac2e2a02c3b5bc008180baf5ac4d7/page-map.json",
+      "baseline": "migration/releases/baselines/8c056373bffac2e2a02c3b5bc008180baf5ac4d7/baseline.json",
+      "exceptions": "migration/releases/acceptance/8c056373bffac2e2a02c3b5bc008180baf5ac4d7/exceptions.json"
+    },
+    {
+      "id": "8.6.2",
+      "source_commit": "57790a31e4207414f9d3ae26c0900cabfa6e4df2",
+      "validation_source_commit": "57790a31e4207414f9d3ae26c0900cabfa6e4df2",
+      "page_map": "migration/releases/acceptance/57790a31e4207414f9d3ae26c0900cabfa6e4df2/page-map.json",
+      "baseline": "migration/releases/baselines/57790a31e4207414f9d3ae26c0900cabfa6e4df2/baseline.json",
+      "exceptions": "migration/releases/acceptance/57790a31e4207414f9d3ae26c0900cabfa6e4df2/exceptions.json"
+    },
+    {
+      "id": "8.8.1",
+      "source_commit": "ec693cc290fc24cd995c4ae5108ac3f350884e94",
+      "validation_source_commit": "ec693cc290fc24cd995c4ae5108ac3f350884e94",
+      "page_map": "migration/releases/acceptance/ec693cc290fc24cd995c4ae5108ac3f350884e94/page-map.json",
+      "baseline": "migration/releases/baselines/ec693cc290fc24cd995c4ae5108ac3f350884e94/baseline.json",
+      "exceptions": "migration/releases/acceptance/ec693cc290fc24cd995c4ae5108ac3f350884e94/exceptions.json"
+    },
+    {
+      "id": "8.10.1",
+      "source_commit": "c9cbe7503b7055516d5772be912316f8cd2263e2",
+      "validation_source_commit": "c9cbe7503b7055516d5772be912316f8cd2263e2",
+      "page_map": "migration/releases/acceptance/c9cbe7503b7055516d5772be912316f8cd2263e2/page-map.json",
+      "baseline": "migration/releases/baselines/c9cbe7503b7055516d5772be912316f8cd2263e2/baseline.json",
+      "exceptions": "migration/releases/acceptance/c9cbe7503b7055516d5772be912316f8cd2263e2/exceptions.json"
+    },
+    {
+      "id": "8.10.2",
+      "source_commit": "1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f",
+      "validation_source_commit": "1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f",
+      "page_map": "migration/releases/acceptance/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/page-map.json",
+      "baseline": "migration/releases/baselines/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/baseline.json",
+      "exceptions": "migration/releases/acceptance/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/exceptions.json"
+    },
+    {
+      "id": "8.11.1",
+      "source_commit": "1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f",
+      "validation_source_commit": "1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f",
+      "page_map": "migration/releases/acceptance/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/page-map.json",
+      "baseline": "migration/releases/baselines/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/baseline.json",
+      "exceptions": "migration/releases/acceptance/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/exceptions.json"
+    },
+    {
+      "id": "8.12.1",
+      "source_commit": "1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f",
+      "validation_source_commit": "1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f",
+      "page_map": "migration/releases/acceptance/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/page-map.json",
+      "baseline": "migration/releases/baselines/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/baseline.json",
+      "exceptions": "migration/releases/acceptance/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/exceptions.json"
+    },
+    {
+      "id": "8.13.1",
+      "source_commit": "1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f",
+      "validation_source_commit": "1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f",
+      "page_map": "migration/releases/acceptance/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/page-map.json",
+      "baseline": "migration/releases/baselines/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/baseline.json",
+      "exceptions": "migration/releases/acceptance/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/exceptions.json"
+    },
+    {
+      "id": "8.14.2",
+      "source_commit": "1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f",
+      "validation_source_commit": "1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f",
+      "page_map": "migration/releases/acceptance/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/page-map.json",
+      "baseline": "migration/releases/baselines/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/baseline.json",
+      "exceptions": "migration/releases/acceptance/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/exceptions.json"
+    },
+    {
+      "id": "8.14.3",
+      "source_commit": "1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f",
+      "validation_source_commit": "1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f",
+      "page_map": "migration/releases/acceptance/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/page-map.json",
+      "baseline": "migration/releases/baselines/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/baseline.json",
+      "exceptions": "migration/releases/acceptance/1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f/exceptions.json"
+    },
+    {
+      "id": "8.15.1",
+      "source_commit": "6e0617cb49da66acf10335f613fcfd80820515e3",
+      "validation_source_commit": "6e0617cb49da66acf10335f613fcfd80820515e3",
+      "page_map": "migration/releases/acceptance/6e0617cb49da66acf10335f613fcfd80820515e3/page-map.json",
+      "baseline": "migration/releases/baselines/6e0617cb49da66acf10335f613fcfd80820515e3/baseline.json",
+      "exceptions": "migration/releases/acceptance/6e0617cb49da66acf10335f613fcfd80820515e3/exceptions.json"
+    }
+  ]
+}

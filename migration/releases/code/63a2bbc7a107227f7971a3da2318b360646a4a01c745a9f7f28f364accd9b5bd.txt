@@ -1,0 +1,5 @@
+type: update
+name: response handlers
+
+onInstall:
+  return: Warning!

@@ -1,0 +1,4 @@
+type: update
+name: Relative Path Detection
+baseUrl: https://example.com/
+success: text.txt

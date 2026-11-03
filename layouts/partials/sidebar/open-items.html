@@ -1,0 +1,19 @@
+{{- /* Resolve stable menu identifiers to the theme's positional IDs. Include
+ancestors so a configured deep section is visible even beyond sidebarDepth. */ -}}
+{{- $open := slice -}}
+{{- $i := 0 -}}
+{{- range .entries -}}
+  {{- if .Weight -}}
+    {{- $id := printf "%s%d" $.prefix $i -}}
+    {{- $i = add $i 1 -}}
+    {{- if .Children -}}
+      {{- $ancestors := $.ancestors | append $id -}}
+      {{- if in $.configured .Identifier -}}
+        {{- $open = $open | append $ancestors -}}
+      {{- end -}}
+      {{- $nested := partial "sidebar/open-items.html" (dict "entries" .Children "prefix" (print $id ".") "ancestors" $ancestors "configured" $.configured) -}}
+      {{- $open = $open | append $nested -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return (uniq $open) -}}

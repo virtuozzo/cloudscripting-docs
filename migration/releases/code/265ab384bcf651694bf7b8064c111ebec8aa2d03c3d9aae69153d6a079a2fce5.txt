@@ -1,0 +1,5 @@
+{
+  "forEach(cp:nodes.cp)": {
+    "cmd [${@cp.id}]": "echo ${@cp.address} > /tmp/example.txt"
+  }
+}

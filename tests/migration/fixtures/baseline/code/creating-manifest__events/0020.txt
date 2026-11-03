@@ -1,0 +1,18 @@
+type: install
+name: Manifest availability in onBeforeInit
+
+baseUrl: https://example.com/
+
+settings:
+  fields:
+    - type: string
+      caption: String
+
+onBeforeInit: |  
+  jps.settings.fields.push({
+        type: 'string',
+        caption: 'Base URL',
+        value: jps.baseUrl
+  });
+
+  return jps;

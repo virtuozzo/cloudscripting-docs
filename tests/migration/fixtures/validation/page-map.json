@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "source_commit": "1111111111111111111111111111111111111111",
+  "source_kind": "git",
+  "pages": [
+    {
+      "source_path": "docs/index.md",
+      "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "published": true,
+      "disposition": "published",
+      "old_url": "/",
+      "target_path": "content/_index.md",
+      "title": "Overview",
+      "nav_title": "Overview",
+      "menu_id": "page-index",
+      "menu_parent": null,
+      "weight": 10,
+      "exceptions": []
+    },
+    {
+      "source_path": "docs/guide.md",
+      "source_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "published": true,
+      "disposition": "published",
+      "old_url": "/guide/",
+      "target_path": "content/guide/index.md",
+      "title": "Guide",
+      "nav_title": "Guide",
+      "menu_id": "page-guide",
+      "menu_parent": null,
+      "weight": 20,
+      "exceptions": []
+    },
+    {
+      "source_path": "docs/draft.md",
+      "source_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "published": false,
+      "disposition": "intentionally-unpublished",
+      "old_url": null,
+      "target_path": null,
+      "title": "Draft",
+      "nav_title": null,
+      "menu_id": null,
+      "menu_parent": null,
+      "weight": null,
+      "exceptions": []
+    }
+  ]
+}

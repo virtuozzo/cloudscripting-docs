@@ -1,0 +1,27 @@
+{
+  "type": "update",
+  "name": "Default values of placeholders",
+  "onInstall": [
+    {
+      "set": {
+        "custom": "test",
+        "length": 7,
+        "null": null,
+        "false": false,
+        "empty": ""
+      }
+    },
+    {
+      "assert": [
+        "'${unknown:defaultValue}' === 'defaultValue'",
+        "'${unknown:[fn.password(7)]}'.length === 7",        
+        "'${unknown:[fn.password([this.length])]}'.length === 7",
+        "'${unknown:[this.custom]}' === 'test'",
+        "'${unknown:[this.empty]}' === ''",
+        "'${unknown:[this.false]}' === 'false'",
+        "'${unknown:[this.null]}' === 'null'",
+        "'${unknown:}' === ''"
+      ]
+    }
+  ]
+}

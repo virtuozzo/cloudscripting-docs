@@ -1,0 +1,16 @@
+type: update
+name: Custom buttons
+
+targetNodes:
+  nodeGroup: bl
+
+actions:
+  - "..."
+
+buttons:
+  - confirmText: Custom confirm text
+    loadingText: Load text while waiting
+    action: "{String}"
+    caption: Configure
+    successText: Configuration saved successfully!
+    href: http://example.com/

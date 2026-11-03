@@ -1,0 +1,10 @@
+{
+  "mixins": [
+    "https://example.com/mixins/mixin1.yaml"
+  ],
+  "actions": {
+    "mixin1Action": {
+      "log": "mixin1Action"
+    }
+  }
+}

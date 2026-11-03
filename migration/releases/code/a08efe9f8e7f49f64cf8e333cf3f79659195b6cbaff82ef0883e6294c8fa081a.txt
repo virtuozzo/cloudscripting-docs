@@ -1,0 +1,21 @@
+jpsType: install
+name: MyNodes
+settings:
+  fields:
+  - caption: Arbitrary number of Nodes
+    type: spinner
+    name: nodes
+    increment: 1
+    default: 1
+    min: 1
+  - caption: Cloudlets
+    type: spinner
+    name: cldts
+    increment: 2
+    default: 4
+    min: 4
+nodes:
+  nodeType: apache2
+  nodeGroup: cp
+  count: ${settings.nodes}
+  cloudlets: ${settings.cldts}

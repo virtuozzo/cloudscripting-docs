@@ -1,0 +1,5 @@
+forEach(env.extdomains):
+  - writeFile:
+      nodeGroup: cp
+      path: /var/lib/jelastic/keys/${@i}.txt
+      body: hello

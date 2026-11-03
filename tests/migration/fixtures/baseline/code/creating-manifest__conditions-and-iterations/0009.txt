@@ -1,0 +1,7 @@
+{
+  "onInstall": {
+    "if (/^env-/.test(env.domain))": {
+      "log": "## Env domain begins with env-: ${env.domain}"
+    }
+  }
+}

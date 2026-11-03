@@ -1,0 +1,17 @@
+type: install
+name: CS:Placeholders - built-in data processing functions- toJSON/print'
+
+globals:
+  array: [1, 2, 3]   
+  object:
+    a: 1
+    b: 2
+    c: 3
+
+onInstall:
+- assert: "'${globals.array.toJSON()}' == '[1,2,3]'"
+- assert: '''${globals.object.toJSON()}'' == ''{"a":1,"b":2,"c":3}'''
+- assert: "[${globals.array.toJSON(2)}].join('') == '1,2,3'"
+- assert: "'${globals.unknown.toJSON()}' == ''"
+- assert: "'${globals.unknown.print()}' == ''"
+- log: "${globals.print()}"

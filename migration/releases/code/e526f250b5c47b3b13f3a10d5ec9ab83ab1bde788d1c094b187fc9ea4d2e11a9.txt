@@ -1,0 +1,70 @@
+{
+  "type": "install",
+  "name": "Conditional filters for type \"list\"",
+
+  "settings": {
+    "fields": [
+      {
+        "caption": "List 1",
+        "type": "list",
+        "name": "list1",
+        "default": "value1",
+        "required": true,
+        "values": [
+          {
+            "value": "value1",
+            "caption": "one"
+          },
+          {
+            "value": "value2",
+            "caption": "two"
+          },
+          {
+            "value": "value3",
+            "caption": "three"
+          }
+        ]
+      },
+      {
+        "caption": "List 2",
+        "type": "list",
+        "name": "list2",
+        "required": true,
+        "dependsOn": {
+          "list1": {
+            "value1": [
+              {
+                "value": 1,
+                "caption": 1
+              },
+              {
+                "value": "ONE",
+                "caption": "ONE"
+              }
+            ],
+            "value2": [
+              {
+                "value": 2,
+                "caption": 2
+              },
+              {
+                "value": "TWO",
+                "caption": "TWO"
+              }
+            ],
+            "value3": [
+              {
+                "value": 3,
+                "caption": 3
+              },
+              {
+                "value": "THREE",
+                "caption": "THREE"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

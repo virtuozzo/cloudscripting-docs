@@ -1,0 +1,6 @@
+fields:
+  - type: checkbox
+    caption: string
+    value: true
+    hideLabel: false
+    hidden: false

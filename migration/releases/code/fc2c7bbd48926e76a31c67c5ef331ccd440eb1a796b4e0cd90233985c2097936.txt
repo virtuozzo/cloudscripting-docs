@@ -1,0 +1,11 @@
+prepareSqlDatabase:
+  - nodeId: number or string
+    nodeGroup: string
+    nodeType: string
+    loginCredentials:
+      user: string
+      password: string
+    newDatabaseName: string
+    newDatabaseUser:
+      name: string
+      password: string

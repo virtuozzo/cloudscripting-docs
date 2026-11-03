@@ -1,0 +1,11 @@
+{
+  "type": "update",
+  "name": "execution actions",
+  "onInstall": {
+    "forEach(item:env.nodes)": {
+      "forEach(secondItem:env.nodes)": {
+        "log": "${@@item} - ${@@secondItem} - ${@}"
+      }
+    }
+  }
+}

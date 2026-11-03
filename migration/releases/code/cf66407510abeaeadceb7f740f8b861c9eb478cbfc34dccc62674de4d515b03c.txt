@@ -1,0 +1,11 @@
+{
+  "type": "update",
+  "name": "Success Text Customization",
+  "onInstall": {
+    "return": {
+      "result": "success",
+      "email": "Custom email response text"
+    }
+  },
+  "success": "success!!"
+}

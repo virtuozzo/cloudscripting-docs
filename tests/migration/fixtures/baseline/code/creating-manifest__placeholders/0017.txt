@@ -1,0 +1,28 @@
+{
+  "type": "install",
+  "name": "CS Placeholders - built-in data processing functions - toBase64",
+  "globals": {
+    "test": "test"
+  },
+  "onInstall": [
+    {
+      "assert": "'${globals.test.toBase64()}' == 'dGVzdA=='"
+    },
+    {
+      "assert": "'${globals.unknown.toBase64()}' == ''"
+    },
+    {
+      "set": {
+        "test2": "test2"
+      }
+    },
+    {
+      "set": {
+        "test2": "${this.test2.toBase64()}"
+      }
+    },
+    {
+      "assert": "'${this.test2}' == 'dGVzdDI='"
+    }
+  ]
+}

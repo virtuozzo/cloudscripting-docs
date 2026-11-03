@@ -1,0 +1,6 @@
+type: update
+name: Execute scripts
+
+onInstall:
+  script [12345, 123456]: |
+    return { result: 0, nodeId: nodeId };

@@ -1,0 +1,5 @@
+type: update
+name: AddTrigger
+
+onAlert [name:custom_name]:
+  log: onAlert event has subscribed

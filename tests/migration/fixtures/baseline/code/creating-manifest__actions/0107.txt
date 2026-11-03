@@ -1,0 +1,5 @@
+assert:
+- condition: "${this.myvar} === true"
+  message: test myvar
+- condition: true != false
+  message: test simple condition

@@ -1,0 +1,8 @@
+type: update
+name: Install action
+
+onInstall:
+  install:
+    jps: "http://example.com/manifest.jps"
+    settings:
+      myparam: test

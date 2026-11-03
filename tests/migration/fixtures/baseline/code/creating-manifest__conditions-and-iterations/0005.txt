@@ -1,0 +1,7 @@
+{
+  "onInstall": {
+    "if (env.status == 1)": {
+      "log": "## Environment is running"
+    }
+  }
+}

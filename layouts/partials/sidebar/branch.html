@@ -1,0 +1,53 @@
+{{- /* Keep the pinned theme's current-page and lazy-depth behavior, adding
+configured fixed-open sections (and the ancestors needed to expose them). */ -}}
+{{- $current := .current -}}
+{{- $openItems := .open -}}
+{{- /* This partial is not cached: keep homepage state out of the shared menu. */ -}}
+{{- if and (eq .level 1) page.IsHome -}}
+  {{- $current = partial "sidebar/page-items.html" (dict "tree" .menu.tree "prefix" "" "url" page.Permalink) -}}
+  {{- $openItems = $current -}}
+  {{- range first 1 $current -}}
+    {{- $id := "" -}}
+    {{- range split . "." -}}
+      {{- $id = cond (eq $id "") . (printf "%s.%s" $id .) -}}
+      {{- $openItems = $openItems | append $id -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if and (eq .level 1) .menu.alwaysOpen -}}
+{{- /* These bounds must precede the theme's inline scroll positioning.
+The pinned layout reserves 248px above desktop menus and 134px in the overlay,
+plus a small bottom gap. Keep its original 70vh cap on taller screens. */ -}}
+<style>
+.aside .aside-menu-wrapp { max-height: min(70vh, calc(100vh - 260px)); }
+@media (max-width: 1024px) {
+    .aside .aside-menu-wrapp { max-height: min(70vh, calc(100vh - 148px)); }
+}
+</style>
+{{- end -}}
+<ul class="menu-level-{{ .level }}"{{ if .fixedOpen }} style="display:block"{{ end }}>
+{{- range .ids -}}
+  {{- $n := index $.menu.nodes . -}}
+  {{- $always := and $n.kids (in $.menu.alwaysOpen .) -}}
+  {{- $currentOpen := and $n.kids (in $openItems .) -}}
+  {{- $open := or $always $currentOpen -}}
+  {{- $render := and $n.kids (or $open (lt $.level $.depth)) -}}
+  {{- $cls := $n.cls -}}
+  {{- if in $current . }}{{ $cls = printf "%s current-page" $cls }}{{ end -}}
+  {{- /* Reserve expanded for the theme's current-page auto-scroll target.
+  Fixed-open branches use their own display rule so they do not steal it. */ -}}
+  {{- if $currentOpen }}{{ $cls = printf "%s expanded" $cls }}{{ end -}}
+  {{- if $always }}{{ $cls = printf "%s cs-menu-always-open" $cls }}{{ end }}
+<li{{ with trim $cls " " }} class="{{ . }}"{{ end }}{{ if $n.kids }} data-id="{{ $n.id }}"{{ end }}>
+  {{- $n.html | safeHTML -}}
+  {{- if and (in $current .) site.Params.docsMenu.showPageHeadings -}}
+    {{- $headings := partial "sidebar/page-headings.html" (dict "headings" page.Fragments.Headings "level" (add $.level 1)) -}}
+    {{- with trim $headings " \n\t" -}}
+      <ul class="cs-menu-page-headings menu-level-{{ add $.level 1 }}" style="display:block" aria-label="On this page">{{ . | safeHTML }}</ul>
+      <noscript><style>.aside .aside-menu-wrapp .cs-menu-page-headings ul { display: block; }</style></noscript>
+    {{- end -}}
+  {{- end -}}
+  {{- if $render }}{{ partial "sidebar/branch.html" (dict "menu" $.menu "ids" $n.kids "level" (add $.level 1) "open" $openItems "current" $current "depth" $.depth "fixedOpen" $always) }}{{ end -}}
+</li>
+{{- end }}
+</ul>

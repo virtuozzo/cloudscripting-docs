@@ -1,0 +1,16 @@
+{
+  "type": "update",
+  "name": "Set External IP Address",
+  "onInstall": {
+    "setExtIpEnabled": [
+      {
+        "enabled": true,
+        "nodeGroup": "cp"
+      },
+      {
+        "enabled": false,
+        "nodeGroup": "sqldb"
+      }
+    ]
+  }
+}

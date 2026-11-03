@@ -1,0 +1,21 @@
+{
+  "type": "install",
+  "name": "Multiselect for envlist adjustments",
+  "settings": {
+    "fields": [
+      {
+        "caption": "Environments",
+        "type": "envlist",
+        "name": "envs",
+        "min": 2,
+        "max": 3,
+        "required": true,
+        "multiSelect": true,
+        "delimiter": ","
+      }
+    ]
+  },
+  "onInstall": {
+    "log": "${settings.envs}"
+  }
+}

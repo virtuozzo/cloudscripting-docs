@@ -1,0 +1,6 @@
+type: install
+baseUrl: https://docs.cloudscripting.com/
+nodes:
+  nodeType: apache
+  cloudlets: 8
+startPage: ${baseUrl}creating-manifest/basic-configs/

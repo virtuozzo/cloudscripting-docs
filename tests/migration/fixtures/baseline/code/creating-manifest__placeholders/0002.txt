@@ -1,0 +1,4 @@
+script: "return greeting;"
+
+params:
+  greeting: Hello World

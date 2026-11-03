@@ -1,0 +1,14 @@
+install:
+  - loggerName: Test 1
+    jps: 
+      type: install
+      name: test
+      onInstall: 
+        log: Test    
+
+  - loggerName: Test 2
+    jps:
+      type: install
+      name: test
+      onInstall: 
+        log: Test

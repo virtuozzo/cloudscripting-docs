@@ -1,0 +1,3 @@
+{
+  "assert": "'${response.responses.out}' == 'test'"
+}

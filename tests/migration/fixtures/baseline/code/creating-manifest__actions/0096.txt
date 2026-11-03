@@ -1,0 +1,7 @@
+{
+  "type": "update",
+  "name": "Execute scripts",
+  "onInstall": {
+    "script [cp, 12345]": "return { result: 0, nodeGroup: nodeGroup };"
+  }
+}

@@ -1,0 +1,25 @@
+[12:49:36 CS:Placeholders.toJSON/print']: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions- toJSON/print'
+[12:49:36 CS:Placeholders.toJSON/print']: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
+[12:49:37 CS:Placeholders.toJSON/print':1]: [SUCCESS] ASSERT: '[1,2,3]' == '[1,2,3]'
+[12:49:38 CS:Placeholders.toJSON/print':2]: [SUCCESS] ASSERT: '{"a":1,"b":2,"c":3}' == '{"a":1,"b":2,"c":3}'
+[12:49:38 CS:Placeholders.toJSON/print':3]: [SUCCESS] ASSERT: [[
+  1,
+  2,
+  3
+]].join('') == '1,2,3'
+[12:49:39 CS:Placeholders.toJSON/print':4]: [SUCCESS] ASSERT: '' == ''
+[12:49:39 CS:Placeholders.toJSON/print':5]: [SUCCESS] ASSERT: '' == ''
+[12:49:40 CS:Placeholders.toJSON/print':6]:> {
+  "array": [
+    1,
+    2,
+    3
+  ],
+  "object": {
+    "a": 1,
+    "b": 2,
+    "c": 3
+  }
+}
+[12:49:40 CS:Placeholders.toJSON/print']: END HANDLE EVENT: application/install
+[12:49:40 CS:Placeholders.toJSON/print']: END INSTALLATION: CS:Placeholders - built-in data processing functions- toJSON/print'

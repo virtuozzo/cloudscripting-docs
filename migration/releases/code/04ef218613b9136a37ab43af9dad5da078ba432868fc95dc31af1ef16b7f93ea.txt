@@ -1,0 +1,8 @@
+type: update
+name: Success Text first example
+baseUrl: https://github.com/jelastic-jps/minio/blob/master/
+
+onInstall:
+  log: success text first example
+
+success: README.md

@@ -1,0 +1,3 @@
+actions:
+  mixin2Action:
+    log: mixin2Action

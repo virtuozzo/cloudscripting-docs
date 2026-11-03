@@ -1,0 +1,7 @@
+type: update
+name: Assert action - custom message
+onInstall:
+- cmd [cp]: echo hello
+- assert:
+    condition: "'${response.responses.nodeid}' == '160008'"
+    message: Custom Assert Message

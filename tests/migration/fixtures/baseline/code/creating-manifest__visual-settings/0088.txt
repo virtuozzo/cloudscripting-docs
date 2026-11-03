@@ -1,0 +1,6 @@
+{
+  "targetNodes": [
+    "nginx",
+    "nginxphp"
+  ]
+}

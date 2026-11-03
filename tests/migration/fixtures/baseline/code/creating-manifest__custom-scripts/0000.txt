@@ -1,0 +1,1 @@
+cmd [cp]: curl -fsS http://example.com/script.sh | /bin/bash -s arg1 arg2

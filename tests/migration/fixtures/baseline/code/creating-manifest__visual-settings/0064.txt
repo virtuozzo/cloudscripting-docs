@@ -1,0 +1,13 @@
+{
+  "fields": [
+    {
+      "type": "numberpicker",
+      "name": "numberpicker",
+      "caption": "Numberpicker",
+      "min": 3,
+      "max": 10,
+      "editable": true,
+      "hidden": false
+    }
+  ]
+}

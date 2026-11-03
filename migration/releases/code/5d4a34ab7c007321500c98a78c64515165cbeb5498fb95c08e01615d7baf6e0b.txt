@@ -1,0 +1,11 @@
+{
+  "type": "update",
+  "name": "Test Add-on Events Triggering",
+  "targetNodes": {
+    "nodeGroup": "cp"
+  },
+  "id": "myaddon",
+  "onInstall": {
+    "log": "triggers test"
+  }
+}

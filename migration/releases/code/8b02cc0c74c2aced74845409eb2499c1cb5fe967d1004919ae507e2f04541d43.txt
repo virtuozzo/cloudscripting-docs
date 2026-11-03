@@ -1,0 +1,14 @@
+type: install
+name: CS:Placeholders - built-in data processing functions] - fromBase64
+
+globals:
+  test: dGVzdA==
+
+onInstall:
+- assert: "'${globals.test.fromBase64()}' == 'test'"
+- assert: "'${globals.unknown.fromBase64()}' == ''"
+- set:
+    test2: dGVzdDI=
+- set:
+    test2: "${this.test2.fromBase64()}"
+- assert: "'${this.test2}' == 'test2'"

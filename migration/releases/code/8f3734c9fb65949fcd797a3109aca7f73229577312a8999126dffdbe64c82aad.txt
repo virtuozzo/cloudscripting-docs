@@ -1,0 +1,28 @@
+{
+  "type": "install",
+  "name": "Account And Quota Placeholders",
+  "settings": {
+    "fields": [
+    {
+    "type": "owner",
+    "caption": "Owner",
+    "name": "ownerUid"
+    }
+    ],
+    "onBeforeInit": [
+        "settings.fields.push({",
+        "  type: 'string',",
+        "  caption: 'Account',",
+        "  name: 'email',",
+        "  value: '${account.email}'",
+        "},",
+        "{",
+        "  type: 'string',",
+        "  caption: 'Cloudlets',",
+        "  name: 'cloudlets',",
+        "  value: '${quota.environment.maxcloudletsperrec}'",
+        "});",
+        "return settings;"
+        ]
+  }
+}

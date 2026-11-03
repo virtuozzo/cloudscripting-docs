@@ -11,6 +11,11 @@ target
 *.egg-info*
 .devbox
 site
-3rdparty/*/build
-3rdparty/*/pyproject.toml
-plugins/*/build
+# Hugo and Python generated state
+/public/
+/resources/_gen/
+/.hugo_build.lock
+/.venv-migration/
+/.venv/
+/build/
+/.superpowers/
