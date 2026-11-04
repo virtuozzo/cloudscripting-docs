@@ -1,0 +1,9 @@
+type: update
+name: Install action
+
+onInstall:
+  install:
+    type: update
+    name: test
+    onInstall:
+      log: install test

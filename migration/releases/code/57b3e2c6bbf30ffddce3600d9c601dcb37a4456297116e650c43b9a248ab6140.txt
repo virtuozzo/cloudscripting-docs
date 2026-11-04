@@ -1,0 +1,6 @@
+type: update
+name: response handlers
+
+onInstall:
+  script: |
+    return {"result": "warning", "message": "Warning!","email": "string"}

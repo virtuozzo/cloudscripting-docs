@@ -1,0 +1,36 @@
+Obtaining file:///tmp/cloudscripting-task10-volume/39f8f40875b4dc8ccea281970f1ee7cf8629b582/3rdparty/markdown
+Obtaining file:///tmp/cloudscripting-task10-volume/39f8f40875b4dc8ccea281970f1ee7cf8629b582/3rdparty/pymdown-extensions
+Obtaining file:///tmp/cloudscripting-task10-volume/39f8f40875b4dc8ccea281970f1ee7cf8629b582/3rdparty/mkdocs
+Obtaining file:///tmp/cloudscripting-task10-volume/39f8f40875b4dc8ccea281970f1ee7cf8629b582/plugins/markdown-tabs
+Installing collected packages: pymdown-extensions, mkdocs, markdown-tabs, Markdown
+  Attempting uninstall: pymdown-extensions
+    Found existing installation: pymdown-extensions 4.11
+    Uninstalling pymdown-extensions-4.11:
+      Successfully uninstalled pymdown-extensions-4.11
+  Running setup.py develop for pymdown-extensions
+  Attempting uninstall: mkdocs
+    Found existing installation: mkdocs 0.17.4
+    Uninstalling mkdocs-0.17.4:
+      Successfully uninstalled mkdocs-0.17.4
+  Running setup.py develop for mkdocs
+  Attempting uninstall: markdown-tabs
+    Found existing installation: markdown-tabs 1.0
+    Uninstalling markdown-tabs-1.0:
+      Successfully uninstalled markdown-tabs-1.0
+  Running setup.py develop for markdown-tabs
+  Attempting uninstall: Markdown
+    Found existing installation: Markdown 2.6.11
+    Uninstalling Markdown-2.6.11:
+      Successfully uninstalled Markdown-2.6.11
+  Running setup.py develop for Markdown
+Successfully installed Markdown-2.6.11 markdown-tabs-1.0 mkdocs-0.17.4 pymdown-extensions-4.11
+WARNING: You are using pip version 21.2.4; however, version 26.0.1 is available.
+You should consider upgrading via the '/private/tmp/cloudscripting-task10-legacy-venv/bin/python -m pip install --upgrade pip' command.
+
+COMMAND: ['/tmp/cloudscripting-task10-legacy-venv/bin/python', '-m', 'pip', 'install', '--no-deps', '--no-build-isolation', '-e', '/tmp/cloudscripting-task10-volume/39f8f40875b4dc8ccea281970f1ee7cf8629b582/3rdparty/markdown', '-e', '/tmp/cloudscripting-task10-volume/39f8f40875b4dc8ccea281970f1ee7cf8629b582/3rdparty/pymdown-extensions', '-e', '/tmp/cloudscripting-task10-volume/39f8f40875b4dc8ccea281970f1ee7cf8629b582/3rdparty/mkdocs', '-e', '/tmp/cloudscripting-task10-volume/39f8f40875b4dc8ccea281970f1ee7cf8629b582/plugins/markdown-tabs']
+/Users/macos/Library/Application Support/orca/codex-accounts/85c8241c-3044-44f6-85f1-71de1638dd31/home/worktrees/c6b0/cloudscripting-docs/migration/reports/task-10/reconstruct.py:7: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  import pkg_resources
+Config value: 'theme_dir'. Warning: The configuration option {0} has been deprecated and will be removed in a future release of MkDocs.
+Rendered 39f8f40875b4dc8ccea281970f1ee7cf8629b582 label 8.1.1
+
+COMMAND: ['/tmp/cloudscripting-task10-legacy-venv/bin/python', '/Users/macos/Library/Application Support/orca/codex-accounts/85c8241c-3044-44f6-85f1-71de1638dd31/home/worktrees/c6b0/cloudscripting-docs/migration/reports/task-10/reconstruct.py', '--source', '/tmp/cloudscripting-task10-volume/39f8f40875b4dc8ccea281970f1ee7cf8629b582', '--context', '/tmp/cloudscripting-task10-volume/39f8f40875b4dc8ccea281970f1ee7cf8629b582/context.json']

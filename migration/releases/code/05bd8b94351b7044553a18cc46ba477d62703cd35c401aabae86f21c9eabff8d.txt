@@ -1,0 +1,10 @@
+type: update
+name: execution actions
+
+onInstall:
+  customAction:
+    fileName: example.txt
+
+actions:
+  customAction:
+    createFile [cp]: /tmp/${this.fileName}.txt

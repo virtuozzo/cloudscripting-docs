@@ -1,0 +1,10 @@
+[14:33:59 CS:Placeholders.contains]: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions] - contains
+[14:34:00 CS:Placeholders.contains]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
+[14:34:01 CS:Placeholders.contains:1]: [SUCCESS] ASSERT: true
+[14:34:02 CS:Placeholders.contains:2]: [SUCCESS] ASSERT: false === false
+[14:34:03 CS:Placeholders.contains:3]: [SUCCESS] ASSERT: true
+[14:34:03 CS:Placeholders.contains:4]: [SUCCESS] ASSERT: true
+[14:34:04 CS:Placeholders.contains:5]: [SUCCESS] ASSERT: true
+[14:34:04 CS:Placeholders.contains:6]: [SUCCESS] ASSERT: false === false
+[14:34:04 CS:Placeholders.contains]: END HANDLE EVENT: application/install
+[14:34:05 CS:Placeholders.contains]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - contains

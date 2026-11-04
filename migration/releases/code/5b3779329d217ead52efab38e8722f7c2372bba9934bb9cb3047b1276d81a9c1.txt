@@ -1,0 +1,5 @@
+type: update
+name: Execute scripts
+
+onInstall:
+  script: return 'Hello World!';

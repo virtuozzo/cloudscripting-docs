@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "inputs": {
+    "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+    "scope": "reconstructed current Git root only; historical releases and live artifacts need separate evidence"
+  },
+  "checks": [
+    {
+      "id": "baseline-defects-identified",
+      "status": "pass"
+    },
+    {
+      "id": "exact-inherited-link-dispositions",
+      "status": "pass",
+      "count": 19
+    }
+  ],
+  "issues": [
+    {
+      "id": "legacy-malformed-note",
+      "source_path": "docs/creating-manifest/actions.md",
+      "url": "/creating-manifest/actions/",
+      "severity": "warning",
+      "evidence": {
+        "source_line": 1479,
+        "source_literal": "!!!Note",
+        "rendered": "Vendored admonition parser accepts optional whitespace and normalizes Note to lowercase; output is div.admonition.note with the Global-scope body intact"
+      },
+      "disposition": "Retain complete rendered note through the accepted converter; verified in the six-page pilot. Nonstandard source syntax is unchanged. No validation waiver."
+    },
+    {
+      "id": "legacy-duplicate-sample-ids",
+      "source_path": "docs/samples.md",
+      "url": "/samples/",
+      "severity": "warning",
+      "evidence": {
+        "duplicate_ids": [
+          "bs-pr",
+          "first-col"
+        ],
+        "rendered_fixture": "tests/migration/fixtures/baseline/legacy-root.json#/pages/~1samples~1/duplicate_ids",
+        "source_lines": [
+          11,
+          13,
+          16,
+          90,
+          129
+        ]
+      },
+      "disposition": "Accepted conversion preserves useful legacy anchors with valid unique IDs; strict pilot/full checks compare required fragments. Original source unchanged. No validation waiver."
+    },
+    {
+      "id": "legacy-unresolved-source-links",
+      "source_path": "docs/creating-manifest/visual-settings.md",
+      "url": "/creating-manifest/visual-settings/",
+      "severity": "warning",
+      "evidence": {
+        "links": [
+          {
+            "line": 2668,
+            "href": "/reference/events/",
+            "reason": "No corresponding Markdown source or configured route"
+          },
+          {
+            "line": 3182,
+            "href": "/releasenotes/",
+            "reason": "Source exists but is not listed for publication"
+          }
+        ]
+      },
+      "disposition": "Preserve exact authored links and keep unlisted content unpublished. The concrete source-pinned routes and occurrence bounds appear in exceptions below and task-09/inherited-link-evidence.json."
+    },
+    {
+      "id": "legacy-duplicate-correspondence-table-head",
+      "source_path": "theme/readthedocs/virtuozzo-cs-correspondence.html",
+      "url": "/virtuozzo-cs-correspondence/",
+      "severity": "warning",
+      "evidence": {
+        "duplicate_ids": [
+          "table-head"
+        ],
+        "rendered_fixture": "tests/migration/fixtures/baseline/legacy-root.json#/pages/~1virtuozzo-cs-correspondence~1/duplicate_ids"
+      },
+      "disposition": "Accepted correspondence output keeps all cells and required cs/jel/table-head fragments with one unique table-head ID. Original template unchanged. No validation waiver."
+    },
+    {
+      "id": "legacy-tab-rendering-count",
+      "source_path": "docs/creating-manifest/",
+      "url": "/creating-manifest/",
+      "severity": "warning",
+      "evidence": {
+        "source_tab_starts": 270,
+        "rendered_tab_groups": 268,
+        "differences": [
+          {
+            "source_path": "docs/creating-manifest/actions.md",
+            "source": 87,
+            "rendered": 86
+          },
+          {
+            "source_path": "docs/creating-manifest/handling-custom-responses.md",
+            "source": 11,
+            "rendered": 10
+          }
+        ]
+      },
+      "disposition": "Accepted exact restoration includes only the active Custom Responses pair missing from legacy output: full current output is 269 groups and 566 bodies. Commented Actions example remains hidden. Independent validator checks source pin, hashes and insertion location; no broad extra-content waiver."
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "current-inherited-1",
+      "check": "broken-link",
+      "source_path": "docs/creating-manifest/actions.md",
+      "url": "/creating-manifest/actions/",
+      "target": "/selecting-containers/#all-containers-by-group",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored route absent from the pinned legacy publication. Preserve the exact source target; unlisted sources remain unpublished. No repaired route or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-route",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-2",
+      "check": "broken-link",
+      "source_path": "docs/creating-manifest/actions.md",
+      "url": "/creating-manifest/actions/",
+      "target": "/selecting-containers/#all-containers-by-type",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored route absent from the pinned legacy publication. Preserve the exact source target; unlisted sources remain unpublished. No repaired route or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-route",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-3",
+      "check": "broken-link",
+      "source_path": "docs/creating-manifest/actions.md",
+      "url": "/creating-manifest/actions/",
+      "target": "/selecting-containers/#particular-container",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored route absent from the pinned legacy publication. Preserve the exact source target; unlisted sources remain unpublished. No repaired route or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-route",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-4",
+      "check": "broken-link",
+      "source_path": "docs/creating-manifest/actions.md",
+      "url": "/creating-manifest/actions/",
+      "target": "/placeholders/#node-placeholders",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored route absent from the pinned legacy publication. Preserve the exact source target; unlisted sources remain unpublished. No repaired route or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-route",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-5",
+      "check": "broken-link",
+      "source_path": "docs/creating-manifest/actions.md",
+      "url": "/creating-manifest/actions/",
+      "target": "/selecting-containers/#selector-types",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored route absent from the pinned legacy publication. Preserve the exact source target; unlisted sources remain unpublished. No repaired route or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-route",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-6",
+      "check": "broken-link",
+      "source_path": "docs/creating-manifest/actions.md",
+      "url": "/creating-manifest/actions/",
+      "target": "/visual-settings/",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored route absent from the pinned legacy publication. Preserve the exact source target; unlisted sources remain unpublished. No repaired route or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-route",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-7",
+      "check": "missing-fragment",
+      "source_path": "docs/creating-manifest/actions.md",
+      "url": "/creating-manifest/actions/",
+      "target": "/creating-manifest/selecting-containers/#types-of-selectors",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored fragment absent from the pinned legacy target article. Preserve the exact source target; no repaired fragment or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-fragment",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-8",
+      "check": "missing-fragment",
+      "source_path": "docs/creating-manifest/basic-configs.md",
+      "url": "/creating-manifest/basic-configs/",
+      "target": "/creating-manifest/selecting-containers/#engine-versions",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored fragment absent from the pinned legacy target article. Preserve the exact source target; no repaired fragment or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-fragment",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-9",
+      "check": "missing-fragment",
+      "source_path": "docs/creating-manifest/basic-configs.md",
+      "url": "/creating-manifest/basic-configs/",
+      "target": "/creating-manifest/selecting-containers/#dokerized-template-tags",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored fragment absent from the pinned legacy target article. Preserve the exact source target; no repaired fragment or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-fragment",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-10",
+      "check": "broken-link",
+      "source_path": "docs/creating-manifest/basic-configs.md",
+      "url": "/creating-manifest/basic-configs/",
+      "target": "/visual-settings/",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored route absent from the pinned legacy publication. Preserve the exact source target; unlisted sources remain unpublished. No repaired route or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-route",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-11",
+      "check": "missing-fragment",
+      "source_path": "docs/creating-manifest/conditions-and-iterations.md",
+      "url": "/creating-manifest/conditions-and-iterations/",
+      "target": "/creating-manifest/placeholders/#procedure-placeholders",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored fragment absent from the pinned legacy target article. Preserve the exact source target; no repaired fragment or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-fragment",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-12",
+      "check": "broken-link",
+      "source_path": "docs/creating-manifest/handling-custom-responses.md",
+      "url": "/creating-manifest/handling-custom-responses/",
+      "target": "/releasenotes/",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored route absent from the pinned legacy publication. Preserve the exact source target; unlisted sources remain unpublished. No repaired route or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-route",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-13",
+      "check": "missing-fragment",
+      "source_path": "docs/creating-manifest/selecting-containers.md",
+      "url": "/creating-manifest/selecting-containers/",
+      "target": "/creating-manifest/selecting-containers/#predefined-nodegroup-values",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored fragment absent from the pinned legacy target article. Preserve the exact source target; no repaired fragment or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-fragment",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-14",
+      "check": "broken-link",
+      "source_path": "docs/creating-manifest/visual-settings.md",
+      "url": "/creating-manifest/visual-settings/",
+      "target": "/reference/events/",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored route absent from the pinned legacy publication. Preserve the exact source target; unlisted sources remain unpublished. No repaired route or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-route",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-15",
+      "check": "missing-fragment",
+      "source_path": "docs/creating-manifest/visual-settings.md",
+      "url": "/creating-manifest/visual-settings/",
+      "target": "/creating-manifest/selecting-containers/#predefined-nodegroup-values",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored fragment absent from the pinned legacy target article. Preserve the exact source target; no repaired fragment or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-fragment",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-16",
+      "check": "broken-link",
+      "source_path": "docs/creating-manifest/visual-settings.md",
+      "url": "/creating-manifest/visual-settings/",
+      "target": "/releasenotes/",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored route absent from the pinned legacy publication. Preserve the exact source target; unlisted sources remain unpublished. No repaired route or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-route",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-17",
+      "check": "broken-link",
+      "source_path": "docs/samples.md",
+      "url": "/samples/",
+      "target": "/releasenotes/",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored route absent from the pinned legacy publication. Preserve the exact source target; unlisted sources remain unpublished. No repaired route or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-route",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-18",
+      "check": "broken-link",
+      "source_path": "docs/troubleshooting.md",
+      "url": "/troubleshooting/",
+      "target": "/placeholders/",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored route absent from the pinned legacy publication. Preserve the exact source target; unlisted sources remain unpublished. No repaired route or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-route",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    },
+    {
+      "id": "current-inherited-19",
+      "check": "broken-link",
+      "source_path": "docs/troubleshooting.md",
+      "url": "/troubleshooting/",
+      "target": "/releasenotes/",
+      "source_commit": "76628f8aa01571fbc348211cb7df726cf408cd17",
+      "reason": "Inherited authored route absent from the pinned legacy publication. Preserve the exact source target; unlisted sources remain unpublished. No repaired route or functional link is claimed.",
+      "legacy_occurrences": 1,
+      "category": "inherited-missing-route",
+      "evidence": "migration/reports/task-09/inherited-link-evidence.json"
+    }
+  ],
+  "policy": "Only exact source-pinned inherited route/fragment defects are accepted, bounded to captured occurrences. No pilot deferred-target exceptions, wildcard suppression, malformed Placeholders token targets or new regression allowances. Original source files remain unchanged."
+}

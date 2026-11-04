@@ -1,0 +1,8 @@
+{
+  "restartService": [
+    {
+      "nodeId": "number or string",
+      "nodeGroup": "string"
+    }
+  ]
+}

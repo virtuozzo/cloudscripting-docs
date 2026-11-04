@@ -1,0 +1,13 @@
+    {
+  "type": "install",
+  "name": "Tooltips (default)",
+  "settings": {
+    "fields": [
+      {
+        "caption": "String",
+        "type": "string",
+        "tooltip": "This is a string"
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "type": "warning",
+  "message": {
+    "en": "Localized text",
+    "es": "Texto localizado"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "type": "update",
+  "name": "AddTrigger",
+  "onAlert [cp]": {
+    "log": "onAlert event has subscribed"
+  }
+}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+  {{- partial "head" . }}
+</head>
+<body class="line-numbers page-{{ .Kind }}">
+{{- if and (in .Site.BaseURL "virtuozzo.com") (not site.IsServer) }}
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9PSVPL"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+{{- end }}
+
+{{ define "menu-element" }}
+
+{{ $childs := false }}
+{{ $classes := .item.classes }}
+{{ $uniqClass := print "menu-item-" .item.ID }}
+{{ $classes = $classes | append "menu-item" "menu-item-type-custom" "menu-item-object-custom" $uniqClass }}
+
+{{ if and (isset .item "child_items") (.item.child_items) }}
+{{ $childs = true }}
+{{ $classes = $classes | append "menu-item-has-children" "menu-dropdown-icon" }}
+{{ end }}
+
+
+<li id="menu-item-{{ .item.ID }}" class="{{ delimit $classes " " }}">
+{{ if .item.url }}
+<a href="{{ .item.url }}">{{ safeHTML .item.title }}</a>
+{{ else }}
+<a>{{ safeHTML .item.title }}</a>
+{{ end }}
+
+{{ if $childs }}
+<ul class="sub-menu">
+  {{ range $elem_val := .item.child_items }}
+  {{ template "menu-element" (dict "item" $elem_val) }}
+  {{ end }}
+</ul>
+{{ end }}
+</li>
+{{ end }}
+<div class="page-wrapper">
+  <header class="header" id="top">{{- partial "nav" . }}</header>
+  <div class="main-content-wrapper">
+    {{ $banner := .Params.bannerText | default .Site.Params.notice }}
+    {{ with $banner }}
+    <div class="banner">
+      <div class="jlc-container">
+        {{ . }}
+      </div>
+    </div>
+    {{ end }}
+    <div class="container">
+
+    {{- partial "sidebar" . }}
+    <main class="main">
+      {{- if eq .Section "docs" }}
+      {{- partial "document" . }}
+      {{- else }}
+      {{- block "main" . }}{{ end }}
+      {{- end }}
+      {{- partial "cs-feedback.html" . }}
+    </main>
+  <div id="footer"></div>
+  </div>
+</div>
+  {{- partial "footer" . }}
+  {{- partial "scripts" . }}
+</div>
+<div id="imgPopupModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="imgPopupInner">
+</div>
+</body>
+</html>

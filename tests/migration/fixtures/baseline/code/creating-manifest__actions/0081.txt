@@ -1,0 +1,8 @@
+restoreSqlDump:
+  - nodeId: number or string
+    nodeGroup: string
+    nodeType: string
+    databaseName: string
+    user: string
+    password: string
+    dump: URL

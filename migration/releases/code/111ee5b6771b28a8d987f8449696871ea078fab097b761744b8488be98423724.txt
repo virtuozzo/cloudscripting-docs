@@ -1,0 +1,8 @@
+type: update
+
+settings:
+  fields:
+    - type: string
+      name: email
+      caption: Email
+      default: ${user.email}

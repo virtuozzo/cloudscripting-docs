@@ -1,0 +1,4 @@
+{
+    "api" : "jelastic.environment.control.RestartNodes",
+    "nodeGroup" : "cp"
+}

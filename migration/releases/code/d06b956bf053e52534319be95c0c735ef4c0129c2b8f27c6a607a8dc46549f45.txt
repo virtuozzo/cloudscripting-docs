@@ -1,0 +1,10 @@
+type: install
+name: Auto-Cluster
+
+nodes:
+  - nodeType: mysql
+    cluster:
+      scheme: master
+      is_proxysql: true
+      db_user: "mydbuser"
+      db_pass: "mydbpasswd"

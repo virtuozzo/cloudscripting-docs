@@ -1,0 +1,31 @@
+{
+  "type": "install",
+  "name": "ShowIf support with list field",
+  "settings": {
+    "fields": [
+      {
+        "type": "list",
+        "caption": "List",
+        "value": "first",
+        "values": {
+          "first": "First",
+          "second": "Second"
+        },
+        "showIf": {
+          "first": [
+            {
+              "type": "string",
+              "caption": "First String"
+            }
+          ],
+          "second": [
+            {
+              "type": "string",
+              "caption": "Second String"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

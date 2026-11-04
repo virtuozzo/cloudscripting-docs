@@ -1,0 +1,24 @@
+{
+  "type": "install",
+  "name": "Inline Tooltip",
+  "settings": {
+    "fields": [
+      {
+        "type": "compositefield",
+        "caption": "Composite Field",
+        "items": [
+          {
+            "type": "string",
+            "placeholder": "String",
+            "flex": 1
+          },
+          {
+            "type": "tooltip",
+            "text": "Tooltip!",
+            "hidden": false
+          }
+        ]
+      }
+    ]
+  }
+}

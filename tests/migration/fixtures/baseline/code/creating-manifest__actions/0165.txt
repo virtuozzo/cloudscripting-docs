@@ -1,0 +1,13 @@
+type: update
+name: Actions Example
+
+onInstall:
+  - createFile [cp]: ${SERVER_WEBROOT}/greeting.txt
+  - greeting
+  - greeting
+
+actions:
+  greeting:
+    appendFile [cp]:
+      - path: ${SERVER_WEBROOT}/greeting.txt
+        body: Hello World!

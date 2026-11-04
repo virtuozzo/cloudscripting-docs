@@ -1,0 +1,7 @@
+type: update
+name: Success Text Second Example
+
+onInstall:
+  log: success Text Second Example
+
+success: https://github.com/jelastic-jps/lets-encrypt/raw/master/README.md

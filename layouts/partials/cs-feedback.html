@@ -1,0 +1,13 @@
+{{- if and (or .IsHome .IsPage) (ne .Layout "search") (not .Params.searchExclude) -}}
+  {{- $version := print (site.Params.version | default "current") -}}
+  {{- $build := print (site.Params.csBuildID | default "root") -}}
+  {{- $body := printf "Page: %s\nVersion: %s\nBuild: %s\n\nDescribe the documentation issue:\n" .Permalink $version $build -}}
+  {{- $query := querify "title" (printf "Documentation: %s" .Title) "body" $body -}}
+<div class="cs-feedback-wrap">
+  <p class="cs-feedback-description">Found an error or something missing?
+    <a class="cs-feedback" href="https://github.com/virtuozzo/cloudscripting-docs/issues/new?{{ $query | safeURL }}" target="_blank" rel="noopener" aria-label="Suggest an improvement to this page on GitHub (opens in a new tab)">
+      <span>Suggest an improvement</span>
+    </a>
+  </p>
+</div>
+{{- end -}}

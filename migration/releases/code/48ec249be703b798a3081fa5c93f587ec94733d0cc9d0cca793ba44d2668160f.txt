@@ -1,0 +1,6 @@
+{
+  "installAddon": {
+    "id": "firstAddon",
+    "nodeGroup": "bl"
+  }
+}

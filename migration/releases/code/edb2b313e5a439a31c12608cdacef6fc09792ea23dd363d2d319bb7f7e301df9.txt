@@ -1,0 +1,11 @@
+type: update
+name: setGlobals action
+onInstall:
+- setGlobals:
+    a: 1
+    b: 2
+- assert: "'${globals.a}' === '1' && '${globals.b}' === '2'"
+- checkGlobals
+actions:
+  checkGlobals:
+    assert: "'${globals.a}' === '1' && '${globals.b}' === '2'"

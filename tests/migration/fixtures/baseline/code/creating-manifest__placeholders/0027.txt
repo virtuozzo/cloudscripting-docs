@@ -1,0 +1,23 @@
+[11:39:57 CS:Placeholders.join]: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions - join
+[11:39:58 CS:Placeholders.join]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
+[11:39:59 CS:Placeholders.join:1]: [SUCCESS] ASSERT: '123' == '123'
+[11:39:59 CS:Placeholders.join:2]: [SUCCESS] ASSERT: '1,2,3' == '1,2,3'
+[11:40:00 CS:Placeholders.join:3]: [SUCCESS] ASSERT: '1;2;3' == '1;2;3'
+[11:40:00 CS:Placeholders.join:4]: [SUCCESS] ASSERT: '456' == '456'
+[11:40:01 CS:Placeholders.join:5]: [SUCCESS] ASSERT: '7,8,9' == '7,8,9'
+[11:40:02 CS:Placeholders.join:6]: [SUCCESS] ASSERT: '7;8;9' == '7;8;9'
+[11:40:02 CS:Placeholders.join:7]: [SUCCESS] ASSERT: '7;8;9' == '7;8;9'
+[11:40:03 CS:Placeholders.join:8]: [SUCCESS] ASSERT: '7,,8,,9' == '7,,8,,9'
+[11:40:03 CS:Placeholders.join:9]: [SUCCESS] ASSERT: '7 8 9' == '7 8 9'
+[11:40:04 CS:Placeholders.join:10]: [SUCCESS] ASSERT: ' 10' == ' 10'
+[11:40:04 CS:Placeholders.join:12]: script:  {"body":"return { result: 0, success: (getParam('value') == '{\"id\":10}id123')};","value":"{\"id\":10}id123"}
+[11:40:04 CS:Placeholders.join:12]: script.response: {"result":0,"success":true}
+[11:40:05 CS:Placeholders.join:13]: [SUCCESS] ASSERT: true
+[11:40:05 CS:Placeholders.join:14]: [SUCCESS] ASSERT: '{"id":10};123' == '{"id":10};123'
+[11:40:06 CS:Placeholders.join:15]: [SUCCESS] ASSERT: '{"id":10}123' == '{"id":10}123'
+[11:40:06 CS:Placeholders.join:16]: [SUCCESS] ASSERT: '11##' == '11##'
+[11:40:07 CS:Placeholders.join:17]: [SUCCESS] ASSERT: [1,
+2,
+3].join(',') === '1,2,3'
+[11:40:07 CS:Placeholders.join]: END HANDLE EVENT: application/install
+[11:40:07 CS:Placeholders.join]: END INSTALLATION: CS:Placeholders - built-in data processing functions - join

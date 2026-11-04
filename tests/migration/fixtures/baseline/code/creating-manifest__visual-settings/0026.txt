@@ -1,0 +1,20 @@
+fields:
+  - type: radio-fieldset
+    name: customName
+    hidden: false
+    default: '1'
+    values:
+      1: hello
+      2: world
+    columns: 2
+    showIf:
+      1:
+        - hideLabel: false
+          type: string
+          caption: First String
+          name: first
+      2:
+        - hideLabel: false
+          type: string
+          caption: Second String
+          name: second

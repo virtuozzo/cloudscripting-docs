@@ -1,0 +1,2 @@
+${nodes.cp.length},
+${nodes.bl.extips.length}

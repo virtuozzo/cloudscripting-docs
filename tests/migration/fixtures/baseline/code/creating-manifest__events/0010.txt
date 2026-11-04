@@ -1,0 +1,16 @@
+type: update
+name: "Ability to dynamically determine UI in JPS"  
+onBeforeInit: |
+  return {
+    result: 0,
+    settings : {
+      fields: [{
+        type : "string",
+        caption: "Custom Field",
+        name : "custom_field",
+        "default" : "test"
+      }]
+    }
+  };
+onInstall:
+assert: "'${settings.custom_field}' == 'test'"

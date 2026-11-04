@@ -1,0 +1,9 @@
+{
+  "type": "update",
+  "name": "Environment Transfer Testing script",
+  "onAfterConfirmTransfer": [
+    {
+      "log": "env ${env.name} transfer confirmed"
+    }
+  ]
+}

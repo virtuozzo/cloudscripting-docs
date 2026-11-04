@@ -1,0 +1,6 @@
+fields:
+  - caption: Displayfield
+    type: displayfield
+    name: displayfield
+    markup: display
+    hidden: false

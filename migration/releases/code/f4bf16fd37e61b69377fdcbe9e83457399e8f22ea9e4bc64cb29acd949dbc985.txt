@@ -1,0 +1,26 @@
+{
+   "type": "install",
+   "name": "[CS:Conditions] - action single line \"if\"",
+   "globals": {
+      "a": 1,
+      "b": 2
+   },
+   "onInstall": [
+      {
+         "log": "-- single line if test --"
+      },
+      {
+         "if ((globals.b == 2) && (globals.a == 1) && (globals.a == 1))": {
+            "assert": true
+         }
+      },
+      {
+         "log": "-- another single line if test --"
+      },
+      {
+         "if (globals.a == 2 || globals.a == 3 || globals.a == 1)": {
+            "assert": true
+         }
+      }
+   ]
+}

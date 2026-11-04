@@ -1,153 +1,151 @@
-# Cloud Scripting Documentation
+# Cloud Scripting documentation
 
-This repository contains the source files for the Cloud Scripting documentation. The documentation is built using [MkDocs](https://www.mkdocs.org/), a static site generator geared towards project documentation.
+This repository contains the source for the [Cloud Scripting documentation](https://www.virtuozzo.com/cloudscripting-docs/). The site is built with Hugo.
 
-Topics submitted here will be published to the [Cloud Scripting portal](https://docs.cloudscripting.com/).
+You can edit and preview the docs in the cloud or on your own machine.
 
-To start editing the documentation in the cloud or on your local machine, follow the instructions below.
+## Contributor setup
 
-## Developing In The Cloud
+Fork the repository if you do not have write access. Make changes on a `feat/` branch and submit a pull request when ready.
 
-When it comes to editing Git-based documentation in the cloud, there are multiple solutions to choose from. For minor changes in a single file, the GitHub interface can be suitable. However, for more extensive modifications, you might prefer a more comprehensive development environment. Some popular alternatives include GitHub Codespaces, github.dev and Devbox Cloud.
+### Developing in the cloud
 
-The choice of which solution to use depends on your specific needs and preferences. Whether you prioritize a comprehensive development environment, a lightweight web-based editor, or a fast and convenient editing experience, there is a solution available to suit your requirements.
+#### GitHub Codespaces
 
-### GitHub Codespaces
+1. Open the repository or your fork on GitHub. Select **Code > Codespaces** and create a Codespace.
+2. Wait for the Dev Container to finish setup. It includes the project tools and VS Code extensions.
+3. Run `uv sync --locked`, then `task serve` in the terminal.
+4. Open the forwarded port **8000** in your browser. The preview updates as you edit.
 
-GitHub Codespaces provides a comprehensive development environment in the cloud, allowing you to easily edit and preview the documentation. It offers a full-featured development environment with a terminal, code editor, and integrated Git support. When you open the repository in GitHub Codespaces, the Dev Container with Devbox inside and the [VS Code extensions](#vs-code-preinstalled-extensions) will be automatically built and started.
+See the [Codespaces guide](https://docs.github.com/en/codespaces/developing-in-a-codespace/creating-a-codespace-for-a-repository) for more details.
 
-To use GitHub Codespaces, follow these steps:
+#### github.dev
 
-1. Fork the repository to your GitHub account.
-2. Follow to [GitHub Codespaces](https://github.com/codespaces) and click on the `New codespace` button.
-3. Select the forked repository from the list of repositories.
-4. Select your region and machine type (the 2-core machine would be enough for this repository).
-5. Wait for the Codespace to be created. The Dev Container will be automatically built and started.
-6. After the Codespace is ready, execute the following commands in the integrated terminal to start the docs web server:
+For quick edits, press `.` while viewing the repository on GitHub. This opens [github.dev](https://docs.github.com/en/codespaces/the-githubdev-web-based-editor). It supports Markdown previews but has no terminal to run the site.
 
-    ```bash
-    task serve
-    ```
+### Developing locally
 
-   Alternatively, you can run the `Start the Docs web server` task in VS Code. To do this, select `Terminal -> Run Task...` in the main menu and choose `Start the Docs web server`.
-7. After the web server is started, click on the `Open in browser` button to preview the documentation.
-8. Make some changes in the documentation and see that changes are reflected in the browser.
-9. Create a pull request to contribute the changes.
+Clone the repository with its theme submodule. Use your fork's URL if needed.
 
-[More info](https://docs.github.com/en/codespaces) about GitHub Codespaces.
-
-### The github.dev Web-Based Editor
-
-The github.dev editor introduces a lightweight editing experience that runs entirely in your browser. With the github.dev editor, you can navigate files and source code repositories from GitHub, and make and commit code changes. You can open any repository, fork, or pull request in the editor.
-
-#### Opening the github.dev editor
-
-You can open the GitHub repository in `github.dev` in either of the following ways:
-
-- To open the repository in the same browser tab, press `.` while browsing the repository or pull request on GitHub.
-- To open the repository in a new browser tab, press `>`.
-- Change the URL from `github.com` to `github.dev`.
-- When viewing a file, select the `▾` dropdown menu and click `github.dev`.
-
-The drawback of the github.dev editor is that it doesn't provide a built-in terminal to start the web server. Therefore, you can only preview the changes in real-time, file by file, as a rendered Markdown. However, it's a great option for quick edits and minor contributions.
-
-Also, if you need more advanced features, you can navigate to Run and Debug section in the left sidebar and click on the `Continue Working On...` button to open the repository in GitHub Codespaces.
-
-[More info](https://docs.github.com/en/codespaces/the-githubdev-web-based-editor) about the github.dev editor.
-
-### Devbox Cloud
-
-Devbox Cloud is a fast alternative to GitHub Codespaces, allowing you to instantly preview changes in the documentation without setting up a local development environment. However, it doesn't provide a full-featured development environment with VS Code extensions like GitHub Codespaces.
-
-To use Devbox Cloud, follow these steps:
-
-1. Fork the repository to your GitHub account.
-2. Open [devbox.sh](https://devbox.sh/) in your browser.
-3. Paste the forked repository URL in the input field and click **Go**.
-4. After the integrated terminal is ready, execute the following command to start the docs web server:
-
-    ```bash
-    task serve
-    ```
-
-5. Open a new tab in your browser and paste your current Devbox project link in the address bar. Then, add `/port/8000` at the end of the link. For example, if your Devbox project link is `https://devbox.sh/app/projects/proj_your_project_id`, the new link should be `https://devbox.sh/app/projects/proj_your_project_id/port/8000`.
-6. Make some changes in the documentation and see that changes are reflected in the browser.
-7. To contribute the changes, add Devbox Cloud GitHub App to your forked repository and create a pull request.
-
-[More info](https://www.jetpack.io/devbox/docs/devbox_cloud/) about Devbox Cloud.
-
-## Staging the Docs on Your Local Machine
-
-This guide is intended for those who prefer to develop locally. Please note that setting up the local development environment may require additional effort.
-
-To get started, you need to clone the repository:
-
-```bash
-git clone git@github.com:virtuozzo/cloudscripting-docs.git
+```sh
+git clone --recurse-submodules https://github.com/virtuozzo/cloudscripting-docs.git
 cd cloudscripting-docs
 ```
 
-After cloning the repository, you have two options to run the docs web server: using a Devbox isolated shell or a Dev Container.
+For an existing clone, run `git submodule update --init --recursive`. Keep the theme at the recorded revision; do not use `--remote`.
 
-**Devbox** provides a faster alternative by installing all dependencies into an isolated shell without an extra layer of virtualization slowing down your file system or every command. On the other hand, **Dev Container** offers more isolation and provides greater portability, allowing you to easily share and replicate your development environment across different machines. The Dev Container in this repository uses **Devbox** inside to provide a consistent shell for everyone who uses it.
+#### Devbox
 
-### Using Devbox
+[Install Devbox](https://www.jetify.com/docs/devbox/installing-devbox), then run:
 
-Devbox is recommended for users who prefer a quick setup with isolated environments. Follow these steps to use Devbox:
+```sh
+devbox shell
+uv sync --locked
+```
 
-1. Install Devbox from [here](https://www.jetpack.io/devbox/docs/installing_devbox/).
-2. To start the docs web server, execute one of the following commands:
+Devbox supplies the Hugo, Task, Python and uv versions in [devbox.json](devbox.json). uv installs the locked Python dependencies into `.venv`. You do not need to activate it.
 
-    ```bash
-    devbox run serve
-    ```
+On macOS, complete the [storage setup](#macos-build-storage) before starting the preview.
 
-    or
+#### Dev Container
 
-    ```bash
-    devbox shell
+1. Install Docker and the **Dev Containers** extension for VS Code.
+2. Open the repository in VS Code and run **Dev Containers: Reopen in Container** from the command palette.
+3. Once setup finishes, run `uv sync --locked` in the terminal.
 
-    task serve
-    ```
+The container uses the same Devbox tools and includes Markdown, spelling and Hugo extensions.
 
-Alternatively, in VS Code, you can run the `Start the Docs web server` task, which automatically starts the local server for the documentation. To do this:
+## Editing and previewing
 
-- Use the command palette in VS Code (Ctrl+Shift+P or Cmd+Shift+P), type `Tasks: Run Task`, and select `Start the Docs web server`.
-- Or, navigate to `Terminal -> Run Task...` and choose `Start the Docs web server`.
+- Edit articles in `content/`.
+- Add public files, such as images, to `static/`.
+- Put site styles and scripts in `assets/` and template overrides in `layouts/`.
+- Edit site settings and menu groups in `config.yaml`.
 
-### Using a Dev Container
+Start the preview:
 
-For those seeking greater isolation and portability, the Dev Container method is a better choice. It provides a consistent environment for everyone who uses it, ensuring that the documentation is built and served in the same way across different machines. The Dev Container in this repository is configured to use the Devbox inside, so you can use either method to run the docs web server.
+```sh
+task serve
+```
 
-Here are the steps to use Dev Container in VS Code:
+Open <http://127.0.0.1:8000/>. The preview includes drafts and updates when files change. Use `task serve -- --port 9000` to choose another port.
 
-1. Install [Docker Engine](https://docs.docker.com/engine/install/) if you don't already have it installed.
-2. Install the **Dev Containers** extension in VS Code.
-3. Open the `cloudscripting-docs` repository in VS Code.
-4. Use the command palette (Ctrl+Shift+P or Cmd+Shift+P), type `Dev Containers: Reopen in Container`, and select it.
-5. VS Code will rebuild the container using the `.devcontainer` folder's configuration.
-6. Once the container is ready, you're set to work within the Dev Container environment.
-7. To start the docs, issue this command in the integrated terminal:
+In VS Code, you can also select **Terminal > Run Task > Start the Hugo preview**. Use Task for builds and previews so the required assets are prepared.
 
-    ```bash
-    task serve
-    ```
+Keep filenames and links in their original case. Use local overrides for theme changes.
 
-8. Open your browser and navigate to [http://localhost:8000/](http://localhost:8000/) to preview the documentation. MkDocs will incrementally rebuild the site with each file change and those changes will be reflected in the browser.
-9. To contribute the changes, create a pull request.
+### Sidebar settings
 
-> **Note:**
-> If the repository was cloned using SSH instead of HTTPS, to work with the remote repository from the Dev Container, you need to make sure that your SSH key is added to your local SSH agent. You can follow the instructions [here](https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials#_using-ssh-keys) on how to do it. In most cases, executing `ssh-add $HOME/.ssh/path_to_your_ssh_private_key` should be sufficient.
->
+Set `params.docsMenu` in `config.yaml`:
 
-#### VS Code Preinstalled Extensions
+```yaml
+params:
+  docsMenu:
+    showPageHeadings: true
+    alwaysOpen:
+      - creating-manifest
+```
 
-In addition, the Dev Container in this repository is configured to install necessary VS Code extensions automatically. Here are the extensions that will be installed:
+`showPageHeadings` adds section links beneath the current page. Set it to `false` to hide them. `alwaysOpen` keeps listed menu groups and their parents expanded. Use menu identifiers, not labels. Set it to `[]` to allow all groups to collapse.
 
-- [devbox by jetpack.io](https://marketplace.visualstudio.com/items?itemName=jetpack-io.devbox)
-- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
-- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
-- [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
-- [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)
-- [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) with enabled Markdown support. This extension is optional but highly recommended for long-term use. It requires an active GitHub Copilot subscription.
-- [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat). This extension is also optional but highly recommended for long-term use. It also requires an active GitHub Copilot subscription.
+## macOS build storage
+
+Builds need case-sensitive storage because some image names differ only by letter case. On Linux, the default `build/` directory usually works. On macOS, create a case-sensitive disk image once:
+
+```sh
+CS_IMAGE_DIR="$HOME/Library/Caches/cloudscripting-docs-hugo"
+mkdir -p "$CS_IMAGE_DIR"
+hdiutil create -size 8g -type SPARSE -fs 'Case-sensitive APFS' -volname CloudScriptingHugo "$CS_IMAGE_DIR/build.sparseimage"
+```
+
+Mount it when needed, then set these variables in each shell used for builds or tests:
+
+```sh
+CS_IMAGE_DIR="$HOME/Library/Caches/cloudscripting-docs-hugo"
+hdiutil attach "$CS_IMAGE_DIR/build.sparseimage" -mountpoint "$CS_IMAGE_DIR/volume" -nobrowse
+export CS_BUILD_ROOT="$CS_IMAGE_DIR/volume/work"
+export CS_DELIVERY_TMPDIR="$CS_IMAGE_DIR/volume"
+export CS_DELIVERY_TEST_TMPDIR="$CS_IMAGE_DIR/volume"
+export MIGRATION_TEST_ROOT="$CS_IMAGE_DIR/volume"
+export MIGRATION_CASE_SENSITIVE_TMP="$CS_IMAGE_DIR/volume"
+```
+
+Skip the attach command if the image is already mounted. Stop servers and builds before unmounting it:
+
+```sh
+hdiutil detach "$CS_IMAGE_DIR/volume"
+```
+
+## Building and testing
+
+Build the current content without drafts:
+
+```sh
+task build
+```
+
+Output goes to `build/current-site`, or `$CS_BUILD_ROOT/current-site` when set.
+
+Run the Hugo checks and test suite:
+
+```sh
+task hugo:verify
+uv run --locked python -m unittest discover -s tests/migration
+```
+
+The full test suite also needs Node.js. It is not required for previews or builds.
+
+Use `uv add` or `uv remove` to change Python dependencies. Commit both `pyproject.toml` and `uv.lock`.
+
+### Building all published versions
+
+The full build uses fixed Git commits from the [release manifest](migration/release-sources.yaml). Keep the full Git history and pinned theme available. Commit intended content and tooling changes before building.
+
+```sh
+task build-all
+task validate
+```
+
+Output goes to `build/artifact`, or `$CS_BUILD_ROOT/artifact` when set. Serve only its `site/` directory. Set `CS_BUILD_JOBS` to run builds in parallel; the default is `1`.
+
+These commands use the production base URL. See the [deployment guide](docs/deployment.md) for packaging, staging, production and rollback steps.

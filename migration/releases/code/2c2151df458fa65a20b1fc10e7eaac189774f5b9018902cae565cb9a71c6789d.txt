@@ -1,0 +1,13 @@
+type: update
+name: Install action
+
+onInstall:
+  - install:
+      jps: http://example.com/manifest1.jps
+      settings:
+        myparam: test1
+
+  - install:
+      jps: http://example.com/manifest2.jps
+      settings:
+        myparam: test2

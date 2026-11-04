@@ -1,0 +1,37 @@
+type: install
+name: '[CS:Conditions] - action "else"'
+
+globals:
+  a: 1
+  b: 2
+
+onInstall:
+- log: "-- else condition test --"
+- if (false):
+    assert: false
+- else:
+    assert: true
+- if (globals.a === 1):
+    assert: true
+- else:
+    assert: false
+
+- log: "-- nested conditions test --"
+- if ('${globals.b}' === '2'):
+    if (false):
+      assert: false
+- else:
+    assert: false
+
+- log: "-- conditions position test --"
+- if (false):
+    assert: true
+- log: test
+- else:
+    assert: false
+
+- log: "-- invalid condition test --"
+- if ( ):
+    assert: false
+- else:
+    assert: false

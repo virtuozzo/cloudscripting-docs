@@ -1,0 +1,7 @@
+volumeMounts:
+  /master:
+    sourcePath: /master
+    sourceNodeId: 81725
+    readOnly: true
+  /master-1:
+   sourceNodeGroup: current-node-group

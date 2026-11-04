@@ -1,0 +1,54 @@
+{{- define "main" }}
+
+{{- /* Cloud Scripting home is an article; reuse the shared content styles. */ -}}
+<div class="content">
+  {{- .Content }}
+</div>
+
+{{ if .Params.links }}
+{{ $quickstart :=  .Params.links.quickstart }}
+{{ $recommended :=  .Params.links.recommended }}
+{{ $gettinginfo :=  .Params.links.gettinginfo }}
+<div class="frontbottom-menu">
+    <div class="frontbottom-menu-item">
+        <h2 class="frontbottom-menu-title">Quick Start</h2>
+        <ul>
+            {{ range $index, $elem_val := $quickstart }}
+            {{ range $title, $link := $elem_val }}
+            <li><a href="{{ $link }}">{{ $title }}</a></li>
+            {{ end }}
+            {{ end }}
+        </ul>
+    </div>
+    <div class="frontbottom-menu-item">
+        <h2 class="frontbottom-menu-title">Recommended</h2>
+        <ul>
+            {{ range $index, $elem_val := $recommended }}
+            {{ range $title, $link := $elem_val }}
+            <li><a href="{{ $link }}">{{ $title }}</a></li>
+            {{ end }}
+            {{ end }}
+        </ul>
+    </div>
+    <div class="frontbottom-menu-item">
+        <h2 class="frontbottom-menu-title">Getting Info</h2>
+        <ul>
+            {{ range $index, $elem_val := $gettinginfo }}
+            {{ range $title, $link := $elem_val }}
+            <li><a href="{{ $link }}">{{ $title }}</a></li>
+            {{ end }}
+            {{ end }}
+        </ul>
+    </div>
+</div>
+{{- end }}
+
+{{ if .Params.gethosted }}
+<div class="text-center">
+    <a class="btn" href="{{ .Params.gethosted }}">get
+        started now</a>
+</div>
+{{- end }}
+
+
+{{- end }}

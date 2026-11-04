@@ -1,0 +1,7 @@
+{
+  "type": "update",
+  "name": "[CS] - add onBeforeBindSSL event",
+  "onBeforeBindSSL": {
+    "log": "before bind SSL"
+  }
+}

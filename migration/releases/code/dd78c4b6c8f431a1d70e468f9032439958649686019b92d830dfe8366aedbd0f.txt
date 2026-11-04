@@ -1,0 +1,12 @@
+type: install
+name: Conditional filters for type "list"
+
+settings:
+  fields:    
+    - caption: Region
+      type: regionlist
+      name: region
+
+    - caption: Env Name    
+      type: envname            
+      dependsOn: region

@@ -1,0 +1,43 @@
+{{- $jqueryScriptPath := "js/jquery-3.5.1.min.js" }}
+{{- $jquery := resources.Get $jqueryScriptPath | resources.ExecuteAsTemplate $jqueryScriptPath . }}
+
+{{- $fuseScriptPath := "js/fuse.min.js" }}
+{{- $fuse := resources.Get $fuseScriptPath | resources.ExecuteAsTemplate $fuseScriptPath . }}
+
+{{- $markScriptPath := "js/jquery.mark.min.js" }}
+{{- $mark := resources.Get $markScriptPath | resources.ExecuteAsTemplate $markScriptPath . }}
+
+{{- $lunrPath := "js/lunr.js" }}
+{{- $lunr := resources.Get $lunrPath | resources.ExecuteAsTemplate $lunrPath . }}
+
+{{- $searchPath := "js/search.js" }}
+{{- $search := resources.Get $searchPath | resources.ExecuteAsTemplate $searchPath . }}
+
+{{- $youtubelazyPath := "js/component-youtube-lazy.js" }}
+{{- $youtubelazy := resources.Get $youtubelazyPath | resources.ExecuteAsTemplate $youtubelazyPath . }}
+
+{{- $mainScriptPath := "js/index.js" }}
+{{- $main := resources.Get $mainScriptPath | resources.ExecuteAsTemplate $mainScriptPath . }}
+
+{{- $versionSwitchPath := "js/version-switch.js" }}
+{{- /* assetDir points at the shared static tree; load this local override explicitly. */ -}}
+{{- $versionSwitch := resources.FromString $versionSwitchPath (readFile "assets/js/version-switch.js") }}
+
+{{- $sidebar := resources.Get "js/sidebar.js" }}
+
+{{- $focusStyles := resources.FromString "css/cs-accessibility.css" (readFile "assets/css/cs-accessibility.css") | resources.Minify | resources.Fingerprint "sha512" }}
+<link rel="stylesheet" href="{{ $focusStyles.Permalink }}">
+
+{{- $feedbackStyles := resources.FromString "css/cs-feedback.css" (readFile "assets/css/cs-feedback.css") | resources.Minify | resources.Fingerprint "sha512" }}
+<link rel="stylesheet" href="{{ $feedbackStyles.Permalink }}">
+
+{{- $codeStyles := resources.FromString "css/cs-code-blocks.css" (readFile "assets/css/cs-code-blocks.css") | resources.Minify | resources.Fingerprint "sha512" }}
+<link rel="stylesheet" href="{{ $codeStyles.Permalink }}">
+
+{{- $accessibility := resources.FromString "js/cs-accessibility.js" (readFile "assets/js/cs-accessibility.js") }}
+{{- $codeBlocks := resources.FromString "js/cs-code-blocks.js" (readFile "assets/js/cs-code-blocks.js") }}
+
+{{- $bundle := slice $jquery $fuse $mark $lunr $search $youtubelazy $main $versionSwitch $sidebar $accessibility $codeBlocks | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
+
+<!--<script src="{{ $jquery.Permalink }}"></script>-->
+<script async src = '{{ $bundle.Permalink }}'></script>

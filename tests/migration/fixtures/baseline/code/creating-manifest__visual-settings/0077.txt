@@ -1,0 +1,20 @@
+type: install
+name: Tooltips Inside Composite Field
+
+settings:
+  fields:
+  - type: compositefield
+    caption: Composite Field
+    defaultMargins: 0 0 0 5
+    items: 
+      - type: checkbox
+        caption: Checkbox
+        tooltip: Checkbox!           
+
+      - type: string 
+        placeholder: String
+        flex: 1
+        tooltip:
+          target: side
+          text: String!          
+

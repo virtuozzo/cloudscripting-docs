@@ -1,0 +1,13 @@
+{
+  "type": "install",
+  "name": "Dockertags aquiring",
+  "settings": {
+    "fields": [
+      {
+        "type": "dockertags",
+        "image": "jelastic/tomcat",
+        "name": "tag"
+      }
+    ]
+  }
+}

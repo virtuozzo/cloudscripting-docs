@@ -1,0 +1,15 @@
+[
+  {"name":"normal", "body_html":"value: test&#10;", "value":"value: test\n"},
+  {"name":"empty", "body_html":"", "value":""},
+  {"name":"literal-lf-only", "body_html":"\n", "value":""},
+  {"name":"encoded-lf-only", "body_html":"&#10;", "value":""},
+  {"name":"literal-leading-lf", "body_html":"\nvalue: test\n", "value":"value: test\n"},
+  {"name":"encoded-leading-lf", "body_html":"&#10;value: test&#10;", "value":"value: test\n"},
+  {"name":"multiple-literal-lfs", "body_html":"\n\n\nvalue: test\n\n", "value":"\n\nvalue: test\n\n"},
+  {"name":"sentinel-normal", "body_html":"&#10;value: test&#10;", "value":"value: test\n"},
+  {"name":"sentinel-empty", "body_html":"&#10;", "value":""},
+  {"name":"sentinel-lf-only", "body_html":"&#10;&#10;", "value":"\n"},
+  {"name":"sentinel-leading-lf", "body_html":"&#10;&#10;value: test&#10;", "value":"\nvalue: test\n"},
+  {"name":"sentinel-multiple-lfs", "body_html":"&#10;&#10;&#10;value: test&#10;&#10;", "value":"\n\nvalue: test\n\n"},
+  {"name":"entities-decode-once", "body_html":"&#10;&amp;lt;&#10;", "value":"&lt;\n"}
+]

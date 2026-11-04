@@ -1,0 +1,11 @@
+{
+  "fields": [
+    {
+      "type": "hostpicker",
+      "name": "hostpicker",
+      "caption": "Hostpicker",
+      "editable": true,
+      "hidden": false
+    }
+  ]
+}

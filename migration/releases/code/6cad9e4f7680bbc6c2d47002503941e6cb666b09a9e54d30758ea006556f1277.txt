@@ -1,0 +1,9 @@
+fields:
+  - type: list
+    caption: string
+    values:
+      value1: hello
+      value2: world
+    hideLabel: false
+    hidden: false
+    editable: true

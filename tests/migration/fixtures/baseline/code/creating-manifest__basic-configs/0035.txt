@@ -1,0 +1,11 @@
+{
+  "jpsType": "install",
+  "name": "JELASTIC_PORTS env variable",
+  "nodes": {
+    "nodeType": "apache2",
+    "nodeGroup": "cp",
+    "env": {
+      "JELASTIC_PORTS": "3306, 33061, 33062"
+    }
+  }
+}

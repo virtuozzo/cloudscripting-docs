@@ -1,0 +1,6 @@
+fields:
+  - hideLabel: false
+    hidden: false
+    type: string
+    caption: string
+    name: customString

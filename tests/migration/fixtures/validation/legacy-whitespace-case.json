@@ -1,0 +1,7 @@
+{
+  "source_text": "# Frozen source\n```yaml\n\tvalue: ${token}\n  \t\n```\n",
+  "source_body": "\tvalue: ${token}\n  \t\n",
+  "legacy_body": "    value: ${token}\n\n",
+  "body_start_line": 3,
+  "body_end_line": 4
+}

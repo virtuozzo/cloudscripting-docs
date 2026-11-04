@@ -1,0 +1,11 @@
+{
+    "type": "update",
+    "name": "Default values of placeholders",
+    "onInstall": {
+        "assert": [
+            "'${unknown:defaultValue}' === 'defaultValue'",
+            "'${noName:[fn.password(7)]}'.length === 7",
+            "'${unknown:}' === ''"
+        ]
+    }
+}

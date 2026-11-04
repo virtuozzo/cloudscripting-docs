@@ -1,0 +1,12 @@
+type: install
+name: [CS:Visual Settings] - force selection for editable list
+settings:
+  fields:
+    - type: list
+      caption: List
+      values:
+        value1: Option 1
+        value2: Option 2  
+      required: true
+      editable: true
+      forceSelection: true

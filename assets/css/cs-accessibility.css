@@ -1,0 +1,52 @@
+/* Keep section navigation immediate, including long same-page menu jumps. */
+html,
+body {
+    scroll-behavior: auto;
+}
+
+/* Keep keyboard focus visible on the controls enhanced by this migration. */
+.tab-button:focus-visible,
+.code-copy-btn:focus-visible,
+.sidebar-menu:focus-visible,
+.versions .current:focus-visible,
+.versions-list a:focus-visible,
+.aside-menu-item a:focus-visible,
+.cs-menu-page-headings a:focus-visible,
+.hide-sidebar-menu:focus-visible,
+.aside-menu-item[role="button"]:focus-visible {
+    outline: 2px solid #204eab;
+    outline-offset: 2px;
+}
+
+/* The explicit root label must fit, and all frozen versions remain reachable. */
+.versions .versions-list {
+    width: max-content;
+    min-width: 100%;
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+}
+
+.cs-correspondence-scroll:focus-visible,
+.code-block pre:focus-visible {
+    outline: 2px solid #204eab;
+    outline-offset: 2px;
+}
+
+/* Fixed-open headings have no collapse action; child links remain interactive. */
+.aside .aside-menu-wrapp li.cs-menu-always-open > .aside-menu-item {
+    cursor: default;
+}
+.aside .aside-menu-wrapp li.cs-menu-always-open > .aside-menu-item::after {
+    display: none;
+}
+
+/* Menu levels, spacing and chevrons come from the shared theme. */
+.aside .aside-menu-wrapp .cs-menu-page-headings [aria-current="location"] {
+    color: #86a2ed;
+}
+/* Give grouping labels the same chevron clearance as the theme's linked rows. */
+.cs-menu-page-headings .has-children > .aside-menu-item > span {
+    display: inline-block;
+    max-width: 85%;
+}

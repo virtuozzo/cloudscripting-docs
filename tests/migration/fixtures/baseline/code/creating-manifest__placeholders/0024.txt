@@ -1,0 +1,9 @@
+[08:16:57 CS:Placeholders.md5]: BEGIN INSTALLATION: CS:Placeholders - built-in data processing functions] - md5
+[08:16:58 CS:Placeholders.md5]: BEGIN HANDLE EVENT: {"envAppid":"","topic":"application/install"}
+[08:16:59 CS:Placeholders.md5:1]: [SUCCESS] ASSERT: '098f6bcd4621d373cade4e832627b4f6' == '098f6bcd4621d373cade4e832627b4f6'
+[08:17:00 CS:Placeholders.md5:2]: [SUCCESS] ASSERT: '' == ''
+[08:17:00 CS:Placeholders.md5:3]: set:  {"test2":"test2"}
+[08:17:01 CS:Placeholders.md5:4]: set:  {"test2":"ad0234829205b9033196ba818f7a872b"}
+[08:17:01 CS:Placeholders.md5:5]: [SUCCESS] ASSERT: 'ad0234829205b9033196ba818f7a872b' == 'ad0234829205b9033196ba818f7a872b'
+[08:17:01 CS:Placeholders.md5]: END HANDLE EVENT: application/install
+[08:17:02 CS:Placeholders.md5]: END INSTALLATION: CS:Placeholders - built-in data processing functions] - md5

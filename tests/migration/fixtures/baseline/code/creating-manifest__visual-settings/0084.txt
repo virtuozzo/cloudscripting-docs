@@ -1,0 +1,8 @@
+{
+  "targetNodes": {
+    "nodeGroup": [
+      "cp",
+      "bl"
+    ]
+  }
+}

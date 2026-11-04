@@ -1,0 +1,14 @@
+{
+  "type": "install",
+  "name": "Dockertags aquiring",
+  "settings": {
+    "fields": [
+      {
+        "type": "dockertags",
+        "nodeType": "tomcat",
+        "name": "tag",
+        "hidden": false
+      }
+    ]
+  }
+}

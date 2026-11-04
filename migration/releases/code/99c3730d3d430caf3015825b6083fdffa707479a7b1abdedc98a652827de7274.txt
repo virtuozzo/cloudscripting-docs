@@ -1,0 +1,37 @@
+{
+  "type": "update",
+  "name": "Custom buttons",
+  "targetNodes": {
+    "nodeGroup": "bl"
+  },
+  "actions": [
+    "..."
+  ],
+  "settings": {
+    "main": {
+      "fields": [
+        {
+          "type": "text",
+          "caption": "Main form"
+        }
+      ]
+    },
+    "config": {
+      "fields": [
+        {
+          "type": "text",
+          "caption": "Custom form from button action"
+        }
+      ]
+    }
+  },
+  "buttons": [
+    {
+      "settings": "config",
+      "action": "customAction",
+      "caption": "Configure",
+      "submitButtonText": "Button Text",
+      "logsPath": "/var/lib/jelastic/keys/111"
+    }
+  ]
+}

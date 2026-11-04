@@ -1,0 +1,108 @@
+Obtaining file:///tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/markdown
+Obtaining file:///tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/pymdown-extensions
+Obtaining file:///tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/mkdocs
+Obtaining file:///tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/plugins/markdown-tabs
+Installing collected packages: pymdown-extensions, mkdocs, markdown-tabs, Markdown
+  Running setup.py develop for pymdown-extensions
+  Running setup.py develop for mkdocs
+  Running setup.py develop for markdown-tabs
+  Running setup.py develop for Markdown
+Successfully installed Markdown-2.6.11 markdown-tabs-1.0 mkdocs-0.17.4 pymdown-extensions-4.11
+WARNING: You are using pip version 21.2.4; however, version 26.0.1 is available.
+You should consider upgrading via the '/private/tmp/cloudscripting-task10-legacy-venv/bin/python -m pip install --upgrade pip' command.
+
+COMMAND: ['/tmp/cloudscripting-task10-legacy-venv/bin/python', '-m', 'pip', 'install', '--no-deps', '--no-build-isolation', '-e', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/markdown', '-e', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/pymdown-extensions', '-e', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/mkdocs', '-e', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/plugins/markdown-tabs']
+Config value: 'theme_dir'. Warning: The configuration option {0} has been deprecated and will be removed in a future release of MkDocs.
+Traceback (most recent call last):
+  File "/Users/macos/Library/Application Support/orca/codex-accounts/85c8241c-3044-44f6-85f1-71de1638dd31/home/worktrees/c6b0/cloudscripting-docs/migration/reports/task-10/reconstruct.py", line 53, in <module>
+    (root / 'site/legacy-provenance.json').write_text(json.dumps(provenance, indent=2) + '\n')
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 234, in dumps
+    return cls(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type module is not JSON serializable
+
+COMMAND: ['/tmp/cloudscripting-task10-legacy-venv/bin/python', '/Users/macos/Library/Application Support/orca/codex-accounts/85c8241c-3044-44f6-85f1-71de1638dd31/home/worktrees/c6b0/cloudscripting-docs/migration/reports/task-10/reconstruct.py', '--source', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3', '--context', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/context.json']
+Obtaining file:///tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/markdown
+Obtaining file:///tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/pymdown-extensions
+Obtaining file:///tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/mkdocs
+Obtaining file:///tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/plugins/markdown-tabs
+Installing collected packages: pymdown-extensions, mkdocs, markdown-tabs, Markdown
+  Attempting uninstall: pymdown-extensions
+    Found existing installation: pymdown-extensions 4.11
+    Uninstalling pymdown-extensions-4.11:
+      Successfully uninstalled pymdown-extensions-4.11
+  Running setup.py develop for pymdown-extensions
+  Attempting uninstall: mkdocs
+    Found existing installation: mkdocs 0.17.4
+    Uninstalling mkdocs-0.17.4:
+      Successfully uninstalled mkdocs-0.17.4
+  Running setup.py develop for mkdocs
+  Attempting uninstall: markdown-tabs
+    Found existing installation: markdown-tabs 1.0
+    Uninstalling markdown-tabs-1.0:
+      Successfully uninstalled markdown-tabs-1.0
+  Running setup.py develop for markdown-tabs
+  Attempting uninstall: Markdown
+    Found existing installation: Markdown 2.6.11
+    Uninstalling Markdown-2.6.11:
+      Successfully uninstalled Markdown-2.6.11
+  Running setup.py develop for Markdown
+Successfully installed Markdown-2.6.11 markdown-tabs-1.0 mkdocs-0.17.4 pymdown-extensions-4.11
+WARNING: You are using pip version 21.2.4; however, version 26.0.1 is available.
+You should consider upgrading via the '/private/tmp/cloudscripting-task10-legacy-venv/bin/python -m pip install --upgrade pip' command.
+
+COMMAND: ['/tmp/cloudscripting-task10-legacy-venv/bin/python', '-m', 'pip', 'install', '--no-deps', '--no-build-isolation', '-e', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/markdown', '-e', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/pymdown-extensions', '-e', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/mkdocs', '-e', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/plugins/markdown-tabs']
+/Users/macos/Library/Application Support/orca/codex-accounts/85c8241c-3044-44f6-85f1-71de1638dd31/home/worktrees/c6b0/cloudscripting-docs/migration/reports/task-10/reconstruct.py:7: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  import pkg_resources
+Config value: 'theme_dir'. Warning: The configuration option {0} has been deprecated and will be removed in a future release of MkDocs.
+Traceback (most recent call last):
+  File "/Users/macos/Library/Application Support/orca/codex-accounts/85c8241c-3044-44f6-85f1-71de1638dd31/home/worktrees/c6b0/cloudscripting-docs/migration/reports/task-10/reconstruct.py", line 55, in <module>
+    (root / 'site/legacy-provenance.json').write_text(json.dumps(provenance, indent=2) + '\n')
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 234, in dumps
+    return cls(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type module is not JSON serializable
+
+COMMAND: ['/tmp/cloudscripting-task10-legacy-venv/bin/python', '/Users/macos/Library/Application Support/orca/codex-accounts/85c8241c-3044-44f6-85f1-71de1638dd31/home/worktrees/c6b0/cloudscripting-docs/migration/reports/task-10/reconstruct.py', '--source', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3', '--context', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/context.json']
+Obtaining file:///tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/markdown
+Obtaining file:///tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/pymdown-extensions
+Obtaining file:///tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/mkdocs
+Obtaining file:///tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/plugins/markdown-tabs
+Installing collected packages: pymdown-extensions, mkdocs, markdown-tabs, Markdown
+  Running setup.py develop for pymdown-extensions
+  Running setup.py develop for mkdocs
+  Running setup.py develop for markdown-tabs
+  Running setup.py develop for Markdown
+Successfully installed Markdown-2.6.11 markdown-tabs-1.0 mkdocs-0.17.4 pymdown-extensions-4.11
+WARNING: You are using pip version 21.2.4; however, version 26.0.1 is available.
+You should consider upgrading via the '/private/tmp/cloudscripting-task10-legacy-venv/bin/python -m pip install --upgrade pip' command.
+
+COMMAND: ['/tmp/cloudscripting-task10-legacy-venv/bin/python', '-m', 'pip', 'install', '--no-deps', '--no-build-isolation', '-e', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/markdown', '-e', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/pymdown-extensions', '-e', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/3rdparty/mkdocs', '-e', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/plugins/markdown-tabs']
+/Users/macos/Library/Application Support/orca/codex-accounts/85c8241c-3044-44f6-85f1-71de1638dd31/home/worktrees/c6b0/cloudscripting-docs/migration/reports/task-10/reconstruct.py:7: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  import pkg_resources
+Config value: 'theme_dir'. Warning: The configuration option {0} has been deprecated and will be removed in a future release of MkDocs.
+Rendered 6e0617cb49da66acf10335f613fcfd80820515e3 label 8.15.1
+
+COMMAND: ['/tmp/cloudscripting-task10-legacy-venv/bin/python', '/Users/macos/Library/Application Support/orca/codex-accounts/85c8241c-3044-44f6-85f1-71de1638dd31/home/worktrees/c6b0/cloudscripting-docs/migration/reports/task-10/reconstruct.py', '--source', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3', '--context', '/tmp/cloudscripting-task10-volume/6e0617cb49da66acf10335f613fcfd80820515e3/context.json']

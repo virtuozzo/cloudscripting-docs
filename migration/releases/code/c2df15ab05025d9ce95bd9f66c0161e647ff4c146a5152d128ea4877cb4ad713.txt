@@ -1,0 +1,10 @@
+{
+  "type": "update",
+  "name": "Alias for nodeGroup",
+  "nodeGroupAlias": {
+    "cp": "sqldb2"
+  },
+  "onInstall": {
+    "log": "${nodes.sqldb2.id}"
+  }
+}

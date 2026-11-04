@@ -1,0 +1,4 @@
+- sourceNodeGroup: storage
+  volumes: 
+    - /master
+    - /local

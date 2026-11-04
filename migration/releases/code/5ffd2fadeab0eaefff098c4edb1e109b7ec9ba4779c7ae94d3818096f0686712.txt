@@ -1,0 +1,8 @@
+replaceInFile:
+  nodeId: number or string
+  nodeGroup: string
+  nodeType: string
+  path: string
+  replacements:
+    - pattern: string
+      replacement: string

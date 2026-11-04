@@ -1,0 +1,14 @@
+{
+  "fields": [
+    {
+      "min": 0,
+      "max": 10,
+      "increment": 1,
+      "useTips": true,
+      "caption": "Slider",
+      "type": "slider",
+      "name": "slider",
+      "hidden": false
+    }
+  ]
+}

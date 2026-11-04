@@ -1,0 +1,8 @@
+{
+  "type": "update",
+  "name": "Global declaration",
+  "globals": {
+    "value1": 1,
+    "value2": 2
+  }
+}

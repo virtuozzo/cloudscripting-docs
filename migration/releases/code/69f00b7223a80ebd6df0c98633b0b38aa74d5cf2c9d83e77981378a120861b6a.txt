@@ -1,0 +1,7 @@
+volumeMounts:
+  /example-path:
+    sourcePath: ''
+    sourceNodeId: 0
+    sourceNodeGroup: ''
+    sourceHost: ''
+    readOnly: true

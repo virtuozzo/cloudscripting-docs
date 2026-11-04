@@ -1,0 +1,7 @@
+type: update
+name: Install action
+
+onInstall:
+  install[cp,bl]:
+    jps: http://example.com/manifest.jps
+    log: Test Async Install By Node Group

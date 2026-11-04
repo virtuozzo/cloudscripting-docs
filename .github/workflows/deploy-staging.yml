@@ -1,0 +1,95 @@
+name: Deploy staging accepted artifact
+on:
+  workflow_dispatch:
+    inputs:
+      build_run_id:
+        description: Successful Build complete Hugo release run ID
+        required: true
+        type: string
+      artifact_id:
+        description: Exact cloudscripting-docs-release artifact ID from that run
+        required: true
+        type: string
+      archive_sha256:
+        description: Accepted archive SHA-256 (same archive for staging and production)
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: cloudscripting-docs-staging
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    environment: staging
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+          submodules: recursive
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version-file: '.python-version'
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          version: '0.9.28'
+          enable-cache: true
+      - run: uv sync --locked
+      - name: Bind selected artifact to successful trusted release run
+        id: source
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BUILD_RUN_ID: ${{ inputs.build_run_id }}
+          ARTIFACT_ID: ${{ inputs.artifact_id }}
+          ARCHIVE_SHA256: ${{ inputs.archive_sha256 }}
+        run: |
+          set -euo pipefail
+          uv run --locked python -m scripts.deploy.workflow_source "$BUILD_RUN_ID" "$ARTIFACT_ID" "$ARCHIVE_SHA256"
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          artifact-ids: ${{ inputs.artifact_id }}
+          run-id: ${{ inputs.build_run_id }}
+          github-token: ${{ github.token }}
+          path: build/received
+          merge-multiple: true
+      - name: Verify complete unchanged archive before configuring transport
+        env:
+          APPROVED_SHA: ${{ inputs.archive_sha256 }}
+          TRUSTED_SHA: ${{ steps.source.outputs.trusted_sha }}
+        run: bash scripts/deploy/verify-artifact.sh build/received/cloudscripting-docs.tar.gz "$APPROVED_SHA" migration/release-sources.yaml build/promotion-validation.json "$TRUSTED_SHA"
+      - name: Deploy through confirmed backup and symlink strategy
+        env:
+          APPROVED_SHA: ${{ inputs.archive_sha256 }}
+          TRUSTED_SHA: ${{ steps.source.outputs.trusted_sha }}
+          HOST_CONFIG: ${{ secrets.DEPLOY_HOST_CONFIG }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          test -n "$HOST_CONFIG"
+          test -n "$SSH_KEY"
+          test -n "$SSH_KNOWN_HOSTS"
+          config=$(mktemp "$RUNNER_TEMP/cs-host.XXXXXXXX.json")
+          key=$(mktemp "$RUNNER_TEMP/cs-key.XXXXXXXX")
+          trap 'rm -f -- "$config" "$key"' EXIT
+          printf '%s' "$HOST_CONFIG" > "$config"
+          printf '%s\n' "$SSH_KEY" > "$key"
+          mkdir -p "$HOME/.ssh"
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          eval "$(ssh-agent -s)" > /dev/null
+          trap 'ssh-agent -k > /dev/null; rm -f -- "$config" "$key"' EXIT
+          ssh-add "$key"
+          bash scripts/deploy/deploy-artifact.sh staging build/received/cloudscripting-docs.tar.gz "$APPROVED_SHA" migration/release-sources.yaml build/promotion-validation.json "$config" "$TRUSTED_SHA" > build/deployment-receipt.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: staging-delivery-evidence
+          path: |
+            build/promotion-validation.json
+            build/deployment-receipt.json
+          if-no-files-found: warn

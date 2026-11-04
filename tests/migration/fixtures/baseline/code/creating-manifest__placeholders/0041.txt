@@ -1,0 +1,7 @@
+type: install
+name: Ability co compare CS engine versions
+
+onInstall:
+  - system.service.GetVersion   
+  - if ('${fn.compare([response.version], 5.7)}' == -1):
+      log: not compatible version

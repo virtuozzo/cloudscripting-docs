@@ -1,0 +1,13 @@
+{
+  "type": "install",
+  "name": "docker volumes",
+  "nodes": [
+    {
+      "nodeGroup": "sqldb",
+      "image": "centos:7",
+      "volumes": [],
+      "volumeMounts": {},
+      "volumesFrom": []
+    }
+  ]
+}

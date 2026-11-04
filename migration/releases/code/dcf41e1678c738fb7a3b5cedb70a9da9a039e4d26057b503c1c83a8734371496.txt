@@ -1,0 +1,8 @@
+text: string or localization object  
+x: number
+y: number
+target: string
+minWidth: number
+maxWidth: number
+anchor: string
+hidden: boolean

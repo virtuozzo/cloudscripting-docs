@@ -1,0 +1,8 @@
+type: install
+name: Dockertags aquiring
+
+settings:
+  fields:
+    - type: nodetags      
+      nodeType: tomcat
+      name: tag

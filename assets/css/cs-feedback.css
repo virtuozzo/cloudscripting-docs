@@ -1,0 +1,34 @@
+/* Quiet article-end feedback, below the next-step navigation. */
+.main > .cs-feedback-wrap {
+    margin: 24px 0 0;
+    padding: 12px 0 0;
+    border-top: 1px solid #e2e7f5;
+    color: #5e6c9e;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.cs-feedback-description {
+    margin: 0;
+    padding: 0;
+}
+
+.cs-feedback {
+    display: inline-block;
+    min-height: 24px;
+    max-width: 100%;
+    vertical-align: baseline;
+}
+
+.cs-feedback:hover {
+    text-decoration: none;
+}
+
+.cs-feedback:hover span {
+    text-decoration: underline;
+}
+
+.cs-feedback:focus-visible {
+    outline: 2px solid #254d90;
+    outline-offset: 3px;
+}

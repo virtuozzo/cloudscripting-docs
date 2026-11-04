@@ -1,0 +1,33 @@
+type: install
+name: CS:Placeholders - built-in data processing functions - join
+
+globals:
+  array: [1, 2, 3]
+  nestedArray : [{
+    array : [4, 5, 6]
+  }]
+  arrayOfObjects: [{ id: 7 }, { id : 8 }, { id : 9 }]
+  mixedArray: ["123", { id: 10 }]
+  mixedArray2: [{ id: 10 }, "123"]
+  mixedArray3: [{ id: 11 }, null, "456"]
+
+onInstall:
+- assert: "'${globals.array.join()}' == '123'"
+- assert: "'${globals.array.join(,)}' == '1,2,3'"
+- assert: "'${globals.array.join(;)}' == '1;2;3'"
+- assert: "'${globals.nestedArray[0].array.join()}' == '456'"
+- assert: "'${globals.arrayOfObjects.join(id,)}' == '7,8,9'"
+- assert: "'${globals.arrayOfObjects.join(id,;)}' == '7;8;9'"
+- assert: "'${globals.arrayOfObjects.join(id, ;)}' == '7;8;9'"
+- assert: "'${globals.arrayOfObjects.join(id,\\,\\,)}' == '7,,8,,9'"
+- assert: "'${globals.arrayOfObjects.join(id, )}' == '7 8 9'"
+- assert: "'${globals.mixedArray.join(id, )}' == ' 10'"
+
+- value: "${globals.mixedArray2.join(id)}"
+  script: 'return { result: 0, success: (getParam(''value'') == ''{"id":10}id123'')};'
+- assert: "${response.success}"
+
+- assert: '''${globals.mixedArray2.join(;)}'' == ''{"id":10};123'''
+- assert: '''${globals.mixedArray2.join()}'' == ''{"id":10}123'''
+- assert: "'${globals.mixedArray3.join(id,#)}' == '11##'"
+- assert: "[${globals.array.join(\\,\\n)}].join(',') === '1,2,3'"

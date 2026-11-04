@@ -1,0 +1,16 @@
+{
+  "type": "install",
+  "name": "Hello World!",
+  "engine": "php5.4",
+  "nodes": {
+      "nodeType": "apache2",
+      "cloudlets": 16
+  },
+  "onInstall": {
+    "deploy": {
+      "archive": "http://app.demo.jelastic.com/HelloWorld.zip",
+      "name": "Hello World",
+      "context": "ROOT"
+    }
+  }
+}

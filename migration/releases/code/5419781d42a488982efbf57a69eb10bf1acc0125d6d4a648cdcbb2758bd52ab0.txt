@@ -1,0 +1,10 @@
+{
+  "type" : "update",
+  "name" : "Test Base URL",
+  "baseUrl" : "http://example.com/",
+  "onInstall" : {
+    "cmd [cp]" : {
+      "curl -fSs '${baseUrl}script.sh'"
+    }
+  }
+}

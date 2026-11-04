@@ -1,0 +1,1 @@
+http://{Jelastic_Platform_URL} + "fireevent?event=click&value=hello"

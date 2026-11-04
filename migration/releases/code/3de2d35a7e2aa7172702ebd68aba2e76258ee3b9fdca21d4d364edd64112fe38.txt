@@ -1,0 +1,34 @@
+{
+  "type": "update",
+  "name": "Install action",
+  "onInstall": {
+    "install": [
+      {
+        "type": "install",
+        "region": "dev1",
+        "envName": "env-${fn.random}",
+        "name": "test1",
+        "nodes": {
+          "nodeType": "apache2",
+          "cloudlets": 16
+        },
+        "onInstall": {
+          "log": "install test1"
+        }
+      },
+      {
+        "type": "install",
+        "region": "dev2",
+        "envName": "env-${fn.random}",
+        "name": "test2",
+        "nodes": {
+          "nodeType": "nginx",
+          "cloudlets": 16
+        },
+        "onInstall": {
+          "log": "install test2"
+        }
+      }
+    ]
+  }
+}

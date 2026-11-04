@@ -1,0 +1,10 @@
+{
+  "type": "install",
+  "name": "Manifest availability in onBeforeInit",
+  "nodes": [
+    {
+      "nodeType": "apache2",
+      "cloudlets": 8
+    }
+  ],
+  "onBeforeInstall": "return {result: 0, nodes: jps.nodes.concat({ nodeType: 'nginx', cloudlets: 8})};"}

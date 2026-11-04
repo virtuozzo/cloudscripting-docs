@@ -1,0 +1,17 @@
+type: update
+name: Return Action
+
+settings:
+  fields:
+    caption: Popupselector
+    type: popupselector
+    name: popupselector
+    buttonText: Open
+    value: '3'
+    url: https://{external_source}/example
+    popupWidth: 300
+    popupHeight: 300
+    popupCallbackEvent: click
+    params:
+      first: 1
+      second: 2

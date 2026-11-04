@@ -1,0 +1,28 @@
+{
+  "type": "install",
+  "name": "CS:Placeholders - built-in data processing functions] - md5",
+  "globals": {
+    "test": "test"
+  },
+  "onInstall": [
+    {
+      "assert": "'${globals.test.md5()}' == '098f6bcd4621d373cade4e832627b4f6'"
+    },
+    {
+      "assert": "'${globals.unknown.md5()}' == ''"
+    },
+    {
+      "set": {
+        "test2": "test2"
+      }
+    },
+    {
+      "set": {
+        "test2": "${this.test2.md5()}"
+      }
+    },
+    {
+      "assert": "'${this.test2}' == 'ad0234829205b9033196ba818f7a872b'"
+    }
+  ]
+}

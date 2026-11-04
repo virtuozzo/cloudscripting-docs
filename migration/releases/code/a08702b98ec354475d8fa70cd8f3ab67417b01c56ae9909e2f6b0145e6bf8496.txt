@@ -1,0 +1,10 @@
+type: update
+name: Custom Response Handlers
+
+onInstall:
+  script: return 'error'
+
+responses:
+  error:
+    type: info
+    message: Custom Warning message!

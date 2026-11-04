@@ -1,0 +1,11 @@
+{
+  "type": "update",
+  "name": "Test Custom Node Events",
+  "targetNodes": "any",
+  "onCustomNodeEvent [name:test]": {
+    "log": "filter by custom parameter. Event: ${event}"
+  },
+  "onCustomNodeEvent [${targetNodes.nodeGroup}]": {
+    "log": "filter by nodeGroup. Event: ${event}"
+  }
+}

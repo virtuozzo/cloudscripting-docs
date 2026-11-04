@@ -1,0 +1,4 @@
+{{- $link := partial "cs-url.html" (dict "page" .Page "destination" .Destination) -}}
+{{- $remote := or (strings.HasPrefix $link "https://") (strings.HasPrefix $link "http://") (strings.HasPrefix $link "//") -}}
+{{- $external := and $remote (ne (urls.Parse $link).Host (urls.Parse .Page.Site.BaseURL).Host) -}}
+<a href="{{ $link | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $external }} target="_blank" rel="noopener"{{ end }}>{{ .Text | safeHTML }}</a>

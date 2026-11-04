@@ -1,0 +1,30 @@
+type: install
+name: Conditional filters for type "list"
+
+settings:
+  fields:
+    - caption: List 1
+      type: list
+      name: list1
+      default: value1
+      required: true
+      values:        
+        value1: one
+        value2: two
+        value3: three
+
+    - caption: List 2
+      type: list
+      name: list2
+      required: true      
+      dependsOn:                 
+        list1:
+            value1:              
+              1: 1
+              one: one
+            value2:    
+              2: 2
+              two: two
+            value3:               
+              3: 3
+              three: three

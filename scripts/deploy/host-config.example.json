@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "hosting_contract": "migration/hosting-contract.yaml",
+  "hosting_contract_sha256": null,
+  "destinations": {
+    "staging": {
+      "status": "unverified",
+      "evidence": null,
+      "host": null,
+      "user": null,
+      "port": null,
+      "strategy": null,
+      "public_path": null,
+      "expected_current_target": null,
+      "upload_root": null,
+      "release_root": null,
+      "backup_root": null,
+      "config_snapshot_root": null,
+      "managed_files": [],
+      "retired_files": [],
+      "capabilities": {
+        "case_sensitive": false,
+        "same_filesystem": false,
+        "symlink_serving": false,
+        "metadata_backup": false,
+        "writers_quiesced": false,
+        "staging_isolated": false
+      }
+    },
+    "production": {
+      "status": "unverified",
+      "evidence": null,
+      "host": null,
+      "user": null,
+      "port": null,
+      "strategy": null,
+      "public_path": null,
+      "expected_current_target": null,
+      "upload_root": null,
+      "release_root": null,
+      "backup_root": null,
+      "config_snapshot_root": null,
+      "managed_files": [],
+      "retired_files": [],
+      "capabilities": {
+        "case_sensitive": false,
+        "same_filesystem": false,
+        "symlink_serving": false,
+        "metadata_backup": false,
+        "writers_quiesced": false
+      },
+      "staging_acceptance": {
+        "status": "incomplete",
+        "archive_sha256": null,
+        "reference": null
+      }
+    }
+  }
+}

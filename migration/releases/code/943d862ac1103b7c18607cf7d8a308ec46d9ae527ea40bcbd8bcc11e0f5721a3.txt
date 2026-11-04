@@ -1,0 +1,12 @@
+type: update
+name: Success Text Test 4
+baseUrl: https://github.com/jelastic-jps/lets-encrypt
+
+onInstall:
+  log: success text test 4
+
+success:
+  email: README.md
+  text:
+    en: README.md
+    ru: https://github.com/jelastic-jps/lets-encrypt/blob/master/README.md

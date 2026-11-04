@@ -1,0 +1,10 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+{{- $type := .Get "type" | default "note" -}}
+{{- $style := "notify-block" -}}
+{{- if in (slice "warning" "danger" "caution" "error" "attention") $type -}}{{- $style = "warning-block" -}}{{- end -}}
+<aside class="{{ $style }} cs-admonition cs-admonition-{{ $type }}" data-type="{{ $type }}">
+<div class="center-align">
+{{ with .Get "title" }}<p class="admonition-title"><strong>{{ . }}</strong></p>{{ end }}
+{{ .Inner }}
+</div>
+</aside>

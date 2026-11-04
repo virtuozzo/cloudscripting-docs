@@ -1,0 +1,9 @@
+{
+  "volumeMounts": {
+    "/external": {
+      "sourceHost": "external.com",
+      "sourcePath": "/remote-path",
+      "readOnly": true
+    }
+  }
+}

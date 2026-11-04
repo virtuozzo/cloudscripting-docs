@@ -1,38 +1,39 @@
 version: "3"
 
 tasks:
-  check-and-install-deps:
-    desc: "Check and install dependencies"
-    cmds:
-      - pipenv run which mkdocs &> /dev/null || pipenv install --dev
-    internal: true
-
   serve:
-    desc: "Start the development server"
-    aliases: [default]
-    deps:
-      - check-and-install-deps
+    desc: "Serve working Hugo content with exact-case compatibility assets (includes drafts)"
+    aliases: [default, "hugo:serve"]
     cmds:
-      - pipenv run mkdocs serve
+      - 'uv run --locked python -m scripts.migration.authoring serve {{.CLI_ARGS}}'
 
   build:
-    desc: "Build the current version of the documentation"
-    deps:
-      - check-and-install-deps
+    desc: "Build the current working Hugo preview (published content only)"
+    aliases: ["hugo:build"]
     cmds:
-      - pipenv run mkdocs build
+      - 'uv run --locked python -m scripts.migration.authoring build {{.CLI_ARGS}}'
 
   build-all:
-    desc: >-
-      Build all versions described in the mkdocs.yml for production.
-      Make sure to commit the changes before running this task.
-      All uncommitted changes will be stashed and can be restored via 'git stash apply 0' in the branch you were working on.
-
-    deps:
-      - check-and-install-deps
+    desc: "Build the complete immutable production artifact from all manifest pins"
     cmds:
-      - DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
-        VERSION=$1;
+      - >-
+        uv run --locked python scripts/build-versions.py
+        --manifest migration/release-sources.yaml
+        --base-url https://www.virtuozzo.com/cloudscripting-docs/
+        --output-dir "${CS_BUILD_ROOT:-build}/artifact"
+        --report "${CS_BUILD_ROOT:-build}/build-versions.json"
+        --jobs "${CS_BUILD_JOBS:-1}"
 
-        pipenv run mkdocs_versioned --default-branch=$VERSION;
-        cp issue_report.php site/;
+  validate:
+    desc: "Validate the assembled complete artifact offline (does not approve deployment)"
+    cmds:
+      - >-
+        uv run --locked python -m scripts.migration.check_artifact
+        --artifact-dir "${CS_BUILD_ROOT:-build}/artifact"
+        --manifest migration/release-sources.yaml
+        --report "${CS_BUILD_ROOT:-build}/artifact-validation.json"
+
+  hugo:verify:
+    desc: "Build root/prefix fixtures and verify Hugo foundation behavior"
+    cmds:
+      - 'uv run --locked python tests/fixtures/hugo-foundation/verify.py'

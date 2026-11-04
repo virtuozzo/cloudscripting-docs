@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://docs.cloudscripting.com/sitemap.xml

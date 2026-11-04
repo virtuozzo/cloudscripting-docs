@@ -1,0 +1,46 @@
+{
+  "type": "install",
+  "name": "CS:Visual Settings - columns for radiolist",
+  "settings": {
+    "fields": [
+      {
+        "type": "displayfield",
+        "value": "radiolist:",
+        "hideLabel": true
+      },
+      {
+        "type": "radiolist",
+        "caption": "3 Columns",
+        "name": "test1",
+        "value": "value1",
+        "values": [
+          {
+            "value": "value1",
+            "caption": "first"
+          },
+          {
+            "value": "value2",
+            "caption": "second"
+          },
+          {
+            "value": "value3",
+            "caption": "third"
+          },
+          {
+            "value": "value4",
+            "caption": "fourth"
+          },
+          {
+            "value": "value5",
+            "caption": "fifth"
+          },
+          {
+            "value": "value6",
+            "caption": "sixth"
+          }
+        ],
+        "columns": 3
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "cmd [nodeId,nodeType,nodeGroup]": [
+    "cmd1",
+    "cmd2"
+  ],
+  "sayYes" : true
+}

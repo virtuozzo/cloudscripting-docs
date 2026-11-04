@@ -1,0 +1,9 @@
+{
+  "writeFile": [
+    {
+      "nodeId": "123",
+      "path": "/var/www/webroot/hw.txt",
+      "body": "Hello World!"      
+    }
+  ]
+}

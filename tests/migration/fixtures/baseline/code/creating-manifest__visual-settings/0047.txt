@@ -1,0 +1,28 @@
+{
+  "fields": [
+    {
+      "caption": "Second Env Region",
+      "type": "regionlist",
+      "name": "secondRegion",
+      "disableInactive": true,
+      "selectFirstAvailable": true,
+      "message": "unavailable region",
+      "hidden": false,
+      "filter": {
+        "type": [
+          "vz6",
+          "vz7"
+        ],
+        "name": ".*-eu",
+        "uniqueName": "default_region",
+        "displayName": "Default Region",
+        "domain": "default_domain.com",
+        "isEnabled": true,
+        "isDefault": true,
+        "isActive": true,
+        "isRegionMigrationAllowed": true,
+        "region": 1
+      }
+    }
+  ]
+}

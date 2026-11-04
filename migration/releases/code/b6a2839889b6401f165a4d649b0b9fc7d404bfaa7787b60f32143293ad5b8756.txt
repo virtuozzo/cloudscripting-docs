@@ -1,0 +1,4 @@
+onInstall:
+  return:
+    type: warning
+    message: Warning message!

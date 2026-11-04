@@ -1,0 +1,7 @@
+{
+  "type": "update",
+  "name": "cmd in all nodes",
+  "onInstall": {
+    "cmd [*]": "echo hello world!"
+  }
+}

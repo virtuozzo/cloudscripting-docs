@@ -1,0 +1,12 @@
+{
+  "type": "update",
+  "settings": {
+    "fields": [
+      {
+        "type": "string",
+        "name": "customName",
+        "caption": "String field"
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "update",
+  "name": "Assert action",
+  "onInstall": [
+    {
+      "cmd [cp]": "echo test"
+    },
+    {
+      "assert": [
+        "'${response.responses.out}' == 'test'",
+        "'${response.responses[0].out}' == 'test'",
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "cmd [cp]": [
+    "cd /var/www/webroot/ROOT/wp-content/plugins/",
+    "curl -fsSL \"http://example.com/plugin.zip\" -o plugin.zip",
+    "unzip plugin.zip"
+  ]
+}

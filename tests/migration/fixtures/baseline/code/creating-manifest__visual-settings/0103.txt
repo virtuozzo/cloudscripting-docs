@@ -1,0 +1,12 @@
+type: install
+name: ShowIf support with string field
+
+settings:    
+  fields:
+    - type: string
+      caption: String
+      placeholder: type 'custom'
+      showIf:
+        custom:
+          - type: string
+            caption: Custom

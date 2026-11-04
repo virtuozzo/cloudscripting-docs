@@ -1,0 +1,5 @@
+{
+  "forEach(env.nodes)": {
+    "cmd [${@i.id}]": "echo ${@i.address} > /tmp/example.txt"
+  }
+}

@@ -1,0 +1,14 @@
+{
+    "type": "update",
+    "name": "$this in Custom Actions",
+    "onInstall": {
+        "customAction": {
+            "name": "simpleTxtFile"
+        }
+    },
+    "actions": {
+        "customAction": {
+            "createFile [cp]": "/tmp/${this.name}.txt"
+        }
+    }
+}

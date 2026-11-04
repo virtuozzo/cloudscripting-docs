@@ -1,0 +1,7 @@
+{
+  "type": "update",
+  "name": "Execute scripts",
+  "onInstall": {
+    "script [*]": "return { result: 0, nodeId: nodeId };"
+  }
+}

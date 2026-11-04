@@ -1,0 +1,61 @@
+{
+  "type": "install",
+  "name": "[CS:Conditions] - action 'elif'",
+  "globals": {
+    "a": 1,
+    "b": 2
+  },
+  "onInstall": [
+    {
+      "log": "-- elif positive test  --"
+    },
+    {
+      "if (globals.a == 2)": {
+        "assert": false
+      }
+    },
+    {
+      "elif (globals.a == 3)": {
+        "assert": false
+      }
+    },
+    {
+      "elif (globals.a == 1)": {
+        "assert": true
+      }
+    },
+    {
+      "elif (globals.a == 1)": {
+        "assert": false
+      }
+    },
+    {
+      "elif (globals.b == 2)": {
+        "assert": false
+      }
+    },
+    {
+      "else": {
+        "assert": false
+      }
+    },
+    {
+      "log": "-- elif negative test  --"
+    },
+    {
+      "if (globals.a == 1)": {
+        "assert": true
+      }
+    },
+    {
+      "elif (globals.a == 1)": {
+        "assert": false
+      }
+    },
+    {
+      "elif (globals.a == 1)": {
+        "assert": false
+      }
+    }
+  ]
+}

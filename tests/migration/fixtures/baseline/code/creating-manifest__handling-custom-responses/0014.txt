@@ -1,0 +1,11 @@
+type: update
+name: Custom Response Handlers
+
+onInstall:
+  script: |
+    return {result : 1000};
+
+responses:
+  1000:
+    type: warning
+    message: Custom Warning message!

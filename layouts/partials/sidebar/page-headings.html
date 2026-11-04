@@ -1,0 +1,17 @@
+{{- /* Use the shared theme's nested-menu markup. As in the original docs,
+h2 groups toggle their h3 children; leaves retain their existing anchors. */ -}}
+{{- range .headings -}}
+  {{- if lt .Level 2 -}}
+    {{- partial "sidebar/page-headings.html" (dict "headings" .Headings "level" $.level) -}}
+  {{- else if le .Level 3 -}}
+    {{- $children := partial "sidebar/page-headings.html" (dict "headings" .Headings "level" (add $.level 1)) -}}
+    {{- $children = trim $children " \n\t" -}}
+    <li{{ if $children }} class="has-children"{{ end }}>
+      <span class="aside-menu-item" data-heading-id="{{ .ID }}">
+        {{- if $children -}}<span>{{ .Title | plainify | htmlUnescape }}</span>
+        {{- else -}}<a href="#{{ .ID }}">{{ .Title | plainify | htmlUnescape }}</a>{{- end -}}
+      </span>
+      {{- with $children -}}<ul class="menu-level-{{ add $.level 1 }}">{{ . | safeHTML }}</ul>{{- end -}}
+    </li>
+  {{- end -}}
+{{- end -}}

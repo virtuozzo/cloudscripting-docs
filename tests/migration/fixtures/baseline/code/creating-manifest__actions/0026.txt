@@ -1,0 +1,8 @@
+{
+  "type": "update",
+  "name": "Event Subscription Example",
+  "onInstall": {
+    "isSequential": true,
+    "api [cp]": "env.control.RestartNodes"
+  }
+}

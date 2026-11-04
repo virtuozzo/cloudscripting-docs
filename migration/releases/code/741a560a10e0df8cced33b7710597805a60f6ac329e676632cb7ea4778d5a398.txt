@@ -1,0 +1,12 @@
+  {
+  "type": "update",
+  "name": "Test Add-on Events Subscription",
+  "onBeforeInstallAddon [nodeGroup:cp, id:myaddon": {
+    "log": "add-on",
+    "ID": "${event.params.id}"
+  },
+  "onAfterInstallAddon [nodeGroup:cp, id:myaddon]": {
+    "log": "add-on",
+    "unique name": "${event.response.uniqueName}"
+  }
+}  

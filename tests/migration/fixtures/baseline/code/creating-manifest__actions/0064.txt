@@ -1,0 +1,3 @@
+{
+  "setNodeCount [nodeId, nodeGroup, nodeType]": "number"
+}

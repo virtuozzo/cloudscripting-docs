@@ -1,0 +1,14 @@
+{
+  "fields": [
+    {
+      "type": "spinner",
+      "name": "spinner",
+      "caption": "Spinner",
+      "min": 1,
+      "max": 10,
+      "increment": 2,
+      "decimalPrecision": "",
+      "hidden": false
+    }
+  ]
+}

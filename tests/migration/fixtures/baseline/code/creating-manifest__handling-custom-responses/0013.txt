@@ -1,0 +1,18 @@
+{
+  "type": "update",
+  "name": "Handling File Creation",
+  "onInstall": [
+    {
+      "createFile [cp]": "/tmp/customDirectory"
+    },
+    {
+      "createFile [cp]": "/tmp/customDirectory"
+    }
+  ],
+  "responses": {
+    "4036": {
+      "type": "error",
+      "message": "file path already exists"
+    }
+  }
+}

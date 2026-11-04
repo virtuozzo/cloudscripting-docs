@@ -1,0 +1,17 @@
+{
+  "type": "update",
+  "name": "LogTest",
+  "onInstall": {
+    "script": {
+      "type": "js",
+      "script": "http://example.com/script.js"
+    }
+  },
+  "actions": [
+    {
+      "myaction": {
+        "log": "${this.message}"
+      }
+    }
+  ]
+}

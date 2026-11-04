@@ -1,0 +1,22 @@
+{
+  "type": "update",
+  "name": "Custom buttons",
+  "targetNodes": {
+    "nodeGroup": "bl"
+  },
+  "actions": [
+    "..."
+  ],
+  "menu": {
+    "confirmText": "Custom confirm text",
+    "loadingText": "Load text while waiting",
+    "action": "{String}",
+    "caption": "Configure",
+    "successText": "Configuration saved successfully!",
+    "settings": "config",
+    "title": "Title",
+    "submitButtonText": "Button Text",
+    "logsPath": "/var/log/add-on-action.log",
+    "logsNodeGroup": "cp"
+  }
+}

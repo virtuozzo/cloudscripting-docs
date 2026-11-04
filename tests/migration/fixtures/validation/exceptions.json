@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "exceptions": [
+    {
+      "id": "fixture-inherited-link",
+      "check": "broken-link",
+      "url": "/guide/",
+      "target": "/missing/",
+      "source_commit": "1111111111111111111111111111111111111111",
+      "reason": "Hand-authored inherited defect, exact route and target only"
+    }
+  ]
+}

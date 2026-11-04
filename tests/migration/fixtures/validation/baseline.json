@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "site_id": "fixture-root",
+  "inputs": {
+    "source_commit": "1111111111111111111111111111111111111111",
+    "source_kind": "git"
+  },
+  "build_provenance": {
+    "mode": "hand-authored-fixture",
+    "source_commit": "1111111111111111111111111111111111111111"
+  },
+  "pages": {
+    "/": {
+      "source_path": "docs/index.md",
+      "code_blocks": [],
+      "tab_panels": [],
+      "ids": [
+        "overview"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "id": "overview",
+          "text": "Overview"
+        }
+      ],
+      "links": [
+        {
+          "href": "/guide/#run",
+          "resolved_url": "/guide/#run",
+          "text": "Run"
+        }
+      ],
+      "images": [
+        {
+          "src": "/img/Icon.svg",
+          "resolved_url": "/img/Icon.svg",
+          "alt": "Icon"
+        }
+      ],
+      "navigation": []
+    },
+    "/guide/": {
+      "source_path": "docs/guide.md",
+      "code_blocks": [
+        {
+          "index": 0,
+          "language": "yaml",
+          "sha256": "d93d7321949bd2562bb91c2c7e88d85f2a768788cd06472a55917ee2cd130b44",
+          "text_path": "code/yaml.txt",
+          "byte_length": 16
+        },
+        {
+          "index": 1,
+          "language": "json",
+          "sha256": "e04c18417fcbed581256b6407f586774985a673bb93c37107f1b520c38640f4a",
+          "text_path": "code/json.txt",
+          "byte_length": 22
+        }
+      ],
+      "tab_panels": [
+        {
+          "code_blocks": [
+            0,
+            1
+          ],
+          "languages": [
+            "yaml",
+            "json"
+          ]
+        }
+      ],
+      "ids": [
+        "run"
+      ],
+      "headings": [
+        {
+          "level": 1,
+          "id": "run",
+          "text": "Run"
+        }
+      ],
+      "links": [
+        {
+          "href": "/missing/",
+          "resolved_url": "/missing/",
+          "text": "Inherited defect"
+        }
+      ],
+      "images": [],
+      "navigation": []
+    }
+  }
+}

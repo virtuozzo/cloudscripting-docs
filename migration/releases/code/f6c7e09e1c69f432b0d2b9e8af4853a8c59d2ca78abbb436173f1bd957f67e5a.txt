@@ -1,0 +1,10 @@
+{
+  "restartNodes": [
+    {
+      "nodeId": "number or string",
+      "nodeGroup": "string",
+      "nodeType": "string",
+      "reboot": "boolean"
+    }
+  ]
+}

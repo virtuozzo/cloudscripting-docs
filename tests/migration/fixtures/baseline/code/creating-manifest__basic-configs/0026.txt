@@ -1,0 +1,5 @@
+volumeMounts:
+  /node:
+    sourceNodeId: 45
+  /data:
+    sourceNodeGroup: storage

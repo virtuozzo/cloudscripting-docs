@@ -1,0 +1,27 @@
+{
+  "type": "update",
+  "name": "AddTrigger",
+  "onInstall": {
+    "environment.trigger.AddTrigger": {
+      "data": {
+        "name": "new alert",
+        "nodeGroup": "sqldb",
+        "period": "10",
+        "condition": {
+          "type": "GREATER",
+          "value": "55",
+          "resourceType": "MEM",
+          "valueType": "PERCENTAGES"
+        },
+        "actions": [
+          {
+            "type": "NOTIFY",
+            "customData": {
+              "notify": false
+            }
+          }
+        ]
+      }
+    }
+  }
+}

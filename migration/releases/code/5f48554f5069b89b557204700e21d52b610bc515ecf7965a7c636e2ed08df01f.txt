@@ -1,0 +1,46 @@
+{
+  "type": "install",
+  "name": "CS:Placeholders - built-in data processing functions] - contains",
+  "globals": {
+    "array": [
+      "abc",
+      "def",
+      "ghi"
+    ],
+    "arrayOfObjects": [
+      {
+        "a": 1
+      },
+      {
+        "b": 2
+      },
+      {
+        "c": 3
+      },
+      {
+        "def": 4
+      }
+    ],
+    "query": "def"
+  },
+  "onInstall": [
+    {
+      "assert": "${globals.array.contains(def)}"
+    },
+    {
+      "assert": "${globals.array.contains(jkl)} === false"
+    },
+    {
+      "assert": "${globals.array.contains([globals.query])}"
+    },
+    {
+      "assert": "${globals.array.contains([globals.array[0]])}"
+    },
+    {
+      "assert": "${globals.arrayOfObjects.contains(b, 2)}"
+    },
+    {
+      "assert": "${globals.unknown.contains(abc)} === false"
+    }
+  ]
+}

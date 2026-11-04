@@ -1,0 +1,6 @@
+fields:
+  - type: toggle
+    name: toggle
+    caption: Toggle
+    value: true
+    hidden: false

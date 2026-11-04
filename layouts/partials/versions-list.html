@@ -1,0 +1,17 @@
+{{- /* Explicit destinations preserve independent root and frozen latest content.
+The shared switch script handles same-article HEAD/fallback/fragment behavior. */ -}}
+{{- $urls := site.Params.csVersionURLs | default dict -}}
+{{- $current := print (site.Params.csBuildID | default "root") -}}
+{{- $versions := site.Params.versions -}}
+{{- if and $versions (not (reflect.IsSlice $versions)) -}}
+  {{- $versions = split (strings.TrimSuffix "," (print $versions)) "," -}}
+{{- end -}}
+{{- $keys := slice "root" -}}
+{{- /* Release manifests supply numeric ascending order; reverse without lexical sorting. */ -}}
+{{- range collections.Reverse ($versions | default slice) }}{{ $keys = $keys | append (trim (print .) " ") }}{{ end -}}
+{{- range $keys -}}
+  {{- $key := . -}}
+  {{- $href := index $urls $key -}}
+  {{- if not $href -}}{{- errorf "Missing params.csVersionURLs destination for %s" $key -}}{{- end -}}
+<a href="{{ $href }}" data-vs-from="{{ site.BaseURL }}" data-vs-lang=""{{ if eq $key $current }} aria-current="true"{{ end }}>{{ if eq $key "root" }}Current documentation{{ else }}{{ $key }}{{ end }}</a>
+{{- end -}}

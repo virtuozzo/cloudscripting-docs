@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "snapshots": [
+    {
+      "source_commit": "7e4f20f55427bb4edaf179b243de95b52e17aa94",
+      "release_ids": [
+        "6.3.2"
+      ],
+      "template_sha256": "6137f5f71614614134ef981389a9ba351cd1fa5cdb4ef1d143a5434d543cfbb1",
+      "template_path": "theme/readthedocs/jelastic-cs-correspondence.html",
+      "source_path": "docs/jelastic-cs-correspondence.md",
+      "route": "/jelastic-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "b0a8e57823d5f618150324b143085d7b96bdb43a",
+      "release_ids": [
+        "7.0.2"
+      ],
+      "template_sha256": "6137f5f71614614134ef981389a9ba351cd1fa5cdb4ef1d143a5434d543cfbb1",
+      "template_path": "theme/readthedocs/jelastic-cs-correspondence.html",
+      "source_path": "docs/jelastic-cs-correspondence.md",
+      "route": "/jelastic-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "6796d14270567df874729feaff5dac175c80f776",
+      "release_ids": [
+        "7.2.1"
+      ],
+      "template_sha256": "6137f5f71614614134ef981389a9ba351cd1fa5cdb4ef1d143a5434d543cfbb1",
+      "template_path": "theme/readthedocs/jelastic-cs-correspondence.html",
+      "source_path": "docs/jelastic-cs-correspondence.md",
+      "route": "/jelastic-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "a7fff106b6f4d596ee66f6c323e12d33b754a008",
+      "release_ids": [
+        "7.3.1"
+      ],
+      "template_sha256": "6137f5f71614614134ef981389a9ba351cd1fa5cdb4ef1d143a5434d543cfbb1",
+      "template_path": "theme/readthedocs/jelastic-cs-correspondence.html",
+      "source_path": "docs/jelastic-cs-correspondence.md",
+      "route": "/jelastic-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "e8974d16e2e3c6c929be570207de5a920984e8f3",
+      "release_ids": [
+        "8.0.2"
+      ],
+      "template_sha256": "6137f5f71614614134ef981389a9ba351cd1fa5cdb4ef1d143a5434d543cfbb1",
+      "template_path": "theme/readthedocs/jelastic-cs-correspondence.html",
+      "source_path": "docs/jelastic-cs-correspondence.md",
+      "route": "/jelastic-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "39f8f40875b4dc8ccea281970f1ee7cf8629b582",
+      "release_ids": [
+        "8.1.1"
+      ],
+      "template_sha256": "6137f5f71614614134ef981389a9ba351cd1fa5cdb4ef1d143a5434d543cfbb1",
+      "template_path": "theme/readthedocs/jelastic-cs-correspondence.html",
+      "source_path": "docs/jelastic-cs-correspondence.md",
+      "route": "/jelastic-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "3c756a455536ec4afa0358c8f1098dc4851a070b",
+      "release_ids": [
+        "8.2.2"
+      ],
+      "template_sha256": "6137f5f71614614134ef981389a9ba351cd1fa5cdb4ef1d143a5434d543cfbb1",
+      "template_path": "theme/readthedocs/jelastic-cs-correspondence.html",
+      "source_path": "docs/jelastic-cs-correspondence.md",
+      "route": "/jelastic-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "2138f28f0ca0060ba9ec0de103ab1d3044d1b8ff",
+      "release_ids": [
+        "8.2.4"
+      ],
+      "template_sha256": "6137f5f71614614134ef981389a9ba351cd1fa5cdb4ef1d143a5434d543cfbb1",
+      "template_path": "theme/readthedocs/jelastic-cs-correspondence.html",
+      "source_path": "docs/jelastic-cs-correspondence.md",
+      "route": "/jelastic-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "d883abdd7de63803706aa6918898480308d77d77",
+      "release_ids": [
+        "8.2.5"
+      ],
+      "template_sha256": "6137f5f71614614134ef981389a9ba351cd1fa5cdb4ef1d143a5434d543cfbb1",
+      "template_path": "theme/readthedocs/jelastic-cs-correspondence.html",
+      "source_path": "docs/jelastic-cs-correspondence.md",
+      "route": "/jelastic-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "21e3d40f674a025246af114c062bf256eaee3cc9",
+      "release_ids": [
+        "8.3.1"
+      ],
+      "template_sha256": "6137f5f71614614134ef981389a9ba351cd1fa5cdb4ef1d143a5434d543cfbb1",
+      "template_path": "theme/readthedocs/jelastic-cs-correspondence.html",
+      "source_path": "docs/jelastic-cs-correspondence.md",
+      "route": "/jelastic-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "9d35916829f4eb61f915944c39ba8968cc3ae802",
+      "release_ids": [
+        "8.3.2"
+      ],
+      "template_sha256": "6137f5f71614614134ef981389a9ba351cd1fa5cdb4ef1d143a5434d543cfbb1",
+      "template_path": "theme/readthedocs/jelastic-cs-correspondence.html",
+      "source_path": "docs/jelastic-cs-correspondence.md",
+      "route": "/jelastic-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "b62d8010231d83eefa01a388191501672a181d60",
+      "release_ids": [
+        "8.3.3"
+      ],
+      "template_sha256": "6137f5f71614614134ef981389a9ba351cd1fa5cdb4ef1d143a5434d543cfbb1",
+      "template_path": "theme/readthedocs/jelastic-cs-correspondence.html",
+      "source_path": "docs/jelastic-cs-correspondence.md",
+      "route": "/jelastic-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "709c2837f56c90f70f19f7d38e1042d28840314c",
+      "release_ids": [
+        "8.4.1"
+      ],
+      "template_sha256": "064581ed50f9a811b86627a56cab9537e50ab5802484fec1fc322d505210852e",
+      "template_path": "theme/readthedocs/virtuozzo-cs-correspondence.html",
+      "source_path": "docs/virtuozzo-cs-correspondence.md",
+      "route": "/virtuozzo-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "8c056373bffac2e2a02c3b5bc008180baf5ac4d7",
+      "release_ids": [
+        "8.6.1"
+      ],
+      "template_sha256": "064581ed50f9a811b86627a56cab9537e50ab5802484fec1fc322d505210852e",
+      "template_path": "theme/readthedocs/virtuozzo-cs-correspondence.html",
+      "source_path": "docs/virtuozzo-cs-correspondence.md",
+      "route": "/virtuozzo-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "57790a31e4207414f9d3ae26c0900cabfa6e4df2",
+      "release_ids": [
+        "8.6.2"
+      ],
+      "template_sha256": "064581ed50f9a811b86627a56cab9537e50ab5802484fec1fc322d505210852e",
+      "template_path": "theme/readthedocs/virtuozzo-cs-correspondence.html",
+      "source_path": "docs/virtuozzo-cs-correspondence.md",
+      "route": "/virtuozzo-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "ec693cc290fc24cd995c4ae5108ac3f350884e94",
+      "release_ids": [
+        "8.8.1"
+      ],
+      "template_sha256": "064581ed50f9a811b86627a56cab9537e50ab5802484fec1fc322d505210852e",
+      "template_path": "theme/readthedocs/virtuozzo-cs-correspondence.html",
+      "source_path": "docs/virtuozzo-cs-correspondence.md",
+      "route": "/virtuozzo-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "c9cbe7503b7055516d5772be912316f8cd2263e2",
+      "release_ids": [
+        "8.10.1"
+      ],
+      "template_sha256": "064581ed50f9a811b86627a56cab9537e50ab5802484fec1fc322d505210852e",
+      "template_path": "theme/readthedocs/virtuozzo-cs-correspondence.html",
+      "source_path": "docs/virtuozzo-cs-correspondence.md",
+      "route": "/virtuozzo-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "1643f00f8e5e053f43fb3dd52bde2d1f864b0c9f",
+      "release_ids": [
+        "8.10.2",
+        "8.11.1",
+        "8.12.1",
+        "8.13.1",
+        "8.14.2",
+        "8.14.3"
+      ],
+      "template_sha256": "064581ed50f9a811b86627a56cab9537e50ab5802484fec1fc322d505210852e",
+      "template_path": "theme/readthedocs/virtuozzo-cs-correspondence.html",
+      "source_path": "docs/virtuozzo-cs-correspondence.md",
+      "route": "/virtuozzo-cs-correspondence/",
+      "source_h1": []
+    },
+    {
+      "source_commit": "6e0617cb49da66acf10335f613fcfd80820515e3",
+      "release_ids": [
+        "8.15.1"
+      ],
+      "template_sha256": "064581ed50f9a811b86627a56cab9537e50ab5802484fec1fc322d505210852e",
+      "template_path": "theme/readthedocs/virtuozzo-cs-correspondence.html",
+      "source_path": "docs/virtuozzo-cs-correspondence.md",
+      "route": "/virtuozzo-cs-correspondence/",
+      "source_h1": []
+    }
+  ],
+  "variants": {
+    "6137f5f71614614134ef981389a9ba351cd1fa5cdb4ef1d143a5434d543cfbb1": {
+      "template_path": "theme/readthedocs/jelastic-cs-correspondence.html",
+      "text": "<h1 id=\"jelastic-cs-correspondence\">Jelastic & CS Correspondence</h1>\n\nThe table below displays dependencies between Cloud Scripting and the Jelastic Platform versions within the same <a href=\"https://jelastic.cloud/\" target=\"_blank\">hosting provider</a> platform.\n\n{% if config.extra.all_versions %}\n    {% if config.extra.all_jel_versions %}\n\n        <table class=\"corresp\" style=\"width:100%\">\n            <tr id=\"cs\">\n                <th id=\"table-head\">CS</th>\n                    {% for version in config.extra.all_versions %}\n                        <td>{{ version }}</td>\n                    {% endfor %}\n            </tr>\n            <tr id=\"jel\">\n                <th id=\"table-head\">Jelastic</th>\n                {% for version in config.extra.all_jel_versions %}\n                    <td>{{ version }}</td>\n                {% endfor %}\n            </tr>\n        </table>\n\n    {% endif %}\n{% endif %}",
+      "generated_h1": "Jelastic & CS Correspondence",
+      "generated_h1_attributes": "id=\"jelastic-cs-correspondence\"",
+      "intro": "The table below displays dependencies between Cloud Scripting and the Jelastic Platform versions within the same <a href=\"https://jelastic.cloud/\" target=\"_blank\">hosting provider</a> platform.",
+      "row_headers": [
+        [
+          " id=\"table-head\"",
+          "CS"
+        ],
+        [
+          " id=\"table-head\"",
+          "Jelastic"
+        ]
+      ],
+      "row_attributes": [
+        " id=\"cs\"",
+        " id=\"jel\""
+      ],
+      "table_attributes": [
+        " class=\"corresp\" style=\"width:100%\""
+      ],
+      "jinja_statements": [
+        "{% if config.extra.all_versions %}",
+        "{% if config.extra.all_jel_versions %}",
+        "{% for version in config.extra.all_versions %}",
+        "{{ version }}",
+        "{% endfor %}",
+        "{% for version in config.extra.all_jel_versions %}",
+        "{{ version }}",
+        "{% endfor %}",
+        "{% endif %}",
+        "{% endif %}"
+      ],
+      "html_structure": [
+        "<h1 id=\"jelastic-cs-correspondence\">",
+        "</h1>",
+        "<a href=\"https://jelastic.cloud/\" target=\"_blank\">",
+        "</a>",
+        "<table class=\"corresp\" style=\"width:100%\">",
+        "<tr id=\"cs\">",
+        "<th id=\"table-head\">",
+        "</th>",
+        "<td>",
+        "</td>",
+        "</tr>",
+        "<tr id=\"jel\">",
+        "<th id=\"table-head\">",
+        "</th>",
+        "<td>",
+        "</td>",
+        "</tr>",
+        "</table>"
+      ],
+      "platform_context_key": "all_jel_versions",
+      "platform_key_supplied_by_current_wrapper": false
+    },
+    "064581ed50f9a811b86627a56cab9537e50ab5802484fec1fc322d505210852e": {
+      "template_path": "theme/readthedocs/virtuozzo-cs-correspondence.html",
+      "text": "<h1 id=\"virtuozzo-cs-correspondence\">Virtuozzo Application Platform & CS Correspondence</h1>\n\nThe table below displays dependencies between Cloud Scripting and the Virtuozzo Application Platform versions within the same <a href=\"https://www.virtuozzo.com/application-platform-partners/\" target=\"_blank\">hosting provider</a> platform.\n\n{% if config.extra.all_versions %}\n    {% if config.extra.all_virt_versions %}\n\n        <table class=\"corresp\" style=\"width:100%\">\n            <tr id=\"cs\">\n                <th id=\"table-head\">CS</th>\n                    {% for version in config.extra.all_versions %}\n                        <td>{{ version }}</td>\n                    {% endfor %}\n            </tr>\n            <tr id=\"jel\">\n                <th id=\"table-head\">Virtuozzo PaaS</th>\n                {% for version in config.extra.all_virt_versions %}\n                    <td>{{ version }}</td>\n                {% endfor %}\n            </tr>\n        </table>\n\n    {% endif %}\n{% endif %}",
+      "generated_h1": "Virtuozzo Application Platform & CS Correspondence",
+      "generated_h1_attributes": "id=\"virtuozzo-cs-correspondence\"",
+      "intro": "The table below displays dependencies between Cloud Scripting and the Virtuozzo Application Platform versions within the same <a href=\"https://www.virtuozzo.com/application-platform-partners/\" target=\"_blank\">hosting provider</a> platform.",
+      "row_headers": [
+        [
+          " id=\"table-head\"",
+          "CS"
+        ],
+        [
+          " id=\"table-head\"",
+          "Virtuozzo PaaS"
+        ]
+      ],
+      "row_attributes": [
+        " id=\"cs\"",
+        " id=\"jel\""
+      ],
+      "table_attributes": [
+        " class=\"corresp\" style=\"width:100%\""
+      ],
+      "jinja_statements": [
+        "{% if config.extra.all_versions %}",
+        "{% if config.extra.all_virt_versions %}",
+        "{% for version in config.extra.all_versions %}",
+        "{{ version }}",
+        "{% endfor %}",
+        "{% for version in config.extra.all_virt_versions %}",
+        "{{ version }}",
+        "{% endfor %}",
+        "{% endif %}",
+        "{% endif %}"
+      ],
+      "html_structure": [
+        "<h1 id=\"virtuozzo-cs-correspondence\">",
+        "</h1>",
+        "<a href=\"https://www.virtuozzo.com/application-platform-partners/\" target=\"_blank\">",
+        "</a>",
+        "<table class=\"corresp\" style=\"width:100%\">",
+        "<tr id=\"cs\">",
+        "<th id=\"table-head\">",
+        "</th>",
+        "<td>",
+        "</td>",
+        "</tr>",
+        "<tr id=\"jel\">",
+        "<th id=\"table-head\">",
+        "</th>",
+        "<td>",
+        "</td>",
+        "</tr>",
+        "</table>"
+      ],
+      "platform_context_key": "all_virt_versions",
+      "platform_key_supplied_by_current_wrapper": true
+    }
+  },
+  "comparison": "Same table/row/heading-cell structure; platform context key renamed all_jel_versions -> all_virt_versions as well as branding, H1 ID/text, intro/provider-link, route, second row header. Exact current wrapper supplies only all_virt_versions, so old template condition is false and the old table is absent in this reconstructed context."
+}

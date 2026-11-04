@@ -1,0 +1,17 @@
+- image: wordpress:latest
+  links:
+    - db:DB
+    - memcached:MEMCACHED
+  cloudlets: 8
+  nodeGroup: cp
+  displayName: AppServer
+
+- image: mysql5:latest
+  cloudlets: 8
+  nodeGroup: db
+  displayName: database
+
+- image: memcached:latest
+  cloudlets: 4
+  nodeGroup: memcached
+  displayName: Memcached

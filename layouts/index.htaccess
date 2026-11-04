@@ -1,0 +1,12 @@
+# Per-build rules; preserve the independent root and every frozen release.
+RewriteEngine On
+RewriteBase {{ (urls.Parse .Site.BaseURL).Path }}
+AddDefaultCharset UTF-8
+{{ if .Site.Params.readRedirects }}{{ readFile "redirects.htaccess" }}{{ end }}
+{{- range .Site.Pages -}}
+  {{- $page := . -}}
+  {{- range .Aliases }}
+RewriteRule ^{{ trim . "/" | replaceRE `([.\[\]()+*?^$|{}\\])` `\$1` }}/?$ {{ $page.Permalink }} [R=301,L,NE]
+  {{- end -}}
+{{- end }}
+ErrorDocument 404 {{ (urls.Parse .Site.BaseURL).Path }}404.html

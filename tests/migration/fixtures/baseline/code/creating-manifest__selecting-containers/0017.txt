@@ -1,0 +1,19 @@
+{
+  "name": "multi-zone",
+  "type": "install",
+  "nodes": {
+    "nodeType": "docker",
+    "fixedCloudlets": 1,
+    "flexibleCloudlets": 8,
+    "image": "jelastic/tomcat:latest",
+    "count": 2,
+    "distribution": {
+      "mode": "SOFT",
+      "zones": [
+        {
+          "disk": "ssd"
+        }
+      ]
+    }
+  }
+}

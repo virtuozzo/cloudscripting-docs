@@ -1,0 +1,11 @@
+type: install
+name: Dockertags aquiring
+
+settings:
+  fields:
+    - type: dockertags      
+      image: 
+        registry: example.com/dev/tomcat
+        user: admin
+        password: 123456
+        name: tag 

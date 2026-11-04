@@ -1,0 +1,21 @@
+{
+  "type": "install",
+  "name": "ShowIf support with envlist",
+  "settings": {
+    "fields": [
+      {
+        "caption": "Environments",
+        "type": "envlist",
+        "valueField": "shortdomain",
+        "showIf": {
+          "test": [
+            {
+              "type": "string",
+              "caption": "String"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

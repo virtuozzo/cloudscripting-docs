@@ -1,0 +1,16 @@
+{
+  "type": "install",
+  "name": "Tooltips (target: side)",
+  "settings": {
+    "fields": [
+      {
+        "caption": "String",
+        "type": "string",
+        "tooltip": {
+          "target": "side",
+          "text": "This is a string"
+        }
+      }
+    ]
+  }
+}

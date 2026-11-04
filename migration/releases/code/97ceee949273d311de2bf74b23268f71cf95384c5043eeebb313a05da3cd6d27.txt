@@ -1,0 +1,4 @@
+type: update
+name: '[CS] - add onAfterRemoveSSL events'
+onAfterRemoveSSL: 
+  log: after remove SSL

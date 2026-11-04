@@ -1,0 +1,4 @@
+type: update
+name: '[CS] - add onAfterBindSSL event'
+onAfterBindSSL: 
+  log: after bind SSL

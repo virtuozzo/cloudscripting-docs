@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="robots" content="noindex"><title>Search</title>
+<p><a id="search-link" href="search/">Continue to search</a></p>
+<script>
+(function () {
+  var target = new URL('search/', location.href);
+  var params = new URLSearchParams(location.search);
+  if (params.has('q')) {
+    if (!params.has('s')) params.set('s', params.get('q'));
+    params.delete('q');
+  }
+  target.search = params.toString();
+  target.hash = location.hash;
+  document.getElementById('search-link').href = target.href;
+  location.replace(target.href);
+}());
+</script></html>

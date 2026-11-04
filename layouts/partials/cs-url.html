@@ -1,0 +1,12 @@
+{{- $destination := .destination -}}
+{{- if and (strings.HasPrefix $destination "/") (not (strings.HasPrefix $destination "//")) -}}
+  {{- $base := urls.Parse .page.Site.BaseURL -}}
+  {{- $prefix := $base.Path -}}
+  {{- if strings.HasPrefix $destination $prefix -}}
+    {{- /* Absolute URLs avoid a second prefix from Hugo's canonifyURLs. */ -}}
+    {{- $destination = printf "%s://%s%s" $base.Scheme $base.Host $destination -}}
+  {{- else -}}
+    {{- $destination = printf "%s%s" .page.Site.BaseURL (strings.TrimPrefix "/" $destination) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $destination -}}

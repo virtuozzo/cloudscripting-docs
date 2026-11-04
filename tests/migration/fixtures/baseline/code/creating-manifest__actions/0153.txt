@@ -1,0 +1,6 @@
+type: update
+name: Return Action
+
+onInstall:
+  return: |
+    {"message": "${nodes.cp.id}", "type": "success"}

@@ -1,0 +1,21 @@
+type: update
+name: Action Example
+
+onInstall:
+  - createFile [cp]: ${SERVER_WEBROOT}/greeting.txt
+  - greeting
+  - greeting
+  - log:
+      message: ${nodes.cp[0].address}
+  - log:
+      message: ${nodes.cp[1].address}
+
+actions:
+  greeting:
+    appendFile [cp]:
+      path: ${SERVER_WEBROOT}/greeting.txt
+      body: Hello World!
+  log:
+    appendFile [cp]:
+      path: ${SERVER_WEBROOT}/greeting.txt
+      body: ${this.message}

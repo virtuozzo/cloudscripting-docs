@@ -1,0 +1,5 @@
+type: install
+nodes:
+  nodeType: apache
+  cloudlets: 8
+startPage: ${env.url}customDirectory/

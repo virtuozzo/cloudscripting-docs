@@ -1,0 +1,7 @@
+type: install
+name: Validation
+nodes:
+ nodeType: payara
+ validation:
+   minCount: 3
+   maxCount: 5 

@@ -1,0 +1,15 @@
+{
+    "type": "update",
+    "name": "example",
+    "onInstall": {
+        "customAction": {
+            "first": 1,
+            "second": 2
+        }
+    },
+    "actions": {
+        "customAction": {
+            "log": "${this.first}"
+        }
+    }
+}

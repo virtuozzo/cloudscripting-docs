@@ -1,0 +1,2 @@
+sync: true
+cmd [cp, bl]: echo test

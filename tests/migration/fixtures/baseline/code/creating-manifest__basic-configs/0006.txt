@@ -1,0 +1,32 @@
+jpsType: install
+name: MyNodes
+settings:
+  fields:
+  - caption: Arbitrary number of Nodes
+    type: radio-fieldset
+    name: mode
+    default: one
+    values:
+      one: 1 node
+      two: 2 nodes
+      three: 3 nodes
+    showIf:
+      one:
+      - inputType: hidden
+        type: string
+        name: nodes
+        default: 1
+      two:
+      - type: string
+        inputType: hidden
+        name: nodes
+        default: 2
+      three:
+      - type: string
+        inputType: hidden
+        name: nodes
+        default: 3
+nodes:
+  nodeType: apache2
+  nodeGroup: cp
+  count: "${settings.nodes}"
