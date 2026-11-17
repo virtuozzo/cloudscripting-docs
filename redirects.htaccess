@@ -1,0 +1,6 @@
+# Redirects to a page of this site belong in the front matter of that page: add the old URL
+# to its `aliases`, after the page's own URL. The theme turns every alias but the first into
+# a 301 redirect.
+#
+# Use this file for redirects that aliases cannot express, such as a redirect to another site:
+# RewriteRule ^example-page/?$ https://example.com [L,R=301]

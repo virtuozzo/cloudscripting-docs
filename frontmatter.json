@@ -1,0 +1,420 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "default",
+      "pageBundle": false,
+      "previewPath": null,
+      "fields": [
+        {
+          "title": "Is in draft",
+          "name": "draft",
+          "type": "draft"
+        },
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "title": "Aliases",
+          "name": "aliases",
+          "type": "tags",
+          "singleValueAsString": true
+        },
+        {
+          "title": "SEO Index",
+          "name": "seoindex",
+          "type": "string"
+        },
+        {
+          "title": "SEO Title",
+          "name": "seotitle",
+          "type": "string"
+        },
+        {
+          "title": "SEO Keywords",
+          "name": "seokeywords",
+          "type": "string"
+        },
+        {
+          "title": "SEO Description",
+          "name": "seodesc",
+          "type": "string"
+        },
+        {
+          "title": "Menu",
+          "type": "fields",
+          "name": "menu",
+          "fields": [
+            {
+              "title": "Docs",
+              "name": "docs",
+              "type": "fields",
+              "fields": [
+                {
+                  "title": "Title",
+                  "name": "title",
+                  "type": "string"
+                },
+                {
+                  "title": "URL",
+                  "name": "url",
+                  "type": "string"
+                },
+                {
+                  "title": "Weight",
+                  "name": "weight",
+                  "type": "number",
+                  "isDecimal": true,
+                  "min": 0
+                },
+                {
+                  "title": "Parent",
+                  "name": "parent",
+                  "type": "string"
+                },
+                {
+                  "title": "Identifier",
+                  "name": "identifier",
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Youtube ID",
+          "name": "video",
+          "description": "used for some main pages",
+          "type": "string"
+        },
+        {
+          "title": "Get Started Now Link",
+          "description": "used for some main pages",
+          "name": "gethosted",
+          "type": "string"
+        },
+        {
+          "title": "Publishing Date",
+          "name": "date",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isPublishDate": true
+        },
+        {
+          "title": "Last Modified Date",
+          "name": "lastmod",
+          "type": "datetime",
+          "isModifiedDate": true
+        }
+      ]
+    }
+  ],
+  "frontMatter.framework.id": "hugo",
+  "frontMatter.content.publicFolder": "public",
+  "frontMatter.preview.host": "http://localhost:1313",
+  "frontMatter.git.submodule.folder": "themes",
+  "frontMatter.git.enabled": true,
+  "frontMatter.framework.startCommand": "task serve",
+  "frontMatter.templates.prefix": "",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "content",
+      "path": "[[workspace]]/content"
+    }
+  ],
+  "frontMatter.snippets.wrapper.enabled": false,
+  "frontMatter.content.snippets": {
+    "[Common] Tip": {
+      "description": "",
+      "body": [
+        "{{%tip%}}",
+        "[[&selection]]",
+        "{{%/tip%}}"
+      ],
+      "fields": [
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[Common] Note": {
+      "description": "",
+      "body": [
+        "{{%note%}}",
+        "[[&selection]]",
+        "{{%/note%}}"
+      ],
+      "fields": [
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[Common] Highlight Block": {
+      "description": "",
+      "body": [
+        "{{%greyTable%}}",
+        "[[&selection]]",
+        "{{%/greyTable%}}"
+      ],
+      "fields": [
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[Occasional] Accordion Item": {
+      "description": "",
+      "body": [
+        "{{%accordion title=\"[[&selection]]\"%}}",
+        "",
+        "{{%/accordion%}}"
+      ],
+      "fields": [
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[Rare] Align Right": {
+      "description": "",
+      "body": "{{%right%}}[[&selection]]{{%/right%}}",
+      "fields": [
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[Rare] In Text Image Left": {
+      "description": "",
+      "body": "{{%imageLeft%}}[[&selection]]{{%/imageLeft%}}",
+      "fields": [
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[Test] Table 1-3 columns": {
+      "description": "",
+      "body": "{{%tablecols1to3%}}[[selection]]{{%/tablecols1to3%}}",
+      "fields": [
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[Test] Table With Column Weights": {
+      "description": "Table with different column weights (e.g. \"100 200 350\")",
+      "body": "{{%table weight=\"[[weight]]\"%}}[[selection]]{{%/table%}}",
+      "fields": [
+        {
+          "name": "weight",
+          "title": "Weight",
+          "type": "string",
+          "single": true,
+          "default": ""
+        },
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[Test] Table With Title": {
+      "description": "",
+      "body": "{{%table3 title=\"[[title]]\"%}}[[selection]]{{%/table3%}}",
+      "fields": [
+        {
+          "name": "title",
+          "title": "Title",
+          "type": "string",
+          "single": true,
+          "default": ""
+        },
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[Test] Table Without Header": {
+      "description": "",
+      "body": "{{%table-without-head%}}[[selection]]{{%/table-without-head%}}",
+      "fields": [
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[Occasional] Icon": {
+      "description": "Use the icon shortcode to add an image in the text.",
+      "body": "{{< icon src=\"[[&selection]]\" alt=\"[[&selection]]\" >}}",
+      "fields": [
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[Rare] YouTube": {
+      "description": "provide the video ID as a parameter (e.g., can be copied from address bar)",
+      "body": "{{%youtube%}}[[&selection]]{{%/youtube%}}",
+      "fields": [
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[Occasional] imagePopup": {
+      "description": "",
+      "body": "{{%imagePopup alt=\"[[&selection]]\" width=\"100%\"%}}[[&selection]]{{%/imagePopup%}}",
+      "fields": [
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        },
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[Rare] Include": {
+      "description": "include content from another file, e.g. {{%include \"/includes/1.md\"%}}",
+      "body": "{{%include \"/includes/[[&selection]]\"%}}",
+      "fields": [
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[RN] rn-new": {
+      "description": "",
+      "body": [
+        "{{%rn-new%}}",
+        "",
+        "{{%/rn-new%}}"
+      ],
+      "fields": []
+    },
+    "[RN] rn-changed": {
+      "description": "",
+      "body": [
+        "{{%rn-changed%}}",
+        "",
+        "{{%/rn-changed%}}"
+      ],
+      "fields": []
+    },
+    "[RN] rn-fixed": {
+      "description": "",
+      "body": [
+        "{{%rn-fixed%}}",
+        "",
+        "{{%/rn-fixed%}}"
+      ],
+      "fields": []
+    },
+    "[RN] rn-item": {
+      "description": "",
+      "body": [
+        "{{%rn-item url=\"#[[&selection]]\"%}}",
+        "## [[&selection]]",
+        "",
+        "{{%/rn-item%}}"
+      ],
+      "fields": [
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        },
+        {
+          "name": "selection",
+          "title": "selection",
+          "type": "string",
+          "single": true,
+          "default": "FM_SELECTED_TEXT"
+        }
+      ]
+    },
+    "[Common] childrenList": {
+      "description": "",
+      "body": "{{%childrenList%}}",
+      "fields": []
+    },
+    "[Rare] FAQ": {
+      "description": "FAQ block with additional meta for improved AI search",
+      "body": [
+        "{{< faq >}}",
+        "- q: Question?",
+        "  a: |",
+        "    Answer.",
+        "- q: Question 2?",
+        "  a: |",
+        "    Answer 2.",
+        "{{< /faq >}}"
+      ],
+      "fields": []
+    }
+  }
+}

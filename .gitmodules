@@ -1,0 +1,4 @@
+[submodule "themes"]
+	path = themes
+	url = https://github.com/virtuozzo/docs-theme
+	branch = main
