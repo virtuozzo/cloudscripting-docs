@@ -6,17 +6,103 @@
   },
   "customizations": {
     "vscode": {
-      "settings": {},
+      "settings": {
+        "files.autoSave": "afterDelay",
+        "git.autofetch": "all",
+        "git.autoStash": true,
+        "github.copilot.enable": {
+          "plaintext": "true",
+          "markdown": "true"
+        },
+        "editor.quickSuggestions": {
+          "other": true,
+          "comments": true,
+          "strings": true
+        },
+        "[markdown]": {
+          "editor.unicodeHighlight.ambiguousCharacters": false,
+          "editor.unicodeHighlight.invisibleCharacters": true,
+          "diffEditor.ignoreTrimWhitespace": false,
+          "editor.minimap.autohide": true,
+          "editor.wordWrap": "on",
+          "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+          },
+          "editor.defaultFormatter": null
+        },
+        "darkLight.showNotification": false,
+        "workbench.iconTheme": "material-icon-theme",
+        "workbench.editorAssociations": {
+          "*.md": "default"
+        },
+        "terminal.integrated.profiles.linux": {
+          "devbox": {
+            "path": "devbox",
+            "args": [
+              "shell"
+            ]
+          }
+        },
+        "terminal.integrated.profiles.windows": {
+          "devbox": {
+            "path": "devbox",
+            "args": [
+              "shell"
+            ]
+          }
+        },
+        "terminal.integrated.profiles.osx": {
+          "devbox": {
+            "path": "devbox",
+            "args": [
+              "shell"
+            ]
+          }
+        },
+        "terminal.integrated.defaultProfile.linux": "devbox",
+        "terminal.integrated.defaultProfile.windows": "devbox",
+        "terminal.integrated.defaultProfile.osx": "devbox",
+        "git.rebaseWhenSync": true,
+        "cSpell.words": [
+          "seodesc",
+          "seoindex",
+          "seokeywords",
+          "seotitle",
+          "Virtuozzo"
+        ]
+      },
       "extensions": [
-        "jetpack-io.devbox",
+        "eliostruyf.vscode-front-matter",
         "yzhang.markdown-all-in-one",
-        "streetsidesoftware.code-spell-checker",
         "DavidAnson.vscode-markdownlint",
         "shd101wyy.markdown-preview-enhanced",
+        "seepine.md-editor",
+        "zaaack.markdown-editor",
+        "mushan.vscode-paste-image",
+        "streetsidesoftware.code-spell-checker",
+        "kaellarkin.hugo-shortcode-syntax",
+        "budparr.language-hugo-vscode",
+        "IronGeek.vscode-darklight",
+        "GuodongSun.vscode-git-cruise",
+        "mhutchie.git-graph",
+        "PKief.material-icon-theme",
         "GitHub.copilot",
         "GitHub.copilot-chat"
       ]
+    },
+    "codespaces": {
+      "repositories": {
+        "virtuozzo/docs-theme": {
+          "permissions": {
+            "contents": "write"
+          }
+        }
+      }
     }
   },
+  "postCreateCommand": "git submodule update --init --recursive --progress --remote; cd themes && git checkout main && git pull && cd ..",
+  "postStartCommand": "cd themes && git checkout main && git pull && cd ..",
   "remoteUser": "devbox"
 }

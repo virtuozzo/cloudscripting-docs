@@ -1,0 +1,195 @@
+{
+  "content": {
+    "admin-guide": {
+      "admin-guide-control-panel-administration": {
+        "admin-guide-billing": {
+          "admin-guide-buckets": {
+            "admin-guide-buckets": {},
+            "admin-guide-configuring-resource-allocation-and-prices": {},
+            "admin-guide-creating-and-configuring-buckets": {}
+          },
+          "admin-guide-currencies": {},
+          "admin-guide-payments": {}
+        },
+        "admin-guide-compute-resources": {
+          "admin-guide-creating-compute-resources": {},
+          "admin-guide-managing-compute-resource-backup-servers": {},
+          "admin-guide-managing-compute-resource-data-store": {},
+          "admin-guide-managing-compute-resource-networks": {},
+          "admin-guide-managing-compute-resources": {}
+        },
+        "admin-guide-compute-zones": {
+          "admin-guide-creating-compute-zones": {},
+          "admin-guide-managing-compute-zone-backup-servers": {},
+          "admin-guide-managing-compute-zone-data-stores": {},
+          "admin-guide-managing-compute-zone-networks": {},
+          "admin-guide-managing-compute-zones": {}
+        },
+        "admin-guide-control-panel-configuration": {
+          "admin-guide-authentication": {
+            "admin-guide-saml-authentication": {
+              "admin-guide-saml-troubleshooting": {}
+            }
+          },
+          "admin-guide-localization-and-customization": {},
+          "admin-guide-look-feel": {},
+          "admin-guide-managing-languages": {},
+          "admin-guide-service-insertion-framework-configuration": {}
+        },
+        "admin-guide-identity-management": {
+          "admin-guide-notifications": {
+            "admin-guide-gateways": {},
+            "admin-guide-notification-templates": {},
+            "admin-guide-recipients": {},
+            "admin-guide-subscriptions": {}
+          },
+          "admin-guide-permissions": {},
+          "admin-guide-restrictions-sets": {
+            "admin-guide-list-of-restrictions-resources": {}
+          },
+          "admin-guide-roles": {
+            "admin-guide-creating-and-configuring-roles": {}
+          },
+          "admin-guide-tools": {
+            "admin-guide-alerts": {},
+            "admin-guide-logs": {}
+          },
+          "admin-guide-user-accounts": {},
+          "admin-guide-user-groups": {}
+        },
+        "admin-guide-networking": {
+          "admin-guide-creating-and-configuring-networks": {
+            "admin-guide-creating-and-configuring-networks": {}
+          },
+          "admin-guide-network-zones": {},
+          "admin-guide-resolvers-settings": {}
+        },
+        "admin-guide-recipes": {
+          "admin-guide-recipe-groups": {}
+        },
+        "admin-guide-service-add-ons": {
+          "admin-guide-managing-a-service-add-on-store": {},
+          "admin-guide-managing-service-add-ons": {},
+          "admin-guide-service-add-ons": {},
+          "admin-guide-spla-report": {}
+        },
+        "admin-guide-storage-and-backups": {
+          "admin-guide-backup-settings": {
+            "admin-guide-auto-backup-preset-settings": {},
+            "admin-guide-backup-server-settings": {},
+            "admin-guide-backup-server-zone-settings": {},
+            "admin-guide-schedule-settings": {}
+          },
+          "admin-guide-data-store-settings": {},
+          "admin-guide-data-store-zone-settings": {},
+          "admin-guide-disk-settings": {}
+        },
+        "admin-guide-templates": {
+          "admin-guide-creating-and-installing-templates": {},
+          "admin-guide-managing-my-template-groups": {},
+          "admin-guide-managing-template-software-licenses": {},
+          "admin-guide-template-store": {}
+        },
+        "admin-guide-virtual-machines": {
+          "admin-guide-creating-virtual-machines": {},
+          "admin-guide-managing-virtual-machine-disks": {},
+          "admin-guide-managing-virtual-machine-networks": {},
+          "admin-guide-managing-virtual-machine-transactions-and-logs": {},
+          "admin-guide-managing-virtual-machines": {},
+          "admin-guide-viewing-virtual-machine-statistics": {}
+        }
+      }
+    },
+    "api-guide": {
+      "service-add-ons": {
+        "create-a-service-add-on": {}
+      },
+      "virtual-machines": {
+        "edit-vs": {}
+      }
+    },
+    "archive": {
+      "key-administrator-guides": {
+        "key-administrator-isv-licensing": {
+          "key-administrator-isv-licensing-introduction": {
+            "key-administrator-isv-licensing-license-installation-workflow": {}
+          }
+        }
+      }
+    },
+    "installation-guide": {
+      "installation-guide-installing-control-panel-server": {},
+      "installation-guide-installing-control-panel-servers-hypervisors-compute-resources-backup-servers": {
+        "installation-guide-installing-in-interactive-mode": {
+          "installation-guide-installing-a-backup-server-with-the-firstboot-installer": {},
+          "installation-guide-installing-a-control-panel-server-with-the-firstboot-installer": {},
+          "installation-guide-installing-a-hypervisor-compute-resource-with-the-firstboot-installer": {}
+        }
+      },
+      "installation-guide-installing-in-interactive-mode": {
+        "installation-guide-installing-a-backup-server-with-the-firstboot-installer": {},
+        "installation-guide-installing-a-control-panel-server-with-the-firstboot-installer": {},
+        "installation-guide-installing-a-hypervisor-compute-resource-with-the-firstboot-installer": {},
+        "installation-guide-installing-in-interactive-mode": {}
+      },
+      "installation-guide-installing-virtuozzo-hybrid-server": {
+        "installation-guide-installing-virtuozzo-hybrid-server-in-the-default-graphics-mode": {},
+        "installation-guide-pxe-installation": {
+          "installation-guide-preparing-a-kickstart-file": {
+            "installation-guide-standard-kickstart-options": {}
+          }
+        }
+      }
+    },
+    "installation-guides": {
+      "installation-guide": {
+        "installation-guide": {}
+      },
+      "installation-on-asrock-rack": {
+        "installation-on-asrock-rack": {}
+      },
+      "installation-using-pxe-guide": {
+        "installation-using-pxe-guide": {}
+      }
+    },
+    "product-lifecycle-policy": {
+      "product-lifecycle-policy": {}
+    },
+    "quick-start-guide": {
+      "quick-start-guide": {}
+    },
+    "readme": {
+      "readme": {}
+    },
+    "upgrade-guide": {
+      "upgrade-guide": {}
+    },
+    "users-guide": {
+      "users-guide": {}
+    },
+    "whmcs": {
+      "whmcs-onapp-whmcs-users-module-guide": {},
+      "whmcs-onapp-whmcs-vps-module-guide": {
+        "whmcs-onapp-whmcs-vps-module-guide": {},
+        "whmcs-vps-module-installation": {}
+      },
+      "whmcs-whmcs-billing-module-guide": {
+        "whmcs-billing-module-management": {
+          "whmcs-items": {}
+        },
+        "whmcs-whmcs-billing-module-guide": {}
+      },
+      "whmcs-whmcs-cloud-module-guide": {
+        "whmcs-whmcs-cloud-module-guide": {}
+      },
+      "whmcs-whmcs-vps-module-guide": {
+        "whmcs-vps-module-configuration-management": {
+          "whmcs-client-area-service-management-page": {
+            "whmcs-autoscaling-management": {},
+            "whmcs-client-area-service-management-page": {}
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+languageCode: en-us
+theme: compose-master
+title: Cloud Scripting Documentation
+assetDir: "/themes/compose-master/static/"
+baseURL: "https://docs.cloudscripting.com/"
+canonifyURLs: true
+
+enableRobotsTXT: true
+disableAliases: true
+enableGitInfo: true
+
+disableKinds:
+  - taxonomy
+  - section
+
+params:
+  openGraphSiteName: Cloud Scripting Documentation
+  readRedirects: true
+  hostName: docs.cloudscripting.com
+  pageSeoTitle: Cloud Scripting
+  logo: vz_logo.svg
+  logoClass: vz-logo
+  logoWidth: 180
+  logoHeight: 35
+  logoLink: https://docs.cloudscripting.com/
+  useWebp: true
+  errorPage: /404/
+  notice: Documentation Portal for Cloud Scripting
+  # Theme features (docs-theme): "Suggest an improvement" link under every article (prefilled GitHub
+  # issue), and the current page's headings (h2, h3) under its item in the sidebar.
+  feedback:
+    url: https://github.com/virtuozzo/cloudscripting-docs/issues/new
+  sidebarHeadings: true
+  sidebarHeadingsDepth: 3
+  sidebarHeadingsSkip:
+    - whats-next
+  # Anchors and the back-to-top button jump at once instead of scrolling smoothly.
+  smoothScroll: false
+  # Dark color scheme: follows the system preference, with a switch in the header.
+  darkMode: true
+  # The version this branch documents. The list of versions for the switcher lives in the
+  # master branch config only; the deploy pipeline passes it as HUGO_PARAMS_VERSIONS.
+  version: "8.15.1"
+
+outputs:
+  home:
+    - HTML
+    - HTACCESS
+    - JSON
+
+mediaTypes:
+  text/htaccess:
+    suffixes:
+      - htaccess
+
+outputFormats:
+  HTACCESS:
+    baseName: ''
+    isPlainText: true
+    mediaType: text/htaccess
+
+markup:
+  defaultMarkdownHandler: goldmark
+  goldmark:
+    extensions:
+      definitionList: true
+      footnote: true
+      linkify: true
+      table: true
+      taskList: true
+    parser:
+      attribute: true
+      wrapStandAloneImageWithinParagraph: false
+    renderer:
+      hardWraps: false
+      unsafe: true
+  highlight:
+    codeFences: true
+    hl_Lines: ''
+    lineNoStart: 1
+    lineNos: false
+    lineNumbersInTable: true
+    noClasses: false
+    style: igor
+    tabWidth: 4
+
+permalinks:
+  getting-started: ":filename/"
+  creating-manifest: ":filename/"
+  samples: ":filename/"

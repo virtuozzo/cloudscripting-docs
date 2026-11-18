@@ -1,0 +1,731 @@
+#!/usr/bin/env python3
+"""Convert the MkDocs sources of the Cloud Scripting docs into Hugo page bundles
+for the compose-master theme.
+
+Usage (from the repository root):
+
+    python3 tools/mkdocs2hugo.py --src docs --img theme/readthedocs/img --out content --img-ref HEAD
+
+Pass --img-ref on macOS and Windows: the image folder holds names that differ only by
+letter case (SettingsMain.jpg / settingsMain.jpg, different pictures), and a
+case-insensitive file system keeps just one of each pair. With --img-ref the images are
+read from that git revision instead of the working tree.
+
+What it does:
+  * one MkDocs page -> one Hugo page bundle (content/<section>/<slug>/index.md)
+  * sidebar structure follows the `pages:` block of mkdocs.yml (hardcoded in NAV below)
+  * `!!! note` admonitions   -> {{%note%}} ... {{%/note%}}
+  * `@@@ ... @@!` tab blocks -> {{< tabs >}} / {{< tabs-item title="YAML" >}} (angle form: the inner code is rendered once)
+  * `#Heading` (no space)    -> `# Heading` (CommonMark requires the space)
+  * images from theme/readthedocs/img are co-located in the page bundle
+  * internal links/hrefs are rewritten to the flat Hugo slugs (/slug/)
+  * a blank line is inserted after raw HTML block lines so goldmark renders the markdown after them
+  * polish pass (also: --polish content): product rename, simple HTML -> markdown
+    (<a>, <b>, <em>, <p>, <hN>, <br>, single-line <ul>, plain <table>), tight lists
+  * old MkDocs URLs are added to the page's `aliases` front matter (after the page's own
+    URL); the theme's index.htaccess turns every alias but the first into a 301 rule
+  * the CS/platform version correspondence page is not migrated; links to it are removed
+"""
+import argparse
+import json
+import os
+import posixpath
+import re
+import shutil
+import subprocess
+import sys
+
+# --------------------------------------------------------------------------- nav
+# Mirrors the `pages:` block of mkdocs.yml. Pages outside that block are published
+# as link-only pages (no sidebar entry), exactly like MkDocs did.
+NAV = [
+    {
+        "slug": "getting-started", "title": "Getting Started", "weight": 1,
+        "index": {"synthetic": True,
+                  "intro": "Learn what Cloud Scripting is and deploy your first manifest."},
+        "pages": [
+            ("index.md", "Overview", "overview"),
+            ("quick-start.md", "Quick Start", None),
+        ],
+    },
+    {
+        "slug": "creating-manifest", "title": "Creating Manifest", "weight": 2,
+        "index": {"synthetic": True,
+                  "intro": "A manifest is a JSON or YAML file that describes the environment "
+                           "topology, the actions to run, and the events that trigger them. "
+                           "The pages below cover every section of the manifest."},
+        "pages": [
+            ("creating-manifest/basic-configs.md", "Basic Configs", None),
+            ("creating-manifest/selecting-containers.md", "Specifying Target Container", None),
+            ("creating-manifest/actions.md", "Actions", None),
+            ("creating-manifest/events.md", "Events", None),
+            ("creating-manifest/placeholders.md", "Placeholders", None),
+            ("creating-manifest/conditions-and-iterations.md", "Conditions and Iterations", None),
+            ("creating-manifest/custom-scripts.md", "Custom Scripts", None),
+            ("creating-manifest/mixins.md", "Mixins", None),
+            ("creating-manifest/addons.md", "Add-Ons", None),
+            ("creating-manifest/handling-custom-responses.md", "Custom Responses", None),
+            ("creating-manifest/visual-settings.md", "Visual Settings", None),
+        ],
+    },
+    # The Samples overview keeps its links to github.com/jelastic-jps/basic-examples;
+    # no sample pages are imported.
+    {"slug": "samples", "title": "Samples", "weight": 3,
+     "index": {"src": "samples.md"},
+     "pages": [("troubleshooting.md", "Troubleshooting", None)]},
+]
+
+# Pages that MkDocs built but never listed in the sidebar (examples/, reference/,
+# releasenotes.md) are outdated drafts and are intentionally not migrated.
+# The CS/platform version correspondence page ((virtuozzo|jelastic)-cs-correspondence.md)
+# is not migrated either: there are no production versions below 6.0, where the
+# versions started to match. Links to it are removed, see DROP_LINK_TARGETS.
+LINK_ONLY = {}
+
+# Older version branches name some source files differently; the canonical name is the key.
+SRC_ALIASES = {}
+
+# Titles for pages whose source has no H1 (or where the MkDocs theme template supplied it).
+TITLE_OVERRIDES = {}
+
+# Body prepended to pages whose H1 lived in a MkDocs theme template.
+BODY_PREFIX = {}
+
+SITE_KEYWORD = "cloud scripting"
+
+warnings = []
+
+
+def warn(msg):
+    warnings.append(msg)
+
+
+# --------------------------------------------------------------------------- helpers
+def yaml_str(s):
+    return json.dumps(s, ensure_ascii=False)
+
+
+def split_code(text, commonmark=False):
+    """Split text into [(is_code, chunk)] on fenced code blocks (``` or ~~~).
+
+    Default: Python-Markdown semantics (fences at column 0 only), used while converting.
+    commonmark=True: fences may be indented and a closing fence must be at least as long
+    as the opening one, used by the polish pass on already converted content."""
+    out, buf, in_code, fence, flen = [], [], False, None, 0
+    fence_re = r"^\s*(```+|~~~+)" if commonmark else r"^(```+|~~~+)"
+    for line in text.split("\n"):
+        m = re.match(fence_re, line)
+        if not in_code and m:
+            if buf:
+                out.append((False, "\n".join(buf)))
+            buf, in_code, fence, flen = [line], True, m.group(1)[0], len(m.group(1))
+            continue
+        if in_code and m and m.group(1)[0] == fence and len(m.group(1)) >= flen \
+                and not line.strip()[len(m.group(1)):].strip():
+            buf.append(line)
+            out.append((True, "\n".join(buf)))
+            buf, in_code = [], False
+            continue
+        buf.append(line)
+    if buf:
+        out.append((in_code, "\n".join(buf)))
+    return out
+
+
+def map_prose(text, fn):
+    """Apply fn to the non-code chunks only."""
+    return "\n".join(fn(chunk) if not is_code else chunk for is_code, chunk in split_code(text))
+
+
+def fix_nested_fences(chunk):
+    """Python-Markdown only closes a fence at column 0; CommonMark also accepts up to
+    3 spaces of indentation. Lengthen the outer fence when the block embeds one."""
+    lines = chunk.split("\n")
+    inner = [len(m.group(1)) for l in lines[1:-1] for m in [re.match(r"^ {0,3}(`{3,})", l)] if m]
+    if not inner:
+        return chunk
+    n = max(inner) + 1
+    lines[0] = re.sub(r"^`{3,}", "`" * n, lines[0])
+    lines[-1] = re.sub(r"^`{3,}", "`" * n, lines[-1])
+    return "\n".join(lines)
+
+
+BLOCK_TAGS = ("address|article|aside|blockquote|br|center|dd|details|dialog|div|dl|dt|fieldset|figcaption|"
+              "figure|footer|form|h[1-6]|header|hr|iframe|img|legend|li|main|menu|nav|ol|optgroup|option|p|"
+              "section|summary|table|tbody|td|tfoot|th|thead|tr|ul")
+CONTAINER_TAGS = "table|div|ul|ol|dl|center|details|blockquote|figure|section|nav|aside|form|fieldset"
+
+
+def fix_html_blocks(chunk):
+    """Goldmark treats a line that starts with a block-level HTML tag as raw HTML up to the
+    next blank line, so markdown right after `<h3>..</h3>` or `<p>..</p>` is swallowed.
+    Python-Markdown did not. Insert a blank line after a closed HTML block line when the
+    next line is markdown."""
+    lines = chunk.split("\n")
+    out, depth = [], 0
+    for i, line in enumerate(lines):
+        out.append(line)
+        is_html = re.match(r"^<(%s)(\s|>|/)" % BLOCK_TAGS, line, re.I) or re.match(r"^</?[A-Za-z][^<>]*>\s*$", line)
+        depth += len(re.findall(r"<(%s)(\s[^>]*)?>" % CONTAINER_TAGS, line, re.I))
+        depth -= len(re.findall(r"</(%s)>" % CONTAINER_TAGS, line, re.I))
+        if depth < 0:
+            depth = 0
+        nxt = lines[i + 1] if i + 1 < len(lines) else ""
+        if (is_html or (depth == 0 and re.match(r"^\s*</(%s)>" % CONTAINER_TAGS, line, re.I))) \
+                and depth == 0 and nxt.strip() and not nxt.lstrip().startswith("<"):
+            out.append("")
+    return "\n".join(out)
+
+
+def map_code(text, fn):
+    return "\n".join(fn(chunk) if is_code else chunk for is_code, chunk in split_code(text))
+
+
+def fix_headings(chunk):
+    chunk = re.sub(r"^(#{1,6})([^#\s])", r"\1 \2", chunk, flags=re.M)
+    return re.sub(r"^(#{1,6} .*?)[ \t]+$", r"\1", chunk, flags=re.M)
+
+
+def promote_h2(text):
+    """Pages whose top heading is `## Title` (MkDocs did not care): make it the H1."""
+    if re.search(r"^# ", text, re.M):
+        return text
+    return re.sub(r"^## ", "# ", text, count=1, flags=re.M)
+
+
+def convert_admonitions(text):
+    lines = text.split("\n")
+    out, i = [], 0
+    while i < len(lines):
+        m = re.match(r"^!!! ?(\w+)\s*(\"[^\"]*\")?\s*$", lines[i], re.I)
+        if not m:
+            out.append(lines[i])
+            i += 1
+            continue
+        kind = m.group(1).lower()
+        if kind != "note":
+            warn(f"admonition type '{kind}' mapped to note")
+        i += 1
+        body = []
+        while i < len(lines) and (lines[i].strip() == "" or lines[i].startswith("    ") or lines[i].startswith("\t")):
+            body.append(lines[i][4:] if lines[i].startswith("    ") else lines[i].lstrip("\t"))
+            i += 1
+        while body and body[-1].strip() == "":
+            body.pop()
+        while body and body[0].strip() == "":
+            body.pop(0)
+        out.append("{{%note%}}")
+        out.extend(body)
+        out.append("{{%/note%}}")
+        out.append("")
+    return "\n".join(out)
+
+
+LANG_TITLES = {"yaml": "YAML", "yml": "YAML", "json": "JSON", "javascript": "JavaScript", "js": "JavaScript",
+               "bash": "Bash", "example": "Example", "": "Text"}
+
+
+def convert_tabs(text):
+    lines = text.split("\n")
+    out, i = [], 0
+    while i < len(lines):
+        if not re.match(r"^@@@\s*$", lines[i]):
+            out.append(lines[i])
+            i += 1
+            continue
+        i += 1
+        items, cur, lang = [], None, None
+        while i < len(lines) and not re.match(r"^@@!\s*$", lines[i]):
+            line = lines[i]
+            m = re.match(r"^```\s*([\w-]*)\s*$", line)
+            if cur is None:
+                if m:
+                    lang = m.group(1).lower()
+                    cur = ["```" + lang]
+                elif line.strip():
+                    warn(f"stray text inside tabs block: {line.strip()[:60]!r}")
+            else:
+                cur.append(line)
+                if m and not m.group(1):
+                    items.append((lang, cur))
+                    cur = None
+            i += 1
+        i += 1  # skip @@!
+        if cur:
+            warn("unterminated code fence inside tabs block")
+            items.append((lang, cur))
+        out.append("{{< tabs >}}")
+        for lang, body in items:
+            title = LANG_TITLES.get(lang, lang.upper())
+            out.append('{{< tabs-item title="' + title + '" >}}')
+            out.extend(body)
+            out.append("{{< /tabs-item >}}")
+        out.append("{{< /tabs >}}")
+    return "\n".join(out)
+
+
+def normalize_fences(text):
+    # "``` json " -> "```json"; keep content untouched
+    return re.sub(r"^(`{3,})[ \t]*([\w-]*)[ \t]*$", r"\1\2", text, flags=re.M)
+
+
+def strip_markup(s):
+    s = re.sub(r"<[^>]+>", "", s)
+    s = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", s)
+    s = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", s)
+    s = re.sub(r"[*_`]+", "", s)
+    s = re.sub(r"&[a-z]+;", "", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def first_paragraph(body):
+    lines = body.split("\n")
+    i = 0
+    while i < len(lines) and (not lines[i].strip() or lines[i].startswith("#") or lines[i].startswith("{{")):
+        i += 1
+    para = []
+    while i < len(lines) and lines[i].strip() and not lines[i].startswith("{{"):
+        para.append(lines[i])
+        i += 1
+    return strip_markup(" ".join(para))
+
+
+def seodesc(body, title):
+    text = first_paragraph(body) or title
+    if len(text) > 155:
+        text = text[:155].rsplit(" ", 1)[0].rstrip(",.;:")
+    return text
+
+
+# --------------------------------------------------------------------------- polish
+# Idempotent clean-up applied after conversion and available on its own (--polish DIR).
+PRODUCT_RENAMES = [
+    ("Virtuozzo Application Platform", "Virtuozzo Application Management"),
+    ("https://www.virtuozzo.com/application-platform-docs", "https://www.virtuozzo.com/application-management-docs"),
+    ("https://www.virtuozzo.com/application-platform-api-docs", "https://www.virtuozzo.com/application-management-api-docs"),
+    ("https://www.virtuozzo.com/application-platform-ops-docs", "https://www.virtuozzo.com/application-management-admin-docs"),
+    ("https://www.virtuozzo.com/application-platform-partners", "https://www.virtuozzo.com/paas-partners"),
+]
+# Pages that are not migrated: drop list items linking to them.
+DROP_LINK_TARGETS = ("/releasenotes/", "/virtuozzo-cs-correspondence/", "/jelastic-cs-correspondence/")
+# A trailing "See the [..](dropped page) page" sentence inside a list item that must stay.
+DROP_SENTENCE_RE = re.compile(r"[ \t]*See the \[[^\]]*\]\((?:%s)\) page\.?"
+                              % "|".join(re.escape(t) for t in DROP_LINK_TARGETS))
+LIST_ITEM_RE = re.compile(r"^(\s*)([-*+]|\d+[.)]) ")
+
+
+def _wrap(inner, mark):
+    if not inner.strip():
+        return inner
+    lead = inner[:len(inner) - len(inner.lstrip())]
+    trail = inner[len(inner.rstrip()):]
+    return f"{lead}{mark}{inner.strip()}{mark}{trail}"
+
+
+def md_inline(line):
+    line = re.sub(r"<(?:b|strong)>(.*?)</(?:b|strong)>", lambda m: _wrap(m.group(1), "**"), line)
+    line = re.sub(r"<(?:em|i)>(.*?)</(?:em|i)>", lambda m: _wrap(m.group(1), "*"), line)
+    return line
+
+
+def md_links(line):
+    def repl(m):
+        attrs, text = m.group(1), m.group(2)
+        href = re.search(r'href\s*=\s*"([^"]*)"', attrs)
+        rest = re.sub(r'(href|target)\s*=\s*"[^"]*"', "", attrs).strip()
+        if not href or rest or not text.strip() or re.search(r"[\[\]<>\n]", text):
+            return m.group(0)
+        return _wrap(text, "") .replace(text.strip(), f"[{text.strip()}]({href.group(1)})", 1)
+
+    return re.sub(r"<a\s+([^>]*)>(.*?)</a>", repl, line)
+
+
+def md_table(block):
+    """Convert a simple <table> (header row + plain cells) to a markdown table."""
+    if block.count("<table") != 1:
+        return None
+    rows = re.findall(r"<tr[^>]*>(.*?)</tr>", block, re.S)
+    table = []
+    for row in rows:
+        cells = re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", row, re.S)
+        cells = [md_links(md_inline(re.sub(r"\s+", " ", c).strip())).replace("|", "\\|") for c in cells]
+        if not cells or any("<" in c for c in cells):
+            return None
+        table.append(cells)
+    if len(table) < 2 or len({len(r) for r in table}) != 1:
+        return None
+    header = [re.sub(r"^\*\*(.*)\*\*$", r"\1", c) for c in table[0]]
+    out = ["| " + " | ".join(header) + " |", "|" + "---|" * len(table[0])]
+    out += ["| " + " | ".join(r) + " |" for r in table[1:]]
+    return "\n".join(out)
+
+
+def html_to_markdown(chunk):
+    chunk = re.sub(r"^<table[^>]*>\n.*?^[ \t]*</table>[ \t]*$",
+                   lambda m: md_table(m.group(0)) or m.group(0), chunk, flags=re.S | re.M)
+    out, in_table = [], False
+    for line in chunk.split("\n"):
+        if re.match(r"^\s*<table", line):
+            in_table = True
+        if in_table:
+            out.append(line)
+            if re.match(r"^\s*</table>", line):
+                in_table = False
+            continue
+        line = re.sub(r"^<p[^>]*>(.*)</p>[ \t]*$", r"\1", line)
+        hm = re.match(r"^<h([1-6])[^>]*>\s*(.*?)\s*</h\1>[ \t]*$", line)
+        if hm:
+            if out and out[-1].strip():
+                out.append("")
+            line = "#" * int(hm.group(1)) + " " + hm.group(2).replace("\u2019", "'")
+        if re.match(r"^<ul>(<li>.*?</li>)+</ul>[ \t]*$", line):
+            out.extend("- " + md_links(md_inline(i.strip())) for i in re.findall(r"<li>(.*?)</li>", line))
+            continue
+        line = re.sub(r'^<img\s+src="([^"]+)"\s+alt="([^"]*)"\s*/?>[ \t]*$', r"![\2](\1)", line)
+        if re.match(r"^\s*<br\s*/?>\s*$", line):
+            continue
+        line = md_links(md_inline(line))
+        if re.match(r"^#{1,6} ", line) and out and out[-1].strip():
+            out.append("")
+        if re.search(r"<br\s*/?>[ \t]*$", line) and not line.startswith(("|", " ", "\t")) \
+                and not LIST_ITEM_RE.match(line):
+            out.append(re.sub(r"<br\s*/?>[ \t]*$", "", line))
+            out.append("")
+            continue
+        out.append(line)
+    return "\n".join(out)
+
+
+def drop_dead_links(chunk):
+    chunk = DROP_SENTENCE_RE.sub("", chunk)
+    keep = []
+    for line in chunk.split("\n"):
+        if LIST_ITEM_RE.match(line) and any(f"]({t})" in line or f'href="{t}"' in line for t in DROP_LINK_TARGETS):
+            continue
+        keep.append(line)
+    return "\n".join(keep)
+
+
+def tighten_lists(chunk):
+    """Remove blank lines between consecutive list items (tight lists)."""
+    lines = chunk.split("\n")
+    out, i = [], 0
+    while i < len(lines):
+        if lines[i].strip() == "":
+            j = i
+            while j < len(lines) and lines[j].strip() == "":
+                j += 1
+            nxt = LIST_ITEM_RE.match(lines[j]) if j < len(lines) else None
+            prev = out[-1] if out else ""
+            pm = LIST_ITEM_RE.match(prev)
+            same_list = pm and len(pm.group(1)) == len(nxt.group(1)) if nxt else False
+            continuation = nxt and prev.strip() and not prev.startswith(("{{", "<")) \
+                and len(prev) - len(prev.lstrip()) > len(nxt.group(1))
+            if nxt and (same_list or continuation):
+                i = j
+                continue
+        out.append(lines[i])
+        i += 1
+    return "\n".join(out)
+
+
+def polish_text(text):
+    for old, new in PRODUCT_RENAMES:
+        text = text.replace(old, new)
+    chunks = split_code(text, commonmark=True)
+    done = []
+    for is_code, chunk in chunks:
+        if not is_code:
+            chunk = html_to_markdown(chunk)
+            chunk = drop_dead_links(chunk)
+            chunk = tighten_lists(chunk)
+        done.append(chunk)
+    return "\n".join(done)
+
+
+def polish_file(path):
+    with open(path, encoding="utf-8") as fh:
+        text = fh.read()
+    m = re.match(r"^---\n.*?\n---\n", text, re.S)
+    fm, body = (m.group(0), text[m.end():]) if m else ("", text)
+    for old, new in PRODUCT_RENAMES:
+        fm = fm.replace(old, new)
+    new = fm + polish_text(body)
+    if new != text:
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(new)
+        return True
+    return False
+
+
+# --------------------------------------------------------------------------- pages
+class Page:
+    def __init__(self, src, slug, section, menu_title=None, weight=None, parent=None, is_section_index=False):
+        self.src = src                    # path relative to docs/, or None for synthetic pages
+        self.slug = slug
+        self.section = section
+        self.menu_title = menu_title
+        self.weight = weight
+        self.parent = parent              # None = link-only, "" = top level
+        self.is_section_index = is_section_index
+
+    @property
+    def key(self):
+        return re.sub(r"\.md$", "", self.src) if self.src else None
+
+    @property
+    def mk_url(self):
+        """URL MkDocs served this page at (directory style)."""
+        if self.key in ("index", None):
+            return "/"
+        return "/" + self.key + "/"
+
+    @property
+    def old_urls(self):
+        """MkDocs URLs that must redirect to this page (empty when the URL is unchanged)."""
+        if self.src and self.mk_url not in ("/", self.url):
+            return [self.mk_url]
+        return []
+
+    @property
+    def src_dir_url(self):
+        return "/" + posixpath.dirname(self.src) + "/" if self.src and "/" in self.src else "/"
+
+    @property
+    def out_dir(self):
+        d = self.slug if not self.is_section_index else self.slug
+        return os.path.join(self.section, d)
+
+    @property
+    def url(self):
+        return "/" + self.slug + "/"
+
+
+def build_pages():
+    pages = []
+    for sec in NAV:
+        idx = sec["index"]
+        pages.append(Page(idx.get("src"), sec["slug"], sec["slug"], sec["title"], sec["weight"], "",
+                          is_section_index=True))
+        for w, (src, title, slug) in enumerate(sec["pages"], start=sec.get("weight_start", 1)):
+            slug = slug or re.sub(r"\.md$", "", posixpath.basename(src))
+            pages.append(Page(src, slug, sec["slug"], title, w, sec["slug"]))
+    for folder, srcs in LINK_ONLY.items():
+        for src in srcs:
+            slug = re.sub(r"\.md$", "", posixpath.basename(src))
+            pages.append(Page(src, slug, folder))
+    return pages
+
+
+# --------------------------------------------------------------------------- links & images
+class Converter:
+    def __init__(self, src_root, img_root, out_root, pages, img_ref=None):
+        self.src_root, self.img_root, self.out_root = src_root, img_root, out_root
+        self.img_ref = img_ref
+        self.git_images = None
+        if img_ref:
+            prefix = img_root.strip("/") + "/"
+            listed = subprocess.run(["git", "-c", "core.quotePath=false", "ls-tree", "-r", "--name-only",
+                                     img_ref, "--", prefix], check=True, capture_output=True, text=True).stdout
+            self.git_images = {n[len(prefix):] for n in listed.splitlines()}
+        self.copied = {}                  # bundle path -> source image name
+        self.pages = pages
+        self.by_key = {p.key: p for p in pages if p.key}
+        self.by_key[""] = self.by_key["index"]
+        for canonical, names in SRC_ALIASES.items():
+            if re.sub(r"\.md$", "", canonical) in self.by_key:
+                for name in names:
+                    self.by_key[re.sub(r"\.md$", "", name)] = self.by_key[re.sub(r"\.md$", "", canonical)]
+        self.redirects = []
+
+    def lookup(self, path):
+        key = path.strip("/")
+        key = re.sub(r"\.md$", "", key)
+        if key.endswith("/index"):
+            key = key[:-6]
+        return self.by_key.get(key)
+
+    def resolve_link(self, url, page):
+        raw = url
+        url = url.strip()
+        if not url or re.match(r"^(https?:|mailto:|javascript:|#|//|\{)", url, re.I):
+            return raw
+        path, _, frag = url.partition("#")
+        frag = ("#" + frag) if frag else ""
+        if re.match(r"^(\.\./)*/?img/", path):
+            return self.copy_image(path, page) + frag
+        cands = []
+        if path.startswith("/"):
+            cands.append(path)
+        else:
+            cands.append(posixpath.normpath(posixpath.join(page.mk_url, path)))
+            cands.append(posixpath.normpath(posixpath.join(page.src_dir_url, path)))
+            cands.append(posixpath.normpath(posixpath.join(page.mk_url, "..", path)))
+        for c in cands:
+            target = self.lookup(c)
+            if target:
+                return target.url + frag
+        if any(c.rstrip("/") + "/" in DROP_LINK_TARGETS for c in cands):
+            return raw   # page is not migrated; the polish pass removes the link
+        base = posixpath.basename(path.rstrip("/"))
+        hits = [p for p in self.pages if p.key and posixpath.basename(p.key) == re.sub(r"\.md$", "", base)]
+        if len(hits) == 1:
+            return hits[0].url + frag
+        warn(f"{page.src}: unresolved internal link {raw!r}")
+        return raw
+
+    def copy_image(self, path, page):
+        name = re.sub(r"^(\.\./)*/?img/", "", path)
+        src = os.path.join(self.img_root, name)
+        exists = name in self.git_images if self.git_images is not None else os.path.isfile(src)
+        if not exists:
+            warn(f"{page.src}: missing image {name}")
+            return path
+        new = name.lower()
+        dest_dir = os.path.join(self.out_root, page.out_dir)
+        os.makedirs(dest_dir, exist_ok=True)
+        dest = os.path.join(dest_dir, new)
+        if self.copied.setdefault(dest, name) != name:
+            warn(f"{page.src}: images {self.copied[dest]} and {name} differ only by case, "
+                 f"both map to {new}; kept {self.copied[dest]}")
+        elif self.git_images is not None:
+            data = subprocess.run(["git", "show", f"{self.img_ref}:{self.img_root.strip('/')}/{name}"],
+                                  check=True, capture_output=True).stdout
+            with open(dest, "wb") as fh:
+                fh.write(data)
+        elif not os.path.exists(dest):
+            shutil.copy2(src, dest)
+        return new
+
+    def rewrite_links(self, chunk, page):
+        def md(m):
+            bang, text, url, title = m.group(1), m.group(2), m.group(3), m.group(4) or ""
+            return f"{bang}[{text}]({self.resolve_link(url, page)}{title})"
+
+        chunk = re.sub(r"(!?)\[([^\]]*)\]\(([^)\s]+)(\s+\"[^\"]*\")?\)", md, chunk)
+
+        def attr(m):
+            return f'{m.group(1)}={m.group(2)}{self.resolve_link(m.group(3), page)}{m.group(2)}'
+
+        chunk = re.sub(r"\b(href|src)\s*=\s*([\"'])([^\"']*)\2", attr, chunk)
+        # <center>![alt](img)</center>: raw HTML blocks are not markdown-processed by goldmark
+        chunk = re.sub(r"<center>\s*!\[([^\]]*)\]\(([^)\s]+)\)\s*</center>",
+                       r'<center><img src="\2" alt="\1"></center>', chunk)
+        return chunk
+
+    # ----------------------------------------------------------------------- page conversion
+    def body_for(self, page):
+        if page.src is None:
+            sec = next(s for s in NAV if s["slug"] == page.slug)
+            return f"# {sec['title']}\n\n{sec['index']['intro']}\n\nIn this section:\n\n{{{{%childrenList%}}}}\n", sec["title"]
+        src_file = os.path.join(self.src_root, page.src)
+        for name in SRC_ALIASES.get(page.src, []):
+            if not os.path.isfile(src_file) and os.path.isfile(os.path.join(self.src_root, name)):
+                src_file = os.path.join(self.src_root, name)
+        with open(src_file, encoding="utf-8") as fh:
+            text = fh.read().replace("\r\n", "\n")
+        text = re.sub(r"^<h1[^>]*>(.*?)</h1>\s*$", r"# \1", text, count=1, flags=re.M)
+        text = map_prose(text, fix_headings)
+        text = promote_h2(text)
+        text = map_prose(text, convert_admonitions)
+        text = convert_tabs(text)
+        text = map_code(text, fix_nested_fences)
+        text = normalize_fences(text)
+        text = map_prose(text, lambda c: self.rewrite_links(c, page))
+        text = map_prose(text, fix_html_blocks)
+        text = polish_text(text)
+        if page.src in BODY_PREFIX:
+            text = BODY_PREFIX[page.src] + text
+        m = re.search(r"^# (.+?)\s*$", text, re.M)
+        title = TITLE_OVERRIDES.get(page.src) or (strip_markup(m.group(1)) if m else None)
+        if not title:
+            title = page.menu_title or page.slug.replace("-", " ").title()
+            warn(f"{page.src}: no H1 found, using {title!r}")
+            text = f"# {title}\n\n" + text
+        if page.is_section_index and page.src and NAV_HAS_CHILDREN.get(page.slug):
+            block = "In this section:\n\n{{%childrenList%}}\n\n"
+            if re.search(r"^## What's next\?", text, re.M):
+                text = re.sub(r"^## What's next\?", block + "## What's next?", text, count=1, flags=re.M)
+            else:
+                text = text.rstrip("\n") + "\n\n" + block
+        return text.rstrip() + "\n", title
+
+    def front_matter(self, page, title, body):
+        menu_title = page.menu_title or title
+        fm = [
+            "---",
+            "draft: false",
+            f"title: {yaml_str(title)}",
+        ]
+        # The first alias is the page's own URL (theme convention, skipped by index.htaccess);
+        # every further alias becomes a 301 redirect to the page.
+        old_urls = [u for u in page.old_urls if u != page.url]
+        if old_urls:
+            fm.append("aliases:")
+            fm.extend(f"    - {yaml_str(u)}" for u in [page.url] + old_urls)
+        else:
+            fm.append(f"aliases: {yaml_str(page.url)}")
+        fm += [
+            'seoindex: "index, follow"',
+            f"seotitle: {yaml_str(title)}",
+            f"seokeywords: {yaml_str(SITE_KEYWORD + ', ' + strip_markup(title).lower())}",
+            f"seodesc: {yaml_str(seodesc(body, title))}",
+            "menu:",
+            "    docs:",
+            f"        title: {yaml_str(menu_title)}",
+            f"        url: {yaml_str(page.url)}",
+        ]
+        if page.parent is not None:
+            fm.append(f"        weight: {page.weight}")
+            fm.append(f"        parent: {yaml_str(page.parent)}")
+        fm.append(f"        identifier: {yaml_str(page.slug)}")
+        fm.append("---")
+        return "\n".join(fm) + "\n\n"
+
+    def run(self):
+        for page in self.pages:
+            body, title = self.body_for(page)
+            dest_dir = os.path.join(self.out_root, page.out_dir)
+            os.makedirs(dest_dir, exist_ok=True)
+            with open(os.path.join(dest_dir, "index.md"), "w", encoding="utf-8") as fh:
+                fh.write(self.front_matter(page, title, body) + body)
+            self.redirects.extend((old, page.url) for old in page.old_urls)
+        return self.redirects
+
+
+NAV_HAS_CHILDREN = {s["slug"]: bool(s["pages"]) for s in NAV}
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--src", default="docs")
+    ap.add_argument("--img", default="theme/readthedocs/img")
+    ap.add_argument("--out", default="content")
+    ap.add_argument("--img-ref", metavar="REV", help="read images from this git revision (case-exact) "
+                                                     "instead of the working tree")
+    ap.add_argument("--polish", metavar="DIR", help="only re-run the clean-up pass on existing pages under DIR")
+    args = ap.parse_args()
+
+    if args.polish:
+        changed = 0
+        for root, _, files in os.walk(args.polish):
+            for name in files:
+                if name.endswith(".md"):
+                    changed += polish_file(os.path.join(root, name))
+        print(f"polished {changed} changed file(s) under {args.polish}/")
+        return
+
+    pages = build_pages()
+    conv = Converter(args.src, args.img, args.out, pages, args.img_ref)
+    redirects = conv.run()
+
+    print(f"converted {len(pages)} pages into {args.out}/, {len(redirects)} redirects as front matter aliases")
+    seen = set()
+    for w in warnings:
+        if w not in seen:
+            seen.add(w)
+            print("WARN:", w, file=sys.stderr)
+
+
+if __name__ == "__main__":
+    main()
